@@ -7,10 +7,8 @@
 class Rectangle : public Shape
 {
 public:
-  Rectangle() : width_(0), heigth_(0), pos_(point_t()) {}
-
-  Rectangle(const double width, const double heigth, const point_t pos)
-    : width_(width),
+  Rectangle(const double width, const double heigth, const point_t pos):
+    width_(width),
     heigth_(heigth),
     pos_(pos)
   {}
@@ -24,9 +22,9 @@ public:
   virtual void move(double dx, double dy) override;
 
 private:
-  double width_ = 0;
-  double heigth_ = 0;
-  point_t pos_ = point_t(0, 0);
+  double width_;
+  double heigth_;
+  point_t pos_;
 };
 
 #endif

@@ -7,10 +7,8 @@
 class Circle : public Shape
 {
 public:
-  Circle() : radius_(0), pos_(point_t(0,0)) {}
-
-  Circle(const double radius, const point_t pos)
-    : radius_(radius),
+  Circle(const double radius, const point_t pos):
+    radius_(radius),
     pos_(pos)
   {}
 
@@ -23,8 +21,8 @@ public:
   virtual void move(double dx, double dy) override;
 
 private:
-  double radius_ = 0;
-  point_t pos_ = point_t(0,0);
+  double radius_;
+  point_t pos_;
 };
 
 #endif

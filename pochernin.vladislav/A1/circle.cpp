@@ -10,7 +10,11 @@ double Circle::getArea() const
 rectangle_t Circle::getFrameRect() const
 {
   double diameter = radius_ * 2.0;
-  return rectangle_t(diameter, diameter, pos_);
+  rectangle_t result;
+  result.width_ = diameter;
+  result.heigth_ = diameter;
+  result.pos_ = pos_;
+  return result;
 }
 
 void Circle::move(point_t destination)

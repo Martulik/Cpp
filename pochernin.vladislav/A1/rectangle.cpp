@@ -1,26 +1,32 @@
 #include "rectangle.hpp"
 
-double Rectangle::getArea() const 
+Rectangle::Rectangle(const double width, const double height, const point_t& pos)
 {
-  return width_ * heigth_;
+  figure_.width_ = width;
+  figure_.height_ = height;
+  figure_.pos_ = pos;
+}
+
+Rectangle::~Rectangle()
+{}
+
+double Rectangle::getArea() const
+{
+  return figure_.width_ * figure_.height_;
 }
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  rectangle_t result;
-  result.width_ = width_;
-  result.heigth_ = heigth_;
-  result.pos_ = pos_;
-  return result;
+  return figure_;
 }
 
-void Rectangle::move(point_t destination)
+void Rectangle::move(const point_t& destination)
 {
-  pos_ = destination;
+  figure_.pos_ = destination;
 }
 
-void Rectangle::move(double dx, double dy)
+void Rectangle::move(const double dx, const double dy)
 {
-  pos_.x_ += dx;
-  pos_.y_ += dy;
+  figure_.pos_.x_ += dx;
+  figure_.pos_.y_ += dy;
 }

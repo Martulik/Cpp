@@ -10,7 +10,7 @@ struct point_t
 struct rectangle_t
 {
   double width_;
-  double heigth_;
+  double height_;
   point_t pos_;
 };
 

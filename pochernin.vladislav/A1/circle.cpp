@@ -1,29 +1,34 @@
-# define M_PI           3.14159265358979323846
-
 #include "circle.hpp"
- 
+
+const double PI = 3.14159265358979323846;
+
+Circle::Circle(const double radius, const point_t& pos)
+{
+  figure_.width_ = 2.0 * radius;
+  figure_.height_ = 2.0 * radius;
+  figure_.pos_ = pos;
+}
+
+Circle::~Circle()
+{}
+
 double Circle::getArea() const
 {
-  return M_PI* radius_* radius_;
+  return PI * (figure_.width_ / 2.0) * (figure_.width_ / 2.0);
 }
 
 rectangle_t Circle::getFrameRect() const
 {
-  double diameter = radius_ * 2.0;
-  rectangle_t result;
-  result.width_ = diameter;
-  result.heigth_ = diameter;
-  result.pos_ = pos_;
-  return result;
+  return figure_;
 }
 
-void Circle::move(point_t destination)
+void Circle::move(const point_t& destination)
 {
-  pos_ = destination;
+  figure_.pos_ = destination;
 }
 
-void Circle::move(double dx, double dy)
+void Circle::move(const double dx, const double dy)
 {
-  pos_.x_ += dx;
-  pos_.y_ += dy;
+  figure_.pos_.x_ += dx;
+  figure_.pos_.y_ += dy;
 }

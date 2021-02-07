@@ -7,6 +7,9 @@
 class Circle : public Shape
 {
 public:
+  Circle();
+
+  Circle(const double radius);
   Circle(const double radius, const point_t& pos);
 
   virtual ~Circle();
@@ -15,6 +18,7 @@ public:
   virtual rectangle_t getFrameRect() const override;
   virtual void move(const point_t& destination) override;
   virtual void move(const double dx, const double dy) override;
+  virtual void getInfo() const override;
 
 private:
   rectangle_t figure_;

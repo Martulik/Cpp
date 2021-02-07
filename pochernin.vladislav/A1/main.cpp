@@ -35,6 +35,8 @@ int main()
   std::cout << "Now pos of Circle is (" << testCircle->getFrameRect().pos_.x_
             << "; " << testCircle->getFrameRect().pos_.y_ << ")\n";
 
+  delete testRectangle;
+  delete testCircle;
 
   return 0;
 }

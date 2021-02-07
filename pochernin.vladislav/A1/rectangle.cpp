@@ -5,25 +5,25 @@
 
 Rectangle::Rectangle()
 {
-  figure_.width_ = 0.0;
-  figure_.height_ = 0.0;
-  figure_.pos_.x_ = 0.0;
-  figure_.pos_.y_ = 0.0;
+  figure_.width = 0.0;
+  figure_.height = 0.0;
+  figure_.pos.x = 0.0;
+  figure_.pos.y = 0.0;
 }
 
 Rectangle::Rectangle(const double width, const double height)
 {
-  figure_.width_ = width;
-  figure_.height_ = height;
-  figure_.pos_.x_ = 0.0;
-  figure_.pos_.y_ = 0.0;
+  figure_.width = width;
+  figure_.height = height;
+  figure_.pos.x = 0.0;
+  figure_.pos.y = 0.0;
 }
 
 Rectangle::Rectangle(const double width, const double height, const point_t& pos)
 {
-  figure_.width_ = width;
-  figure_.height_ = height;
-  figure_.pos_ = pos;
+  figure_.width = width;
+  figure_.height = height;
+  figure_.pos = pos;
 }
 
 Rectangle::~Rectangle()
@@ -31,7 +31,7 @@ Rectangle::~Rectangle()
 
 double Rectangle::getArea() const
 {
-  return figure_.width_ * figure_.height_;
+  return figure_.width * figure_.height;
 }
 
 rectangle_t Rectangle::getFrameRect() const
@@ -41,13 +41,13 @@ rectangle_t Rectangle::getFrameRect() const
 
 void Rectangle::move(const point_t& destination)
 {
-  figure_.pos_ = destination;
+  figure_.pos = destination;
 }
 
 void Rectangle::move(const double dx, const double dy)
 {
-  figure_.pos_.x_ += dx;
-  figure_.pos_.y_ += dy;
+  figure_.pos.x += dx;
+  figure_.pos.y += dy;
 }
 
 void Rectangle::getInfo() const
@@ -57,8 +57,8 @@ void Rectangle::getInfo() const
   std::cout << "|-----------------------------------------|\n";
   std::cout << "|" << "width" << std::setw(15) << "|height"
             << std::setw(10) << "|pos" << std::setw(13) << "|\n";
-  std::cout << "|" << figure_.width_ << std::setw(8) << "|" << figure_.height_ << std::setw(11)
-            << "|(" << figure_.pos_.x_ << "; " << figure_.pos_.y_ << ")"
+  std::cout << "|" << figure_.width << std::setw(8) << "|" << figure_.height << std::setw(11)
+            << "|(" << figure_.pos.x << "; " << figure_.pos.y << ")"
             << std::setw(10) << "|\n";
   std::cout << "-------------------------------------------\n";
 }

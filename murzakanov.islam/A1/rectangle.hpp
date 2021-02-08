@@ -6,7 +6,7 @@
 class Rectangle:public Shape
 {
 public:
-  Rectangle(double width, double heigth, point_t pos_);
+  Rectangle(double width, double height, point_t pos_);
   Rectangle(const Rectangle& other);
   Rectangle& operator=(const Rectangle& other);
   Rectangle(Rectangle && other) noexcept;
@@ -20,7 +20,7 @@ public:
 
 private:
   double width_;
-  double heigth_;
+  double height_;
   point_t pos_;
 };
 

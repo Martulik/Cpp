@@ -19,6 +19,10 @@ Rectangle::Rectangle(double width, double height, point_t center):
     }
 }
 
+Rectangle::~Rectangle()
+{
+}
+
 void Rectangle::showShape()
 {
     std::cout << "height = " << height_ << ", width_ = " << width_;
@@ -44,8 +48,4 @@ void Rectangle::move(double x, double y)
 {
     center_.x_t += x;
     center_.y_t += y;
-}
-
-Rectangle::~Rectangle()
-{
 }

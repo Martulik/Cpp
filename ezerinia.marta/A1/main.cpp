@@ -14,10 +14,10 @@ int main()
         someShape->move(-1.1, 1.0);
         someShape->showShape();
         std::cout << "limit rectangle_t for Rectangle ";
-        std::cout << "height = " << someShape->getFrameRect().height_t << "  width = "
-                  << someShape->getFrameRect().width_t;
-        std::cout << " center: x = " << someShape->getFrameRect().pos_t.x_t << ", y = "
-                  << someShape->getFrameRect().pos_t.y_t;
+        std::cout << "height = " << someShape->getFrameRect().height << "  width = "
+                  << someShape->getFrameRect().width;
+        std::cout << " center: x = " << someShape->getFrameRect().pos.x << ", y = "
+                  << someShape->getFrameRect().pos.y;
 
         std::cout << std::endl;
 
@@ -32,10 +32,10 @@ int main()
         someShape->showShape();
         someShape->getFrameRect();
         std::cout << "limit rectangle_t for Circle ";
-        std::cout << "height = " << someShape->getFrameRect().height_t << "  width = "
-                  << someShape->getFrameRect().width_t;
-        std::cout << " center: x = " << someShape->getFrameRect().pos_t.x_t << ", y = "
-                  << someShape->getFrameRect().pos_t.y_t;
+        std::cout << "height = " << someShape->getFrameRect().height << "  width = "
+                  << someShape->getFrameRect().width;
+        std::cout << " center: x = " << someShape->getFrameRect().pos.x << ", y = "
+                  << someShape->getFrameRect().pos.y;
         std::cout << std::endl;
     }
     catch (const char *s)

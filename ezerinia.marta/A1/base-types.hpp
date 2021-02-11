@@ -5,39 +5,39 @@
 
 struct point_t
 {
-    double x_t;
-    double y_t;
+    double x;
+    double y;
 
     point_t():
-      x_t(0.0),
-      y_t(0.0)
+            x(0.0),
+            y(0.0)
     {
     }
 
-    point_t(const double x, const double y):
-    x_t(x),
-    y_t(y)
+    point_t(const double dx, const double dy):
+            x(dx),
+            y(dy)
     {
     }
 };
 
 struct rectangle_t
 {
-    double width_t;
-    double height_t;
-    point_t pos_t;
+    double width;
+    double height;
+    point_t pos;
 
     rectangle_t():
-      width_t(0.0),
-      height_t(0.0),
-      pos_t(0.0, 0.0)
+            width(0.0),
+            height(0.0),
+            pos(0.0, 0.0)
     {
     }
 
-    rectangle_t(const double width, const double height, const point_t pos):
-      width_t(width),
-      height_t(height),
-      pos_t(pos)
+    rectangle_t(const double dwidth, const double dheight, const point_t dpos):
+            width(dwidth),
+            height(dheight),
+            pos(dpos)
     {
         if ((width <= 0) || (height <= 0))
         {

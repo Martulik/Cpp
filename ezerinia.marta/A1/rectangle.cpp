@@ -29,12 +29,12 @@ void Rectangle::showShape()
     std::cout << ", center: x = " << center_.x << ", y = " << center_.y << std::endl;
 }
 
-double Rectangle::getArea()
+double Rectangle::getArea() const
 {
     return (height_ * width_);
 }
 
-rectangle_t Rectangle::getFrameRect()
+rectangle_t Rectangle::getFrameRect() const
 {
     return (rectangle_t(width_, height_, center_));
 }

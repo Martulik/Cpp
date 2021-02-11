@@ -29,12 +29,12 @@ void Circle::showShape()
     std::cout << ", center: x = " << center_.x << ", y = " << center_.y << std::endl;
 }
 
-double Circle::getArea()
+double Circle::getArea() const
 {
     return (PI * radius_ * radius_);
 }
 
-rectangle_t Circle::getFrameRect()
+rectangle_t Circle::getFrameRect() const
 {
     return (rectangle_t(2 * radius_, 2 * radius_, center_));
 }

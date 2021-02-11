@@ -1,14 +1,15 @@
 #include "circle.hpp"
+#include <iostream>
 
 const double PI = 3.14;
 
-Circle::Circle() :
+Circle::Circle():
   center_(0.0, 0.0),
   radius_(0)
 {
 }
 
-Circle::Circle(double radius, point_t center) :
+Circle::Circle(double radius, point_t center):
   center_(center),
   radius_(radius)
 {
@@ -16,12 +17,6 @@ Circle::Circle(double radius, point_t center) :
     {
         throw ("the radius must be greater than 0");
     }
-}
-
-Circle::Circle(const Circle &src) :
-  center_(src.center_),
-  radius_(src.radius_)
-{
 }
 
 Circle::~Circle()
@@ -49,7 +44,7 @@ void Circle::move(const point_t &point)
     center_ = point;
 }
 
-void Circle::move(const double x, const double y)
+void Circle::move(double x, double y)
 {
     center_.x_t = center_.x_t + x;
     center_.y_t = center_.y_t + y;

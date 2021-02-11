@@ -2,14 +2,12 @@
 #define RECTANGLE_HPP
 
 #include "shape.hpp"
-#include <iostream>
 
 class Rectangle : public Shape
 {
 public:
 	Rectangle();
 	Rectangle(double width, double height, point_t center);
-	Rectangle(const Rectangle& src);
     virtual ~Rectangle();
     virtual void showShape() override;
 	virtual double getArea() override;

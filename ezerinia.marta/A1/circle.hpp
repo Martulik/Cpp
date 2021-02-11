@@ -2,14 +2,12 @@
 #define CIRCLE_HPP
 
 #include "shape.hpp"
-#include <iostream>
 
 class Circle : public Shape
 {
 public:
 	Circle();
 	Circle(double radius, point_t center);
-	Circle(const Circle& src);
     virtual ~Circle();
     virtual void showShape() override;
 	virtual double getArea() override;

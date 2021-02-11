@@ -1,13 +1,14 @@
 #include "rectangle.hpp"
+#include <iostream>
 
-Rectangle::Rectangle() :
+Rectangle::Rectangle():
   width_(0),
   height_(0),
   center_(0.0, 0.0)
 {
 }
 
-Rectangle::Rectangle(double width, double height, point_t center) :
+Rectangle::Rectangle(double width, double height, point_t center):
   width_(width),
   height_(height),
   center_(center)
@@ -16,13 +17,6 @@ Rectangle::Rectangle(double width, double height, point_t center) :
     {
         throw ("the width and height must be greater than 0");
     }
-}
-
-Rectangle::Rectangle(const Rectangle &src) :
-  width_(src.width_),
-  height_(src.height_),
-  center_(src.center_)
-{
 }
 
 void Rectangle::showShape()
@@ -46,7 +40,7 @@ void Rectangle::move(const point_t &point)
     center_ = point;
 }
 
-void Rectangle::move(const double x, const double y)
+void Rectangle::move(double x, double y)
 {
     center_.x_t += x;
     center_.y_t += y;

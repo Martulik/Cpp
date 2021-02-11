@@ -1,8 +1,10 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-int main() {
-    try {
+int main()
+{
+    try
+    {
         Rectangle someRectangle(2.0, 4.0, point_t(0.0, 0.0));
         Shape *someShape = &someRectangle;
         std::cout << "area of rectangle = " << someShape->getArea() << std::endl;
@@ -36,7 +38,10 @@ int main() {
                   << someShape->getFrameRect().pos_t.y_t;
         std::cout << std::endl;
     }
-    catch (const char *s) {
+    catch (const char *s)
+    {
         std::cout << s << std::endl;
+        return 1;
     }
+    return 0;
 }

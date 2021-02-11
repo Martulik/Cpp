@@ -26,7 +26,7 @@ Rectangle::~Rectangle()
 void Rectangle::showShape()
 {
     std::cout << "height = " << height_ << ", width_ = " << width_;
-    std::cout << ", center: x = " << center_.x_t << ", y = " << center_.y_t << std::endl;
+    std::cout << ", center: x = " << center_.x << ", y = " << center_.y << std::endl;
 }
 
 double Rectangle::getArea()
@@ -46,6 +46,6 @@ void Rectangle::move(const point_t &point)
 
 void Rectangle::move(double x, double y)
 {
-    center_.x_t += x;
-    center_.y_t += y;
+    center_.x += x;
+    center_.y += y;
 }

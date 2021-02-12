@@ -3,7 +3,7 @@
 #include "math.h"
 #include "base-types.hpp"
 
-Circle::Circle(float radius, point_t pos):
+Circle::Circle(double radius, point_t pos):
   radius_(radius),
   pos_(pos)
 {
@@ -12,7 +12,7 @@ Circle::Circle(float radius, point_t pos):
   }
 }
 
-float Circle::getArea() const
+double Circle::getArea() const
 {
   return M_PI * radius_ * radius_;
 }
@@ -28,7 +28,7 @@ void Circle::move(const point_t &pos)
   pos_.y = pos.y;
 }
 
-void Circle::move(float dx, float dy)
+void Circle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;

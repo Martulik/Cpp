@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "base-types.hpp"
 
-Rectangle::Rectangle(float width, float height, point_t pos):
+Rectangle::Rectangle(double width, double height, point_t pos):
   width_(width),
   height_(height),
   pos_(pos)
@@ -12,7 +12,7 @@ Rectangle::Rectangle(float width, float height, point_t pos):
   }
 }
 
-float Rectangle::getArea() const
+double Rectangle::getArea() const
 {
   return width_ * height_;
 }
@@ -28,7 +28,7 @@ void Rectangle::move(const point_t &pos)
   pos_.y = pos.y;
 }
 
-void Rectangle::move(float dx, float dy)
+void Rectangle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;

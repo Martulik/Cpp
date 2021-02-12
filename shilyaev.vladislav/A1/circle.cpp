@@ -1,0 +1,35 @@
+#include "circle.hpp"
+#include <stdexcept>
+#include "math.h"
+#include "base-types.hpp"
+
+Circle::Circle(float radius, point_t pos):
+  radius_(radius),
+  pos_(pos)
+{
+  if (radius_ < 0.0) {
+    throw std::invalid_argument("Radius can't be negative");
+  }
+}
+
+float Circle::getArea() const
+{
+  return M_PI * radius_ * radius_;
+}
+
+rectangle_t Circle::getFrameRect() const
+{
+  return rectangle_t{radius_ * 2, radius_ * 2, pos_};
+}
+
+void Circle::move(const point_t &pos)
+{
+  pos_.x = pos.x;
+  pos_.y = pos.y;
+}
+
+void Circle::move(float dx, float dy)
+{
+  pos_.x += dx;
+  pos_.y += dy;
+}

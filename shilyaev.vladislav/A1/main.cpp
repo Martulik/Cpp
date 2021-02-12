@@ -6,7 +6,7 @@
 
 void printShapeDescription(const Shape &shape)
 {
-  rectangle_t frameRect = shape.getFrameRect();
+  const rectangle_t frameRect = shape.getFrameRect();
   std::cout << "Area: " << shape.getArea() << ", Width × Height: " << frameRect.width << " × " << frameRect.height
             << ", Center: " << frameRect.pos.x << ' ' << frameRect.pos.y << '\n';
 }

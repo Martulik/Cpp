@@ -14,4 +14,3 @@ int main(){
   std::cout << rectangle.getArea() << std::endl;
   return 0;
 }
-

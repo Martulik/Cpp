@@ -2,7 +2,7 @@
 #define RECTANGLE_H
 
 #include "shape.hpp"
-#include<iostream>
+#include <iostream>
 class Rectangle:public Shape
 {
 public:

@@ -16,7 +16,7 @@ int main()
   << "width: " << shape0.getFrameRect().width_ << std::endl << "center: {" << shape0.getFrameRect().pos_.x
   << ";" << shape0.getFrameRect().pos_.y << "}" << std::endl;
 
-  Circle circle(12, {1, 4});
+  Circle circle({1, 4}, 12);
   Shape &shape1 = circle;
   shape1.outShape();
   std::cout << "area is " << shape1.getArea() << std::endl;

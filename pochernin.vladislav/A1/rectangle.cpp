@@ -3,20 +3,13 @@
 
 #include "rectangle.hpp"
 
-Rectangle::Rectangle(const double width, const double height)
-{
-  figure_.width = width;
-  figure_.height = height;
-  figure_.pos.x = 0.0;
-  figure_.pos.y = 0.0;
-}
+Rectangle::Rectangle(const double width, const double height):
+  figure_({width, height, 0.0, 0.0})
+{}
 
-Rectangle::Rectangle(const double width, const double height, const point_t& pos)
-{
-  figure_.width = width;
-  figure_.height = height;
-  figure_.pos = pos;
-}
+Rectangle::Rectangle(const double width, const double height, const point_t& pos):
+  figure_({width, height, pos})
+{}
 
 double Rectangle::getArea() const
 {

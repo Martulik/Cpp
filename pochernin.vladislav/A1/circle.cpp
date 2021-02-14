@@ -5,20 +5,13 @@
 
 const double PI = 3.14159265358979323846;
 
-Circle::Circle(const double radius)
-{
-  figure_.width = 2.0 * radius;
-  figure_.height = 2.0 * radius;
-  figure_.pos.x = 0.0;
-  figure_.pos.y = 0.0;
-}
+Circle::Circle(const double radius):
+  figure_({2.0 * radius, 2.0 * radius, 0.0, 0.0})
+{}
 
-Circle::Circle(const double radius, const point_t& pos)
-{
-  figure_.width = 2.0 * radius;
-  figure_.height = 2.0 * radius;
-  figure_.pos = pos;
-}
+Circle::Circle(const double radius, const point_t& pos):
+  figure_({2.0 * radius, 2.0 * radius, pos})
+{}
 
 double Circle::getArea() const
 {

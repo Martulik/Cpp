@@ -6,9 +6,9 @@ Circle::Circle() :
  ctr_({0, 0})
 {}
 
-Circle::Circle(int rad, point_t ctr) :
- radius_(rad),
- ctr_(ctr)
+Circle::Circle(point_t ctr, int rad) :
+  ctr_(ctr),
+  radius_(rad)
 {}
 
 Circle::~Circle()

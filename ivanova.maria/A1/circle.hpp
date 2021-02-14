@@ -10,7 +10,7 @@ class Circle : public Shape
 public:
   Circle();
 
-  Circle(int rad, point_t ctr);
+  Circle(point_t ctr, int rad);
 
   virtual ~Circle();
 

@@ -20,17 +20,17 @@ Rectangle& Rectangle::operator=(const Rectangle& other)
   {
     return *this;
   }
-  this->height_ = other.height_;
-  this->width_ = other.width_;
-  this->pos_ = other.pos_;
+  height_ = other.height_;
+  width_ = other.width_;
+  pos_ = other.pos_;
   return *this;
 }
 
 Rectangle::Rectangle(Rectangle&& other) noexcept
 {
-  this->height_ = other.height_;
-  this->width_ = other.width_;
-  this->pos_ = other.pos_;
+  height_ = other.height_;
+  width_ = other.width_;
+  pos_ = other.pos_;
   other.height_ = 0;
   other.width_ = 0;
   other.pos_ = { 0, 0 };
@@ -41,9 +41,9 @@ Rectangle& Rectangle::operator=(Rectangle&& other) noexcept
   {
     return *this;
   }
-  this->height_ = other.height_;
-  this->width_ = other.width_;
-  this->pos_ = other.pos_;
+  height_ = other.height_;
+  width_ = other.width_;
+  pos_ = other.pos_;
   other.height_ = 0;
   other.width_ = 0;
   other.pos_ = { 0, 0 };

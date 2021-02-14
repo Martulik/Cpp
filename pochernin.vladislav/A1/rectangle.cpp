@@ -3,14 +3,6 @@
 
 #include "rectangle.hpp"
 
-Rectangle::Rectangle()
-{
-  figure_.width = 0.0;
-  figure_.height = 0.0;
-  figure_.pos.x = 0.0;
-  figure_.pos.y = 0.0;
-}
-
 Rectangle::Rectangle(const double width, const double height)
 {
   figure_.width = width;
@@ -25,9 +17,6 @@ Rectangle::Rectangle(const double width, const double height, const point_t& pos
   figure_.height = height;
   figure_.pos = pos;
 }
-
-Rectangle::~Rectangle()
-{}
 
 double Rectangle::getArea() const
 {

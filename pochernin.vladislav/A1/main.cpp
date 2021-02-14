@@ -11,7 +11,7 @@ int main()
   posPoint.x = 0;
   posPoint.y = 0;
 
-  Shape* testRectangle = new Rectangle(50.123, 100.0);
+  Shape* testRectangle = new Rectangle(50.123, 100.0, {13.10123, 12.20});
   testRectangle->getInfo();
   std::cout << "Area of Rectangle is: " << testRectangle->getArea() << "\n";
   posPoint.x = 111;

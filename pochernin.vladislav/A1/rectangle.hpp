@@ -7,12 +7,10 @@
 class Rectangle : public Shape
 {
 public:
-  Rectangle();
-
   Rectangle(const double width, const double height);
   Rectangle(const double width, const double height, const point_t& pos);
 
-  virtual ~Rectangle();
+  virtual ~Rectangle() = default;
 
   virtual double getArea() const override;
   virtual rectangle_t getFrameRect() const override;

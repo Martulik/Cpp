@@ -42,12 +42,9 @@ void Rectangle::move(const double dx, const double dy)
 void Rectangle::getInfo() const
 {
   std::cout << "\n-------------------------------------------\n";
-  std::cout << "|" << std::setw(43) << "This is rectangle.|\n";
-  std::cout << "|-----------------------------------------|\n";
-  std::cout << "|" << "width" << std::setw(15) << "|height"
-            << std::setw(10) << "|pos" << std::setw(13) << "|\n";
-  std::cout << "|" << figure_.width << std::setw(8) << "|" << figure_.height << std::setw(11)
-            << "|(" << figure_.pos.x << "; " << figure_.pos.y << ")"
-            << std::setw(10) << "|\n";
+  std::cout << "This is rectangle.\n";
+  std::cout << "width: " << figure_.width << "\n";
+  std::cout << "height: " << figure_.height << "\n";
+  std::cout << "pos: " << "(" << figure_.pos.x << "; " << figure_.pos.y << ")\n";
   std::cout << "-------------------------------------------\n";
 }

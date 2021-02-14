@@ -44,12 +44,9 @@ void Circle::move(const double dx, const double dy)
 void Circle::getInfo() const
 {
   std::cout << "\n-------------------------------------------\n";
-  std::cout << "|" << std::setw(43) << "This is circle.|\n";
-  std::cout << "|-----------------------------------------|\n";
-  std::cout << "|" << "diameter" << std::setw(12) << "|radius"
-            << std::setw(10) << "|pos" << std::setw(13) << "|\n";
-  std::cout << "|" << figure_.width << std::setw(8) << "|" << figure_.width / 2.0
-            << std::setw(7) << "|(" << figure_.pos.x << "; " << figure_.pos.y << ")"
-            << std::setw(10) << "|\n";
+  std::cout << "This is circle.\n";
+  std::cout << "diameter: " << figure_.width << "\n";
+  std::cout << "radius: " << figure_.height / 2.0 << "\n";
+  std::cout << "pos: " << "(" << figure_.pos.x << "; " << figure_.pos.y << ")\n";
   std::cout << "-------------------------------------------\n";
 }

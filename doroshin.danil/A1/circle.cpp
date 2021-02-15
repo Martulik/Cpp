@@ -1,6 +1,15 @@
 #include <cmath>
 #include "circle.hpp"
 
+Circle::Circle(point_t pos, double r):
+  pos(pos),
+  radius(r)
+{
+  if (r < 0) {
+    throw "Invalid radius";
+  }
+}
+
 double Circle::getArea() const
 {
   return M_PI * radius * radius;
@@ -20,9 +29,4 @@ void Circle::move(point_t vec, bool absolute)
     pos.x += vec.x;
     pos.y += vec.y;
   }
-}
-
-Circle::~Circle()
-{
-  
 }

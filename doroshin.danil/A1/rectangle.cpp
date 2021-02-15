@@ -1,6 +1,14 @@
 #include <cmath>
 #include "rectangle.hpp"
 
+Rectangle::Rectangle(rectangle_t rect):
+  rect(rect)
+{
+  if (rect.width < 0 || rect.height < 0) {
+    throw "Invalid rectangle size";
+  }
+}
+
 double Rectangle::getArea() const
 {
   return rect.width * rect.height;
@@ -20,9 +28,4 @@ void Rectangle::move(point_t vec, bool absolute)
     rect.pos.x += vec.x;
     rect.pos.y += vec.y;
   }
-}
-
-Rectangle::~Rectangle()
-{
-
 }

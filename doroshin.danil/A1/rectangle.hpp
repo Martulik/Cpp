@@ -3,16 +3,18 @@
 
 #include "shape.hpp"
 
-class Rectangle : Shape 
+class Rectangle : public Shape 
 {
 public:
+  Rectangle(rectangle_t rect);
+
   double getArea() const override;
 
   rectangle_t getFrameRect() const override;
 
   void move(point_t vec, bool absolute = false) override;
 
-  ~Rectangle() override;
+  ~Rectangle() override = default;
 
 protected:
   rectangle_t rect;

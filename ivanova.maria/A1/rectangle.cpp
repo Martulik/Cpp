@@ -27,11 +27,11 @@ double Rectangle::getArea() const
 rectangle_t Rectangle::getFrameRect() const
 {
   rectangle_t frame;
-  frame.height = height;
-  frame.width = width;
-  frame.pos = pos;
+  frame.height = height_;
+  frame.width = width_;
+  frame.pos = pos_;
   return frame;
-}
+}s
 
 void Rectangle::move(const point_t& newPos)
 {

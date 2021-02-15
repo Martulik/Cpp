@@ -1,3 +1,5 @@
+#ifndef CIRCLE_CPP
+#define CIRCLE_CPP
 #include "circle.hpp"
 #include <iostream>
 
@@ -50,16 +52,4 @@ std::ostream &Circle::fout(std::ostream &out) const
   << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
   return out;
 }
-
-//std::ostream &Circle::out(std::ostream &out)
-//{
-//  out << "circle radius is: " << radius_ << std::endl
-//  << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
-//  return out;
-//}
-
-//void Circle::outShape()
-//{
-//  std::cout << "circle radius is: " << radius_ << std::endl;
-//  std::cout << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
-//}
+#endif

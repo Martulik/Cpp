@@ -6,18 +6,19 @@
 Circle::Circle() :
  ctr_({0, 0}),
  radius_(0)
-{}
+{
+}
 
 Circle::Circle( point_t ctr, double rad) :
  ctr_(ctr),
  radius_(rad)
-{}
+{
+}
 
 Circle::~Circle()
 {
   ctr_ = {0, 0};
   radius_ = 0.0;
-
 }
 
 double Circle::getArea() const

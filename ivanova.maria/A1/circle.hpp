@@ -5,7 +5,7 @@
 
 #include <ostream>
 
-class Circle : public Shape
+class Circle: public Shape
 {
 public:
   Circle();
@@ -16,7 +16,7 @@ public:
 
   virtual double getArea() const override;
 
-  virtual rectangle_t getFrameRect() const ;
+  virtual rectangle_t getFrameRect() const;
 
   virtual void move(const point_t &newPos) override;
 
@@ -27,5 +27,4 @@ private:
   point_t ctr_;
   double radius_;
 };
-
 #endif

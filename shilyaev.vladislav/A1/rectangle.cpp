@@ -1,5 +1,5 @@
 #include "rectangle.hpp"
-#include <stdexcept>
+#include <cassert>
 #include "base-types.hpp"
 
 Rectangle::Rectangle(double width, double height, point_t pos):
@@ -7,9 +7,7 @@ Rectangle::Rectangle(double width, double height, point_t pos):
   height_(height),
   pos_(pos)
 {
-  if (width_ < 0.0 || height_ < 0.0) {
-    throw std::invalid_argument("Width and height can't be negative");
-  }
+  assert(width >= 0.0 && height >= 0.0);
 }
 
 double Rectangle::getArea() const

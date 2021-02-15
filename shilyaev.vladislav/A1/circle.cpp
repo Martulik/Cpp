@@ -1,5 +1,5 @@
 #include "circle.hpp"
-#include <stdexcept>
+#include <cassert>
 #include "base-types.hpp"
 
 const double PI = 3.14159265358979323846;
@@ -8,9 +8,7 @@ Circle::Circle(double radius, point_t pos):
   radius_(radius),
   pos_(pos)
 {
-  if (radius_ < 0.0) {
-    throw std::invalid_argument("Radius can't be negative");
-  }
+  assert(radius >= 0.0);
 }
 
 double Circle::getArea() const

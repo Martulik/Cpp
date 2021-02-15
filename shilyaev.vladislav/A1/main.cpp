@@ -13,18 +13,13 @@ void printShapeDescription(const Shape &shape)
 
 int main()
 {
-  try {
-    Rectangle rectangle(0.5, 5.0, point_t{2.0, 2.0});
-    Circle circle(2.0, point_t{0.5, -1.5});
-    printShapeDescription(rectangle);
-    printShapeDescription(circle);
-    rectangle.move(4.0, -4.0);
-    circle.move(point_t{-1.0, -2.0});
-    std::cout << "After moving:\n";
-    printShapeDescription(rectangle);
-    printShapeDescription(circle);
-  } catch (const std::invalid_argument &e) {
-    std::cerr << e.what();
-    return 1;
-  }
+  Rectangle rectangle(0.5, 5.0, point_t{2.0, 2.0});
+  Circle circle(2.0, point_t{0.5, -1.5});
+  printShapeDescription(rectangle);
+  printShapeDescription(circle);
+  rectangle.move(4.0, -4.0);
+  circle.move(point_t{-1.0, -2.0});
+  std::cout << "After moving:\n";
+  printShapeDescription(rectangle);
+  printShapeDescription(circle);
 }

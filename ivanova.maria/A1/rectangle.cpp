@@ -17,9 +17,6 @@ Rectangle::Rectangle(double height, double width, point_t pos)
 
 Rectangle::~Rectangle()
 {
-  /*height_ = 0;
-  width_ = 0;
-  pos_ = { 0.0, 0.0 };*/
 }
 
 double Rectangle::getArea() const
@@ -30,9 +27,9 @@ double Rectangle::getArea() const
 rectangle_t Rectangle::getFrameRect() const
 {
   rectangle_t frame;
-  frame.height_ = height_ ;
-  frame.width_ = width_ ;
-  frame.pos_ = pos_;
+  frame.height = height;
+  frame.width = width;
+  frame.pos = pos;
   return frame;
 }
 

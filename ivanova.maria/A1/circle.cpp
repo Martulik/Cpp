@@ -30,9 +30,9 @@ rectangle_t Circle::getFrameRect() const
 {
   rectangle_t frame;
   double a = this->radius_;
-  frame.height_ = 2 * a;
-  frame.width_ = 2 * a;
-  frame.pos_ = this->ctr_;
+  frame.height= 2 * a;
+  frame.width = 2 * a;
+  frame.pos = this->ctr_;
   return frame;
 }
 

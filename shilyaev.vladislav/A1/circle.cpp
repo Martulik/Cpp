@@ -1,7 +1,8 @@
 #include "circle.hpp"
 #include <stdexcept>
-#include "math.h"
 #include "base-types.hpp"
+
+const double PI = 3.14159265358979323846;
 
 Circle::Circle(double radius, point_t pos):
   radius_(radius),
@@ -14,7 +15,7 @@ Circle::Circle(double radius, point_t pos):
 
 double Circle::getArea() const
 {
-  return M_PI * radius_ * radius_;
+  return PI * radius_ * radius_;
 }
 
 rectangle_t Circle::getFrameRect() const

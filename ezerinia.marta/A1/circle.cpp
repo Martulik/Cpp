@@ -1,51 +1,43 @@
 #include "circle.hpp"
 #include <iostream>
+#include <cassert>
 
 const double PI = 3.14;
-
-Circle::Circle():
-        center_(0.0, 0.0),
-        radius_(0)
-{
-}
 
 Circle::Circle(double radius, point_t center):
         center_(center),
         radius_(radius)
 {
-    if ((radius <= 0))
-    {
-        throw ("the radius must be greater than 0");
-    }
-}
-
-Circle::~Circle()
-{
-}
-
-void Circle::showShape()
-{
-    std::cout << "radius = " << radius_;
-    std::cout << ", center: x = " << center_.x << ", y = " << center_.y << std::endl;
+  assert(radius > 0);
 }
 
 double Circle::getArea() const
 {
-    return (PI * radius_ * radius_);
+  return (PI * radius_ * radius_);
 }
 
 rectangle_t Circle::getFrameRect() const
 {
-    return (rectangle_t(2 * radius_, 2 * radius_, center_));
+  return (rectangle_t{2 * radius_, 2 * radius_, center_});
 }
 
 void Circle::move(const point_t &point)
 {
-    center_ = point;
+  center_ = point;
 }
 
-void Circle::move(double x, double y)
+void Circle::move(double dx, double dy)
 {
-    center_.x = center_.x + x;
-    center_.y = center_.y + y;
+  center_.x += dx;
+  center_.y += dy;
+}
+
+point_t Circle::getCenter() const
+{
+  return (center_);
+}
+
+double Circle::getRadius() const
+{
+  return (radius_);
 }

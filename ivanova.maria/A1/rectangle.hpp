@@ -18,13 +18,17 @@ public:
 
   virtual void move(const point_t &newPos) override;
 
-  virtual void move(int dx, int dy) override;
+  virtual void move(double dx, double dy) override;
 
-  void outShape () override;
+  virtual std::ostream& fout (std::ostream &out) const;
+
+//  void outShape () override;
+//protected:
+//  virtual std::ostream &operator <<  (std::ostream& out) override;
 
 private:
-  int height_;
-  int width_;
+  double height_;
+  double width_;
   point_t pos_;
 };
 #endif

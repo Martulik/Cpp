@@ -2,19 +2,20 @@
 #include <iostream>
 
 Circle::Circle() :
- radius_(0),
- ctr_({0, 0})
+ ctr_({0, 0}),
+ radius_(0)
 {}
 
-Circle::Circle(point_t ctr, int rad) :
-  ctr_(ctr),
-  radius_(rad)
+Circle::Circle( point_t ctr, double rad) :
+ ctr_(ctr),
+ radius_(rad)
 {}
 
 Circle::~Circle()
 {
-  radius_ = 0;
   ctr_ = {0, 0};
+  radius_ = 0.0;
+
 }
 
 double Circle::getArea() const
@@ -25,7 +26,7 @@ double Circle::getArea() const
 rectangle_t Circle::getFrameRect() const
 {
   rectangle_t frame;
-  int a = this->radius_;
+  double a = this->radius_;
   frame.height_ = 2 * a;
   frame.width_ = 2 * a;
   frame.pos_ = this->ctr_;
@@ -37,13 +38,28 @@ void Circle::move(const point_t &newPos)
   this->ctr_ = newPos;
 }
 
-void Circle::move(int dx, int dy) {
+void Circle::move(double dx, double dy)
+{
   this->ctr_.x = +dx;
   this->ctr_.y = +dy;
 }
 
-void Circle::outShape()
+std::ostream &Circle::fout(std::ostream &out) const
 {
-  std::cout << "circle radius is: " << radius_ << std::endl;
-  std::cout << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
+  out << "circle radius is: " << radius_ << std::endl
+  << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
+  return out;
 }
+
+//std::ostream &Circle::out(std::ostream &out)
+//{
+//  out << "circle radius is: " << radius_ << std::endl
+//  << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
+//  return out;
+//}
+
+//void Circle::outShape()
+//{
+//  std::cout << "circle radius is: " << radius_ << std::endl;
+//  std::cout << "circle center is: {" << ctr_.x << " ; " <<  ctr_.y << "}" << std::endl;
+//}

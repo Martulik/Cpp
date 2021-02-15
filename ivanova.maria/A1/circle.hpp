@@ -10,7 +10,7 @@ class Circle : public Shape
 public:
   Circle();
 
-  Circle(point_t ctr, int rad);
+  Circle( point_t ctr, double rad);
 
   virtual ~Circle();
 
@@ -20,12 +20,15 @@ public:
 
   virtual void move(const point_t &newPos) override;
 
-  virtual void move(int dx, int dy) override;
+  virtual void move(double dx, double dy) override;
 
-  virtual void outShape () override;
+  virtual std::ostream& fout (std::ostream &out) const;
+//  virtual void outShape () override;
 private:
   point_t ctr_;
-  int radius_;
+  double radius_;
+//protected:
+//  virtual std::ostream &operator <<  (std::ostream& out) override;
 
 };
 

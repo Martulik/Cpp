@@ -5,6 +5,8 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
+void showFrameRect(Shape* shape);
+
 int main()
 {
   point_t posPoint;
@@ -12,7 +14,8 @@ int main()
   posPoint.y = 0;
 
   Shape* testRectangle = new Rectangle(50.123, 100.0, {13.10123, 12.20});
-  testRectangle->getInfo();
+  std::cout << "\nRectangle:\n";
+  showFrameRect(testRectangle);
   std::cout << "Area of Rectangle is: " << testRectangle->getArea() << "\n";
   posPoint.x = 111;
   posPoint.y = 222;
@@ -24,7 +27,8 @@ int main()
             << "; " << testRectangle->getFrameRect().pos.y << ")\n";
 
   Shape* testCircle = new Circle(13.1235);
-  testCircle->getInfo();
+  std::cout << "\nCircle:\n";
+  showFrameRect(testCircle);
   std::cout << "Area of Circle is: " << testCircle->getArea() << "\n";
   posPoint.x = 111;
   posPoint.y = 222;
@@ -39,4 +43,14 @@ int main()
   delete testCircle;
 
   return 0;
+}
+
+void showFrameRect(Shape* shape)
+{
+  std::cout << "-------------------------------------------\n";
+  std::cout << "width: " << shape->getFrameRect().width << "\n";
+  std::cout << "height: " << shape->getFrameRect().height << "\n";
+  std::cout << "pos: " << "(" << shape->getFrameRect().pos.x
+            << "; " << shape->getFrameRect().pos.y << ")\n";
+  std::cout << "-------------------------------------------\n";
 }

@@ -31,13 +31,3 @@ void Rectangle::move(const double dx, const double dy)
   figure_.pos.x += dx;
   figure_.pos.y += dy;
 }
-
-void Rectangle::getInfo() const
-{
-  std::cout << "\n-------------------------------------------\n";
-  std::cout << "This is rectangle.\n";
-  std::cout << "width: " << figure_.width << "\n";
-  std::cout << "height: " << figure_.height << "\n";
-  std::cout << "pos: " << "(" << figure_.pos.x << "; " << figure_.pos.y << ")\n";
-  std::cout << "-------------------------------------------\n";
-}

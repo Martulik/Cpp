@@ -33,13 +33,3 @@ void Circle::move(const double dx, const double dy)
   figure_.pos.x += dx;
   figure_.pos.y += dy;
 }
-
-void Circle::getInfo() const
-{
-  std::cout << "\n-------------------------------------------\n";
-  std::cout << "This is circle.\n";
-  std::cout << "diameter: " << figure_.width << "\n";
-  std::cout << "radius: " << figure_.height / 2.0 << "\n";
-  std::cout << "pos: " << "(" << figure_.pos.x << "; " << figure_.pos.y << ")\n";
-  std::cout << "-------------------------------------------\n";
-}

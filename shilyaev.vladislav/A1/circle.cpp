@@ -23,8 +23,7 @@ rectangle_t Circle::getFrameRect() const
 
 void Circle::move(const point_t &pos)
 {
-  pos_.x = pos.x;
-  pos_.y = pos.y;
+  pos_ = pos;
 }
 
 void Circle::move(double dx, double dy)

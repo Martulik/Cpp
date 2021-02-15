@@ -31,7 +31,7 @@ rectangle_t Rectangle::getFrameRect() const
   frame.width = width_;
   frame.pos = pos_;
   return frame;
-}s
+}
 
 void Rectangle::move(const point_t& newPos)
 {
@@ -51,11 +51,4 @@ std::ostream &Rectangle::fout(std::ostream &out) const
   out << "rectangle center is: {" << this->pos_.x << " ; " <<  this->pos_.y << "}" << std::endl;
   return out;
 }
-//void Rectangle::outShape()
-//{
-//  std::cout << "rectangle hieght is: " << height_ << std::endl;
-//  std::cout << "rectangle width is: " << width_ << std:: endl;
-//  std::cout << "rectangle center is: {" << pos_.x << " ; " <<  pos_.y << "}" << std::endl;
-//}
-
 #endif

@@ -1,7 +1,7 @@
+#include "rectangle.hpp"
+
 #include <iostream>
 #include <iomanip>
-
-#include "rectangle.hpp"
 
 Rectangle::Rectangle(const double width, const double height):
   figure_({width, height, 0.0, 0.0})

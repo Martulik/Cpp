@@ -5,10 +5,6 @@
 
 const double PI = 3.14159265358979323846;
 
-Circle::Circle(const double radius):
-  figure_({2.0 * radius, 2.0 * radius, 0.0, 0.0})
-{}
-
 Circle::Circle(const double radius, const point_t& pos):
   figure_({2.0 * radius, 2.0 * radius, pos})
 {}

@@ -26,7 +26,7 @@ int main()
   std::cout << "Now pos of Rectangle is (" << testRectangle->getFrameRect().pos.x
             << "; " << testRectangle->getFrameRect().pos.y << ")\n";
 
-  Shape* testCircle = new Circle(13.1235);
+  Shape* testCircle = new Circle(13.1235, {0.0, 0.0});
   std::cout << "\nCircle:\n";
   showFrameRect(testCircle);
   std::cout << "Area of Circle is: " << testCircle->getArea() << "\n";

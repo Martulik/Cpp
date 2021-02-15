@@ -3,10 +3,6 @@
 #include <iostream>
 #include <iomanip>
 
-Rectangle::Rectangle(const double width, const double height):
-  figure_({width, height, 0.0, 0.0})
-{}
-
 Rectangle::Rectangle(const double width, const double height, const point_t& pos):
   figure_({width, height, pos})
 {}

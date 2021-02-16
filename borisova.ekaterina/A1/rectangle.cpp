@@ -36,5 +36,5 @@ void Rectangle::move(const double dx, const double dy)
 
 void Rectangle::move(const point_t& dpos)
 {
-	size_.pos_ = dpos;
+  size_.pos_ = dpos;
 }

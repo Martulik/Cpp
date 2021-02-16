@@ -26,8 +26,8 @@ int main()
   delete rectangle;
 
   std::cout << "\nCircle: " << std::endl;
-  point_t PointCenterCircle = {1, 4};
-  Shape *circle = new Circle(8.0, pointCenterRectangle);
+  point_t pointCenterCircle = {1, 4};
+  Shape *circle = new Circle(8.0, pointCenterCircle);
   std::cout << "Area is: " << circle->getArea() << std::endl;
   std::cout << "\nMove the center of the  circle to a point (9, 8):\n";
   point_t newCenterCircle = {9, 8};

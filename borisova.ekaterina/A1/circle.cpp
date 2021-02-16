@@ -1,0 +1,37 @@
+#include <cassert>
+#include "circle.hpp"
+
+Circle::Circle(const point_t& pos, const double radius):
+  position_(pos),
+  radius_(radius)
+{
+  assert(radius > 0);
+}
+
+Circle::Circle(const double x, const double y, const double radius)
+{
+  assert(radius > 0);
+  position_.x_ = x;
+  position_.y_ = y;
+  radius_ = radius;
+}
+
+double Circle::getArea() const
+{
+  return PI * radius_ * radius_;
+}
+
+rectangle_t Circle::getFrameRect() const
+{
+  return {radius_ * 2, radius_ * 2, position_};
+}
+
+void Circle::move(const double dx, const double dy)
+{
+  position_.x_ += dx;
+  position_.y_ += dy;
+}
+void Circle::move(const point_t& dpos)
+{
+	position_ = dpos;
+}

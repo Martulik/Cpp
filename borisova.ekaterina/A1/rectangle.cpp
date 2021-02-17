@@ -4,23 +4,23 @@
 Rectangle::Rectangle(const point_t& pos, const double width, const double height)
 {
   assert((width > 0) && (height > 0));
-  size_.pos_ = pos;
-  size_.width_ = width;
-  size_.height_ = height;
+  size_.pos = pos;
+  size_.width = width;
+  size_.height = height;
 }
 
 Rectangle::Rectangle(const double x, const double y, const double width, const double height)
 {
   assert((width > 0) && (height > 0));
-  size_.pos_.x_ = x;
-  size_.pos_.y_ = y;
-  size_.width_ = width;
-  size_.height_ = height;
+  size_.pos.x = x;
+  size_.pos.y = y;
+  size_.width = width;
+  size_.height = height;
 }
 
 double Rectangle::getArea() const
 {
-  return size_.width_ * size_.height_;
+  return size_.width * size_.height;
 }
 
 rectangle_t Rectangle::getFrameRect() const
@@ -30,11 +30,11 @@ rectangle_t Rectangle::getFrameRect() const
 
 void Rectangle::move(const double dx, const double dy)
 {
-  size_.pos_.x_ += dx;
-  size_.pos_.y_ += dy;
+  size_.pos.x += dx;
+  size_.pos.y += dy;
 }
 
 void Rectangle::move(const point_t& dpos)
 {
-  size_.pos_ = dpos;
+  size_.pos = dpos;
 }

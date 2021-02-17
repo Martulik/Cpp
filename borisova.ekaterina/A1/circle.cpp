@@ -11,8 +11,8 @@ Circle::Circle(const point_t& pos, const double radius):
 Circle::Circle(const double x, const double y, const double radius)
 {
   assert(radius > 0);
-  position_.x_ = x;
-  position_.y_ = y;
+  position_.x = x;
+  position_.y = y;
   radius_ = radius;
 }
 
@@ -28,8 +28,8 @@ rectangle_t Circle::getFrameRect() const
 
 void Circle::move(const double dx, const double dy)
 {
-  position_.x_ += dx;
-  position_.y_ += dy;
+  position_.x += dx;
+  position_.y += dy;
 }
 void Circle::move(const point_t& dpos)
 {

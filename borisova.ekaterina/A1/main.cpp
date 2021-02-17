@@ -17,7 +17,7 @@ int main()
   std::cout << "width is: " << width << '\n';
   std::cout << "height is: " << height << '\n';
   std::cout << "Area is: " << rectangle->getArea() << '\n';
-  std::cout << "Position is: " << rectangle->getFrameRect().pos_.x_ << ", " << rectangle->getFrameRect().pos_.y_ << '\n';
+  std::cout << "Position is: " << rectangle->getFrameRect().pos.x << ", " << rectangle->getFrameRect().pos.y << '\n';
 
   x = 567;
   y = 0.78;
@@ -34,7 +34,7 @@ int main()
   std::cout << "\nCircle:\n";
   std::cout << "Radius is: " << radius << '\n';
   std::cout << "Area is: " << circle->getArea() << '\n';
-  std::cout << "Position is: " << circle->getFrameRect().pos_.x_ << ", " << circle->getFrameRect().pos_.y_ << '\n';
+  std::cout << "Position is: " << circle->getFrameRect().pos.x << ", " << circle->getFrameRect().pos.y << '\n';
 
   x = 0.444;
   y = 0.555;

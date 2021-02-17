@@ -33,5 +33,5 @@ void Circle::move(const double dx, const double dy)
 }
 void Circle::move(const point_t& dpos)
 {
-	position_ = dpos;
+  position_ = dpos;
 }

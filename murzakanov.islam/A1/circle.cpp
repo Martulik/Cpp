@@ -66,9 +66,3 @@ void Circle::move(const double dx, const double dy)
   pos_.x = pos_.x + dx;
   pos_.y = pos_.y + dy;
 }
-
-void Circle::print()const
-{
-  std::cout << "Circle's radius is " << radius_ << std::endl;
-  std::cout << "Circle's center is (" << pos_.x << ", " << pos_.y << ")" << std::endl;
-}

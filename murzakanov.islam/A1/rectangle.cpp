@@ -70,9 +70,3 @@ void Rectangle::move(const double dx, const double dy)
   pos_.x = pos_.x + dx;
   pos_.y = pos_.y + dy;
 }
-
-void Rectangle::print() const {
-  std::cout << "Rectangle's width is " << width_ << std::endl;
-  std::cout << "Rectangle's height is " << height_ << std::endl;
-  std::cout << "Rectangle's center is (" << pos_.x << ", " << pos_.y << ")" << std::endl;
-}

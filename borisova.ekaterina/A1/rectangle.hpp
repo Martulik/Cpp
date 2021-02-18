@@ -17,4 +17,5 @@ public:
 private:
   rectangle_t size_;
 };
-#endif 
+
+#endif

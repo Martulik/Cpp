@@ -19,4 +19,5 @@ private:
   double radius_ = 0;
   const double PI = 3.14;
 };
-#endif 
+
+#endif

@@ -1,4 +1,4 @@
-1#include <iostream>
+#include <iostream>
 #include "circle.hpp"
 #include "rectangle.hpp"
 
@@ -13,6 +13,12 @@ int main(){
   Shape* polyCircle = new Circle(5.25, { 13, -12 });
   std::cout << "Circle's radius is " << polyCircle->getFrameRect().width / 2 << std::endl;
   std::cout << "Circle's area is " << polyCircle->getArea() << std::endl;
+  std::cout << "Circle's center is (" << polyCircle->getFrameRect().pos.x
+  << ", " << polyCircle->getFrameRect().pos.y << ")" << std::endl;
+
+  polyCircle->move(5.6, 10.2);
+  std::cout << "Circle's center after method move is (" << polyCircle->getFrameRect().pos.x
+  << ", " << polyCircle->getFrameRect().pos.y << ")" << std::endl;
   delete polyRectangle;
   delete polyCircle;
   return 0;

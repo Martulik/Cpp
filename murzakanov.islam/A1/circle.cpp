@@ -1,11 +1,12 @@
 #include "circle.hpp"
-#include <iostream>
+
 double const PI = 3.1415;
 
 Circle::Circle(double radius, point_t pos):
   radius_(radius),
   pos_(pos)
 {
+  assert (radius_ >= 0);
 }
 
 double Circle::getArea()const

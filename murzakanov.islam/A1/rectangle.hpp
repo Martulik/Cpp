@@ -2,8 +2,9 @@
 #define RECTANGLE_H
 
 #include "shape.hpp"
-#include <iostream>
-class Rectangle:public Shape
+#include <cassert>
+
+class Rectangle : public Shape
 {
 public:
   Rectangle(double width, double height, point_t pos_);

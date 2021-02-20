@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 #include "base-types.hpp"
 #include "shape.hpp"
@@ -44,6 +44,9 @@ int main()
   rec->move(x, y);
   std::cout << "Rectangle has moved by value: " << "{" << rec->getFrameRect().pos.x << ", "
   << rec->getFrameRect().pos.y << "}" << std::endl;
+
+  delete circle;
+  delete rec;
   return 0;
 }
 

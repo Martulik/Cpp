@@ -2,10 +2,14 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cassert>
 
 Rectangle::Rectangle(const double width, const double height, const point_t& pos):
   figure_({width, height, pos})
-{}
+{
+  assert (width >= 0.0);
+  assert (height >= 0.0);
+}
 
 double Rectangle::getArea() const
 {

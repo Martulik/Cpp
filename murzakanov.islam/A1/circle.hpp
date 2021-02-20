@@ -6,10 +6,6 @@ class Circle : public Shape
 {
 public:
   Circle(double radius, point_t pos);
-  Circle(const Circle& other);
-  Circle(Circle&& other)noexcept;
-  Circle& operator=(const Circle& other);
-  Circle& operator=(Circle&& other)noexcept;
 
   double getArea() const override;
   rectangle_t getFrameRect() const override;

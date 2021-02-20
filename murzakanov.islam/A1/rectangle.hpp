@@ -7,10 +7,6 @@ class Rectangle:public Shape
 {
 public:
   Rectangle(double width, double height, point_t pos_);
-  Rectangle(const Rectangle& other);
-  Rectangle& operator=(const Rectangle& other);
-  Rectangle(Rectangle && other) noexcept;
-  Rectangle& operator=(Rectangle&& other) noexcept;
 
   double getArea() const override;
   rectangle_t getFrameRect() const override;

@@ -7,49 +7,6 @@ Rectangle::Rectangle(double width, double height, point_t pos):
 {
 }
 
-Rectangle::Rectangle(const Rectangle& other):
-  width_(other.width_),
-  height_(other.height_),
-  pos_(other.pos_)
-{
-}
-
-Rectangle& Rectangle::operator=(const Rectangle& other)
-{
-  if (this == &other)
-  {
-    return *this;
-  }
-  height_ = other.height_;
-  width_ = other.width_;
-  pos_ = other.pos_;
-  return *this;
-}
-
-Rectangle::Rectangle(Rectangle&& other) noexcept
-{
-  height_ = other.height_;
-  width_ = other.width_;
-  pos_ = other.pos_;
-  other.height_ = 0;
-  other.width_ = 0;
-  other.pos_ = { 0, 0 };
-}
-Rectangle& Rectangle::operator=(Rectangle&& other) noexcept
-{
-  if (&other == this)
-  {
-    return *this;
-  }
-  height_ = other.height_;
-  width_ = other.width_;
-  pos_ = other.pos_;
-  other.height_ = 0;
-  other.width_ = 0;
-  other.pos_ = { 0, 0 };
-  return *this;
-}
-
 double Rectangle::getArea()const
 {
   return (width_ * height_);

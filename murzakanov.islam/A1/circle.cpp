@@ -8,44 +8,6 @@ Circle::Circle(double radius, point_t pos):
 {
 }
 
-Circle::Circle(const Circle& other):
-  radius_(other.radius_),
-  pos_(other.pos_)
-{
-}
-
-Circle::Circle(Circle&& other)noexcept
-{
-  radius_ = other.radius_;
-  pos_ = other.pos_;
-  other.radius_ = 0.0;
-  other.pos_ = { 0.0, 0.0 };
-}
-
-Circle& Circle::operator=(const Circle& other)
-{
-  if (this == &other)
-  {
-    return *this;
-  }
-  radius_ = other.radius_;
-  pos_ = other.pos_;
-  return *this;
-}
-
-Circle& Circle::operator=(Circle&& other)noexcept
-{
-  if (this == &other)
-  {
-    return *this;
-  }
-  radius_ = other.radius_;
-  pos_ = other.pos_;
-  other.radius_ = 0.0;
-  other.pos_ = { 0.0, 0.0 };
-  return *this;
-}
-
 double Circle::getArea()const
 {
   return (PI*radius_*radius_);

@@ -1,5 +1,5 @@
 #ifndef RECTANGLE_H
-#define RECTANGLE_H 
+#define RECTANGLE_H
 #include "base-types.hpp"
 #include "shape.hpp"
 class Rectangle: public Shape
@@ -11,6 +11,6 @@ public:
   void move(const point_t point) override;
   void move(const double dx, const double dy) override;
 private:
-  rectangle_t rec_; 
+  rectangle_t rec_;
 };
 #endif

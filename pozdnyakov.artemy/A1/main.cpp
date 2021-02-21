@@ -14,7 +14,7 @@ int main()
   Shape* figures[] = {&rec1, &rec2, &rec3, &circle1, &circle2, &circle3};
   for (int i = 0; i < 6; i++)
   {
-    std::cout << "The area of " << i << " figure is: "; 
+    std::cout << "The area of " << i << " figure is: ";
     std::cout << figures[i]->getArea() << std::endl;
   }
   return 0;

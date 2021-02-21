@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "circle.hpp"
 #include "rectangle.hpp"
 
@@ -7,7 +7,7 @@ int main()
   const point_t point_zero = {0, 0};
   Shape* rect = new Rectangle(5, 10, {0,0});
   std::cout << "Area of rectangle equals to: " << rect->getArea() << std::endl;
-  std::cout << "Position before move(): X = "<< rect->getFrameRate().pos.x 
+  std::cout << "Position before move(): X = "<< rect->getFrameRate().pos.x
             <<" Y = " << rect->getFrameRate().pos.y << std::endl;
   rect->move(2, 3.9);
   std::cout << "Position after move(): X = " << rect->getFrameRate().pos.x

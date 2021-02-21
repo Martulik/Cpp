@@ -10,7 +10,7 @@ public:
   Circle(const double radius, const point_t pos);
 
   virtual ~Circle() = default;
-  
+
   double getArea() override;
   rectangle_t getFrameRate() override;
   void move(const point_t & pos) override;

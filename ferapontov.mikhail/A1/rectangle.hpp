@@ -9,7 +9,7 @@ public:
   Rectangle(const double width, const double height, const point_t pos);
 
   virtual ~Rectangle() = default;
-  
+
   virtual double getArea() override;
   virtual rectangle_t getFrameRate() override;
   virtual void move(const point_t& pos) override;

@@ -10,8 +10,8 @@ public:
 
   virtual ~Rectangle() = default;
 
-  virtual double getArea() override;
-  virtual rectangle_t getFrameRect() override;
+  virtual double getArea() const override;
+  virtual rectangle_t getFrameRect() const override;
   virtual void move(const point_t& pos) override;
   virtual void move(const double dx, const double dy) override;
 private:

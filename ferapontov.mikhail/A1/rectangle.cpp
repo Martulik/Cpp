@@ -4,12 +4,12 @@ Rectangle::Rectangle(const double width, const double height, const point_t pos)
   proportions_({width, height, pos})
 {}
 
-double Rectangle::getArea()
+double Rectangle::getArea() const
 {
   return proportions_.width * proportions_.height;
 }
 
-rectangle_t Rectangle::getFrameRect()
+rectangle_t Rectangle::getFrameRect() const
 {
   return proportions_;
 }

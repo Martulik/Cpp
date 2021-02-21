@@ -9,7 +9,7 @@ Circle::Circle(double radius, point_t pos):
 }
 
 double Circle::getArea() const
-{ 
+{
   return  (PI * radius_ * radius_);
 }
 

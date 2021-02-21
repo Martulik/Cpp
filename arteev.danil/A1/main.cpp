@@ -6,7 +6,7 @@
 
 int main()
 {
-  Shape* figureCircle = new Circle(7, { 2, 2 });
+  Shape* figureCircle = new Circle({ 2, 2 }, 3);
   std::cout << "Coordinates of the center of the circle before moving: \n"
   << "X = " << figureCircle->getFrameRect().pos.x << "\t"
   << "Y = " << figureCircle->getFrameRect().pos.y << std::endl;
@@ -17,7 +17,7 @@ int main()
   << "X = " << figureCircle->getFrameRect().pos.x << "\t"
   << "Y = " << figureCircle->getFrameRect().pos.y << std::endl;
 
-  figureCircle->move(13.2, 56);
+  figureCircle->move(10, 12);
   std::cout << "Coordinates of the center of the circle after moving (second variant): \n"
   << "X = " << figureCircle->getFrameRect().pos.x << "\t"
   << "Y = " << figureCircle->getFrameRect().pos.y << std::endl;

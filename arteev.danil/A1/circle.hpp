@@ -6,16 +6,16 @@
 class Circle :public Shape
 {
 public:
-  Circle(double radius, point_t pos);
+  Circle(point_t pos, double radius);
 
   double getArea() const override;
   rectangle_t getFrameRect() const override;
   void move(point_t pos) override;
   void move(double dx, double dy) override;
-
 private:
+  double radius_; 
   point_t pos_;
-  double radius_;
+  
 };
 
 #endif

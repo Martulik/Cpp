@@ -8,7 +8,6 @@ void printCoordinates(Shape* figure)
 {
     std::cout   << "Figure is now located by (" << figure->getFrameRect().pos.x
                 << ':' << figure->getFrameRect().pos.y << ')' << std::endl;
-               
 }
 
 

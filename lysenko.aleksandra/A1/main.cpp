@@ -52,12 +52,12 @@ void printFrameRect(Shape* figure)
 {
   std::cout << "Its frame rectangle's width: " << figure->getFrameRect().width << ", "
             << "height: " << figure->getFrameRect().height << ", "
-            << "center's abscissa: " << figure->getFrameRect().pos->x << ", "
-            << "centers's ordinate " << figure->getFrameRect().pos->y << "\n";
+            << "center's abscissa: " << figure->getFrameRect().pos.x << ", "
+            << "centers's ordinate " << figure->getFrameRect().pos.y << "\n";
 }
 
 void printFiguresCenter(const std::string adj, Shape* figure)
 {
-  std::cout << "Its " << adj << " center's abscissa " << figure->getFrameRect().pos->x << "\n"
-            << "Its " << adj << " centers's ordinate " << figure->getFrameRect().pos->y << "\n";
+  std::cout << "Its " << adj << " center's abscissa " << figure->getFrameRect().pos.x << "\n"
+            << "Its " << adj << " centers's ordinate " << figure->getFrameRect().pos.y << "\n";
 }

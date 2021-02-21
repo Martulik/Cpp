@@ -10,18 +10,17 @@ Rectangle::Rectangle(const double width, const double height, point_t &pos)
   assert((height > 0) && (width > 0));
 }
 
-double Rectangle::getArea()
+double Rectangle::getArea() const
 {
-  return width_ * heigh_;
+  return (width_ * heigh_);
 }
 
-rectangle_t Rectangle::getFrameRect()
+rectangle_t Rectangle::getFrameRect() const
 {
-  rectangle_t frame{width_,heigh_ ,&pos_ };
-  return frame;
+  return {width_,heigh_ , pos_};
 }
 
-void Rectangle::move(const point_t& newPos)
+void Rectangle::move(const point_t &newPos)
 {
   pos_ = newPos;
 }

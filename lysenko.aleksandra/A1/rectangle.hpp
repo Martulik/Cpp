@@ -4,11 +4,12 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 
-class Rectangle: public Shape {
+class Rectangle : public Shape
+{
 public:
-  Rectangle(const double width, const double height, point_t &pos);
-
-  ~Rectangle() = default;
+  Rectangle(const double width,const double height, point_t &pos);
+ 
+  ~Rectangle()=default;
 
   virtual double getArea();
 

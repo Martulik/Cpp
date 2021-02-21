@@ -17,11 +17,11 @@ double Rectangle::getArea()
 
 rectangle_t Rectangle::getFrameRect()
 {
-  rectangle_t frame{width_, heigh_, &pos_};
+  rectangle_t frame{width_,heigh_ ,&pos_ };
   return frame;
 }
 
-void Rectangle::move(const point_t &newPos)
+void Rectangle::move(const point_t& newPos)
 {
   pos_ = newPos;
 }

@@ -6,18 +6,17 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-
 void printFrameRect(Shape *figure);
 
-void printFiguresCenter(const std::string adj,  Shape *figure);
+void printFiguresCenter(const std::string adj, Shape *figure);
 
 int main()
 {
-  point_t myPos{ 33.33, 33.33 };
-  point_t newPos{ 0.0, 0.0 };
+  point_t myPos{33.33, 33.33};
+  point_t newPos{0.0, 0.0};
   double width = 1.0;
   double heigth = 2.0;
-  Shape * myRectangle = new Rectangle (width,heigth,myPos);
+  Shape *myRectangle = new Rectangle(width, heigth, myPos);
   std::cout << "Print my rectangle's charactiristics\n"
             << "Its wigth: " << myRectangle->getFrameRect().width << "\n"
             << "Its height: " << myRectangle->getFrameRect().height << "\n";
@@ -32,7 +31,7 @@ int main()
   printFiguresCenter("new", myRectangle);
 
   double radius = 33.33;
-  Shape * myCircle = new Circle(myPos, radius);
+  Shape *myCircle = new Circle(myPos, radius);
   std::cout << "Print my circle's charactiristics\n"
             << "Its radius: " << (myCircle->getFrameRect().width) / 2 << "\n";
   printFiguresCenter("", myCircle);
@@ -48,7 +47,7 @@ int main()
   return 0;
 }
 
-void printFrameRect(Shape* figure)
+void printFrameRect(Shape *figure)
 {
   std::cout << "Its frame rectangle's width: " << figure->getFrameRect().width << ", "
             << "height: " << figure->getFrameRect().height << ", "
@@ -56,7 +55,7 @@ void printFrameRect(Shape* figure)
             << "centers's ordinate " << figure->getFrameRect().pos->y << "\n";
 }
 
-void printFiguresCenter(const std::string adj, Shape* figure)
+void printFiguresCenter(const std::string adj, Shape *figure)
 {
   std::cout << "Its " << adj << " center's abscissa " << figure->getFrameRect().pos->x << "\n"
             << "Its " << adj << " centers's ordinate " << figure->getFrameRect().pos->y << "\n";

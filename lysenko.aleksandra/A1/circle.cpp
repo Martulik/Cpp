@@ -4,7 +4,7 @@
 
 const double PI = 3.1415926;
 
-Circle::Circle(const point_t& pos, const double radius)
+Circle::Circle(const point_t &pos, const double radius)
 {
   pos_ = pos;
   radius_ = radius;
@@ -18,7 +18,7 @@ double Circle::getArea()
 
 rectangle_t Circle::getFrameRect()
 {
-  rectangle_t frame{ radius_ * 2.0,radius_ * 2.0,&pos_ };
+  rectangle_t frame{radius_ * 2.0, radius_ * 2.0, &pos_};
   return frame;
 }
 

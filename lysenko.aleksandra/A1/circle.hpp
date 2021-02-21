@@ -4,21 +4,21 @@
 #include "base-types.hpp"
 #include "shape.hpp"
 
-class Circle : public Shape
-{
+class Circle: public Shape {
 public:
   Circle(const point_t &pos, const double radius);
 
   ~Circle() = default;
 
   virtual double getArea();
+
   virtual rectangle_t getFrameRect();
+
   virtual void move(const point_t &newPos);
-  virtual void move(const double dx, const double dy);
+}
 
 private:
-  point_t pos_;
-  double radius_;
+point_t pos_;
+double radius_;
 };
 #endif
-

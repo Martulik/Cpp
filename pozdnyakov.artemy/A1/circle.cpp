@@ -8,7 +8,7 @@ double Circle::getArea() const
 rectangle_t Circle::getFrameRect() const
 {
   double rad = this->rad_;
-  rectangle_t rect(this->center_, rad, rad);
+  rectangle_t rect {this->center_, rad, rad};
   return rect;
 }
 void Circle::move(const point_t point)

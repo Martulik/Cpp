@@ -4,7 +4,7 @@
 #include "base-types.hpp"
 int main()
 {
-  point_t o(0, 0);
+  point_t o {0, 0};
   Rectangle rec1(o, 20, 10);
   Rectangle rec2(o, 30, 50);
   Rectangle rec3(o, 13, 21);

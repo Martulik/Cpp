@@ -13,9 +13,9 @@ public:
   void move(point_t pos) override;
   void move(double dx, double dy) override;
 private:
-  double radius_; 
+  double radius_;
   point_t pos_;
-  
+
 };
 
 #endif

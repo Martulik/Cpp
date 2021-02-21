@@ -15,7 +15,6 @@ private:
   point_t pos_;
   double width_;
   double height_;
-
 };
 
 #endif

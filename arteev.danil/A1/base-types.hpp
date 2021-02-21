@@ -13,4 +13,5 @@ struct rectangle_t
   double height;
   point_t pos;
 };
+
 #endif

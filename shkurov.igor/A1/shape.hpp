@@ -5,12 +5,12 @@
 
 class Shape {
     public:
-        virtual ~Shape()
+        Shape(point_t center):
+            center_(center)
         {
         }
 
-        Shape(point_t center):
-            center_(center)
+        virtual ~Shape()
         {
         }
 

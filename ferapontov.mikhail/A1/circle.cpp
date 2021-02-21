@@ -10,7 +10,7 @@ double Circle::getArea()
   return PI * radius_ * radius_;
 }
 
-rectangle_t Circle::getFrameRate()
+rectangle_t Circle::getFrameRect()
 {
   return {2*radius_, 2*radius_, pos_};
 }

@@ -11,7 +11,7 @@ public:
   virtual ~Rectangle() = default;
 
   virtual double getArea() override;
-  virtual rectangle_t getFrameRate() override;
+  virtual rectangle_t getFrameRect() override;
   virtual void move(const point_t& pos) override;
   virtual void move(const double dx, const double dy) override;
 private:

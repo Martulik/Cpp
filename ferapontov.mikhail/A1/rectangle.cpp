@@ -9,7 +9,7 @@ double Rectangle::getArea()
   return proportions_.width * proportions_.height;
 }
 
-rectangle_t Rectangle::getFrameRate()
+rectangle_t Rectangle::getFrameRect()
 {
   return proportions_;
 }

@@ -12,7 +12,7 @@ public:
   virtual ~Circle() = default;
 
   double getArea() override;
-  rectangle_t getFrameRate() override;
+  rectangle_t getFrameRect() override;
   void move(const point_t & pos) override;
   void move(const double dx, const double dy) override;
 private:

@@ -1,7 +1,7 @@
 #ifndef _BASE_TYPES_HPP_
 #define _BASE_TYPES_HPP_
 
-struct point_t 
+struct point_t
 {
     double x;
     double y;

@@ -17,10 +17,7 @@ class Circle: public Shape
 
     private:
         double radius_;
-        
 };
-
-
 
 
 #endif

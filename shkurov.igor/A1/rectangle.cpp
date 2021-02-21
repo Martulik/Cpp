@@ -11,7 +11,7 @@ Rectangle::Rectangle(const point_t& pos, const double height, const double width
     Shape(pos),
     height_(height),
     width_(width)
-{  
+{
 }
 
 double Rectangle::getArea() const
@@ -36,4 +36,3 @@ void Rectangle::move(const double move_x, const double move_y)
     center_.x += move_x;
     center_.y += move_y;
 }
-

@@ -28,7 +28,7 @@ void Rectangle::move(const double x, const double y)
   pos_.y += + y;
 }
 
-void Rectangle::print() const 
+void Rectangle::print() const
 {
   std::cout << "----------------------------------" << std::endl;
   std::cout << "rectangle center - (" << pos_.x << "," << pos_.y << ")" << std::endl;

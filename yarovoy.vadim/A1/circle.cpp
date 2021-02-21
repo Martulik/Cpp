@@ -34,5 +34,5 @@ void Circle::print()const
 {
   std::cout << "----------------------------------" << std::endl;
   std::cout << "circle center - (" << pos_.x << "," << pos_.y << ")" << std::endl;
-  std::cout << "circle radius - " << radius_ << std::endl; 
+  std::cout << "circle radius - " << radius_ << std::endl;
 }

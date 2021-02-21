@@ -42,3 +42,4 @@ int main()
   std::cout << "Area of a rectangle: " << figureRectangle->getArea() << std::endl;
   delete figureRectangle;
 }
+

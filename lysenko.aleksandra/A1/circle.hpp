@@ -20,6 +20,5 @@ private:
   point_t pos_;
   double radius_;
 };
-
 #endif
 

@@ -21,5 +21,5 @@ private:
   double heigh_;
   point_t pos_;
 };
-
 #endif 
+

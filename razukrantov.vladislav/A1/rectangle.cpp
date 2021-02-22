@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <iostream>
 
-Rectangle::Rectangle(double width, double height, point_t &center):
+Rectangle::Rectangle(double width, double height, const point_t &center):
   width_(width),
   height_(height),
   center_(center)

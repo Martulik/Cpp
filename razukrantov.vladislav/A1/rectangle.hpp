@@ -6,7 +6,7 @@
 class Rectangle:public Shape
 {
 public:
-  Rectangle(double width, double height, point_t &center);
+  Rectangle(double width, double height, const point_t &center);
 
   ~Rectangle() = default;
 

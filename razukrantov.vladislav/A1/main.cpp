@@ -16,7 +16,8 @@ int main()
   std::cout << "Rectangle center after move: " << ownRectangle->getFrameRect().pos.x << "; "
   << ownRectangle->getFrameRect().pos.y << std::endl << std::endl;
 
-  Shape* ownCircle = new Circle(8, { 2.5, 3.5 });
+  point_t point2{ 2.5, 3.5 };
+  Shape* ownCircle = new Circle(8, point2);
   std::cout << "Circle radius is: " << ownCircle->getFrameRect().width / 2 << std::endl;
   std::cout << "Circle area is: " << ownCircle->getArea() << std::endl;
   std::cout << "Circle center is: " << ownCircle->getFrameRect().pos.x << "; "

@@ -12,6 +12,7 @@ namespace shilyaev {
     rectangle_t getFrameRect() const;
     void move(const point_t &pos);
     void move(double dx, double dy);
+    void scale(double factor);
   private:
     double width_;
     double height_;

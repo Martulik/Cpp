@@ -30,3 +30,10 @@ void shilyaev::Rectangle::move(double dx, double dy)
   pos_.x += dx;
   pos_.y += dy;
 }
+
+void shilyaev::Rectangle::scale(double factor)
+{
+  assert(factor >= 0.0);
+  width_ *= factor;
+  height_ *= factor;
+}

@@ -31,3 +31,9 @@ void shilyaev::Circle::move(double dx, double dy)
   pos_.x += dx;
   pos_.y += dy;
 }
+
+void shilyaev::Circle::scale(double factor)
+{
+  assert(factor >= 0.0);
+  radius_ *= factor;
+}

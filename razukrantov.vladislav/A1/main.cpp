@@ -10,9 +10,11 @@ int main()
   std::cout << "Rectangle width is: " << ownRectangle->getFrameRect().width << std::endl;
   std::cout << "Rectangle height is: " << ownRectangle->getFrameRect().height << std::endl;
   std::cout << "Rectangle area is: " << ownRectangle->getArea() << std::endl;
-  std::cout << "Rectangle center is: " << ownRectangle->getFrameRect().pos.x << ", " << ownRectangle->getFrameRect().pos.y << std::endl;
+  std::cout << "Rectangle center is: " << ownRectangle->getFrameRect().pos.x << ", "
+  << ownRectangle->getFrameRect().pos.y << std::endl;
   ownRectangle->move(10, 11);
-  std::cout << "Rectangle center after move: " << ownRectangle->getFrameRect().pos.x << ", " << ownRectangle->getFrameRect().pos.y << std::endl << std::endl;
+  std::cout << "Rectangle center after move: " << ownRectangle->getFrameRect().pos.x << ", "
+  << ownRectangle->getFrameRect().pos.y << std::endl << std::endl;
 
   Shape* ownCircle = new Circle(8, { 2.5, 3.5 });
   std::cout << "Circle radius is: " << ownCircle->getFrameRect().width / 2 << std::endl;

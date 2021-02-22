@@ -4,16 +4,18 @@
 #include "shape.hpp"
 #include "base-types.hpp"
 
-class Circle: public Shape {
-public:
-  Circle(double radius, const point_t &pos);
-  double getArea() const;
-  rectangle_t getFrameRect() const;
-  void move(const point_t& pos);
-  void move(double dx, double dy);
-private:
-  double radius_;
-  point_t pos_;
-};
+namespace shilyaev {
+  class Circle: public Shape {
+  public:
+    Circle(double radius, const point_t &pos);
+    double getArea() const;
+    rectangle_t getFrameRect() const;
+    void move(const point_t &pos);
+    void move(double dx, double dy);
+  private:
+    double radius_;
+    point_t pos_;
+  };
+}
 
 #endif

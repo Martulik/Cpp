@@ -14,4 +14,4 @@ public:
   virtual void move(double dx, double dy) = 0;
 };
 
-#endif 
+#endif

@@ -6,7 +6,7 @@
 class Circle : public Shape
 {
 public:
-  Circle(const double rad, const point_t& pos);
+  Circle(double rad, point_t& pos);
 
   virtual ~Circle() = default;
 

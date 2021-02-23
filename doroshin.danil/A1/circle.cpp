@@ -1,13 +1,12 @@
 #include <cmath>
+#include <cassert>
 #include "circle.hpp"
 
 Circle::Circle(point_t pos, double r):
   pos(pos),
   radius(r)
 {
-  if (r < 0) {
-    throw "Invalid radius";
-  }
+  assert(radius >= 0);
 }
 
 double Circle::getArea() const

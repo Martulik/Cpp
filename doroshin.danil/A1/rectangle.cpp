@@ -1,12 +1,12 @@
 #include <cmath>
+#include <cassert>
 #include "rectangle.hpp"
 
 Rectangle::Rectangle(rectangle_t rect):
   rect(rect)
 {
-  if (rect.width < 0 || rect.height < 0) {
-    throw "Invalid rectangle size";
-  }
+  assert(rect.width >= 0);
+  assert(rect.height >= 0);
 }
 
 double Rectangle::getArea() const

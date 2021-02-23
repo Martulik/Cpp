@@ -12,7 +12,7 @@ public:
   rectangle_t getFrameRect() const override;
 
   void move(point_t vec, bool absolute = false) override;
-  
+
 protected:
   rectangle_t rect;
 };

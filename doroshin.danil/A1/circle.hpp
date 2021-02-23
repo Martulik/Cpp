@@ -7,14 +7,12 @@ class Circle : public Shape
 {
 public:
   Circle(point_t pos, double r);
+  ~Circle() override = default;
 
   double getArea() const override;
-
   rectangle_t getFrameRect() const override;
 
   void move(point_t vec, bool absolute = false) override;
-
-  ~Circle() override = default;
 
 protected:
   point_t pos;

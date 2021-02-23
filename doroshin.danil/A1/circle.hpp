@@ -1,5 +1,5 @@
-#ifndef __CIRCLE_HPP__
-#define __CIRCLE_HPP__
+#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
 
 #include "shape.hpp"
 
@@ -21,4 +21,4 @@ protected:
   double radius;
 };
 
-#endif //__CIRCLE_HPP__
+#endif // CIRCLE_HPP

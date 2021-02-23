@@ -1,5 +1,5 @@
-#ifndef __RECTANGLE_HPP__
-#define __RECTANGLE_HPP__
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
 #include "shape.hpp"
 
@@ -20,4 +20,4 @@ protected:
   rectangle_t rect;
 };
 
-#endif //__RECTANGLE_HPP__
+#endif // RECTANGLE_HPP

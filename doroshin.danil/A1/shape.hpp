@@ -1,5 +1,5 @@
-#ifndef __SHAPE_HPP__
-#define __SHAPE_HPP__
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
 
 #include "base-types.hpp"
 
@@ -15,4 +15,4 @@ public:
   virtual ~Shape() {};
 };
 
-#endif //__SHAPE_HPP__
+#endif // SHAPE_HPP

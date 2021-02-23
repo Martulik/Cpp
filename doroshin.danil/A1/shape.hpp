@@ -12,7 +12,7 @@ public:
 
   virtual void move(point_t vec, bool absolute = false) = 0;
 
-  virtual ~Shape() {};
+  virtual ~Shape() = default;
 };
 
 #endif // SHAPE_HPP

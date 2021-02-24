@@ -9,12 +9,6 @@ Circle::Circle( point_t ctr, double rad) :
 {
 }
 
-Circle::~Circle()
-{
-  ctr_ = {0, 0};
-  radius_ = 0.0;
-}
-
 double Circle::getArea() const
 {
   return (radius_) * (radius_) * 3.14;

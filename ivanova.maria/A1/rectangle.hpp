@@ -10,8 +10,6 @@ public:
 
   Rectangle(double height, double width, point_t pos);
 
-  virtual ~Rectangle();
-
   virtual double getArea() const override;
 
   virtual rectangle_t getFrameRect() const override;

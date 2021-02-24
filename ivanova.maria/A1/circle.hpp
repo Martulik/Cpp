@@ -11,8 +11,6 @@ public:
 
   Circle( point_t ctr, double rad);
 
-  virtual ~Circle();
-
   virtual double getArea() const override;
 
   virtual rectangle_t getFrameRect() const;

@@ -16,10 +16,6 @@ pos_(pos)
 {
 }
 
-Rectangle::~Rectangle()
-{
-}
-
 double Rectangle::getArea() const
 {
   return (height_) * (width_);

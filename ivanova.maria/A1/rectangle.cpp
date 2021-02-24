@@ -6,13 +6,14 @@ Rectangle::Rectangle():
  height_(0),
  width_(0),
  pos_()
-{}
-
-Rectangle::Rectangle(double height, double width, point_t pos)
 {
-  height_ = height;
-  width_ = width;
-  pos_ = pos;
+}
+
+Rectangle::Rectangle(double height, double width, point_t pos):
+height_(height),
+width_(width),
+pos_(pos)
+{
 }
 
 Rectangle::~Rectangle()

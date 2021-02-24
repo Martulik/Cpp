@@ -22,10 +22,6 @@ public:
 
   virtual std::ostream& fout (std::ostream &out) const;
 
-//  void outShape () override;
-//protected:
-//  virtual std::ostream &operator <<  (std::ostream& out) override;
-
 private:
   double height_;
   double width_;

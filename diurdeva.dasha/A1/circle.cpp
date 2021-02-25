@@ -4,8 +4,8 @@
 const double Pi = 3.14;
 
 Circle::Circle(double rad, point_t &pos):
-        rad_(rad),
-        pos_(pos)
+  rad_(rad),
+  pos_(pos)
 {
   assert(rad > 0);
 }

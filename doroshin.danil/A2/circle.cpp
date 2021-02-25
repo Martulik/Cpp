@@ -20,14 +20,19 @@ namespace doroshin {
     return rectangle_t{ 2 * radius, 2 * radius, pos };
   }
 
-  void Circle::move(point_t vec, bool absolute)
+  void Circle::move_rel(point_t vec)
   {
-    if (absolute) {
-      pos = vec;
-    }
-    else {
-      pos.x += vec.x;
-      pos.y += vec.y;
-    }
+    pos.x += vec.x;
+    pos.y += vec.y;
+  }
+
+  void Circle::move_abs(point_t point)
+  {
+    pos = point;
+  }
+
+  void Circle::scale(double s)
+  {
+    radius *= fabs(s);
   }
 }

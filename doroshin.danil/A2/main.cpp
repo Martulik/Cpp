@@ -7,7 +7,7 @@ namespace d = doroshin;
 
 void move_x(d::Shape& sh, double dx)
 {
-  sh.move({ dx, 0 }, false);
+  sh.move_rel({ dx, 0 });
 }
 
 int main()
@@ -15,7 +15,7 @@ int main()
   d::Circle c1({3, 4}, 2);
   std::cout << "Circle: (" << c1.getFrameRect().pos.x << ", " << c1.getFrameRect().pos.y
     << ") area: " << c1.getArea() << std::endl;
-  c1.move({-1, 6}, true);
+  c1.move_abs({-1, 6});
   std::cout << "Circle: (" << c1.getFrameRect().pos.x << ", " << c1.getFrameRect().pos.y
     << ") area: " << c1.getArea() << std::endl;
   move_x(c1, 2);

@@ -20,14 +20,20 @@ namespace doroshin {
     return rect;
   }
 
-  void Rectangle::move(point_t vec, bool absolute)
+  void Rectangle::move_rel(point_t vec)
   {
-    if (absolute) {
-      rect.pos = vec;
-    }
-    else {
-      rect.pos.x += vec.x;
-      rect.pos.y += vec.y;
-    }
+    rect.pos.x += vec.x;
+    rect.pos.y += vec.y;
+  }
+
+  void Rectangle::move_abs(point_t point)
+  {
+    rect.pos = point;
+  }
+
+  void Rectangle::scale(double s)
+  {
+    rect.width *= fabs(s);
+    rect.height *= fabs(s);
   }
 }

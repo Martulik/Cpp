@@ -1,21 +1,16 @@
 #include <cassert>
 #include "rectangle.hpp"
 
-Rectangle::Rectangle(const point_t& pos, const double width, const double height)
+Rectangle::Rectangle(const point_t& pos, const double width, const double height):
+  size_{width, height, pos}
 {
   assert((width > 0) && (height > 0));
-  size_.pos = pos;
-  size_.width = width;
-  size_.height = height;
 }
 
-Rectangle::Rectangle(const double x, const double y, const double width, const double height)
+Rectangle::Rectangle(const double x, const double y, const double width, const double height):
+  size_{ width, height, x, y}
 {
   assert((width > 0) && (height > 0));
-  size_.pos.x = x;
-  size_.pos.y = y;
-  size_.width = width;
-  size_.height = height;
 }
 
 double Rectangle::getArea() const

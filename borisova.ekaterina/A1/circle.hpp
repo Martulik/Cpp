@@ -16,8 +16,7 @@ public:
 
 private:
   point_t position_;
-  double radius_ = 0;
-  const double PI = 3.14;
+  double radius_;
 };
 
 #endif

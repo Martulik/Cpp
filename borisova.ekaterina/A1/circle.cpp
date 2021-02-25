@@ -8,16 +8,16 @@ Circle::Circle(const point_t& pos, const double radius):
   assert(radius > 0);
 }
 
-Circle::Circle(const double x, const double y, const double radius)
+Circle::Circle(const double x, const double y, const double radius):
+  position_{x, y},
+  radius_(radius)
 {
   assert(radius > 0);
-  position_.x = x;
-  position_.y = y;
-  radius_ = radius;
 }
 
 double Circle::getArea() const
 {
+  const double PI = 3.14;
   return PI * radius_ * radius_;
 }
 

@@ -22,30 +22,36 @@ namespace doroshin {
 
   double CompositeShape::AnyShape::getArea() const
   {
+    double res = 0.0;
     switch (type)
     {
     case Type::Circle:
-      return circle.getArea();
+      res = circle.getArea();
+      break;
     case Type::Rectangle:
-      return rectangle.getArea();
+      res = rectangle.getArea();
+      break;
     default:
       assert(!"Missing area case");
     }
-    return std::nan("Missing area case"); // Required because it gives a return-type warning
+    return res;
   }
 
   rectangle_t CompositeShape::AnyShape::getFrameRect() const
   {
+    rectangle_t res;
     switch (type)
     {
     case Type::Circle:
-      return circle.getFrameRect();
+      res = circle.getFrameRect();
+      break;
     case Type::Rectangle:
-      return rectangle.getFrameRect();
+      res = rectangle.getFrameRect();
+      break;
     default:
       assert(!"Missing frame rect case");
     }
-    return {0, 0, {0, 0}}; // Required because it gives a return-type warning
+    return res;
   }
 
   void CompositeShape::AnyShape::move_rel(point_t vec)

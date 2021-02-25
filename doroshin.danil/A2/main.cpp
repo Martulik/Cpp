@@ -2,6 +2,7 @@
 #include "shape.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
+#include "composite-shape.hpp"
 
 namespace d = doroshin;
 
@@ -28,5 +29,10 @@ int main()
   move_x(r1, -4);
   std::cout << "Rectangle: (" << r1.getFrameRect().pos.x << ", " << r1.getFrameRect().pos.y
     << ") area: " << r1.getArea() << std::endl;
+
+  d::CompositeShape shape { c1, r1 };
+  std::cout << "Composite shape: (" << shape.getFrameRect().pos.x << ", " << shape.getFrameRect().pos.y
+    << ") width: " << shape.getFrameRect().width << " x height: " << shape.getFrameRect().height
+    << std::endl;
   return 0;
 }

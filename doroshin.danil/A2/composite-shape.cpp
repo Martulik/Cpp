@@ -29,7 +29,7 @@ namespace doroshin {
     case Type::Rectangle:
       return rectangle.getArea();
     default:
-      assert("Missing area case");
+      assert(!"Missing area case");
     }
     return std::nan("Missing area case"); // Required because it gives a return-type warning
   }
@@ -43,7 +43,7 @@ namespace doroshin {
     case Type::Rectangle:
       return rectangle.getFrameRect();
     default:
-      assert("Missing frame rect case");
+      assert(!"Missing frame rect case");
     }
     return {0, 0, {0, 0}}; // Required because it gives a return-type warning
   }
@@ -57,7 +57,7 @@ namespace doroshin {
     case Type::Rectangle:
       return rectangle.move_rel(vec);
     default:
-      assert("Missing move_rel case");
+      assert(!"Missing move_rel case");
     }
   }
 
@@ -70,7 +70,7 @@ namespace doroshin {
     case Type::Rectangle:
       return rectangle.move_abs(point);
     default:
-      assert("Missing move_abs case");
+      assert(!"Missing move_abs case");
     }
   }
 
@@ -83,7 +83,7 @@ namespace doroshin {
     case Type::Rectangle:
       return rectangle.scale(s);
     default:
-      assert("Missing scale case");
+      assert(!"Missing scale case");
     }
   }
 
@@ -99,7 +99,7 @@ namespace doroshin {
       rectangle = other.rectangle;
       break;
     default:
-      assert("Missing copy-ctr case");
+      assert(!"Missing copy-ctr case");
     }
   }
 
@@ -115,7 +115,7 @@ namespace doroshin {
       rectangle = std::move(other.rectangle);
       break;
     default:
-      assert("Missing move-ctr case");
+      assert(!"Missing move-ctr case");
     }
   }
 
@@ -131,7 +131,7 @@ namespace doroshin {
       rectangle = other.rectangle;
       break;
     default:
-      assert("Missing copy-operator= case");
+      assert(!"Missing copy-operator= case");
     }
     return *this;
   }
@@ -148,7 +148,7 @@ namespace doroshin {
       rectangle = std::move(other.rectangle);
       break;
     default:
-      assert("Missing move-operator= case");
+      assert(!"Missing move-operator= case");
     }
     return *this;
   }
@@ -164,7 +164,7 @@ namespace doroshin {
       rectangle.~Rectangle();
       break;
     default:
-      assert("Missing destructor case");
+      assert(!"Missing destructor case");
     }
   }
 
@@ -185,7 +185,7 @@ namespace doroshin {
 
   double CompositeShape::getArea() const
   {
-    assert("Not implemented properly");
+    assert(!"Not implemented properly");
     double sum = 0.0;
     for(size_t i = 0; i < size_; ++i) {
       sum += shapes_[i].getArea();

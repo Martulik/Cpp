@@ -3,20 +3,22 @@
 
 #include "shape.hpp"
 
-class Circle : public Shape
-{
-public:
-  Circle(point_t pos, double r);
-  ~Circle() override = default;
+namespace doroshin {
+  class Circle : public Shape
+  {
+  public:
+    Circle(point_t pos, double r);
+    ~Circle() override = default;
 
-  double getArea() const override;
-  rectangle_t getFrameRect() const override;
+    double getArea() const override;
+    rectangle_t getFrameRect() const override;
 
-  void move(point_t vec, bool absolute = false) override;
+    void move(point_t vec, bool absolute = false) override;
 
-protected:
-  point_t pos;
-  double radius;
-};
+  protected:
+    point_t pos;
+    double radius;
+  };
+}
 
 #endif // CIRCLE_HPP

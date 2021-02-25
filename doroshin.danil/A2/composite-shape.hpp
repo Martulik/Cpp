@@ -40,6 +40,7 @@ namespace doroshin {
   class CompositeShape::AnyShape : public Shape
   {
     enum class Type {
+      Uninitialized,
       Circle,
       Rectangle
     } type;
@@ -48,7 +49,10 @@ namespace doroshin {
       Rectangle rectangle;
     };
   public:
-    AnyShape() = delete;
+    // These constructors are private, so I rely on implicit conversions
+    // Default constructor is used only to allocate memory, having an
+    // instance with Uninitialized type is illegal
+    explicit AnyShape();
     AnyShape(Circle);
     AnyShape(Rectangle);
 

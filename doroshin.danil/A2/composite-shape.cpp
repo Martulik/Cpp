@@ -6,6 +6,10 @@
 #include "composite-shape.hpp"
 
 namespace doroshin {
+  CompositeShape::AnyShape::AnyShape():
+    type(Type::Uninitialized)
+  {}
+
   CompositeShape::AnyShape::AnyShape(Circle c):
     type(Type::Circle),
     circle(c)
@@ -24,8 +28,9 @@ namespace doroshin {
       return circle.getArea();
     case Type::Rectangle:
       return rectangle.getArea();
+    default:
+      assert("Missing area case");
     }
-    assert("Missing area case");
     return std::nan("Missing area case"); // Required because it gives a return-type warning
   }
 
@@ -37,8 +42,9 @@ namespace doroshin {
       return circle.getFrameRect();
     case Type::Rectangle:
       return rectangle.getFrameRect();
+    default:
+      assert("Missing frame rect case");
     }
-    assert("Missing frame rect case");
     return {0, 0, {0, 0}}; // Required because it gives a return-type warning
   }
 
@@ -50,8 +56,9 @@ namespace doroshin {
       return circle.move_rel(vec);
     case Type::Rectangle:
       return rectangle.move_rel(vec);
+    default:
+      assert("Missing move_rel case");
     }
-    assert("Missing move_rel case");
   }
 
   void CompositeShape::AnyShape::move_abs(point_t point)
@@ -62,8 +69,9 @@ namespace doroshin {
       return circle.move_abs(point);
     case Type::Rectangle:
       return rectangle.move_abs(point);
+    default:
+      assert("Missing move_abs case");
     }
-    assert("Missing move_abs case");
   }
 
   void CompositeShape::AnyShape::scale(double s)
@@ -74,8 +82,9 @@ namespace doroshin {
       return circle.scale(s);
     case Type::Rectangle:
       return rectangle.scale(s);
+    default:
+      assert("Missing scale case");
     }
-    assert("Missing scale case");
   }
 
   CompositeShape::AnyShape::AnyShape(const AnyShape& other):
@@ -167,7 +176,7 @@ namespace doroshin {
   CompositeShape::CompositeShape(std::initializer_list<AnyShape> list):
     size_(list.size())
   {
-    shapes_ = static_cast<AnyShape*>(operator new(size_ * sizeof(AnyShape))); // work around deleted default constructor
+    shapes_ = new AnyShape[size_];
     size_t i = 0;
     for(const AnyShape& shape : list) {
       shapes_[i++] = shape;
@@ -263,9 +272,7 @@ namespace doroshin {
 
   CompositeShape::~CompositeShape()
   {
-    for(size_t i = 0; i < size_; ++i)
-      shapes_[i].~AnyShape();
-    operator delete(static_cast<void*>(shapes_));
+    delete[] shapes_;
   }
 
   void swap(CompositeShape& lhs, CompositeShape& rhs)

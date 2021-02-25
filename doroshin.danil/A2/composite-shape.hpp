@@ -21,7 +21,7 @@ namespace doroshin {
     CompositeShape();
     CompositeShape(std::initializer_list<AnyShape>);
 
-    // void add(AnyShape);
+    void add(const AnyShape&);
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

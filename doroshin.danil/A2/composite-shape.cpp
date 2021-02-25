@@ -189,6 +189,16 @@ namespace doroshin {
     }
   }
 
+  void CompositeShape::add(const AnyShape& shape)
+  {
+    AnyShape* new_shapes = new AnyShape[size_ + 1];
+    for(size_t i = 0; i < size_; ++i)
+      new_shapes[i] = std::move(shapes_[i]);
+    new_shapes[size_++] = shape;
+    delete shapes_;
+    shapes_ = new_shapes;
+  }
+
   double CompositeShape::getArea() const
   {
     assert(!"Not implemented properly");

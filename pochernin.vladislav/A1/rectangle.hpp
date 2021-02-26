@@ -7,14 +7,14 @@
 class Rectangle : public Shape
 {
 public:
-  Rectangle(const double width, const double height, const point_t& pos);
+  Rectangle(double width, double height, const point_t& pos);
 
   virtual ~Rectangle() = default;
 
   virtual double getArea() const override;
   virtual rectangle_t getFrameRect() const override;
   virtual void move(const point_t& destination) override;
-  virtual void move(const double dx, const double dy) override;
+  virtual void move(double dx, double dy) override;
 
 private:
   rectangle_t figure_;

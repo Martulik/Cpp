@@ -1,8 +1,12 @@
 #include "rectangle.hpp"
+#include <cassert>
 
 Rectangle::Rectangle(const double width, const double height, const point_t pos) :
   proportions_({width, height, pos})
-{}
+{
+  assert(width > 0 && "Incorrect width");
+  assert(height > 0 && "Incorrect height");
+}
 
 double Rectangle::getArea() const
 {

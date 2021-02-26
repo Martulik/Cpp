@@ -1,9 +1,12 @@
 #include "circle.hpp"
+#include <cassert>
 
 Circle::Circle(const double radius, const point_t pos):
   radius_(radius),
   pos_(pos)
-{}
+{
+  assert(radius > 0 && "Incorrect radius");
+}
 
 double Circle::getArea() const
 {

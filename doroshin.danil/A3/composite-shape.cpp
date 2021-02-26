@@ -213,9 +213,9 @@ namespace doroshin {
   {
     assert(size_ != 0);
     double min_x = std::numeric_limits<double>::max();
-    double max_x = std::numeric_limits<double>::min();
+    double max_x = std::numeric_limits<double>::lowest();
     double min_y = std::numeric_limits<double>::max();
-    double max_y = std::numeric_limits<double>::min();
+    double max_y = std::numeric_limits<double>::lowest();
 
     for(size_t i = 0; i < size_; ++i) {
       rectangle_t frame = shapes_[i].getFrameRect();
@@ -241,8 +241,11 @@ namespace doroshin {
 
   void CompositeShape::move_abs(point_t point)
   {
+    point_t center = getFrameRect().pos;
     for(size_t i = 0; i < size_; ++i) {
-      shapes_[i].move_abs(point);
+      point_t shape = shapes_[i].getFrameRect().pos;
+      point_t delta {shape.x - center.x, shape.y - center.y};
+      shapes_[i].move_abs({point.x + delta.x, point.y + delta.y});
     }
   }
 

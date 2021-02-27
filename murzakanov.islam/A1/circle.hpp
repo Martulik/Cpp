@@ -9,6 +9,7 @@ class Circle : public Shape
 public:
   Circle(double radius, point_t pos);
 
+  std::string getName() const override;
   double getArea() const override;
   rectangle_t getFrameRect() const override;
   void move(const point_t& point) override;

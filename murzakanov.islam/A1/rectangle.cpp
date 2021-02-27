@@ -8,12 +8,17 @@ Rectangle::Rectangle(double width, double height, point_t pos):
   assert (width >=0 || height >= 0);
 }
 
-double Rectangle::getArea()const
+std::string Rectangle::getName() const
+{
+  return "Rectangle";
+}
+
+double Rectangle::getArea() const
 {
   return (width_ * height_);
 }
 
-rectangle_t Rectangle::getFrameRect()const
+rectangle_t Rectangle::getFrameRect() const
 {
   return { width_, height_, pos_ };
 }

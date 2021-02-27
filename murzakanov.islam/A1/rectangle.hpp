@@ -9,6 +9,7 @@ class Rectangle : public Shape
 public:
   Rectangle(double width, double height, point_t pos_);
 
+  std::string getName() const override;
   double getArea() const override;
   rectangle_t getFrameRect() const override;
   void move(const point_t& point) override;

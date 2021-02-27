@@ -9,12 +9,17 @@ Circle::Circle(double radius, point_t pos):
   assert (radius_ >= 0);
 }
 
-double Circle::getArea()const
+std::string Circle::getName() const
+{
+  return "Circle";
+}
+
+double Circle::getArea() const
 {
   return (PI*radius_*radius_);
 }
 
-rectangle_t Circle::getFrameRect()const
+rectangle_t Circle::getFrameRect() const
 {
   return { 2*radius_, 2*radius_, pos_ };
 }

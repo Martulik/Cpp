@@ -21,11 +21,11 @@ int main()
 {
   Shape *someShape = new Rectangle(2.0, 4.0, {0.0, 0.0});
   std::cout << "area of rectangle = " << someShape->getArea() << std::endl;
-  getRectangle(dynamic_cast<Rectangle *>(someShape));
+  getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   someShape->move({1.1, 2.2});
-  getRectangle(dynamic_cast<Rectangle *>(someShape));
+  getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   someShape->move(-1.1, 1.0);
-  getRectangle(dynamic_cast<Rectangle *>(someShape));
+  getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   std::cout << "limit rectangle_t for Rectangle ";
   std::cout << "height = " << someShape->getFrameRect().height << "  width = "
             << someShape->getFrameRect().width;
@@ -37,11 +37,11 @@ int main()
 
   someShape = new Circle(111.1, {1.0, -1.0});
   std::cout << "area of circle = " << someShape->getArea() << std::endl;
-  getCircle(dynamic_cast<Circle *>(someShape));
+  getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   someShape->move({1.1, 2.2});
-  getCircle(dynamic_cast<Circle *>(someShape));
+  getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   someShape->move(-1.1, 1.0);
-  getCircle(dynamic_cast<Circle *>(someShape));
+  getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   std::cout << "limit rectangle_t for Circle ";
   std::cout << "height = " << someShape->getFrameRect().height << "  width = "
             << someShape->getFrameRect().width;

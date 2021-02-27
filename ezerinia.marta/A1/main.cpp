@@ -20,10 +20,10 @@ void getRectangle(const Rectangle *rectangle, std::ostream &out)
 void getFrameRectOfShape(const Shape *shape, std::ostream &out)
 {
   assert(shape != nullptr);
-  out << "height = " << someShape->getFrameRect().height << "  width = "
-            << someShape->getFrameRect().width;
-  out << " center: x = " << someShape->getFrameRect().pos.x << ", y = "
-            << someShape->getFrameRect().pos.y << std::endl;
+  out << "height = " << shape->getFrameRect().height << "  width = "
+            << shape->getFrameRect().width;
+  out << " center: x = " << shape->getFrameRect().pos.x << ", y = "
+            << shape->getFrameRect().pos.y << std::endl;
 }
 
 int main()

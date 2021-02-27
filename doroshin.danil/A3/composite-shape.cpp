@@ -195,7 +195,7 @@ void d::CompositeShape::add(const AnyShape& shape)
   for(size_t i = 0; i < size_; ++i)
     new_shapes[i] = std::move(shapes_[i]);
   new_shapes[size_++] = shape;
-  delete shapes_;
+  delete[] shapes_;
   shapes_ = new_shapes;
 }
 

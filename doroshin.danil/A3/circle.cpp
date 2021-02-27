@@ -2,37 +2,37 @@
 #include <cassert>
 #include "circle.hpp"
 
-namespace doroshin {
-  Circle::Circle(point_t pos, double r):
-    pos(pos),
-    radius(r)
-  {
-    assert(radius >= 0);
-  }
+namespace d = doroshin;
 
-  double Circle::getArea() const
-  {
-    return M_PI * radius * radius;
-  }
+d::Circle::Circle(point_t pos, double r):
+  pos(pos),
+  radius(r)
+{
+  assert(radius >= 0);
+}
 
-  rectangle_t Circle::getFrameRect() const
-  {
-    return rectangle_t{ 2 * radius, 2 * radius, pos };
-  }
+double d::Circle::getArea() const
+{
+  return M_PI * radius * radius;
+}
 
-  void Circle::move_rel(point_t vec)
-  {
-    pos.x += vec.x;
-    pos.y += vec.y;
-  }
+d::rectangle_t d::Circle::getFrameRect() const
+{
+  return rectangle_t{ 2 * radius, 2 * radius, pos };
+}
 
-  void Circle::move_abs(point_t point)
-  {
-    pos = point;
-  }
+void d::Circle::move_rel(point_t vec)
+{
+  pos.x += vec.x;
+  pos.y += vec.y;
+}
 
-  void Circle::scale(double s)
-  {
-    radius *= fabs(s);
-  }
+void d::Circle::move_abs(point_t point)
+{
+  pos = point;
+}
+
+void d::Circle::scale(double s)
+{
+  radius *= fabs(s);
 }

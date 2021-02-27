@@ -2,38 +2,38 @@
 #include <cassert>
 #include "rectangle.hpp"
 
-namespace doroshin {
-  Rectangle::Rectangle(rectangle_t rect):
-    rect(rect)
-  {
-    assert(rect.width >= 0);
-    assert(rect.height >= 0);
-  }
+namespace d = doroshin;
 
-  double Rectangle::getArea() const
-  {
-    return rect.width * rect.height;
-  }
+d::Rectangle::Rectangle(rectangle_t rect):
+  rect(rect)
+{
+  assert(rect.width >= 0);
+  assert(rect.height >= 0);
+}
 
-  rectangle_t Rectangle::getFrameRect() const
-  {
-    return rect;
-  }
+double d::Rectangle::getArea() const
+{
+  return rect.width * rect.height;
+}
 
-  void Rectangle::move_rel(point_t vec)
-  {
-    rect.pos.x += vec.x;
-    rect.pos.y += vec.y;
-  }
+d::rectangle_t d::Rectangle::getFrameRect() const
+{
+  return rect;
+}
 
-  void Rectangle::move_abs(point_t point)
-  {
-    rect.pos = point;
-  }
+void d::Rectangle::move_rel(point_t vec)
+{
+  rect.pos.x += vec.x;
+  rect.pos.y += vec.y;
+}
 
-  void Rectangle::scale(double s)
-  {
-    rect.width *= fabs(s);
-    rect.height *= fabs(s);
-  }
+void d::Rectangle::move_abs(point_t point)
+{
+  rect.pos = point;
+}
+
+void d::Rectangle::scale(double s)
+{
+  rect.width *= fabs(s);
+  rect.height *= fabs(s);
 }

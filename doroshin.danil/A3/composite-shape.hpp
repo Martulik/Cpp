@@ -39,6 +39,8 @@ namespace doroshin {
     ~CompositeShape() override;
   };
 
+  void swap(CompositeShape& lhs, CompositeShape& rhs);
+
   class CompositeShape::AnyShape : public Shape
   {
     enum class Type {

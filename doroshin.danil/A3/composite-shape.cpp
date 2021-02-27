@@ -201,7 +201,7 @@ void d::CompositeShape::add(const AnyShape& shape)
 
 double d::CompositeShape::getArea() const
 {
-  assert(!"Not implemented properly");
+  assert("Not implemented properly");
   double sum = 0.0;
   for(size_t i = 0; i < size_; ++i) {
     sum += shapes_[i].getArea();
@@ -256,6 +256,7 @@ void d::CompositeShape::scale(double s)
     point_t shape = shapes_[i].getFrameRect().pos;
     point_t move_vec { s * (center.x - shape.x), s * (center.y - shape.y) };
     shapes_[i].move_rel(move_vec);
+    shapes_[i].scale(s);
   }
 }
 

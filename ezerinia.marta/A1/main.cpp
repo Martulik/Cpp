@@ -3,17 +3,17 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void getCircle(const Circle *circle)
+void getCircle(const Circle *circle, std::ostream &out)
 {
   assert(circle != nullptr);
-  std::cout << "radius = " << circle->getRadius() << " center: x= "
+  out << "radius = " << circle->getRadius() << " center: x= "
             << circle->getCenter().x << ", y= " << circle->getCenter().y << std::endl;
 }
 
-void getRectangle(const Rectangle *rectangle)
+void getRectangle(const Rectangle *rectangle, std::ostream &out)
 {
   assert(rectangle != nullptr);
-  std::cout << "height = " << rectangle->getHeight() << "  width = " << rectangle->getWidth()
+  out << "height = " << rectangle->getHeight() << "  width = " << rectangle->getWidth()
             << " center: x= " << rectangle->getCenter().x << ", y= " << rectangle->getCenter().y << std::endl;
 }
 

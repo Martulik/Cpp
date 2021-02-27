@@ -35,7 +35,7 @@ int main()
   someShape->move(-1.1, 1.0);
   getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   std::cout << "limit rectangle_t for Rectangle ";
-  getFrameRectOfShape(*someShape, std::cout);
+  getFrameRectOfShape(someShape, std::cout);
   delete someShape;
 
   someShape = new Circle(111.1, {1.0, -1.0});
@@ -45,7 +45,7 @@ int main()
   someShape->move(-1.1, 1.0);
   getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   std::cout << "limit rectangle_t for Circle ";
-  getFrameRectOfShape(*someShape, std::cout);
+  getFrameRectOfShape(someShape, std::cout);
   delete someShape;
 
   return 0;

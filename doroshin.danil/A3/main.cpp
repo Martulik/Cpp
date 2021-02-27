@@ -1,4 +1,7 @@
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <cstring>
 #include "shape.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
@@ -6,33 +9,136 @@
 
 namespace d = doroshin;
 
-void move_x(d::Shape& sh, double dx)
+d::Circle input_circle(std::istream& in)
 {
-  sh.move_rel({ dx, 0 });
+  double x_pos = 0, y_pos = 0, r = 0;
+  in >> x_pos >> y_pos >> r;
+  return d::Circle {{x_pos, y_pos}, r};
 }
 
-int main()
+d::Rectangle input_rectangle(std::istream& in)
 {
-  d::Circle c1({3, 4}, 2);
-  std::cout << "Circle: (" << c1.getFrameRect().pos.x << ", " << c1.getFrameRect().pos.y
-    << ") area: " << c1.getArea() << std::endl;
-  c1.move_abs({-1, 6});
-  std::cout << "Circle: (" << c1.getFrameRect().pos.x << ", " << c1.getFrameRect().pos.y
-    << ") area: " << c1.getArea() << std::endl;
-  move_x(c1, 2);
-  std::cout << "Circle: (" << c1.getFrameRect().pos.x << ", " << c1.getFrameRect().pos.y
-    << ") area: " << c1.getArea() << std::endl;
+  double x_pos = 0, y_pos = 0, w = 0, h = 0;
+  in >> x_pos >> y_pos >> w >> h;
+  return d::Rectangle(d::rectangle_t{w, h, {x_pos, y_pos}});
+}
 
-  d::Rectangle r1(d::rectangle_t {1, 2, {2, 5}});
-  std::cout << "Rectangle: (" << r1.getFrameRect().pos.x << ", " << r1.getFrameRect().pos.y
-    << ") area: " << r1.getArea() << std::endl;
-  move_x(r1, -4);
-  std::cout << "Rectangle: (" << r1.getFrameRect().pos.x << ", " << r1.getFrameRect().pos.y
-    << ") area: " << r1.getArea() << std::endl;
+void print(std::ostream& out, const d::Shape& s)
+{
+  d::rectangle_t frame = s.getFrameRect();
+  out << "Frame: (" << frame.pos.x << ", " << frame.pos.y
+      << ") w: " << frame.width << " h: " << frame.height << std::endl
+      << "Area: " << s.getArea() << std::endl;
+}
 
-  d::CompositeShape shape { c1, r1 };
-  std::cout << "Composite shape: (" << shape.getFrameRect().pos.x << ", " << shape.getFrameRect().pos.y
-    << ") width: " << shape.getFrameRect().width << " x height: " << shape.getFrameRect().height
-    << std::endl;
+void print(std::ostream& out, const d::Circle& c)
+{
+  out << "Circle:" << std::endl;
+  print(out, static_cast<const d::Shape&>(c));
+}
+
+void print(std::ostream& out, const d::Rectangle& r)
+{
+  out << "Rectangle:" << std::endl;
+  print(out, static_cast<const d::Shape&>(r));
+}
+
+void print(std::ostream& out, const d::CompositeShape& s)
+{
+  out << "Composite:" << std::endl;
+  print(out, static_cast<const d::Shape&>(s));
+}
+
+int echo_circle()
+{
+  std::string line;
+  std::getline(std::cin, line);
+  std::istringstream in(line);
+
+  d::Circle c = input_circle(in);
+  if(in.fail()) {
+    std::cerr << "Incorrect parameters" << std::endl;
+    return 1;
+  }
+
+  print(std::cout, c);
+  return 0;
+}
+
+int echo_rectangle()
+{
+  std::string line;
+  std::getline(std::cin, line);
+  std::istringstream in(line);
+
+  d::Rectangle r = input_rectangle(in);
+  if(in.fail()) {
+    std::cerr << "Incorrect parameters" << std::endl;
+    return 1;
+  }
+
+  print(std::cout, r);
+  return 0;
+}
+
+int echo_composite()
+{
+  d::CompositeShape shape;
+  while(!std::cin.eof()) {
+    std::string line;
+    std::getline(std::cin, line);
+    if(line.empty())
+      break;
+    std::istringstream in(line);
+
+    std::string type;
+    in >> type;
+
+    if(type == "circle") {
+      d::Circle c = input_circle(in);
+      if(in.fail()) {
+        std::cerr << "Incorrect parameters" << std::endl;
+        return 1;
+      }
+      print(std::cout, c);
+      shape.add(c);
+    }
+    else if(type == "rectangle") {
+      d::Rectangle r = input_rectangle(in);
+      if(in.fail()) {
+        std::cerr << "Incorrect parameters" << std::endl;
+        return 1;
+      }
+      print(std::cout, r);
+      shape.add(r);
+    }
+    else if(type.empty())
+      break;
+    else {
+      std::cerr << "Unknown shape" << std::endl;
+      return 1;
+    }
+  }
+  print(std::cout, shape);
+  return 0;
+}
+
+int main(int argc, char* argv[])
+{
+  if(argc > 1) {
+    if(!strcmp(argv[1], "rectangle")) {
+      return echo_rectangle();
+    }
+    else if(!strcmp(argv[1], "circle")) {
+      return echo_circle();
+    }
+    else if(!strcmp(argv[1], "composite")) {
+      return echo_composite();
+    }
+    else
+      std::cout << "Unknown shape" << std::endl;
+  }
+  else
+    std::cout << "No arguments given" << std::endl;
   return 0;
 }

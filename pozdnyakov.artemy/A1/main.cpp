@@ -2,19 +2,32 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 #include "base-types.hpp"
+
 int main()
 {
-  point_t o{0, 0};
-  Rectangle rec1(o, 20, 10);
-  Rectangle rec2(o, 30, 50);
-  Rectangle rec3(o, 13, 21);
-  Circle circle1(o, 33);
-  Circle circle2(o, 55);
-  Circle circle3(o, 53);
-  Shape* figures[] = {&rec1, &rec2, &rec3, &circle1, &circle2, &circle3};
-  for (int i = 0; i < 6; i++)
-  {
-    std::cout << "The area of " << i << " figure is: " << figures[i]->getArea() << std::endl;
-  }
+  Shape * polyPointer;
+  rectangle_t frame;
+  point_t o{0,0};
+  Circle circle(o, 10);
+  Rectangle rec(o, 10, 20);
+
+  frame = circle.getFrameRect();
+  std::cout << "left top corner's of circle x cord is " << frame.pos.x << std::endl;
+  std::cout << "left top corner's of circle y cord is " << frame.pos.y << std::endl;
+  polyPointer = &circle;
+  polyPointer->move(12, 13);
+  frame = circle.getFrameRect();
+  std::cout << "left top corner's of circle x cord is " << frame.pos.x << std::endl; 
+  std::cout << "left top corner's of circle y cord is " << frame.pos.y << std::endl;
+
+  frame = rec.getFrameRect();
+  std::cout << "left top corner's of rectangle x cord is " << frame.pos.x << std::endl;
+  std::cout << "left top corner's of rectangle y cord is " << frame.pos.y << std::endl;
+  polyPointer = &rec;
+  polyPointer->move(3.22, 11.235);
+  frame = rec.getFrameRect();
+  std::cout << "left top corner's of rectangle x cord is " << frame.pos.x << std::endl;
+  std::cout << "left top corner's of rectangle y cord is " << frame.pos.y << std::endl;
+
   return 0;
 }

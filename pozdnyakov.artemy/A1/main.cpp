@@ -17,7 +17,7 @@ int main()
   polyPointer = &circle;
   polyPointer->move(12, 13);
   frame = circle.getFrameRect();
-  std::cout << "left top corner's of circle's frame x cord is " << frame.pos.x << std::endl; 
+  std::cout << "left top corner's of circle's frame x cord is " << frame.pos.x << std::endl;
   std::cout << "left top corner's of circle's frame y cord is " << frame.pos.y << std::endl;
 
   frame = rec.getFrameRect();

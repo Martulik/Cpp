@@ -17,37 +17,35 @@ void getRectangle(const Rectangle *rectangle, std::ostream &out)
             << " center: x= " << rectangle->getCenter().x << ", y= " << rectangle->getCenter().y << std::endl;
 }
 
+void getFrameRectOfShape(const Shape *shape, std::ostream &out)
+{
+  assert(shape != nullptr);
+  out << "height = " << someShape->getFrameRect().height << "  width = "
+            << someShape->getFrameRect().width;
+  out << " center: x = " << someShape->getFrameRect().pos.x << ", y = "
+            << someShape->getFrameRect().pos.y << std::endl;
+}
+
 int main()
 {
   Shape *someShape = new Rectangle(2.0, 4.0, {0.0, 0.0});
   std::cout << "area of rectangle = " << someShape->getArea() << std::endl;
-  getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   someShape->move({1.1, 2.2});
   getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   someShape->move(-1.1, 1.0);
   getRectangle(dynamic_cast<Rectangle *>(someShape), std::cout);
   std::cout << "limit rectangle_t for Rectangle ";
-  std::cout << "height = " << someShape->getFrameRect().height << "  width = "
-            << someShape->getFrameRect().width;
-  std::cout << " center: x = " << someShape->getFrameRect().pos.x << ", y = "
-            << someShape->getFrameRect().pos.y;
-
-  std::cout << std::endl;
+  getFrameRectOfShape(*someShape, std::cout);
   delete someShape;
 
   someShape = new Circle(111.1, {1.0, -1.0});
   std::cout << "area of circle = " << someShape->getArea() << std::endl;
-  getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   someShape->move({1.1, 2.2});
   getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   someShape->move(-1.1, 1.0);
   getCircle(dynamic_cast<Circle *>(someShape), std::cout);
   std::cout << "limit rectangle_t for Circle ";
-  std::cout << "height = " << someShape->getFrameRect().height << "  width = "
-            << someShape->getFrameRect().width;
-  std::cout << " center: x = " << someShape->getFrameRect().pos.x << ", y = "
-            << someShape->getFrameRect().pos.y;
-  std::cout << std::endl;
+  getFrameRectOfShape(*someShape, std::cout);
   delete someShape;
 
   return 0;

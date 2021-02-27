@@ -1,10 +1,10 @@
 #ifndef BASE_TYPES_H
 #define BASE_TYPES_H
+#include <iostream>
 struct point_t
 {
   double x;
   double y;
-
   bool operator== (const point_t& point)
   {
     bool bResult = false;
@@ -21,7 +21,7 @@ struct point_t
     {
       bresult = false;
     }
-	  return bresult;
+    return bresult;
   }
   friend std::ostream& operator <<(std::ostream& out, const point_t& point)
   {

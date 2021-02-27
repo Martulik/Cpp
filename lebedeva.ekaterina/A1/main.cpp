@@ -12,7 +12,7 @@ int main()
     std::cout << '\n';
     testCircleClass();
   }
-  catch (std::exception& ex) 
+  catch (std::exception& ex)
   {
     std::cerr << ex.what();
     exit(1);

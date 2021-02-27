@@ -1,25 +1,34 @@
 #include "circle.hpp"
+#include <cassert>
+
+Circle::Circle(double rad, point_t center)
+{
+  assert(rad > 0);
+  center_ = center;
+  rad_ = rad;
+}
+
 double Circle::getArea() const
 {
   const double PI = 3.1415;
-  double rad = this->rad_;
+  double rad = rad_;
   return PI * rad * rad;
 }
 
 rectangle_t Circle::getFrameRect() const
 {
-  double rad = this->rad_;
-  rectangle_t rect{this->center_, rad, rad};
+  double rad = rad_;
+  rectangle_t rect{center_, rad, rad};
   return rect;
 }
 
 void Circle::move(const point_t point)
 {
-  this->center_ = point;
+  center_ = point;
 }
 
 void Circle::move(const double dx, const double dy)
 {
-  this->center_.x += dx;
-  this->center_.y += dy;
+  center_.x += dx;
+  center_.y += dy;
 }

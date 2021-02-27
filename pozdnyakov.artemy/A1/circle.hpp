@@ -2,13 +2,11 @@
 #define CIRCLE_H
 
 #include "shape.hpp"
+
 class Circle: public Shape
 {
 public:
-  explicit Circle(point_t center, double rad):
-    center_(center),
-    rad_(rad)
-  {};
+  Circle(double rad, point_t center = { 0, 0 });
   ~Circle() override {};
   double getArea() const override;
   rectangle_t getFrameRect() const override;

@@ -1,21 +1,28 @@
 #include "rectangle.hpp"
+#include <cassert>
+
+Rectangle::Rectangle(double width, double height, point_t center)
+{
+  assert(width > 0 && height > 0);
+  rec_ = rectangle_t{center, width, height};
+}
 double Rectangle::getArea() const
 {
-  return this->rec_.width * this->rec_.height;
+  return rec_.width * rec_.height;
 }
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return this->rec_;
+  return rec_;
 }
 
 void Rectangle::move(const point_t point)
 {
-  this->rec_.pos = point;
+  rec_.pos = point;
 }
 
 void Rectangle::move(const double dx, const double dy)
 {
-  this->rec_.pos.x += dx;
-  this->rec_.pos.y += dy;
+  rec_.pos.x += dx;
+  rec_.pos.y += dy;
 }

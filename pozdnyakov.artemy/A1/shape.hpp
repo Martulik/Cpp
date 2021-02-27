@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "base-types.hpp"
+
 class Shape
 {
 public:

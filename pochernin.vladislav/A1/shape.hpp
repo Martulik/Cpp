@@ -1,7 +1,8 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include "base-types.hpp"
+struct point_t;
+struct rectangle_t;
 
 class Shape
 {

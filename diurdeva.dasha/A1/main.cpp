@@ -47,6 +47,6 @@ int main()
   Shape *circle = new Circle(8.0, pointCenterCircle);
   getShapeArea(circle);
   getInfoFrameRect(circle);
-  moveShape(circle, x, y);
+  moveShape(circle;
   delete circle;
 }

@@ -18,11 +18,10 @@ public:
 
   virtual void move(double dx, double dy) override;
 
-  virtual std::ostream& fout (std::ostream &out) const;
-
 private:
   double height_;
   double width_;
   point_t pos_;
+  virtual std::ostream& fout (std::ostream &out) const;
 };
 #endif

@@ -19,9 +19,9 @@ public:
 
   virtual void move(double dx, double dy) override;
 
-  virtual std::ostream& fout (std::ostream &out) const;
 private:
   point_t ctr_;
   double radius_;
+  virtual std::ostream& fout (std::ostream &out) const;
 };
 #endif

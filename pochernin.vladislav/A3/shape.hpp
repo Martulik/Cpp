@@ -15,6 +15,7 @@ namespace pochernin
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(const point_t& destination) = 0;
     virtual void move(double dx, double dy) = 0;
+    virtual void scale(double factor) = 0;
   };
 }
 

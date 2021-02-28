@@ -17,6 +17,7 @@ namespace pochernin
     virtual rectangle_t getFrameRect() const override;
     virtual void move(const point_t& destination) override;
     virtual void move(double dx, double dy) override;
+    virtual void scale(double factor) override;
 
   private:
     rectangle_t figure_;

@@ -17,6 +17,8 @@ int main()
   print(*testRectangle, std::cout);
   testRectangle->move(9.0, 8.0);
   print(*testRectangle, std::cout);
+  testRectangle->scale(3.5);
+  print(*testRectangle, std::cout);
 
   pochernin::Shape* testCircle = new pochernin::Circle(13.1235, {0.0, 0.0});
   std::cout << "\nCircle:\n";
@@ -25,6 +27,8 @@ int main()
   testCircle->move(posPoint);
   print(*testCircle, std::cout);
   testCircle->move(19.0, 38.0);
+  print(*testCircle, std::cout);
+  testCircle->scale(2.2);
   print(*testCircle, std::cout);
 
   delete testRectangle;

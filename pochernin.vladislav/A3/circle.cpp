@@ -30,3 +30,9 @@ void pochernin::Circle::move(const double dx, const double dy)
   figure_.pos.x += dx;
   figure_.pos.y += dy;
 }
+
+void pochernin::Circle::scale(const double factor)
+{
+  figure_.width *= factor;
+  figure_.height *= factor;
+}

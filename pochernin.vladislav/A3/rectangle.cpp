@@ -29,3 +29,9 @@ void pochernin::Rectangle::move(const double dx, const double dy)
   figure_.pos.x += dx;
   figure_.pos.y += dy;
 }
+
+void pochernin::Rectangle::scale(const double factor)
+{
+  figure_.width *= factor;
+  figure_.height *= factor;
+}

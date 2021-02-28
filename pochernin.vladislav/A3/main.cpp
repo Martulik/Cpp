@@ -5,20 +5,20 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void print(const Shape& shape, std::ostream& out);
+void print(const pochernin::Shape& shape, std::ostream& out);
 
 int main()
 {
-  Shape* testRectangle = new Rectangle(50.123, 100.0, {13.10123, 12.20});
+  pochernin::Shape* testRectangle = new pochernin::Rectangle(50.123, 100.0, {13.10123, 12.20});
   std::cout << "\nRectangle:\n";
   print(*testRectangle, std::cout);
-  point_t posPoint = {111.0, 222.0};
+  pochernin::point_t posPoint = {111.0, 222.0};
   testRectangle->move(posPoint);
   print(*testRectangle, std::cout);
   testRectangle->move(9.0, 8.0);
   print(*testRectangle, std::cout);
 
-  Shape* testCircle = new Circle(13.1235, {0.0, 0.0});
+  pochernin::Shape* testCircle = new pochernin::Circle(13.1235, {0.0, 0.0});
   std::cout << "\nCircle:\n";
   print(*testCircle, std::cout);
   posPoint = {111.0, 222.0};
@@ -33,7 +33,7 @@ int main()
   return 0;
 }
 
-void print(const Shape& shape, std::ostream& out)
+void print(const pochernin::Shape& shape, std::ostream& out)
 {
   out << "-------------------------------------------\n";
   out << "width: " << shape.getFrameRect().width << "\n";

@@ -2,29 +2,29 @@
 
 #include <cassert>
 
-Rectangle::Rectangle(const double width, const double height, const point_t& pos):
+pochernin::Rectangle::Rectangle(const double width, const double height, const pochernin::point_t& pos):
   figure_({width, height, pos})
 {
   assert (width >= 0.0);
   assert (height >= 0.0);
 }
 
-double Rectangle::getArea() const
+double pochernin::Rectangle::getArea() const
 {
   return figure_.width * figure_.height;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+pochernin::rectangle_t pochernin::Rectangle::getFrameRect() const
 {
   return figure_;
 }
 
-void Rectangle::move(const point_t& destination)
+void pochernin::Rectangle::move(const pochernin::point_t& destination)
 {
   figure_.pos = destination;
 }
 
-void Rectangle::move(const double dx, const double dy)
+void pochernin::Rectangle::move(const double dx, const double dy)
 {
   figure_.pos.x += dx;
   figure_.pos.y += dy;

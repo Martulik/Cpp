@@ -23,7 +23,7 @@ void info(Shape *shape)
   std::cout << "\narea is " << shape->getArea() << std::endl;
   shape->move(12, 7);
   shape->move({4, 8});
-  std::cout << "\nframe rectangle: " << std::endl << "height: " << shape0->getFrameRect().height << std::endl
-  << "width: " << shape0->getFrameRect().width << std::endl << "center: {" << shape0->getFrameRect().pos.x
-  << ";" << shape0->getFrameRect().pos.y << "}\n" << std::endl;
+  std::cout << "\nframe rectangle: " << std::endl << "height: " << shape->getFrameRect().height << std::endl
+  << "width: " << shape->getFrameRect().width << std::endl << "center: {" << shape->getFrameRect().pos.x
+  << ";" << shape->getFrameRect().pos.y << "}\n" << std::endl;
 }

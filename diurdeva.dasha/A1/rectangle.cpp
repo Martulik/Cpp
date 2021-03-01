@@ -19,12 +19,12 @@ rectangle_t Rectangle::getFrameRect() const
   return {width_, height_, pos_};
 }
 
-void diurdeva::Rectangle::move(const point_t &newCenter)
+void Rectangle::move(const point_t &newCenter)
 {
   pos_ = newCenter;
 }
 
-void diurdeva::Rectangle::move(double axisX, double axisY)
+void Rectangle::move(double axisX, double axisY)
 {
   pos_.x += axisX;
   pos_.y += axisY;

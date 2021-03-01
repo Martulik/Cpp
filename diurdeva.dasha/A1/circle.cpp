@@ -20,12 +20,12 @@ rectangle_t Circle::getFrameRect() const
   return rectangle_t{2 * rad_, 2 * rad_, pos_};
 }
 
-void diurdeva::Circle::move(const point_t &newCenter)
+void Circle::move(const point_t &newCenter)
 {
   pos_ = newCenter;
 }
 
-void diurdeva::Circle::move(double axisX, double axisY)
+void Circle::move(double axisX, double axisY)
 {
   pos_.x += axisX;
   pos_.y += axisY;

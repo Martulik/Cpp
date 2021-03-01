@@ -34,7 +34,7 @@ int main()
   const double h = 5.0;
   const double radius = 3.2;
 
-  Shape *rectangle = new Rectangle(w, h, pointCenterRectangle);
+  Shape *rectangle = new Rectangle(w, h, pointCenter);
   printInfoFrameRect("Rectangle", rectangle);
   moveShape(rectangle, newCenter, true);
   checkPosition(rectangle, newCenter);

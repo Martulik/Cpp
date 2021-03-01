@@ -20,8 +20,6 @@ int main()
   getFrameRectOfShape(someShape, std::cout);
   someShape->move(-1.1, 1.0);
   getFrameRectOfShape(someShape, std::cout);
-  std::cout << "Limit rectangle_t for Rectangle ";
-  getFrameRectOfShape(someShape, std::cout);
   delete someShape;
 
   someShape = new Circle(111.1, {1.0, -1.0});
@@ -29,8 +27,6 @@ int main()
   someShape->move({1.1, 2.2});
   getFrameRectOfShape(someShape, std::cout);
   someShape->move(-1.1, 1.0);
-  getFrameRectOfShape(someShape, std::cout);
-  std::cout << "Limit rectangle_t for Circle ";
   getFrameRectOfShape(someShape, std::cout);
   delete someShape;
 

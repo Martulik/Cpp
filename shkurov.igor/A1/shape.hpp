@@ -5,11 +5,6 @@
 
 class Shape {
     public:
-        Shape(point_t center):
-            center_(center)
-        {
-        }
-
         virtual ~Shape()
         {
         }
@@ -18,9 +13,6 @@ class Shape {
         virtual rectangle_t getFrameRect() const = 0;
         virtual void move(const point_t& new_pos) = 0;
         virtual void move(const double x, const double y) = 0;
-
-    protected:
-        point_t center_;
 };
 
 #endif

@@ -2,13 +2,13 @@
 #define PI 3.1416
 
 Circle::Circle(const Circle& src):
-    Shape(src.center_),
+    center_(src.center_),
     radius_(src.radius_)
 {
 }
 
 Circle::Circle(const point_t& center, const double radius):
-    Shape(center),
+    center_(center),
     radius_(radius)
 {
 }

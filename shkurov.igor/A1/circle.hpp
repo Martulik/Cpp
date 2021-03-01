@@ -17,6 +17,7 @@ class Circle: public Shape
 
     private:
         double radius_;
+        point_t center_;
 };
 
 

@@ -19,6 +19,7 @@ class Rectangle: public Shape
     private:
         double height_;
         double width_;
+        point_t center_;
 };
 
 #endif

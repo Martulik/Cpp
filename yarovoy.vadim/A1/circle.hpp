@@ -2,20 +2,21 @@
 #define CIRCLE_H
 
 #include "shape.hpp"
+#include <string>
+#include <cassert>
 
-class Circle : public Shape
+class Circle:public Shape
 {
-private:
-  double radius_;
-  point_t pos_;
 public:
   Circle(double radius, point_t pos);
   double getArea() const;
   rectangle_t getFrameRect() const;
   void move(const point_t& point);
   void move(double x, double y);
-  void print()const;
+  std::string getName() const;
+private:
+  double radius_;
+  point_t pos_;
 };
 
 #endif
-

@@ -1,6 +1,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 #include "base-types.hpp"
+#include <string>
 
 class Shape
 {
@@ -9,8 +10,8 @@ public:
   virtual rectangle_t getFrameRect() const = 0;
   virtual void move(const point_t& point) = 0;
   virtual void move(double x, double y) = 0;
+  virtual std::string getName() const = 0;
   virtual ~Shape() = default;
 };
 
 #endif
-

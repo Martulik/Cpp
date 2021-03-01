@@ -5,14 +5,15 @@ Rectangle::Rectangle(double width, double height, point_t pos) :
   height_(height),
   pos_(pos)
 {
+  assert(width >= 0 || height >= 0);
 }
 
-double Rectangle::getArea()const
+double Rectangle::getArea() const
 {
   return (width_ * height_);
 }
 
-rectangle_t Rectangle::getFrameRect()const
+rectangle_t Rectangle::getFrameRect() const
 {
   return { width_, height_, pos_ };
 }
@@ -28,11 +29,7 @@ void Rectangle::move(const double x, const double y)
   pos_.y += + y;
 }
 
-void Rectangle::print() const
+std::string Rectangle::getName() const
 {
-  std::cout << "----------------------------------" << std::endl;
-  std::cout << "rectangle center - (" << pos_.x << "," << pos_.y << ")" << std::endl;
-  std::cout << "rectangle width - " << width_ << std::endl;
-  std::cout << "rectangle height - " << height_ << std::endl;
+  return "Rectangle";
 }
-

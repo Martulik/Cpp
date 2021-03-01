@@ -7,14 +7,15 @@ Circle::Circle(double radius, point_t pos) :
   radius_(radius),
   pos_(pos)
 {
+  assert(radius_ >= 0);
 }
 
-double Circle::getArea()const
+double Circle::getArea() const
 {
   return (PI * radius_ * radius_);
 }
 
-rectangle_t Circle::getFrameRect()const
+rectangle_t Circle::getFrameRect() const
 {
   return { 2 * radius_, 2 * radius_, pos_ };
 }
@@ -30,9 +31,7 @@ void Circle::move(const double x, const double y)
   pos_.y += y;
 }
 
-void Circle::print()const
+std::string Circle::getName() const
 {
-  std::cout << "----------------------------------" << std::endl;
-  std::cout << "circle center - (" << pos_.x << "," << pos_.y << ")" << std::endl;
-  std::cout << "circle radius - " << radius_ << std::endl;
+	return "Circle";
 }

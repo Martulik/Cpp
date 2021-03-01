@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 #include "circle.hpp"
 
 Circle::Circle(const point_t& pos, const double radius):
@@ -34,4 +35,9 @@ void Circle::move(const double dx, const double dy)
 void Circle::move(const point_t& dpos)
 {
   position_ = dpos;
+}
+
+std::string Circle::getName() const
+{
+    return "Circle";
 }

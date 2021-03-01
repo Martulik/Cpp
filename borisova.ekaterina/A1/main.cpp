@@ -5,53 +5,40 @@
 
 int main()
 {
-  void testRectangle();
-  void testCircle();
-  testRectangle();
-  testCircle();
+  void test();
+  void print(const Shape & shp, std::ostream & out);
+  test();
 }
 
-void testRectangle()
+void test()
 {
-  double x = 6.2;
-  double y = 1.55;
+  void print(const Shape & shp, std::ostream & out);
+  double x = 0.4;
+  double y = 2.56;
+  double width = 11.5;
+  double height = 0.01;
+  double dx = 65.03;
+  double dy  =0.99;
+  double radius = 43.11;
+
   point_t point1{x, y};
+  point_t point2{dx, dy};
 
-  double width = 5.34;
-  double height = 1.09;
   Shape* rectangle = new Rectangle(point1, width, height);
-
-  std::cout << "Rectangle:\n";
-  std::cout << "width is: " << width << '\n';
-  std::cout << "height is: " << height << '\n';
-  std::cout << "Area is: " << rectangle->getArea() << '\n';
-  std::cout << "Position is: " << rectangle->getFrameRect().pos.x << ", " << rectangle->getFrameRect().pos.y << '\n';
-
-  x = 567;
-  y = 0.78;
-  point_t point2{x, y};
+  print(*rectangle, std::cout);
   rectangle->move(point2);
-  std::cout << "Rectangle moved on: " << x << ", " << y << '\n';
-
+  std::cout << "Rectangle moved on: " << rectangle->getFrameRect().pos.x << ", " << rectangle->getFrameRect().pos.y << '\n' << '\n';
   delete rectangle;
-}
 
-void testCircle()
-{
-  double x = 7.99;
-  double y = 16.83;
-
-  double radius = 123.98;
   Shape* circle = new Circle(x, y, radius);
-
-  std::cout << "\nCircle:\n";
-  std::cout << "Radius is: " << radius << '\n';
-  std::cout << "Area is: " << circle->getArea() << '\n';
-  std::cout << "Position is: " << circle->getFrameRect().pos.x << ", " << circle->getFrameRect().pos.y << '\n';
-
-  x = 0.444;
-  y = 0.555;
-  circle->move(x, y);
-  std::cout << "Circle moved on: " << x << ", " << y << '\n';
+  print(*circle, std::cout);
+  circle->move(dx, dy);
+  std::cout << "Circle moved on: " << circle->getFrameRect().pos.x << ", " << circle->getFrameRect().pos.y << '\n';
   delete circle;
 }
+
+void print(const Shape& shp, std::ostream& out) {
+	out << "Shape:\n" << "::Position: " << shp.getFrameRect().pos.x << ", " << shp.getFrameRect().pos.y;
+	out << "\nSpecific: " << shp.getName() << '\n';
+}
+

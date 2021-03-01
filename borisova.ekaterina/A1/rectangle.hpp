@@ -13,9 +13,10 @@ public:
   rectangle_t getFrameRect() const override;
   void move(const double dx, const double dy) override;
   void move(const point_t& dpos) override;
+  std::string getName() const override;
 
 private:
-  rectangle_t size_;
+  rectangle_t parameters_;
 };
 
 #endif

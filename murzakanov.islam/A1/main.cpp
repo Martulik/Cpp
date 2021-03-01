@@ -16,6 +16,17 @@ int main(){
   print(std::cout, *polyRectangle);
   print(std::cout, *polyCircle);
 
+  point_t newPoint({ 15, 23 });
+  polyRectangle->move(newPoint);
+  std::cout << "Rectangle's info after move()\n";
+  print(std::cout, *polyRectangle);
+
+  double dx = -3.5;
+  double dy = -1.8;
+  polyCircle->move(dx, dy);
+  std::cout<< "Circle's info after move()\n";
+  print(std::cout, *polyCircle);
+
   delete polyRectangle;
   delete polyCircle;
   return 0;

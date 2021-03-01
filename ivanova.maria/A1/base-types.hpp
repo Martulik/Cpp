@@ -8,7 +8,7 @@ namespace ivanova {
   struct rectangle_t {
     double width;
     double height;
-    point_t pos;
+    ivanova::point_t pos;
   };
 }
 #endif

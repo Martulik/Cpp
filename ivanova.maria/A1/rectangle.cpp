@@ -9,7 +9,7 @@ i::Rectangle::Rectangle():
  pos_()
 {
 }
-i::Rectangle::Rectangle(double height, double width, point_t pos):
+i::Rectangle::Rectangle(double height, double width, i::point_t pos):
 height_(height),
 width_(width),
 pos_(pos)
@@ -28,7 +28,7 @@ i::rectangle_t i::Rectangle::getFrameRect() const
   frame.pos = pos_;
   return frame;
 }
-void i::Rectangle::move(const point_t& newPos)
+void i::Rectangle::move(const i::point_t& newPos)
 {
   pos_ = newPos;
 }

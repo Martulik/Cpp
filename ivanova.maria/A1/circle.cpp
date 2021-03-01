@@ -3,7 +3,7 @@
 #include "circle.hpp"
 #include <iostream>
 namespace i=ivanova;
-i::Circle::Circle(point_t ctr, double rad):
+i::Circle::Circle(i::point_t ctr, double rad):
  ctr_(ctr),
  radius_(rad)
 {
@@ -22,7 +22,7 @@ i::rectangle_t i::Circle::getFrameRect() const
   frame.pos = ctr_;
   return frame;
 }
-void i::Circle::move(const point_t &newPos)
+void i::Circle::move(const i::point_t &newPos)
 {
   ctr_ = newPos;
 }

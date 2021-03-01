@@ -28,22 +28,22 @@ void getFrameRectOfShape(const Shape *shape, std::ostream &out)
 int main()
 {
   Shape *someShape = new Rectangle(2.0, 4.0, {0.0, 0.0});
-  std::cout << "area of rectangle = " << someShape->getArea() << std::endl;
+  std::cout << "Area of rectangle = " << someShape->getArea() << std::endl;
   someShape->move({1.1, 2.2});
   getShape(someShape, std::cout);
   someShape->move(-1.1, 1.0);
   getShape(someShape, std::cout);
-  std::cout << "limit rectangle_t for Rectangle ";
+  std::cout << "Limit rectangle_t for Rectangle ";
   getFrameRectOfShape(someShape, std::cout);
   delete someShape;
 
   someShape = new Circle(111.1, {1.0, -1.0});
-  std::cout << "area of circle = " << someShape->getArea() << std::endl;
+  std::cout << "Area of circle = " << someShape->getArea() << std::endl;
   someShape->move({1.1, 2.2});
   getShape(someShape, std::cout);
   someShape->move(-1.1, 1.0);
   getShape(someShape, std::cout);
-  std::cout << "limit rectangle_t for Circle ";
+  std::cout << "Limit rectangle_t for Circle ";
   getFrameRectOfShape(someShape, std::cout);
   delete someShape;
 

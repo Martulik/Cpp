@@ -5,7 +5,7 @@
 
 namespace i = ivanova;
 
-void info(i::Shape *shape);
+void info(Shape *shape);
 
 int main() {
   i::Rectangle *rectangle = new i::Rectangle(10, 12, {3.0, 18.0});

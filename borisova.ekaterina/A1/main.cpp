@@ -38,7 +38,7 @@ void test()
 }
 
 void print(const Shape& shp, std::ostream& out) {
-	out << "Shape:\n" << "::Position: " << shp.getFrameRect().pos.x << ", " << shp.getFrameRect().pos.y;
-	out << "\nSpecific: " << shp.getName() << '\n';
+  out << "Shape:\n" << "::Position: " << shp.getFrameRect().pos.x << ", " << shp.getFrameRect().pos.y;
+  out << "\nSpecific: " << shp.getName() << '\n';
 }
 

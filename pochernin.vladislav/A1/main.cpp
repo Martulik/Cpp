@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 #include "base-types.hpp"
 #include "shape.hpp"
@@ -9,28 +10,28 @@ void print(const Shape& shape, std::ostream& out);
 
 int main()
 {
-  Shape* testRectangle = new Rectangle(50.123, 100.0, {13.10123, 12.20});
+  const double figureWidth = 100.0;
+  const double figureHeight = 1000.0;
+  const point_t startPos = {10.0, 20.0};
+  const point_t deltaPos = {-110.0, 30.0};
+  const point_t finishPos = {-100.0, 50.0};
+
+  Shape* testRectangle = new Rectangle (figureWidth, figureHeight, startPos);
   std::cout << "\nRectangle:\n";
   print(*testRectangle, std::cout);
-  point_t posPoint = {111.0, 222.0};
-  testRectangle->move(posPoint);
-  print(*testRectangle, std::cout);
-  testRectangle->move(9.0, 8.0);
+  testRectangle->move(deltaPos.x, deltaPos.y);
+  assert((testRectangle->getFrameRect().pos.x == finishPos.x) && (testRectangle->getFrameRect().pos.y == finishPos.y));
   print(*testRectangle, std::cout);
 
-  Shape* testCircle = new Circle(13.1235, {0.0, 0.0});
+  Shape* testCircle = new Circle (figureWidth, startPos);
   std::cout << "\nCircle:\n";
   print(*testCircle, std::cout);
-  posPoint = {111.0, 222.0};
-  testCircle->move(posPoint);
-  print(*testCircle, std::cout);
-  testCircle->move(19.0, 38.0);
+  testCircle->move(finishPos);
+  assert((testCircle->getFrameRect().pos.x == finishPos.x) && (testCircle->getFrameRect().pos.y == finishPos.y));
   print(*testCircle, std::cout);
 
   delete testRectangle;
   delete testCircle;
-
-  return 0;
 }
 
 void print(const Shape& shape, std::ostream& out)

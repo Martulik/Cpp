@@ -12,12 +12,20 @@ void printShapeDescription(const Shape &shape)
 
 int main()
 {
-  Rectangle rectangle(0.5, 5.0, point_t{2.0, 2.0});
-  Circle circle(2.0, point_t{0.5, -1.5});
+  const point_t startPos{2.0, 2.0};
+  const point_t finishPos{-1.0, -1.0};
+  const double rectangleWidth = 0.5;
+  const double rectangleHeight = 5.0;
+  const double radius = 2.0;
+  const double rectangleDx = 4.0;
+  const double rectangleDy = -4.0;
+
+  Rectangle rectangle(rectangleWidth, rectangleHeight, startPos);
+  Circle circle(radius, startPos);
   printShapeDescription(rectangle);
   printShapeDescription(circle);
-  rectangle.move(4.0, -4.0);
-  circle.move(point_t{-1.0, -2.0});
+  rectangle.move(rectangleDx, rectangleDy);
+  circle.move(finishPos);
   std::cout << "After moving:\n";
   printShapeDescription(rectangle);
   printShapeDescription(circle);

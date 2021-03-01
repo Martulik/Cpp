@@ -7,6 +7,7 @@
 #include "circle.hpp"
 
 void print(const Shape& shape, std::ostream& out);
+bool isPosEqual(const Shape& shape, const point_t& pos);
 
 int main()
 {
@@ -20,14 +21,14 @@ int main()
   std::cout << "\nRectangle:\n";
   print(*testRectangle, std::cout);
   testRectangle->move(deltaPos.x, deltaPos.y);
-  assert((testRectangle->getFrameRect().pos.x == finishPos.x) && (testRectangle->getFrameRect().pos.y == finishPos.y));
+  assert(isPosEqual(*testRectangle, finishPos));
   print(*testRectangle, std::cout);
 
   Shape* testCircle = new Circle (figureWidth, startPos);
   std::cout << "\nCircle:\n";
   print(*testCircle, std::cout);
   testCircle->move(finishPos);
-  assert((testCircle->getFrameRect().pos.x == finishPos.x) && (testCircle->getFrameRect().pos.y == finishPos.y));
+  assert(isPosEqual(*testCircle, finishPos));
   print(*testCircle, std::cout);
 
   delete testRectangle;
@@ -43,4 +44,9 @@ void print(const Shape& shape, std::ostream& out)
       << "; " << shape.getFrameRect().pos.y << ")\n";
   out << "area: " << shape.getArea() << "\n";
   out << "-------------------------------------------\n";
+}
+
+bool isPosEqual(const Shape& shape, const point_t& pos)
+{
+  return ((shape.getFrameRect().pos.x == pos.x) && (shape.getFrameRect().pos.y == pos.y));
 }

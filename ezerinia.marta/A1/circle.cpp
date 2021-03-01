@@ -31,13 +31,3 @@ void Circle::move(double dx, double dy)
   center_.x += dx;
   center_.y += dy;
 }
-
-point_t Circle::getCenter() const
-{
-  return (center_);
-}
-
-double Circle::getRadius() const
-{
-  return (radius_);
-}

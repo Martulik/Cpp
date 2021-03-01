@@ -30,18 +30,3 @@ void Rectangle::move(double dx, double dy)
   center_.x += dx;
   center_.y += dy;
 }
-
-double Rectangle::getWidth() const
-{
-  return (width_);
-}
-
-double Rectangle::getHeight() const
-{
-  return (height_);
-}
-
-point_t Rectangle::getCenter() const
-{
-  return (center_);
-}

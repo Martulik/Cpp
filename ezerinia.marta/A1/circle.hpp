@@ -10,8 +10,6 @@ public:
   virtual rectangle_t getFrameRect() const override;
   virtual void move(const point_t &point) override;
   virtual void move(double dx, double dy) override;
-  virtual point_t getCenter() const;
-  virtual double getRadius() const;
 private:
   point_t center_;
   double radius_;

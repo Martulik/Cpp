@@ -1,6 +1,6 @@
+#include "circle.hpp"
 #include <cmath>
 #include <cassert>
-#include "circle.hpp"
 
 Circle::Circle(point_t pos, double r):
   pos(pos),

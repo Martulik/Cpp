@@ -5,12 +5,13 @@
 
 void print(Shape& scr)
 {
-	std::cout << "Shape: " << scr.getName() << std::endl;
-	std::cout << "Position: " << "(" << scr.getFrameRect().pos.x << ", " << scr.getFrameRect().pos.y << ")" << std::endl;	
-	std::cout << "Area: " << scr.getArea()<< std::endl;
+  std::cout << "Shape: " << scr.getName() << std::endl;
+  std::cout << "Position: " << "(" << scr.getFrameRect().pos.x << ", " << scr.getFrameRect().pos.y << ")" << std::endl;
+  std::cout << "Area: " << scr.getArea()<< std::endl;
 }
 
-int main() {
+int main()
+{
   Shape* rectangle1 = new Rectangle(1, 2, { 3, 5 });
   print(*rectangle1);
   rectangle1->move(1, 2);

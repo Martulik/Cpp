@@ -2,51 +2,47 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void getInfoFrameRect(Shape *figura)
+void printInfoFrameRect(const char *nameShape, const Shape *figura)
 {
-  std::cout << "Bounding rectangle: width = " << figura->getFrameRect().width << ", height = "
+  std::cout << nameShape << " - Bounding rectangle: width = " << figura->getFrameRect().width << ", height = "
             << figura->getFrameRect().height
             << ", center: x = " << figura->getFrameRect().pos.x << ", y = " << figura->getFrameRect().pos.y
-            << std::endl;
+            << "\nArea is: " << figura->getArea() << std::endl;
 }
 
-void getShapeArea(Shape *figura)
+void checkPosition(const Shape *figura, const point_t checkCenter)
 {
-  std::cout << "Area is: " << figura->getArea() << std::endl;
+  bool check = ((figura->getFrameRect().pos.x == checkCenter.x) && (figura->getFrameRect().pos.y == checkCenter.y));
+  std::cout << "The move has passed: " << (check ? "right" : "wrong") << std::endl;
 }
 
-void moveShape(Shape *figura)
+void moveShape(Shape *figura, const point_t newCenter, bool flag)
 {
-  double x = 3.2;
-  double y = 5.4;
-  std::cout << "\nMove the center  to a point: (" << x << ";" << y << ")" << std::endl;
-  figura->move({x, y});
-  std::cout << "New pos center: x = " << figura->getFrameRect().pos.x << ", y = " << figura->getFrameRect().pos.y
-            << std::endl;
-  x = 4.1;
-  y = 2.2;
-  std::cout << "Move the center of the rectangle along the x-axis by " << x << " along the y-axis by " << y
-            << std::endl;
-  figura->move(x, y);
-  std::cout << "New pos center: x = " << figura->getFrameRect().pos.x << ", y = " << figura->getFrameRect().pos.y
-            << std::endl;
+  if (flag) {
+    figura->move(newCenter);
+  } else {
+    figura->move(newCenter.x, newCenter.y);
+  }
 }
 
 int main()
 {
-  std::cout << "Rectangle: " << std::endl;
-  point_t pointCenterRectangle = {3.5, 4.0};
-  Shape *rectangle = new Rectangle(8.0, 5.0, pointCenterRectangle);
-  getShapeArea(rectangle);
-  getInfoFrameRect(rectangle);
-  moveShape(rectangle);
+  const point_t pointCenter = {3.5, 4.0};
+  const point_t newCenter = {3.3, 4.6};
+  const point_t checkCenterForTranslationAlongTheAxis = {6.8, 8.6};
+  const double w = 8.0;
+  const double h = 5.0;
+  const double radius = 3.2;
+
+  Shape *rectangle = new Rectangle(w, h, pointCenterRectangle);
+  printInfoFrameRect("Rectangle", rectangle);
+  moveShape(rectangle, newCenter, true);
+  checkPosition(rectangle, newCenter);
   delete rectangle;
 
-  std::cout << "\nCircle: " << std::endl;
-  point_t pointCenterCircle = {1, 4};
-  Shape *circle = new Circle(8.0, pointCenterCircle);
-  getShapeArea(circle);
-  getInfoFrameRect(circle);
-  moveShape(circle);
+  Shape *circle = new Circle(radius, pointCenter);
+  printInfoFrameRect("Circle", circle);
+  moveShape(circle, newCenter, false);
+  checkPosition(circle, checkCenterForTranslationAlongTheAxis);
   delete circle;
 }

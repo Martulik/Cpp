@@ -5,10 +5,10 @@
 
 class Rectangle: public Shape {
 public:
-  Rectangle(double width, double height, point_t &pos);
+  Rectangle(const double width, const double height, const point_t& pos);
   double getArea() const override;
   rectangle_t getFrameRect() const override;
-  void move(const point_t &newCenter) override;
+  void move(const point_t& newCenter) override;
   void move(double axisX, double axisY) override;
 private:
   double width_;

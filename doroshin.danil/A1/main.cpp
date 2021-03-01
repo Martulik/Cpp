@@ -7,7 +7,7 @@
 void print_shape(const char* name, const Shape& s)
 {
   std::cout << name << ": (" << s.getFrameRect().pos.x << ", " << s.getFrameRect().pos.y
-    << ") area: " << s.getArea() << std::endl;
+    << ") area: " << s.getArea() << '\n';
 }
 
 bool check_position(const Shape& s, const point_t other)

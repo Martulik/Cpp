@@ -7,12 +7,12 @@
 void printCoordinates(Shape* figure)
 {
     std::cout   << "Figure is now located by (" << figure->getFrameRect().pos.x
-                << ':' << figure->getFrameRect().pos.y << ')' << std::endl;
+                << ':' << figure->getFrameRect().pos.y << ')' << '\n';
 }
 
 
 int main() {
-    std::cout << "Rectangle test:" << std::endl;
+    std::cout << "Rectangle test:" << '\n';
     point_t begin_pos = {5.5, -3.5};
     Rectangle rect(begin_pos, 6, 8);
 
@@ -26,10 +26,10 @@ int main() {
     figure->move(-5, -20);          // move test #2
     printCoordinates(figure);
 
-    std::cout << "Area of rectangle is: " << figure->getArea() << std::endl;
+    std::cout << "Area of rectangle is: " << figure->getArea() << '\n';
 
 
-    std::cout << std::endl << "Circle test:" << std::endl;
+    std::cout << '\n' << "Circle test:" << '\n';
     begin_pos = {-31.2, 9.21};
     Circle circle(begin_pos, 10);
 
@@ -43,7 +43,7 @@ int main() {
     figure->move(-1.2, 120);    // move test #2
     printCoordinates(figure);
 
-    std::cout << "Area of circle is: " << figure->getArea() << std::endl;
+    std::cout << "Area of circle is: " << figure->getArea() << '\n';
 
 
 

@@ -1,16 +1,16 @@
 ﻿#include <iostream>
 #include "rectangle.hpp"
 #include "circle.hpp"
-
+namespace i=ivanova;
 void info(Shape* shape);
 
 int main()
 {
-  Rectangle *rectangle = new Rectangle (10, 12, {3.0, 18.0});
-  Shape *shape0 = rectangle;
+  Rectangle *rectangle = new i::Rectangle (10, 12, {3.0, 18.0});
+  i::Shape *shape0 = rectangle;
   info(shape0);
-  Circle *circle  = new Circle({1, 4}, 12);
-  Shape *shape1 = circle;
+  Circle *circle  = new i::Circle({1, 4}, 12);
+  i::Shape *shape1 = circle;
   info(shape1);
   delete rectangle;
   delete circle;

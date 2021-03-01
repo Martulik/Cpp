@@ -2,41 +2,42 @@
 #define RECTANGLE_CPP
 #include "rectangle.hpp"
 #include <iostream>
-Rectangle::Rectangle():
+namespace i=ivanova;
+i::Rectangle::Rectangle():
  height_(0),
  width_(0),
  pos_()
 {
 }
-Rectangle::Rectangle(double height, double width, point_t pos):
+i::Rectangle::Rectangle(double height, double width, point_t pos):
 height_(height),
 width_(width),
 pos_(pos)
 {
 }
 
-double Rectangle::getArea() const
+double i::Rectangle::getArea() const
 {
   return height_ * width_;
 }
-rectangle_t Rectangle::getFrameRect() const
+i::rectangle_t Rectangle::getFrameRect() const
 {
-  rectangle_t frame;
+  i::rectangle_t frame;
   frame.height = height_;
   frame.width = width_;
   frame.pos = pos_;
   return frame;
 }
-void Rectangle::move(const point_t& newPos)
+void i::Rectangle::move(const point_t& newPos)
 {
   pos_ = newPos;
 }
-void Rectangle::move(double dx, double dy)
+void i::Rectangle::move(double dx, double dy)
 {
   pos_.x = +dx;
   pos_.y = +dy;
 }
-std::ostream &Rectangle::fout(std::ostream &out) const
+std::ostream &i::Rectangle::fout(std::ostream &out) const
 {
   out << "rectangle hieght is: " << height_ << std::endl;
   out << "rectangle width is: " << width_ << std:: endl;

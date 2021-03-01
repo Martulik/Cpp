@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
 namespace i=ivanova;

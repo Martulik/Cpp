@@ -3,7 +3,7 @@
 #include "circle.hpp"
 #include <iostream>
 namespace i=ivanova;
-i::Circle::Circle(i::point_t ctr, double rad):
+i::Circle::Circle(point_t ctr, double rad):
  ctr_(ctr),
  radius_(rad)
 {
@@ -13,16 +13,16 @@ double i::Circle::getArea() const
   const double PI = 3.14;
   return radius_*radius_*PI;
 }
-i::rectangle_t i::Circle::getFrameRect() const
+rectangle_t i::Circle::getFrameRect() const
 {
-  i::rectangle_t frame;
+  rectangle_t frame;
   double a = radius_;
   frame.height= 2 * a;
   frame.width = 2 * a;
   frame.pos = ctr_;
   return frame;
 }
-void i::Circle::move(const i::point_t &newPos)
+void i::Circle::move(const point_t &newPos)
 {
   ctr_ = newPos;
 }

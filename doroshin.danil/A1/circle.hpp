@@ -3,7 +3,7 @@
 
 #include "shape.hpp"
 
-class Circle : public Shape
+class Circle: public Shape
 {
 public:
   Circle(point_t pos, double r);
@@ -14,7 +14,7 @@ public:
 
   void move(point_t vec, bool absolute = false) override;
 
-protected:
+private:
   point_t pos;
   double radius;
 };

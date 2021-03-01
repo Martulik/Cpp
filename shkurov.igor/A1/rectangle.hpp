@@ -1,9 +1,9 @@
 #ifndef _RECTANGLE_HPP_
 #define _RECTANGLE_HPP_
 
-#include <iostream>
 #include "base-types.hpp"
 #include "shape.hpp"
+
 
 class Rectangle: public Shape
 {

@@ -14,7 +14,7 @@ public:
 
   void move(point_t vec, bool absolute = false) override;
 
-protected:
+private:
   point_t pos;
   double radius;
 };

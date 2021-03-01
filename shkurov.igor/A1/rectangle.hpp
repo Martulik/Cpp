@@ -17,9 +17,9 @@ class Rectangle: public Shape
         void move(const double x, const double y) override;
 
     private:
+        point_t center_;
         double height_;
         double width_;
-        point_t center_;
 };
 
 #endif

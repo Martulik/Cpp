@@ -16,8 +16,8 @@ class Circle: public Shape
         void move(const double x, const double y) override;
 
     private:
-        double radius_;
         point_t center_;
+        double radius_;
 };
 
 

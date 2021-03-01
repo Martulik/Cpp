@@ -3,15 +3,13 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-namespace i = ivanova;
-
 void info(Shape *shape);
 
 int main() {
-  i::Rectangle *rectangle = new i::Rectangle(10, 12, {3.0, 18.0});
+  Rectangle *rectangle = new Rectangle(10, 12, {3.0, 18.0});
   Shape *shape0 = rectangle;
   info(shape0);
-  i::Circle *circle = new i::Circle({1, 4}, 12);
+  Circle *circle = new Circle({1, 4}, 12);
   Shape *shape1 = circle;
   info(shape1);
   delete rectangle;

@@ -5,7 +5,7 @@ Rectangle::Rectangle(const Rectangle& src):
     center_(src.center_),
     height_(src.height_),
     width_(src.width_)
-{ 
+{
 }
 
 Rectangle::Rectangle(const point_t& pos, const double height, const double width):

@@ -9,6 +9,52 @@
 
 namespace d = doroshin;
 
+/*
+  This program echos the parameters of an inputted shape
+  Usage:
+    argument - type of the shape to use
+      ./lab circle
+      ./lab rectangle
+      ./lab composite
+    stdin - shape parameters
+    Circle:
+      "x y r" - one line with three floating point values
+    Rectangle:
+      "x y w h" - one line with four floating point values
+    Composite:
+      "type (parameters)"
+        type - one of circle/rectangle
+        parameters - same as above
+        Consumes an arbitrary amount of lines. Finishes on EOF.
+  Examples:
+  >>> 1
+    $ ./lab circle
+    3 4 5^J
+    Circle:
+    Frame: (3, 4) w: 10 h: 10
+    Area: 78.5398
+  >>> 2
+    $ ./lab rectangle
+    7 1 2 5^J
+    Rectangle:
+    Frame: (7, 1) w: 2 h: 5
+    Area: 10
+  >>> 3
+    $ ./lab composite
+    circle 1 2 3^J
+    Circle:
+    Frame: (1, 2) w: 6 h: 6
+    Area: 28.2743
+    rectangle 3 4 5 6^J
+    Rectangle:
+    Frame: (3, 4) w: 5 h: 6
+    Area: 30
+    ^D
+    Composite:
+    Frame: (1.75, 3) w: 7.5 h: 8
+    Area: 58.2743
+*/
+
 d::Circle input_circle(std::istream& in)
 {
   double x_pos = 0, y_pos = 0, r = 0;

@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <initializer_list>
+#include <memory>
 #include "shape.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
@@ -13,7 +14,7 @@ namespace doroshin {
     // A tagged union class that exposes the Shape interface of every member
     class AnyShape;
 
-    AnyShape* shapes_;
+    std::unique_ptr<AnyShape[]> shapes_;
     size_t size_;
 
     friend void swap(CompositeShape& lhs, CompositeShape& rhs);
@@ -33,10 +34,10 @@ namespace doroshin {
     // Implementations of copy move and dest are required
     // because this class manages dynamic resources
     CompositeShape(const CompositeShape&);
-    CompositeShape(CompositeShape&&) noexcept;
+    CompositeShape(CompositeShape&&) noexcept = default;
     CompositeShape& operator=(const CompositeShape&);
-    CompositeShape& operator=(CompositeShape&&) noexcept;
-    ~CompositeShape() override;
+    CompositeShape& operator=(CompositeShape&&) noexcept = default;
+    ~CompositeShape() override = default;
   };
 
   void swap(CompositeShape& lhs, CompositeShape& rhs);

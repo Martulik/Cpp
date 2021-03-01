@@ -182,7 +182,7 @@ d::CompositeShape::CompositeShape():
 d::CompositeShape::CompositeShape(std::initializer_list<AnyShape> list):
   size_(list.size())
 {
-  shapes_ = new AnyShape[size_];
+  shapes_ = std::make_unique<AnyShape[]>(size_);
   size_t i = 0;
   for(const AnyShape& shape : list) {
     shapes_[i++] = shape;
@@ -191,12 +191,11 @@ d::CompositeShape::CompositeShape(std::initializer_list<AnyShape> list):
 
 void d::CompositeShape::add(const AnyShape& shape)
 {
-  AnyShape* new_shapes = new AnyShape[size_ + 1];
+  std::unique_ptr<AnyShape[]> new_shapes = std::make_unique<AnyShape[]>(size_ + 1);
   for(size_t i = 0; i < size_; ++i)
     new_shapes[i] = std::move(shapes_[i]);
   new_shapes[size_++] = shape;
-  delete[] shapes_;
-  shapes_ = new_shapes;
+  std::swap(shapes_, new_shapes);
 }
 
 double d::CompositeShape::getArea() const
@@ -263,7 +262,7 @@ void d::CompositeShape::scale(double s)
 d::CompositeShape::CompositeShape(const CompositeShape& other):
   size_(other.size_)
 {
-  shapes_ = static_cast<AnyShape*>(operator new(size_ * sizeof(AnyShape)));
+  shapes_ = std::make_unique<AnyShape[]>(size_);
   for(size_t i = 0; i < size_; ++i)
     shapes_[i] = other.shapes_[i];
 }
@@ -273,26 +272,6 @@ d::CompositeShape& d::CompositeShape::operator=(const CompositeShape& other)
   CompositeShape tmp(other);
   swap(*this, tmp);
   return *this;
-}
-
-d::CompositeShape::CompositeShape(CompositeShape&& other) noexcept:
-  shapes_(other.shapes_),
-  size_(other.size_)
-{
-  other.size_ = 0;
-  other.shapes_ = nullptr;
-}
-
-d::CompositeShape& d::CompositeShape::operator=(CompositeShape&& other) noexcept
-{
-  swap(*this, other);
-  // Should other be deleted? Maybe via a destructor?
-  return *this;
-}
-
-d::CompositeShape::~CompositeShape()
-{
-  delete[] shapes_;
 }
 
 void d::swap(CompositeShape& lhs, CompositeShape& rhs)

@@ -4,8 +4,10 @@
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include "composite-shape.hpp"
 
 void print(const pochernin::Shape& shape, std::ostream& out);
+void print(const pochernin::CompositeShape& compositeShape, std::ostream& out);
 
 int main()
 {
@@ -31,8 +33,18 @@ int main()
   testCircle->scale(2.2);
   print(*testCircle, std::cout);
 
-  delete testRectangle;
-  delete testCircle;
+  pochernin::CompositeShape compositeShape;
+  compositeShape.push_back(std::shared_ptr<pochernin::Shape>(testRectangle));
+  compositeShape.push_back(std::shared_ptr<pochernin::Shape>(testCircle));
+  std::cout << "\nComposite Shape\n";
+  print(compositeShape, std::cout);
+  posPoint = {100, 1000};
+  compositeShape.move(posPoint);
+  print(compositeShape, std::cout);
+  compositeShape.move(50.0, 500.0);
+  print(compositeShape, std::cout);
+  compositeShape.scale(2);
+  print(compositeShape, std::cout);
 
   return 0;
 }
@@ -46,4 +58,21 @@ void print(const pochernin::Shape& shape, std::ostream& out)
       << "; " << shape.getFrameRect().pos.y << ")\n";
   out << "area: " << shape.getArea() << "\n";
   out << "-------------------------------------------\n";
+}
+
+void print(const pochernin::CompositeShape& compositeShape, std::ostream& out)
+{
+  out << "---------------------------------------------------------------\n";
+  out << "In Composite Shape:\n";
+  for (size_t i = 0; i < compositeShape.getSize(); i++)
+  {
+    print(*compositeShape[i], std::cout);
+  }
+  out << "The Composite Shape itself\n";
+  out << "width: " << compositeShape.getFrameRect().width << "\n";
+  out << "height: " << compositeShape.getFrameRect().height << "\n";
+  out << "pos: " << "(" << compositeShape.getFrameRect().pos.x
+      << "; " << compositeShape.getFrameRect().pos.y << ")\n";
+  out << "area: " << compositeShape.getArea() << "\n";
+  out << "---------------------------------------------------------------\n";
 }

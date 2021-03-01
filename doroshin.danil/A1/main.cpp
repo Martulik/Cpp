@@ -28,7 +28,7 @@ int main()
   assert(check_position(c, finish));
 
   const double w = 2, h = 3;
-  Rectangle r(rectangle_t {w, h, start});
+  Rectangle r{w, h, start};
   print_shape("Rectangle", r);
   r.move(delta);
   assert(check_position(r, finish));

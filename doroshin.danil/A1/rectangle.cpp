@@ -9,6 +9,13 @@ Rectangle::Rectangle(rectangle_t rect):
   assert(rect.height >= 0);
 }
 
+Rectangle::Rectangle(double w, double h, point_t pos):
+  rect{w, h, pos}
+{
+  assert(rect.width >= 0);
+  assert(rect.height >= 0);
+}
+
 double Rectangle::getArea() const
 {
   return rect.width * rect.height;

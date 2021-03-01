@@ -1,4 +1,6 @@
 #include "circle.hpp"
+#include "cassert"
+
 #define PI 3.1416
 
 Circle::Circle(const Circle& src):
@@ -11,6 +13,7 @@ Circle::Circle(const point_t& center, const double radius):
     center_(center),
     radius_(radius)
 {
+    assert(radius > 0);
 }
 
 double Circle::getArea() const

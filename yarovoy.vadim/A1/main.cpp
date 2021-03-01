@@ -17,7 +17,7 @@ int main()
   rectangle1->move(1, 2);
   print(*rectangle1);
   delete rectangle1;
- 
+
   Shape* circle1 = new Circle(5.25, { 13, -12 });
   print(*circle1);
   circle1->move(2, 1);

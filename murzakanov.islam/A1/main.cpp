@@ -20,5 +20,3 @@ int main(){
   delete polyCircle;
   return 0;
 }
-
-

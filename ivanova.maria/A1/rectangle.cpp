@@ -20,7 +20,7 @@ double i::Rectangle::getArea() const
 {
   return height_ * width_;
 }
-i::rectangle_t Rectangle::getFrameRect() const
+i::rectangle_t i::Rectangle::getFrameRect() const
 {
   i::rectangle_t frame;
   frame.height = height_;

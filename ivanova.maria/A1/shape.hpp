@@ -12,7 +12,7 @@ namespace ivanova {
     virtual std::ostream &fout(std::ostream &out) const = 0;
     virtual ~Shape() = default;
   protected:
-    std::ostream &operator<<(std::ostream &out, Shape &shape)
+    std::ostream &operator<<(std::ostream &out, const Shape &shape)
     {
         return shape.fout(out);
     }

@@ -13,7 +13,7 @@ double i::Circle::getArea() const
   const double PI = 3.14;
   return radius_*radius_*PI;
 }
-i::rectangle_t Circle::getFrameRect() const
+i::rectangle_t i::Circle::getFrameRect() const
 {
   i::rectangle_t frame;
   double a = radius_;

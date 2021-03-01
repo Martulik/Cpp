@@ -2,14 +2,14 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 namespace i=ivanova;
-void info(Shape* shape);
+void info(i::Shape* shape);
 
 int main()
 {
-  Rectangle *rectangle = new i::Rectangle (10, 12, {3.0, 18.0});
+  i::Rectangle *rectangle = new i::Rectangle (10, 12, {3.0, 18.0});
   i::Shape *shape0 = rectangle;
   info(shape0);
-  Circle *circle  = new i::Circle({1, 4}, 12);
+  i::Circle *circle  = new i::Circle({1, 4}, 12);
   i::Shape *shape1 = circle;
   info(shape1);
   delete rectangle;
@@ -17,7 +17,7 @@ int main()
   return 0;
 }
 
-void info(Shape *shape)
+void info(i::Shape *shape)
 {
   std::cout << shape;
   std::cout << "\narea is " << shape->getArea() << std::endl;

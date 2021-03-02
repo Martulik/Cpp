@@ -3,7 +3,7 @@
 
 #include "shape.hpp"
 
-class Rectangle : public Shape
+class Rectangle:public Shape
 {
 public:
   Rectangle(const double width, const double height, const point_t pos);

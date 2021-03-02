@@ -1,10 +1,10 @@
 #include "rectangle.hpp"
 #include <cassert>
 
-Rectangle::Rectangle(double width, double height, point_t center)
+Rectangle::Rectangle(double width, double height, point_t center):
+  rec_(rectangle_t{center, width,height})
 {
   assert(width > 0 && height > 0);
-  rec_ = rectangle_t{center, width, height};
 }
 double Rectangle::getArea() const
 {

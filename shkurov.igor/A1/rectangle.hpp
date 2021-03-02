@@ -14,7 +14,7 @@ class Rectangle: public Shape
         double getArea() const override;
         rectangle_t getFrameRect() const override;
         void move(const point_t& new_pos) override;
-        void move(const double x, const double y) override;
+        void move(double x, double y) override;
 
     private:
         point_t center_;

@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-void printCoordinates(Shape* figure)
+void printCoordinates(const Shape* figure)
 {
     std::cout   << "Figure is now located by (" << figure->getFrameRect().pos.x
                 << ':' << figure->getFrameRect().pos.y << ')' << '\n';

@@ -1,6 +1,5 @@
 #include "rectangle.hpp"
 
-
 Rectangle::Rectangle(double width, double height, const point_t &center):
   width_(width),
   height_(height),

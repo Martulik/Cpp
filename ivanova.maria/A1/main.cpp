@@ -18,14 +18,12 @@ void testShp(Shape&shp)
   std::cout << "new Position: {" << shp.getPos().x << "; " << shp.getPos().y << "}\n";
 }
 int main() {
-  Rectangle *rectangle = new Rectangle(10, 12, {3.0, 18.0});
-  Shape *shape0 = rectangle;
-  print(rectangle, std::cout);
-  testShp(rectangle);
-  Circle *circle = new Circle({1, 4}, 12);
-  Shape *shape1 = circle;
-  print(circle, std::cout);
-  testShp(circle);
+  Shape *rectangle = new Rectangle(10, 12, {3.0, 18.0});
+  print(*rectangle, std::cout);
+  testShp(*rectangle);
+  Shape *circle = new Circle({1, 4}, 12);
+  print(*circle, std::cout);
+  testShp(*circle);
   delete rectangle;
   delete circle;
   return 0;

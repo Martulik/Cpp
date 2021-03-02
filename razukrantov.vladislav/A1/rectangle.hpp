@@ -19,7 +19,6 @@ private:
   double width_;
   double height_;
   point_t center_;
-
 };
 
 #endif

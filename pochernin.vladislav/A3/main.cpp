@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 #include "base-types.hpp"
 #include "shape.hpp"
@@ -8,45 +9,40 @@
 
 void print(const pochernin::Shape& shape, std::ostream& out);
 void print(const pochernin::CompositeShape& compositeShape, std::ostream& out);
+bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos);
+bool isPosEqual(const pochernin:: CompositeShape& compositeShape, const pochernin::point_t& pos);
 
 int main()
 {
-  pochernin::Shape* testRectangle = new pochernin::Rectangle(50.123, 100.0, {13.10123, 12.20});
+  const double figureWidth = 100.0;
+  const double figureHeight = 1000.0;
+  const pochernin::point_t startPos = {10.0, 20.0};
+  const pochernin::point_t deltaPos = {-110.0, 30.0};
+  const pochernin::point_t finishPos = {-100.0, 50.0};
+
+  pochernin::Shape* testRectangle = new pochernin::Rectangle (figureWidth, figureHeight, startPos);
   std::cout << "\nRectangle:\n";
   print(*testRectangle, std::cout);
-  pochernin::point_t posPoint = {111.0, 222.0};
-  testRectangle->move(posPoint);
-  print(*testRectangle, std::cout);
-  testRectangle->move(9.0, 8.0);
-  print(*testRectangle, std::cout);
-  testRectangle->scale(3.5);
-  print(*testRectangle, std::cout);
+  testRectangle->move(deltaPos.x, deltaPos.y);
+  assert(isPosEqual(*testRectangle, finishPos));
+  print (*testRectangle, std::cout);
 
-  pochernin::Shape* testCircle = new pochernin::Circle(13.1235, {0.0, 0.0});
+  pochernin::Shape* testCircle = new pochernin::Circle (figureWidth, startPos);
   std::cout << "\nCircle:\n";
   print(*testCircle, std::cout);
-  posPoint = {111.0, 222.0};
-  testCircle->move(posPoint);
-  print(*testCircle, std::cout);
-  testCircle->move(19.0, 38.0);
-  print(*testCircle, std::cout);
-  testCircle->scale(2.2);
+  testCircle->move(finishPos);
+  assert(isPosEqual(*testCircle, finishPos));
   print(*testCircle, std::cout);
 
   pochernin::CompositeShape compositeShape;
+  testRectangle->move(startPos);
   compositeShape.push_back(std::shared_ptr<pochernin::Shape>(testRectangle));
   compositeShape.push_back(std::shared_ptr<pochernin::Shape>(testCircle));
-  std::cout << "\nComposite Shape\n";
+  std::cout << "\nComposite Shape:\n";
   print(compositeShape, std::cout);
-  posPoint = {100, 1000};
-  compositeShape.move(posPoint);
+  compositeShape.move(startPos);
+  assert(isPosEqual(compositeShape, startPos));
   print(compositeShape, std::cout);
-  compositeShape.move(50.0, 500.0);
-  print(compositeShape, std::cout);
-  compositeShape.scale(2);
-  print(compositeShape, std::cout);
-
-  return 0;
 }
 
 void print(const pochernin::Shape& shape, std::ostream& out)
@@ -75,4 +71,14 @@ void print(const pochernin::CompositeShape& compositeShape, std::ostream& out)
       << "; " << compositeShape.getFrameRect().pos.y << ")\n";
   out << "area: " << compositeShape.getArea() << "\n";
   out << "---------------------------------------------------------------\n";
+}
+
+bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos)
+{
+  return ((shape.getFrameRect().pos.x == pos.x) && (shape.getFrameRect().pos.y == pos.y));
+}
+
+bool isPosEqual(const pochernin:: CompositeShape& compositeShape, const pochernin::point_t& pos)
+{
+  return ((compositeShape.getFrameRect().pos.x == pos.x) && (compositeShape.getFrameRect().pos.y == pos.y));
 }

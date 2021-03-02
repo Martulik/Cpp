@@ -8,7 +8,7 @@
 
 namespace pochernin
 {
-  class CompositeShape : public Shape
+  class CompositeShape: public Shape
   {
   public:
     CompositeShape();

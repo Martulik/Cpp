@@ -6,7 +6,7 @@
 
 namespace pochernin
 {
-  class Circle : public Shape
+  class Circle: public Shape
   {
   public:
     Circle(double radius, const point_t& pos);

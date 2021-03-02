@@ -8,28 +8,22 @@
 
 void print(const Shape& shape, std::ostream& out);
 bool isPosEqual(const Shape& shape, const point_t& pos);
+void testShape(Shape* shape, std::ostream& out, const point_t& finishPos);
 
 int main()
 {
   const double figureWidth = 100.0;
   const double figureHeight = 1000.0;
   const point_t startPos = {10.0, 20.0};
-  const point_t deltaPos = {-110.0, 30.0};
   const point_t finishPos = {-100.0, 50.0};
 
   Shape* testRectangle = new Rectangle (figureWidth, figureHeight, startPos);
   std::cout << "\nRectangle:\n";
-  print(*testRectangle, std::cout);
-  testRectangle->move(deltaPos.x, deltaPos.y);
-  assert(isPosEqual(*testRectangle, finishPos));
-  print(*testRectangle, std::cout);
+  testShape(testRectangle, std::cout, finishPos);
 
   Shape* testCircle = new Circle (figureWidth, startPos);
   std::cout << "\nCircle:\n";
-  print(*testCircle, std::cout);
-  testCircle->move(finishPos);
-  assert(isPosEqual(*testCircle, finishPos));
-  print(*testCircle, std::cout);
+  testShape(testCircle, std::cout, finishPos);
 
   delete testRectangle;
   delete testCircle;
@@ -49,4 +43,12 @@ void print(const Shape& shape, std::ostream& out)
 bool isPosEqual(const Shape& shape, const point_t& pos)
 {
   return ((shape.getFrameRect().pos.x == pos.x) && (shape.getFrameRect().pos.y == pos.y));
+}
+
+void testShape(Shape* shape, std::ostream& out, const point_t& finishPos)
+{
+  print(*shape, out);
+  shape->move(finishPos);
+  assert(isPosEqual(*shape, finishPos));
+  print(*shape, out);
 }

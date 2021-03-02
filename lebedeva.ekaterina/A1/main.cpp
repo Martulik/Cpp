@@ -2,17 +2,21 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void testRectangleClass();
-void testCircleClass();
+void testShape(Shape* figure);
 void printCentre(std::ostream& out, Shape* figure);
 void printInfo(std::ostream& out, Shape* figure);
 
 int main()
 {
+  point_t pos = {3, 1};
+  Rectangle rect(pos, 2.1, 12.2);
+  Circle circ(pos, 6.2);
+
   std::cout << "Figure 1.\n";
-  testRectangleClass();
+  testShape(&rect);
   std::cout << "Figure 2.\n";
-  testCircleClass();
+  testShape(&circ);
+
   return 0;
 }
 
@@ -30,31 +34,15 @@ void printInfo(std::ostream& out, Shape* figure)
   out << " x " << figure->getFrameRect().width << '\n';
 }
 
-void testRectangleClass()
+void testShape(Shape* figure)
 {
-  point_t pos = {0, 0};
-  Rectangle rect(pos, 2.1, 12.2);
-  printInfo(std::cout, &rect);
+  printInfo(std::cout, figure);
   std::cout << "Centre position after moving to point (13, 8) is ";
   point_t newPos = {13, 8};
-  rect.move(newPos);
-  printCentre(std::cout, &rect);
+  figure->move(newPos);
+  printCentre(std::cout, figure);
   std::cout << "\nCentre position after moving to point (x+13, y-8) is ";
-  rect.move(13, -8);
-  printCentre(std::cout, &rect);
-  std::cout << "\n\n";
-}
-void testCircleClass()
-{
-  point_t pos = {3, 1};
-  Circle circ(pos, 6.2);
-  printInfo(std::cout, &circ);
-  std::cout << "Centre position after moving to point (13, 8) is ";
-  point_t newPos = { 13, 8 };
-  circ.move(newPos);
-  printCentre(std::cout, &circ);
-  std::cout << "\nCentre position after moving to point (x+13, y-8) is ";
-  circ.move(13, -8);
-  printCentre(std::cout, &circ);
+  figure->move(13, -8);
+  printCentre(std::cout, figure);
   std::cout << "\n\n";
 }

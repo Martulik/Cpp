@@ -1,5 +1,5 @@
-#include <cassert>
 #include "rectangle.hpp"
+#include <cassert>
 
 Rectangle::Rectangle(const point_t& pos, const double width, const double height):
   parameters_{width, height, pos}
@@ -36,5 +36,5 @@ void Rectangle::move(const point_t& dpos)
 
 std::string Rectangle::getName() const
 {
-    return "Rectangle";
+  return "Rectangle";
 }

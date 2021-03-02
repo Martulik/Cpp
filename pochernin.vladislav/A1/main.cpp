@@ -17,11 +17,11 @@ int main()
   const point_t startPos = {10.0, 20.0};
   const point_t finishPos = {-100.0, 50.0};
 
-  Shape* testRectangle = new Rectangle (figureWidth, figureHeight, startPos);
+  Shape* testRectangle = new Rectangle(figureWidth, figureHeight, startPos);
   std::cout << "\nRectangle:\n";
   testShape(testRectangle, std::cout, finishPos);
 
-  Shape* testCircle = new Circle (figureWidth, startPos);
+  Shape* testCircle = new Circle(figureWidth, startPos);
   std::cout << "\nCircle:\n";
   testShape(testCircle, std::cout, finishPos);
 

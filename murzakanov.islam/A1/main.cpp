@@ -10,7 +10,8 @@ void print(std::ostream & out, const Shape& shp)
 }
 
 
-int main(){
+int main()
+{
   Shape* polyRectangle = new Rectangle(1, 2, { 3, 5 });
   Shape* polyCircle = new Circle(5.25, { 13, -12 });
   print(std::cout, *polyRectangle);

@@ -3,26 +3,31 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void info(Shape *shape);
+void Rectangle::print(Shape& shp, std::ostream& out)
+{
+  out << "Shape:\n" << "::Position: {" << shp.getPos().x << "; " << shp.getPos().y << "}";
+  out << "\nSpecific: " << shp.getName();
+  out << "\nArea: " << shp.getArea();
+}
 
+void testShp(Shape&shp)
+{
+  shp.move(12, 7);
+  std::cout << "new Position: {" << shp.getPos().x << "; " << shp.getPos().y << "}\n";
+  shp.move({2, 6});
+  std::cout << "new Position: {" << shp.getPos().x << "; " << shp.getPos().y << "}\n";
+}
 int main() {
   Rectangle *rectangle = new Rectangle(10, 12, {3.0, 18.0});
   Shape *shape0 = rectangle;
-  info(shape0);
+  print(rectangle, std::cout);
+  testShp(rectangle);
   Circle *circle = new Circle({1, 4}, 12);
   Shape *shape1 = circle;
-  info(shape1);
+  print(circle, std::cout);
+  testShp(circle);
   delete rectangle;
   delete circle;
   return 0;
 }
 
-void info(Shape *shape) {
-  std::cout << shape;
-  std::cout << "\narea is " << shape->getArea() << std::endl;
-  shape->move(12, 7);
-  shape->move({4, 8});
-  std::cout << "\nframe rectangle: " << std::endl << "height: " << shape->getFrameRect().height << std::endl
-  << "width: " << shape->getFrameRect().width << std::endl << "center: {" << shape->getFrameRect().pos.x
-  << ";" << shape->getFrameRect().pos.y << "}\n" << std::endl;
-}

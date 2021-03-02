@@ -36,11 +36,12 @@ void Rectangle::move(double dx, double dy) {
   pos_.x = +dx;
   pos_.y = +dy;
 }
-
-std::ostream &Rectangle::fout(std::ostream &out) const {
-  out << "rectangle hieght is: " << height_ << std::endl;
-  out << "rectangle width is: " << width_ << std::endl;
-  out << "rectangle center is: {" << pos_.x << " ; " << pos_.y << "}" << std::endl;
-  return out;
+std::string Rectangle::getName()
+{
+  return "Rectangle";
+}
+point_t Rectangle::getPos()
+{
+  return pos_;
 }
 #endif

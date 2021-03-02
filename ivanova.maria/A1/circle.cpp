@@ -31,10 +31,12 @@ void Circle::move(double dx, double dy) {
   ctr_.x = +dx;
   ctr_.y = +dy;
 }
-
-std::ostream &Circle::fout(std::ostream &out) const {
-  out << "circle radius is: " << radius_ << std::endl
-      << "circle center is: {" << ctr_.x << " ; " << ctr_.y << "}" << std::endl;
-  return out;
+std::string Rectangle::getName()
+{
+  return "Circle";
+}
+point_t Rectangle::getPos()
+{
+  return pos_;
 }
 #endif

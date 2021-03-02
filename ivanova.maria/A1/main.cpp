@@ -3,7 +3,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void Rectangle::print(Shape& shp, std::ostream& out)
+void print(Shape& shp, std::ostream& out)
 {
   out << "Shape:\n" << "::Position: {" << shp.getPos().x << "; " << shp.getPos().y << "}";
   out << "\nSpecific: " << shp.getName();

@@ -31,12 +31,12 @@ void Circle::move(double dx, double dy) {
   ctr_.x = +dx;
   ctr_.y = +dy;
 }
-std::string Rectangle::getName()
+std::string Circle::getName()
 {
   return "Circle";
 }
-point_t Rectangle::getPos()
+point_t Circle::getPos()
 {
-  return pos_;
+  return ctr_;
 }
 #endif

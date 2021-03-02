@@ -3,29 +3,34 @@
 #include "circle.hpp"
 #include <iostream>
 
+void print(const Shape& shp, std::ostream& out)
+{
+  out << "width is: " << shp.getFrameRect().width << "\n";
+  out << "height is: " << shp.getFrameRect().height << "\n";
+  out << "area is: " << shp.getArea() << "\n";
+  out << "center is: " << shp.getFrameRect().pos.x << "; "
+	  << shp.getFrameRect().pos.y << "\n";
+}
+
+void test(Shape* shp, std::ostream& out)
+{
+	shp->move({ 10.5, 11.5 });
+	print(*shp, out);
+	shp->move(4.5, 7.5);
+	print(*shp, out);
+}
+
 int main()
 {
   point_t point{ 8.5, 7.5 };
   Shape* ownRectangle = new Rectangle(5, 7, point);
-  std::cout << "Rectangle width is: " << ownRectangle->getFrameRect().width << std::endl;
-  std::cout << "Rectangle height is: " << ownRectangle->getFrameRect().height << std::endl;
-  std::cout << "Rectangle area is: " << ownRectangle->getArea() << std::endl;
-  std::cout << "Rectangle center is: " << ownRectangle->getFrameRect().pos.x << "; "
-  << ownRectangle->getFrameRect().pos.y << std::endl;
-  ownRectangle->move(10, 11);
-  std::cout << "Rectangle center after move: " << ownRectangle->getFrameRect().pos.x << "; "
-  << ownRectangle->getFrameRect().pos.y << std::endl << std::endl;
+  std::cout << "Rectangle characters:" << "\n";
+  test(ownRectangle, std::cout);
 
   point_t point2{ 2.5, 3.5 };
   Shape* ownCircle = new Circle(8, point2);
-  std::cout << "Circle radius is: " << ownCircle->getFrameRect().width / 2 << std::endl;
-  std::cout << "Circle area is: " << ownCircle->getArea() << std::endl;
-  std::cout << "Circle center is: " << ownCircle->getFrameRect().pos.x << "; "
-  << ownCircle->getFrameRect().pos.y << std::endl;
-  point_t newpoint{ 4, 7 };
-  ownCircle->move(newpoint);
-  std::cout << "Circle center after move " << ownCircle->getFrameRect().pos.x << "; "
-  << ownCircle->getFrameRect().pos.y << std::endl;
+  std::cout << "Circle characters:" << "\n";
+  test(ownCircle, std::cout);
 
   delete ownRectangle;
   delete ownCircle;

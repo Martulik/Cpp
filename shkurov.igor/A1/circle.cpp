@@ -1,7 +1,7 @@
 #include "circle.hpp"
 #include <cassert>
 
-#define PI 3.1416
+const double PI = 3.1415;
 
 Circle::Circle(const point_t& center, const double radius):
   center_(center),

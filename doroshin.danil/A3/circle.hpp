@@ -17,7 +17,7 @@ namespace doroshin {
     void move_abs(point_t point) override;
     void scale(double s) override;
 
-  protected:
+  private:
     point_t pos;
     double radius;
   };

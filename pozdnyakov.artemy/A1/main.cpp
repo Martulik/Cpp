@@ -5,29 +5,17 @@
 
 int main()
 {
-  Shape * polyPointer;
-  rectangle_t frame;
-  point_t o{0,0};
-  Circle circle(10, o);
-  Rectangle rec(20, 10, o);
-
-  frame = circle.getFrameRect();
-  std::cout << "left top corner's of circle's frame x cord is " << frame.pos.x << std::endl;
-  std::cout << "left top corner's of circle's frame y cord is " << frame.pos.y << std::endl;
-  polyPointer = &circle;
-  polyPointer->move(12, 13);
-  frame = circle.getFrameRect();
-  std::cout << "left top corner's of circle's frame x cord is " << frame.pos.x << std::endl;
-  std::cout << "left top corner's of circle's frame y cord is " << frame.pos.y << std::endl;
-
-  frame = rec.getFrameRect();
-  std::cout << "left top corner's of rectangle's frame x cord is " << frame.pos.x << std::endl;
-  std::cout << "left top corner's of rectangle's frame y cord is " << frame.pos.y << std::endl;
-  polyPointer = &rec;
-  polyPointer->move(3.22, 11.235);
-  frame = rec.getFrameRect();
-  std::cout << "left top corner's of rectangle's frame x cord is " << frame.pos.x << std::endl;
-  std::cout << "left top corner's of rectangle's frame y cord is " << frame.pos.y << std::endl;
-
-  return 0;
+  point_t o{ 0, 0 };
+  double rad = 10;
+  double width = 20;
+  double height = 10;
+  Circle * circle = new Circle(rad, o);
+  Rectangle * rec = new Rectangle(width, height, o);
+  Shape * shapes[] = { circle, rec };
+  for (int i = 0; i < 2; i++)
+  {
+    std::cout << "The area of " << i << " figure is " << shapes[i]->getArea() << '\n';
+  }
+  delete circle;
+  delete rec;
 }

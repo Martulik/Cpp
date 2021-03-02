@@ -16,7 +16,7 @@ int main() {
     point_t begin_pos = {5.5, -3.5};
     Rectangle rect(begin_pos, 6, 8);
 
-    Shape* figure = &rect;              // parent-type pointer to rectangle
+    Shape* figure = std::addressof(rect);              // parent-type pointer to rectangle
     printCoordinates(figure);
 
     point_t new_pos = {-10.4, 1};       // move test #1
@@ -33,7 +33,7 @@ int main() {
     begin_pos = {-31.2, 9.21};
     Circle circle(begin_pos, 10);
 
-    figure = &circle;
+    figure = std::addressof(circle);
     printCoordinates(figure);
 
     new_pos = {41.2, -100};     // move test #1

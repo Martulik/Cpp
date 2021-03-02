@@ -40,10 +40,10 @@ pochernin::rectangle_t pochernin::CompositeShape::getFrameRect() const
   double mostDown = data_[0]->getFrameRect().pos.y - (data_[0]->getFrameRect().height / 2);
   for (size_t i = 1; i < size_; i++)
   {
-    mostLeft = std::max(mostLeft, data_[i]->getFrameRect().pos.x - (data_[i]->getFrameRect().width / 2));
+    mostLeft = std::min(mostLeft, data_[i]->getFrameRect().pos.x - (data_[i]->getFrameRect().width / 2));
     mostRight = std::max(mostRight, data_[i]->getFrameRect().pos.x + (data_[i]->getFrameRect().width / 2));
     mostUp = std::max(mostUp, data_[i]->getFrameRect().pos.y + (data_[i]->getFrameRect().height / 2));
-    mostDown = std::max(mostDown, data_[i]->getFrameRect().pos.y - (data_[i]->getFrameRect().height / 2));
+    mostDown = std::min(mostDown, data_[i]->getFrameRect().pos.y - (data_[i]->getFrameRect().height / 2));
   }
   double width = mostRight - mostLeft;
   double height = mostUp - mostDown;
@@ -52,9 +52,11 @@ pochernin::rectangle_t pochernin::CompositeShape::getFrameRect() const
 
 void pochernin::CompositeShape::move(const pochernin::point_t& destination)
 {
+  double dx = destination.x - getFrameRect().pos.x;
+  double dy = destination.y - getFrameRect().pos.y;
   for (size_t i = 0; i < size_; i++)
   {
-    data_[i]->move(destination);
+    data_[i]->move(dx, dy);
   }
 }
 

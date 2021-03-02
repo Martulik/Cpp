@@ -9,7 +9,7 @@ void print(const Shape& shp, std::ostream& out)
   out << "height is: " << shp.getFrameRect().height << "\n";
   out << "area is: " << shp.getArea() << "\n";
   out << "center is: " << shp.getFrameRect().pos.x << "; "
-	  << shp.getFrameRect().pos.y << "\n";
+      << shp.getFrameRect().pos.y << "\n";
 }
 
 void test(Shape* shp, std::ostream& out)

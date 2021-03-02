@@ -3,12 +3,6 @@
 
 #define PI 3.1416
 
-Circle::Circle(const Circle& src):
-    center_(src.center_),
-    radius_(src.radius_)
-{
-}
-
 Circle::Circle(const point_t& center, const double radius):
     center_(center),
     radius_(radius)

@@ -1,4 +1,3 @@
-#include "base-types.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
 

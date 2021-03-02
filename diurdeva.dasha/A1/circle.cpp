@@ -4,15 +4,15 @@
 const double Pi = 3.14;
 
 Circle::Circle(const double rad, const point_t &pos):
-        rad_(rad),
-        pos_(pos)
+  rad_(rad),
+  pos_(pos)
 {
   assert(rad > 0);
 }
 
 double Circle::getArea() const
 {
-  return (rad_ * rad_ * Pi);
+  return rad_ * rad_ * Pi;
 }
 
 rectangle_t Circle::getFrameRect() const
@@ -25,8 +25,8 @@ void Circle::move(const point_t &newCenter)
   pos_ = newCenter;
 }
 
-void Circle::move(double axisX, double axisY)
+void Circle::move(double dX, double dY)
 {
-  pos_.x += axisX;
-  pos_.y += axisY;
+  pos_.x += dX;
+  pos_.y += dY;
 }

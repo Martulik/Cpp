@@ -46,6 +46,5 @@ int main() {
     std::cout << "Area of circle is: " << figure->getArea() << '\n';
 
 
-
     return 0;
 }

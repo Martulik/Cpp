@@ -14,8 +14,10 @@ void print(const Shape& shp, std::ostream& out)
 
 void test(Shape* shp, std::ostream& out)
 {
+	out << "test 1:" << "\n";
 	shp->move({ 10.5, 11.5 });
 	print(*shp, out);
+	out << "test 2:" << "\n";
 	shp->move(4.5, 7.5);
 	print(*shp, out);
 }

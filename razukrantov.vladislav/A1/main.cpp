@@ -5,7 +5,7 @@
 
 int main()
 {
-  point_t point{ 8.5, 7.5};
+  point_t point{ 8.5, 7.5 };
   Shape* ownRectangle = new Rectangle(5, 7, point);
   std::cout << "Rectangle width is: " << ownRectangle->getFrameRect().width << std::endl;
   std::cout << "Rectangle height is: " << ownRectangle->getFrameRect().height << std::endl;

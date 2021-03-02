@@ -17,7 +17,8 @@ void testShp(Shape&shp)
   shp.move({2, 6});
   std::cout << "new Position: {" << shp.getPos().x << "; " << shp.getPos().y << "}\n";
 }
-int main() {
+int main()
+{
   Shape *rectangle = new Rectangle(10, 12, {3.0, 18.0});
   print(*rectangle, std::cout);
   testShp(*rectangle);
@@ -28,4 +29,3 @@ int main() {
   delete circle;
   return 0;
 }
-

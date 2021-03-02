@@ -8,11 +8,11 @@
 
 void testMyFigure(Shape* figure);
 
-void printFrameRect(Shape* figure);
+void printFrameRect(const Shape* figure);
 
 void printFiguresCenter(const std::string adj, Shape* figure);
 
-void printFigure(Shape* figure);
+void printFigure(const Shape* figure);
 
 int main()
 {
@@ -33,30 +33,21 @@ int main()
 void printFrameRect(Shape* figure)
 {
   std::cout << "Its frame rectangle's width: " << figure->getFrameRect().width << ", "
-    << "height: " << figure->getFrameRect().height << ", "
-    << "center's abscissa: " << figure->getFrameRect().pos.x << ", "
-    << "centers's ordinate " << figure->getFrameRect().pos.y << "\n";
+            << "height: " << figure->getFrameRect().height << ", "
+            << "center's abscissa: " << figure->getFrameRect().pos.x << ", "
+            << "centers's ordinate " << figure->getFrameRect().pos.y << "\n";
 }
 
-void printFiguresCenter(const std::string adj, Shape* figure)
+void printFiguresCenter(std::string adj, Shape* figure)
 {
   std::cout << "Its " << adj << " center's abscissa " << figure->getFrameRect().pos.x << "\n"
-    << "Its " << adj << " centers's ordinate " << figure->getFrameRect().pos.y << "\n";
+            << "Its " << adj << " centers's ordinate " << figure->getFrameRect().pos.y << "\n";
 }
 
 void printFigure(Shape* figure)
 {
   std::string typeOfFigure = figure->getName();
   std::cout << "Type of figure:" << typeOfFigure << "\n";
-  if (typeOfFigure == "Rectangle")
-  {
-    std::cout << "Its wigth: " << figure->getFrameRect().width << "\n"
-      << "Its height: " << figure->getFrameRect().height << "\n";
-  }
-  else
-  {
-    std::cout << "Its radius: " << (figure->getFrameRect().width) / 2 << "\n";
-  }
   printFiguresCenter("", figure);
   std::cout << "Its area " << figure->getArea() << "\n";
   printFrameRect(figure);

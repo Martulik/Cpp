@@ -1,22 +1,21 @@
-#ifndef CIRCLE
-#define CIRCLE
+#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
 
 #include <string>
 
-#include "base-types.hpp"
 #include "shape.hpp"
 
-class Circle : public Shape
+class Circle: public Shape
 {
 public:
-  Circle(const point_t& pos, const double radius);
+  Circle(point_t& pos, double radius);
 
   ~Circle() = default;
 
   virtual double getArea() const override;
   virtual rectangle_t getFrameRect() const override;
   virtual void move(const point_t& newPos) override;
-  virtual void move(const double dx, const double dy) override;
+  virtual void move(double dx, double dy) override;
   virtual std::string getName() const override;
 
 private:

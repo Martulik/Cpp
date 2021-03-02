@@ -5,10 +5,10 @@
 
 const double PI = 3.1415926;
 
-Circle::Circle(const point_t& pos, const double radius)
+Circle::Circle(point_t& pos, double radius):
+  pos_(pos),
+  radius_(radius)
 {
-  pos_ = pos;
-  radius_ = radius;
   assert(radius > 0);
 }
 
@@ -27,7 +27,7 @@ void Circle::move(const point_t& newPos)
   pos_ = newPos;
 }
 
-void Circle::move(const double dx, const double dy)
+void Circle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;

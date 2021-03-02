@@ -3,11 +3,11 @@
 #include <cassert>
 #include <string>
 
-Rectangle::Rectangle(const double width, const double height, point_t& pos)
+Rectangle::Rectangle(double width, double height, point_t& pos) :
+  width_(width),
+  heigh_(height),
+  pos_(pos)
 {
-  width_ = width;
-  heigh_ = height;
-  pos_ = pos;
   assert((height > 0) && (width > 0));
 }
 
@@ -18,7 +18,7 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return { width_,heigh_ , pos_ };
+  return {width_,heigh_ , pos_};
 }
 
 void Rectangle::move(const point_t& newPos)
@@ -26,7 +26,7 @@ void Rectangle::move(const point_t& newPos)
   pos_ = newPos;
 }
 
-void Rectangle::move(const double dx, const double dy)
+void Rectangle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;

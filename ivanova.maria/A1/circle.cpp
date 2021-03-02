@@ -3,6 +3,7 @@
 
 #include "circle.hpp"
 #include <iostream>
+#include <string>
 
 Circle::Circle(point_t ctr, double rad) :
   ctr_(ctr),
@@ -31,11 +32,11 @@ void Circle::move(double dx, double dy) {
   ctr_.x = +dx;
   ctr_.y = +dy;
 }
-std::string Circle::getName()
+std::string Circle::getName() const
 {
   return "Circle";
 }
-point_t Circle::getPos()
+point_t Circle::getPos() const
 {
   return ctr_;
 }

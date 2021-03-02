@@ -36,11 +36,11 @@ void Rectangle::move(double dx, double dy) {
   pos_.x = +dx;
   pos_.y = +dy;
 }
-std::string Rectangle::getName()
+std::string Rectangle::getName() const
 {
   return "Rectangle";
 }
-point_t Rectangle::getPos()
+point_t Rectangle::getPos() const
 {
   return pos_;
 }

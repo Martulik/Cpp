@@ -66,7 +66,7 @@ d::Rectangle input_rectangle(std::istream& in)
 {
   double x_pos = 0, y_pos = 0, w = 0, h = 0;
   in >> x_pos >> y_pos >> w >> h;
-  return d::Rectangle(d::rectangle_t{w, h, {x_pos, y_pos}});
+  return d::Rectangle{w, h, {x_pos, y_pos}};
 }
 
 void print(std::ostream& out, const d::Shape& s)

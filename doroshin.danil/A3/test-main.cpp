@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(move_circle)
 
 BOOST_AUTO_TEST_CASE(move_rectangle)
 {
-  d::Rectangle r(d::rectangle_t {3, 4, {1, 2}});
+  d::Rectangle r{3, 4, {1, 2}};
 
   test_move_rel(r, {1, 2});
   test_move_rel(r, {-5, 7});
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(move_rectangle)
 
 BOOST_AUTO_TEST_CASE(move_composite)
 {
-  d::CompositeShape s {d::Rectangle(d::rectangle_t {2, 3, {-1, 0}}), d::Circle{{1, 1}, 2}};
+  d::CompositeShape s {d::Rectangle{2, 3, {-1, 0}}, d::Circle{{1, 1}, 2}};
 
   test_move_rel(s, {1, 2});
   test_move_rel(s, {-5, 7});
@@ -72,14 +72,14 @@ BOOST_AUTO_TEST_CASE(scale_circle)
 
 BOOST_AUTO_TEST_CASE(scale_rectangle)
 {
-  d::Rectangle r(d::rectangle_t {3, 4, {1, 2}});
+  d::Rectangle r{3, 4, {1, 2}};
   test_scale(r, 5);
   test_scale(r, 0.3);
 }
 
 BOOST_AUTO_TEST_CASE(scale_composite)
 {
-  d::CompositeShape s{d::Rectangle(d::rectangle_t {2, 3, {-1, 0}}), d::Circle{{1, 1}, 2}};
+  d::CompositeShape s {d::Rectangle{2, 3, {-1, 0}}, d::Circle{{1, 1}, 2}};
   test_scale(s, 4.5);
   test_scale(s, 0.1);
 }

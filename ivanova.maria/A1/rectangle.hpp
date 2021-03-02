@@ -4,7 +4,8 @@
 #include "shape.hpp"
 #include <ostream>
 
-class Rectangle: public Shape {
+class Rectangle: public Shape
+{
 public:
   Rectangle();
   Rectangle(double height, double width, point_t pos);

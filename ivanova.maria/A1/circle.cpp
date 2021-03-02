@@ -5,17 +5,20 @@
 #include <iostream>
 #include <string>
 
-Circle::Circle(point_t ctr, double rad) :
+Circle::Circle(point_t ctr, double rad):
   ctr_(ctr),
-  radius_(rad) {
+  radius_(rad)
+{
 }
 
-double Circle::getArea() const {
+double Circle::getArea() const
+{
   const double PI = 3.14;
   return radius_ * radius_ * PI;
 }
 
-rectangle_t Circle::getFrameRect() const {
+rectangle_t Circle::getFrameRect() const
+{
   rectangle_t frame;
   double a = radius_;
   frame.height = 2 * a;
@@ -24,11 +27,13 @@ rectangle_t Circle::getFrameRect() const {
   return frame;
 }
 
-void Circle::move(const point_t &newPos) {
+void Circle::move(const point_t &newPos)
+{
   ctr_ = newPos;
 }
 
-void Circle::move(double dx, double dy) {
+void Circle::move(double dx, double dy)
+{
   ctr_.x = +dx;
   ctr_.y = +dy;
 }

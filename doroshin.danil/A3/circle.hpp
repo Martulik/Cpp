@@ -4,7 +4,7 @@
 #include "shape.hpp"
 
 namespace doroshin {
-  class Circle : public Shape
+  class Circle: public Shape
   {
   public:
     Circle(point_t pos, double r);

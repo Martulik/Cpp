@@ -9,7 +9,7 @@
 #include "rectangle.hpp"
 
 namespace doroshin {
-  class CompositeShape : public Shape
+  class CompositeShape: public Shape
   {
     // A tagged union class that exposes the Shape interface of every member
     class AnyShape;
@@ -42,7 +42,7 @@ namespace doroshin {
 
   void swap(CompositeShape& lhs, CompositeShape& rhs);
 
-  class CompositeShape::AnyShape : public Shape
+  class CompositeShape::AnyShape: public Shape
   {
     enum class Type {
       Uninitialized,

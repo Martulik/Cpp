@@ -11,7 +11,7 @@ Rectangle::Rectangle(const point_t& pos, const double height, const double width
 
 double Rectangle::getArea() const
 {
-    return height_*width_;
+    return height_ * width_;
 }
 
 rectangle_t Rectangle::getFrameRect() const

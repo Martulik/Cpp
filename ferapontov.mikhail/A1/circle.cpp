@@ -8,6 +8,11 @@ Circle::Circle(const double radius, const point_t pos):
   assert(radius > 0 && "Incorrect radius");
 }
 
+std::string Circle::getName() const
+{
+  return "Circle";
+}
+
 double Circle::getArea() const
 {
   return PI * radius_ * radius_;

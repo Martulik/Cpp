@@ -8,6 +8,11 @@ Rectangle::Rectangle(const double width, const double height, const point_t pos)
   assert(height > 0 && "Incorrect height");
 }
 
+std::string Rectangle::getName() const
+{
+  return "Rectangle";
+}
+
 double Rectangle::getArea() const
 {
   return proportions_.width * proportions_.height;

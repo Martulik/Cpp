@@ -2,32 +2,30 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
+void print(std::ostream& out, const Shape& shape)
+{
+  out << "Name: " << shape.getName() << "\n";
+  out << "Coordinate X: " << shape.getFrameRect().pos.x << "\n";
+  out << "Coordinate Y: " << shape.getFrameRect().pos.y << "\n";
+}
+
 int main()
 {
   const point_t point_zero = {0, 0};
   Shape* rect = new Rectangle(5, 10, {0,0});
-  std::cout << "Area of rectangle equals to: " << rect->getArea() << std::endl;
-  std::cout << "Position before move(): X = "<< rect->getFrameRect().pos.x
-            <<" Y = " << rect->getFrameRect().pos.y << std::endl;
+  print(std::cout, *rect);
   rect->move(2, 3.9);
-  std::cout << "Position after move(): X = " << rect->getFrameRect().pos.x
-            << " Y = " << rect->getFrameRect().pos.y << std::endl;
+  std::cout << "Rectangle after move() \n";
+  print(std::cout, *rect);
   rect->move(point_zero);
-  std::cout << "Position after second move(): X = " << rect->getFrameRect().pos.x
-            << " Y = " << rect->getFrameRect().pos.y << std::endl;
-
+  print(std::cout, *rect);
   Shape* circle = new Circle(3.5, point_zero);
-  std::cout << "Area of circle equals to: " << circle->getArea() << std::endl;
-  std::cout << "Frame Rectangle width = " << circle->getFrameRect().height << " "
-            << " height = "<<circle->getFrameRect().width << std::endl;
-  std::cout << "Position before move(): X = " << circle->getFrameRect().pos.x
-            << " Y = " << circle->getFrameRect().pos.y << std::endl;
+  print(std::cout, *circle);
+  std::cout << "Circle after move() \n";
   circle->move(4.9, 8.3);
-  std::cout << "Position after move(): X = " << circle->getFrameRect().pos.x
-    << " Y = " << circle->getFrameRect().pos.y << std::endl;
+  print(std::cout, *circle);
   circle->move(point_zero);
-  std::cout << "Position after second move(): X = " << circle->getFrameRect().pos.x
-    << " Y = " << circle->getFrameRect().pos.y << std::endl;
+  print(std::cout, *circle);
   delete rect;
   delete circle;
   return 0;

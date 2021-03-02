@@ -31,13 +31,11 @@ int main()
 
 void print(const Shape& shape, std::ostream& out)
 {
-  out << "-------------------------------------------\n";
   out << "width: " << shape.getFrameRect().width << "\n";
   out << "height: " << shape.getFrameRect().height << "\n";
   out << "pos: " << "(" << shape.getFrameRect().pos.x
       << "; " << shape.getFrameRect().pos.y << ")\n";
   out << "area: " << shape.getArea() << "\n";
-  out << "-------------------------------------------\n";
 }
 
 bool isPosEqual(const Shape& shape, const point_t& pos)

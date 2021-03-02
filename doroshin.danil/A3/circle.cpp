@@ -1,6 +1,6 @@
+#include "circle.hpp"
 #include <cmath>
 #include <cassert>
-#include "circle.hpp"
 
 namespace d = doroshin;
 

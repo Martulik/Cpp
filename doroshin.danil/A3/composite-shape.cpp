@@ -1,9 +1,9 @@
+#include "composite-shape.hpp"
 #include <cassert>
 #include <cmath>
 #include <utility>
 #include <limits>
 #include <algorithm>
-#include "composite-shape.hpp"
 
 namespace d = doroshin;
 d::CompositeShape::AnyShape::AnyShape():

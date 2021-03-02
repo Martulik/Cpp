@@ -1,35 +1,20 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
 
-#include <iostream>
 #include "shape.hpp"
 
-class Circle : public Shape
+class Circle: public Shape
 {
 public:
-  Circle(const point_t pos, const double radius); //constructor
-  Circle(Circle& circle1); //copy constructor
-  Circle(Circle&& circle1) noexcept; //move constructor
-  ~Circle(); //destructor
-  //overloads
-  Circle& operator = (Circle&& circle1) noexcept;
-  bool operator < (const Circle& circle1);
-  bool operator <= (const Circle& circle1);
-  bool operator > (const Circle& circle1);
-  bool operator >= (const Circle& circle1);
-  bool operator == (const Circle& circle1);
-  bool operator != (const Circle& circle1);
-  friend std::ostream& operator << (std::ostream& out, const Circle& circle);
-  //setters
-  bool setRadius(const double& radius);
-  //getters
-  point_t getCentre() const;
-  double getRadius() const;
-  double getArea() const;
-  rectangle_t getFrameRect() const;
-  //centre point moving methods
-  void move(const point_t& newPos);
-  void move(const double& dx, const double& dy);
+  Circle(const point_t pos, double radius);
+  ~Circle() override = default;
+
+  double getArea() const override;
+  rectangle_t getFrameRect() const override;
+
+  void move(const point_t& newPos) override;
+  void move(const double& dx, const double& dy) override;
+  std::string getName() const override;
 private:
   point_t pos_;
   double radius_;

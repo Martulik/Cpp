@@ -8,6 +8,7 @@ class Shape
 {
 public:
   virtual ~Shape() = default;
+
   virtual std::string getName() const = 0;
   virtual double getArea() const = 0;
   virtual rectangle_t getFrameRect() const = 0;

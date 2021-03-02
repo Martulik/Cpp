@@ -2,7 +2,7 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void print(std::ostream & out, const Shape& shp)
+void print(std::ostream& out, const Shape& shp)
 {
   out << "Shape:\n" <<"::Position: " << "(" << shp.getFrameRect().pos.x
       << ", " << shp.getFrameRect().pos.y << ")";

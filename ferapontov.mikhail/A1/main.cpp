@@ -9,23 +9,21 @@ void print(std::ostream& out, const Shape& shape)
   out << "Coordinate Y: " << shape.getFrameRect().pos.y << "\n";
 }
 
+void test(Shape* shp, std::ostream& out, const point_t& pos)
+{
+  print(out, *shp);
+  shp->move(pos);
+  print(out, *shp);
+}
+
 int main()
 {
   const point_t point_zero = {0, 0};
-  Shape* rect = new Rectangle(5, 10, {0,0});
-  print(std::cout, *rect);
-  rect->move(2, 3.9);
-  std::cout << "Rectangle after move() \n";
-  print(std::cout, *rect);
-  rect->move(point_zero);
-  print(std::cout, *rect);
+  const point_t not_zero = {123, 3};
+  Shape* rect = new Rectangle(5, 10, {23,3});
   Shape* circle = new Circle(3.5, point_zero);
-  print(std::cout, *circle);
-  std::cout << "Circle after move() \n";
-  circle->move(4.9, 8.3);
-  print(std::cout, *circle);
-  circle->move(point_zero);
-  print(std::cout, *circle);
+  test(rect, std::cout, point_zero);
+  test(circle, std::cout, not_zero);
   delete rect;
   delete circle;
   return 0;

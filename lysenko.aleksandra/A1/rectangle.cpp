@@ -3,7 +3,7 @@
 #include <cassert>
 #include <string>
 
-Rectangle::Rectangle(double width, double height, point_t& pos) :
+Rectangle::Rectangle(double width, double height, point_t& pos):
   width_(width),
   heigh_(height),
   pos_(pos)

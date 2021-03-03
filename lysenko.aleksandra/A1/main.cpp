@@ -56,8 +56,8 @@ void printFigure(Shape* figure)
 void testMyFigure(Shape* figure)
 {
   printFigure(figure);
-  std::cout << "Move the figure's center to point (0,0)\n";
   point_t newPos{ 0.0, 0.0 };
+  std::cout << "Move the figure's center to point (" << newPos.x <<","<< newPos.x<<")\n";
   figure->move(newPos);
   printFiguresCenter("new", figure);
   std::cout << "Move figure's center along x-asix by 1 along the y-asix by 1\n";

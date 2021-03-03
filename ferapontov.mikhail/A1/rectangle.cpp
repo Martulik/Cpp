@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <cassert>
 
-Rectangle::Rectangle(const double width, const double height,const point_t& pos) :
+Rectangle::Rectangle(const double width, const double height,const point_t& pos):
   rect_({width, height, pos})
 {
   assert(width > 0 && "Incorrect width");

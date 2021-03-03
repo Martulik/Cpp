@@ -2,7 +2,7 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void print(Shape& scr)
+void print(const Shape& scr)
 {
   std::cout << "Shape: " << scr.getName() << "\n";
   std::cout << "Position: " << "(" << scr.getFrameRect().pos.x

@@ -11,10 +11,10 @@ public:
 
   double getArea() const override;
   rectangle_t getFrameRect() const override;
+  std::string getName() const override;
 
   void move(const point_t& newPos) override;
   void move(const double& dx, const double& dy) override;
-  std::string getName() const override;
 private:
   point_t pos_;
   double radius_;

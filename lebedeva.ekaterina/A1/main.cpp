@@ -2,47 +2,54 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void testShape(Shape* figure);
-void printCentre(std::ostream& out, Shape* figure);
-void printInfo(std::ostream& out, Shape* figure);
+void testShape(Shape* figure, const point_t& changePos);
+void printCentre(std::ostream& out, const Shape* figure);
+void printInfo(std::ostream& out, const Shape* figure);
 
 int main()
 {
   point_t pos = {3, 1};
-  Rectangle rect(pos, 2.1, 12.2);
-  Circle circ(pos, 6.2);
+  point_t newPos = {13, 8};
+  Shape* rect = new Rectangle(pos, 12.2, 2.1);
+  Shape* circ = new Circle(pos, 6.2);
 
   std::cout << "Figure 1.\n";
-  testShape(&rect);
+  testShape(rect, newPos);
   std::cout << "Figure 2.\n";
-  testShape(&circ);
+  testShape(circ, newPos);
+
+  delete rect;
+  rect = nullptr;
+  delete circ;
+  circ = nullptr;
 
   return 0;
 }
 
-void printCentre(std::ostream& out, Shape* figure)
+void printCentre(std::ostream& out, const Shape* figure)
 {
   out << '(' << figure->getFrameRect().pos.x;
   out << ", " << figure->getFrameRect().pos.y << ')';
 }
-void printInfo(std::ostream& out, Shape* figure)
+void printInfo(std::ostream& out, const Shape* figure)
 {
   out << "Specific: " << figure->getName() << '\n';
   out << "Centre position is ";
   printCentre(out, figure);
-  out << "\nFrame rectangle: " << figure->getFrameRect().height;
-  out << " x " << figure->getFrameRect().width << '\n';
+  out << "\nArea: " << figure->getArea();
+  out << "\nFrame rectangle: " << figure->getFrameRect().width;
+  out << " x " << figure->getFrameRect().height << '\n';
 }
 
-void testShape(Shape* figure)
+void testShape(Shape* figure, const point_t& newPos)
 {
   printInfo(std::cout, figure);
-  std::cout << "Centre position after moving to point (13, 8) is ";
-  point_t newPos = {13, 8};
+  std::cout << "Centre position after moving to point (";
+  std::cout << newPos.x << ", " << newPos.y << ") is ";
   figure->move(newPos);
   printCentre(std::cout, figure);
-  std::cout << "\nCentre position after moving to point (x+13, y-8) is ";
-  figure->move(13, -8);
+  std::cout << "\nCentre position after moving to point (x + dx, y - dy) is ";
+  figure->move(newPos.x, -newPos.y);
   printCentre(std::cout, figure);
   std::cout << "\n\n";
 }

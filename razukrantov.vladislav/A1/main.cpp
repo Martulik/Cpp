@@ -1,7 +1,7 @@
-﻿#include "shape.hpp"
+﻿#include <iostream>
+#include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
-#include <iostream>
 
 void print(const Shape& shp, std::ostream& out)
 {

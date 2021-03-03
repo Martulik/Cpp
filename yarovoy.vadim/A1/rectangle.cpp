@@ -1,6 +1,6 @@
 #include "rectangle.hpp"
 
-Rectangle::Rectangle(double width, double height, point_t pos) :
+Rectangle::Rectangle(double width, double height, point_t pos):
   width_(width),
   height_(height),
   pos_(pos)

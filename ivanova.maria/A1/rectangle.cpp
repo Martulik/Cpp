@@ -1,14 +1,5 @@
-#ifndef RECTANGLE_CPP
-#define RECTANGLE_CPP
-
 #include "rectangle.hpp"
 #include <iostream>
-
-Rectangle::Rectangle():
-  height_(0),
-  width_(0),
-  pos_() {
-}
 
 Rectangle::Rectangle(double height, double width, point_t pos):
   height_(height),
@@ -24,11 +15,7 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  rectangle_t frame;
-  frame.height = height_;
-  frame.width = width_;
-  frame.pos = pos_;
-  return frame;
+  return rectangle_t{height_, width_, pos_};
 }
 
 void Rectangle::move(const point_t &newPos)
@@ -45,8 +32,3 @@ std::string Rectangle::getName() const
 {
   return "Rectangle";
 }
-point_t Rectangle::getPos() const
-{
-  return pos_;
-}
-#endif

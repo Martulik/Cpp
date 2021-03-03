@@ -1,6 +1,3 @@
-#ifndef CIRCLE_CPP
-#define CIRCLE_CPP
-
 #include "circle.hpp"
 #include <iostream>
 #include <string>
@@ -19,12 +16,7 @@ double Circle::getArea() const
 
 rectangle_t Circle::getFrameRect() const
 {
-  rectangle_t frame;
-  double a = radius_;
-  frame.height = 2 * a;
-  frame.width = 2 * a;
-  frame.pos = ctr_;
-  return frame;
+  return rectangle_t {2*radius_, 2*radius_, ctr_};
 }
 
 void Circle::move(const point_t &newPos)
@@ -41,8 +33,3 @@ std::string Circle::getName() const
 {
   return "Circle";
 }
-point_t Circle::getPos() const
-{
-  return ctr_;
-}
-#endif

@@ -14,6 +14,7 @@ int main()
   Shape * shapes[] = { circle, rec };
   for (int i = 0; i < 2; i++)
   {
+    shapes[i]->move(1, 1);
     std::cout << "The area of " << i << " figure is " << shapes[i]->getArea() << '\n';
   }
   delete circle;

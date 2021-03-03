@@ -6,7 +6,8 @@
 void print(Shape& scr)
 {
   std::cout << "Shape: " << scr.getName() << std::endl;
-  std::cout << "Position: " << "(" << scr.getFrameRect().pos.x << ", " << scr.getFrameRect().pos.y << ")" << std::endl;
+  std::cout << "Position: " << "(" << scr.getFrameRect().pos.x
+            << ", " << scr.getFrameRect().pos.y << ")" << std::endl;
   std::cout << "Area: " << scr.getArea()<< std::endl;
 }
 

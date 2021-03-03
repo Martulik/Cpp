@@ -6,13 +6,11 @@
 int main()
 {
   void testAll();
-  void test(Shape & obj, point_t & dpos, std::ostream & out);
   testAll();
 }
 
 void testAll()
 {
-  void print(const Shape & shp, std::ostream & out);
   void test(Shape & obj, point_t & dpos, std::ostream & out);
   double x = 0.4;
   double y = 2.56;
@@ -36,13 +34,31 @@ void testAll()
 
 void test(Shape& obj, point_t& dpos, std::ostream& out)
 {
-  out << "Shape:\n" << "::Position: ";
-  out << obj.getFrameRect().pos.x << ", " << obj.getFrameRect().pos.y;
-  out << "\nSpecific: " << obj.getName() << '\n';
+  void print(const Shape & obj, std::ostream & out);
+  void moving(const Shape & obj, std::ostream & out);
+  print(obj, std::cout);
   obj.move(dpos);
-  out << "Figure moved on: ";
-  out << obj.getFrameRect().pos.x << ", " << obj.getFrameRect().pos.y << '\n';
+  moving(obj, std::cout);
   obj.move(dpos.x, dpos.y);
+  moving(obj, std::cout);
+}
+
+void print(const Shape& obj, std::ostream& out)
+{
+  void getPos(const Shape & obj, std::ostream & out);
+  out << "\nShape:\n" << "::Position: ";
+  getPos(obj, std::cout);
+  out << "\nSpecific: " << obj.getName() << '\n';
+}
+
+void getPos(const Shape& obj, std::ostream& out)
+{
+  out << obj.getFrameRect().pos.x << ", " << obj.getFrameRect().pos.y << '\n';
+}
+
+void moving(const Shape& obj, std::ostream& out)
+{
+  void getPos(const Shape & obj, std::ostream & out);
   out << "Figure moved on: ";
-  out << obj.getFrameRect().pos.x << ", " << obj.getFrameRect().pos.y << '\n' << '\n';
+  getPos(obj, std::cout);
 }

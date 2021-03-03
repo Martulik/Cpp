@@ -9,20 +9,6 @@ void print(std::ostream& out, const Shape* shp)
   out << "\nSpecific: " << shp->getName() << "\n\n";
 }
 
-void printAfterMove(Shape* shp, const point_t& point, bool isRelative)
-{
-  if (isRelative)
-  {
-    shp->move(point.x, point.y);
-  }
-  else
-  {
-    shp->move(point);
-  }
-  std::cout << "Figure's info after move()\n";
-  print(std::cout, shp);
-}
-
 int main()
 {
   Shape* polyRectangle = new Rectangle(1, 2, { 3, 5 });
@@ -31,8 +17,14 @@ int main()
   print(std::cout, polyCircle);
 
   point_t point({ 15, 23 });
-  printAfterMove(polyRectangle, point, false);
-  printAfterMove(polyCircle, point, true);
+  polyRectangle->move(point);
+  std::cout << "Rectangle's info after move\n";
+  print(std::cout, polyRectangle);
+
+  polyCircle->move(point.x, point.y);
+  std::cout << "Circle's info after move\n";
+  print(std::cout, polyCircle);
+
   delete polyRectangle;
   delete polyCircle;
   return 0;

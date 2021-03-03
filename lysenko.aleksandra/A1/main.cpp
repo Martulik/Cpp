@@ -10,7 +10,7 @@ void testMyFigure(Shape* figure);
 
 void printFrameRect(const Shape* figure);
 
-void printFiguresCenter(const std::string adj, const Shape* figure);
+void printFiguresCenter(std::string adj, const Shape* figure);
 
 void printFigure(const Shape* figure);
 

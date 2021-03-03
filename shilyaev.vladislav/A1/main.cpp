@@ -2,10 +2,10 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void printShapeDescription(const Shape &shape)
+void printShapeDescription(const Shape *shape)
 {
-  const rectangle_t frameRect = shape.getFrameRect();
-  std::cout << "Area: " << shape.getArea()
+  const rectangle_t frameRect = shape->getFrameRect();
+  std::cout << "Area: " << shape->getArea()
             << ", Width × Height: " << frameRect.width << " × " << frameRect.height
             << ", Center: " << frameRect.pos.x << ' ' << frameRect.pos.y << '\n';
 }
@@ -20,13 +20,15 @@ int main()
   const double rectangleDx = 4.0;
   const double rectangleDy = -4.0;
 
-  Rectangle rectangle(rectangleWidth, rectangleHeight, startPos);
-  Circle circle(radius, startPos);
+  Shape *rectangle = new Rectangle(rectangleWidth, rectangleHeight, startPos);
+  Shape *circle = new Circle(radius, startPos);
   printShapeDescription(rectangle);
   printShapeDescription(circle);
-  rectangle.move(rectangleDx, rectangleDy);
-  circle.move(finishPos);
+  rectangle->move(rectangleDx, rectangleDy);
+  circle->move(finishPos);
   std::cout << "After moving:\n";
   printShapeDescription(rectangle);
   printShapeDescription(circle);
+  delete circle;
+  delete rectangle;
 }

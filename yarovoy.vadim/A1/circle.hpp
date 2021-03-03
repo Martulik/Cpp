@@ -5,7 +5,7 @@
 #include <string>
 #include <cassert>
 
-class Circle:public Shape
+class Circle: public Shape
 {
 public:
   Circle(double radius, point_t pos);

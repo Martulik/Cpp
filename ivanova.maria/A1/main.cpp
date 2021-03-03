@@ -25,7 +25,7 @@ void testShp(Shape&shp, std::ostream& out)
   double dx=12;
   double dy=7;
   shp.move(dx, dy);
-  bool test = ((shp.getFrameRect().pos.x)==x0+dx)&&((shp.getFrameRect().pos.y==y=+dy));
+  bool test = ((shp.getFrameRect().pos.x)==x0+dx)&&((shp.getFrameRect().pos.y==y0+dy));
   if (test)
   {
     out << "\nnew Position: {" << shp.getFrameRect().pos.x << "; " << shp.getFrameRect().pos.y << "}\n";

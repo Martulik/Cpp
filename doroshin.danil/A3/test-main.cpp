@@ -7,24 +7,23 @@
 
 namespace d = doroshin;
 
-void test_move_rel(d::Shape& s, d::point_t vec)
+bool equal_size(const d::rectangle_t& lhs, const d::rectangle_t& rhs)
 {
-  const auto eq = [](const d::rectangle_t& lhs, const d::rectangle_t& rhs) {
-    return lhs.height == rhs.height && lhs.width == rhs.width;
-  };
-  d::rectangle_t orig_frame = s.getFrameRect();
-  s.move_rel(vec);
-  BOOST_CHECK(eq(orig_frame, s.getFrameRect()));
+  return lhs.height == rhs.height && lhs.width == rhs.width;
 }
 
-void test_move_abs(d::Shape& s, d::point_t vec)
+void test_move_rel(d::Shape& s, d::point_t vec)
 {
-  const auto eq = [](const d::rectangle_t& lhs, const d::rectangle_t& rhs) {
-    return lhs.height == rhs.height && lhs.width == rhs.width;
-  };
   d::rectangle_t orig_frame = s.getFrameRect();
   s.move_rel(vec);
-  BOOST_CHECK(eq(orig_frame, s.getFrameRect()));
+  BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
+}
+
+void test_move_abs(d::Shape& s, d::point_t point)
+{
+  d::rectangle_t orig_frame = s.getFrameRect();
+  s.move_abs(point);
+  BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
 }
 
 void test_scale(d::Shape& s, double coeff)

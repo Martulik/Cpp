@@ -1,4 +1,3 @@
-#include <cmath>
 #include <cassert>
 #include "circle.hpp"
 
@@ -11,7 +10,8 @@ Circle::Circle(const point_t pos, const double radius):
 
 double Circle::getArea() const
 {
-  return M_PI * radius_ * radius_;
+  const double MY_PI = 3.1415926535;
+  return MY_PI * radius_ * radius_;
 }
 
 rectangle_t Circle::getFrameRect() const

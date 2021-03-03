@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "circle.hpp"
 #include "rectangle.hpp"
 

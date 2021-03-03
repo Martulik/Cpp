@@ -2,8 +2,6 @@
 #define RECTANGLE_HPP
 
 #include "shape.hpp"
-#include <string>
-#include <cassert>
 
 class Rectangle: public Shape
 {

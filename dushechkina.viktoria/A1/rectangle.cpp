@@ -1,6 +1,6 @@
-#include <cassert>
-
 #include "rectangle.hpp"
+
+#include <cassert>
 
 Rectangle::Rectangle(const double width, const double height, const point_t& pos) :
   unit_({width, height, pos})
@@ -25,6 +25,6 @@ void Rectangle::move(const point_t& pos)
 
 void Rectangle::move(const double dx, const double dy)
 {
-  unit_.pos.x = unit_.pos.x + dx;
-  unit_.pos.y = unit_.pos.y + dy;
+  unit_.pos.x += dx;
+  unit_.pos.y += dy;
 }

@@ -1,6 +1,6 @@
-#include <cassert>
-
 #include "circle.hpp"
+
+#include <cassert>
 
 const double PI = 3.14159265358979323846;
 
@@ -28,6 +28,6 @@ void Circle::move(const point_t& pos)
 
 void Circle::move(const double dx, const double dy)
 {
-  centre_.x = centre_.x + dx;
-  centre_.y = centre_.y + dy;
+  centre_.x += dx;
+  centre_.y += dy;
 }

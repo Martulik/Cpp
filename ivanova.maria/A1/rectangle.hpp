@@ -2,7 +2,6 @@
 #define RECTANGLE_HPP
 
 #include "shape.hpp"
-#include <ostream>
 
 class Rectangle: public Shape
 {

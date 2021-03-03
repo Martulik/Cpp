@@ -1,6 +1,4 @@
 #include "circle.hpp"
-#include <iostream>
-#include <string>
 
 Circle::Circle(point_t ctr, double rad):
   ctr_(ctr),

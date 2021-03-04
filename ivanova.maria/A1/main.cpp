@@ -2,14 +2,14 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void print(const Shape& shp, std::ostream& out)
+void print(const Shape &shp, std::ostream &out)
 {
   out << "Shape:\n" << "::Position: {" << shp.getFrameRect().pos.x << "; " << shp.getFrameRect().pos.y << "}";
   out << "\nSpecific: " << shp.getName();
   out << "\nArea: " << shp.getArea();
 }
 
-void testShp(Shape&shp, std::ostream& out)
+void testShp(Shape &shp, std::ostream &out)
 {
   double x0 = shp.getFrameRect().pos.x;
   double y0 = shp.getFrameRect().pos.y;

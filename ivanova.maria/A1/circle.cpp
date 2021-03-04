@@ -14,7 +14,7 @@ double Circle::getArea() const
 
 rectangle_t Circle::getFrameRect() const
 {
-  return rectangle_t {2 * radius_, 2 * radius_, ctr_};
+  return rectangle_t{2 * radius_, 2 * radius_, ctr_};
 }
 
 void Circle::move(const point_t &newPos)
@@ -24,9 +24,10 @@ void Circle::move(const point_t &newPos)
 
 void Circle::move(double dx, double dy)
 {
-  ctr_.x =+ dx;
-  ctr_.y =+ dy;
+  ctr_.x += dx;
+  ctr_.y += dy;
 }
+
 std::string Circle::getName() const
 {
   return "Circle";

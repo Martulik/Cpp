@@ -4,8 +4,8 @@ Rectangle::Rectangle(double height, double width, point_t pos):
   height_(height),
   width_(width),
   pos_(pos)
-  {
-  }
+{
+}
 
 double Rectangle::getArea() const
 {
@@ -14,7 +14,7 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return rectangle_t {height_, width_, pos_};
+  return rectangle_t{height_, width_, pos_};
 }
 
 void Rectangle::move(const point_t &newPos)
@@ -24,9 +24,10 @@ void Rectangle::move(const point_t &newPos)
 
 void Rectangle::move(double dx, double dy)
 {
-  pos_.x =+ dx;
-  pos_.y =+ dy;
+  pos_.x += dx;
+  pos_.y += dy;
 }
+
 std::string Rectangle::getName() const
 {
   return "Rectangle";

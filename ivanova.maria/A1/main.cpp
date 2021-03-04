@@ -16,12 +16,12 @@ void testShp(Shape&shp, std::ostream& out)
   double dx = 12;
   double dy = 7;
   shp.move(dx, dy);
-  bool test = ((shp.getFrameRect().pos.x) == x0+dx)&&((shp.getFrameRect().pos.y == y0+dy));
-  out << "\nMove passed" << (test? "yes": "no");
+  bool test = ((shp.getFrameRect().pos.x) == x0 + dx) && ((shp.getFrameRect().pos.y == y0 + dy));
+  out << "\nMove passed" << (test ? "yes" : "no");
   point_t newPos = {2, 6};
   shp.move(newPos);
-  test = ((shp.getFrameRect().pos.x == newPos.x)&&(shp.getFrameRect().pos.y == newPos.y));
-  out << "\nMove passed" << (test? "yes": "no");
+  test = ((shp.getFrameRect().pos.x == newPos.x) && (shp.getFrameRect().pos.y == newPos.y));
+  out << "\nMove passed" << (test ? "yes" : "no");
 }
 
 int main()

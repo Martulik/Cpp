@@ -3,9 +3,10 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
+void testAll();
+
 int main()
 {
-  void testAll();
   testAll();
 }
 
@@ -36,29 +37,29 @@ void test(Shape& obj, point_t& dpos, std::ostream& out)
 {
   void print(const Shape & obj, std::ostream & out);
   void moving(const Shape & obj, std::ostream & out);
-  print(obj, out);
+  print(obj, std::cout);
   obj.move(dpos);
-  moving(obj, out);
+  moving(obj, std::cout);
   obj.move(dpos.x, dpos.y);
-  moving(obj, out);
+  moving(obj, std::cout);
 }
 
 void print(const Shape& obj, std::ostream& out)
 {
-  void printPos(const Shape & obj, std::ostream & out);
+  void getPos(const Shape & obj, std::ostream & out);
   out << "\nShape:\n" << "::Position: ";
-  printPos(obj, out);
+  getPos(obj, std::cout);
   out << "\nSpecific: " << obj.getName() << '\n';
 }
 
-void printPos(const Shape& obj, std::ostream& out)
+void getPos(const Shape& obj, std::ostream& out)
 {
   out << obj.getFrameRect().pos.x << ", " << obj.getFrameRect().pos.y << '\n';
 }
 
 void moving(const Shape& obj, std::ostream& out)
 {
-  void printPos(const Shape & obj, std::ostream & out);
+  void getPos(const Shape & obj, std::ostream & out);
   out << "Figure moved on: ";
-  printPos(obj, out);
+  getPos(obj, std::cout);
 }

@@ -15,14 +15,10 @@ int main() {
   point_t begin_pos = {5.5, -3.5};
   Rectangle rect(begin_pos, 6, 8);
 
-  Shape* figure = std::addressof(rect);              // parent-type pointer to rectangle
+  Shape* figure = std::addressof(rect);              
   printCoordinates(figure);
 
-  point_t new_pos = {-10.4, 1};       // move test #1
-  figure->move(new_pos);
-  printCoordinates(figure);
-
-  figure->move(-5, -20);          // move test #2
+  figure->move(-5, -20);          
   printCoordinates(figure);
 
   std::cout << "Area of rectangle is: " << figure->getArea() << '\n';
@@ -35,11 +31,8 @@ int main() {
   figure = std::addressof(circle);
   printCoordinates(figure);
 
-  new_pos = {41.2, -100};     // move test #1
+  point_t new_pos = {41.2, -100};     
   figure->move(new_pos);
-  printCoordinates(figure);
-
-  figure->move(-1.2, 120);    // move test #2
   printCoordinates(figure);
 
   std::cout << "Area of circle is: " << figure->getArea() << '\n';

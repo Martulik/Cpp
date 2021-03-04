@@ -37,18 +37,18 @@ void test(Shape& obj, point_t& dpos, std::ostream& out)
 {
   void print(const Shape & obj, std::ostream & out);
   void moving(const Shape & obj, std::ostream & out);
-  print(obj, std::cout);
+  print(obj, out);
   obj.move(dpos);
-  moving(obj, std::cout);
+  moving(obj, out);
   obj.move(dpos.x, dpos.y);
-  moving(obj, std::cout);
+  moving(obj, out);
 }
 
 void print(const Shape& obj, std::ostream& out)
 {
   void getPos(const Shape & obj, std::ostream & out);
   out << "\nShape:\n" << "::Position: ";
-  getPos(obj, std::cout);
+  getPos(obj, out);
   out << "\nSpecific: " << obj.getName() << '\n';
 }
 
@@ -61,5 +61,5 @@ void moving(const Shape& obj, std::ostream& out)
 {
   void getPos(const Shape & obj, std::ostream & out);
   out << "Figure moved on: ";
-  getPos(obj, std::cout);
+  getPos(obj, out);
 }

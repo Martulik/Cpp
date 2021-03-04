@@ -31,7 +31,7 @@ int main() {
   figure = std::addressof(circle);
   printCoordinates(figure);
 
-  point_t new_pos = {41.2, -100};     
+  point_t new_pos = {41.2, -100};
   figure->move(new_pos);
   printCoordinates(figure);
 

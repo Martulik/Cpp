@@ -19,5 +19,4 @@ private:
   double radius_;
 };
 
-
 #endif

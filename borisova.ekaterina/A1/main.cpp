@@ -4,6 +4,10 @@
 #include "circle.hpp"
 
 void testAll();
+void test(Shape& obj, point_t& dpos, std::ostream& out);
+void print(const Shape& obj, std::ostream& out);
+void printPos(const Shape& obj, std::ostream& out);
+void moving(const Shape& obj, std::ostream& out);
 
 int main()
 {
@@ -12,7 +16,6 @@ int main()
 
 void testAll()
 {
-  void test(Shape & obj, point_t & dpos, std::ostream & out);
   double x = 0.4;
   double y = 2.56;
   double width = 11.5;
@@ -35,8 +38,6 @@ void testAll()
 
 void test(Shape& obj, point_t& dpos, std::ostream& out)
 {
-  void print(const Shape & obj, std::ostream & out);
-  void moving(const Shape & obj, std::ostream & out);
   print(obj, out);
   obj.move(dpos);
   moving(obj, out);
@@ -46,20 +47,18 @@ void test(Shape& obj, point_t& dpos, std::ostream& out)
 
 void print(const Shape& obj, std::ostream& out)
 {
-  void getPos(const Shape & obj, std::ostream & out);
   out << "\nShape:\n" << "::Position: ";
-  getPos(obj, out);
+  printPos(obj, out);
   out << "\nSpecific: " << obj.getName() << '\n';
 }
 
-void getPos(const Shape& obj, std::ostream& out)
+void printPos(const Shape& obj, std::ostream& out)
 {
   out << obj.getFrameRect().pos.x << ", " << obj.getFrameRect().pos.y << '\n';
 }
 
 void moving(const Shape& obj, std::ostream& out)
 {
-  void getPos(const Shape & obj, std::ostream & out);
   out << "Figure moved on: ";
-  getPos(obj, out);
+  printPos(obj, out);
 }

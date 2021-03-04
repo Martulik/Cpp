@@ -2,8 +2,8 @@
 
 #include <cassert>
 
-Rectangle::Rectangle(const double width, const double height, const point_t& pos) :
-  unit_({width, height, pos})
+Rectangle::Rectangle(const double width, const double height, const point_t& pos):
+  unit_{ width, height, pos }
 {
   assert((width > 0) && (height > 0));
 }

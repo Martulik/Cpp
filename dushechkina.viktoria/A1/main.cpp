@@ -4,7 +4,6 @@
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
-
 void printInfoFrameRect(const Shape* shape, std::ostream& out)
 {
   out << "{" << shape->getFrameRect().pos.x << ", " << shape->getFrameRect().pos.y << "}" << '\n';

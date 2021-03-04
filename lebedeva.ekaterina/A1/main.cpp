@@ -31,6 +31,7 @@ void printCentre(std::ostream& out, const Shape& figure)
   out << '(' << figure.getFrameRect().pos.x;
   out << ", " << figure.getFrameRect().pos.y << ')';
 }
+
 void printInfo(std::ostream& out, const Shape& figure)
 {
   out << "Specific: " << figure.getName() << '\n';

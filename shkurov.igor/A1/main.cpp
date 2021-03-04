@@ -18,7 +18,7 @@ int main() {
   Shape* figure = std::addressof(rect);              
   printCoordinates(figure);
 
-  figure->move(-5, -20);          
+  figure->move(-5, -20);
   printCoordinates(figure);
 
   std::cout << "Area of rectangle is: " << figure->getArea() << '\n';

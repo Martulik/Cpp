@@ -142,6 +142,14 @@ Boost
 Accepted Labs
 =============
 
-| Name      | A1 | A3 | B1 | B3 | B4 | B5 |
-|-----------|----|----|----|----|----|----|
-| __Total__ |   0|   0|   0|   0|   0|   0|
+| Name                  | A1 | A3 | B1 | B3 | B4 | B5 |
+|-----------------------|----|----|----|----|----|----|
+| Diurdeva Dasha        | ✓  |    |    |    |    |    |
+| Doroshin Danil        | ✓  |    |    |    |    |    |
+| Ezerinia Marta        | ✓  |    |    |    |    |    |
+| Lysenko Aleksandra    | ✓  |    |    |    |    |    |
+| Murzakanov Islam      | ✓  |    |    |    |    |    |
+| Pochernin Vladislav   | ✓  |    |    |    |    |    |
+| Razukrantov Vladislav | ✓  |    |    |    |    |    |
+| Shilyaev Vladislav    | ✓  |    |    |    |    |    |
+| __Total__             |   8|   0|   0|   0|   0|   0|

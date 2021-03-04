@@ -15,7 +15,7 @@ int main() {
   point_t begin_pos = {5.5, -3.5};
   Rectangle rect(begin_pos, 6, 8);
 
-  Shape* figure = std::addressof(rect);              
+  Shape* figure = std::addressof(rect);
   printCoordinates(figure);
 
   figure->move(-5, -20);

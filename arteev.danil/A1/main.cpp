@@ -9,37 +9,25 @@ int main()
   Shape* figureCircle = new Circle({ 2, 2 }, 3);
   std::cout << "Coordinates of the center of the circle before moving: \n"
   << "X = " << figureCircle->getFrameRect().pos.x << "\t"
-  << "Y = " << figureCircle->getFrameRect().pos.y << std::endl;
+  << "Y = " << figureCircle->getFrameRect().pos.y << "\n";
 
   point_t pos = { 12, 7 };
   figureCircle->move(pos);
   std::cout << "Coordinates of the center of the circle after moving (first variant): \n"
   << "X = " << figureCircle->getFrameRect().pos.x << "\t"
-  << "Y = " << figureCircle->getFrameRect().pos.y << std::endl;
+  << "Y = " << figureCircle->getFrameRect().pos.y << "\n";
 
   figureCircle->move(10, 12);
   std::cout << "Coordinates of the center of the circle after moving (second variant): \n"
   << "X = " << figureCircle->getFrameRect().pos.x << "\t"
-  << "Y = " << figureCircle->getFrameRect().pos.y << std::endl;
-  std::cout << "Area of a circle: " << figureCircle->getArea() << std::endl<<std::endl;
+  << "Y = " << figureCircle->getFrameRect().pos.y << "\n";
+  std::cout << "Area of a circle: " << figureCircle->getArea() << "\n\n";
   delete figureCircle;
 
   Shape* figureRectangle = new Rectangle(10, 12, { 5,5 });
-  std::cout << "Coordinates of the center of the rectangle before moving: \n"
-  << "X = " << figureRectangle->getFrameRect().pos.x << "\t"
-  << "Y = " << figureRectangle->getFrameRect().pos.y << std::endl;
-
-  point_t second_pos = { 5, 3 };
-  figureRectangle->move(second_pos);
-  std::cout << "Coordinates of the center of the rectangle after moving (first variant): \n"
-  << "X = " << figureRectangle->getFrameRect().pos.x << "\t"
-  << "Y = " << figureRectangle->getFrameRect().pos.y << std::endl;
-
-  figureRectangle->move(12, 7);
-  std::cout << "Coordinates of the center of the rectangle after moving (second variant): \n"
-  << "X = " << figureRectangle->getFrameRect().pos.x << "\t"
-  << "Y = " << figureRectangle->getFrameRect().pos.y << std::endl;
-  std::cout << "Area of a rectangle: " << figureRectangle->getArea() << std::endl;
+  std::cout << "Rectangle height: " << figureRectangle->getFrameRect().height<< "\n";
+  std::cout << "Rectangle width: " << figureRectangle->getFrameRect().width<< "\n";
+  std::cout << "Rectangle area: "<< figureRectangle->getArea()<< "\n";
   delete figureRectangle;
 }
 

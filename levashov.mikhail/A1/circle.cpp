@@ -8,14 +8,14 @@ Circle::Circle(double radius, const point_t& pos):
 {
 }
 
-double Circle::getArea()const
+double Circle::getArea() const
 {
-  return (PI*radius_*radius_);
+  return (PI * radius_ * radius_);
 }
 
-rectangle_t Circle::getFrameRect()const
+rectangle_t Circle::getFrameRect() const
 {
-  return { 2*radius_, 2*radius_, pos_ };
+  return { 2 * radius_, 2 * radius_, pos_ };
 }
 
 void Circle::move(const point_t& point)
@@ -25,6 +25,6 @@ void Circle::move(const point_t& point)
 
 void Circle::move(const double dx, const double dy)
 {
-  pos_.x = pos_.x + dx;
-  pos_.y = pos_.y + dy;
+  pos_.x += dx;
+  pos_.y += dy;
 }

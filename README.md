@@ -144,12 +144,16 @@ Accepted Labs
 
 | Name                  | A1 | A3 | B1 | B3 | B4 | B5 |
 |-----------------------|----|----|----|----|----|----|
+| Borisova Ekaterina    | ✓  |    |    |    |    |    |
 | Diurdeva Dasha        | ✓  |    |    |    |    |    |
 | Doroshin Danil        | ✓  |    |    |    |    |    |
 | Ezerinia Marta        | ✓  |    |    |    |    |    |
+| Ivanova Maria         | ✓  |    |    |    |    |    |
+| Lebedeva Ekaterina    | ✓  |    |    |    |    |    |
 | Lysenko Aleksandra    | ✓  |    |    |    |    |    |
 | Murzakanov Islam      | ✓  |    |    |    |    |    |
 | Pochernin Vladislav   | ✓  |    |    |    |    |    |
+| Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  |    |    |    |    |    |
 | Shilyaev Vladislav    | ✓  |    |    |    |    |    |
-| __Total__             |   8|   0|   0|   0|   0|   0|
+| __Total__             |  12|   0|   0|   0|   0|   0|

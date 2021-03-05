@@ -9,7 +9,8 @@ void printCoordinates(const Shape* figure)
             << ':' << figure->getFrameRect().pos.y << ')' << '\n';
 }
 
-int main() {
+int main()
+{
   std::cout << "Rectangle test:" << '\n';
   point_t begin_pos = {5.5, -3.5};
   Rectangle rect(begin_pos, 6, 8);

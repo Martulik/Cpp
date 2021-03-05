@@ -9,7 +9,6 @@ void printCoordinates(const Shape* figure)
             << ':' << figure->getFrameRect().pos.y << ')' << '\n';
 }
 
-
 int main() {
   std::cout << "Rectangle test:" << '\n';
   point_t begin_pos = {5.5, -3.5};
@@ -23,7 +22,6 @@ int main() {
 
   std::cout << "Area of rectangle is: " << figure->getArea() << '\n';
 
-
   std::cout << '\n' << "Circle test:" << '\n';
   begin_pos = {-31.2, 9.21};
   Circle circle(begin_pos, 10);
@@ -36,7 +34,6 @@ int main() {
   printCoordinates(figure);
 
   std::cout << "Area of circle is: " << figure->getArea() << '\n';
-
 
   return 0;
 }

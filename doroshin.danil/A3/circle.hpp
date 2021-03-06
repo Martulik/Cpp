@@ -3,7 +3,8 @@
 
 #include "shape.hpp"
 
-namespace doroshin {
+namespace doroshin
+{
   class Circle: public Shape
   {
   public:

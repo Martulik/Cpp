@@ -1,7 +1,8 @@
 #ifndef BASE_TYPES_HPP
 #define BASE_TYPES_HPP
 
-namespace doroshin {
+namespace doroshin
+{
   struct point_t
   {
     double x, y;

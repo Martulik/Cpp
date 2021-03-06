@@ -8,7 +8,8 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-namespace doroshin {
+namespace doroshin
+{
   class CompositeShape: public Shape
   {
     // A tagged union class that exposes the Shape interface of every member

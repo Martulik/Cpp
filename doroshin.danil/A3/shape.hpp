@@ -3,7 +3,8 @@
 
 #include "base-types.hpp"
 
-namespace doroshin {
+namespace doroshin
+{
   class Shape
   {
   public:

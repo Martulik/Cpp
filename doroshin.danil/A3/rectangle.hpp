@@ -2,7 +2,8 @@
 #define RECTANGLE_HPP
 #include "shape.hpp"
 
-namespace doroshin {
+namespace doroshin
+{
   class Rectangle: public Shape
   {
   public:

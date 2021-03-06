@@ -26,8 +26,8 @@ void Rectangle::move(const point_t& point)
 
 void Rectangle::move(const double x, const double y)
 {
-  pos_.x += + x;
-  pos_.y += + y;
+  pos_.x += x;
+  pos_.y += y;
 }
 
 std::string Rectangle::getName() const

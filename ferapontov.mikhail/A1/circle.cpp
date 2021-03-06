@@ -3,7 +3,7 @@
 
 const double PI = 3.1415926;
 
-Circle::Circle(double radius,const point_t& pos):
+Circle::Circle(double radius, const point_t& pos):
   radius_(radius),
   pos_(pos)
 {

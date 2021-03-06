@@ -6,7 +6,7 @@
 class Rectangle: public Shape
 {
 public:
-  Rectangle(double width, double height,const point_t& pos);
+  Rectangle(double width, double height, const point_t& pos);
 
   virtual ~Rectangle() = default;
 

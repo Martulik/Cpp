@@ -4,6 +4,8 @@
 
 namespace dan = doroshin;
 
+const double PI = 3.14159265358979323846;
+
 dan::Circle::Circle(point_t pos, double r):
   pos_(pos),
   radius_(r)
@@ -13,7 +15,7 @@ dan::Circle::Circle(point_t pos, double r):
 
 double dan::Circle::getArea() const
 {
-  return M_PI * radius_ * radius_;
+  return PI * radius_ * radius_;
 }
 
 dan::rectangle_t dan::Circle::getFrameRect() const

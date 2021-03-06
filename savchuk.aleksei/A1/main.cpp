@@ -4,8 +4,8 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void printFrameRect(Shape* s);
-void testArea(Shape* s);
+void printFrameRect(const Shape* s);
+void testArea(const Shape* s);
 void testMove(Shape* s, const point_t& p);
 void testMove(Shape* s, double dx, double dy);
 
@@ -24,7 +24,7 @@ int main()
   delete circ;
 }
 
-void printFrameRect(Shape* s)
+void printFrameRect(const Shape* s)
 {
   rectangle_t r = s->getFrameRect();
   std::cout << "p = (" << r.pos.x << ", " << r.pos.y << "), ";
@@ -32,7 +32,7 @@ void printFrameRect(Shape* s)
   std::cout << "h = " << r.height << '\n';
 }
 
-void testArea(Shape* s)
+void testArea(const Shape* s)
 {
   std::cout << "area = " << s->getArea() << '\n';
 }

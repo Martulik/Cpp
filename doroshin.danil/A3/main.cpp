@@ -93,7 +93,7 @@ int main()
     std::unique_ptr<dan::Shape> next = input_shape(std::cin);
     std::skipws(std::cin);
     if(!next)
-      return 1;
+      return 0;
     aggregate.add(std::move(next));
   }
   std::cout << "\nResult:\n";

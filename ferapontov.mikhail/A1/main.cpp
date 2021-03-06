@@ -20,7 +20,7 @@ int main()
 {
   const point_t point_zero = {0, 0};
   const point_t not_zero = {123, 3};
-  Shape* rect = new Rectangle(5, 10, {23,3});
+  Shape* rect = new Rectangle(5, 10, {23, 3});
   Shape* circle = new Circle(3.5, point_zero);
   test(rect, std::cout, point_zero);
   test(circle, std::cout, not_zero);

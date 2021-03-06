@@ -3,9 +3,9 @@
 #include <cmath>
 #include <cassert>
 
-namespace d = doroshin;
+namespace dan = doroshin;
 
-d::rectangle_t from_two_points(d::point_t a, d::point_t b)
+dan::rectangle_t from_two_points(dan::point_t a, dan::point_t b)
 {
   double min_x = std::min(a.x, b.x);
   double max_x = std::max(a.x, b.x);
@@ -17,49 +17,49 @@ d::rectangle_t from_two_points(d::point_t a, d::point_t b)
   double w = max_x - min_x;
   double h = max_y - min_y;
 
-  return d::rectangle_t{w, h, {x, y}};
+  return dan::rectangle_t{w, h, {x, y}};
 }
 
-d::Rectangle::Rectangle(rectangle_t rect):
+dan::Rectangle::Rectangle(rectangle_t rect):
   rect(rect)
 {
   assert(rect.width >= 0);
   assert(rect.height >= 0);
 }
 
-d::Rectangle::Rectangle(double w, double h, point_t pos):
+dan::Rectangle::Rectangle(double w, double h, point_t pos):
   rect{w, h, pos}
 {
   assert(rect.width >= 0);
   assert(rect.height >= 0);
 }
 
-d::Rectangle::Rectangle(point_t a, point_t b):
+dan::Rectangle::Rectangle(point_t a, point_t b):
   rect(from_two_points(a, b))
 {}
 
-double d::Rectangle::getArea() const
+double dan::Rectangle::getArea() const
 {
   return rect.width * rect.height;
 }
 
-d::rectangle_t d::Rectangle::getFrameRect() const
+dan::rectangle_t dan::Rectangle::getFrameRect() const
 {
   return rect;
 }
 
-void d::Rectangle::move_rel(point_t vec)
+void dan::Rectangle::move_rel(point_t vec)
 {
   rect.pos.x += vec.x;
   rect.pos.y += vec.y;
 }
 
-void d::Rectangle::move_abs(point_t point)
+void dan::Rectangle::move_abs(point_t point)
 {
   rect.pos = point;
 }
 
-void d::Rectangle::scale(double s)
+void dan::Rectangle::scale(double s)
 {
   rect.width *= fabs(s);
   rect.height *= fabs(s);

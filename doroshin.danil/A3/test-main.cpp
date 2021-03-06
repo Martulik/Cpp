@@ -5,28 +5,28 @@
 #define BOOST_TEST_MODULE test
 #include <boost/test/included/unit_test.hpp>
 
-namespace d = doroshin;
+namespace dan = doroshin;
 
-bool equal_size(const d::rectangle_t& lhs, const d::rectangle_t& rhs)
+bool equal_size(const dan::rectangle_t& lhs, const dan::rectangle_t& rhs)
 {
   return lhs.height == rhs.height && lhs.width == rhs.width;
 }
 
-void test_move_rel(d::Shape& s, d::point_t vec)
+void test_move_rel(dan::Shape& s, dan::point_t vec)
 {
-  d::rectangle_t orig_frame = s.getFrameRect();
+  dan::rectangle_t orig_frame = s.getFrameRect();
   s.move_rel(vec);
   BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
 }
 
-void test_move_abs(d::Shape& s, d::point_t point)
+void test_move_abs(dan::Shape& s, dan::point_t point)
 {
-  d::rectangle_t orig_frame = s.getFrameRect();
+  dan::rectangle_t orig_frame = s.getFrameRect();
   s.move_abs(point);
   BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
 }
 
-void test_scale(d::Shape& s, double coeff)
+void test_scale(dan::Shape& s, double coeff)
 {
   double orig = s.getArea();
   double predicted = coeff * coeff * orig;
@@ -37,7 +37,7 @@ void test_scale(d::Shape& s, double coeff)
 
 BOOST_AUTO_TEST_CASE(move_circle)
 {
-  d::Circle c{{1, 2}, 3};
+  dan::Circle c{{1, 2}, 3};
 
   test_move_rel(c, {1, 2});
   test_move_rel(c, {-5, 7});
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(move_circle)
 
 BOOST_AUTO_TEST_CASE(move_rectangle)
 {
-  d::Rectangle r{3, 4, {1, 2}};
+  dan::Rectangle r{3, 4, {1, 2}};
 
   test_move_rel(r, {1, 2});
   test_move_rel(r, {-5, 7});
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(move_rectangle)
 
 BOOST_AUTO_TEST_CASE(move_composite)
 {
-  d::CompositeShape s {d::Rectangle{2, 3, {-1, 0}}, d::Circle{{1, 1}, 2}};
+  dan::CompositeShape s {dan::Rectangle{2, 3, {-1, 0}}, dan::Circle{{1, 1}, 2}};
 
   test_move_rel(s, {1, 2});
   test_move_rel(s, {-5, 7});
@@ -64,21 +64,21 @@ BOOST_AUTO_TEST_CASE(move_composite)
 
 BOOST_AUTO_TEST_CASE(scale_circle)
 {
-  d::Circle c{{0, 0}, 2};
+  dan::Circle c{{0, 0}, 2};
   test_scale(c, 3);
   test_scale(c, 0.5);
 }
 
 BOOST_AUTO_TEST_CASE(scale_rectangle)
 {
-  d::Rectangle r{3, 4, {1, 2}};
+  dan::Rectangle r{3, 4, {1, 2}};
   test_scale(r, 5);
   test_scale(r, 0.3);
 }
 
 BOOST_AUTO_TEST_CASE(scale_composite)
 {
-  d::CompositeShape s {d::Rectangle{2, 3, {-1, 0}}, d::Circle{{1, 1}, 2}};
+  dan::CompositeShape s {dan::Rectangle{2, 3, {-1, 0}}, dan::Circle{{1, 1}, 2}};
   test_scale(s, 4.5);
   test_scale(s, 0.1);
 }

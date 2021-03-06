@@ -147,7 +147,7 @@ int echo_composite()
         return 1;
       }
       print(std::cout, c);
-      shape.add(c);
+      shape.add(dan::make_shape(dan::Circle(c)));
     }
     else if(type == "rectangle") {
       dan::Rectangle r = input_rectangle(in);
@@ -156,7 +156,7 @@ int echo_composite()
         return 1;
       }
       print(std::cout, r);
-      shape.add(r);
+      shape.add(dan::make_shape(dan::Rectangle(r)));
     }
     else if(type.empty())
       break;

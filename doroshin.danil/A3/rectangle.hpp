@@ -1,5 +1,7 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
+
+#include <memory>
 #include "shape.hpp"
 
 namespace doroshin
@@ -22,6 +24,8 @@ namespace doroshin
   private:
     rectangle_t rect;
   };
+
+  std::unique_ptr<Shape> make_shape(const Rectangle&);
 }
 
 #endif // RECTANGLE_HPP

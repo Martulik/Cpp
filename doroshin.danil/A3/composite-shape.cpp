@@ -7,195 +7,17 @@
 
 namespace dan = doroshin;
 
-dan::CompositeShape::AnyShape::AnyShape():
-  type(Type::Uninitialized)
-{}
-
-dan::CompositeShape::AnyShape::AnyShape(Circle c):
-  type(Type::Circle),
-  circle(c)
-{}
-
-dan::CompositeShape::AnyShape::AnyShape(Rectangle r):
-  type(Type::Rectangle),
-  rectangle(r)
-{}
-
-double dan::CompositeShape::AnyShape::getArea() const
-{
-  double res = 0.0;
-  switch (type)
-  {
-  case Type::Circle:
-    res = circle.getArea();
-    break;
-  case Type::Rectangle:
-    res = rectangle.getArea();
-    break;
-  default:
-    assert(!"Missing area case");
-  }
-  return res;
-}
-
-dan::rectangle_t dan::CompositeShape::AnyShape::getFrameRect() const
-{
-  rectangle_t res;
-  switch (type)
-  {
-  case Type::Circle:
-    res = circle.getFrameRect();
-    break;
-  case Type::Rectangle:
-    res = rectangle.getFrameRect();
-    break;
-  default:
-    assert(!"Missing frame rect case");
-  }
-  return res;
-}
-
-void dan::CompositeShape::AnyShape::move_rel(point_t vec)
-{
-  switch (type)
-  {
-  case Type::Circle:
-    return circle.move_rel(vec);
-  case Type::Rectangle:
-    return rectangle.move_rel(vec);
-  default:
-    assert(!"Missing move_rel case");
-  }
-}
-
-void dan::CompositeShape::AnyShape::move_abs(point_t point)
-{
-  switch (type)
-  {
-  case Type::Circle:
-    return circle.move_abs(point);
-  case Type::Rectangle:
-    return rectangle.move_abs(point);
-  default:
-    assert(!"Missing move_abs case");
-  }
-}
-
-void dan::CompositeShape::AnyShape::scale(double s)
-{
-  switch (type)
-  {
-  case Type::Circle:
-    return circle.scale(s);
-  case Type::Rectangle:
-    return rectangle.scale(s);
-  default:
-    assert(!"Missing scale case");
-  }
-}
-
-dan::CompositeShape::AnyShape::AnyShape(const AnyShape& other):
-  type(other.type)
-{
-  switch (type)
-  {
-  case Type::Circle:
-    circle = other.circle;
-    break;
-  case Type::Rectangle:
-    rectangle = other.rectangle;
-    break;
-  default:
-    assert(!"Missing copy-ctr case");
-  }
-}
-
-dan::CompositeShape::AnyShape::AnyShape(const AnyShape&& other) noexcept:
-  type(other.type)
-{
-  switch (type)
-  {
-  case Type::Circle:
-    circle = std::move(other.circle);
-    break;
-  case Type::Rectangle:
-    rectangle = std::move(other.rectangle);
-    break;
-  default:
-    assert(!"Missing move-ctr case");
-  }
-}
-
-dan::CompositeShape::AnyShape& dan::CompositeShape::AnyShape::operator=(const AnyShape& other)
-{
-  type = other.type;
-  switch (type)
-  {
-  case Type::Circle:
-    circle = other.circle;
-    break;
-  case Type::Rectangle:
-    rectangle = other.rectangle;
-    break;
-  default:
-    assert(!"Missing copy-operator= case");
-  }
-  return *this;
-}
-
-dan::CompositeShape::AnyShape& dan::CompositeShape::AnyShape::operator=(const AnyShape&& other) noexcept
-{
-  type = other.type;
-  switch (type)
-  {
-  case Type::Circle:
-    circle = std::move(other.circle);
-    break;
-  case Type::Rectangle:
-    rectangle = std::move(other.rectangle);
-    break;
-  default:
-    assert(!"Missing move-operator= case");
-  }
-  return *this;
-}
-
-dan::CompositeShape::AnyShape::~AnyShape()
-{
-  switch (type)
-  {
-  case Type::Circle:
-    circle.~Circle();
-    break;
-  case Type::Rectangle:
-    rectangle.~Rectangle();
-    break;
-  default:
-    assert(!"Missing destructor case");
-  }
-}
-
 dan::CompositeShape::CompositeShape():
   shapes_(nullptr),
   size_(0)
 {}
 
-dan::CompositeShape::CompositeShape(std::initializer_list<AnyShape> list):
-  size_(list.size())
+void dan::CompositeShape::add(shape_ptr shape)
 {
-  shapes_ = std::make_unique<AnyShape[]>(size_);
-  size_t i = 0;
-  for(const AnyShape& shape : list) {
-    shapes_[i++] = shape;
-  }
-}
-
-void dan::CompositeShape::add(const AnyShape& shape)
-{
-  std::unique_ptr<AnyShape[]> new_shapes = std::make_unique<AnyShape[]>(size_ + 1);
+  array_t new_shapes = std::make_unique<shape_ptr[]>(size_ + 1);
   for(size_t i = 0; i < size_; ++i)
     new_shapes[i] = std::move(shapes_[i]);
-  new_shapes[size_++] = shape;
+  new_shapes[size_++] = std::move(shape);
   std::swap(shapes_, new_shapes);
 }
 
@@ -204,7 +26,7 @@ double dan::CompositeShape::getArea() const
   assert("Not implemented properly");
   double sum = 0.0;
   for(size_t i = 0; i < size_; ++i) {
-    sum += shapes_[i].getArea();
+    sum += shapes_[i]->getArea();
   }
   return sum;
 }
@@ -218,7 +40,7 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
   double max_y = std::numeric_limits<double>::lowest();
 
   for(size_t i = 0; i < size_; ++i) {
-    rectangle_t frame = shapes_[i].getFrameRect();
+    rectangle_t frame = shapes_[i]->getFrameRect();
     min_x = std::min(min_x, frame.pos.x - frame.width / 2);
     max_x = std::max(max_x, frame.pos.x + frame.width / 2);
     min_y = std::min(min_y, frame.pos.y - frame.height / 2);
@@ -235,7 +57,7 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
 void dan::CompositeShape::move_rel(point_t vec)
 {
   for(size_t i = 0; i < size_; ++i) {
-    shapes_[i].move_rel(vec);
+    shapes_[i]->move_rel(vec);
   }
 }
 
@@ -243,9 +65,9 @@ void dan::CompositeShape::move_abs(point_t point)
 {
   point_t center = getFrameRect().pos;
   for(size_t i = 0; i < size_; ++i) {
-    point_t shape = shapes_[i].getFrameRect().pos;
+    point_t shape = shapes_[i]->getFrameRect().pos;
     point_t delta {shape.x - center.x, shape.y - center.y};
-    shapes_[i].move_abs({point.x + delta.x, point.y + delta.y});
+    shapes_[i]->move_abs({point.x + delta.x, point.y + delta.y});
   }
 }
 
@@ -253,26 +75,11 @@ void dan::CompositeShape::scale(double s)
 {
   point_t center = getFrameRect().pos;
   for(size_t i = 0; i < size_; ++i) {
-    point_t shape = shapes_[i].getFrameRect().pos;
+    point_t shape = shapes_[i]->getFrameRect().pos;
     point_t move_vec { s * (center.x - shape.x), s * (center.y - shape.y) };
-    shapes_[i].move_rel(move_vec);
-    shapes_[i].scale(s);
+    shapes_[i]->move_rel(move_vec);
+    shapes_[i]->scale(s);
   }
-}
-
-dan::CompositeShape::CompositeShape(const CompositeShape& other):
-  size_(other.size_)
-{
-  shapes_ = std::make_unique<AnyShape[]>(size_);
-  for(size_t i = 0; i < size_; ++i)
-    shapes_[i] = other.shapes_[i];
-}
-
-dan::CompositeShape& dan::CompositeShape::operator=(const CompositeShape& other)
-{
-  CompositeShape tmp(other);
-  swap(*this, tmp);
-  return *this;
 }
 
 void dan::swap(CompositeShape& lhs, CompositeShape& rhs)

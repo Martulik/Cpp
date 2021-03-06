@@ -5,36 +5,36 @@
 namespace dan = doroshin;
 
 dan::Circle::Circle(point_t pos, double r):
-  pos(pos),
-  radius(r)
+  pos_(pos),
+  radius_(r)
 {
-  assert(radius >= 0);
+  assert(radius_ >= 0);
 }
 
 double dan::Circle::getArea() const
 {
-  return M_PI * radius * radius;
+  return M_PI * radius_ * radius_;
 }
 
 dan::rectangle_t dan::Circle::getFrameRect() const
 {
-  return rectangle_t{ 2 * radius, 2 * radius, pos };
+  return rectangle_t{ 2 * radius_, 2 * radius_, pos_ };
 }
 
 void dan::Circle::move_rel(point_t vec)
 {
-  pos.x += vec.x;
-  pos.y += vec.y;
+  pos_.x += vec.x;
+  pos_.y += vec.y;
 }
 
 void dan::Circle::move_abs(point_t point)
 {
-  pos = point;
+  pos_ = point;
 }
 
 void dan::Circle::scale(double s)
 {
-  radius *= fabs(s);
+  radius_ *= fabs(s);
 }
 
 std::unique_ptr<dan::Shape> dan::make_shape(const Circle& c)

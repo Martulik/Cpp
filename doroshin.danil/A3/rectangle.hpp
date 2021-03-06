@@ -22,7 +22,7 @@ namespace doroshin
     void scale(double s) override;
 
   private:
-    rectangle_t rect;
+    rectangle_t rect_;
   };
 
   std::unique_ptr<Shape> make_shape(const Rectangle&);

@@ -20,8 +20,8 @@ namespace doroshin
     void scale(double s) override;
 
   private:
-    point_t pos;
-    double radius;
+    point_t pos_;
+    double radius_;
   };
 
   std::unique_ptr<Shape> make_shape(const Circle&);

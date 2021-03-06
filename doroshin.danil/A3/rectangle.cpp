@@ -21,48 +21,48 @@ dan::rectangle_t from_two_points(dan::point_t a, dan::point_t b)
 }
 
 dan::Rectangle::Rectangle(rectangle_t rect):
-  rect(rect)
+  rect_(rect)
 {
   assert(rect.width >= 0);
   assert(rect.height >= 0);
 }
 
 dan::Rectangle::Rectangle(double w, double h, point_t pos):
-  rect{w, h, pos}
+  rect_{w, h, pos}
 {
-  assert(rect.width >= 0);
-  assert(rect.height >= 0);
+  assert(rect_.width >= 0);
+  assert(rect_.height >= 0);
 }
 
 dan::Rectangle::Rectangle(point_t a, point_t b):
-  rect(from_two_points(a, b))
+  rect_(from_two_points(a, b))
 {}
 
 double dan::Rectangle::getArea() const
 {
-  return rect.width * rect.height;
+  return rect_.width * rect_.height;
 }
 
 dan::rectangle_t dan::Rectangle::getFrameRect() const
 {
-  return rect;
+  return rect_;
 }
 
 void dan::Rectangle::move_rel(point_t vec)
 {
-  rect.pos.x += vec.x;
-  rect.pos.y += vec.y;
+  rect_.pos.x += vec.x;
+  rect_.pos.y += vec.y;
 }
 
 void dan::Rectangle::move_abs(point_t point)
 {
-  rect.pos = point;
+  rect_.pos = point;
 }
 
 void dan::Rectangle::scale(double s)
 {
-  rect.width *= fabs(s);
-  rect.height *= fabs(s);
+  rect_.width *= fabs(s);
+  rect_.height *= fabs(s);
 }
 
 std::unique_ptr<dan::Shape> dan::make_shape(const Rectangle& r)

@@ -56,8 +56,8 @@ BOOST_AUTO_TEST_CASE(move_rectangle)
 BOOST_AUTO_TEST_CASE(move_composite)
 {
   dan::CompositeShape s;
-  s.add(dan::make_shape(dan::Rectangle{2, 3, {-1, 0}}));
-  s.add(dan::make_shape(dan::Circle{{1, 1}, 2}));
+  s.add(std::make_unique<dan::Rectangle>(2, 3, dan::point_t{-1, 0}));
+  s.add(std::make_unique<dan::Circle>(dan::point_t{1, 1}, 2));
 
   test_move_rel(s, {1, 2});
   test_move_rel(s, {-5, 7});
@@ -81,8 +81,8 @@ BOOST_AUTO_TEST_CASE(scale_rectangle)
 BOOST_AUTO_TEST_CASE(scale_composite)
 {
   dan::CompositeShape s;
-  s.add(dan::make_shape(dan::Rectangle{2, 3, {-1, 0}}));
-  s.add(dan::make_shape(dan::Circle{{1, 1}, 2}));
+  s.add(std::make_unique<dan::Rectangle>(2, 3, dan::point_t{-1, 0}));
+  s.add(std::make_unique<dan::Circle>(dan::point_t{1, 1}, 2));
   test_scale(s, 4.5);
   test_scale(s, 0.1);
 }

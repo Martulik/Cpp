@@ -38,9 +38,3 @@ void dan::Circle::scale(double s)
 {
   radius_ *= fabs(s);
 }
-
-std::unique_ptr< dan::Shape > dan::make_shape(const Circle& c)
-{
-  Circle* ptr = new Circle(c);
-  return std::unique_ptr< Shape >(ptr);
-}

@@ -1,7 +1,6 @@
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
 
-#include <memory>
 #include "shape.hpp"
 
 namespace doroshin
@@ -23,8 +22,6 @@ namespace doroshin
     point_t pos_;
     double radius_;
   };
-
-  std::unique_ptr< Shape > make_shape(const Circle&);
 }
 
 #endif // CIRCLE_HPP

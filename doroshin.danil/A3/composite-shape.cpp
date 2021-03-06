@@ -14,7 +14,7 @@ dan::CompositeShape::CompositeShape():
 
 void dan::CompositeShape::add(shape_ptr shape)
 {
-  array_t new_shapes = std::make_unique<shape_ptr[]>(size_ + 1);
+  array_t new_shapes = std::make_unique< shape_ptr[] >(size_ + 1);
   for(size_t i = 0; i < size_; ++i)
     new_shapes[i] = std::move(shapes_[i]);
   new_shapes[size_++] = std::move(shape);
@@ -34,10 +34,10 @@ double dan::CompositeShape::getArea() const
 dan::rectangle_t dan::CompositeShape::getFrameRect() const
 {
   assert(size_ != 0);
-  double min_x = std::numeric_limits<double>::max();
-  double max_x = std::numeric_limits<double>::lowest();
-  double min_y = std::numeric_limits<double>::max();
-  double max_y = std::numeric_limits<double>::lowest();
+  double min_x = std::numeric_limits< double >::max();
+  double max_x = std::numeric_limits< double >::lowest();
+  double min_y = std::numeric_limits< double >::max();
+  double max_y = std::numeric_limits< double >::lowest();
 
   for(size_t i = 0; i < size_; ++i) {
     rectangle_t frame = shapes_[i]->getFrameRect();

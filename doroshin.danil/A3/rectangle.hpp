@@ -25,7 +25,7 @@ namespace doroshin
     rectangle_t rect_;
   };
 
-  std::unique_ptr<Shape> make_shape(const Rectangle&);
+  std::unique_ptr< Shape > make_shape(const Rectangle&);
 }
 
 #endif // RECTANGLE_HPP

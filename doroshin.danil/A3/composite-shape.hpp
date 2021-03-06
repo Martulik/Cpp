@@ -12,8 +12,8 @@ namespace doroshin
 {
   class CompositeShape: public Shape
   {
-    using shape_ptr = std::unique_ptr<Shape>;
-    using array_t = std::unique_ptr<shape_ptr[]>;
+    using shape_ptr = std::unique_ptr< Shape >;
+    using array_t = std::unique_ptr< shape_ptr[] >;
 
     array_t shapes_;
     size_t size_;

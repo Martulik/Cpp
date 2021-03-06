@@ -24,7 +24,7 @@ namespace doroshin
     double radius_;
   };
 
-  std::unique_ptr<Shape> make_shape(const Circle&);
+  std::unique_ptr< Shape > make_shape(const Circle&);
 }
 
 #endif // CIRCLE_HPP

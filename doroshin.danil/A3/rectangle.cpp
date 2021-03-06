@@ -65,8 +65,8 @@ void dan::Rectangle::scale(double s)
   rect_.height *= fabs(s);
 }
 
-std::unique_ptr<dan::Shape> dan::make_shape(const Rectangle& r)
+std::unique_ptr< dan::Shape > dan::make_shape(const Rectangle& r)
 {
   Rectangle* ptr = new Rectangle(r);
-  return std::unique_ptr<Shape>(ptr);
+  return std::unique_ptr< Shape >(ptr);
 }

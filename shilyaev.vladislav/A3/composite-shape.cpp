@@ -1,6 +1,7 @@
 #include "composite-shape.hpp"
 #include <limits>
 #include <cassert>
+#include <memory>
 
 const size_t INITIAL_CAPACITY = 4;
 const size_t CAPACITY_INCREASE_FACTOR = 2;
@@ -8,13 +9,8 @@ const size_t CAPACITY_INCREASE_FACTOR = 2;
 shilyaev::CompositeShape::CompositeShape():
   capacity_(INITIAL_CAPACITY),
   size_(0),
-  shapes_(new std::unique_ptr<Shape>[INITIAL_CAPACITY])
+  shapes_(std::make_unique<std::unique_ptr<Shape>[]>(INITIAL_CAPACITY))
 {
-}
-
-shilyaev::CompositeShape::~CompositeShape()
-{
-  delete[] shapes_;
 }
 
 double shilyaev::CompositeShape::getArea() const
@@ -85,12 +81,11 @@ void shilyaev::CompositeShape::insert(std::unique_ptr<Shape> shape)
 void shilyaev::CompositeShape::increaseCapacity()
 {
   capacity_ *= CAPACITY_INCREASE_FACTOR;
-  std::unique_ptr<Shape> *old = shapes_;
-  shapes_ = new std::unique_ptr<Shape>[capacity_];
+  std::unique_ptr<std::unique_ptr<Shape>[]> old = std::move(shapes_);
+  shapes_ = std::make_unique<std::unique_ptr<Shape>[]>(capacity_);
   for (size_t i = 0; i < size_; i++) {
     shapes_[i] = std::move(old[i]);
   }
-  delete[] old;
 }
 
 size_t shilyaev::CompositeShape::getSize() const

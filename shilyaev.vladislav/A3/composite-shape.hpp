@@ -8,7 +8,6 @@ namespace shilyaev {
   class CompositeShape: public Shape {
   public:
     CompositeShape();
-    ~CompositeShape() override;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t &pos) override;
@@ -19,7 +18,7 @@ namespace shilyaev {
   private:
     size_t capacity_;
     size_t size_;
-    std::unique_ptr<Shape> *shapes_;
+    std::unique_ptr<std::unique_ptr<Shape>[]> shapes_;
     void increaseCapacity();
   };
 }

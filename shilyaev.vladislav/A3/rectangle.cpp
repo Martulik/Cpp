@@ -15,7 +15,7 @@ double shilyaev::Rectangle::getArea() const
   return width_ * height_;
 }
 
-rectangle_t shilyaev::Rectangle::getFrameRect() const
+shilyaev::rectangle_t shilyaev::Rectangle::getFrameRect() const
 {
   return rectangle_t{width_, height_, pos_};
 }

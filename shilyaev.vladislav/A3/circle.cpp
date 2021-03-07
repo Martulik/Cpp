@@ -16,7 +16,7 @@ double shilyaev::Circle::getArea() const
   return PI * radius_ * radius_;
 }
 
-rectangle_t shilyaev::Circle::getFrameRect() const
+shilyaev::rectangle_t shilyaev::Circle::getFrameRect() const
 {
   return rectangle_t{radius_ * 2, radius_ * 2, pos_};
 }

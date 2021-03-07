@@ -24,7 +24,7 @@ double shilyaev::CompositeShape::getArea() const
   return area;
 }
 
-rectangle_t shilyaev::CompositeShape::getFrameRect() const
+shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
 {
   double maxX = std::numeric_limits<double>::min();
   double maxY = std::numeric_limits<double>::min();

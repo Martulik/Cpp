@@ -19,7 +19,6 @@ shilyaev::CompositeShape::~CompositeShape()
 
 double shilyaev::CompositeShape::getArea() const
 {
-  //TODO
   double area = 0.0;
   for (size_t i = 0; i < size_; i++) {
     area += shapes_[i]->getArea();
@@ -46,8 +45,10 @@ shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
 
 void shilyaev::CompositeShape::move(const point_t &pos)
 {
-  point_t center = getFrameRect().pos;
-  move(pos.x - center.x, pos.y - center.y);
+  if (size_ > 0) {
+    point_t center = getFrameRect().pos;
+    move(pos.x - center.x, pos.y - center.y);
+  }
 }
 
 void shilyaev::CompositeShape::move(double dx, double dy)
@@ -60,13 +61,15 @@ void shilyaev::CompositeShape::move(double dx, double dy)
 void shilyaev::CompositeShape::scale(double factor)
 {
   assert(factor >= 0.0);
-  point_t center = getFrameRect().pos;
-  for (size_t i = 0; i < size_; i++) {
-    shapes_[i]->scale(factor);
-    point_t localCenter = shapes_[i]->getFrameRect().pos;
-    point_t newLocalCenter{center.x + (localCenter.x - center.x) * factor,
-                           center.y + (localCenter.y - center.y) * factor};
-    shapes_[i]->move(newLocalCenter);
+  if (size_ > 0) {
+    point_t center = getFrameRect().pos;
+    for (size_t i = 0; i < size_; i++) {
+      shapes_[i]->scale(factor);
+      point_t localCenter = shapes_[i]->getFrameRect().pos;
+      point_t newLocalCenter{center.x + (localCenter.x - center.x) * factor,
+                             center.y + (localCenter.y - center.y) * factor};
+      shapes_[i]->move(newLocalCenter);
+    }
   }
 }
 

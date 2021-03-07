@@ -1,12 +1,19 @@
 #include "rectangle.hpp"
 
 #include <cassert>
+#include <stdexcept>
 
 pochernin::Rectangle::Rectangle(const double width, const double height, const pochernin::point_t& pos):
   figure_({width, height, pos})
 {
-  assert (width >= 0.0);
-  assert (height >= 0.0);
+  if (width < 0)
+  {
+    throw(std::invalid_argument("Negative width"));
+  }
+  if (height < 0)
+  {
+    throw(std::invalid_argument("Negative height"));
+  }
 }
 
 double pochernin::Rectangle::getArea() const
@@ -32,6 +39,10 @@ void pochernin::Rectangle::move(const double dx, const double dy)
 
 void pochernin::Rectangle::scale(const double factor)
 {
+  if (factor < 0)
+  {
+    throw(std::invalid_argument("Negative factor"));
+  }
   figure_.width *= factor;
   figure_.height *= factor;
 }

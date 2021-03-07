@@ -1,13 +1,17 @@
 #include "circle.hpp"
 
 #include <cassert>
+#include <stdexcept>
 
 const double PI = 3.14159265358979323846;
 
 pochernin::Circle::Circle(const double radius, const pochernin::point_t& pos):
   figure_({2.0 * radius, 2.0 * radius, pos})
 {
-  assert (radius >= 0.0);
+  if (radius < 0)
+  {
+    throw(std::invalid_argument("Negative radius"));
+  }
 }
 
 double pochernin::Circle::getArea() const
@@ -33,6 +37,10 @@ void pochernin::Circle::move(const double dx, const double dy)
 
 void pochernin::Circle::scale(const double factor)
 {
+  if (factor < 0)
+  {
+    throw(std::invalid_argument("Negative factor"));
+  }
   figure_.width *= factor;
   figure_.height *= factor;
 }

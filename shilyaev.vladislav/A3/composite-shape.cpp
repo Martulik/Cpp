@@ -2,10 +2,13 @@
 #include <limits>
 #include <cassert>
 
+const size_t INITIAL_CAPACITY = 4;
+const size_t CAPACITY_INCREASE_FACTOR = 2;
+
 shilyaev::CompositeShape::CompositeShape():
   capacity_(INITIAL_CAPACITY),
   size_(0),
-  shapes_(new std::shared_ptr<Shape>[INITIAL_CAPACITY])
+  shapes_(new std::unique_ptr<Shape>[INITIAL_CAPACITY])
 {
 }
 
@@ -67,22 +70,22 @@ void shilyaev::CompositeShape::scale(double factor)
   }
 }
 
-void shilyaev::CompositeShape::insert(std::shared_ptr<Shape> shape)
+void shilyaev::CompositeShape::insert(std::unique_ptr<Shape> shape)
 {
   if (size_ >= capacity_) {
     increaseCapacity();
   }
-  shapes_[size_] = std::shared_ptr<Shape>(shape);
+  shapes_[size_] = std::move(shape);
   size_++;
 }
 
 void shilyaev::CompositeShape::increaseCapacity()
 {
   capacity_ *= CAPACITY_INCREASE_FACTOR;
-  std::shared_ptr<Shape> *old = shapes_;
-  shapes_ = new std::shared_ptr<Shape>[capacity_];
+  std::unique_ptr<Shape> *old = shapes_;
+  shapes_ = new std::unique_ptr<Shape>[capacity_];
   for (size_t i = 0; i < size_; i++) {
-    shapes_[i] = old[i];
+    shapes_[i] = std::move(old[i]);
   }
   delete[] old;
 }

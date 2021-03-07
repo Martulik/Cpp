@@ -1,15 +1,21 @@
 #include "composite-shape.hpp"
 
 #include <memory>
+#include <stdexcept>
 
 #include "base-types.hpp"
 
 pochernin::CompositeShape::CompositeShape():
-  size_(),
-  data_(std::make_unique<std::shared_ptr<Shape>[]>(size_))
+  size_(0),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
 {}
 
-std::shared_ptr<pochernin::Shape>& pochernin::CompositeShape::operator[](size_t index) const
+pochernin::CompositeShape::CompositeShape(size_t size):
+  size_(size),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+{}
+
+std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::operator[](size_t index) const
 {
   return data_[index];
 }
@@ -70,6 +76,10 @@ void pochernin::CompositeShape::move(const double dx, const double dy)
 
 void pochernin::CompositeShape::scale(const double factor)
 {
+  if (factor < 0)
+  {
+    throw(std::invalid_argument("Negative factor"));
+  }
   for (size_t i = 0; i < size_; i++)
   {
     data_[i]->scale(factor);
@@ -80,7 +90,7 @@ void pochernin::CompositeShape::scale(const double factor)
 
 void pochernin::CompositeShape::push_back(const std::shared_ptr<Shape> shape)
 {
-  std::unique_ptr<std::shared_ptr<Shape>[]> newData(std::make_unique<std::shared_ptr<Shape>[]>(size_ + 1));
+  std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
   for (size_t i = 0; i < size_; i++)
   {
     newData[i] = data_[i];

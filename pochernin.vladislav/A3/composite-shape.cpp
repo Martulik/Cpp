@@ -93,7 +93,7 @@ void pochernin::CompositeShape::push_back(const std::shared_ptr<Shape> shape)
   std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
   for (size_t i = 0; i < size_; i++)
   {
-    newData[i] = data_[i];
+    newData[i] = std::move(data_[i]);
   }
   newData[size_] = shape;
   size_++;

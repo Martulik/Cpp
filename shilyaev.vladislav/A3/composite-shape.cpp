@@ -89,3 +89,8 @@ void shilyaev::CompositeShape::increaseCapacity()
   }
   delete[] old;
 }
+
+size_t shilyaev::CompositeShape::getSize() const
+{
+  return size_;
+}

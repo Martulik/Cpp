@@ -2,77 +2,40 @@
 #include "circle.hpp"
 #include <iostream>
 
+void printCoordinatesFigure(const Shape* figure)
+{
+    std::cout << "Now the figure is located (" << figure->getFrameRect().pos.x
+              << ", " << figure->getFrameRect().pos.y << ")\n";
+}
+
 int main()
 {
+  std::cout << "Rectangle test:\n";
+  point_t posRectangle = {2.2, 8};
+
+  Shape* figureRectangle = new Rectangle(6, 8, posRectangle);
+  printCoordinatesFigure(figureRectangle);
+
+  figureRectangle->move(6, 9);
+  printCoordinatesFigure(figureRectangle);
+
+  std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
+
+  delete figureRectangle;
+
+  std::cout << "Circle test:\n";
   point_t posCircle = {1.3, 3.7};
-  Shape* circle = new Circle(3, posCircle);
-  std::cout << "Testing the circle" << std::endl;
-  std::cout << std::endl;
 
-  std::cout << "The area of a given circle: " << circle->getArea() << std::endl;
-  std::cout << "Described rectangle of a given circle: \n" << "Height: "
-            << circle->getFrameRect().height << "\nWidth: "
-            << circle->getFrameRect().width << "\nAbscissa of the center: "
-            << circle->getFrameRect().pos.x << "\nOrdinate of the center: "
-            << circle->getFrameRect().pos.y
-            << std::endl;
-  std::cout << std::endl;
+  Shape* figureCircle = new Circle(3, posCircle);
+  printCoordinatesFigure(figureCircle);
 
-  point_t newPosCircle = {2.2, 8};
-  circle->move(newPosCircle);
-  std::cout << "Moving to a certain point" << std::endl;
-  std::cout << "Described rectangle of a circle with a new center: \n" << "Height: "
-      << circle->getFrameRect().height << "\nWidth: "
-      << circle->getFrameRect().width << "\nAbscissa of the center: "
-      << circle->getFrameRect().pos.x << "\nOrdinate of the center: "
-      << circle->getFrameRect().pos.y
-      << std::endl;
-  std::cout << std::endl;
+  point_t newPosCircle = {55.55, 66.66};
+  figureCircle->move(newPosCircle);
+  printCoordinatesFigure(figureCircle);
 
-  circle->move(6, 9);
-  std::cout << "Moving along axes" << std::endl;
-  std::cout << "Described rectangle of a circle with a new center: \n" << "Height: "
-      << circle->getFrameRect().height << "\nWidth: "
-      << circle->getFrameRect().width << "\nAbscissa of the center: "
-      << circle->getFrameRect().pos.x << "\nOrdinate of the center: "
-      << circle->getFrameRect().pos.y
-      << std::endl;
-  std::cout << std::endl;
-  delete circle;
+  std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
 
-  point_t posRectangle = {6.66, 7.77};
-  Shape* rectangle = new Rectangle(1, 2, posRectangle);
-  std::cout << "Testing the rectangle" << std::endl;
-  std::cout << std::endl;
+  delete figureCircle;
 
-  std::cout << "The area of a given rectangle: " << rectangle->getArea() << std::endl;
-  std::cout << "Described rectangle of a given rectangle: \n" << "Height: "
-      << rectangle->getFrameRect().height << "\nWidth: "
-      << rectangle->getFrameRect().width << "\nAbscissa of the center: "
-      << rectangle->getFrameRect().pos.x << "\nOrdinate of the center: "
-      << rectangle->getFrameRect().pos.y
-      << std::endl;
-  std::cout << std::endl;
-
-  point_t newPosRectangle = {1.5, 2};
-  rectangle->move(newPosRectangle);
-  std::cout << "Moving to a certain point" << std::endl;
-  std::cout << "Described rectangle of a rectangle with a new center: \n" << "Height: "
-      << rectangle->getFrameRect().height << "\nWidth: "
-      << rectangle->getFrameRect().width << "\nAbscissa of the center: "
-      << rectangle->getFrameRect().pos.x << "\nOrdinate of the center: "
-      << rectangle->getFrameRect().pos.y
-      << std::endl;
-  std::cout << std::endl;
-
-  rectangle->move(6, 9);
-  std::cout << "Moving along axes" << std::endl;
-  std::cout << "Described rectangle of a rectangle with a new center: \n" << "Height: "
-      << rectangle->getFrameRect().height << "\nWidth: "
-      << rectangle->getFrameRect().width << "\nAbscissa of the center: "
-      << rectangle->getFrameRect().pos.x << "\nOrdinate of the center: "
-      << rectangle->getFrameRect().pos.y
-      << std::endl;
-  std::cout << std::endl;
-  delete rectangle;
+  return 0;
 }

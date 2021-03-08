@@ -2,7 +2,7 @@
 #define COMPOSITE_SHAPE_HPP
 
 #include <stddef.h> // size_t
-#include <memory> // unique_ptr
+#include <memory>
 
 #include "shape.hpp"
 

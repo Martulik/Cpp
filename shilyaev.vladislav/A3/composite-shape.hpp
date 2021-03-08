@@ -14,11 +14,11 @@ namespace shilyaev {
     void move(double dx, double dy) override;
     void scale(double factor) override;
     size_t getSize() const;
-    void insert(std::unique_ptr<Shape> shape);
+    void insert(std::unique_ptr< Shape > shape);
   private:
     size_t capacity_;
     size_t size_;
-    std::unique_ptr<std::unique_ptr<Shape>[]> shapes_;
+    std::unique_ptr< std::unique_ptr< Shape >[] > shapes_;
     void increaseCapacity();
   };
 }

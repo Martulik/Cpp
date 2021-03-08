@@ -9,7 +9,7 @@ const size_t CAPACITY_INCREASE_FACTOR = 2;
 shilyaev::CompositeShape::CompositeShape():
   capacity_(INITIAL_CAPACITY),
   size_(0),
-  shapes_(std::make_unique<std::unique_ptr<Shape>[]>(INITIAL_CAPACITY))
+  shapes_(std::make_unique< std::unique_ptr< Shape >[] >(INITIAL_CAPACITY))
 {
 }
 
@@ -24,10 +24,10 @@ double shilyaev::CompositeShape::getArea() const
 
 shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
 {
-  double maxX = std::numeric_limits<double>::min();
-  double maxY = std::numeric_limits<double>::min();
-  double minX = std::numeric_limits<double>::max();
-  double minY = std::numeric_limits<double>::max();
+  double maxX = std::numeric_limits< double >::min();
+  double maxY = std::numeric_limits< double >::min();
+  double minX = std::numeric_limits< double >::max();
+  double minY = std::numeric_limits< double >::max();
   for (size_t i = 0; i < size_; i++) {
     rectangle_t localFrameRect = shapes_[i]->getFrameRect();
     maxX = std::max(maxX, localFrameRect.pos.x + localFrameRect.width / 2);
@@ -69,7 +69,7 @@ void shilyaev::CompositeShape::scale(double factor)
   }
 }
 
-void shilyaev::CompositeShape::insert(std::unique_ptr<Shape> shape)
+void shilyaev::CompositeShape::insert(std::unique_ptr< Shape > shape)
 {
   if (size_ >= capacity_) {
     increaseCapacity();
@@ -81,8 +81,8 @@ void shilyaev::CompositeShape::insert(std::unique_ptr<Shape> shape)
 void shilyaev::CompositeShape::increaseCapacity()
 {
   capacity_ *= CAPACITY_INCREASE_FACTOR;
-  std::unique_ptr<std::unique_ptr<Shape>[]> old = std::move(shapes_);
-  shapes_ = std::make_unique<std::unique_ptr<Shape>[]>(capacity_);
+  std::unique_ptr< std::unique_ptr< Shape >[] > old = std::move(shapes_);
+  shapes_ = std::make_unique< std::unique_ptr< Shape >[] >(capacity_);
   for (size_t i = 0; i < size_; i++) {
     shapes_[i] = std::move(old[i]);
   }

@@ -7,8 +7,26 @@
 
 pochernin::CompositeShape::CompositeShape():
   size_(0),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+  data_(nullptr)
 {}
+
+pochernin::CompositeShape::CompositeShape(const CompositeShape& src):
+  size_(src.size_),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+{
+  for (size_t i = 0; i < size_; i++)
+  {
+    data_[i] = src.data_[i];
+  }
+}
+
+pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
+  size_(src.size_)
+{
+  data_ = std::move(src.data_);
+  src.size_ = 0;
+  src.data_ = nullptr;
+}
 
 pochernin::CompositeShape::CompositeShape(size_t size):
   size_(size),
@@ -18,6 +36,38 @@ pochernin::CompositeShape::CompositeShape(size_t size):
 std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::operator[](size_t index) const
 {
   return data_[index];
+}
+
+pochernin::CompositeShape& pochernin::CompositeShape::operator=(const CompositeShape& src)
+{
+  if (this == std::addressof(src))
+  {
+    return *this;
+  }
+
+  size_ = src.size_;
+  data_.reset();
+  data_ = std::make_unique< std::shared_ptr< Shape >[] >(size_);
+  for (size_t i = 0; i < size_; i++)
+  {
+    data_[i] = src.data_[i];
+  }
+  return *this;
+}
+
+pochernin::CompositeShape& pochernin::CompositeShape::operator=(CompositeShape&& src) noexcept
+{
+  if (this == std::addressof(src))
+  {
+    return *this;
+  }
+
+  size_ = src.size_;
+  data_.reset();
+  data_ = std::move(src.data_);
+  src.size_ = 0;
+  src.data_ = nullptr;
+  return *this;
 }
 
 double pochernin::CompositeShape::getArea() const

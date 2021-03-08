@@ -13,11 +13,16 @@ namespace pochernin
   public:
     CompositeShape();
 
+    CompositeShape(const CompositeShape& src);
+    CompositeShape(CompositeShape&& src) noexcept;
+
     explicit CompositeShape(size_t size);
 
     virtual ~CompositeShape() = default;
 
     std::shared_ptr< Shape >& operator[](size_t index) const;
+    CompositeShape& operator=(const CompositeShape& src);
+    CompositeShape& operator=(CompositeShape&& src) noexcept;
 
     virtual double getArea() const override;
     virtual rectangle_t getFrameRect() const override;

@@ -99,13 +99,6 @@ BOOST_AUTO_TEST_CASE(DefaltConstructorCreate)
   BOOST_REQUIRE_EQUAL(testCompositeShape.getSize(), 0);
 }
 
-BOOST_AUTO_TEST_CASE(OneParameterConstructorCreate)
-{
-  BOOST_CHECK_NO_THROW(pochernin::CompositeShape testCompositeShape(defaultSize));
-  pochernin::CompositeShape testCompositeShape(defaultSize);
-  BOOST_REQUIRE_EQUAL(testCompositeShape.getSize(), defaultSize);
-}
-
 BOOST_AUTO_TEST_CASE(AddElements)
 {
   std::shared_ptr< pochernin::Shape > testRectangle = std::make_shared< pochernin::Rectangle >(defaultWidth, defaultHeight, startPos);

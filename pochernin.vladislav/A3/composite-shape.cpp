@@ -28,11 +28,6 @@ pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
   src.data_ = nullptr;
 }
 
-pochernin::CompositeShape::CompositeShape(size_t size):
-  size_(size),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
-{}
-
 std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::operator[](size_t index) const
 {
   return data_[index];

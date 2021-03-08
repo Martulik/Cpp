@@ -30,7 +30,7 @@ void printRectangleCoordinates(Shape* figureRectangle)
 }
 
 int main()
-{  
+{
   Shape* figureCircle = new Circle({ 2, 2 }, 3);
   printCircleParameters(figureCircle);
   printCircleCoordinates(figureCircle);

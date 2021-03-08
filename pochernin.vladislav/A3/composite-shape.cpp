@@ -30,6 +30,10 @@ pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
 
 std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::operator[](size_t index) const
 {
+  if (index >= getSize())
+  {
+    throw std::out_of_range("Out of range");
+  }
   return data_[index];
 }
 

@@ -144,7 +144,7 @@ void pochernin::CompositeShape::push_back(const std::shared_ptr<Shape> shape)
   {
     newData[i] = std::move(data_[i]);
   }
-  newData[size_] = shape;
+  newData[size_] = std::move(shape);
   size_++;
   data_ = std::move(newData);
 }

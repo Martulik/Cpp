@@ -24,6 +24,9 @@ double shilyaev::CompositeShape::getArea() const
 
 shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
 {
+  if (size_ == 0) {
+    return rectangle_t{0.0, 0.0, point_t{0.0, 0.0}};
+  }
   double maxX = std::numeric_limits< double >::min();
   double maxY = std::numeric_limits< double >::min();
   double minX = std::numeric_limits< double >::max();

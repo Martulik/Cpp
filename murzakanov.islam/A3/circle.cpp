@@ -43,7 +43,7 @@ void murzakanov::Circle::move(const double dx, const double dy)
 
 void murzakanov::Circle::scale(const double coef)
 {
-  if (coef <= 0)
+  if (coef < 0)
   {
     throw std::invalid_argument("Coefficient should be more than zero");
   }

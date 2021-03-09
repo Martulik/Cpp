@@ -6,7 +6,7 @@ murzakanov::Rectangle::Rectangle(double width, double height, murzakanov::point_
           height_(height),
           pos_(pos)
 {
-  if (width <= 0 || height <= 0)
+  if (width < 0 || height < 0)
   {
     throw std::invalid_argument("Width or height should be more than zero");
   }
@@ -42,7 +42,7 @@ void murzakanov::Rectangle::move(const double dx, const double dy)
 
 void murzakanov::Rectangle::scale(const double coef)
 {
-  if (coef <= 0)
+  if (coef < 0)
   {
     throw std::invalid_argument("Coefficient should be more than zero");
   }

@@ -5,6 +5,7 @@
 #include <cassert>
 #include <string>
 #include "base-types.hpp"
+
 namespace murzakanov
 {
   class Rectangle: public Shape

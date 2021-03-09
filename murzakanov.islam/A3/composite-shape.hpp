@@ -4,7 +4,6 @@
 #include <memory>
 #include "shape.hpp"
 
-
 namespace murzakanov
 {
   class CompositeShape: public Shape
@@ -23,9 +22,8 @@ namespace murzakanov
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-
-    Shape& operator [](int index) ;
     void addShape(std::shared_ptr<Shape> shp);
+    Shape& operator [](int index) ;
   private:
     int capacity_;
     int size_;

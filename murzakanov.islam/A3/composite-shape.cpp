@@ -29,7 +29,7 @@ void murzakanov::CompositeShape::addShape(std::shared_ptr<Shape> shp)
       std::unique_ptr<std::shared_ptr<Shape>[]> tempArray(std::make_unique<std::shared_ptr<Shape>[]>(capacity_ * 2));
       for (int i = 0; i < size_; i++)
       {
-        tempArray[i] = std::move(array_[i]); //Воруем у array_[i] объект и счетчик указателей
+        tempArray[i] = std::move(array_[i]);
       }
       capacity_ = capacity_ * 2;
       tempArray[size_] = shp;
@@ -44,7 +44,7 @@ void murzakanov::CompositeShape::addShape(std::shared_ptr<Shape> shp)
 
 void murzakanov::CompositeShape::scale(double coef)
 {
-  if (coef <= 0)
+  if (coef < 0)
   {
     throw std::invalid_argument("Coefficient should be more than zero");
   }
@@ -120,7 +120,7 @@ void murzakanov::CompositeShape::move(const murzakanov::point_t &point)
 
 void murzakanov::CompositeShape::move(double dx, double dy)
 {
-  for (int i = 0; i<size_; i++)
+  for (int i = 0; i < size_; i++)
   {
     array_[i]->move(dx, dy);
   }

@@ -3,6 +3,7 @@
 
 #include "base-types.hpp"
 #include <string>
+
 namespace murzakanov
 {
   class Shape
@@ -18,6 +19,4 @@ namespace murzakanov
   };
 }
 
-
 #endif
-

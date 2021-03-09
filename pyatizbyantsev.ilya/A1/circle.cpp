@@ -3,12 +3,12 @@
 
 const double PI = 3.1415926535;
 
-  Circle::Circle(const double valueRadius, const point_t& valuePos):
-    radius_(valueRadius),
-    pos_(valuePos)
-  {
-    assert(valueRadius > 0);
-  }
+Circle::Circle(const double valueRadius, const point_t& valuePos):
+  radius_(valueRadius),
+  pos_(valuePos)
+{
+  assert(valueRadius > 0);
+}
 
 double Circle::getArea() const
 {

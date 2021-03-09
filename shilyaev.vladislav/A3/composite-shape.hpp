@@ -9,10 +9,12 @@ namespace shilyaev {
   public:
     CompositeShape();
     CompositeShape(const CompositeShape &source);
-    CompositeShape& operator=(const CompositeShape &other);
+    CompositeShape(CompositeShape &&source) = default;
+    CompositeShape &operator=(const CompositeShape &other);
+    CompositeShape &operator=(CompositeShape &&other) = default;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    CompositeShape* clone() const override;
+    CompositeShape *clone() const override;
     void move(const point_t &pos) override;
     void move(double dx, double dy) override;
     void scale(double factor) override;

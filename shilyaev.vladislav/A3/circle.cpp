@@ -21,6 +21,11 @@ shilyaev::rectangle_t shilyaev::Circle::getFrameRect() const
   return rectangle_t{radius_ * 2, radius_ * 2, pos_};
 }
 
+shilyaev::Circle *shilyaev::Circle::clone() const
+{
+  return new Circle(*this);
+}
+
 void shilyaev::Circle::move(const point_t &pos)
 {
   pos_ = pos;

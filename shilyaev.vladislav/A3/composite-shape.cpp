@@ -13,6 +13,29 @@ shilyaev::CompositeShape::CompositeShape():
 {
 }
 
+shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source):
+  capacity_(source.capacity_),
+  size_(source.size_),
+  shapes_(std::make_unique< std::unique_ptr< Shape >[] >(source.capacity_))
+{
+  for (size_t i = 0; i < size_; i++) {
+    shapes_[i] = std::unique_ptr< Shape >(source.shapes_[i]->clone());
+  }
+}
+
+shilyaev::CompositeShape &shilyaev::CompositeShape::operator=(const shilyaev::CompositeShape &other)
+{
+  if (this != &other) {
+    capacity_ = other.capacity_;
+    size_ = other.size_;
+    shapes_ = std::make_unique< std::unique_ptr< Shape >[] >(other.capacity_);
+    for (size_t i = 0; i < size_; i++) {
+      shapes_[i] = std::unique_ptr< Shape >(other.shapes_[i]->clone());
+    }
+  }
+  return *this;
+}
+
 double shilyaev::CompositeShape::getArea() const
 {
   double area = 0.0;
@@ -40,6 +63,11 @@ shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
   }
   point_t center = point_t{(maxX + minX) / 2, (maxY + minY) / 2};
   return rectangle_t{maxX - minX, maxY - minY, center};
+}
+
+shilyaev::CompositeShape *shilyaev::CompositeShape::clone() const
+{
+  return new CompositeShape(*this);
 }
 
 void shilyaev::CompositeShape::move(const point_t &pos)

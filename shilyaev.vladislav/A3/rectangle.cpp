@@ -20,6 +20,11 @@ shilyaev::rectangle_t shilyaev::Rectangle::getFrameRect() const
   return rectangle_t{width_, height_, pos_};
 }
 
+shilyaev::Rectangle *shilyaev::Rectangle::clone() const
+{
+  return new Rectangle(*this);
+}
+
 void shilyaev::Rectangle::move(const point_t &pos)
 {
   pos_ = pos;

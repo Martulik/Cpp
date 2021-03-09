@@ -19,7 +19,7 @@ shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source)
   shapes_(std::make_unique< std::unique_ptr< Shape >[] >(source.capacity_))
 {
   for (size_t i = 0; i < size_; i++) {
-    shapes_[i] = std::unique_ptr< Shape >(source.shapes_[i]->clone());
+    shapes_[i].reset(source.shapes_[i]->clone());
   }
 }
 
@@ -30,7 +30,7 @@ shilyaev::CompositeShape &shilyaev::CompositeShape::operator=(const shilyaev::Co
     size_ = other.size_;
     shapes_ = std::make_unique< std::unique_ptr< Shape >[] >(other.capacity_);
     for (size_t i = 0; i < size_; i++) {
-      shapes_[i] = std::unique_ptr< Shape >(other.shapes_[i]->clone());
+      shapes_[i].reset(other.shapes_[i]->clone());
     }
   }
   return *this;

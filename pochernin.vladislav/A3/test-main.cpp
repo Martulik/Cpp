@@ -99,6 +99,32 @@ BOOST_AUTO_TEST_CASE(DefaltConstructorCreate)
   BOOST_REQUIRE_EQUAL(testCompositeShape.getSize(), 0);
 }
 
+BOOST_AUTO_TEST_CASE(CopyConstructorCreate)
+{
+  pochernin::CompositeShape testCompositeShape1;
+  BOOST_CHECK_NO_THROW(pochernin::CompositeShape testCompositeShape2(testCompositeShape1));
+}
+
+BOOST_AUTO_TEST_CASE(TransferConstructorCreate)
+{
+  pochernin::CompositeShape testCompositeShape1;
+  BOOST_CHECK_NO_THROW(pochernin::CompositeShape testCompositeShape2 = std::move(testCompositeShape1));
+}
+
+BOOST_AUTO_TEST_CASE(AssigmentOperator)
+{
+  pochernin::CompositeShape testCompositeShape1;
+  pochernin::CompositeShape testCompositeShape2;
+  BOOST_CHECK_NO_THROW(testCompositeShape1 = testCompositeShape2);
+}
+
+BOOST_AUTO_TEST_CASE(TransferAssignmentOperator)
+{
+  pochernin::CompositeShape testCompositeShape1;
+  pochernin::CompositeShape testCompositeShape2;
+  BOOST_CHECK_NO_THROW(testCompositeShape1 = std::move(testCompositeShape2));
+}
+
 BOOST_AUTO_TEST_CASE(AddElements)
 {
   std::shared_ptr< pochernin::Shape > testRectangle = std::make_shared< pochernin::Rectangle >(defaultWidth, defaultHeight, startPos);

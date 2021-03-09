@@ -29,3 +29,9 @@ void pyatizbyantsev::Rectangle::move(const double abscissa, const double ordinat
   pos_.x += abscissa;
   pos_.y += ordinate;
 }
+
+void pyatizbyantsev::Rectangle::scale(double scaleCoefficient)
+{
+  width_ *= scaleCoefficient;
+  height_ *= scaleCoefficient;
+}

@@ -30,3 +30,8 @@ void pyatizbyantsev::Circle::move(const double abscissa, const double ordinate)
   pos_.x += abscissa;
   pos_.y += ordinate;
 }
+
+void pyatizbyantsev::Circle::scale(double scaleCoefficient)
+{
+  radius_ *= scaleCoefficient;
+}

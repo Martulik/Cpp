@@ -156,9 +156,10 @@ Accepted Labs
 | Murzakanov Islam      | ✓  |    |    |    |    |    |
 | Pochernin Vladislav   | ✓  |    |    |    |    |    |
 | Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
+| Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  |    |    |    |    |    |
 | Savchuk Aleksei       | ✓  |    |    |    |    |    |
 | Shilyaev Vladislav    | ✓  |    |    |    |    |    |
 | Shkurov Igor          | ✓  |    |    |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  17|   0|   0|   0|   0|   0|
+| __Total__             |  18|   0|   0|   0|   0|   0|

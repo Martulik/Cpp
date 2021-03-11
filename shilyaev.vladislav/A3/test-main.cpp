@@ -6,6 +6,7 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
+const double PI = 3.141593;
 const double TOLERANCE = 0.001;
 const double DEFAULT_RADIUS = 3.3;
 const double DEFAULT_WIDTH = 6.0;
@@ -121,7 +122,7 @@ BOOST_AUTO_TEST_CASE(TestCircleArea)
 {
   const double expectedArea = DEFAULT_RADIUS * DEFAULT_RADIUS * 3.141593;
   const shilyaev::Circle circle(DEFAULT_RADIUS, DEFAULT_CENTER);
-  
+
   BOOST_CHECK_CLOSE(circle.getArea(), expectedArea, TOLERANCE);
 }
 
@@ -140,7 +141,42 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameRect)
 BOOST_AUTO_TEST_CASE(TestCompositeShape)
 {
   shilyaev::CompositeShape compositeShape;
+  compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
+  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
+  testShape(compositeShape);
+}
+
+BOOST_AUTO_TEST_CASE(TestCompositeShapeArea)
+{
+  const double expectedArea = DEFAULT_RADIUS * DEFAULT_RADIUS * PI + DEFAULT_WIDTH * DEFAULT_HEIGHT;
+  shilyaev::CompositeShape compositeShape;
+  compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
+  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
+  BOOST_CHECK_CLOSE(compositeShape.getArea(), expectedArea, TOLERANCE);
+}
+
+BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
+{
+  const shilyaev::rectangle_t expectedFrameRect{8.0, 6.0, {0.0, 1.0}};
+  shilyaev::CompositeShape compositeShape;
   compositeShape.insert(std::make_unique< shilyaev::Circle >(2.0, shilyaev::point_t{2.0, 2.0}));
   compositeShape.insert(std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
-  testShape(compositeShape);
+  const shilyaev::rectangle_t frameRect = compositeShape.getFrameRect();
+
+  BOOST_CHECK_CLOSE(frameRect.pos.x, expectedFrameRect.pos.x, TOLERANCE);
+  BOOST_CHECK_CLOSE(frameRect.pos.y, expectedFrameRect.pos.y, TOLERANCE);
+  BOOST_CHECK_CLOSE(frameRect.width, expectedFrameRect.width, TOLERANCE);
+  BOOST_CHECK_CLOSE(frameRect.height, expectedFrameRect.height, TOLERANCE);
+}
+
+BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)
+{
+  shilyaev::CompositeShape compositeShape;
+  BOOST_CHECK_EQUAL(compositeShape.getSize(), 0);
+  for (int i = 1; i < 6; ++i) {
+    double areaBefore = compositeShape.getArea();
+    compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
+    BOOST_CHECK_EQUAL(compositeShape.getSize(), i);
+    BOOST_TEST(compositeShape.getArea() > areaBefore);
+  }
 }

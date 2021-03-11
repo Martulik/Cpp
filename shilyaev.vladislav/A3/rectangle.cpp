@@ -1,12 +1,14 @@
 #include "rectangle.hpp"
-#include <cassert>
+#include <stdexcept>
 
 shilyaev::Rectangle::Rectangle(double width, double height, const point_t &pos):
   width_(width),
   height_(height),
   pos_(pos)
 {
-  assert(width >= 0.0 && height >= 0.0);
+  if (width_ < 0.0 || height_ < 0.0) {
+    throw std::invalid_argument("Width and height can't be negative");
+  }
 }
 
 double shilyaev::Rectangle::getArea() const
@@ -37,7 +39,9 @@ void shilyaev::Rectangle::move(double dx, double dy)
 
 void shilyaev::Rectangle::scale(double factor)
 {
-  assert(factor >= 0.0);
+  if (factor < 0.0) {
+    throw std::invalid_argument("Scale factor can't be negative");
+  }
   width_ *= factor;
   height_ *= factor;
 }

@@ -1,7 +1,7 @@
 #include "composite-shape.hpp"
 #include <algorithm>
 #include <limits>
-#include <cassert>
+#include <stdexcept>
 #include <memory>
 
 const size_t INITIAL_CAPACITY = 4;
@@ -88,7 +88,9 @@ void shilyaev::CompositeShape::move(double dx, double dy)
 
 void shilyaev::CompositeShape::scale(double factor)
 {
-  assert(factor >= 0.0);
+  if (factor < 0.0) {
+    throw std::invalid_argument("Scale factor can't be negative");
+  }
   if (size_ > 0) {
     point_t center = getFrameRect().pos;
     for (size_t i = 0; i < size_; i++) {

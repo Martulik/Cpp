@@ -1,5 +1,5 @@
 #include "circle.hpp"
-#include <cassert>
+#include <stdexcept>
 
 const double PI = 3.14159265358979323846;
 
@@ -7,7 +7,9 @@ shilyaev::Circle::Circle(double radius, const point_t &pos):
   radius_(radius),
   pos_(pos)
 {
-  assert(radius >= 0.0);
+  if (radius < 0.0) {
+    throw std::invalid_argument("Radius can't be negative");
+  }
 }
 
 double shilyaev::Circle::getArea() const
@@ -38,6 +40,8 @@ void shilyaev::Circle::move(double dx, double dy)
 
 void shilyaev::Circle::scale(double factor)
 {
-  assert(factor >= 0.0);
+  if (factor < 0.0) {
+    throw std::invalid_argument("Scale factor can't be negative");
+  }
   radius_ *= factor;
 }

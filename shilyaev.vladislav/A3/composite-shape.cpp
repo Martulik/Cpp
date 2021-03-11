@@ -1,4 +1,5 @@
 #include "composite-shape.hpp"
+#include <algorithm>
 #include <limits>
 #include <cassert>
 #include <memory>
@@ -50,8 +51,8 @@ shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
   if (size_ == 0) {
     return rectangle_t{0.0, 0.0, point_t{0.0, 0.0}};
   }
-  double maxX = std::numeric_limits< double >::min();
-  double maxY = std::numeric_limits< double >::min();
+  double maxX = -std::numeric_limits< double >::max();
+  double maxY = -std::numeric_limits< double >::max();
   double minX = std::numeric_limits< double >::max();
   double minY = std::numeric_limits< double >::max();
   for (size_t i = 0; i < size_; i++) {

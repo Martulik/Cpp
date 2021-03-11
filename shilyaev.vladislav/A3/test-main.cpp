@@ -174,13 +174,16 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeArea)
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
 {
-  const shilyaev::rectangle_t expectedFrameRect{8.0, 6.0, {0.0, 1.0}};
+  const shilyaev::rectangle_t emptyFrameRect{0.0, 0.0, {0.0, 0.0}};
   shilyaev::CompositeShape compositeShape;
+
+  checkRectanglesClose(compositeShape.getFrameRect(), emptyFrameRect, TOLERANCE);
+
   compositeShape.insert(std::make_unique< shilyaev::Circle >(2.0, shilyaev::point_t{2.0, 2.0}));
   compositeShape.insert(std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
-  const shilyaev::rectangle_t frameRect = compositeShape.getFrameRect();
+  const shilyaev::rectangle_t expectedFrameRect{8.0, 6.0, {0.0, 1.0}};
 
-  checkRectanglesClose(frameRect, expectedFrameRect, TOLERANCE);
+  checkRectanglesClose(compositeShape.getFrameRect(), expectedFrameRect, TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)

@@ -1,5 +1,5 @@
-#ifndef base_types_hpp
-#define base_types_hpp
+#ifndef BASE_TYPES_HPP
+#define BASE_TYPES_HPP
 
 struct point_t
 {

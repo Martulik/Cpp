@@ -1,10 +1,14 @@
 #include "rectangle.hpp"
 
+#include <cassert>
+
 Rectangle::Rectangle(double width, double height, const point_t& pos):
   width_(width),
   height_(height),
   pos_(pos)
 {
+  assert(width > 0 && "Incorrect width");
+  assert(height > 0 && "Incorrect height");
 }
 
 double Rectangle::getArea() const

@@ -4,56 +4,40 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
+void printCoordinates(std::ostream& out, const Shape* figure);
+
 int main()
 {
-  double x = 5.25;
-  double y = 5.25;
-  point_t point{x, y};
+  std::cout << "Rectangle :\n";
 
-  double width = 6.66;
-  double height = 7.77;
-  Shape* rectangle = new Rectangle(width, height, point);
+  Shape* polyRectangle = new Rectangle(5, 5, {5, 5});
+  printCoordinates(std::cout, polyRectangle);
 
-  point_t temp1 = rectangle->getFrameRect().pos;
-  std::cout << "Rectangle:\n";
-  std::cout << "Width is: " << rectangle->getFrameRect().width << '\n';
-  std::cout << "Height is: " << rectangle->getFrameRect().height << '\n';
-  std::cout << "Area is: " << rectangle->getArea() << '\n';
-  std::cout << "Position is: "
-            << temp1.x << ", "
-            << temp1.y << '\n';
+  polyRectangle->move(6, 6);
+  printCoordinates(std::cout, polyRectangle);
 
-  x = 3.33;
-  y = 3.33;
-  rectangle->move(x, y);
+  std::cout << "Area of rectangle is: " << polyRectangle->getArea() << '\n';
 
-  std::cout << "Rectangle moved in: "
-            << rectangle->getFrameRect().pos.x << ", "
-            << rectangle->getFrameRect().pos.y << '\n';
+  delete polyRectangle;
 
-  x = 5.25;
-  y = 5.25;
+  std::cout << "Circle :\n";
 
-  double radius = 7.77;
-  Shape* circle = new Circle(radius, {x, y});
+  Shape* polyCircle = new Circle(5, {5, 5});
+  printCoordinates(std::cout, polyCircle);
 
-  point_t temp2 = circle->getFrameRect().pos;
-  std::cout << "Circle:\n";
-  std::cout << "Radius is: " << circle->getFrameRect().width/2 << '\n';
-  std::cout << "Area is: " << circle->getArea() << '\n';
-  std::cout << "Position is: "
-            << temp2.x << ", "
-            << temp2.y << '\n';
+  polyCircle->move({6, 6});
+  printCoordinates(std::cout, polyCircle);
 
-  x = 7.77;
-  y = 7.77;
-  point_t point2{x, y};
-  circle->move(point2);
+  std::cout << "Area of circle is: " << polyCircle->getArea() << '\n';
 
-  std::cout << "Circle moved in: "
-            << temp2.x << ", "
-            << temp2.y << '\n';
+  delete polyCircle;
 
-  delete rectangle;
-  delete circle;
+  return 0;
 }
+
+void printCoordinates(std::ostream& out, const Shape* figure)
+{
+  std::cout << "Now the figure is located (" << figure->getFrameRect().pos.x
+            << ", " << figure->getFrameRect().pos.y << ")\n";
+}
+

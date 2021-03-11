@@ -13,6 +13,24 @@ const double DEFAULT_WIDTH = 6.0;
 const double DEFAULT_HEIGHT = 2.5;
 const shilyaev::point_t DEFAULT_CENTER{5.0, -5.6};
 
+void checkPointsClose(const shilyaev::point_t &lhs, const shilyaev::point_t &rhs, double tolerance)
+{
+  BOOST_CHECK_CLOSE(lhs.x, rhs.x, tolerance);
+  BOOST_CHECK_CLOSE(lhs.y, rhs.y, tolerance);
+}
+
+void checkSizeClose(const shilyaev::rectangle_t &lhs, const shilyaev::rectangle_t &rhs, double tolerance)
+{
+  BOOST_CHECK_CLOSE(lhs.width, rhs.width, tolerance);
+  BOOST_CHECK_CLOSE(lhs.height, rhs.height, tolerance);
+}
+
+void checkRectanglesClose(const shilyaev::rectangle_t &lhs, const shilyaev::rectangle_t &rhs, double tolerance)
+{
+  checkPointsClose(lhs.pos, rhs.pos, tolerance);
+  checkSizeClose(lhs, rhs, tolerance);
+}
+
 void testAbsoluteMove(shilyaev::Shape &shape)
 {
   const shilyaev::point_t moveTo{2.0, -2.0};
@@ -23,10 +41,8 @@ void testAbsoluteMove(shilyaev::Shape &shape)
   const double areaAfter = shape.getArea();
   const shilyaev::rectangle_t frameRectAfter = shape.getFrameRect();
 
-  BOOST_CHECK_CLOSE(frameRectAfter.pos.x, moveTo.x, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectAfter.pos.y, moveTo.y, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectBefore.height, frameRectAfter.height, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectBefore.width, frameRectAfter.width, TOLERANCE);
+  checkPointsClose(frameRectAfter.pos, moveTo, TOLERANCE);
+  checkSizeClose(frameRectBefore, frameRectAfter, TOLERANCE);
   BOOST_CHECK_CLOSE(areaBefore, areaAfter, TOLERANCE);
 }
 
@@ -43,8 +59,7 @@ void testRelativeMove(shilyaev::Shape &shape)
 
   BOOST_CHECK_CLOSE(dx, frameRectAfter.pos.x - frameRectBefore.pos.x, TOLERANCE);
   BOOST_CHECK_CLOSE(dy, frameRectAfter.pos.y - frameRectBefore.pos.y, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectBefore.height, frameRectAfter.height, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectBefore.width, frameRectAfter.width, TOLERANCE);
+  checkSizeClose(frameRectBefore, frameRectAfter, TOLERANCE);
   BOOST_CHECK_CLOSE(areaBefore, areaAfter, TOLERANCE);
 }
 
@@ -59,8 +74,7 @@ void testScale(shilyaev::Shape &shape)
   const shilyaev::rectangle_t frameRectAfter = shape.getFrameRect();
 
   BOOST_CHECK_CLOSE(areaBefore * scaleFactor * scaleFactor, areaAfter, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectBefore.pos.x, frameRectAfter.pos.x, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRectBefore.pos.y, frameRectAfter.pos.y, TOLERANCE);
+  checkPointsClose(frameRectBefore.pos, frameRectAfter.pos, TOLERANCE);
   BOOST_CHECK_CLOSE(frameRectBefore.width * scaleFactor, frameRectAfter.width, TOLERANCE);
   BOOST_CHECK_CLOSE(frameRectBefore.height * scaleFactor, frameRectAfter.height, TOLERANCE);
 }
@@ -72,10 +86,7 @@ void testClone(const shilyaev::Shape &shape)
   const shilyaev::rectangle_t cloneFrameRect = clone->getFrameRect();
 
   BOOST_CHECK_EQUAL(shape.getArea(), clone->getArea());
-  BOOST_CHECK_EQUAL(frameRect.pos.x, cloneFrameRect.pos.x);
-  BOOST_CHECK_EQUAL(frameRect.pos.y, cloneFrameRect.pos.y);
-  BOOST_CHECK_EQUAL(frameRect.height, cloneFrameRect.height);
-  BOOST_CHECK_EQUAL(frameRect.width, cloneFrameRect.width);
+  checkRectanglesClose(frameRect, cloneFrameRect, TOLERANCE);
 }
 
 void testShape(shilyaev::Shape &shape)
@@ -106,10 +117,7 @@ BOOST_AUTO_TEST_CASE(TestRectangleFrameRect)
   const shilyaev::Rectangle rectangle(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER);
   const shilyaev::rectangle_t frameRect = rectangle.getFrameRect();
 
-  BOOST_CHECK_CLOSE(frameRect.pos.x, expectedFrameRect.pos.x, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.pos.y, expectedFrameRect.pos.y, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.width, expectedFrameRect.width, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.height, expectedFrameRect.height, TOLERANCE);
+  checkRectanglesClose(frameRect, expectedFrameRect, TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircle)
@@ -132,10 +140,7 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameRect)
   const shilyaev::Circle circle(DEFAULT_RADIUS, DEFAULT_CENTER);
   const shilyaev::rectangle_t frameRect = circle.getFrameRect();
 
-  BOOST_CHECK_CLOSE(frameRect.pos.x, expectedFrameRect.pos.x, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.pos.y, expectedFrameRect.pos.y, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.width, expectedFrameRect.width, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.height, expectedFrameRect.height, TOLERANCE);
+  checkRectanglesClose(frameRect, expectedFrameRect, TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCompositeShape)
@@ -163,10 +168,7 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
   compositeShape.insert(std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
   const shilyaev::rectangle_t frameRect = compositeShape.getFrameRect();
 
-  BOOST_CHECK_CLOSE(frameRect.pos.x, expectedFrameRect.pos.x, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.pos.y, expectedFrameRect.pos.y, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.width, expectedFrameRect.width, TOLERANCE);
-  BOOST_CHECK_CLOSE(frameRect.height, expectedFrameRect.height, TOLERANCE);
+  checkRectanglesClose(frameRect, expectedFrameRect, TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)

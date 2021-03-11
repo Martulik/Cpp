@@ -181,3 +181,16 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)
     BOOST_TEST(compositeShape.getArea() > areaBefore);
   }
 }
+
+BOOST_AUTO_TEST_CASE(TestCompositeShapeCopy)
+{
+  const double dx = 3.0;
+  shilyaev::CompositeShape compositeShape;
+  compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
+  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
+  shilyaev::CompositeShape compositeShapeCopy(compositeShape);
+
+  BOOST_CHECK_EQUAL(compositeShape.getFrameRect().pos.x, compositeShapeCopy.getFrameRect().pos.x);
+  compositeShapeCopy.move(dx, 0.0);
+  BOOST_CHECK_CLOSE(compositeShape.getFrameRect().pos.x + dx, compositeShapeCopy.getFrameRect().pos.x, TOLERANCE);
+}

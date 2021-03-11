@@ -171,9 +171,10 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)
 {
+  const int iterations = 40;
   shilyaev::CompositeShape compositeShape;
   BOOST_CHECK_EQUAL(compositeShape.getSize(), 0);
-  for (int i = 1; i < 6; ++i) {
+  for (int i = 1; i <= iterations; ++i) {
     double areaBefore = compositeShape.getArea();
     compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
     BOOST_CHECK_EQUAL(compositeShape.getSize(), i);

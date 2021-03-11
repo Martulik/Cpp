@@ -77,6 +77,7 @@ void testScale(shilyaev::Shape &shape)
   checkPointsClose(frameRectBefore.pos, frameRectAfter.pos, TOLERANCE);
   BOOST_CHECK_CLOSE(frameRectBefore.width * scaleFactor, frameRectAfter.width, TOLERANCE);
   BOOST_CHECK_CLOSE(frameRectBefore.height * scaleFactor, frameRectAfter.height, TOLERANCE);
+  BOOST_CHECK_THROW(shape.scale(-scaleFactor), std::invalid_argument);
 }
 
 void testClone(const shilyaev::Shape &shape)
@@ -120,6 +121,12 @@ BOOST_AUTO_TEST_CASE(TestRectangleFrameRect)
   checkRectanglesClose(frameRect, expectedFrameRect, TOLERANCE);
 }
 
+BOOST_AUTO_TEST_CASE(TestRectangleInvalidArgument)
+{
+  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(-DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER), std::invalid_argument);
+  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(DEFAULT_WIDTH, -DEFAULT_HEIGHT, DEFAULT_CENTER), std::invalid_argument);
+}
+
 BOOST_AUTO_TEST_CASE(TestCircle)
 {
   shilyaev::Circle circle(DEFAULT_RADIUS, DEFAULT_CENTER);
@@ -141,6 +148,11 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameRect)
   const shilyaev::rectangle_t frameRect = circle.getFrameRect();
 
   checkRectanglesClose(frameRect, expectedFrameRect, TOLERANCE);
+}
+
+BOOST_AUTO_TEST_CASE(TestCircleInvalidArgument)
+{
+  BOOST_CHECK_THROW(shilyaev::Circle circle(-DEFAULT_RADIUS, DEFAULT_CENTER), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(TestCompositeShape)

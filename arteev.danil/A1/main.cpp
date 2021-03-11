@@ -3,26 +3,26 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-void printCircleParameters(Shape* figureCircle)
+void printCircleParameters(const Shape* figureCircle)
 {
-  std::cout << "Circle radius: " <<figureCircle->getFrameRect().height/2 << "\n";
+  std::cout << "Circle radius: " << figureCircle->getFrameRect().height / 2 << "\n";
 }
 
-void printCircleCoordinates(Shape* figureCircle)
+void printCircleCoordinates(const Shape* figureCircle)
 {
   std::cout << "Coordinates of the center of the circle: \n"
     << "X = " << figureCircle->getFrameRect().pos.x << "\t"
     << "Y = " << figureCircle->getFrameRect().pos.y << "\n";
 }
 
-void printRectangleParameters(Shape * figureRectangle)
+void printRectangleParameters(const Shape * figureRectangle)
 {
   std::cout << "\nRectangle height: " << figureRectangle->getFrameRect().height << "\n";
   std::cout << "Rectangle width: " << figureRectangle->getFrameRect().width << "\n";
   std::cout << "Rectangle area: " << figureRectangle->getArea() << "\n\n";
 }
 
-void printRectangleCoordinates(Shape* figureRectangle)
+void printRectangleCoordinates(const Shape* figureRectangle)
 {
   std::cout << "Coordinates of the center of the rectangle: \n"
     << "X = " << figureRectangle->getFrameRect().pos.x << "\t"
@@ -44,9 +44,9 @@ int main()
 
   delete figureCircle;
 
-  pos = { 5,8 };
+  pos = { 5, 8 };
 
-  Shape* figureRectangle = new Rectangle(10, 12, { 5,5 });
+  Shape* figureRectangle = new Rectangle(10, 12, { 5, 5 });
   printRectangleParameters(figureRectangle);
   printRectangleCoordinates(figureRectangle);
 

@@ -28,6 +28,6 @@ void Rectangle::move(const point_t& destination)
 
 void Rectangle::move(const double dx, const double dy)
 {
-  pos_.x = pos_.x + dx;
-  pos_.y = pos_.y + dy;
+  pos_.x += dx;
+  pos_.y += dy;
 }

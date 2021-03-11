@@ -123,8 +123,10 @@ BOOST_AUTO_TEST_CASE(TestRectangleFrameRect)
 
 BOOST_AUTO_TEST_CASE(TestRectangleInvalidArgument)
 {
-  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(-DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER), std::invalid_argument);
-  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(DEFAULT_WIDTH, -DEFAULT_HEIGHT, DEFAULT_CENTER), std::invalid_argument);
+  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(-DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER),
+                    std::invalid_argument);
+  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(DEFAULT_WIDTH, -DEFAULT_HEIGHT, DEFAULT_CENTER),
+                    std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircle)
@@ -210,4 +212,10 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeCopy)
   BOOST_CHECK_EQUAL(compositeShape.getFrameRect().pos.x, compositeShapeCopy.getFrameRect().pos.x);
   compositeShapeCopy.move(dx, 0.0);
   BOOST_CHECK_CLOSE(compositeShape.getFrameRect().pos.x + dx, compositeShapeCopy.getFrameRect().pos.x, TOLERANCE);
+}
+
+BOOST_AUTO_TEST_CASE(TestCompositeShapeInvalidArgument)
+{
+  shilyaev::CompositeShape compositeShape;
+  BOOST_CHECK_THROW(compositeShape.insert(std::unique_ptr< shilyaev::Shape >(nullptr)), std::invalid_argument);
 }

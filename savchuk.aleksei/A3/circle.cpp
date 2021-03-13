@@ -39,4 +39,10 @@ namespace savchuk
     assert(scaleFactor > 0 && "The scale factor must be positive");
     radius_ *= scaleFactor;
   }
+
+  std::unique_ptr< Shape* > Circle::clone() const
+  {
+    Shape* clone = new Circle(*this);
+    return std::make_unique< Shape* >(clone);
+  }
 }

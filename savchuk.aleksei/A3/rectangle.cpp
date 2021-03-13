@@ -38,4 +38,10 @@ namespace savchuk
     rect_.width *= scaleFactor;
     rect_.height *= scaleFactor;
   }
+
+  std::unique_ptr< Shape* > Rectangle::clone() const
+  {
+    Shape* clone = new Rectangle(*this);
+    return std::make_unique< Shape* >(clone);
+  }
 }

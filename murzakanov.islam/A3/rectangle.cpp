@@ -30,7 +30,7 @@ murzakanov::rectangle_t murzakanov::Rectangle::getFrameRect() const
 
 
 
-void murzakanov::Rectangle::move(const murzakanov::point_t &point)
+void murzakanov::Rectangle::move(const murzakanov::point_t& point)
 {
   pos_ = point;
 }

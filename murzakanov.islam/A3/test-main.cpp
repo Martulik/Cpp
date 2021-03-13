@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(incorrect_values)
   BOOST_CHECK_THROW(murzakanov::Rectangle rectangle(width, height, rectPos), std::invalid_argument);
 }
 
-BOOST_AUTO_TEST_CASE(push_back)
+BOOST_AUTO_TEST_CASE(addShape)
 {
   double width = 2.0,
          height = 3.0;
@@ -52,6 +52,19 @@ BOOST_AUTO_TEST_CASE(push_back)
   std::shared_ptr< murzakanov::Rectangle > rect;
   rect = std::make_shared< murzakanov::Rectangle >(width, height, pos);
   BOOST_CHECK_NO_THROW(cmpShp.addShape(rect));
+}
+
+BOOST_AUTO_TEST_CASE(popShape)
+{
+  double width = 2.0,
+         height = 3.0;
+  murzakanov::point_t pos{1.5, 2.3};
+  murzakanov::CompositeShape cmpShp;
+  std::shared_ptr< murzakanov::Rectangle > rect;
+  rect = std::make_shared< murzakanov::Rectangle >(width, height, pos);
+  cmpShp.addShape(rect);
+  BOOST_CHECK_NO_THROW(cmpShp.popShape());
+  BOOST_CHECK_THROW(cmpShp[0], std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

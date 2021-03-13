@@ -9,6 +9,17 @@ murzakanov::CompositeShape::CompositeShape():
 {
 }
 
+murzakanov::CompositeShape::CompositeShape(CompositeShape&& other) noexcept
+{
+  array_ = std::move(other.array_);
+  capacity_ = other.capacity_;
+  size_ = other.size_;
+
+  other.size_ = 0;
+  other.capacity_ = 0;
+  other.array_ = nullptr;
+}
+
 murzakanov::Shape& murzakanov::CompositeShape::operator [](const int index)
 {
   if (index < 0 || index >= size_)

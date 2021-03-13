@@ -12,7 +12,7 @@ namespace murzakanov
     CompositeShape();
     explicit CompositeShape(std::shared_ptr< Shape > shp);
     CompositeShape(const CompositeShape& other);
-    CompositeShape(CompositeShape&& other) = delete;
+    CompositeShape(CompositeShape&& other) noexcept;
     ~CompositeShape() override = default;
 
     void scale(double coef) override;

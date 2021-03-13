@@ -1,3 +1,4 @@
+
 #include "rectangle.hpp"
 #include <stdexcept>
 
@@ -48,4 +49,9 @@ void murzakanov::Rectangle::scale(const double coef)
   }
   width_ *= coef;
   height_ *= coef;
+}
+
+murzakanov::Rectangle* murzakanov::Rectangle::clone() const
+{
+  return new Rectangle(*this);
 }

@@ -49,3 +49,8 @@ void murzakanov::Circle::scale(const double coef)
   }
   radius_ *= coef;
 }
+
+murzakanov::Circle* murzakanov::Circle::clone() const
+{
+  return new Circle(*this);
+}

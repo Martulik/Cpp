@@ -32,12 +32,12 @@ void murzakanov::CompositeShape::addShape(std::shared_ptr<Shape> shp)
         tempArray[i] = std::move(array_[i]);
       }
       capacity_ = capacity_ * 2;
-      tempArray[size_] = shp;
+      tempArray[size_].reset(shp->clone());
       array_ = std::move(tempArray);
     }
   else
     {
-      array_[size_] = shp;
+      array_[size_].reset(shp->clone());
     }
   size_++;
 }
@@ -140,6 +140,22 @@ murzakanov::CompositeShape::CompositeShape(std::shared_ptr<Shape> shp):
   {
     throw std::invalid_argument("Pointer to shape cannot be nullptr");
   }
-  array_[size_] = std::move(shp);
+  array_[size_].reset(shp->clone());
   size_++;
+}
+
+murzakanov::CompositeShape* murzakanov::CompositeShape::clone() const
+{
+  return new CompositeShape(*this);
+}
+
+murzakanov::CompositeShape::CompositeShape(const CompositeShape& other):
+  capacity_(other.capacity_),
+  size_(other.size_),
+  array_(std::make_unique< std::shared_ptr< Shape >[] >(other.capacity_))
+{
+  for (int i = 0; i < size_; i++)
+  {
+    array_[i].reset(other.array_[i]->clone());
+  }
 }

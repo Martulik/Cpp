@@ -19,7 +19,7 @@ namespace murzakanov
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
     void scale(double coef) override;
-
+    Circle* clone() const override;
   private:
     double radius_;
     point_t pos_;

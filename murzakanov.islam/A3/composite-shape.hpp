@@ -11,7 +11,7 @@ namespace murzakanov
   public:
     CompositeShape();
     explicit CompositeShape(std::shared_ptr<Shape> shp);
-    CompositeShape(const CompositeShape& other) = delete;
+    CompositeShape(const CompositeShape& other);
     CompositeShape(CompositeShape&& other) = delete;
     ~CompositeShape() override = default;
 
@@ -22,6 +22,7 @@ namespace murzakanov
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
+    CompositeShape* clone() const override;
     void addShape(std::shared_ptr<Shape> shp);
     Shape& operator [](int index) ;
   private:

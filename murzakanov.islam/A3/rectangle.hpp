@@ -19,7 +19,7 @@ namespace murzakanov
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-
+    Rectangle* clone() const override;
   private:
     double width_;
     double height_;

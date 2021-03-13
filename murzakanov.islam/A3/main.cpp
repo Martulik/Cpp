@@ -33,9 +33,10 @@ int main()
   testArray.scale(5);
   std::cout << "Площадь после скейла: \n" << testArray.getArea() << "\n";
   std::cout << "Координаты после скейла\n";
-  for (int i = 0; i < testArray.getSize(); i++) {
+  for (int i = 0; i < testArray.getSize(); i++)
+  {
     std::cout << testArray[i].getFrameRect().pos.x
               << " " << testArray[i].getFrameRect().pos.y << std::endl;
   }
-   return 0;
+  return 0;
 }

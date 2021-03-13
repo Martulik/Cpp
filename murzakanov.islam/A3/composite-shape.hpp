@@ -27,6 +27,7 @@ namespace murzakanov
     void move(double dx, double dy) override;
     CompositeShape* clone() const override;
     void addShape(const std::shared_ptr<Shape>& shp);
+    void popShape();
   private:
     int capacity_;
     int size_;

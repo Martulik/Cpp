@@ -105,6 +105,17 @@ void murzakanov::CompositeShape::addShape(const std::shared_ptr< Shape >& shp)
   size_++;
 }
 
+void murzakanov::CompositeShape::popShape()
+{
+  std::unique_ptr< std::shared_ptr< Shape >[] > tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+  for (int i = 0; i < size_ - 1; i++)
+  {
+    tempArray[i] = std::move(array_[i]);
+  }
+  array_ = std::move(tempArray);
+  size_--;
+}
+
 void murzakanov::CompositeShape::scale(double coef)
 {
   if (coef < 0)

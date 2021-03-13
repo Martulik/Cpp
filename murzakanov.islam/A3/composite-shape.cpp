@@ -18,7 +18,7 @@ murzakanov::Shape& murzakanov::CompositeShape::operator [](const int index)
   return *array_[index];
 }
 
-void murzakanov::CompositeShape::addShape(std::shared_ptr<Shape> shp)
+void murzakanov::CompositeShape::addShape(const std::shared_ptr<Shape>& shp)
 {
   if (shp == nullptr)
   {

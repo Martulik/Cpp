@@ -33,4 +33,10 @@ namespace savchuk
     pos_.x += dx;
     pos_.y += dy;
   }
+
+  void Circle::scale(double scaleFactor)
+  {
+    assert(scaleFactor > 0 && "The scale factor must be positive");
+    radius_ *= scaleFactor;
+  }
 }

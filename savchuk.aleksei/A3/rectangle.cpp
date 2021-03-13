@@ -31,4 +31,11 @@ namespace savchuk
     rect_.pos.x += dx;
     rect_.pos.y += dy;
   }
+
+  void Rectangle::scale(double scaleFactor)
+  {
+    assert(scaleFactor > 0 && "The scale factor must be positive");
+    rect_.width *= scaleFactor;
+    rect_.height *= scaleFactor;
+  }
 }

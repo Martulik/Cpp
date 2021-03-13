@@ -13,11 +13,11 @@ int main()
 
   double radius = 1.5;
   murzakanov::point_t circlePos{2, 3};
-  std::shared_ptr<murzakanov::Shape> testCircle;
-  testCircle = std::make_shared<murzakanov::Circle>(radius, circlePos);
+  std::shared_ptr< murzakanov::Shape > testCircle;
+  testCircle = std::make_shared< murzakanov::Circle >(radius, circlePos);
   murzakanov::CompositeShape testArray;
   testArray.addShape(testCircle);
-  testArray.addShape(std::make_shared<murzakanov::Rectangle>(testRectangle));
+  testArray.addShape(std::make_shared< murzakanov::Rectangle >(testRectangle));
   std::cout << testArray[0].getName() << std::endl;
   std::cout << testArray[1].getName() << std::endl;
   std::cout << testArray.getFrameRect().pos.x << " "

@@ -49,8 +49,8 @@ BOOST_AUTO_TEST_CASE(push_back)
          height = 3.0;
   murzakanov::point_t pos{1.5, 2.3};
   murzakanov::CompositeShape cmpShp;
-  std::shared_ptr<murzakanov::Rectangle> rect;
-  rect = std::make_shared<murzakanov::Rectangle>(width, height, pos);
+  std::shared_ptr< murzakanov::Rectangle > rect;
+  rect = std::make_shared< murzakanov::Rectangle >(width, height, pos);
   BOOST_CHECK_NO_THROW(cmpShp.addShape(rect));
 }
 

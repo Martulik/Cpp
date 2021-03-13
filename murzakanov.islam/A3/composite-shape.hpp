@@ -10,7 +10,7 @@ namespace murzakanov
   {
   public:
     CompositeShape();
-    explicit CompositeShape(std::shared_ptr<Shape> shp);
+    explicit CompositeShape(std::shared_ptr< Shape > shp);
     CompositeShape(const CompositeShape& other);
     CompositeShape(CompositeShape&& other) = delete;
     ~CompositeShape() override = default;
@@ -28,7 +28,7 @@ namespace murzakanov
   private:
     int capacity_;
     int size_;
-    std::unique_ptr<std::shared_ptr<Shape>[]> array_;
+    std::unique_ptr< std::shared_ptr< Shape >[] > array_;
   };
 }
 

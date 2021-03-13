@@ -10,10 +10,13 @@ namespace murzakanov
   {
   public:
     CompositeShape();
-    explicit CompositeShape(std::shared_ptr< Shape > shp);
     CompositeShape(const CompositeShape& other);
     CompositeShape(CompositeShape&& other) noexcept;
+    explicit CompositeShape(std::shared_ptr< Shape > shp);
     ~CompositeShape() override = default;
+    Shape& operator [](int index);
+    CompositeShape& operator =(const CompositeShape& src);
+    CompositeShape& operator =(CompositeShape&& src) noexcept;
 
     void scale(double coef) override;
     int getSize() const;
@@ -24,7 +27,6 @@ namespace murzakanov
     void move(double dx, double dy) override;
     CompositeShape* clone() const override;
     void addShape(const std::shared_ptr<Shape>& shp);
-    Shape& operator [](int index) ;
   private:
     int capacity_;
     int size_;

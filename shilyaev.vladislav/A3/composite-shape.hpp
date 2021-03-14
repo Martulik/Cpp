@@ -10,7 +10,7 @@ namespace shilyaev {
     CompositeShape();
     CompositeShape(const CompositeShape &source);
     CompositeShape(CompositeShape &&source) = default;
-    CompositeShape &operator=(const CompositeShape &other);
+    CompositeShape &operator=(CompositeShape other);
     CompositeShape &operator=(CompositeShape &&other) = default;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -20,6 +20,7 @@ namespace shilyaev {
     void scale(double factor) override;
     size_t getSize() const;
     void insert(std::unique_ptr< Shape > shape);
+    void swap(CompositeShape &other) noexcept;
   private:
     size_t capacity_;
     size_t size_;

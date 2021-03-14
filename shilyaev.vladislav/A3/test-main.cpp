@@ -207,7 +207,8 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeCopy)
   shilyaev::CompositeShape compositeShape;
   compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
   compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
-  shilyaev::CompositeShape compositeShapeCopy(compositeShape);
+  shilyaev::CompositeShape compositeShapeCopy;
+  compositeShapeCopy = compositeShape;
 
   BOOST_CHECK_EQUAL(compositeShape.getFrameRect().pos.x, compositeShapeCopy.getFrameRect().pos.x);
   compositeShapeCopy.move(dx, 0.0);

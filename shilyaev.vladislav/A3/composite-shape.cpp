@@ -24,16 +24,9 @@ shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source)
   }
 }
 
-shilyaev::CompositeShape &shilyaev::CompositeShape::operator=(const shilyaev::CompositeShape &other)
+shilyaev::CompositeShape &shilyaev::CompositeShape::operator=(shilyaev::CompositeShape other)
 {
-  if (this != &other) {
-    capacity_ = other.capacity_;
-    size_ = other.size_;
-    shapes_ = std::make_unique< std::unique_ptr< Shape >[] >(other.capacity_);
-    for (size_t i = 0; i < size_; i++) {
-      shapes_[i].reset(other.shapes_[i]->clone());
-    }
-  }
+  swap(other);
   return *this;
 }
 
@@ -115,6 +108,18 @@ void shilyaev::CompositeShape::insert(std::unique_ptr< Shape > shape)
   size_++;
 }
 
+size_t shilyaev::CompositeShape::getSize() const
+{
+  return size_;
+}
+
+void shilyaev::CompositeShape::swap(shilyaev::CompositeShape &other) noexcept
+{
+  std::swap(capacity_, other.capacity_);
+  std::swap(size_, other.size_);
+  std::swap(shapes_, other.shapes_);
+}
+
 void shilyaev::CompositeShape::increaseCapacity()
 {
   capacity_ *= CAPACITY_INCREASE_FACTOR;
@@ -123,9 +128,4 @@ void shilyaev::CompositeShape::increaseCapacity()
   for (size_t i = 0; i < size_; i++) {
     shapes_[i] = std::move(old[i]);
   }
-}
-
-size_t shilyaev::CompositeShape::getSize() const
-{
-  return size_;
 }

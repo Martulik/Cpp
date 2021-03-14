@@ -9,6 +9,13 @@
 
 #include <boost/test/included/unit_test.hpp>
 
+void checkScale(ivanova::Shape *shape)
+{
+  double areaBeforeScale = shape->getArea();
+  shape->scale(2);
+  BOOST_CHECK_CLOSE(areaBeforeScale * 4, shape->getArea(), 0.0001);
+}
+
 void checkMoveToPoint(ivanova::Shape *shape)
 {
   ivanova::rectangle_t rectFrame = shape->getFrameRect();
@@ -30,13 +37,6 @@ void checkMoveAbs(ivanova::Shape *shp)
 }
 
 
-
-void checkScale(ivanova::Shape *shape)
-{
-  double areaBeforeScale = shape->getArea();
-  shape->scale(2);
-  BOOST_CHECK_CLOSE(areaBeforeScale * 4, shape->getArea(), 0.0001);
-}
 
 BOOST_AUTO_TEST_SUITE(testRectangle)
 

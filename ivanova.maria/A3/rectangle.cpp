@@ -1,9 +1,9 @@
 #include "rectangle.hpp"
 
 ivanova::Rectangle::Rectangle(double height, double width, ivanova::point_t pos):
-        height_(height),
-        width_(width),
-        pos_(pos)
+  height_(height),
+  width_(width),
+  pos_(pos)
 {
 }
 

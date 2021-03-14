@@ -36,8 +36,6 @@ void checkMoveAbs(ivanova::Shape *shp)
   BOOST_CHECK_EQUAL(areaBeforeMove, shp->getArea());
 }
 
-
-
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
 BOOST_AUTO_TEST_CASE(moveRectangle)
@@ -79,7 +77,6 @@ BOOST_AUTO_TEST_CASE(moveCompositeShape)
   ivanova::CompositeShape array;
   std::shared_ptr< ivanova::Shape > rectangle = std::make_shared< ivanova::Rectangle > (8.0, 4.0, ivanova::point_t{0.0, 7.0});
   array.add(rectangle);
-
   std::shared_ptr< ivanova::Shape > circle = std::make_shared< ivanova::Circle > (ivanova::point_t {8.0, -2.0}, 9.5);
   array.add(circle);
 
@@ -90,13 +87,10 @@ BOOST_AUTO_TEST_CASE(moveCompositeShape)
 BOOST_AUTO_TEST_CASE(scaleCompositeShape)
 {
   ivanova::CompositeShape array;
-
   std::shared_ptr< ivanova::Shape > circle0 = std::make_shared< ivanova::Circle >(ivanova::point_t {12.0, -5.0}, 7.0);
   array.add(circle0);
-
   std::shared_ptr< ivanova::Shape > circle1 = std::make_shared< ivanova::Circle >(ivanova::point_t{-4.0, -1.0}, 3.0);
   array.add(circle1);
-
   checkScale(&array);
 }
 

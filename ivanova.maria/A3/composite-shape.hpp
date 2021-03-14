@@ -6,15 +6,15 @@
 
 namespace ivanova
 {
-  class CompositeShape: public Shape
+class CompositeShape: public Shape
   {
   public:
     CompositeShape();
     CompositeShape(const CompositeShape &other) = delete;
     CompositeShape(CompositeShape &&other) noexcept = default;
     virtual ~CompositeShape() = default;
-    std::shared_ptr< Shape > operator[](const std::size_t index) const;
-    void add(std::shared_ptr< Shape > source);
+    std::shared_ptr< Shape > operator[](const size_t index) const;
+    void add(std::shared_ptr< ivanova::Shape > source);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     size_t getSize () const;

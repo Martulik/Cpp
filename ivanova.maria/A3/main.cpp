@@ -33,17 +33,17 @@ void test(ivanova::CompositeShape &array)
   array.move({4.0, 6.8});
   info(array);
 }
+
 void info (ivanova::CompositeShape &array)
 {
   std::cout << array.getName() << std::endl << "size: " << array.getSize() << std::endl;
   std::cout << "width: " << array.getFrameRect().width << std::endl;
   std::cout << "height: " << array.getFrameRect().height << std::endl;
   std::cout << "area: " << array.getArea() << std::endl;
-  for ( size_t i=0; i<array.getSize(); i++)
+  for ( size_t i = 0; i < array.getSize(); i++)
   {
     std::shared_ptr< ivanova::Shape> temp = array[i];
     std::cout << i << ": " << temp->getName() << std::endl;
     std::cout << "center: {" << temp->getFrameRect().pos.x << "; " << temp->getFrameRect().pos.y << "}" << std::endl;
   }
-
 }

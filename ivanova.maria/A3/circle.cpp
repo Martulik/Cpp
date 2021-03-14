@@ -1,8 +1,8 @@
 #include "circle.hpp"
 
 ivanova::Circle::Circle(ivanova::point_t ctr, double rad):
-        ctr_(ctr),
-        radius_(rad)
+  ctr_(ctr),
+  radius_(rad)
 {
 }
 

@@ -86,3 +86,17 @@ BOOST_AUTO_TEST_CASE(scale_composite)
   test_scale(s, 4.5);
   test_scale(s, 0.1);
 }
+
+BOOST_AUTO_TEST_CASE(copy_composite)
+{
+  dan::CompositeShape src;
+  src.add(std::make_unique<dan::Rectangle>(2, 3, dan::point_t{-1, 0}));
+  src.add(std::make_unique<dan::Circle>(dan::point_t{1, 1}, 2));
+
+  dan::CompositeShape cpy(src);
+
+  BOOST_CHECK(src.getArea() == cpy.getArea());
+  BOOST_CHECK(equal_size(src.getFrameRect(), cpy.getFrameRect()));
+  BOOST_CHECK(src.getFrameRect().pos.x == cpy.getFrameRect().pos.x);
+  BOOST_CHECK(src.getFrameRect().pos.y == cpy.getFrameRect().pos.y);
+}

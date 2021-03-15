@@ -61,7 +61,10 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
 
 void dan::CompositeShape::move(point_t vec, bool absolute)
 {
-  if(absolute){
+  if(size_ <= 0)
+    return;
+
+  if(absolute) {
     point_t center = getFrameRect().pos;
     for(size_t i = 0; i < size_; ++i) {
       point_t shape = shapes_[i]->getFrameRect().pos;

@@ -7,9 +7,9 @@ ezerinia::CompositeShape::CompositeShape():
 {
 }
 
-std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::operator[](const int index) const
+std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::operator[](const std::size_t index) const
 {
-  if (index < 0 || index >= size_)
+  if (index >= size_)
   {
     throw std::invalid_argument("Index outside the array");
   }

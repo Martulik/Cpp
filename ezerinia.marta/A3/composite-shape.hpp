@@ -14,7 +14,7 @@ namespace ezerinia
     CompositeShape(const CompositeShape &) = delete;
     CompositeShape(CompositeShape &&) noexcept = default;
     virtual ~CompositeShape() = default;
-    std::shared_ptr< Shape > operator[](const int index) const;
+    std::shared_ptr< Shape > operator[](const std::size_t index) const;
     void pushBack(std::shared_ptr< Shape > src);
     double getArea() const override;
     rectangle_t getFrameRect() const override;

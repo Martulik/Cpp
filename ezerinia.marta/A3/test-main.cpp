@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
   {
     ezerinia::CompositeShape composite;
     addShapes(&composite);
-    BOOST_CHECK_THROW(composite[-7], std::invalid_argument);
+    BOOST_CHECK_THROW(composite[70000], std::invalid_argument);
     BOOST_CHECK_THROW(composite.scale(-100.1), std::invalid_argument);
   }
 

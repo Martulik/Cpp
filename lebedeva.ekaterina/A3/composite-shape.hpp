@@ -2,7 +2,6 @@
 #define COMPOSITE_SHAPE_HPP
 
 #include "shape.hpp"
-#include "array_template.hpp"
 
 namespace lebedeva
 {

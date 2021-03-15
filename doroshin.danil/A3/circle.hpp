@@ -5,7 +5,7 @@
 
 namespace doroshin
 {
-  class IncorrectCircle: IncorrectShape
+  class IncorrectCircle: public IncorrectShape
   {
   public:
     const char* what() const noexcept override;

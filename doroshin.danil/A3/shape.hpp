@@ -6,7 +6,7 @@
 
 namespace doroshin
 {
-  class IncorrectShape: std::exception
+  class IncorrectShape: public std::exception
   {};
 
   class Shape

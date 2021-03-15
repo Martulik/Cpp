@@ -7,32 +7,34 @@
 
 namespace dan = doroshin;
 
-bool equal_size(const dan::rectangle_t& lhs, const dan::rectangle_t& rhs)
+void equal_size(const dan::rectangle_t& lhs, const dan::rectangle_t& rhs)
 {
-  return lhs.height == rhs.height && lhs.width == rhs.width;
+  BOOST_CHECK_EQUAL(lhs.height, rhs.height);
+  BOOST_CHECK_EQUAL(lhs.width, rhs.width);
 }
 
 void test_move_rel(dan::Shape& s, dan::point_t vec)
 {
   dan::rectangle_t orig_frame = s.getFrameRect();
   s.move(vec);
-  BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
+  equal_size(orig_frame, s.getFrameRect());
 }
 
 void test_move_abs(dan::Shape& s, dan::point_t point)
 {
   dan::rectangle_t orig_frame = s.getFrameRect();
   s.move(point, true);
-  BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
+  equal_size(orig_frame, s.getFrameRect());
 }
 
 void test_scale(dan::Shape& s, double coeff)
 {
+  const double tolerance = std::numeric_limits<double>::epsilon();
   double orig = s.getArea();
   double predicted = coeff * coeff * orig;
   s.scale(coeff);
   double n_area = s.getArea();
-  BOOST_CHECK(predicted == n_area);
+  BOOST_CHECK_CLOSE_FRACTION(predicted, n_area, tolerance);
 }
 
 BOOST_AUTO_TEST_CASE(move_circle)
@@ -95,8 +97,8 @@ BOOST_AUTO_TEST_CASE(copy_composite)
 
   dan::CompositeShape cpy(src);
 
-  BOOST_CHECK(src.getArea() == cpy.getArea());
-  BOOST_CHECK(equal_size(src.getFrameRect(), cpy.getFrameRect()));
-  BOOST_CHECK(src.getFrameRect().pos.x == cpy.getFrameRect().pos.x);
-  BOOST_CHECK(src.getFrameRect().pos.y == cpy.getFrameRect().pos.y);
+  BOOST_CHECK_EQUAL(src.getArea(), cpy.getArea());
+  equal_size(src.getFrameRect(), cpy.getFrameRect());
+  BOOST_CHECK_EQUAL(src.getFrameRect().pos.x, cpy.getFrameRect().pos.x);
+  BOOST_CHECK_EQUAL(src.getFrameRect().pos.y, cpy.getFrameRect().pos.y);
 }

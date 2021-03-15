@@ -22,7 +22,6 @@ namespace lebedeva
     void move(const double& dx, const double& dy) override;
     void scale(const double& k) override;
     void push(Shape::Ptr figurePtr);
-    
   private:
     std::unique_ptr< l::Shape::Ptr [] > data_;
     std::size_t countAllocated_;

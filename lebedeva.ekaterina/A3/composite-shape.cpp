@@ -11,7 +11,7 @@ l::CompositeShape::CompositeShape():
 
 l::Shape::Ptr& l::CompositeShape::operator[](const std::size_t& i) const
 {
-  assert(i < countElements_);
+  assert((i < countElements_) && (0 <= i));
   return data_[i];
 }
 
@@ -76,6 +76,7 @@ void l::CompositeShape::move(const double& dx, const double& dy)
 
 void l::CompositeShape::scale(const double& k)
 {
+  assert(k > 0);
   for (std::size_t i = 0; i < countElements_; i++)
   {
     data_[i]->scale(k);

@@ -23,15 +23,15 @@ dan::rectangle_t dan::Circle::getFrameRect() const
   return rectangle_t{ 2 * radius_, 2 * radius_, pos_ };
 }
 
-void dan::Circle::move_rel(point_t vec)
+void dan::Circle::move(point_t vec, bool absolute)
 {
-  pos_.x += vec.x;
-  pos_.y += vec.y;
-}
-
-void dan::Circle::move_abs(point_t point)
-{
-  pos_ = point;
+  if(absolute) {
+    pos_ = vec;
+  }
+  else {
+    pos_.x += vec.x;
+    pos_.y += vec.y;
+  }
 }
 
 void dan::Circle::scale(double s)

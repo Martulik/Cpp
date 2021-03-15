@@ -54,20 +54,20 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
   return {width, height, {pos_x, pos_y}};
 }
 
-void dan::CompositeShape::move_rel(point_t vec)
+void dan::CompositeShape::move(point_t vec, bool absolute)
 {
-  for(size_t i = 0; i < size_; ++i) {
-    shapes_[i]->move_rel(vec);
+  if(absolute){
+    point_t center = getFrameRect().pos;
+    for(size_t i = 0; i < size_; ++i) {
+      point_t shape = shapes_[i]->getFrameRect().pos;
+      point_t delta {shape.x - center.x, shape.y - center.y};
+      shapes_[i]->move({vec.x + delta.x, vec.y + delta.y}, true);
+    }
   }
-}
-
-void dan::CompositeShape::move_abs(point_t point)
-{
-  point_t center = getFrameRect().pos;
-  for(size_t i = 0; i < size_; ++i) {
-    point_t shape = shapes_[i]->getFrameRect().pos;
-    point_t delta {shape.x - center.x, shape.y - center.y};
-    shapes_[i]->move_abs({point.x + delta.x, point.y + delta.y});
+  else {
+    for(size_t i = 0; i < size_; ++i) {
+      shapes_[i]->move(vec);
+    }
   }
 }
 
@@ -77,7 +77,7 @@ void dan::CompositeShape::scale(double s)
   for(size_t i = 0; i < size_; ++i) {
     point_t shape = shapes_[i]->getFrameRect().pos;
     point_t move_vec { s * (center.x - shape.x), s * (center.y - shape.y) };
-    shapes_[i]->move_rel(move_vec);
+    shapes_[i]->move(move_vec);
     shapes_[i]->scale(s);
   }
 }

@@ -48,15 +48,15 @@ dan::rectangle_t dan::Rectangle::getFrameRect() const
   return rect_;
 }
 
-void dan::Rectangle::move_rel(point_t vec)
+void dan::Rectangle::move(point_t vec, bool absolute)
 {
-  rect_.pos.x += vec.x;
-  rect_.pos.y += vec.y;
-}
-
-void dan::Rectangle::move_abs(point_t point)
-{
-  rect_.pos = point;
+  if (absolute) {
+    rect_.pos = vec;
+  }
+  else {
+    rect_.pos.x += vec.x;
+    rect_.pos.y += vec.y;
+  }
 }
 
 void dan::Rectangle::scale(double s)

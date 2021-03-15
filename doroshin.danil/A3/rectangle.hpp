@@ -16,8 +16,7 @@ namespace doroshin
     double getArea() const override;
     rectangle_t getFrameRect() const override;
 
-    void move_rel(point_t vec) override;
-    void move_abs(point_t point) override;
+    void move(point_t vec, bool absolute = false) override;
     void scale(double s) override;
 
   private:

@@ -15,14 +15,14 @@ bool equal_size(const dan::rectangle_t& lhs, const dan::rectangle_t& rhs)
 void test_move_rel(dan::Shape& s, dan::point_t vec)
 {
   dan::rectangle_t orig_frame = s.getFrameRect();
-  s.move_rel(vec);
+  s.move(vec);
   BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
 }
 
 void test_move_abs(dan::Shape& s, dan::point_t point)
 {
   dan::rectangle_t orig_frame = s.getFrameRect();
-  s.move_abs(point);
+  s.move(point, true);
   BOOST_CHECK(equal_size(orig_frame, s.getFrameRect()));
 }
 

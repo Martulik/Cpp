@@ -1,6 +1,7 @@
 #include "composite-shape.hpp"
 #include <cassert>
 #include <cmath>
+#include <stdexcept>
 #include <utility>
 #include <limits>
 #include <algorithm>
@@ -23,7 +24,9 @@ void dan::CompositeShape::add(shape_ptr shape)
 
 double dan::CompositeShape::getArea() const
 {
-  assert("Not implemented properly");
+  if(size_ <= 0)
+    throw std::out_of_range("CompositeShape is empty");
+
   double sum = 0.0;
   for(size_t i = 0; i < size_; ++i) {
     sum += shapes_[i]->getArea();
@@ -33,7 +36,9 @@ double dan::CompositeShape::getArea() const
 
 dan::rectangle_t dan::CompositeShape::getFrameRect() const
 {
-  assert(size_ != 0);
+  if(size_ <= 0)
+    throw std::out_of_range("CompositeShape is empty");
+
   double min_x = std::numeric_limits< double >::max();
   double max_x = std::numeric_limits< double >::lowest();
   double min_y = std::numeric_limits< double >::max();

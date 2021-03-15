@@ -1,10 +1,14 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
+#include <exception>
 #include "base-types.hpp"
 
 namespace doroshin
 {
+  class IncorrectShape: std::exception
+  {};
+
   class Shape
   {
   public:

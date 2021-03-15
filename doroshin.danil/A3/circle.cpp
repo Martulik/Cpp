@@ -10,7 +10,8 @@ dan::Circle::Circle(point_t pos, double r):
   pos_(pos),
   radius_(r)
 {
-  assert(radius_ >= 0);
+  if(radius_ < 0)
+    throw IncorrectCircle();
 }
 
 double dan::Circle::getArea() const
@@ -42,4 +43,9 @@ void dan::Circle::scale(double s)
 dan::Shape* dan::Circle::copy() const
 {
   return new Circle(*this);
+}
+
+const char* dan::IncorrectCircle::what() const noexcept
+{
+  return "Incorrect circle";
 }

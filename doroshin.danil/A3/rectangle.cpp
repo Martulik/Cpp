@@ -23,15 +23,15 @@ dan::rectangle_t from_two_points(dan::point_t a, dan::point_t b)
 dan::Rectangle::Rectangle(rectangle_t rect):
   rect_(rect)
 {
-  assert(rect.width >= 0);
-  assert(rect.height >= 0);
+  if(rect.width < 0 || rect.height < 0)
+    throw IncorrectRectangle();
 }
 
 dan::Rectangle::Rectangle(double w, double h, point_t pos):
   rect_{w, h, pos}
 {
-  assert(rect_.width >= 0);
-  assert(rect_.height >= 0);
+  if(rect_.width < 0 || rect_.height < 0)
+    throw IncorrectRectangle();
 }
 
 dan::Rectangle::Rectangle(point_t a, point_t b):
@@ -68,4 +68,9 @@ void dan::Rectangle::scale(double s)
 dan::Shape* dan::Rectangle::copy() const
 {
   return new Rectangle(*this);
+}
+
+const char* dan::IncorrectRectangle::what() const noexcept
+{
+  return "Incorrect rectangle";
 }

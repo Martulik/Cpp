@@ -1,12 +1,15 @@
 #include "rectangle.hpp"
-#include <cassert>
+#include <stdexcept>
 
 ezerinia::Rectangle::Rectangle(double width, double height, point_t center):
   width_(width),
   height_(height),
   center_(center)
 {
-  assert(width > 0 && height > 0);
+  if (width_ < 0.0 || height < 0.0)
+  {
+    throw std::invalid_argument("Width and height must be non-negative");
+  }
 }
 
 double ezerinia::Rectangle::getArea() const
@@ -16,7 +19,7 @@ double ezerinia::Rectangle::getArea() const
 
 ezerinia::rectangle_t ezerinia::Rectangle::getFrameRect() const
 {
-  return ezerinia::rectangle_t{width_, height_, center_}; //ezerinia:: нужно ли
+  return ezerinia::rectangle_t{width_, height_, center_};
 }
 
 void ezerinia::Rectangle::move(const ezerinia::point_t &point)
@@ -32,7 +35,10 @@ void ezerinia::Rectangle::move(double dx, double dy)
 
 void ezerinia::Rectangle::scale(double k)
 {
-  assert(k > 0);
+  if (k < 0.0)
+  {
+    throw std::invalid_argument("The coefficient of scale must be non-negative");
+  }
   width_ *= k;
   height_ *= k;
 }

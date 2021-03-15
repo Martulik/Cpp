@@ -1,5 +1,5 @@
 #include "circle.hpp"
-#include <cassert>
+#include <stdexcept>
 
 const double PI = 3.14;
 
@@ -7,7 +7,10 @@ ezerinia::Circle::Circle(double radius, point_t center):
   center_(center),
   radius_(radius)
 {
-  assert(radius > 0);
+  if (radius_ < 0.0)
+  {
+    throw std::invalid_argument("The radius must be non-negative");
+  }
 }
 
 double ezerinia::Circle::getArea() const
@@ -33,6 +36,9 @@ void ezerinia::Circle::move(double dx, double dy)
 
 void ezerinia::Circle::scale(double k)
 {
-  assert(k > 0);
+  if (k < 0.0)
+  {
+    throw std::invalid_argument("The coefficient of scale must be non-negative");
+  }
   radius_ *= k;
 }

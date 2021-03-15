@@ -38,3 +38,8 @@ void dan::Circle::scale(double s)
 {
   radius_ *= fabs(s);
 }
+
+dan::Shape* dan::Circle::copy() const
+{
+  return new Circle(*this);
+}

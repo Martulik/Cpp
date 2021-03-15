@@ -32,9 +32,10 @@ namespace doroshin
 
     // Implementations of copy move and dest are required
     // because this class manages dynamic resources
-    CompositeShape(const CompositeShape&) = delete;
+    Shape* copy() const override;
+    CompositeShape(const CompositeShape&);
     CompositeShape(CompositeShape&&) noexcept = default;
-    CompositeShape& operator=(const CompositeShape&) = delete;
+    CompositeShape& operator=(const CompositeShape&);
     CompositeShape& operator=(CompositeShape&&) noexcept = default;
     ~CompositeShape() override = default;
   };

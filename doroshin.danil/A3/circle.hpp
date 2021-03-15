@@ -10,6 +10,7 @@ namespace doroshin
   public:
     Circle(point_t pos, double r);
     ~Circle() override = default;
+    Shape* copy() const override;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

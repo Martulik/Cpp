@@ -12,6 +12,7 @@ namespace doroshin
     Rectangle(double w, double h, point_t pos);
     Rectangle(point_t, point_t);
     ~Rectangle() override = default;
+    Shape* copy() const override;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

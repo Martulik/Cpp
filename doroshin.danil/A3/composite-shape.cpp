@@ -87,3 +87,24 @@ void dan::swap(CompositeShape& lhs, CompositeShape& rhs)
   std::swap(lhs.size_, rhs.size_);
   std::swap(lhs.shapes_, rhs.shapes_);
 }
+
+dan::CompositeShape::CompositeShape(const CompositeShape& other):
+  shapes_(std::make_unique<shape_ptr[]>(size_)),
+  size_(other.size_)
+{
+  for(size_t i = 0; i < size_; ++i) {
+    shapes_[i] = std::unique_ptr<Shape>(other.shapes_[i]->copy());
+  }
+}
+
+dan::CompositeShape& dan::CompositeShape::operator=(const CompositeShape& other)
+{
+  CompositeShape temp(other);
+  swap(*this, temp);
+  return *this;
+}
+
+dan::Shape* dan::CompositeShape::copy() const
+{
+  return new CompositeShape(*this);
+}

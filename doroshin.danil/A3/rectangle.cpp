@@ -64,3 +64,8 @@ void dan::Rectangle::scale(double s)
   rect_.width *= fabs(s);
   rect_.height *= fabs(s);
 }
+
+dan::Shape* dan::Rectangle::copy() const
+{
+  return new Rectangle(*this);
+}

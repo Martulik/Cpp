@@ -8,6 +8,7 @@ namespace doroshin
   class Shape
   {
   public:
+    virtual Shape* copy() const = 0;
     virtual ~Shape() = default;
 
     virtual double getArea() const = 0;

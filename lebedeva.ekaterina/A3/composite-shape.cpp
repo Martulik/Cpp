@@ -11,7 +11,7 @@ l::CompositeShape::CompositeShape():
 
 l::Shape::Ptr& l::CompositeShape::operator[](const std::size_t& i) const
 {
-  assert((i < countElements_) && (0 <= i));
+  assert(i < countElements_);
   return data_[i];
 }
 

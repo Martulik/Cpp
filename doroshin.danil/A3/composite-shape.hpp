@@ -18,8 +18,11 @@ namespace doroshin
 
     friend void swap(CompositeShape& lhs, CompositeShape& rhs);
   public:
+    // Empty CompositeShape is forbidden
     CompositeShape() = delete;
 
+    // For any type T in Shapes the following must be true:
+    // std::is_convertible< shape.copy(), Shape* >::value
     template< typename... Shapes >
     CompositeShape(Shapes...);
 
@@ -29,8 +32,6 @@ namespace doroshin
     void move(point_t vec, bool absolute = false) override;
     void scale(double s) override;
 
-    // Implementations of copy move and dest are required
-    // because this class manages dynamic resources
     Shape* copy() const override;
     CompositeShape(const CompositeShape&);
     CompositeShape(CompositeShape&&) noexcept = default;
@@ -41,6 +42,8 @@ namespace doroshin
 
   namespace details
   {
+    // Constructs a unique_ptr-managed array of T (std::unique_ptr< T[] >)
+    // From moved argument values.
     template< typename T, typename... Args >
     std::unique_ptr<T[]> make_unique_array(Args&&... args)
     {

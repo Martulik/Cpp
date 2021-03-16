@@ -39,15 +39,22 @@ namespace doroshin
     ~CompositeShape() override = default;
   };
 
+  namespace details
+  {
+    template< typename T, typename... Args >
+    std::unique_ptr<T[]> make_unique_array(Args&&... args)
+    {
+      return std::unique_ptr< T[] >(new T[sizeof...(Args)] { std::move(args)... });
+    }
+  }
 
   template< typename... Shapes >
   CompositeShape::CompositeShape(Shapes... shapes):
-    shapes_(std::make_unique< shape_ptr[] >(sizeof...(Shapes))),
+    shapes_(details::make_unique_array< shape_ptr >(
+        std::unique_ptr< Shape >(shapes.copy())... )),
     size_(sizeof...(Shapes))
   {
     static_assert(sizeof...(Shapes) > 0, "An empty CompositeShape is illegal");
-    shape_ptr sh[] = { std::unique_ptr< Shape >(shapes.copy())... };
-    std::move(sh, sh + size_, shapes_.get());
   }
 
   void swap(CompositeShape& lhs, CompositeShape& rhs);

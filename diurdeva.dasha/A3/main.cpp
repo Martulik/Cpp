@@ -47,8 +47,7 @@ int main()
   diurdeva::Shape *circle = new diurdeva::Circle(radius, pointCenter);
   testShape(circle, "Circle", newCenter, scale);
 
-  diurdeva::CompositeShape compositeShape;
-  compositeShape.addShape(std::shared_ptr<diurdeva::Shape>(rectangle));
-  compositeShape.addShape(std::shared_ptr<diurdeva::Shape>(circle));
+  diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(w, h, pointCenter));
+  compositeShape.addShape(std::make_shared<diurdeva::Circle>(radius, pointCenter));
   testShape(&compositeShape, "CompositeShape", newCenterOfCompositeShape, scale);
 }

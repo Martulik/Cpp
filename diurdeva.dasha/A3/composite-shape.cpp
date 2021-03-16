@@ -1,10 +1,15 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-diurdeva::CompositeShape::CompositeShape():
-  size_(0),
-  shapeArr_(nullptr)
-{}
+diurdeva::CompositeShape::CompositeShape(std::shared_ptr<Shape> shape):
+  size_(1),
+  shapeArr_(std::make_unique<std::shared_ptr<Shape>[]>(1))
+{
+  if (shape == nullptr) {
+    throw std::invalid_argument("Pointer must be not null");
+  }
+  shapeArr_[0] = std::move(shape);
+}
 
 diurdeva::CompositeShape::CompositeShape(const CompositeShape &other):
   size_(other.size_),
@@ -126,17 +131,17 @@ void diurdeva::CompositeShape::scale(const double factor)
   }
 }
 
-void diurdeva::CompositeShape::addShape(const std::shared_ptr<Shape> &newShape)
+void diurdeva::CompositeShape::addShape(std::shared_ptr<Shape> newShape)
 {
   if (newShape == nullptr) {
     throw std::invalid_argument("Pointer must be not null");
   }
-  std::unique_ptr<std::shared_ptr<Shape>[]> newArray(new std::shared_ptr<Shape>[size_ + 1]);
+  std::unique_ptr<std::shared_ptr<Shape>[]> newArray(std::make_unique<std::shared_ptr<Shape>[]>(size_ + 1));
   for (size_t i = 0; i < size_; i++) {
-    newArray[i] = shapeArr_[i];
+    newArray[i] = std::move(shapeArr_[i]);
   }
-  newArray[size_] = newShape;
-  newArray.swap(shapeArr_);
+  newArray[size_] = std::move(newShape);
+  shapeArr_ = std::move(newArray);
   ++size_;
 }
 

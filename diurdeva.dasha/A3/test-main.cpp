@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_SUITE(testRectangle)
 
   BOOST_AUTO_TEST_CASE(invalidHeight)
   {
-    BOOST_CHECK_THROW(diurdeva::Rectangle rectangle(negativeHeight, width, pointCenter), std::invalid_argument);
+    BOOST_CHECK_THROW(diurdeva::Rectangle rectangle(width, negativeHeight, pointCenter), std::invalid_argument);
   }
 
   BOOST_AUTO_TEST_CASE(invalidFactor)
@@ -98,40 +98,30 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
 
   BOOST_AUTO_TEST_CASE(testComposite)
   {
-    std::shared_ptr<diurdeva::Shape> rectangle = std::make_shared<diurdeva::Rectangle>(width, height, pointCenter);
-    std::shared_ptr<diurdeva::Shape> circle = std::make_shared<diurdeva::Circle>(radius, pointCenter);
-    diurdeva::CompositeShape compositeShape;
-    BOOST_CHECK_NO_THROW(compositeShape.addShape(rectangle));
-    BOOST_CHECK_NO_THROW(compositeShape.addShape(circle));
+    diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(width, height, pointCenter));
+    BOOST_CHECK_NO_THROW(compositeShape.addShape(std::make_shared<diurdeva::Circle>(radius, pointCenter)));
     BOOST_REQUIRE_EQUAL(compositeShape.getSize(), 2);
   }
 
   BOOST_AUTO_TEST_CASE(invalidArgument)
   {
-    std::shared_ptr<diurdeva::Shape> rectangle = std::make_shared<diurdeva::Rectangle>(width, height, pointCenter);
-    diurdeva::CompositeShape compositeShape;
-    compositeShape.addShape((rectangle));
+    diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(width, height, pointCenter));
+    BOOST_CHECK_NO_THROW(compositeShape.addShape(std::make_shared<diurdeva::Circle>(radius, pointCenter)));
     BOOST_CHECK_THROW(compositeShape[3], std::out_of_range);
     BOOST_CHECK_THROW(compositeShape.scale(-2.0), std::invalid_argument);
   }
 
   BOOST_AUTO_TEST_CASE(cheakOptionsWhenMoving)
   {
-    std::shared_ptr<diurdeva::Shape> rectangle = std::make_shared<diurdeva::Rectangle>(width, height, pointCenter);
-    std::shared_ptr<diurdeva::Shape> circle = std::make_shared<diurdeva::Circle>(radius, pointCenter);
-    diurdeva::CompositeShape compositeShape;
-    BOOST_CHECK_NO_THROW(compositeShape.addShape(rectangle));
-    BOOST_CHECK_NO_THROW(compositeShape.addShape(circle));
+    diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(width, height, pointCenter));
+    BOOST_CHECK_NO_THROW(compositeShape.addShape(std::make_shared<diurdeva::Circle>(radius, pointCenter)));
     ConstOptionsWhenMoving(&compositeShape);
   }
 
   BOOST_AUTO_TEST_CASE(сhangeAreaWhenScale)
   {
-    std::shared_ptr<diurdeva::Shape> rectangle = std::make_shared<diurdeva::Rectangle>(width, height, pointCenter);
-    std::shared_ptr<diurdeva::Shape> circle = std::make_shared<diurdeva::Circle>(radius, pointCenter);
-    diurdeva::CompositeShape compositeShape;
-    BOOST_CHECK_NO_THROW(compositeShape.addShape(rectangle));
-    BOOST_CHECK_NO_THROW(compositeShape.addShape(circle));
+    diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(width, height, pointCenter));
+    BOOST_CHECK_NO_THROW(compositeShape.addShape(std::make_shared<diurdeva::Circle>(radius, pointCenter)));
     checkAreaBeforeScale(&compositeShape);
   }
 

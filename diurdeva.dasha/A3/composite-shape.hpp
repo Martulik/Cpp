@@ -7,7 +7,7 @@
 namespace diurdeva {
   class CompositeShape: public Shape {
   public:
-    CompositeShape();
+    CompositeShape(std::shared_ptr<Shape> shape);
     CompositeShape(const CompositeShape &shape);
     CompositeShape(CompositeShape &&other) noexcept;
     ~CompositeShape() = default;
@@ -20,7 +20,7 @@ namespace diurdeva {
     void move(const point_t &newCenter) override;
     void move(double dX, double dY) override;
     void scale(double factor) override;
-    void addShape(const std::shared_ptr<Shape> &newShape);
+    void addShape(std::shared_ptr<Shape> newShape);
     size_t getSize() const;
   private:
     size_t size_;

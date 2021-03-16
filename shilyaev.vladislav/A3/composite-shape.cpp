@@ -122,10 +122,12 @@ void shilyaev::CompositeShape::swap(shilyaev::CompositeShape &other) noexcept
 
 void shilyaev::CompositeShape::increaseCapacity()
 {
-  capacity_ *= CAPACITY_INCREASE_FACTOR;
-  std::unique_ptr< std::unique_ptr< Shape >[] > old = std::move(shapes_);
-  shapes_ = std::make_unique< std::unique_ptr< Shape >[] >(capacity_);
+  size_t newCapacity = capacity_ * CAPACITY_INCREASE_FACTOR;
+  std::unique_ptr< std::unique_ptr< Shape >[] > newShapes =
+      std::make_unique< std::unique_ptr< Shape >[] >(newCapacity);
   for (size_t i = 0; i < size_; i++) {
-    shapes_[i] = std::move(old[i]);
+    newShapes[i] = std::move(shapes_[i]);
   }
+  shapes_ = std::move(newShapes);
+  capacity_ = newCapacity;
 }

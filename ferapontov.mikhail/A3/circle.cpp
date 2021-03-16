@@ -1,9 +1,9 @@
 #include "circle.hpp"
 #include <cassert>
 
-ferapontov::Circle::Circle(const double radius, const point_t pos):
-  ferapontov::radius_(radius),
-  ferpontov::pos_(pos)
+feraptontov::Circle::Circle(const double radius, const point_t pos):
+  radius_(radius),
+  pos_(pos)
 {
   assert(radius > 0 && "Incorrect radius");
 }
@@ -16,11 +16,6 @@ double ferapontov::Circle::getArea() const
 rectangle_t ferapontov::Circle::getFrameRect() const
 {
   return {2*radius_, 2*radius_, pos_};
-}
-
-void ferapontov::Circle::scale(double k)
-{
-  radius_ *= k;
 }
 
 void ferapontov::Circle::move(const point_t& pos)

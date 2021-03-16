@@ -5,7 +5,7 @@
 
 namespace ferapontov
 {
-  class Rectangle: public Shape
+  class Rectangle : public Shape
   {
   public:
     Rectangle(const double width, const double height, const point_t pos);
@@ -14,7 +14,6 @@ namespace ferapontov
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    void scale(double k);
     void move(const point_t& pos) override;
     void move(const double dx, const double dy) override;
   private:

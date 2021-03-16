@@ -102,15 +102,6 @@ BOOST_AUTO_TEST_CASE(incorrect_rectangle)
   BOOST_CHECK_THROW((dan::Rectangle{-1, -1, {0, 0}}), dan::IncorrectShape);
 }
 
-BOOST_AUTO_TEST_CASE(empty_composite_errors)
-{
-  dan::CompositeShape s;
-  BOOST_CHECK_NO_THROW(s.move({0, 0}));
-  BOOST_CHECK_NO_THROW(s.move({0, 0}, true));
-  BOOST_CHECK_THROW(s.getArea(), std::out_of_range);
-  BOOST_CHECK_THROW(s.getFrameRect(), std::out_of_range);
-}
-
 BOOST_AUTO_TEST_CASE(copy_composite)
 {
   dan::CompositeShape src(

@@ -18,7 +18,7 @@ namespace doroshin
 
     friend void swap(CompositeShape& lhs, CompositeShape& rhs);
   public:
-    CompositeShape();
+    CompositeShape() = delete;
 
     template< typename... Shapes >
     CompositeShape(Shapes...);
@@ -45,6 +45,7 @@ namespace doroshin
     shapes_(std::make_unique< shape_ptr[] >(sizeof...(Shapes))),
     size_(sizeof...(Shapes))
   {
+    static_assert(sizeof...(Shapes) > 0, "An empty CompositeShape is illegal");
     shape_ptr sh[] = { std::unique_ptr< Shape >(shapes.copy())... };
     std::move(sh, sh + size_, shapes_.get());
   }

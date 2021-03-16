@@ -5,11 +5,6 @@
 
 namespace dan = doroshin;
 
-dan::CompositeShape::CompositeShape():
-  shapes_(nullptr),
-  size_(0)
-{}
-
 double dan::CompositeShape::getArea() const
 {
   if(size_ <= 0)

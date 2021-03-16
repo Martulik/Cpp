@@ -44,10 +44,10 @@ namespace doroshin
 
   template< typename... Shapes >
   CompositeShape::CompositeShape(Shapes... shapes):
-    shapes_(std::make_unique<shape_ptr[]>(sizeof...(Shapes))),
+    shapes_(std::make_unique< shape_ptr[] >(sizeof...(Shapes))),
     size_(sizeof...(Shapes))
   {
-    shape_ptr sh[] = { std::unique_ptr<Shape>(shapes.copy())... };
+    shape_ptr sh[] = { std::unique_ptr< Shape >(shapes.copy())... };
     std::move(sh, sh + size_, shapes_.get());
   }
 

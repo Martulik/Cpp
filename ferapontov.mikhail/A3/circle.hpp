@@ -17,6 +17,7 @@ namespace ferapontov
     rectangle_t getFrameRect() const override;
     void move(const point_t& pos) override;
     void move(double dx, double dy) override;
+    void scale(double k) override;
   private:
     double radius_;
     point_t pos_;

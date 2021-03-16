@@ -33,3 +33,9 @@ void ferapontov::Rectangle::move(const double dx, const double dy)
   rect_.pos.x += dx;
   rect_.pos.y += dy;
 }
+
+void ferapontov::Rectangle::scale(const double k)
+{
+  rect_.width *= k;
+  rect_.height *= k;
+}

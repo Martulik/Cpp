@@ -35,3 +35,8 @@ void ferapontov::Circle::move(const double dx, const double dy)
   pos_.x += dx;
   pos_.y += dy;
 }
+
+void ferapontov::Circle::scale(const double k)
+{
+  radius_ *= k;
+}

@@ -25,8 +25,6 @@ namespace doroshin
     template< typename... Shapes >
     CompositeShape(Shapes...);
 
-    void add(shape_ptr);
-
     double getArea() const override;
     rectangle_t getFrameRect() const override;
 

@@ -1,47 +1,49 @@
 #include "rectangle.hpp"
 
 #include <cassert>
+#include <exception>
 
-namespace savchuk
+namespace lab = savchuk;
+
+lab::Rectangle::Rectangle(const lab::point_t& pos, double width, double height):
+  rect_({ pos, width, height })
 {
-  Rectangle::Rectangle(const point_t& pos, double width, double height):
-    rect_({ pos, width, height })
-  {
-    assert(width > 0 && "The width must be positive");
-    assert(height > 0 && "The height must be positive");
-  }
+  assert(width > 0 && "The width must be positive");
+  assert(height > 0 && "The height must be positive");
+}
 
-  double Rectangle::getArea() const
-  {
-    return rect_.width * rect_.height;
-  }
+double lab::Rectangle::getArea() const
+{
+  return rect_.width * rect_.height;
+}
 
-  rectangle_t Rectangle::getFrameRect() const
-  {
-    return rect_;
-  }
+lab::rectangle_t lab::Rectangle::getFrameRect() const
+{
+  return rect_;
+}
 
-  void Rectangle::move(const point_t& point)
-  {
-    rect_.pos = point;
-  }
+void lab::Rectangle::move(const lab::point_t& point)
+{
+  rect_.pos = point;
+}
 
-  void Rectangle::move(double dx, double dy)
-  {
-    rect_.pos.x += dx;
-    rect_.pos.y += dy;
-  }
+void lab::Rectangle::move(double dx, double dy)
+{
+  rect_.pos.x += dx;
+  rect_.pos.y += dy;
+}
 
-  void Rectangle::scale(double scaleFactor)
+void lab::Rectangle::scale(double scaleFactor)
+{
+  if (scaleFactor <= 0)
   {
-    assert(scaleFactor > 0 && "The scale factor must be positive");
-    rect_.width *= scaleFactor;
-    rect_.height *= scaleFactor;
+    throw std::invalid_argument("The scale factor must be positive");
   }
+  rect_.width *= scaleFactor;
+  rect_.height *= scaleFactor;
+}
 
-  std::unique_ptr< Shape* > Rectangle::clone() const
-  {
-    Shape* clone = new Rectangle(*this);
-    return std::make_unique< Shape* >(clone);
-  }
+std::unique_ptr< lab::Shape > lab::Rectangle::clone() const
+{
+  return std::unique_ptr< lab::Shape >(new lab::Rectangle(*this));
 }

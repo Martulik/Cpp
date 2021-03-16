@@ -1,8 +1,6 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
-#include <memory>
-
 #include "shape.hpp"
 
 namespace savchuk
@@ -18,7 +16,7 @@ namespace savchuk
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
     void scale(double scaleFactor) override;
-    std::unique_ptr< Shape* > clone() const override;
+    std::unique_ptr< Shape > clone() const override;
 
   private:
     rectangle_t rect_;

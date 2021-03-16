@@ -1,29 +1,35 @@
 #include "rectangle.hpp"
 #include <cassert>
 
-ferapontov::Rectangle::Rectangle(const double width, const double height, const point_t pos) :
-  proportions_({width, height, pos})
+ferapontov::Rectangle::Rectangle(const double width, const double height, const point_t& pos):
+  rect_({width, height, pos})
 {
   assert(width > 0 && "Incorrect width");
   assert(height > 0 && "Incorrect height");
 }
 
-double ferapontov::Rectangle::getArea() const
+std::string ferapontov::Rectangle::getName() const
 {
-  return proportions_.width * proportions_.height;
+  return "Rectangle";
 }
 
-rectangle_t ferapontov::Rectangle::getFrameRect() const
+double ferapontov::Rectangle::getArea() const
 {
-  return proportions_;
+  return rect_.width * rect_.height;
+}
+
+ferapontov::rectangle_t ferapontov::Rectangle::getFrameRect() const
+{
+  return rect_;
 }
 
 void ferapontov::Rectangle::move(const point_t& pos)
 {
-  proportions_.pos = pos;
+  rect_.pos = pos;
 }
+
 void ferapontov::Rectangle::move(const double dx, const double dy)
 {
-  proportions_.pos.x += dx;
-  proportions_.pos.y += dy;
+  rect_.pos.x += dx;
+  rect_.pos.y += dy;
 }

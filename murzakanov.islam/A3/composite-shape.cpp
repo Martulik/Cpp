@@ -208,4 +208,3 @@ murzakanov::CompositeShape* murzakanov::CompositeShape::clone() const
 {
   return new CompositeShape(*this);
 }
-

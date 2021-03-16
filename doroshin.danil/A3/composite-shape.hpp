@@ -22,6 +22,9 @@ namespace doroshin
   public:
     CompositeShape();
 
+    template< typename... Shapes >
+    CompositeShape(Shapes...);
+
     void add(shape_ptr);
 
     double getArea() const override;
@@ -39,6 +42,16 @@ namespace doroshin
     CompositeShape& operator=(CompositeShape&&) noexcept = default;
     ~CompositeShape() override = default;
   };
+
+
+  template< typename... Shapes >
+  CompositeShape::CompositeShape(Shapes... shapes):
+    shapes_(std::make_unique<shape_ptr[]>(sizeof...(Shapes))),
+    size_(sizeof...(Shapes))
+  {
+    shape_ptr sh[] = { std::unique_ptr<Shape>(shapes.copy())... };
+    std::move(sh, sh + size_, shapes_.get());
+  }
 
   void swap(CompositeShape& lhs, CompositeShape& rhs);
 }

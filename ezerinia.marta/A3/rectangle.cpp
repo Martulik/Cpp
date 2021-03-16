@@ -19,7 +19,7 @@ double ezerinia::Rectangle::getArea() const
 
 ezerinia::rectangle_t ezerinia::Rectangle::getFrameRect() const
 {
-  return ezerinia::rectangle_t{width_, height_, center_};
+  return {width_, height_, center_};
 }
 
 void ezerinia::Rectangle::move(const ezerinia::point_t &point)

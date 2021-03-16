@@ -20,7 +20,7 @@ double ezerinia::Circle::getArea() const
 
 ezerinia::rectangle_t ezerinia::Circle::getFrameRect() const
 {
-  return rectangle_t{2 * radius_, 2 * radius_, center_};
+  return {2 * radius_, 2 * radius_, center_};
 }
 
 void ezerinia::Circle::move(const ezerinia::point_t &point)

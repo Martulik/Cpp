@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
     std::shared_ptr<diurdeva::Shape> rectangle = std::make_shared<diurdeva::Rectangle>(width, height, pointCenter);
     diurdeva::CompositeShape compositeShape;
     compositeShape.addShape((rectangle));
-    BOOST_CHECK_THROW(compositeShape[3], std::invalid_argument);
+    BOOST_CHECK_THROW(compositeShape[3], std::out_of_range);
     BOOST_CHECK_THROW(compositeShape.scale(-2.0), std::invalid_argument);
   }
 

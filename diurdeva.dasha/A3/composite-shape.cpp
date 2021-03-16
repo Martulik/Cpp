@@ -24,7 +24,7 @@ diurdeva::CompositeShape::CompositeShape(CompositeShape &&other) noexcept:
 
 diurdeva::CompositeShape &diurdeva::CompositeShape::operator=(const CompositeShape &other)
 {
-  if (&other != nullptr) {
+  if (this != std::addressof(other)) {
     size_ = other.size_;
     std::unique_ptr<std::shared_ptr<Shape>[]> newArray(new std::shared_ptr<Shape>[other.size_]);
     for (size_t i = 0; i < size_; i++) {
@@ -37,7 +37,7 @@ diurdeva::CompositeShape &diurdeva::CompositeShape::operator=(const CompositeSha
 
 diurdeva::CompositeShape &diurdeva::CompositeShape::operator=(CompositeShape &&other) noexcept
 {
-  if (this != &other) {
+  if (this != std::addressof(other)) {
     size_ = other.size_;
     shapeArr_ = std::move(other.shapeArr_);
     other.size_ = 0;
@@ -132,7 +132,7 @@ void diurdeva::CompositeShape::addShape(const std::shared_ptr<Shape> &newShape)
     throw std::invalid_argument("Pointer must be not null");
   }
   std::unique_ptr<std::shared_ptr<Shape>[]> newArray(new std::shared_ptr<Shape>[size_ + 1]);
-  for (int i = 0; i < size_; i++) {
+  for (size_t i = 0; i < size_; i++) {
     newArray[i] = shapeArr_[i];
   }
   newArray[size_] = newShape;

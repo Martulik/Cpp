@@ -6,8 +6,7 @@
 void printShapeDescription(const shilyaev::Shape &shape)
 {
   const shilyaev::rectangle_t frameRect = shape.getFrameRect();
-  std::cout << "Area: " << shape.getArea()
-            << ", Width × Height: " << frameRect.width << " × " << frameRect.height
+  std::cout << "Area: " << shape.getArea() << ", Width × Height: " << frameRect.width << " × " << frameRect.height
             << ", Center: " << frameRect.pos.x << ' ' << frameRect.pos.y << '\n';
 }
 
@@ -20,8 +19,8 @@ int main()
   const double radius = 2.0;
   const double scaleFactor = 3.5;
 
-  shilyaev::CompositeShape compositeShape;
-  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(rectangleWidth, rectangleHeight, startPos));
+  shilyaev::CompositeShape compositeShape(
+      std::make_unique< shilyaev::Rectangle >(rectangleWidth, rectangleHeight, startPos));
   compositeShape.insert(std::make_unique< shilyaev::Circle >(radius, startPos));
   printShapeDescription(compositeShape);
   compositeShape.move(finishPos);

@@ -7,7 +7,7 @@
 namespace shilyaev {
   class CompositeShape: public Shape {
   public:
-    CompositeShape();
+    CompositeShape(std::unique_ptr< Shape > initialShape);
     CompositeShape(const CompositeShape &source);
     CompositeShape(CompositeShape &&source) = default;
     CompositeShape &operator=(CompositeShape other);

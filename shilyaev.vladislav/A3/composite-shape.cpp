@@ -7,11 +7,15 @@
 const size_t INITIAL_CAPACITY = 4;
 const size_t CAPACITY_INCREASE_FACTOR = 2;
 
-shilyaev::CompositeShape::CompositeShape():
+shilyaev::CompositeShape::CompositeShape(std::unique_ptr< shilyaev::Shape > initialShape):
   capacity_(INITIAL_CAPACITY),
-  size_(0),
+  size_(1),
   shapes_(std::make_unique< std::unique_ptr< Shape >[] >(INITIAL_CAPACITY))
 {
+  if (initialShape == nullptr) {
+    throw std::invalid_argument("Shape can't be nullptr");
+  }
+  shapes_[0] = std::move(initialShape);
 }
 
 shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source):
@@ -41,9 +45,6 @@ double shilyaev::CompositeShape::getArea() const
 
 shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
 {
-  if (size_ == 0) {
-    return rectangle_t{0.0, 0.0, point_t{0.0, 0.0}};
-  }
   double maxX = -std::numeric_limits< double >::max();
   double maxY = -std::numeric_limits< double >::max();
   double minX = std::numeric_limits< double >::max();

@@ -1,7 +1,7 @@
 #include "composite-shape.hpp"
 
 #include <cassert>
-#include <exception>
+#include <stdexcept>
 #include <algorithm>
 
 namespace lab = savchuk;

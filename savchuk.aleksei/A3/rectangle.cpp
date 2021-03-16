@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 
 #include <cassert>
-#include <exception>
+#include <stdexcept>
 
 namespace lab = savchuk;
 

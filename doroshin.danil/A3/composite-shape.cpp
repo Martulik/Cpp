@@ -1,8 +1,5 @@
 #include "composite-shape.hpp"
-#include <cassert>
-#include <cmath>
 #include <stdexcept>
-#include <utility>
 #include <limits>
 #include <algorithm>
 

@@ -1,8 +1,6 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include <cstddef>
-#include <initializer_list>
 #include <memory>
 #include "shape.hpp"
 #include "circle.hpp"

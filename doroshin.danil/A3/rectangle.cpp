@@ -1,7 +1,6 @@
 #include "rectangle.hpp"
 #include <algorithm>
 #include <cmath>
-#include <cassert>
 
 namespace dan = doroshin;
 

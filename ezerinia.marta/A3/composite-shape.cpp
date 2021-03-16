@@ -40,10 +40,6 @@ double ezerinia::CompositeShape::getArea() const
 
 ezerinia::rectangle_t ezerinia::CompositeShape::getFrameRect() const
 {
-  if (size_ == 0)
-  {
-    return {0.0, 0.0, {0.0, 0.0}};
-  }
   ezerinia::rectangle_t totalFrameRect = data_[0]->getFrameRect();
   ezerinia::point_t minXY = {totalFrameRect.pos.x - totalFrameRect.width / 2,
                              totalFrameRect.pos.y - totalFrameRect.height / 2};
@@ -64,10 +60,7 @@ ezerinia::rectangle_t ezerinia::CompositeShape::getFrameRect() const
 
 void ezerinia::CompositeShape::move(const ezerinia::point_t &point)
 {
-  if (size_ > 0)
-  {
-    move(point.x - getFrameRect().pos.x, point.y - getFrameRect().pos.y);
-  }
+  move(point.x - getFrameRect().pos.x, point.y - getFrameRect().pos.y);
 }
 
 void ezerinia::CompositeShape::move(double dx, double dy)

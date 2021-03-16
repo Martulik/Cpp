@@ -4,7 +4,6 @@
 #include "shape.hpp"
 namespace ferapontov
 {
-
   const double PI = 3.1415926;
 
   class Circle : public Shape

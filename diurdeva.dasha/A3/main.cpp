@@ -46,6 +46,8 @@ int main()
   testShape(rectangle, "Rectangle", newCenter, scale);
   diurdeva::Shape *circle = new diurdeva::Circle(radius, pointCenter);
   testShape(circle, "Circle", newCenter, scale);
+  delete rectangle;
+  delete circle;
 
   diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(w, h, pointCenter));
   compositeShape.addShape(std::make_shared<diurdeva::Circle>(radius, pointCenter));

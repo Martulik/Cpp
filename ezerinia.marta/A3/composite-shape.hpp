@@ -10,12 +10,14 @@ namespace ezerinia
   class CompositeShape: public Shape
   {
   public:
-    CompositeShape();
     CompositeShape(const CompositeShape &) = delete;
     CompositeShape(CompositeShape &&) noexcept = default;
+    CompositeShape(std::shared_ptr< Shape > src);
     virtual ~CompositeShape() = default;
     std::shared_ptr< Shape > operator[](const std::size_t index) const;
-    void pushBack(std::shared_ptr< Shape > src);
+    CompositeShape &operator=(const CompositeShape &) = delete;
+    CompositeShape &operator=(CompositeShape &&) noexcept = default;
+    void addShape(std::shared_ptr< Shape > src);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t &point) override;

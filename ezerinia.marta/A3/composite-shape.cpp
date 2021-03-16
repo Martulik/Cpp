@@ -1,10 +1,15 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-ezerinia::CompositeShape::CompositeShape():
-  size_(0),
-  data_(nullptr)
+ezerinia::CompositeShape::CompositeShape(std::shared_ptr< Shape > src):
+  size_(1),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(1))
 {
+  if (src == nullptr)
+  {
+    throw std::invalid_argument("The shape must not be nullptr");
+  }
+  data_[0] = std::move(src);
 }
 
 std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::operator[](const std::size_t index) const
@@ -16,7 +21,7 @@ std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::operator[](const st
   return data_[index];
 }
 
-void ezerinia::CompositeShape::pushBack(std::shared_ptr< Shape > src)
+void ezerinia::CompositeShape::addShape(std::shared_ptr< Shape > src)
 {
   std::unique_ptr< std::shared_ptr< Shape >[] > temp(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
   for (std::size_t i = 0; i < size_; i++)
@@ -40,10 +45,6 @@ double ezerinia::CompositeShape::getArea() const
 
 ezerinia::rectangle_t ezerinia::CompositeShape::getFrameRect() const
 {
-  if (size_ == 0)
-  {
-    throw std::invalid_argument("The list must contain at least one shape");
-  }
   ezerinia::rectangle_t totalFrameRect = data_[0]->getFrameRect();
   ezerinia::point_t minXY = {totalFrameRect.pos.x - totalFrameRect.width / 2,
                              totalFrameRect.pos.y - totalFrameRect.height / 2};
@@ -64,10 +65,7 @@ ezerinia::rectangle_t ezerinia::CompositeShape::getFrameRect() const
 
 void ezerinia::CompositeShape::move(const ezerinia::point_t &point)
 {
-  if (size_ > 0)
-  {
-    move(point.x - getFrameRect().pos.x, point.y - getFrameRect().pos.y);
-  }
+  move(point.x - getFrameRect().pos.x, point.y - getFrameRect().pos.y);
 }
 
 void ezerinia::CompositeShape::move(double dx, double dy)

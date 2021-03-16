@@ -3,10 +3,15 @@
 
 namespace l = lebedeva;
 
-l::CompositeShape::CompositeShape():
-  countAllocated_(0),
-  countElements_(0)
+l::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], const std::size_t& n):
+  countElements_(n),
+  data_(std::make_unique< l::Shape::Ptr[] >(n))
 {
+  assert(n != 0);
+  for (std::size_t i = 0; i < n; i++)
+  {
+    data_[i] = composition[i];
+  }
 }
 
 l::Shape::Ptr& l::CompositeShape::operator[](const std::size_t& i) const
@@ -55,11 +60,6 @@ std::string l::CompositeShape::getName() const
   return "Composite Shape";
 }
 
-std::size_t l::CompositeShape::getNumOfFigures() const
-{
-  return countElements_;
-}
-
 void l::CompositeShape::move(const point_t& newPos)
 {
   l::point_t oldPos = this->getFrameRect().pos;
@@ -81,26 +81,4 @@ void l::CompositeShape::scale(const double& k)
   {
     data_[i]->scale(k);
   }
-}
-
-void l::CompositeShape::push(Shape::Ptr figurePtr)
-{
-  if (countElements_ == countAllocated_)
-  {
-    allocateMemory();
-  }
-  data_[countElements_] = std::move(figurePtr);
-  countElements_++;
-}
-
-void l::CompositeShape::allocateMemory()
-{
-  std::unique_ptr< l::Shape::Ptr [] > dataTempPtr
-    = std::make_unique< l::Shape::Ptr [] >(countAllocated_ + 10);
-  for (std::size_t i = 0; i < countElements_; i++)
-  {
-    dataTempPtr[i] = std::move(data_[i]);
-  }
-  countAllocated_ += 10;
-  data_ = std::move(dataTempPtr);
 }

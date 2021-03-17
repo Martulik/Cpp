@@ -142,25 +142,25 @@ Boost
 Accepted Labs
 =============
 
-| Name                  | A1 | A2 | A3 | A4 | B1 | B2 | B3 | B4 | B5 | B6 | B7 | B8 |
-|-----------------------|----|----|----|----|----|----|----|----|----|----|----|----|
-| Borisova Ekaterina    | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Diurdeva Dasha        | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Doroshin Danil        | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Dushechkina Viktoria  | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Ezerinia Marta        | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Ferapontov Mikhail    | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Ivanova Maria         | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Lebedeva Ekaterina    | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Levashov Mikhail      | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Lysenko Aleksandra    | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Murzakanov Islam      | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Pochernin Vladislav   | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Pozdnyakov Artemy     | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Pyatizbyantsev Ilya   | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Razukrantov Vladislav | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Savchuk Aleksei       | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Shilyaev Vladislav    | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Shkurov Igor          | *  |    |    |    |    |    |    |    |    |    |    |    |
-| Yarovoy Vadim         | *  |    |    |    |    |    |    |    |    |    |    |    |
-| __Total__             |  19|   0|   0|   0|   0|   0|   0|   0|   0|   0|   0|   0|
+| Name                  | A1 | A3 | B1 | B3 | B4 | B5 |
+|-----------------------|----|----|----|----|----|----|
+| Borisova Ekaterina    | ✓  |    |    |    |    |    |
+| Diurdeva Dasha        | ✓  |    |    |    |    |    |
+| Doroshin Danil        | ✓  |    |    |    |    |    |
+| Dushechkina Viktoria  | ✓  |    |    |    |    |    |
+| Ezerinia Marta        | ✓  |    |    |    |    |    |
+| Ferapontov Mikhail    | ✓  |    |    |    |    |    |
+| Ivanova Maria         | ✓  |    |    |    |    |    |
+| Lebedeva Ekaterina    | ✓  |    |    |    |    |    |
+| Levashov Mikhail      | ✓  |    |    |    |    |    |
+| Lysenko Aleksandra    | ✓  |    |    |    |    |    |
+| Murzakanov Islam      | ✓  |    |    |    |    |    |
+| Pochernin Vladislav   | ✓  |    |    |    |    |    |
+| Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
+| Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
+| Razukrantov Vladislav | ✓  |    |    |    |    |    |
+| Savchuk Aleksei       | ✓  |    |    |    |    |    |
+| Shilyaev Vladislav    | ✓  |    |    |    |    |    |
+| Shkurov Igor          | ✓  |    |    |    |    |    |
+| Yarovoy Vadim         | ✓  |    |    |    |    |    |
+| __Total__             |  19|   0|   0|   0|   0|   0|

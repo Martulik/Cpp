@@ -17,16 +17,11 @@ namespace lebedeva
     std::string getName() const override;
 
     void move(const point_t& newPos) override;
-    void move(const double& dx, const double& dy) override;
-    void scale(const double& k) override;
+    void move(double dx, double dy) override;
+    void scale(double k) override;
   private:
     std::size_t countElements_;
     std::unique_ptr< Shape::Ptr [] > data_;
-
-    //void internalAdd(Shape::Ptr figurePtr);
-    //std::size_t getNumOfFigures() const;
-    //CompositeShape();
-    //void allocateMemory(const std::size_t& n);
   };
 }
 #endif

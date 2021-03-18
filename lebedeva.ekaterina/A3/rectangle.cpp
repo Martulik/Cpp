@@ -31,13 +31,13 @@ void l::Rectangle::move(const point_t& newPos)
   pos_ = newPos;
 }
 
-void l::Rectangle::move(const double& dx, const double& dy)
+void l::Rectangle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;
 }
 
-void l::Rectangle::scale(const double& k)
+void l::Rectangle::scale(double k)
 {
   assert(k > 0);
   width_ *= k;

@@ -32,13 +32,13 @@ void l::Circle::move(const point_t& newPos)
   pos_ = newPos;
 }
 
-void l::Circle::move(const double& dx, const double& dy)
+void l::Circle::move(double dx, double dy)
 {
   pos_.x += dx;
   pos_.y += dy;
 }
 
-void l::Circle::scale(const double& k)
+void l::Circle::scale(double k)
 {
   assert(k > 0);
   radius_ *= k;

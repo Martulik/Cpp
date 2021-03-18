@@ -66,7 +66,7 @@ void l::CompositeShape::move(const point_t& newPos)
   this->move(newPos.x - oldPos.x, newPos.y - oldPos.y);
 }
 
-void l::CompositeShape::move(const double& dx, const double& dy)
+void l::CompositeShape::move(double dx, double dy)
 {
   for (std::size_t i = 0; i < countElements_; i++)
   {
@@ -74,7 +74,7 @@ void l::CompositeShape::move(const double& dx, const double& dy)
   }
 }
 
-void l::CompositeShape::scale(const double& k)
+void l::CompositeShape::scale(double k)
 {
   assert(k > 0);
   for (std::size_t i = 0; i < countElements_; i++)

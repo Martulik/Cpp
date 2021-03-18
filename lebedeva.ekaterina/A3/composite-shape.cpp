@@ -77,8 +77,15 @@ void l::CompositeShape::move(double dx, double dy)
 void l::CompositeShape::scale(double k)
 {
   assert(k > 0);
+  l::point_t oldPos = this->getFrameRect().pos;
   for (std::size_t i = 0; i < countElements_; i++)
   {
     data_[i]->scale(k);
+    l::point_t tempPos = data_[i]->getFrameRect().pos;
+    tempPos.x *= k;
+    tempPos.y *= k;
+    data_[i]->move(tempPos);
   }
+  l::point_t newPos = this->getFrameRect().pos;
+  this->move(oldPos.x - newPos.x, oldPos.y - newPos.y);
 }

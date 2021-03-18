@@ -102,8 +102,8 @@ BOOST_AUTO_TEST_SUITE(CompositeShapeTest)
 
   std::shared_ptr< l::Shape > shapeArray[2] =
   {
-    std::make_shared< l::Rectangle >(l::point_t({ 0, 0 }), 12, 3),
-    std::make_shared< l::Circle >(l::point_t({ 9, 12 }), 3)
+    std::make_shared< l::Rectangle >(l::point_t({ 3, -2 }), 4, 2),
+    std::make_shared< l::Circle >(l::point_t({ 1, 2 }), 1)
   };
   l::point_t newPos = { 3.0, 4.1 };
 
@@ -139,10 +139,16 @@ BOOST_AUTO_TEST_SUITE(CompositeShapeTest)
   BOOST_AUTO_TEST_CASE(ScaleCompositeShape)
   {
     l::CompositeShape collection(shapeArray, sizeof(shapeArray) / sizeof(shapeArray[0]));
+    l::rectangle_t oldFrameRect = collection.getFrameRect();
     double areaBeforeScale = collection.getArea();
 
     collection.scale(2);
     BOOST_CHECK_CLOSE(areaBeforeScale * 4, collection.getArea(), 0.000001);
+    l::rectangle_t newFrameRect = collection.getFrameRect();
+    BOOST_CHECK_CLOSE(oldFrameRect.width * 2, newFrameRect.width, 0.000001);
+    BOOST_CHECK_CLOSE(oldFrameRect.height * 2, newFrameRect.height, 0.000001);
+    BOOST_CHECK_EQUAL(oldFrameRect.pos.x, newFrameRect.pos.x);
+    BOOST_CHECK_EQUAL(oldFrameRect.pos.y, newFrameRect.pos.y);
   }
 
   BOOST_AUTO_TEST_CASE(AddCompositeShapeToCollection)

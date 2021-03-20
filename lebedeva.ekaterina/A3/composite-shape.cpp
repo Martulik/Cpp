@@ -1,11 +1,11 @@
 #include <cassert>
 #include "composite-shape.hpp"
 
-namespace l = lebedeva;
+namespace leb = lebedeva;
 
-l::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], const std::size_t& n):
+leb::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], const std::size_t& n):
   countElements_(n),
-  data_(std::make_unique< l::Shape::Ptr[] >(n))
+  data_(std::make_unique< leb::Shape::Ptr[] >(n))
 {
   assert(n != 0);
   for (std::size_t i = 0; i < n; i++)
@@ -14,13 +14,13 @@ l::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], const 
   }
 }
 
-l::Shape::Ptr& l::CompositeShape::operator[](const std::size_t& i) const
+leb::Shape::Ptr& leb::CompositeShape::operator[](const std::size_t& i) const
 {
   assert(i < countElements_);
   return data_[i];
 }
 
-double l::CompositeShape::getArea() const
+double leb::CompositeShape::getArea() const
 {
   double result = 0;
   for (std::size_t i = 0; i < countElements_; i++)
@@ -30,7 +30,7 @@ double l::CompositeShape::getArea() const
   return result;
 }
 
-l::rectangle_t l::CompositeShape::getFrameRect() const
+leb::rectangle_t leb::CompositeShape::getFrameRect() const
 {
   rectangle_t frameRect = { { 0, 0 }, 0, 0 };
   if (0 != countElements_)
@@ -55,18 +55,18 @@ l::rectangle_t l::CompositeShape::getFrameRect() const
   return frameRect;
 }
 
-std::string l::CompositeShape::getName() const
+std::string leb::CompositeShape::getName() const
 {
   return "Composite Shape";
 }
 
-void l::CompositeShape::move(const point_t& newPos)
+void leb::CompositeShape::move(const point_t& newPos)
 {
-  l::point_t oldPos = this->getFrameRect().pos;
+  leb::point_t oldPos = this->getFrameRect().pos;
   this->move(newPos.x - oldPos.x, newPos.y - oldPos.y);
 }
 
-void l::CompositeShape::move(double dx, double dy)
+void leb::CompositeShape::move(double dx, double dy)
 {
   for (std::size_t i = 0; i < countElements_; i++)
   {
@@ -74,18 +74,18 @@ void l::CompositeShape::move(double dx, double dy)
   }
 }
 
-void l::CompositeShape::scale(double k)
+void leb::CompositeShape::scale(double k)
 {
   assert(k > 0);
-  l::point_t oldPos = this->getFrameRect().pos;
+  leb::point_t oldPos = this->getFrameRect().pos;
   for (std::size_t i = 0; i < countElements_; i++)
   {
     data_[i]->scale(k);
-    l::point_t tempPos = data_[i]->getFrameRect().pos;
+    leb::point_t tempPos = data_[i]->getFrameRect().pos;
     tempPos.x *= k;
     tempPos.y *= k;
     data_[i]->move(tempPos);
   }
-  l::point_t newPos = this->getFrameRect().pos;
+  leb::point_t newPos = this->getFrameRect().pos;
   this->move(oldPos.x - newPos.x, oldPos.y - newPos.y);
 }

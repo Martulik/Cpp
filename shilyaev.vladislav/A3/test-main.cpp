@@ -176,13 +176,14 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
 {
   shilyaev::CompositeShape compositeShape(
       std::make_unique< shilyaev::Circle >(2.0, shilyaev::point_t{2.0, 2.0}));
-  compositeShape.pushBack(std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
+  compositeShape.pushBack(
+      std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
   const shilyaev::rectangle_t expectedFrameRect{8.0, 6.0, {0.0, 1.0}};
 
   checkRectanglesClose(compositeShape.getFrameRect(), expectedFrameRect, TOLERANCE);
 }
 
-BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)
+BOOST_AUTO_TEST_CASE(TestCompositeShapeArray)
 {
   const int iterations = 40;
   shilyaev::CompositeShape compositeShape(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
@@ -192,6 +193,7 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)
     compositeShape.pushBack(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
     BOOST_TEST(compositeShape.getArea() > areaBefore);
   }
+  BOOST_CHECK_THROW(compositeShape.at(iterations + 1), std::out_of_range);
   for (int i = iterations; i >= 1; --i) {
     double areaBefore = compositeShape.getArea();
     compositeShape.popBack();

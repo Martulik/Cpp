@@ -21,6 +21,5 @@ namespace ivanova
     double width_;
     point_t pos_;
   };
-
-#endif
 }
+#endif

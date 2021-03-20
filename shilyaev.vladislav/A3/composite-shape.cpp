@@ -85,15 +85,13 @@ void shilyaev::CompositeShape::scale(double factor)
   if (factor < 0.0) {
     throw std::invalid_argument("Scale factor can't be negative");
   }
-  if (size_ > 0) {
-    point_t center = getFrameRect().pos;
-    for (size_t i = 0; i < size_; i++) {
-      shapes_[i]->scale(factor);
-      point_t localCenter = shapes_[i]->getFrameRect().pos;
-      point_t newLocalCenter{center.x + (localCenter.x - center.x) * factor,
-                             center.y + (localCenter.y - center.y) * factor};
-      shapes_[i]->move(newLocalCenter);
-    }
+  point_t center = getFrameRect().pos;
+  for (size_t i = 0; i < size_; i++) {
+    shapes_[i]->scale(factor);
+    point_t localCenter = shapes_[i]->getFrameRect().pos;
+    point_t newLocalCenter{center.x + (localCenter.x - center.x) * factor,
+                           center.y + (localCenter.y - center.y) * factor};
+    shapes_[i]->move(newLocalCenter);
   }
 }
 
@@ -124,8 +122,7 @@ void shilyaev::CompositeShape::swap(shilyaev::CompositeShape &other) noexcept
 void shilyaev::CompositeShape::increaseCapacity()
 {
   size_t newCapacity = capacity_ * CAPACITY_INCREASE_FACTOR;
-  std::unique_ptr< std::unique_ptr< Shape >[] > newShapes =
-      std::make_unique< std::unique_ptr< Shape >[] >(newCapacity);
+  std::unique_ptr< std::unique_ptr< Shape >[] > newShapes = std::make_unique< std::unique_ptr< Shape >[] >(newCapacity);
   for (size_t i = 0; i < size_; i++) {
     newShapes[i] = std::move(shapes_[i]);
   }

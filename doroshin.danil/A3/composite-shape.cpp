@@ -73,7 +73,7 @@ void dan::CompositeShape::scale(double s)
   }
 }
 
-void dan::swap(CompositeShape& lhs, CompositeShape& rhs)
+void dan::swap(CompositeShape& lhs, CompositeShape& rhs) noexcept
 {
   std::swap(lhs.size_, rhs.size_);
   std::swap(lhs.shapes_, rhs.shapes_);

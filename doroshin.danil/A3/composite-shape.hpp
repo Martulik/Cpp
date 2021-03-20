@@ -15,8 +15,6 @@ namespace doroshin
 
     array_t shapes_;
     size_t size_;
-
-    friend void swap(CompositeShape& lhs, CompositeShape& rhs);
   public:
     // Empty CompositeShape is forbidden
     CompositeShape() = delete;
@@ -31,6 +29,8 @@ namespace doroshin
 
     void move(point_t vec, bool absolute = false) override;
     void scale(double s) override;
+
+    friend void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
 
     Shape* copy() const override;
     CompositeShape(const CompositeShape&);
@@ -60,7 +60,7 @@ namespace doroshin
     static_assert(sizeof...(Shapes) > 0, "An empty CompositeShape is illegal");
   }
 
-  void swap(CompositeShape& lhs, CompositeShape& rhs);
+  void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
 }
 
 #endif // COMPOSITE_SHAPE_HPP

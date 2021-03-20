@@ -152,13 +152,15 @@ Accepted Labs
 | Ferapontov Mikhail    | ✓  |    |    |    |    |    |
 | Ivanova Maria         | ✓  |    |    |    |    |    |
 | Lebedeva Ekaterina    | ✓  |    |    |    |    |    |
+| Levashov Mikhail      | ✓  |    |    |    |    |    |
 | Lysenko Aleksandra    | ✓  |    |    |    |    |    |
 | Murzakanov Islam      | ✓  |    |    |    |    |    |
 | Pochernin Vladislav   | ✓  |    |    |    |    |    |
 | Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
+| Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  |    |    |    |    |    |
 | Savchuk Aleksei       | ✓  |    |    |    |    |    |
 | Shilyaev Vladislav    | ✓  |    |    |    |    |    |
 | Shkurov Igor          | ✓  |    |    |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  17|   0|   0|   0|   0|   0|
+| __Total__             |  19|   0|   0|   0|   0|   0|

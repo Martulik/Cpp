@@ -77,15 +77,13 @@ void leb::CompositeShape::move(double dx, double dy)
 void leb::CompositeShape::scale(double k)
 {
   assert(k > 0);
-  leb::point_t oldPos = this->getFrameRect().pos;
+  leb::point_t collectionPos = this->getFrameRect().pos;
   for (std::size_t i = 0; i < countElements_; i++)
   {
-    data_[i]->scale(k);
     leb::point_t tempPos = data_[i]->getFrameRect().pos;
-    tempPos.x *= k;
-    tempPos.y *= k;
-    data_[i]->move(tempPos);
+    double dx = (tempPos.x - collectionPos.x) * k;
+    double dy = (tempPos.y - collectionPos.y) * k;
+    data_[i]->move({ collectionPos.x + dx, collectionPos.y + dy });
+    data_[i]->scale(k);
   }
-  leb::point_t newPos = this->getFrameRect().pos;
-  this->move(oldPos.x - newPos.x, oldPos.y - newPos.y);
 }

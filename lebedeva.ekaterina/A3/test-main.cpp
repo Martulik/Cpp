@@ -13,16 +13,16 @@ void checkFrameRect(const leb::rectangle_t& oldFrameRect, const leb::rectangle_t
 BOOST_AUTO_TEST_SUITE(CircleTest)
 
   leb::point_t newPos = { 3.0, 4.1 };
+  leb::point_t oldPos = { 1.0, 1.1 };
 
   BOOST_AUTO_TEST_CASE(GetCircleName)
   {
-    leb::Circle circ = { { 0.0, 0.0 }, 1 };
+    leb::Circle circ = { oldPos, 1 };
     BOOST_CHECK("Circle" == circ.getName());
   }
 
   BOOST_AUTO_TEST_CASE(MoveCircleToPoint)
   {
-    leb::point_t oldPos = { 1.0, 1.1 };
     leb::Circle circ = { oldPos, 3 };
     leb::rectangle_t oldFrameRect = circ.getFrameRect();
     double area = circ.getArea();
@@ -34,7 +34,6 @@ BOOST_AUTO_TEST_SUITE(CircleTest)
 
   BOOST_AUTO_TEST_CASE(MoveCircleAbs)
   {
-    leb::point_t oldPos = { 1.0, 1.1 };
     leb::Circle circ = { oldPos, 3 };
     leb::rectangle_t oldFrameRect = circ.getFrameRect();
     double area = circ.getArea();
@@ -46,7 +45,7 @@ BOOST_AUTO_TEST_SUITE(CircleTest)
 
   BOOST_AUTO_TEST_CASE(ScaleCircle)
   {
-    leb::Circle circ = { { 1.0, 1.1 }, 1 };
+    leb::Circle circ = { oldPos, 1 };
     double areaBeforeScale = circ.getArea();
 
     circ.scale(2);
@@ -58,16 +57,17 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE(RectangleTest)
 
   leb::point_t newPos = { 3.0, 4.1 };
+  leb::point_t oldPos = { 0.0, 0.1 };
 
   BOOST_AUTO_TEST_CASE(GetRectangleName)
   {
-    leb::Rectangle rect = { { 0.0, 0.0 }, 1, 2 };
+    leb::Rectangle rect = { oldPos, 1, 2 };
     BOOST_CHECK_EQUAL("Rectangle", rect.getName());
   }
 
   BOOST_AUTO_TEST_CASE(MoveRectangleToPoint)
   {
-    leb::Rectangle rect = { { 0.0, 0.1 }, 1, 2 };
+    leb::Rectangle rect = { oldPos, 1, 2 };
     leb::rectangle_t oldFrameRect = rect.getFrameRect();
     double area = rect.getArea();
 
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTest)
 
   BOOST_AUTO_TEST_CASE(MoveRectangleAbs)
   {
-    leb::Rectangle rect = { { 0.0, 0.1 }, 1, 2 };
+    leb::Rectangle rect = { oldPos, 1, 2 };
     leb::rectangle_t oldFrameRect = rect.getFrameRect();
     double area = rect.getArea();
 
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTest)
 
   BOOST_AUTO_TEST_CASE(ScaleRectangle)
   {
-    leb::Rectangle rect = { { 0.0, 0.0 }, 1, 2 };
+    leb::Rectangle rect = { oldPos, 1, 2 };
     double areaBeforeScale = rect.getArea();
 
     rect.scale(2);
@@ -107,11 +107,18 @@ BOOST_AUTO_TEST_SUITE(CompositeShapeTest)
   };
   leb::point_t newPos = { 3.0, 4.1 };
 
+  BOOST_AUTO_TEST_CASE(GetCompositeShapeName)
+  {
+    leb::CompositeShape collection(shapeArray, sizeof(shapeArray) / sizeof(shapeArray[0]));
+    BOOST_CHECK_EQUAL("Composite Shape", collection.getName());
+  }
+
   BOOST_AUTO_TEST_CASE(GetCollectionAreaTest)
   {
     leb::CompositeShape collection(shapeArray, sizeof(shapeArray) / sizeof(shapeArray[0]));
 
-    BOOST_CHECK_CLOSE((collection[0]->getArea() + collection[1]->getArea()), collection.getArea(), 0.000001);
+    BOOST_CHECK_CLOSE((collection[0]->getArea() + collection[1]->getArea()),
+      collection.getArea(), 0.000001);
   }
 
   BOOST_AUTO_TEST_CASE(MoveCompositeShapeToPoint)
@@ -156,11 +163,14 @@ BOOST_AUTO_TEST_SUITE(CompositeShapeTest)
     std::shared_ptr< leb::Shape > forCollectionArray[2] =
     {
       std::make_shared< leb::Circle >(leb::point_t({ 2.2, -10.0 }), 2),
-      std::make_shared< leb::CompositeShape >(shapeArray, sizeof(shapeArray) / sizeof(shapeArray[0]))
+      std::make_shared< leb::CompositeShape >(shapeArray,
+        sizeof(shapeArray) / sizeof(shapeArray[0]))
     };
-    leb::CompositeShape collection(forCollectionArray, sizeof(forCollectionArray) / sizeof(forCollectionArray[0]));
+    leb::CompositeShape collection(forCollectionArray,
+      sizeof(forCollectionArray) / sizeof(forCollectionArray[0]));
 
-    BOOST_CHECK_CLOSE((collection[0]->getArea() + collection[1]->getArea()), collection.getArea(), 0.000001);
+    BOOST_CHECK_CLOSE((collection[0]->getArea() + collection[1]->getArea()),
+      collection.getArea(), 0.000001);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

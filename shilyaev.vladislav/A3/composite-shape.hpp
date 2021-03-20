@@ -5,9 +5,12 @@
 #include "shape.hpp"
 
 namespace shilyaev {
+  using ShapePtr = std::unique_ptr< Shape >;
+  using ShapeArray = std::unique_ptr< ShapePtr[] >;
+
   class CompositeShape: public Shape {
   public:
-    CompositeShape(std::unique_ptr< Shape > initialShape);
+    explicit CompositeShape(ShapePtr initialShape);
     CompositeShape(const CompositeShape &source);
     CompositeShape(CompositeShape &&source) = default;
     CompositeShape &operator=(CompositeShape other);
@@ -19,13 +22,13 @@ namespace shilyaev {
     void move(double dx, double dy) override;
     void scale(double factor) override;
     size_t size() const;
-    void pushBack(std::unique_ptr< Shape > shape);
+    void pushBack(ShapePtr shape);
     void popBack();
     void swap(CompositeShape &other) noexcept;
   private:
     size_t capacity_;
     size_t size_;
-    std::unique_ptr< std::unique_ptr< Shape >[] > shapes_;
+    ShapeArray shapes_;
     void increaseCapacity();
   };
 }

@@ -10,7 +10,7 @@ const size_t CAPACITY_INCREASE_FACTOR = 2;
 shilyaev::CompositeShape::CompositeShape(std::unique_ptr< shilyaev::Shape > initialShape):
   capacity_(INITIAL_CAPACITY),
   size_(1),
-  shapes_(std::make_unique< std::unique_ptr< Shape >[] >(INITIAL_CAPACITY))
+  shapes_(std::make_unique< ShapePtr[] >(INITIAL_CAPACITY))
 {
   if (initialShape == nullptr) {
     throw std::invalid_argument("Shape can't be nullptr");
@@ -21,7 +21,7 @@ shilyaev::CompositeShape::CompositeShape(std::unique_ptr< shilyaev::Shape > init
 shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source):
   capacity_(source.capacity_),
   size_(source.size_),
-  shapes_(std::make_unique< std::unique_ptr< Shape >[] >(source.capacity_))
+  shapes_(std::make_unique< ShapePtr[] >(source.capacity_))
 {
   for (size_t i = 0; i < size_; i++) {
     shapes_[i].reset(source.shapes_[i]->clone());
@@ -67,10 +67,8 @@ shilyaev::CompositeShape *shilyaev::CompositeShape::clone() const
 
 void shilyaev::CompositeShape::move(const point_t &pos)
 {
-  if (size_ > 0) {
-    point_t center = getFrameRect().pos;
-    move(pos.x - center.x, pos.y - center.y);
-  }
+  point_t center = getFrameRect().pos;
+  move(pos.x - center.x, pos.y - center.y);
 }
 
 void shilyaev::CompositeShape::move(double dx, double dy)
@@ -103,8 +101,7 @@ void shilyaev::CompositeShape::pushBack(std::unique_ptr< Shape > shape)
   if (size_ >= capacity_) {
     increaseCapacity();
   }
-  shapes_[size_] = std::move(shape);
-  size_++;
+  shapes_[size_++] = std::move(shape);
 }
 
 void shilyaev::CompositeShape::popBack()
@@ -130,7 +127,7 @@ void shilyaev::CompositeShape::swap(shilyaev::CompositeShape &other) noexcept
 void shilyaev::CompositeShape::increaseCapacity()
 {
   size_t newCapacity = capacity_ * CAPACITY_INCREASE_FACTOR;
-  std::unique_ptr< std::unique_ptr< Shape >[] > newShapes = std::make_unique< std::unique_ptr< Shape >[] >(newCapacity);
+  ShapeArray newShapes = std::make_unique< ShapePtr[] >(newCapacity);
   for (size_t i = 0; i < size_; i++) {
     newShapes[i] = std::move(shapes_[i]);
   }

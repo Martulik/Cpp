@@ -5,19 +5,18 @@
 #include <memory>
 #include "shape.hpp"
 
-namespace ezerinia
-{
-  class CompositeShape: public Shape
-  {
+namespace ezerinia {
+  class CompositeShape: public Shape {
   public:
     CompositeShape(const CompositeShape &) = delete;
     CompositeShape(CompositeShape &&) noexcept = default;
     CompositeShape(std::shared_ptr< Shape > src);
     virtual ~CompositeShape() = default;
-    std::shared_ptr< Shape > operator[](const std::size_t index) const;
     CompositeShape &operator=(const CompositeShape &) = delete;
     CompositeShape &operator=(CompositeShape &&) noexcept = default;
-    void addShape(std::shared_ptr< Shape > src);
+    void push_back(std::shared_ptr< Shape > src);
+    void pop_back();
+    std::shared_ptr< Shape > at(std::size_t index) const;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t &point) override;

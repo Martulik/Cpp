@@ -36,19 +36,15 @@ void addShapes(ezerinia::CompositeShape *shape)
 {
   std::shared_ptr< ezerinia::Shape > rectangle
           = std::make_shared< ezerinia::Rectangle >(2.0, 82.5, ezerinia::point_t{2.0, 2.0});
-  shape->addShape(rectangle);
+  shape->push_back(rectangle);
 
   std::shared_ptr< ezerinia::Shape > circle
           = std::make_shared< ezerinia::Circle >(1.0, ezerinia::point_t{1.0, 1.0});
-  shape->addShape(circle);
+  shape->push_back(circle);
 
   std::shared_ptr< ezerinia::Shape > circle1
           = std::make_shared< ezerinia::Circle >(60.0, ezerinia::point_t{-22.0, 0.0});
-  shape->addShape(circle1);
-
-  std::shared_ptr< ezerinia::Shape > circle2
-          = std::make_shared< ezerinia::Circle >(111.0, ezerinia::point_t{12.0, -61.0});
-  shape->addShape(circle2);
+  shape->push_back(circle1);
 }
 
 BOOST_AUTO_TEST_SUITE(testCircle)
@@ -121,8 +117,21 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
   {
     ezerinia::CompositeShape composite(std::make_shared< ezerinia::Rectangle >
                                                (21.0, 0.2, ezerinia::point_t{-91.0, 86.0}));
-    BOOST_CHECK_THROW(composite[70000], std::invalid_argument);
     BOOST_CHECK_THROW(composite.scale(-100.1), std::invalid_argument);
+  }
+
+  BOOST_AUTO_TEST_CASE(outOfRangeCompositeShape)
+  {
+    ezerinia::CompositeShape composite(std::make_shared< ezerinia::Circle >
+                                               (109.0, ezerinia::point_t{65.0, 103.1}));
+    BOOST_CHECK_THROW(composite.at(70000), std::out_of_range);
+  }
+
+  BOOST_AUTO_TEST_CASE(deleteLastShapeInCompositeShape)
+  {
+    ezerinia::CompositeShape composite(std::make_shared< ezerinia::Circle >
+                                               (5.0, ezerinia::point_t{1.0, 0.0}));
+    BOOST_CHECK_THROW(composite.pop_back(), std::invalid_argument);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

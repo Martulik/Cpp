@@ -97,7 +97,7 @@ void shilyaev::CompositeShape::scale(double factor)
   }
 }
 
-void shilyaev::CompositeShape::insert(std::unique_ptr< Shape > shape)
+void shilyaev::CompositeShape::pushBack(std::unique_ptr< Shape > shape)
 {
   if (shape == nullptr) {
     throw std::invalid_argument("Shape can't be nullptr");

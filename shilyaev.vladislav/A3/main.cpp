@@ -21,7 +21,7 @@ int main()
 
   shilyaev::CompositeShape compositeShape(
       std::make_unique< shilyaev::Rectangle >(rectangleWidth, rectangleHeight, startPos));
-  compositeShape.insert(std::make_unique< shilyaev::Circle >(radius, startPos));
+  compositeShape.pushBack(std::make_unique< shilyaev::Circle >(radius, startPos));
   printShapeDescription(compositeShape);
   compositeShape.move(finishPos);
   compositeShape.scale(scaleFactor);

@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE(TestCircleInvalidArgument)
 BOOST_AUTO_TEST_CASE(TestCompositeShape)
 {
   shilyaev::CompositeShape compositeShape(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
-  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
+  compositeShape.pushBack(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
   testShape(compositeShape);
 }
 
@@ -168,7 +168,7 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeArea)
 {
   const double expectedArea = DEFAULT_RADIUS * DEFAULT_RADIUS * PI + DEFAULT_WIDTH * DEFAULT_HEIGHT;
   shilyaev::CompositeShape compositeShape(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
-  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
+  compositeShape.pushBack(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
   BOOST_CHECK_CLOSE(compositeShape.getArea(), expectedArea, TOLERANCE);
 }
 
@@ -176,8 +176,7 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
 {
   shilyaev::CompositeShape compositeShape(
       std::make_unique< shilyaev::Circle >(2.0, shilyaev::point_t{2.0, 2.0}));
-  compositeShape.insert(
-      std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
+  compositeShape.pushBack(std::make_unique< shilyaev::Rectangle >(4.0, 2.0, shilyaev::point_t{-2.0, -1.0}));
   const shilyaev::rectangle_t expectedFrameRect{8.0, 6.0, {0.0, 1.0}};
 
   checkRectanglesClose(compositeShape.getFrameRect(), expectedFrameRect, TOLERANCE);
@@ -190,7 +189,7 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeInsert)
   for (int i = 1; i <= iterations; ++i) {
     double areaBefore = compositeShape.getArea();
     BOOST_CHECK_EQUAL(compositeShape.getSize(), i);
-    compositeShape.insert(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
+    compositeShape.pushBack(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
     BOOST_TEST(compositeShape.getArea() > areaBefore);
   }
 }
@@ -199,7 +198,7 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeCopy)
 {
   const double dx = 3.0;
   shilyaev::CompositeShape compositeShape(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
-  compositeShape.insert(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
+  compositeShape.pushBack(std::make_unique< shilyaev::Rectangle >(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_CENTER));
   shilyaev::CompositeShape compositeShapeCopy(compositeShape);
 
   BOOST_CHECK_EQUAL(compositeShape.getFrameRect().pos.x, compositeShapeCopy.getFrameRect().pos.x);
@@ -210,5 +209,5 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeCopy)
 BOOST_AUTO_TEST_CASE(TestCompositeShapeInvalidArgument)
 {
   shilyaev::CompositeShape compositeShape(std::make_unique< shilyaev::Circle >(DEFAULT_RADIUS, DEFAULT_CENTER));
-  BOOST_CHECK_THROW(compositeShape.insert(std::unique_ptr< shilyaev::Shape >(nullptr)), std::invalid_argument);
+  BOOST_CHECK_THROW(compositeShape.pushBack(std::unique_ptr< shilyaev::Shape >(nullptr)), std::invalid_argument);
 }

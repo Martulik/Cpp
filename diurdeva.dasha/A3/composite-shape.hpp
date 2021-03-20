@@ -20,8 +20,8 @@ namespace diurdeva {
     void move(const point_t &newCenter) override;
     void move(double dX, double dY) override;
     void scale(double factor) override;
-    void addShape(std::shared_ptr<Shape> newShape);
-    size_t getSize() const;
+    void push_back(std::shared_ptr<Shape> newShape);
+    size_t size() const;
   private:
     size_t size_;
     std::unique_ptr<std::shared_ptr<Shape>[]> shapeArr_;

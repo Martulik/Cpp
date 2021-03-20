@@ -131,7 +131,7 @@ void diurdeva::CompositeShape::scale(const double factor)
   }
 }
 
-void diurdeva::CompositeShape::addShape(std::shared_ptr<Shape> newShape)
+void diurdeva::CompositeShape::push_back(std::shared_ptr<Shape> newShape)
 {
   if (newShape == nullptr) {
     throw std::invalid_argument("Pointer must be not null");
@@ -145,7 +145,7 @@ void diurdeva::CompositeShape::addShape(std::shared_ptr<Shape> newShape)
   ++size_;
 }
 
-size_t diurdeva::CompositeShape::getSize() const
+size_t diurdeva::CompositeShape::size() const
 {
   return size_;
 }

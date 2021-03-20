@@ -107,6 +107,14 @@ void shilyaev::CompositeShape::pushBack(std::unique_ptr< Shape > shape)
   size_++;
 }
 
+void shilyaev::CompositeShape::popBack()
+{
+  if (size_ == 1) {
+    throw std::out_of_range("CompositeShape can't be empty");
+  }
+  shapes_[size_--].reset();
+}
+
 size_t shilyaev::CompositeShape::size() const
 {
   return size_;

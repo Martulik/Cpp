@@ -20,6 +20,7 @@ namespace shilyaev {
     void scale(double factor) override;
     size_t size() const;
     void pushBack(std::unique_ptr< Shape > shape);
+    void popBack();
     void swap(CompositeShape &other) noexcept;
   private:
     size_t capacity_;

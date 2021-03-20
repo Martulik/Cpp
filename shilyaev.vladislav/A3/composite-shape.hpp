@@ -18,7 +18,7 @@ namespace shilyaev {
     void move(const point_t &pos) override;
     void move(double dx, double dy) override;
     void scale(double factor) override;
-    size_t getSize() const;
+    size_t size() const;
     void pushBack(std::unique_ptr< Shape > shape);
     void swap(CompositeShape &other) noexcept;
   private:

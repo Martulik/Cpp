@@ -109,7 +109,7 @@ void shilyaev::CompositeShape::pushBack(std::unique_ptr< Shape > shape)
   size_++;
 }
 
-size_t shilyaev::CompositeShape::getSize() const
+size_t shilyaev::CompositeShape::size() const
 {
   return size_;
 }

@@ -1,13 +1,6 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-murzakanov::CompositeShape::CompositeShape():
-        capacity_(1),
-        size_(0),
-        array_(std::make_unique< std::shared_ptr< Shape >[] >(capacity_))
-{
-}
-
 murzakanov::CompositeShape::CompositeShape(std::shared_ptr< Shape > shp):
   capacity_(2),
   size_(0),

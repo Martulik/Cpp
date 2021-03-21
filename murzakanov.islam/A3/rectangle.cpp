@@ -2,7 +2,7 @@
 #include "rectangle.hpp"
 #include <stdexcept>
 
-murzakanov::Rectangle::Rectangle(double width, double height, murzakanov::point_t pos):
+murzakanov::Rectangle::Rectangle(const double width, const double height, const murzakanov::point_t& pos):
           width_(width),
           height_(height),
           pos_(pos)

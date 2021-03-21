@@ -11,7 +11,7 @@ namespace murzakanov
   class Circle: public Shape
   {
   public:
-    Circle(double radius, point_t pos);
+    Circle(double radius, const point_t& pos);
 
     std::string getName() const override;
     double getArea() const override;

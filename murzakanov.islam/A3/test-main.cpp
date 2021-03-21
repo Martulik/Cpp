@@ -6,14 +6,18 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-BOOST_AUTO_TEST_SUITE(CompositeShape)
+
+double width = 2.0,
+       height = 3.0,
+       radius = 1.766;
+murzakanov::point_t pos{1, 2};
 double tolerance = 0.0001;
+
+BOOST_AUTO_TEST_SUITE(CompositeShape)
 BOOST_AUTO_TEST_CASE(move_is_correct)
 {
-  double width = 1,
-         height = 2;
-  murzakanov::point_t rectPos{1, 2};
-  murzakanov::Rectangle rectangle(width, height, rectPos);
+
+  murzakanov::Rectangle rectangle(width, height, pos);
   double firstArea = rectangle.getArea();
   rectangle.move(1.5, 2.5);
   BOOST_CHECK_EQUAL(firstArea, rectangle.getArea());
@@ -23,10 +27,7 @@ BOOST_AUTO_TEST_CASE(move_is_correct)
 
 BOOST_AUTO_TEST_CASE(scale_is_correct)
 {
-  double width = 1,
-         height = 2;
-  murzakanov::point_t rectPos{15.2, 13.3};
-  murzakanov::Rectangle rectangle(width, height, rectPos);
+  murzakanov::Rectangle rectangle(width, height, pos);
   double firstArea = rectangle.getArea();
   rectangle.scale(5);
   BOOST_CHECK_CLOSE(firstArea * 5 * 5, rectangle.getArea(), tolerance);
@@ -35,8 +36,7 @@ BOOST_AUTO_TEST_CASE(scale_is_correct)
 BOOST_AUTO_TEST_CASE(incorrect_values)
 {
   double radius = -1;
-  murzakanov::point_t circlePos{15.2, 13.2};
-  BOOST_CHECK_THROW(murzakanov::Circle circle(radius, circlePos), std::invalid_argument);
+  BOOST_CHECK_THROW(murzakanov::Circle circle(radius, pos), std::invalid_argument);
   double width = -5,
          height = -4;
   murzakanov::point_t rectPos{123.5, -54.3};
@@ -45,24 +45,20 @@ BOOST_AUTO_TEST_CASE(incorrect_values)
 
 BOOST_AUTO_TEST_CASE(addShape)
 {
-  double width = 2.0,
-         height = 3.0;
-  murzakanov::point_t pos{1.5, 2.3};
-  murzakanov::CompositeShape cmpShp;
+  std::shared_ptr< murzakanov::Circle > circle;
+  circle = std::make_shared< murzakanov::Circle >(radius, pos);
   std::shared_ptr< murzakanov::Rectangle > rect;
   rect = std::make_shared< murzakanov::Rectangle >(width, height, pos);
-  BOOST_CHECK_NO_THROW(cmpShp.addShape(rect));
+  murzakanov::CompositeShape cmpShp(rect);
+  BOOST_CHECK_NO_THROW(cmpShp.addShape(circle));
 }
 
 BOOST_AUTO_TEST_CASE(popShape)
 {
-  double width = 2.0,
-         height = 3.0;
-  murzakanov::point_t pos{1.5, 2.3};
-  murzakanov::CompositeShape cmpShp;
   std::shared_ptr< murzakanov::Rectangle > rect;
   rect = std::make_shared< murzakanov::Rectangle >(width, height, pos);
-  cmpShp.addShape(rect);
+  murzakanov::CompositeShape cmpShp(rect);
+
   BOOST_CHECK_NO_THROW(cmpShp.popShape());
   BOOST_CHECK_THROW(cmpShp[0], std::invalid_argument);
 }

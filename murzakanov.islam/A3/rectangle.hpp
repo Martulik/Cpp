@@ -11,7 +11,7 @@ namespace murzakanov
   class Rectangle: public Shape
   {
   public:
-    Rectangle(double width, double height, point_t pos_);
+    Rectangle(double width, double height, const point_t& pos_);
 
     void scale(double coef) override;
     std::string getName() const override;

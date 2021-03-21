@@ -9,7 +9,6 @@ namespace murzakanov
   class CompositeShape: public Shape
   {
   public:
-    CompositeShape();
     CompositeShape(const CompositeShape& other);
     CompositeShape(CompositeShape&& other) noexcept;
     explicit CompositeShape(std::shared_ptr< Shape > shp);

@@ -71,10 +71,6 @@ pochernin::CompositeShape& pochernin::CompositeShape::operator=(CompositeShape&&
 
 double pochernin::CompositeShape::getArea() const
 {
-  if (size_ == 0)
-  {
-    return 0.0;
-  }
   double result = 0.0;
   for (size_t i = 0; i < size_; i++)
   {

@@ -18,7 +18,7 @@ namespace murzakanov
     CompositeShape& operator =(CompositeShape&& src) noexcept;
 
     void scale(double coef) override;
-    int getSize() const;
+    int size() const;
     std::string getName() const override;
     double getArea() const override;
     rectangle_t getFrameRect() const override;

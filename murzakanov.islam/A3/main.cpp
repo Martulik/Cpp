@@ -22,7 +22,7 @@ int main()
   std::cout << testArray.getFrameRect().pos.x << " "
             << testArray.getFrameRect().pos.y << std::endl;
   std::cout << "Координаты до скейла\n";
-  for (int i = 0; i < testArray.getSize(); i++)
+  for (int i = 0; i < testArray.size(); i++)
   {
     std::cout << testArray[i].getName() << '\n';
     std::cout << testArray[i].getFrameRect().pos.x
@@ -32,7 +32,7 @@ int main()
   testArray.scale(5);
   std::cout << "Площадь после скейла: \n" << testArray.getArea() << "\n";
   std::cout << "Координаты после скейла\n";
-  for (int i = 0; i < testArray.getSize(); i++)
+  for (int i = 0; i < testArray.size(); i++)
   {
     std::cout << testArray[i].getFrameRect().pos.x
               << " " << testArray[i].getFrameRect().pos.y << std::endl;

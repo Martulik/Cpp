@@ -192,7 +192,7 @@ void murzakanov::CompositeShape::move(double dx, double dy)
   }
 }
 
-int murzakanov::CompositeShape::getSize() const
+int murzakanov::CompositeShape::size() const
 {
   return size_;
 }

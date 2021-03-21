@@ -162,13 +162,13 @@ murzakanov::rectangle_t murzakanov::CompositeShape::getFrameRect() const
   for (int i = 1; i < size_; i++)
   {
     maxX = std::max(maxX, array_[0]->getFrameRect().pos.x
-                            + array_[0]->getFrameRect().width / 2);
+      + array_[0]->getFrameRect().width / 2);
     maxY = std::max(maxY, array_[i]->getFrameRect().pos.y
-                            + array_[i]->getFrameRect().height / 2);
+      + array_[i]->getFrameRect().height / 2);
     minX = std::min(minX, array_[i]->getFrameRect().pos.x
-                            - array_[i]->getFrameRect().width / 2);
+      - array_[i]->getFrameRect().width / 2);
     minY = std::min(minY, array_[i]->getFrameRect().pos.y
-                            - array_[i]->getFrameRect().height / 2);
+      - array_[i]->getFrameRect().height / 2);
   }
 
   return {maxX - minX, maxY-minY, {(maxX + minX) / 2, (maxY + minY) / 2}};

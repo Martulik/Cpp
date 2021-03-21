@@ -3,9 +3,9 @@
 #include <stdexcept>
 
 murzakanov::Rectangle::Rectangle(const double width, const double height, const murzakanov::point_t& pos):
-          width_(width),
-          height_(height),
-          pos_(pos)
+  width_(width),
+  height_(height),
+  pos_(pos)
 {
   if (width < 0 || height < 0)
   {

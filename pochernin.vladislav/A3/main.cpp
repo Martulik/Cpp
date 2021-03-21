@@ -30,8 +30,8 @@ int main()
 
   pochernin::CompositeShape compositeShape;
   testRectangle->move(startPos);
-  compositeShape.push_back(std::shared_ptr<pochernin::Shape>(testRectangle));
-  compositeShape.push_back(std::shared_ptr<pochernin::Shape>(testCircle));
+  compositeShape.push_back(std::shared_ptr< pochernin::Shape >(testRectangle));
+  compositeShape.push_back(std::shared_ptr< pochernin::Shape >(testCircle));
   std::cout << "\nComposite Shape:\n";
   print(compositeShape, std::cout);
   compositeShape.move(startPos);

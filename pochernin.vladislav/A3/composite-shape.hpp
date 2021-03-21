@@ -1,7 +1,7 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include <stddef.h> // size_t
+#include <cstddef> // size_t
 #include <memory>
 
 #include "shape.hpp"

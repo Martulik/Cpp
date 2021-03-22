@@ -18,7 +18,7 @@ namespace doroshin {
     using container_t = std::vector<T>;
     using iterator_t = size_t;
 
-    static inline iterator_t begin(container_t& vec)
+    static inline iterator_t begin(container_t&)
     {
       return 0;
     }
@@ -40,7 +40,7 @@ namespace doroshin {
     using container_t = std::vector<T>;
     using iterator_t = size_t;
 
-    static inline iterator_t begin(container_t& vec)
+    static inline iterator_t begin(container_t&)
     {
       return 0;
     }
@@ -77,6 +77,24 @@ namespace doroshin {
       return *it;
     }
   };
+
+  struct Ordering
+  {
+    enum class Way: char
+    {
+      Ascending,
+      Descending
+    };
+
+    template< Way Order >
+    struct ordering_op {};
+  };
+
+  template<>
+  struct Ordering::ordering_op< Ordering::Way::Ascending >: std::less<> {};
+
+  template<>
+  struct Ordering::ordering_op< Ordering::Way::Descending >: std::greater<> {};
 }
 
 #endif // SORT_STRATEGIES_HPP

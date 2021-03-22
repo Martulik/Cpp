@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <limits>
+#include <memory>
 #include "insert-sort.hpp"
 #include "sort-strategies.hpp"
 
@@ -15,6 +18,33 @@ void doSort(typename Strat::container_t values)
   std::cout << '\n';
 }
 
+std::streamsize fileLength(std::ifstream& file)
+{
+  std::streampos save_pos = file.tellg();
+  file.seekg(0, std::ios_base::beg);
+  file.ignore(std::numeric_limits<std::streamsize>::max());
+  std::streamsize length = file.gcount();
+  file.clear();
+  file.seekg(save_pos);
+  return length;
+}
+
+void readFile(std::string filename)
+{
+  std::ifstream in(filename);
+  if(!in.is_open()) {
+    std::cerr << "Could not open file\n";
+    return;
+  }
+  size_t len = fileLength(in);
+  std::unique_ptr< char[] > c_buf = std::make_unique< char[] >(len);
+  in.read(c_buf.get(), len);
+  std::vector< char > v_buf(c_buf.get(), c_buf.get() + len);
+  for(char c: v_buf) {
+    std::cout << c;
+  }
+}
+
 int main(int argc, char* argv[])
 {
   if(argc < 2) {
@@ -26,12 +56,8 @@ int main(int argc, char* argv[])
   {
   case 1:
     {
-      if(argc < 3) {
-        std::cerr << "Provide a sorting order";
-        return 0;
-      }
       std::vector< int > values;
-      while(!std::cin.eof()) {
+      do {
         int num;
         std::cin >> num;
         if(std::cin.fail()) {
@@ -39,9 +65,13 @@ int main(int argc, char* argv[])
           return 0;
         }
         values.push_back(num);
-      }
+      } while(!std::cin.eof());
       // std::forward_list< int > l_values(values.begin(), values.end());
-      std::string order = argv[1];
+      if(argc < 3) {
+        std::cerr << "Provide a sorting order";
+        return 0;
+      }
+      std::string order = argv[2];
       if(order == "ascending") {
         doSort< dan::VectorIndexStrat< int >, dan::Ordering::Way::Ascending >(values);
         doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Ascending >(values);
@@ -49,7 +79,16 @@ int main(int argc, char* argv[])
       }
     }
     break;
-
+  case 2:
+    {
+      if(argc < 3) {
+        std::cerr << "Provide a filename";
+        return 0;
+      }
+      std::string filename = argv[2];
+      readFile(filename);
+    }
+    break;
   default:
     std::cerr << "Unknown task\n";
     break;

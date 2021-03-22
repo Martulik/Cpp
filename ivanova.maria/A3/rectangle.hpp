@@ -3,19 +3,18 @@
 
 #include "shape.hpp"
 
-namespace ivanova //Todo: assert-ов накилать
+namespace ivanova
 {
   class Rectangle: public Shape
   {
   public:
     Rectangle(double height, double width, point_t pos);
-    virtual double getArea() const override;
-    virtual rectangle_t getFrameRect() const override;
-    virtual void move(const point_t &newPos) override;
-    virtual void move(double dx, double dy) override;
-    virtual std::string getName() const override;
-    virtual void scale(double k) override;
-
+    double getArea() const override;
+    rectangle_t getFrameRect() const override;
+    void move(const point_t &newPos) override;
+    void move(double dx, double dy) override;
+    std::string getName() const override;
+    void scale(double k) override;
   private:
     double height_;
     double width_;

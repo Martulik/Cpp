@@ -37,7 +37,7 @@ std::string ivanova::Rectangle::getName() const
 
 void ivanova::Rectangle::scale(double k)
 {
-  assert(k>0);
+  assert(k > 0);
   height_ *= k;
   width_ *= k;
 }

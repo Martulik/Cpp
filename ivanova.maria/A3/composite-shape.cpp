@@ -1,27 +1,27 @@
 #include "composite-shape.hpp"
 #include <cassert>
+typedef std::shared_ptr< ivanova::Shape > shared;
 
-ivanova::CompositeShape::CompositeShape(std::shared_ptr< ivanova::Shape > &other):
+ivanova::CompositeShape::CompositeShape(shared &other):
   size_(0),
-  capacity_(2)
+  capacity_(2),
+  data_(std::make_unique< shared [] >(capacity_))
 {
-  data_ = std::make_unique< std::shared_ptr< Shape >[] >(capacity_);
   data_[size_] = std::move (other);
   size_++;
 }
 
-std::shared_ptr< ivanova::Shape > ivanova::CompositeShape::operator[](const size_t index) const
+shared ivanova::CompositeShape::operator[](const size_t index) const
 {
   assert(index < size_);
   return data_[index];
 }
-void ivanova::CompositeShape::push_back(std::shared_ptr< ivanova::Shape > &source)
+void ivanova::CompositeShape::push_back(shared &source)
 {
-  assert(source != nullptr);
   if (capacity_ == size_)
   {
-    std::unique_ptr < std::shared_ptr < ivanova::Shape > [] > temp
-    (std::make_unique< std::shared_ptr< ivanova::Shape > [] > (capacity_ * 2));
+    std::unique_ptr < shared [] > temp
+    (std::make_unique< shared [] > (capacity_ * 2));
     for (size_t i = 0; i < size_; ++i)
     {
       temp[i] = std::move(data_[i]);
@@ -33,7 +33,7 @@ void ivanova::CompositeShape::push_back(std::shared_ptr< ivanova::Shape > &sourc
   }
   else
   {
-    std::shared_ptr< ivanova::Shape > t = std::shared_ptr< ivanova::Shape > (source);
+    shared t = shared (source);
     data_[size_] = std::move(t);
     size_++;
   }
@@ -41,8 +41,13 @@ void ivanova::CompositeShape::push_back(std::shared_ptr< ivanova::Shape > &sourc
 
 void ivanova::CompositeShape::pop_back()
 {
-  data_[size_]=nullptr;
-  --size_;
+  std::unique_ptr < shared [] > temp (std::make_unique< shared [] > (capacity_ * 2));
+  for (size_t i = 0; i < size_ - 1; ++i)
+  {
+    temp[i] = std::move(data_[i]);
+  }
+  size_--;
+  data_ = std::move(temp);
 }
 
 double ivanova::CompositeShape::getArea() const

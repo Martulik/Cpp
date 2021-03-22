@@ -37,6 +37,6 @@ std::string ivanova::Circle::getName() const
 
 void ivanova::Circle::scale(double k)
 {
-  assert(k>0);
+  assert(k > 0);
   radius_ *= k;
 }

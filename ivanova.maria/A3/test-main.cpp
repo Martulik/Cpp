@@ -74,8 +74,9 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
 
 BOOST_AUTO_TEST_CASE(moveCompositeShape)
 {
-  std::shared_ptr< ivanova::Shape > rectangle = std::make_shared< ivanova::Rectangle > (8.0, 4.0, ivanova::point_t{0.0, 7.0});
-  std::shared_ptr< ivanova::Shape > circle = std::make_shared< ivanova::Circle > (ivanova::point_t {8.0, -2.0}, 9.5);
+  ivanova::point_t p1{0.0, 7.0};
+  std::shared_ptr< ivanova::Shape > rectangle = std::make_shared< ivanova::Rectangle > (8.0, 4.0, p1);
+  std::shared_ptr< ivanova::Shape > circle = std::make_shared< ivanova::Circle > (ivanova::point_t{8.0, -2.0}, 9.5);
 
   ivanova::CompositeShape array(rectangle);
   array.push_back(circle);

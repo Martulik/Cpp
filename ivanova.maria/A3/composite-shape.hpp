@@ -9,12 +9,12 @@ namespace ivanova
 class CompositeShape: public Shape
   {
   public:
+    explicit CompositeShape(std::shared_ptr< ivanova::Shape > &other);
     CompositeShape(const CompositeShape &other) = delete;
     CompositeShape(CompositeShape &&other) noexcept = default;
-    explicit CompositeShape(std::shared_ptr< ivanova::Shape > &other);
     virtual ~CompositeShape() = default;
     std::shared_ptr< Shape > operator[](const size_t index) const;
-    void push_back( std::shared_ptr< ivanova::Shape > &source);
+    void push_back(std::shared_ptr< ivanova::Shape > &source);
     void pop_back();
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -25,8 +25,8 @@ class CompositeShape: public Shape
     void scale(double k) override;
   private:
     size_t size_;
-    std::unique_ptr<std::shared_ptr< ivanova::Shape >[] > data_;
     size_t capacity_;
+    std::unique_ptr< std::shared_ptr< ivanova::Shape >[] > data_;
   };
 }
 #endif

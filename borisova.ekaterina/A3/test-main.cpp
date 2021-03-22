@@ -40,13 +40,12 @@ void areaAfterMoving(borisova::Shape* obj, const borisova::point_t& dpos)
   BOOST_REQUIRE_EQUAL(obj->getArea(), arBeforeMoving);
 }
 
-void areaAfterScale(borisova::Shape* obj, double k)
+void areaAfterScale(borisova::Shape* obj)
 {
-  double arBeforeScale = obj->getArea() * k * k;
-  BOOST_CHECK_NO_THROW(obj->scale(k));
-  BOOST_CHECK_CLOSE(obj->getArea(), arBeforeScale, 0,0001);
-  k = -k;
-  BOOST_CHECK_THROW(obj->scale(k), std::invalid_argument);
+  double arBeforeScale = obj->getArea();
+  BOOST_CHECK_NO_THROW(obj->scale(3.2));
+  BOOST_CHECK_CLOSE(obj->getArea(), arBeforeScale*10.24, 0.0001);
+  BOOST_CHECK_THROW(obj->scale(-3.2), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE(testRectangle)
@@ -70,7 +69,7 @@ BOOST_AUTO_TEST_CASE(testParamAfterMovingRec)
 }
 BOOST_AUTO_TEST_CASE(testScaleRec)
   {
-    areaAfterScale(&rect, 2.32);
+    areaAfterScale(&rect);
   }
 
 BOOST_AUTO_TEST_CASE(testNameRec)
@@ -100,7 +99,7 @@ BOOST_AUTO_TEST_CASE(testParamAfterMovingCir)
 
 BOOST_AUTO_TEST_CASE(testScaleCir)
 {
-  areaAfterScale(&circle, 5.91);
+  areaAfterScale(&circle);
 }
 
 BOOST_AUTO_TEST_CASE(testNameCir)
@@ -138,7 +137,7 @@ BOOST_AUTO_TEST_CASE(testParamAfterMovingComp)
 
 BOOST_AUTO_TEST_CASE(testScaleComp)
 {
-  areaAfterScale(&compShape, 5.91);
+  areaAfterScale(&compShape);
 }
 
 BOOST_AUTO_TEST_CASE(testNameComp)

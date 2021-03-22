@@ -8,9 +8,7 @@
 #include "composite-shape.hpp"
 
 void print(const pochernin::Shape& shape, std::ostream& out);
-void print(const pochernin::CompositeShape& compositeShape, std::ostream& out);
 bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos);
-bool isPosEqual(const pochernin::CompositeShape& compositeShape, const pochernin::point_t& pos);
 void testShape(pochernin::Shape* shape, std::ostream& out, const pochernin::point_t& finishPos);
 
 int main()
@@ -50,29 +48,9 @@ void print(const pochernin::Shape& shape, std::ostream& out)
   out << "area: " << shape.getArea() << "\n\n";
 }
 
-void print(const pochernin::CompositeShape& compositeShape, std::ostream& out)
-{
-  out << "In Composite Shape:\n";
-  for (size_t i = 0; i < compositeShape.size(); i++)
-  {
-    print(*compositeShape.at(i), std::cout);
-  }
-  out << "The Composite Shape itself\n";
-  out << "width: " << compositeShape.getFrameRect().width << "\n";
-  out << "height: " << compositeShape.getFrameRect().height << "\n";
-  out << "pos: " << "(" << compositeShape.getFrameRect().pos.x
-      << "; " << compositeShape.getFrameRect().pos.y << ")\n";
-  out << "area: " << compositeShape.getArea() << "\n";
-}
-
 bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos)
 {
   return ((shape.getFrameRect().pos.x == pos.x) && (shape.getFrameRect().pos.y == pos.y));
-}
-
-bool isPosEqual(const pochernin::CompositeShape& compositeShape, const pochernin::point_t& pos)
-{
-  return ((compositeShape.getFrameRect().pos.x == pos.x) && (compositeShape.getFrameRect().pos.y == pos.y));
 }
 
 void testShape(pochernin::Shape* shape, std::ostream& out, const pochernin::point_t& finishPos)

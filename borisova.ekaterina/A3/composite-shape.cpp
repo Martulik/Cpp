@@ -48,7 +48,7 @@ double borisova::CompositeShape::getArea() const
   {
     sum += data_[i]->getArea();
   }
-  return sum;  
+  return sum;
 }
 
 borisova::rectangle_t borisova::CompositeShape::getFrameRect() const

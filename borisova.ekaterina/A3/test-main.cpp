@@ -101,11 +101,9 @@ BOOST_AUTO_TEST_SUITE(testCircle)
   {
 	BOOST_REQUIRE_EQUAL(circle.getName(), "Circle");
   }
-
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(testCompositeShape)
-
 std::shared_ptr< borisova::Shape > testArray[4]
 {
   std::make_shared< borisova::Rectangle >(point1, width, height),
@@ -135,5 +133,4 @@ std::shared_ptr< borisova::Shape > testArray[4]
   {
 	BOOST_REQUIRE_EQUAL(compShape.getName(), "Composite Shape");
   }
-
 BOOST_AUTO_TEST_SUITE_END()

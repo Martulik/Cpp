@@ -2,9 +2,8 @@
 #include <iostream>
 #include <vector>
 
-void doroshin::filterInput()
+std::vector< int > input_int_vec()
 {
-  using It = typename std::vector< int >::iterator;
   std::vector< int > values;
   while(true) {
     int num = 0;
@@ -16,27 +15,48 @@ void doroshin::filterInput()
       break;
     values.push_back(num);
   }
-  if(values.empty())
-    return;
+  return values;
+}
 
-  if(values.back() == 1) {
-    for(It i = values.begin(); i != values.end();) {
-      if(*i % 2 == 0) {
-        i = values.erase(i);
-      }
-      else {
-        i++;
-      }
+void filterEven(std::vector< int >& vec)
+{
+  using It = typename std::vector< int >::iterator;
+  for(It i = vec.begin(); i != vec.end();) {
+    if(*i % 2 == 0) {
+      i = vec.erase(i);
     }
-  } else if(values.back() == 2) {
-    for(It i = values.begin(); i != values.end(); ++i) {
-      if(*i % 3 == 0) {
-        i = values.insert(++i, 1);
-        i = values.insert(++i, 1);
-        i = values.insert(++i, 1);
-      }
+    else {
+      i++;
     }
   }
+}
+
+void put1after3(std::vector< int >& vec)
+{
+  using It = typename std::vector< int >::iterator;
+  for(It i = vec.begin(); i != vec.end(); ++i) {
+    if(*i % 3 == 0) {
+      i = vec.insert(++i, 1);
+      i = vec.insert(++i, 1);
+      i = vec.insert(++i, 1);
+    }
+  }
+}
+
+void doroshin::filterInput()
+{
+  std::vector< int > values = input_int_vec();
+  if(values.empty()) {
+    std::cerr << "No values given\n";
+    return;
+  }
+
+  if(values.back() == 1) {
+    filterEven(values);
+  } else if(values.back() == 2) {
+    put1after3(values);
+  }
+
   for(int num: values) {
     std::cout << num << ' ';
   }

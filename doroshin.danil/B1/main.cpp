@@ -4,22 +4,9 @@
 #include <limits>
 #include <memory>
 #include <random>
-#include "insert-sort.hpp"
-#include "sort-strategies.hpp"
+#include "task1.hpp"
 
 namespace dan = doroshin;
-
-// Task 1
-template< typename Strat, dan::Ordering::Way order >
-void doSort(typename Strat::container_t values)
-{
-  dan::insert_sort< int, Strat, dan::Ordering::ordering_op< order > >
-      (values, Strat::begin(values), Strat::end(values));
-  for(int num: values) {
-    std::cout << num << ' ';
-  }
-  std::cout << '\n';
-}
 
 std::streamsize fileLength(std::ifstream& file)
 {

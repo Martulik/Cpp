@@ -51,7 +51,7 @@ void print(const pochernin::Shape& shape, std::ostream& out)
 void print(const pochernin::CompositeShape& compositeShape, std::ostream& out)
 {
   out << "In Composite Shape:\n";
-  for (size_t i = 0; i < compositeShape.getSize(); i++)
+  for (size_t i = 0; i < compositeShape.size(); i++)
   {
     print(*compositeShape[i], std::cout);
   }

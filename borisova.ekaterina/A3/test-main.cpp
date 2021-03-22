@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(testParamAfterMovingRec)
 }
 BOOST_AUTO_TEST_CASE(testScaleRec)
   {
-	areaAfterScale(&rect, 2.32);
+    areaAfterScale(&rect, 2.32);
   }
 
 BOOST_AUTO_TEST_CASE(testNameRec)

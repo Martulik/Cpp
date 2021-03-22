@@ -23,6 +23,7 @@ namespace shilyaev {
     void scale(double factor) override;
     size_t size() const;
     const Shape &at(size_t index) const;
+    Shape &at(size_t index);
     void pushBack(ShapePtr shape);
     void popBack();
     void swap(CompositeShape &other) noexcept;

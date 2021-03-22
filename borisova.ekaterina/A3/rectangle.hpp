@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_HPP
-#define RECTANGLE_HPP
+#ifndef A3_RECTANGLE_HPP
+#define A3_RECTANGLE_HPP
 
 #include "shape.hpp"
 
@@ -22,4 +22,5 @@ namespace borisova
 	rectangle_t parameters_;
   };
 }
+
 #endif

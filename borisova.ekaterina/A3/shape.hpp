@@ -1,5 +1,5 @@
-#ifndef SHAPE_HPP
-#define SHAPE_HPP
+#ifndef A3_SHAPE_HPP
+#define A3_SHAPE_HPP
 
 #include <string>
 #include "base-types.hpp"
@@ -9,7 +9,7 @@ namespace borisova
   class Shape
   {
   public:
-	virtual ~Shape() = default;
+    virtual ~Shape() = default;
 	virtual double getArea() const = 0;
 	virtual rectangle_t getFrameRect() const = 0;
 	virtual void scale(double k) = 0;
@@ -18,4 +18,5 @@ namespace borisova
 	virtual std::string getName() const = 0;
   };
 }
+
 #endif

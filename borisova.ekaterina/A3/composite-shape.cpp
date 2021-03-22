@@ -113,8 +113,3 @@ std::string borisova::CompositeShape::getName() const
 {
   return "Composite Shape";
 }
-
-int borisova::CompositeShape::getSize() const
-{
-  return size_;
-}

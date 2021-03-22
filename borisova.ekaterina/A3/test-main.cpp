@@ -51,59 +51,67 @@ void areaAfterScale(borisova::Shape* obj, double k)
 
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
-  borisova::Rectangle rect(point1, width, height);
-  BOOST_AUTO_TEST_CASE(testParametersRec)
-  {
-	BOOST_CHECK_THROW(borisova::Rectangle rect1(point1, negWidth, height), std::invalid_argument);
-	BOOST_CHECK_THROW(borisova::Rectangle rect2(x, y, width, negHeight), std::invalid_argument);
-  }
-  BOOST_AUTO_TEST_CASE(testAreaAfterMovingRec)
-  {
-    areaAfterMoving(&rect, point3);
-  }
-  BOOST_AUTO_TEST_CASE(testParamAfterMovingRec)
-  {
-	paramAfterMoving(&rect, point2);
-  }
-  BOOST_AUTO_TEST_CASE(testScaleRec)
+borisova::Rectangle rect(point1, width, height);
+
+BOOST_AUTO_TEST_CASE(testParametersRec)
+{
+  BOOST_CHECK_THROW(borisova::Rectangle rect1(point1, negWidth, height), std::invalid_argument);
+  BOOST_CHECK_THROW(borisova::Rectangle rect2(x, y, width, negHeight), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testAreaAfterMovingRec)
+{
+  areaAfterMoving(&rect, point3);
+}
+
+BOOST_AUTO_TEST_CASE(testParamAfterMovingRec)
+{
+  paramAfterMoving(&rect, point2);
+}
+BOOST_AUTO_TEST_CASE(testScaleRec)
   {
 	areaAfterScale(&rect, 2.32);
   }
-  BOOST_AUTO_TEST_CASE(testNameRec)
-  {
-	BOOST_REQUIRE_EQUAL(rect.getName(), "Rectangle");
-  }
+
+BOOST_AUTO_TEST_CASE(testNameRec)
+{
+  BOOST_REQUIRE_EQUAL(rect.getName(), "Rectangle");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(testCircle)
 
-  borisova::Circle circle(point2, radius);
-  BOOST_AUTO_TEST_CASE(testParametersCir)
-  {
-	BOOST_CHECK_THROW(borisova::Circle circle1(point1, negRadius), std::invalid_argument);
-  }
-  BOOST_AUTO_TEST_CASE(testAreaAfterMovingCir)
-  {
-	areaAfterMoving(&circle, point1);
-  }
+borisova::Circle circle(point2, radius);
+BOOST_AUTO_TEST_CASE(testParametersCir)
+{
+  BOOST_CHECK_THROW(borisova::Circle circle1(point1, negRadius), std::invalid_argument);
+}
 
-  BOOST_AUTO_TEST_CASE(testParamAfterMovingCir)
-  {
-	paramAfterMoving(&circle, point2);
-  }
+BOOST_AUTO_TEST_CASE(testAreaAfterMovingCir)
+{
+  areaAfterMoving(&circle, point1);
+}
 
-  BOOST_AUTO_TEST_CASE(testScaleCir)
-  {
-	areaAfterScale(&circle, 5.91);
-  }
+BOOST_AUTO_TEST_CASE(testParamAfterMovingCir)
+{
+  paramAfterMoving(&circle, point2);
+}
 
-  BOOST_AUTO_TEST_CASE(testNameCir)
-  {
-	BOOST_REQUIRE_EQUAL(circle.getName(), "Circle");
-  }
+BOOST_AUTO_TEST_CASE(testScaleCir)
+{
+  areaAfterScale(&circle, 5.91);
+}
+
+BOOST_AUTO_TEST_CASE(testNameCir)
+{
+  BOOST_REQUIRE_EQUAL(circle.getName(), "Circle");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(testCompositeShape)
+
 std::shared_ptr< borisova::Shape > testArray[4]
 {
   std::make_shared< borisova::Rectangle >(point1, width, height),
@@ -111,26 +119,31 @@ std::shared_ptr< borisova::Shape > testArray[4]
   std::make_shared< borisova::Rectangle >(point2, width, height),
   std::make_shared< borisova::Circle >(point2, height)
 };
-  borisova::CompositeShape compShape(testArray, 4);
+borisova::CompositeShape compShape(testArray, 4);
 
-  BOOST_AUTO_TEST_CASE(testParametersComp)
-  {
-    BOOST_CHECK_THROW(borisova::CompositeShape comp(testArray, -4), std::invalid_argument);
-  }
-  BOOST_AUTO_TEST_CASE(testAreaAfterMovingComp)
-  {
-	areaAfterMoving(&compShape, point1);
-  }
-  BOOST_AUTO_TEST_CASE(testParamAfterMovingComp)
-  {
-	paramAfterMoving(&compShape, point2);
-  }
-  BOOST_AUTO_TEST_CASE(testScaleComp)
-  {
-	areaAfterScale(&compShape, 5.91);
-  }
-  BOOST_AUTO_TEST_CASE(testNameComp)
-  {
-	BOOST_REQUIRE_EQUAL(compShape.getName(), "Composite Shape");
-  }
+BOOST_AUTO_TEST_CASE(testParametersComp)
+{
+  BOOST_CHECK_THROW(borisova::CompositeShape comp(testArray, -4), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testAreaAfterMovingComp)
+{
+  areaAfterMoving(&compShape, point1);
+}
+
+BOOST_AUTO_TEST_CASE(testParamAfterMovingComp)
+{
+  paramAfterMoving(&compShape, point2);
+}
+
+BOOST_AUTO_TEST_CASE(testScaleComp)
+{
+  areaAfterScale(&compShape, 5.91);
+}
+
+BOOST_AUTO_TEST_CASE(testNameComp)
+{
+  BOOST_REQUIRE_EQUAL(compShape.getName(), "Composite Shape");
+}
+
 BOOST_AUTO_TEST_SUITE_END()

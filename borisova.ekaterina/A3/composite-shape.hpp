@@ -1,5 +1,5 @@
-#ifndef COMPOSITE_SHAPE_HPP
-#define COMPOSITE_SHAPE_HPP
+#ifndef A3_COMPOSITE_SHAPE_HPP
+#define A3_COMPOSITE_SHAPE_HPP
 
 #include <memory>
 #include "shape.hpp"
@@ -22,7 +22,6 @@ namespace borisova
     void move(double dx, double dy) override;
     void move(const borisova::point_t & dpos) override;
     std::string getName() const override;
-    int getSize() const;
 
   private:
     int size_;

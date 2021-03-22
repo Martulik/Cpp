@@ -53,7 +53,7 @@ void print(const pochernin::CompositeShape& compositeShape, std::ostream& out)
   out << "In Composite Shape:\n";
   for (size_t i = 0; i < compositeShape.size(); i++)
   {
-    print(*compositeShape[i], std::cout);
+    print(*compositeShape.at(i), std::cout);
   }
   out << "The Composite Shape itself\n";
   out << "width: " << compositeShape.getFrameRect().width << "\n";

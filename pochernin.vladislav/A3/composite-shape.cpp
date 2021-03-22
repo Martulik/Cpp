@@ -28,7 +28,16 @@ pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
   src.data_ = nullptr;
 }
 
-std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::operator[](size_t index) const
+std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index)
+{
+  if (index >= size())
+  {
+    throw std::out_of_range("Out of range");
+  }
+  return data_[index];
+}
+
+const std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index) const
 {
   if (index >= size())
   {

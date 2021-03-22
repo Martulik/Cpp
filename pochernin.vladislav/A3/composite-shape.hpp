@@ -11,10 +11,10 @@ namespace pochernin
   class CompositeShape: public Shape
   {
   public:
-    CompositeShape();
-
     CompositeShape(const CompositeShape& src);
     CompositeShape(CompositeShape&& src) noexcept;
+
+    CompositeShape(size_t capacity);
 
     virtual ~CompositeShape() = default;
 
@@ -30,9 +30,11 @@ namespace pochernin
     virtual void scale(double factor) override;
     void push_back(const std::shared_ptr< Shape > shape);
     size_t size() const;
+    size_t capacity() const;
 
   private:
     size_t size_;
+    size_t capacity_;
     std::unique_ptr< std::shared_ptr< Shape >[] > data_;
   };
 }

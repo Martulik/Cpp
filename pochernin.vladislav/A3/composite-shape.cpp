@@ -5,14 +5,10 @@
 
 #include "base-types.hpp"
 
-pochernin::CompositeShape::CompositeShape():
-  size_(0),
-  data_(nullptr)
-{}
-
 pochernin::CompositeShape::CompositeShape(const CompositeShape& src):
   size_(src.size_),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+  capacity_(src.capacity_),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity_))
 {
   for (size_t i = 0; i < size_; i++)
   {
@@ -21,12 +17,20 @@ pochernin::CompositeShape::CompositeShape(const CompositeShape& src):
 }
 
 pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
-  size_(src.size_)
+  size_(src.size_),
+  capacity_(src.capacity_)
 {
   data_ = std::move(src.data_);
   src.size_ = 0;
+  src.capacity_ = 0;
   src.data_ = nullptr;
 }
+
+pochernin::CompositeShape::CompositeShape(size_t capacity):
+  size_(0),
+  capacity_(capacity),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity))
+{}
 
 std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index)
 {
@@ -54,8 +58,9 @@ pochernin::CompositeShape& pochernin::CompositeShape::operator=(const CompositeS
   }
 
   size_ = src.size_;
+  capacity_ = src.capacity_;
   data_.reset();
-  data_ = std::make_unique< std::shared_ptr< Shape >[] >(size_);
+  data_ = std::make_unique< std::shared_ptr< Shape >[] >(capacity_);
   for (size_t i = 0; i < size_; i++)
   {
     data_[i] = src.data_[i];
@@ -71,9 +76,11 @@ pochernin::CompositeShape& pochernin::CompositeShape::operator=(CompositeShape&&
   }
 
   size_ = src.size_;
+  capacity_ = src.capacity_;
   data_.reset();
   data_ = std::move(src.data_);
   src.size_ = 0;
+  src.capacity_ = 0;
   src.data_ = nullptr;
   return *this;
 }
@@ -144,17 +151,28 @@ void pochernin::CompositeShape::scale(const double factor)
 
 void pochernin::CompositeShape::push_back(const std::shared_ptr< Shape > shape)
 {
-  std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
-  for (size_t i = 0; i < size_; i++)
+  if (size_ == capacity_)
   {
-    newData[i] = std::move(data_[i]);
+    capacity_++;
+    std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+    for (size_t i = 0; i < size_; i++)
+    {
+      newData[i] = std::move(data_[i]);
+    }
+    data_.reset();
+    data_ = std::move(newData);
   }
-  newData[size_] = std::move(shape);
+
+  data_[size_] = shape;
   size_++;
-  data_ = std::move(newData);
 }
 
 size_t pochernin::CompositeShape::size() const
 {
   return size_;
+}
+
+size_t pochernin::CompositeShape::capacity() const
+{
+  return capacity_;
 }

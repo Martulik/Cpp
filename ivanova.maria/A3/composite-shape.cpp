@@ -1,33 +1,52 @@
 #include "composite-shape.hpp"
 #include <cassert>
 
-ivanova::CompositeShape::CompositeShape():
+ivanova::CompositeShape::CompositeShape(std::shared_ptr< ivanova::Shape > &other):
   size_(0),
-  data_(nullptr)
+  capacity_(2)
 {
+  data_ = std::make_unique< std::shared_ptr< Shape >[] >(capacity_);
+  data_[size_] = std::move (other);
+  size_++;
 }
 
-std::shared_ptr< ivanova::Shape > ivanova::CompositeShape::operator [](const size_t index) const
+std::shared_ptr< ivanova::Shape > ivanova::CompositeShape::operator[](const size_t index) const
 {
   assert(index < size_);
   return data_[index];
 }
-
-void ivanova::CompositeShape::add(std::shared_ptr< Shape > source)
+void ivanova::CompositeShape::push_back(std::shared_ptr< ivanova::Shape > &source)
 {
-  std::unique_ptr< std::shared_ptr< Shape >[] > temp(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
-  for (size_t i = 0; i < size_; i++)
+  assert(source != nullptr);
+  if (capacity_ == size_)
   {
-    temp[i] = std::move(data_[i]);
+    std::unique_ptr < std::shared_ptr < ivanova::Shape > [] > temp
+    (std::make_unique< std::shared_ptr< ivanova::Shape > [] > (capacity_ * 2));
+    for (size_t i = 0; i < size_; ++i)
+    {
+      temp[i] = std::move(data_[i]);
+    }
+    temp[size_] = std::move(source);
+    size_++;
+    capacity_ *= 2;
+    data_ = std::move(temp);
   }
-  temp[size_] = std::move(source);
-  size_++;
-  data_ = std::move(temp);
+  else
+  {
+    std::shared_ptr< ivanova::Shape > t = std::shared_ptr< ivanova::Shape > (source);
+    data_[size_] = std::move(t);
+    size_++;
+  }
+}
+
+void ivanova::CompositeShape::pop_back()
+{
+  data_[size_]=nullptr;
+  --size_;
 }
 
 double ivanova::CompositeShape::getArea() const
 {
-  assert(size_ > 0);
   double area = 0;
   for (size_t i = 0; i < size_; i++)
   {
@@ -61,20 +80,18 @@ ivanova::rectangle_t ivanova::CompositeShape::getFrameRect() const
   return frameRect;
 }
 
-size_t ivanova::CompositeShape::getSize() const
+size_t ivanova::CompositeShape::size() const
 {
   return size_;
 }
 
 void ivanova::CompositeShape::move(const ivanova::point_t &point)
 {
-  assert(size_ > 0);
   move(point.x - getFrameRect().pos.x, point.y - getFrameRect().pos.y);
 }
 
 void ivanova::CompositeShape::move(double dx, double dy)
 {
-  assert(size_ > 0);
   for (size_t i = 0; i < size_; i++)
   {
     data_[i]->move(dx, dy);

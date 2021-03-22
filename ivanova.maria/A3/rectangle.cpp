@@ -1,10 +1,12 @@
 #include "rectangle.hpp"
+#include <cassert>
 
 ivanova::Rectangle::Rectangle(double height, double width, ivanova::point_t pos):
   height_(height),
   width_(width),
   pos_(pos)
 {
+  assert(width > 0 && height > 0);
 }
 
 double ivanova::Rectangle::getArea() const
@@ -35,6 +37,7 @@ std::string ivanova::Rectangle::getName() const
 
 void ivanova::Rectangle::scale(double k)
 {
+  assert(k>0);
   height_ *= k;
   width_ *= k;
 }

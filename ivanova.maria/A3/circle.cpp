@@ -1,9 +1,11 @@
 #include "circle.hpp"
+#include <cassert>
 
 ivanova::Circle::Circle(ivanova::point_t ctr, double rad):
   ctr_(ctr),
   radius_(rad)
 {
+  assert(rad > 0);
 }
 
 double ivanova::Circle::getArea() const
@@ -35,5 +37,6 @@ std::string ivanova::Circle::getName() const
 
 void ivanova::Circle::scale(double k)
 {
+  assert(k>0);
   radius_ *= k;
 }

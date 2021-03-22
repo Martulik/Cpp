@@ -3,7 +3,7 @@
 
 #include "shape.hpp"
 
-namespace ivanova
+namespace ivanova //Todo: assert-ов накилать
 {
   class Rectangle: public Shape
   {

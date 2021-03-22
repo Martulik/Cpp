@@ -141,11 +141,14 @@ void pochernin::CompositeShape::scale(const double factor)
   {
     throw(std::invalid_argument("Negative factor"));
   }
+
+  pochernin::point_t centerPos = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++)
   {
     data_[i]->scale(factor);
-    point_t destination = {data_[i]->getFrameRect().pos.x * factor, data_[i]->getFrameRect().pos.y * factor};
-    data_[i]->move(destination);
+    double dx = data_[i]->getFrameRect().pos.x - centerPos.x;
+    double dy = data_[i]->getFrameRect().pos.y - centerPos.y;
+    data_[i]->move({centerPos.x + (dx * factor), centerPos.y + (dy * factor)});
   }
 }
 

@@ -1,6 +1,7 @@
 #define BOOST_TEST_MAIN
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE A3
+
 #include <boost/test/included/unit_test.hpp>
 #include "circle.hpp"
 #include "rectangle.hpp"
@@ -31,6 +32,7 @@ void paramAfterMoving(borisova::Shape* obj, const borisova::point_t& dpos)
   BOOST_REQUIRE_EQUAL(obj->getFrameRect().height, heightBeforeMoving);
   BOOST_REQUIRE_EQUAL(obj->getFrameRect().width, widthBeforeMoving);
 }
+
 void areaAfterMoving(borisova::Shape* obj, const borisova::point_t& dpos)
 {
   double arBeforeMoving = obj->getArea();

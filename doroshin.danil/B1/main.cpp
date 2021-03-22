@@ -18,15 +18,17 @@ int main(int argc, char* argv[])
   case 1:
     {
       std::vector< int > values;
-      do {
+      while(true) {
         int num;
         std::cin >> num;
+        if(std::cin.eof())
+          break;
         if(std::cin.fail()) {
           std::cerr << "Not a number\n";
           return 0;
         }
         values.push_back(num);
-      } while(!std::cin.eof());
+      }
       // std::forward_list< int > l_values(values.begin(), values.end());
       if(argc < 3) {
         std::cerr << "Provide a sorting order";

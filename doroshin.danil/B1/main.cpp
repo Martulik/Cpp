@@ -45,6 +45,10 @@ int main(int argc, char* argv[])
         dan::doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Descending >(values);
         // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Descending >(l_values);
       }
+      else {
+        std::cerr << "Invalid order\n";
+        return 0;
+      }
     }
     break;
   case 2:
@@ -77,6 +81,10 @@ int main(int argc, char* argv[])
       }
       else if (order == "descending") {
         dan::testRandom< dan::Ordering::Way::Descending >(size);
+      }
+      else {
+        std::cerr << "Invalid order\n";
+        return 0;
       }
     }
     break;

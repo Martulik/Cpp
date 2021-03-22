@@ -42,9 +42,9 @@ void areaAfterMoving(borisova::Shape* obj, const borisova::point_t& dpos)
 
 void areaAfterScale(borisova::Shape* obj, double k)
 {
-  double arBeforeScale = obj->getArea();
+  double arBeforeScale = obj->getArea() * k * k;
   BOOST_CHECK_NO_THROW(obj->scale(k));
-  BOOST_CHECK_CLOSE_FRACTION(obj->getArea(), arBeforeScale*k*k, 0,00001);
+  BOOST_CHECK_CLOSE(obj->getArea(), arBeforeScale, 0,0001);
   k = -k;
   BOOST_CHECK_THROW(obj->scale(k), std::invalid_argument);
 }

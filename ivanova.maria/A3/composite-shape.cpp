@@ -110,7 +110,7 @@ std::string ivanova::CompositeShape::getName() const
 
 void ivanova::CompositeShape::scale(double k)
 {
-  assert(size_ > 0 && k > 0);
+  assert(k > 0);
   ivanova::point_t totalPos = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++)
   {

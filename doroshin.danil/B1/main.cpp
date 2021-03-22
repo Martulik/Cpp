@@ -1,40 +1,10 @@
 #include <iostream>
 #include <iomanip>
-#include <fstream>
-#include <limits>
-#include <memory>
 #include <random>
 #include "task1.hpp"
+#include "task2.hpp"
 
 namespace dan = doroshin;
-
-std::streamsize fileLength(std::ifstream& file)
-{
-  std::streampos save_pos = file.tellg();
-  file.seekg(0, std::ios_base::beg);
-  file.ignore(std::numeric_limits<std::streamsize>::max());
-  std::streamsize length = file.gcount();
-  file.clear();
-  file.seekg(save_pos);
-  return length;
-}
-
-// Task 2
-void readFile(std::string filename)
-{
-  std::ifstream in(filename);
-  if(!in.is_open()) {
-    std::cerr << "Could not open file\n";
-    return;
-  }
-  size_t len = fileLength(in);
-  std::unique_ptr< char[] > c_buf = std::make_unique< char[] >(len);
-  in.read(c_buf.get(), len);
-  std::vector< char > v_buf(c_buf.get(), c_buf.get() + len);
-  for(char c: v_buf) {
-    std::cout << c;
-  }
-}
 
 // Task 3
 void filterInput()
@@ -136,9 +106,14 @@ int main(int argc, char* argv[])
       }
       std::string order = argv[2];
       if(order == "ascending") {
-        doSort< dan::VectorIndexStrat< int >, dan::Ordering::Way::Ascending >(values);
-        doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Ascending >(values);
+        dan::doSort< dan::VectorIndexStrat< int >, dan::Ordering::Way::Ascending >(values);
+        dan::doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Ascending >(values);
         // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Ascending >(l_values);
+      }
+      else if(order == "descending") {
+        dan::doSort< dan::VectorIndexStrat< int >, dan::Ordering::Way::Descending >(values);
+        dan::doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Descending >(values);
+        // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Descending >(l_values);
       }
     }
     break;
@@ -149,7 +124,7 @@ int main(int argc, char* argv[])
         return 0;
       }
       std::string filename = argv[2];
-      readFile(filename);
+      dan::readFile(filename);
     }
     break;
   case 3:

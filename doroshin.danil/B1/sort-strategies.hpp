@@ -78,6 +78,18 @@ namespace doroshin {
     }
   };
 
+  template< typename T >
+  struct ArrayPtrStrat
+  {
+    using container_t = T*;
+    using iterator_t = T*;
+
+    static inline T& get(container_t&, iterator_t it)
+    {
+      return *it;
+    }
+  };
+
   struct Ordering
   {
     enum class Way: char

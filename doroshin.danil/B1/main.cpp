@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <limits>
 #include <memory>
+#include <random>
 #include "insert-sort.hpp"
 #include "sort-strategies.hpp"
 
@@ -89,6 +91,36 @@ void filterInput()
   std::cout << '\n';
 }
 
+void fillRandom(double* array, size_t size)
+{
+  std::random_device rd;
+  std::default_random_engine gen(rd());
+  std::uniform_real_distribution< double > dist(-1.0, 1.0);
+
+  for(size_t i = 0; i < size; ++i) {
+    array[i] = dist(gen);
+  }
+}
+
+template< dan::Ordering::Way Order >
+void testRandom(const size_t size)
+{
+  std::unique_ptr< double[] > array = std::make_unique< double[] >(size);
+  double* raw_ptr = array.get();
+  fillRandom(raw_ptr, size);
+  std::cout << std::fixed << std::setprecision(5);
+  for(size_t i = 0; i < size; ++i) {
+    std::cout << array[i] << ' ';
+  }
+  std::cout << '\n';
+  dan::insert_sort< double, dan::ArrayPtrStrat< double >, dan::Ordering::ordering_op< Order > >
+      (raw_ptr, raw_ptr, raw_ptr + size);
+  for(size_t i = 0; i < size; ++i) {
+    std::cout << array[i] << ' ';
+  }
+  std::cout << '\n';
+}
+
 int main(int argc, char* argv[])
 {
   if(argc < 2) {
@@ -135,6 +167,26 @@ int main(int argc, char* argv[])
     break;
   case 3:
     filterInput();
+    break;
+  case 4:
+    {
+      if(argc < 3) {
+        std::cerr << "Provide a sorting order";
+        return 0;
+      }
+      std::string order = argv[2];
+      if(argc < 4) {
+        std::cerr << "Provide an array length";
+        return 0;
+      }
+      size_t size = atoll(argv[3]);
+      if(order == "ascending") {
+        testRandom< dan::Ordering::Way::Ascending >(size);
+      }
+      else if (order == "descending") {
+        testRandom< dan::Ordering::Way::Descending >(size);
+      }
+    }
     break;
   default:
     std::cerr << "Unknown task\n";

@@ -29,6 +29,7 @@ namespace pochernin
     virtual void move(double dx, double dy) override;
     virtual void scale(double factor) override;
     void push_back(const std::shared_ptr< Shape > shape);
+    void pop_back();
     size_t size() const;
     size_t capacity() const;
 

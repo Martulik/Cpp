@@ -167,6 +167,17 @@ void pochernin::CompositeShape::push_back(const std::shared_ptr< Shape > shape)
   size_++;
 }
 
+void pochernin::CompositeShape::pop_back()
+{
+  if (size_ == 0)
+  {
+    throw std::logic_error("Pop back empty CompositeShape");
+  }
+
+  size_--;
+  data_[size_].reset();
+}
+
 size_t pochernin::CompositeShape::size() const
 {
   return size_;

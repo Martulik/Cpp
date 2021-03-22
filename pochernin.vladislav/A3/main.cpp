@@ -37,6 +37,8 @@ int main()
   compositeShape.move(startPos);
   assert(isPosEqual(compositeShape, startPos));
   print(compositeShape, std::cout);
+  compositeShape.pop_back();
+  print(compositeShape, std::cout);
 }
 
 void print(const pochernin::Shape& shape, std::ostream& out)

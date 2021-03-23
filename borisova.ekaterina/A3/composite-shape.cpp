@@ -2,13 +2,13 @@
 #include <stdexcept>
 
 borisova::CompositeShape::CompositeShape(std::shared_ptr< borisova::Shape > source[], const int size):
-  size_(size),
-  data_(std::make_unique< std::shared_ptr< Shape > [] >(size))
+  size_(size)
 {
   if (size <= 0)
   {
     throw (std::invalid_argument("Negative size of array"));
   }
+  data_ = std::make_unique< std::shared_ptr< Shape >[] >(size);
   for (int i = 0; i < size; i++)
   {
     data_[i] = source[i];

@@ -31,6 +31,10 @@ borisova::rectangle_t borisova::Rectangle::getFrameRect() const
 
 void borisova::Rectangle::scale(const double k)
 {
+  if (k <= 0)
+  {
+    throw (std::invalid_argument("Negative Coefficient for scale"));
+  }
   parameters_.width *= k;
   parameters_.height *= k;
 }

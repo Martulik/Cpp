@@ -34,6 +34,10 @@ borisova::rectangle_t borisova::Circle::getFrameRect() const
 
 void borisova::Circle::scale(double k)
 {
+  if (k <= 0)
+  {
+    throw (std::invalid_argument("Negative Coefficient for scale"));
+  }
   radius_ *= k;
 }
 

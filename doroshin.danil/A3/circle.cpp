@@ -17,7 +17,7 @@ dan::udouble_t dan::Circle::getArea() const
 
 dan::rectangle_t dan::Circle::getFrameRect() const
 {
-  return rectangle_t{ 2 * radius_, 2 * radius_, pos_ };
+  return rectangle_t{ udouble_t(2 * radius_), udouble_t(2 * radius_), pos_ };
 }
 
 void dan::Circle::move(point_t vec, bool absolute)
@@ -39,9 +39,4 @@ void dan::Circle::scale(udouble_t s)
 dan::Shape* dan::Circle::copy() const
 {
   return new Circle(*this);
-}
-
-const char* dan::IncorrectCircle::what() const noexcept
-{
-  return "Incorrect circle";
 }

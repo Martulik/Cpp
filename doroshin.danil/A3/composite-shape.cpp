@@ -29,8 +29,8 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
     max_y = std::max(max_y, frame.pos.y + frame.height / 2);
   }
 
-  double width = max_x - min_x;
-  double height = max_y - min_y;
+  udouble_t width = udouble_t(max_x - min_x);
+  udouble_t height = udouble_t(max_y - min_y);
   double pos_x = min_x + width / 2;
   double pos_y = min_y + height / 2;
   return {width, height, {pos_x, pos_y}};

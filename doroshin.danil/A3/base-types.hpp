@@ -1,6 +1,8 @@
 #ifndef BASE_TYPES_HPP
 #define BASE_TYPES_HPP
 
+#include "udouble.hpp"
+
 namespace doroshin
 {
   struct point_t
@@ -10,7 +12,7 @@ namespace doroshin
 
   struct rectangle_t
   {
-    double width, height;
+    udouble_t width, height;
     point_t pos;
   };
 }

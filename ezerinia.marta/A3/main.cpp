@@ -4,7 +4,7 @@
 #include "rectangle.hpp"
 #include "composite-shape.hpp"
 
-void printFrameRectOfShape(const std::shared_ptr<ezerinia::Shape> shape, std::ostream &out)
+void printFrameRectOfShape(const std::shared_ptr< ezerinia::Shape > shape, std::ostream &out)
 {
   out << "height = " << shape->getFrameRect().height << "  width = "
       << shape->getFrameRect().width;
@@ -12,7 +12,7 @@ void printFrameRectOfShape(const std::shared_ptr<ezerinia::Shape> shape, std::os
       << shape->getFrameRect().pos.y << "\n";
 }
 
-void testShapesInComposite(std::shared_ptr<ezerinia::Shape> compositeShape, std::ostream &out)
+void testShapesInComposite(std::shared_ptr< ezerinia::Shape > compositeShape, std::ostream &out)
 {
   out << "Area = " << compositeShape->getArea() << "\n";
 

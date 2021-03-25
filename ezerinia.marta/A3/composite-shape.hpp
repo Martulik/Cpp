@@ -18,11 +18,11 @@ namespace ezerinia {
     void pop_back();
     std::shared_ptr< Shape > at(std::size_t index) const;
     std::size_t size() const;
-    double getArea() const override;
-    rectangle_t getFrameRect() const override;
-    void move(const point_t &point) override;
-    void move(double dx, double dy) override;
-    void scale(double k) override;
+    virtual double getArea() const override;
+    virtual rectangle_t getFrameRect() const override;
+    virtual void move(const point_t &point) override;
+    virtual void move(double dx, double dy) override;
+    virtual void doScale(std::size_t k) override;
   private:
     std::size_t size_;
     std::unique_ptr< std::shared_ptr< Shape >[] > data_;

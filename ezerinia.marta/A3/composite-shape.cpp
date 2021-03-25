@@ -87,11 +87,8 @@ void ezerinia::CompositeShape::move(double dx, double dy)
   }
 }
 
-void ezerinia::CompositeShape::scale(double k)
+void ezerinia::CompositeShape::doScale(std::size_t k)
 {
-  if (k < 0.0) {
-    throw std::invalid_argument("The coefficient of scale must be non-negative");
-  }
   point_t posOfFrameRect = getFrameRect().pos;
   for (std::size_t i = 0; i < size_; i++) {
     double dx = data_[i]->getFrameRect().pos.x - posOfFrameRect.x;

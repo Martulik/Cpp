@@ -7,8 +7,7 @@ ezerinia::Circle::Circle(double radius, point_t center):
   center_(center),
   radius_(radius)
 {
-  if (radius_ < 0.0)
-  {
+  if (radius_ < 0.0) {
     throw std::invalid_argument("The radius must be non-negative");
   }
 }
@@ -34,11 +33,7 @@ void ezerinia::Circle::move(double dx, double dy)
   center_.y += dy;
 }
 
-void ezerinia::Circle::scale(double k)
+void ezerinia::Circle::doScale(std::size_t k)
 {
-  if (k < 0.0)
-  {
-    throw std::invalid_argument("The coefficient of scale must be non-negative");
-  }
   radius_ *= k;
 }

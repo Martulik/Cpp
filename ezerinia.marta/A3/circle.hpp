@@ -3,10 +3,8 @@
 
 #include "shape.hpp"
 
-namespace ezerinia
-{
-  class Circle: public Shape
-  {
+namespace ezerinia {
+  class Circle: public Shape {
   public:
     Circle(double radius, point_t center);
     virtual ~Circle() = default;
@@ -14,7 +12,7 @@ namespace ezerinia
     virtual rectangle_t getFrameRect() const override;
     virtual void move(const point_t &point) override;
     virtual void move(double dx, double dy) override;
-    virtual void scale(double k) override;
+    virtual void doScale(std::size_t k) override;
   private:
     point_t center_;
     double radius_;

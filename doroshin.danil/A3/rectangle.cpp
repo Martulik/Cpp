@@ -26,20 +26,17 @@ dan::Rectangle::Rectangle(rectangle_t rect):
     throw IncorrectRectangle();
 }
 
-dan::Rectangle::Rectangle(double w, double h, point_t pos):
+dan::Rectangle::Rectangle(udouble_t w, udouble_t h, point_t pos):
   rect_{w, h, pos}
-{
-  if(rect_.width < 0 || rect_.height < 0)
-    throw IncorrectRectangle();
-}
+{}
 
 dan::Rectangle::Rectangle(point_t a, point_t b):
   rect_(from_two_points(a, b))
 {}
 
-double dan::Rectangle::getArea() const
+dan::udouble_t dan::Rectangle::getArea() const
 {
-  return rect_.width * rect_.height;
+  return udouble_t(rect_.width * rect_.height);
 }
 
 dan::rectangle_t dan::Rectangle::getFrameRect() const
@@ -58,10 +55,10 @@ void dan::Rectangle::move(point_t vec, bool absolute)
   }
 }
 
-void dan::Rectangle::scale(double s)
+void dan::Rectangle::scale(udouble_t s)
 {
-  rect_.width *= fabs(s);
-  rect_.height *= fabs(s);
+  rect_.width *= s;
+  rect_.height *= s;
 }
 
 dan::Shape* dan::Rectangle::copy() const

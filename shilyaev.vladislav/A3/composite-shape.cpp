@@ -78,11 +78,8 @@ void shilyaev::CompositeShape::move(double dx, double dy)
   }
 }
 
-void shilyaev::CompositeShape::scale(double factor)
+void shilyaev::CompositeShape::scaleInternal(double factor)
 {
-  if (factor < 0.0) {
-    throw std::invalid_argument("Scale factor can't be negative");
-  }
   point_t center = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++) {
     shapes_[i]->scale(factor);

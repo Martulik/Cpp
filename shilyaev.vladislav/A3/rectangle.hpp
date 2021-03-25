@@ -12,11 +12,11 @@ namespace shilyaev {
     Rectangle* clone() const override;
     void move(const point_t &pos) override;
     void move(double dx, double dy) override;
-    void scale(double factor) override;
   private:
     double width_;
     double height_;
     point_t pos_;
+    void scaleInternal(double factor) override;
   };
 }
 

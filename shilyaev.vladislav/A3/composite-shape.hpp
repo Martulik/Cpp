@@ -20,7 +20,6 @@ namespace shilyaev {
     CompositeShape *clone() const override;
     void move(const point_t &pos) override;
     void move(double dx, double dy) override;
-    void scale(double factor) override;
     size_t size() const;
     const Shape &at(size_t index) const;
     Shape &at(size_t index);
@@ -31,6 +30,7 @@ namespace shilyaev {
     size_t capacity_;
     size_t size_;
     ShapeArray shapes_;
+    void scaleInternal(double factor) override;
     void increaseCapacity();
   };
 }

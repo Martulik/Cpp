@@ -12,7 +12,9 @@ namespace shilyaev {
     virtual Shape* clone() const = 0;
     virtual void move(const point_t &pos) = 0;
     virtual void move(double dx, double dy) = 0;
-    virtual void scale(double factor) = 0;
+    void scale(double factor);
+  private:
+    virtual void scaleInternal(double factor) = 0;
   };
 }
 

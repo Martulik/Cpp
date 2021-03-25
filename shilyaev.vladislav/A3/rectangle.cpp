@@ -37,11 +37,8 @@ void shilyaev::Rectangle::move(double dx, double dy)
   pos_.y += dy;
 }
 
-void shilyaev::Rectangle::scale(double factor)
+void shilyaev::Rectangle::scaleInternal(double factor)
 {
-  if (factor < 0.0) {
-    throw std::invalid_argument("Scale factor can't be negative");
-  }
   width_ *= factor;
   height_ *= factor;
 }

@@ -80,26 +80,28 @@ void murzakanov::CompositeShape::addShape(const std::shared_ptr< Shape >& shp)
     throw std::invalid_argument("Pointer to shape cannot be nullptr");
   }
   if (capacity_ == size_)
+  {
+    std::unique_ptr< std::shared_ptr< Shape >[] >
+      tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_ * 2));
+    for (int i = 0; i < size_; i++)
     {
-      std::unique_ptr< std::shared_ptr< Shape >[] > tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_ * 2));
-      for (int i = 0; i < size_; i++)
-      {
-        tempArray[i] = std::move(array_[i]);
-      }
-      capacity_ = capacity_ * 2;
-      tempArray[size_].reset(shp->clone());
-      array_ = std::move(tempArray);
+      tempArray[i] = std::move(array_[i]);
     }
+    capacity_ = capacity_ * 2;
+    tempArray[size_].reset(shp->clone());
+    array_ = std::move(tempArray);
+  }
   else
-    {
-      array_[size_].reset(shp->clone());
-    }
+  {
+    array_[size_].reset(shp->clone());
+  }
   size_++;
 }
 
 void murzakanov::CompositeShape::popShape()
 {
-  std::unique_ptr< std::shared_ptr< Shape >[] > tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+  std::unique_ptr< std::shared_ptr< Shape >[] >
+    tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
   for (int i = 0; i < size_ - 1; i++)
   {
     tempArray[i] = std::move(array_[i]);

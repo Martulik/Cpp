@@ -11,7 +11,7 @@ double width = 2.0,
        height = 3.0,
        radius = 1.766;
 murzakanov::point_t pos{1, 2};
-double tolerance = 0.0001;
+double tolerance = std::numeric_limits< double >::epsilon();
 
 BOOST_AUTO_TEST_SUITE(CompositeShape)
 BOOST_AUTO_TEST_CASE(move_is_correct)

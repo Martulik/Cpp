@@ -10,9 +10,9 @@ dan::Circle::Circle(point_t pos, udouble_t r):
   radius_(r)
 {}
 
-dan::udouble_t dan::Circle::getArea() const
+double dan::Circle::getArea() const
 {
-  return udouble_t(PI * radius_ * radius_);
+  return PI * radius_ * radius_;
 }
 
 dan::rectangle_t dan::Circle::getFrameRect() const
@@ -31,9 +31,9 @@ void dan::Circle::move(point_t vec, bool absolute)
   }
 }
 
-void dan::Circle::scale(udouble_t s)
+void dan::Circle::scale(double s)
 {
-  radius_ *= s;
+  radius_ *= dan::make_abs(s);
 }
 
 dan::Shape* dan::Circle::copy() const

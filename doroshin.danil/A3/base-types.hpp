@@ -12,7 +12,7 @@ namespace doroshin
 
   struct rectangle_t
   {
-    udouble_t width, height;
+    double width, height;
     point_t pos;
   };
 }

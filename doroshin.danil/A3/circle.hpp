@@ -13,11 +13,11 @@ namespace doroshin
     ~Circle() override = default;
     Shape* copy() const override;
 
-    udouble_t getArea() const override;
+    double getArea() const override;
     rectangle_t getFrameRect() const override;
 
     void move(point_t vec, bool absolute = false) override;
-    void scale(udouble_t s) override;
+    void scale(double s) override;
 
   private:
     point_t pos_;

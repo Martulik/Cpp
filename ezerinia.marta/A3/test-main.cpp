@@ -129,7 +129,7 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
 
   BOOST_AUTO_TEST_CASE(deleteLastShapeInCompositeShape)
   {
-    ezerinia::CompositeShape composite(std::make_shared< ezerinia::Circle >
+    ezerinia::CompositeShape composite(std::make_shared<ezerinia::Circle>
                                                (5.0, ezerinia::point_t{1.0, 0.0}));
     BOOST_CHECK_THROW(composite.pop_back(), std::invalid_argument);
   }

@@ -19,6 +19,11 @@ std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::at(std::size_t inde
   return data_[index];
 }
 
+std::size_t ezerinia::CompositeShape::size() const
+{
+  return size_;
+}
+
 void ezerinia::CompositeShape::push_back(std::shared_ptr< Shape > src)
 {
   if (src == nullptr) {

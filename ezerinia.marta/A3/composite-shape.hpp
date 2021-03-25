@@ -17,6 +17,7 @@ namespace ezerinia {
     void push_back(std::shared_ptr< Shape > src);
     void pop_back();
     std::shared_ptr< Shape > at(std::size_t index) const;
+    std::size_t size() const;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t &point) override;

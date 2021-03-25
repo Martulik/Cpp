@@ -4,7 +4,7 @@
 #include "rectangle.hpp"
 #include "composite-shape.hpp"
 
-void printFrameRectOfShape(const std::shared_ptr< ezerinia::Shape > shape, std::ostream &out)
+void printFrameRectOfShape(const std::shared_ptr<ezerinia::Shape> shape, std::ostream &out)
 {
   out << "height = " << shape->getFrameRect().height << "  width = "
       << shape->getFrameRect().width;
@@ -12,7 +12,7 @@ void printFrameRectOfShape(const std::shared_ptr< ezerinia::Shape > shape, std::
       << shape->getFrameRect().pos.y << "\n";
 }
 
-void testShape(std::shared_ptr< ezerinia::Shape > compositeShape, std::ostream &out)
+void testShapesInComposite(std::shared_ptr<ezerinia::Shape> compositeShape, std::ostream &out)
 {
   out << "Area = " << compositeShape->getArea() << "\n";
 
@@ -42,9 +42,14 @@ int main()
           = std::make_shared< ezerinia::Circle >(5.7, ezerinia::point_t{3.0, -6.0});
   composite.push_back(circle);
 
+  std::cout << "Area of composite shape = " << composite.getArea() << "\n";
+  composite.move({1.1, 2.2});
+  composite.move(-1.1, 1.0);
+  composite.scale(3);
+  std::cout << "Area of composite shape after move and scale = " << composite.getArea() << "\n";
+
   for (std::size_t i = 0; i < composite.size(); i++) {
-    composite.at(i)->getArea();
-    testShape(composite.at(i), std::cout);
+    testShapesInComposite(composite.at(i), std::cout);
   }
 
   return 0;

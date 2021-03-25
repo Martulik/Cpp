@@ -1,8 +1,6 @@
 #ifndef BASE_TYPES_HPP
 #define BASE_TYPES_HPP
 
-#include "udouble.hpp"
-
 namespace doroshin
 {
   struct point_t

@@ -5,23 +5,17 @@
 
 namespace dan = doroshin;
 
-double dan::CompositeShape::getArea() const
+dan::udouble_t dan::CompositeShape::getArea() const
 {
-  if(size_ <= 0)
-    throw std::out_of_range("CompositeShape is empty");
-
   double sum = 0.0;
   for(size_t i = 0; i < size_; ++i) {
     sum += shapes_[i]->getArea();
   }
-  return sum;
+  return udouble_t(sum);
 }
 
 dan::rectangle_t dan::CompositeShape::getFrameRect() const
 {
-  if(size_ <= 0)
-    throw std::out_of_range("CompositeShape is empty");
-
   double min_x = std::numeric_limits< double >::max();
   double max_x = std::numeric_limits< double >::lowest();
   double min_y = std::numeric_limits< double >::max();
@@ -62,7 +56,7 @@ void dan::CompositeShape::move(point_t vec, bool absolute)
   }
 }
 
-void dan::CompositeShape::scale(double s)
+void dan::CompositeShape::scale(udouble_t s)
 {
   point_t center = getFrameRect().pos;
   for(size_t i = 0; i < size_; ++i) {

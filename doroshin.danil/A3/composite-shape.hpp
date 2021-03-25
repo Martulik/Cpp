@@ -24,11 +24,11 @@ namespace doroshin
     template< typename... Shapes >
     CompositeShape(Shapes...);
 
-    double getArea() const override;
+    udouble_t getArea() const override;
     rectangle_t getFrameRect() const override;
 
     void move(point_t vec, bool absolute = false) override;
-    void scale(double s) override;
+    void scale(udouble_t s) override;
 
     friend void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
 

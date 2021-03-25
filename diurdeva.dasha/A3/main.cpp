@@ -25,7 +25,6 @@ void printInfoFrameRect(const char *nameShape, const diurdeva::Shape *figura)
 void testShape(diurdeva::Shape *figura, const char *nameShape, const diurdeva::point_t newCenter, const int index)
 {
   printInfoFrameRect(nameShape, figura);
-  testScale(figura, index);
   figura->move(newCenter);
   bool check = ((figura->getFrameRect().pos.x == newCenter.x) && (figura->getFrameRect().pos.y == newCenter.y));
   std::cout << "\nThe move has passed: " << (check ? "right" : "wrong");

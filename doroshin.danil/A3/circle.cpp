@@ -5,17 +5,14 @@ namespace dan = doroshin;
 
 const double PI = 3.14159265358979323846;
 
-dan::Circle::Circle(point_t pos, double r):
+dan::Circle::Circle(point_t pos, udouble_t r):
   pos_(pos),
   radius_(r)
-{
-  if(radius_ < 0)
-    throw IncorrectCircle();
-}
+{}
 
-double dan::Circle::getArea() const
+dan::udouble_t dan::Circle::getArea() const
 {
-  return PI * radius_ * radius_;
+  return udouble_t(PI * radius_ * radius_);
 }
 
 dan::rectangle_t dan::Circle::getFrameRect() const
@@ -34,9 +31,9 @@ void dan::Circle::move(point_t vec, bool absolute)
   }
 }
 
-void dan::Circle::scale(double s)
+void dan::Circle::scale(udouble_t s)
 {
-  radius_ *= fabs(s);
+  radius_ *= s;
 }
 
 dan::Shape* dan::Circle::copy() const

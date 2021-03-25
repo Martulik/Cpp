@@ -8,7 +8,7 @@ diurdeva::Circle::Circle(const double rad, const point_t &pos):
   pos_(pos)
 {
   if (rad < 0.0) {
-    throw (std::invalid_argument("Negative parametrs"));
+    throw (std::invalid_argument("Negative parametrs. The shape could not be created"));
   }
 }
 

@@ -1,9 +1,9 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-diurdeva::CompositeShape::CompositeShape(std::shared_ptr<Shape> shape):
+diurdeva::CompositeShape::CompositeShape(std::shared_ptr< Shape > shape):
   size_(1),
-  shapeArr_(std::make_unique<std::shared_ptr<Shape>[]>(1))
+  shapeArr_(std::make_unique< std::shared_ptr< Shape >[] >(1))
 {
   if (shape == nullptr) {
     throw std::invalid_argument("Pointer must be not null");
@@ -13,9 +13,9 @@ diurdeva::CompositeShape::CompositeShape(std::shared_ptr<Shape> shape):
 
 diurdeva::CompositeShape::CompositeShape(const CompositeShape &other):
   size_(other.size_),
-  shapeArr_(std::make_unique<std::shared_ptr<Shape>[]>(other.size_))
+  shapeArr_(std::make_unique< std::shared_ptr< Shape >[] >(other.size_))
 {
-  for (size_t i = 0; i < size_; i++) {
+  for (std::size_t i = 0; i < size_; i++) {
     shapeArr_[i] = other.shapeArr_[i];
   }
 }
@@ -31,8 +31,8 @@ diurdeva::CompositeShape &diurdeva::CompositeShape::operator=(const CompositeSha
 {
   if (this != std::addressof(other)) {
     size_ = other.size_;
-    std::unique_ptr<std::shared_ptr<Shape>[]> newArray(new std::shared_ptr<Shape>[other.size_]);
-    for (size_t i = 0; i < size_; i++) {
+    std::unique_ptr< std::shared_ptr< Shape >[] > newArray(new std::shared_ptr< Shape >[other.size_]);
+    for (std::size_t i = 0; i < size_; i++) {
       newArray[i] = other.shapeArr_[i];
     }
     shapeArr_.swap(newArray);
@@ -50,10 +50,11 @@ diurdeva::CompositeShape &diurdeva::CompositeShape::operator=(CompositeShape &&o
   return *this;
 }
 
-std::shared_ptr<diurdeva::Shape> diurdeva::CompositeShape::operator[](const unsigned int index) const
+std::shared_ptr< diurdeva::Shape > diurdeva::CompositeShape::at(const std::size_t index) const
 {
-  if ((index < 0.0) || (index > size_)) {
-    throw std::out_of_range("Composite-shape::operator[]");
+  if (index >= size_)
+  {
+    throw std::out_of_range("Index goes out of bounds");
   }
   return shapeArr_[index];
 }
@@ -63,7 +64,7 @@ bool diurdeva::CompositeShape::operator==(const CompositeShape &other)
   if (size_ != other.size_) {
     return false;
   }
-  for (size_t i = 1; i < size_; i++) {
+  for (std::size_t i = 1; i < size_; i++) {
     if (shapeArr_[i] != other.shapeArr_[i]) {
       return false;
     }
@@ -74,7 +75,7 @@ bool diurdeva::CompositeShape::operator==(const CompositeShape &other)
 double diurdeva::CompositeShape::getArea() const
 {
   double area = shapeArr_[0]->getArea();
-  for (size_t i = 1; i < size_; i++) {
+  for (std::size_t i = 1; i < size_; i++) {
     area += shapeArr_[i]->getArea();
   }
   return area;
@@ -82,7 +83,7 @@ double diurdeva::CompositeShape::getArea() const
 
 void diurdeva::CompositeShape::move(double dX, double dY)
 {
-  for (size_t i = 0; i < size_; i++) {
+  for (std::size_t i = 0; i < size_; i++) {
     shapeArr_[i]->move(dX, dY);
   }
 }
@@ -95,16 +96,13 @@ void diurdeva::CompositeShape::move(const point_t &newCenter)
 
 diurdeva::rectangle_t diurdeva::CompositeShape::getFrameRect() const
 {
-  if (size_ == 0) {
-    return {0.0, 0.0, {0.0, 0.0}};
-  }
   rectangle_t frameRect = shapeArr_[0]->getFrameRect();
 
   double minX = frameRect.pos.x - (frameRect.width / 2);
   double maxX = frameRect.pos.x + (frameRect.width / 2);
   double minY = frameRect.pos.y - (frameRect.height / 2);
   double maxY = frameRect.pos.y + (frameRect.height / 2);
-  for (size_t i = 1; i < size_; i++) {
+  for (std::size_t i = 1; i < size_; i++) {
     frameRect = shapeArr_[i]->getFrameRect();
     minX = std::min((frameRect.pos.x - frameRect.width / 2), minX);
     maxX = std::max((frameRect.pos.x + frameRect.width / 2), maxX);
@@ -123,7 +121,7 @@ void diurdeva::CompositeShape::scale(const double factor)
   if (factor < 0.0) {
     throw (std::invalid_argument("Factor < 0"));
   }
-  for (size_t i = 0; i < size_; i++) {
+  for (std::size_t i = 0; i < size_; i++) {
     double dX = (shapeArr_[i]->getFrameRect().pos.x - getFrameRect().pos.x) * factor + getFrameRect().pos.x;
     double dY = (shapeArr_[i]->getFrameRect().pos.y - getFrameRect().pos.y) * factor + getFrameRect().pos.y;
     shapeArr_[i]->move({dX, dY});
@@ -131,13 +129,13 @@ void diurdeva::CompositeShape::scale(const double factor)
   }
 }
 
-void diurdeva::CompositeShape::push_back(std::shared_ptr<Shape> newShape)
+void diurdeva::CompositeShape::push_back(std::shared_ptr< Shape > newShape)
 {
   if (newShape == nullptr) {
     throw std::invalid_argument("Pointer must be not null");
   }
-  std::unique_ptr<std::shared_ptr<Shape>[]> newArray(std::make_unique<std::shared_ptr<Shape>[]>(size_ + 1));
-  for (size_t i = 0; i < size_; i++) {
+  std::unique_ptr< std::shared_ptr< Shape >[] > newArray(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
+  for (std::size_t i = 0; i < size_; i++) {
     newArray[i] = std::move(shapeArr_[i]);
   }
   newArray[size_] = std::move(newShape);

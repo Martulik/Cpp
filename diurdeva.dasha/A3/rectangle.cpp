@@ -7,7 +7,7 @@ diurdeva::Rectangle::Rectangle(const double width, const double height, const po
   pos_(pos)
 {
   if ((width < 0.0) || (height < 0.0)) {
-    throw (std::invalid_argument("Negative parametrs"));
+    throw (std::invalid_argument("Negative parametrs. The shape could not be created"));
   }
 }
 

@@ -143,6 +143,19 @@ void diurdeva::CompositeShape::push_back(std::shared_ptr< Shape > newShape)
   ++size_;
 }
 
+void diurdeva::CompositeShape::pop_back()
+{
+  if (size_ == 1) {
+    throw std::out_of_range("Unable to reach the figure");
+  }
+  std::unique_ptr< std::shared_ptr< Shape >[] > newArray(std::make_unique< std::shared_ptr< Shape >[] >(size_ - 1));
+  for (std::size_t i = 0; i < size_ - 1; i++) {
+    newArray[i] = std::move(shapeArr_[i]);
+  }
+  shapeArr_ = std::move(newArray);
+  --size_;
+}
+
 size_t diurdeva::CompositeShape::size() const
 {
   return size_;

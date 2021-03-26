@@ -18,11 +18,13 @@ const double negativeHeight = -5.0;
 const double negativeRadius = -3.0;
 const double negativeFactor = -2.0;
 
+double accuracy = std::numeric_limits< double >::epsilon();
+
 void checkAreaBeforeScale(diurdeva::Shape *shape)
 {
   double area = shape->getArea();
   shape->scale(factor);
-  BOOST_CHECK_EQUAL(area * factor * factor, shape->getArea());
+  BOOST_CHECK_CLOSE(area * factor * factor, shape->getArea(),accuracy);
 }
 
 void ConstOptionsWhenMoving(diurdeva::Shape *shape)
@@ -111,7 +113,7 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
     BOOST_CHECK_THROW(compositeShape.scale(-2.0), std::invalid_argument);
   }
 
-  BOOST_AUTO_TEST_CASE(cheakOptionsWhenMoving)
+  BOOST_AUTO_TEST_CASE(checkOptionsWhenMoving)
   {
     diurdeva::CompositeShape compositeShape(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
     BOOST_CHECK_NO_THROW(compositeShape.push_back(std::make_shared< diurdeva::Circle >(radius, pointCenter)));
@@ -123,6 +125,12 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
     diurdeva::CompositeShape compositeShape(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
     BOOST_CHECK_NO_THROW(compositeShape.push_back(std::make_shared< diurdeva::Circle >(radius, pointCenter)));
     checkAreaBeforeScale(&compositeShape);
+  }
+
+  BOOST_AUTO_TEST_CASE(testPopBack)
+  {
+    diurdeva::CompositeShape compositeShape(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
+    BOOST_CHECK_THROW(compositeShape.pop_back(), std::out_of_range);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

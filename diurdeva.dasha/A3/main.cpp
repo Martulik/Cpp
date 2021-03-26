@@ -47,7 +47,7 @@ int main()
   delete rectangle;
   delete circle;
 
-  diurdeva::CompositeShape compositeShape(std::make_shared<diurdeva::Rectangle>(w, h, pointCenter));
-  compositeShape.push_back(std::make_shared<diurdeva::Circle>(radius, pointCenter));
+  diurdeva::CompositeShape compositeShape(std::make_shared< diurdeva::Rectangle >(w, h, pointCenter));
+  compositeShape.push_back(std::make_shared< diurdeva::Circle >(radius, pointCenter));
   testShape(&compositeShape, "CompositeShape", newCenter, scale);
 }

@@ -21,6 +21,7 @@ namespace diurdeva {
     void move(double dX, double dY) override;
     void scale(double factor) override;
     void push_back(std::shared_ptr< Shape > newShape);
+    void pop_back();
     size_t size() const;
   private:
     std::size_t size_;

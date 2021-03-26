@@ -3,7 +3,8 @@
 
 ezerinia::CompositeShape::CompositeShape(std::shared_ptr< Shape > src):
   size_(1),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(1))
+  capacity_(2),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity_))
 {
   if (src == nullptr) {
     throw std::invalid_argument("The shape must not be nullptr");
@@ -29,11 +30,16 @@ void ezerinia::CompositeShape::push_back(std::shared_ptr< Shape > src)
   if (src == nullptr) {
     throw std::invalid_argument("The shape must not be nullptr");
   }
-  std::unique_ptr< std::shared_ptr< Shape >[] >
-          temp(std::make_unique< std::shared_ptr< Shape >[] >(size_ + 1));
-  std::swap_ranges(data_.get(), data_.get() + size_, temp.get());
-  temp[size_++] = src;
-  data_ = std::move(temp);
+  if (capacity_ == size_) {
+    capacity_ *= 2;
+    std::unique_ptr<std::shared_ptr<Shape>[]>
+            temp(std::make_unique<std::shared_ptr<Shape>[]>(capacity_));
+    std::swap_ranges(data_.get(), data_.get() + size_, temp.get());
+    temp[size_++] = src;
+    data_ = std::move(temp);
+  } else {
+    data_[size_++] = std::move(src);
+  }
 }
 
 void ezerinia::CompositeShape::pop_back()
@@ -42,9 +48,10 @@ void ezerinia::CompositeShape::pop_back()
     throw std::invalid_argument("The composite shape must contain at least one shape");
   }
   std::unique_ptr< std::shared_ptr< Shape >[] >
-          temp(std::make_unique< std::shared_ptr< Shape >[] >(--size_));
-  std::swap_ranges(data_.get(), data_.get() + size_, temp.get());
+          temp(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+  std::swap_ranges(data_.get(), data_.get() + size_ - 1, temp.get());
   data_ = std::move(temp);
+  size_--;
 }
 
 double ezerinia::CompositeShape::getArea() const

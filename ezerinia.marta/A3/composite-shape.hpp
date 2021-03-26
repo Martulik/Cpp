@@ -25,6 +25,7 @@ namespace ezerinia {
     virtual void doScale(double k) override;
   private:
     std::size_t size_;
+    std::size_t capacity_;
     std::unique_ptr< std::shared_ptr< Shape >[] > data_;
   };
 }

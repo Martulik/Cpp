@@ -35,23 +35,17 @@ void ezerinia::CompositeShape::push_back(std::shared_ptr< Shape > src)
     std::unique_ptr<std::shared_ptr<Shape>[]>
             temp(std::make_unique<std::shared_ptr<Shape>[]>(capacity_));
     std::swap_ranges(data_.get(), data_.get() + size_, temp.get());
-    temp[size_++] = src;
     data_ = std::move(temp);
-  } else {
-    data_[size_++] = std::move(src);
   }
+  data_[size_++] = std::move(src);
 }
 
 void ezerinia::CompositeShape::pop_back()
 {
   if (size_ == 1) {
-    throw std::invalid_argument("The composite shape must contain at least one shape");
+    throw std::logic_error("The composite shape must contain at least one shape");
   }
-  std::unique_ptr< std::shared_ptr< Shape >[] >
-          temp(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
-  std::swap_ranges(data_.get(), data_.get() + size_ - 1, temp.get());
-  data_ = std::move(temp);
-  size_--;
+  data_[--size_].reset();
 }
 
 double ezerinia::CompositeShape::getArea() const

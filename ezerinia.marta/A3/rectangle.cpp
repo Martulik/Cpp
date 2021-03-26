@@ -32,7 +32,7 @@ void ezerinia::Rectangle::move(double dx, double dy)
   center_.y += dy;
 }
 
-void ezerinia::Rectangle::doScale(std::size_t k)
+void ezerinia::Rectangle::doScale(double k)
 {
   width_ *= k;
   height_ *= k;

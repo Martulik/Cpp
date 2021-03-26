@@ -1,4 +1,5 @@
 #include "shape.hpp"
+#include <stdexcept>
 
 void ezerinia::Shape::scale(double k)
 {

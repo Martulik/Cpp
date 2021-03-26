@@ -87,7 +87,7 @@ void ezerinia::CompositeShape::move(double dx, double dy)
   }
 }
 
-void ezerinia::CompositeShape::doScale(std::size_t k)
+void ezerinia::CompositeShape::doScale(double k)
 {
   point_t posOfFrameRect = getFrameRect().pos;
   for (std::size_t i = 0; i < size_; i++) {

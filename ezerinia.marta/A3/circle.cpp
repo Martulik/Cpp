@@ -33,7 +33,7 @@ void ezerinia::Circle::move(double dx, double dy)
   center_.y += dy;
 }
 
-void ezerinia::Circle::doScale(std::size_t k)
+void ezerinia::Circle::doScale(double k)
 {
   radius_ *= k;
 }

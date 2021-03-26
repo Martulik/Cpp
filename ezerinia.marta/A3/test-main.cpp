@@ -11,6 +11,7 @@ double accuracy = std::numeric_limits< double >::epsilon();
 double width = 9.1;
 double height = 74.9;
 double radius = 87.7;
+double negativeValue = -11.3;
 ezerinia::point_t point{46.7, -6.2};
 
 void checkWidthHeightArea(ezerinia::Shape *shape, ezerinia::rectangle_t frameRect, double areaBeforeMove)
@@ -75,8 +76,8 @@ BOOST_AUTO_TEST_SUITE(testCircle)
 
   BOOST_AUTO_TEST_CASE(invalidArgumentCircle)
   {
-    BOOST_CHECK_THROW(ezerinia::Circle(-0.9, point), std::invalid_argument);
-    BOOST_CHECK_THROW(ezerinia::Circle(radius, point).scale(-0.9), std::invalid_argument);
+    BOOST_CHECK_THROW(ezerinia::Circle(negativeValue, point), std::invalid_argument);
+    BOOST_CHECK_THROW(ezerinia::Circle(radius, point).scale(negativeValue), std::invalid_argument);
   }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -98,9 +99,9 @@ BOOST_AUTO_TEST_SUITE(testRectangle)
 
   BOOST_AUTO_TEST_CASE(invalidArgumentRectangle)
   {
-    BOOST_CHECK_THROW(ezerinia::Rectangle(14.3, -90.11, {-91.0, 1.0}), std::invalid_argument);
-    BOOST_CHECK_THROW(ezerinia::Rectangle(-45.3, 7.01, {-6.0, 2.0}), std::invalid_argument);
-    BOOST_CHECK_THROW(ezerinia::Rectangle(64.3, 0.11, {-23.0, 564.0}).scale(-4.4), std::invalid_argument);
+    BOOST_CHECK_THROW(ezerinia::Rectangle(width, negativeValue, point), std::invalid_argument);
+    BOOST_CHECK_THROW(ezerinia::Rectangle(negativeValue, height, point), std::invalid_argument);
+    BOOST_CHECK_THROW(ezerinia::Rectangle(width, height, point).scale(negativeValue), std::invalid_argument);
   }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -125,7 +126,7 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
   BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape)
   {
     ezerinia::CompositeShape composite(std::make_shared< ezerinia::Rectangle >(width, height, point));
-    BOOST_CHECK_THROW(composite.scale(-100.1), std::invalid_argument);
+    BOOST_CHECK_THROW(composite.scale(negativeValue), std::invalid_argument);
   }
 
   BOOST_AUTO_TEST_CASE(outOfRangeCompositeShape)

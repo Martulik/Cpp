@@ -3,6 +3,7 @@
 #include "shape.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
+#include "composite-shape.hpp"
 
 namespace dan = doroshin;
 using namespace dan::literals;
@@ -36,6 +37,11 @@ int main()
   r.move(delta);
   assert(check_position(r, finish));
   assert(r.getArea() == w * h);
+
+  dan::CompositeShape comp(c, r);
+  print_shape("Composite", comp);
+  assert(check_position(comp, finish));
+  r.move(delta);
 
   return 0;
 }

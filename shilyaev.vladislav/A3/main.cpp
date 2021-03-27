@@ -5,10 +5,9 @@
 
 void printShapeDescription(const shilyaev::Shape &shape)
 {
-  const shilyaev::rectangle_t frameRect = shape.getFrameRect();
   std::cout << "Area: " << shape.getArea()
-            << ", Width × Height: " << frameRect.width << " × " << frameRect.height
-            << ", Center: " << frameRect.pos.x << ' ' << frameRect.pos.y << '\n';
+            << ", Width × Height: " << getWidth(shape) << " × " << getHeight(shape)
+            << ", Center: " << getX(shape) << ' ' << getY(shape) << '\n';
 }
 
 int main()

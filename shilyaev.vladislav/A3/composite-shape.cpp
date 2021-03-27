@@ -50,11 +50,10 @@ shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
   double minX = std::numeric_limits< double >::max();
   double minY = std::numeric_limits< double >::max();
   for (size_t i = 0; i < size_; i++) {
-    rectangle_t localFrameRect = shapes_[i]->getFrameRect();
-    maxX = std::max(maxX, localFrameRect.pos.x + localFrameRect.width / 2);
-    maxY = std::max(maxY, localFrameRect.pos.y + localFrameRect.height / 2);
-    minX = std::min(minX, localFrameRect.pos.x - localFrameRect.width / 2);
-    minY = std::min(minY, localFrameRect.pos.y - localFrameRect.height / 2);
+    maxX = std::max(maxX, getX(*shapes_[i]) + getWidth(*shapes_[i]) / 2);
+    maxY = std::max(maxY, getY(*shapes_[i]) + getHeight(*shapes_[i]) / 2);
+    minX = std::min(minX, getX(*shapes_[i]) - getWidth(*shapes_[i]) / 2);
+    minY = std::min(minY, getY(*shapes_[i]) - getHeight(*shapes_[i]) / 2);
   }
   point_t center = point_t{(maxX + minX) / 2, (maxY + minY) / 2};
   return rectangle_t{maxX - minX, maxY - minY, center};
@@ -67,8 +66,7 @@ std::unique_ptr< shilyaev::Shape > shilyaev::CompositeShape::clone() const
 
 void shilyaev::CompositeShape::move(const point_t &pos)
 {
-  point_t center = getFrameRect().pos;
-  move(pos.x - center.x, pos.y - center.y);
+  move(pos.x - getX(*this), pos.y -getY(*this));
 }
 
 void shilyaev::CompositeShape::move(double dx, double dy)
@@ -83,9 +81,8 @@ void shilyaev::CompositeShape::scaleInternal(double factor)
   point_t center = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++) {
     shapes_[i]->scale(factor);
-    point_t localCenter = shapes_[i]->getFrameRect().pos;
-    point_t newLocalCenter{center.x + (localCenter.x - center.x) * factor,
-                           center.y + (localCenter.y - center.y) * factor};
+    point_t newLocalCenter{center.x + (getX(*shapes_[i]) - center.x) * factor,
+                           center.y + (getY(*shapes_[i]) - center.y) * factor};
     shapes_[i]->move(newLocalCenter);
   }
 }

@@ -77,7 +77,7 @@ dan::CompositeShape::CompositeShape(const CompositeShape& other):
   size_(other.size_)
 {
   for(size_t i = 0; i < size_; ++i) {
-    shapes_[i] = std::unique_ptr<Shape>(other.shapes_[i]->copy());
+    shapes_[i] = other.shapes_[i]->copy();
   }
 }
 

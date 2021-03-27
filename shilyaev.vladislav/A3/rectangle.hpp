@@ -9,7 +9,7 @@ namespace shilyaev {
     Rectangle(double width, double height, const point_t &pos);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    Rectangle* clone() const override;
+    std::unique_ptr< Shape > clone() const override;
     void move(const point_t &pos) override;
     void move(double dx, double dy) override;
   private:

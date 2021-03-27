@@ -21,9 +21,9 @@ shilyaev::rectangle_t shilyaev::Rectangle::getFrameRect() const
   return rectangle_t{width_, height_, pos_};
 }
 
-shilyaev::Rectangle *shilyaev::Rectangle::clone() const
+std::unique_ptr< shilyaev::Shape > shilyaev::Rectangle::clone() const
 {
-  return new Rectangle(*this);
+  return std::make_unique< shilyaev::Rectangle >(*this);
 }
 
 void shilyaev::Rectangle::move(const point_t &pos)

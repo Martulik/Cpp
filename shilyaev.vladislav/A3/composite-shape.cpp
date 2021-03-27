@@ -24,7 +24,7 @@ shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source)
   shapes_(std::make_unique< ShapePtr[] >(source.capacity_))
 {
   for (size_t i = 0; i < size_; i++) {
-    shapes_[i].reset(source.shapes_[i]->clone());
+    shapes_[i] = source.shapes_[i]->clone();
   }
 }
 
@@ -60,9 +60,9 @@ shilyaev::rectangle_t shilyaev::CompositeShape::getFrameRect() const
   return rectangle_t{maxX - minX, maxY - minY, center};
 }
 
-shilyaev::CompositeShape *shilyaev::CompositeShape::clone() const
+std::unique_ptr< shilyaev::Shape > shilyaev::CompositeShape::clone() const
 {
-  return new CompositeShape(*this);
+  return std::make_unique< shilyaev::CompositeShape >(*this);
 }
 
 void shilyaev::CompositeShape::move(const point_t &pos)

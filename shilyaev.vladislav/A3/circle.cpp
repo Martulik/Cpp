@@ -22,9 +22,9 @@ shilyaev::rectangle_t shilyaev::Circle::getFrameRect() const
   return rectangle_t{radius_ * 2, radius_ * 2, pos_};
 }
 
-shilyaev::Circle *shilyaev::Circle::clone() const
+std::unique_ptr< shilyaev::Shape > shilyaev::Circle::clone() const
 {
-  return new Circle(*this);
+  return std::make_unique< shilyaev::Circle >(*this);
 }
 
 void shilyaev::Circle::move(const point_t &pos)

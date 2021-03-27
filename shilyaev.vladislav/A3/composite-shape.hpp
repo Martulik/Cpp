@@ -25,13 +25,13 @@ namespace shilyaev {
     Shape &at(size_t index);
     void pushBack(ShapePtr shape);
     void popBack();
+    void reserve(size_t newCapacity);
     void swap(CompositeShape &other) noexcept;
   private:
     size_t capacity_;
     size_t size_;
     ShapeArray shapes_;
     void scaleInternal(double factor) override;
-    void increaseCapacity();
   };
 }
 

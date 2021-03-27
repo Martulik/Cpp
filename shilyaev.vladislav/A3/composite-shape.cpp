@@ -96,7 +96,7 @@ void shilyaev::CompositeShape::pushBack(std::unique_ptr< Shape > shape)
     throw std::invalid_argument("Shape can't be nullptr");
   }
   if (size_ >= capacity_) {
-    increaseCapacity();
+    reserve(capacity_ * CAPACITY_INCREASE_FACTOR);
   }
   shapes_[size_++] = std::move(shape);
 }
@@ -107,6 +107,18 @@ void shilyaev::CompositeShape::popBack()
     throw std::out_of_range("CompositeShape can't be empty");
   }
   shapes_[--size_].reset();
+}
+
+void shilyaev::CompositeShape::reserve(size_t newCapacity)
+{
+  if (newCapacity > capacity_) {
+    ShapeArray newShapes = std::make_unique< ShapePtr[] >(newCapacity);
+    for (size_t i = 0; i < size_; i++) {
+      newShapes[i] = std::move(shapes_[i]);
+    }
+    shapes_ = std::move(newShapes);
+    capacity_ = newCapacity;
+  }
 }
 
 size_t shilyaev::CompositeShape::size() const
@@ -135,15 +147,4 @@ void shilyaev::CompositeShape::swap(shilyaev::CompositeShape &other) noexcept
   std::swap(capacity_, other.capacity_);
   std::swap(size_, other.size_);
   std::swap(shapes_, other.shapes_);
-}
-
-void shilyaev::CompositeShape::increaseCapacity()
-{
-  size_t newCapacity = capacity_ * CAPACITY_INCREASE_FACTOR;
-  ShapeArray newShapes = std::make_unique< ShapePtr[] >(newCapacity);
-  for (size_t i = 0; i < size_; i++) {
-    newShapes[i] = std::move(shapes_[i]);
-  }
-  shapes_ = std::move(newShapes);
-  capacity_ = newCapacity;
 }

@@ -1,5 +1,4 @@
 #include "composite-shape.hpp"
-#include <stdexcept>
 #include <limits>
 #include <algorithm>
 

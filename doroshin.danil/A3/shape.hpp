@@ -1,7 +1,6 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include <exception>
 #include "base-types.hpp"
 #include "udouble.hpp"
 

@@ -30,7 +30,7 @@ namespace doroshin
 
     friend void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
 
-    Shape* copy() const override;
+    std::unique_ptr< Shape > copy() const override;
     CompositeShape(const CompositeShape&);
     CompositeShape(CompositeShape&&) noexcept = default;
     CompositeShape& operator=(const CompositeShape&);
@@ -51,8 +51,7 @@ namespace doroshin
 
   template< typename... Shapes >
   CompositeShape::CompositeShape(Shapes... shapes):
-    shapes_(details::make_unique_array< shape_ptr >(
-        std::unique_ptr< Shape >(shapes.copy())... )),
+    shapes_(details::make_unique_array< shape_ptr >( shapes.copy()... )),
     size_(sizeof...(Shapes))
   {
     static_assert(sizeof...(Shapes) > 0, "An empty CompositeShape is illegal");

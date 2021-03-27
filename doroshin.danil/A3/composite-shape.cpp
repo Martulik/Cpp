@@ -88,7 +88,7 @@ dan::CompositeShape& dan::CompositeShape::operator=(const CompositeShape& other)
   return *this;
 }
 
-dan::Shape* dan::CompositeShape::copy() const
+std::unique_ptr< dan::Shape > dan::CompositeShape::copy() const
 {
-  return new CompositeShape(*this);
+  return std::make_unique< CompositeShape >(*this);
 }

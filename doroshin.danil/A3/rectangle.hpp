@@ -11,7 +11,7 @@ namespace doroshin
     Rectangle(udouble_t w, udouble_t h, point_t pos);
     Rectangle(point_t, point_t);
     ~Rectangle() override = default;
-    Shape* copy() const override;
+    std::unique_ptr< Shape > copy() const override;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

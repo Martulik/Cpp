@@ -36,7 +36,7 @@ void dan::Circle::scale(double s)
   radius_ *= dan::make_abs(s);
 }
 
-dan::Shape* dan::Circle::copy() const
+std::unique_ptr< dan::Shape > dan::Circle::copy() const
 {
-  return new Circle(*this);
+  return std::make_unique< Circle >(*this);
 }

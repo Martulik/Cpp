@@ -1,6 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
+#include <memory>
 #include "base-types.hpp"
 #include "udouble.hpp"
 
@@ -9,7 +10,7 @@ namespace doroshin
   class Shape
   {
   public:
-    virtual Shape* copy() const = 0;
+    virtual std::unique_ptr< Shape > copy() const = 0;
     virtual ~Shape() = default;
 
     virtual double getArea() const = 0;

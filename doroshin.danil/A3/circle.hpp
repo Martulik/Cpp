@@ -11,7 +11,7 @@ namespace doroshin
   public:
     Circle(point_t pos, udouble_t r);
     ~Circle() override = default;
-    Shape* copy() const override;
+    std::unique_ptr< Shape > copy() const override;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

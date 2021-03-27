@@ -54,7 +54,7 @@ void dan::Rectangle::scale(double s)
   rect_.height *= s;
 }
 
-dan::Shape* dan::Rectangle::copy() const
+std::unique_ptr< dan::Shape > dan::Rectangle::copy() const
 {
-  return new Rectangle(*this);
+  return std::make_unique< Rectangle >(*this);
 }

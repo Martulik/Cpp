@@ -10,7 +10,7 @@ const size_t CAPACITY_INCREASE_FACTOR = 2;
 shilyaev::CompositeShape::CompositeShape(std::unique_ptr< shilyaev::Shape > initialShape):
   capacity_(INITIAL_CAPACITY),
   size_(1),
-  shapes_(std::make_unique< ShapePtr[] >(INITIAL_CAPACITY))
+  shapes_(std::make_unique< ValueType[] >(INITIAL_CAPACITY))
 {
   if (initialShape == nullptr) {
     throw std::invalid_argument("Shape can't be nullptr");
@@ -21,7 +21,7 @@ shilyaev::CompositeShape::CompositeShape(std::unique_ptr< shilyaev::Shape > init
 shilyaev::CompositeShape::CompositeShape(const shilyaev::CompositeShape &source):
   capacity_(source.capacity_),
   size_(source.size_),
-  shapes_(std::make_unique< ShapePtr[] >(source.capacity_))
+  shapes_(std::make_unique< ValueType[] >(source.capacity_))
 {
   for (size_t i = 0; i < size_; i++) {
     shapes_[i] = source.shapes_[i]->clone();
@@ -112,7 +112,7 @@ void shilyaev::CompositeShape::popBack()
 void shilyaev::CompositeShape::reserve(size_t newCapacity)
 {
   if (newCapacity > capacity_) {
-    ShapeArray newShapes = std::make_unique< ShapePtr[] >(newCapacity);
+    ArrayType newShapes = std::make_unique< ValueType[] >(newCapacity);
     for (size_t i = 0; i < size_; i++) {
       newShapes[i] = std::move(shapes_[i]);
     }

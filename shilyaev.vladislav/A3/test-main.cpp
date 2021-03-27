@@ -201,6 +201,6 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeArray)
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeInvalidArgument)
 {
-  BOOST_CHECK_THROW(makeCompositeShape()->pushBack(std::unique_ptr< shilyaev::Shape >(nullptr)),
-      std::invalid_argument);
+  std::unique_ptr< shilyaev::Shape > nullptrShape(nullptr);
+  BOOST_CHECK_THROW(makeCompositeShape()->pushBack(std::move(nullptrShape)),std::invalid_argument);
 }

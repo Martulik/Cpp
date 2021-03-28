@@ -24,7 +24,7 @@ void dan::test_move_abs(dan::Shape& s, dan::point_t point)
 
 void dan::test_scale(dan::Shape& s, dan::udouble_t coeff)
 {
-  const double tolerance = std::numeric_limits<double>::epsilon();
+  const double tolerance = std::numeric_limits< double >::epsilon();
   double orig = s.getArea();
   double predicted = coeff * coeff * orig;
   s.scale(coeff);

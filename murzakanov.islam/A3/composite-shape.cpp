@@ -142,7 +142,7 @@ std::string murzakanov::CompositeShape::getName() const
 double murzakanov::CompositeShape::getArea() const
 {
   double totalArea = 0;
-  for (int i=0; i < size_; i++)
+  for (int i = 0; i < size_; i++)
   {
     totalArea += array_[i]->getArea();
   }
@@ -173,7 +173,7 @@ murzakanov::rectangle_t murzakanov::CompositeShape::getFrameRect() const
       - array_[i]->getFrameRect().height / 2);
   }
 
-  return {maxX - minX, maxY-minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
+  return {maxX - minX, maxY - minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
 }
 
 void murzakanov::CompositeShape::move(const murzakanov::point_t &point)

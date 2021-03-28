@@ -52,7 +52,7 @@ void dan::CompositeShape::move(point_t vec, bool absolute)
   }
 }
 
-void dan::CompositeShape::scale(double s)
+void dan::CompositeShape::scaleImpl(dan::udouble_t s)
 {
   point_t center = getFrameRect().pos;
   for(size_t i = 0; i < size_; ++i) {

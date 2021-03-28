@@ -17,9 +17,9 @@ namespace doroshin
     rectangle_t getFrameRect() const override;
 
     void move(point_t vec, bool absolute = false) override;
-    void scale(double s) override;
-
   private:
+    void scaleImpl(udouble_t s) override;
+
     point_t pos_;
     double radius_;
   };

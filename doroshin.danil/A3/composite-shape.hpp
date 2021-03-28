@@ -13,6 +13,7 @@ namespace doroshin
 
     array_t shapes_;
     size_t size_;
+    void scaleImpl(udouble_t s) override;
   public:
     // Empty CompositeShape is forbidden
     CompositeShape() = delete;
@@ -26,7 +27,6 @@ namespace doroshin
     rectangle_t getFrameRect() const override;
 
     void move(point_t vec, bool absolute = false) override;
-    void scale(double s) override;
 
     std::unique_ptr< Shape > copy() const override;
     CompositeShape(const CompositeShape&);

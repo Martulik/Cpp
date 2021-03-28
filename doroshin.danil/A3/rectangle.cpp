@@ -48,7 +48,7 @@ void dan::Rectangle::move(point_t vec, bool absolute)
   }
 }
 
-void dan::Rectangle::scale(double s)
+void dan::Rectangle::scaleImpl(dan::udouble_t s)
 {
   rect_.width *= s;
   rect_.height *= s;

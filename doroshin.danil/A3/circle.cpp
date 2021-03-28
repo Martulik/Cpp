@@ -31,9 +31,9 @@ void dan::Circle::move(point_t vec, bool absolute)
   }
 }
 
-void dan::Circle::scale(double s)
+void dan::Circle::scaleImpl(dan::udouble_t s)
 {
-  radius_ *= dan::make_abs(s);
+  radius_ *= s;
 }
 
 std::unique_ptr< dan::Shape > dan::Circle::copy() const

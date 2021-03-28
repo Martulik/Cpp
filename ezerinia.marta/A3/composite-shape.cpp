@@ -105,8 +105,8 @@ void lab::CompositeShape::doScale(double k)
   double posOfFrameRectX = getX(*this);
   double posOfFrameRectY = getY(*this);
   for (size_t i = 0; i < size_; i++) {
-    double dx = getX(*this) - posOfFrameRectX;
-    double dy = getY(*this) - posOfFrameRectY;
+    double dx = getX(*data_[i]) - posOfFrameRectX;
+    double dy = getY(*data_[i]) - posOfFrameRectY;
     data_[i]->move({posOfFrameRectX + dx * k, posOfFrameRectY + dy * k});
     data_[i]->scale(k);
   }

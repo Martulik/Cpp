@@ -21,11 +21,10 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
   double max_y = std::numeric_limits< double >::lowest();
 
   for(size_t i = 0; i < size_; ++i) {
-    rectangle_t frame = shapes_[i]->getFrameRect();
-    min_x = std::min(min_x, frame.pos.x - frame.width / 2);
-    max_x = std::max(max_x, frame.pos.x + frame.width / 2);
-    min_y = std::min(min_y, frame.pos.y - frame.height / 2);
-    max_y = std::max(max_y, frame.pos.y + frame.height / 2);
+    min_x = std::min(min_x, getX(*shapes_[i]) - getWidth(*shapes_[i]) / 2);
+    max_x = std::max(max_x, getX(*shapes_[i]) + getWidth(*shapes_[i]) / 2);
+    min_y = std::min(min_y, getY(*shapes_[i]) - getHeight(*shapes_[i]) / 2);
+    max_y = std::max(max_y, getY(*shapes_[i]) + getHeight(*shapes_[i]) / 2);
   }
 
   double width = max_x - min_x;
@@ -40,8 +39,7 @@ void dan::CompositeShape::move(point_t vec, bool absolute)
   if(absolute) {
     point_t center = getFrameRect().pos;
     for(size_t i = 0; i < size_; ++i) {
-      point_t shape = shapes_[i]->getFrameRect().pos;
-      point_t delta {shape.x - center.x, shape.y - center.y};
+      point_t delta {getX(*shapes_[i]) - center.x, getY(*shapes_[i]) - center.y};
       shapes_[i]->move({vec.x + delta.x, vec.y + delta.y}, true);
     }
   }
@@ -54,10 +52,8 @@ void dan::CompositeShape::move(point_t vec, bool absolute)
 
 void dan::CompositeShape::scaleImpl(dan::udouble_t s)
 {
-  point_t center = getFrameRect().pos;
   for(size_t i = 0; i < size_; ++i) {
-    point_t shape = shapes_[i]->getFrameRect().pos;
-    point_t move_vec { s * (center.x - shape.x), s * (center.y - shape.y) };
+    point_t move_vec { s * (getX(*shapes_[i]) - getX(*this)), s * (getY(*shapes_[i]) - getY(*this)) };
     shapes_[i]->move(move_vec);
     shapes_[i]->scale(s);
   }

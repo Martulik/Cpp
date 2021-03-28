@@ -20,6 +20,11 @@ namespace doroshin
     virtual void move(point_t vec, bool absolute = false) = 0;
     void scale(double);
   };
+
+  double getX(const Shape&);
+  double getY(const Shape&);
+  double getWidth(const Shape&);
+  double getHeight(const Shape&);
 }
 
 #endif // SHAPE_HPP

@@ -2,8 +2,6 @@
 #define RECTANGLE_HPP
 
 #include "shape.hpp"
-#include <cassert>
-#include <string>
 #include "base-types.hpp"
 
 namespace murzakanov

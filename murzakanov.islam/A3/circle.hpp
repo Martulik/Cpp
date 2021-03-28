@@ -3,8 +3,6 @@
 
 #include "shape.hpp"
 #include "base-types.hpp"
-#include <cassert>
-#include <string>
 
 namespace murzakanov
 {

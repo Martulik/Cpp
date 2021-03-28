@@ -1,8 +1,11 @@
-#include "iostream"
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
-  std::cout << argc << "\n";
-  std::cout << argv[2] << "\n";
+  if (argc)
+  {
+  }
+  int exNum = int(argv[1][0] - '0');
+  std::cout << exNum;
 }
 

@@ -29,7 +29,9 @@ BOOST_AUTO_TEST_CASE(ConstWidthHeightAreaWhenMoving)
 {
   pochernin::Rectangle testRectangle(defaultWidth, defaultHeight, startPos);
   testRectangle.move(finishPos);
-  BOOST_CHECK((testRectangle.getFrameRect().width == defaultWidth) && (testRectangle.getFrameRect().height == defaultHeight));
+  double testRectangleWidth = testRectangle.getFrameRect().width;
+  double testRectangleHeight = testRectangle.getFrameRect().height;
+  BOOST_CHECK((testRectangleWidth == defaultWidth) && (testRectangleHeight == defaultHeight));
 }
 
 BOOST_AUTO_TEST_CASE(QuadraticChangeAreaWhenScale)
@@ -65,7 +67,9 @@ BOOST_AUTO_TEST_CASE(ConstWidthHeightAreaWnenMoving)
 {
   pochernin::Circle testCircle(defaultRadius, startPos);
   testCircle.move(finishPos);
-  BOOST_CHECK ((testCircle.getFrameRect().width == (defaultRadius * 2.0)) && (testCircle.getFrameRect().height == (defaultRadius * 2.0)));
+  double testCircleWidth = testCircle.getFrameRect().width;
+  double testCircleHeight = testCircle.getFrameRect().height;
+  BOOST_CHECK ((testCircleWidth == (defaultRadius * 2.0)) && (testCircleHeight == (defaultRadius * 2.0)));
 }
 
 BOOST_AUTO_TEST_CASE(QuadraticChangeAreaWhenScale)

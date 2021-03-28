@@ -7,12 +7,16 @@
 namespace dan = doroshin;
 using namespace dan::literals;
 
-struct CompositeTestFixture
+class CompositeTestFixture
 {
+  const dan::point_t p1{-1, 0};
+  const dan::point_t p2{1, 1};
+public:
   CompositeTestFixture():
-    shape(dan::Rectangle{2_ud, 3_ud, dan::point_t{-1, 0}},
-        dan::Circle{dan::point_t{1, 1}, 2_ud})
-  {}
+    shape(dan::Rectangle{2_ud, 3_ud, p1}, dan::Circle{p2, 2_ud})
+  {
+    BOOST_TEST_MESSAGE("Composite ctr");
+  }
 
   dan::CompositeShape shape;
 };

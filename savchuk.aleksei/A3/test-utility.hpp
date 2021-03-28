@@ -1,3 +1,6 @@
+#ifndef TEST_UTILITY_HPP
+#define TEST_UTILITY_HPP
+
 #include "shape.hpp"
 
 namespace lab = savchuk;
@@ -11,3 +14,5 @@ void checkScaleFrameRect(lab::Shape& s, double k);
 void checkScaleArea(lab::Shape& s, double k);
 
 void checkScaleInvalidArgument(lab::Shape& s, double k);
+
+#endif

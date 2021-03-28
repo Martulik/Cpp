@@ -18,7 +18,7 @@ namespace doroshin
     CompositeShape() = delete;
 
     // For any type T in Shapes the following must be true:
-    // std::is_convertible< shape.copy(), Shape* >::value
+    // std::is_convertible< shape.copy(), shape_ptr >::value
     template< typename... Shapes >
     CompositeShape(Shapes...);
 
@@ -43,9 +43,9 @@ namespace doroshin
     // Constructs a unique_ptr-managed array of T (std::unique_ptr< T[] >)
     // From moved argument values.
     template< typename T, typename... Args >
-    std::unique_ptr<T[]> make_unique_array(Args&&... args)
+    std::unique_ptr<T[]> make_unique_array(Args&&... args) noexcept
     {
-      return std::unique_ptr< T[] >(new T[sizeof...(Args)] { std::move(args)... });
+      return std::unique_ptr< T[] >(new T[sizeof...(Args)] { std::move_if_noexcept(args)... });
     }
   }
 

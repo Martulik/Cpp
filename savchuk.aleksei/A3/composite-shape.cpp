@@ -1,6 +1,7 @@
 #include "composite-shape.hpp"
 
 #include <cassert>
+#include <utility>
 #include <algorithm>
 
 namespace lab = savchuk;
@@ -46,28 +47,15 @@ lab::CompositeShape::~CompositeShape()
 
 this_type& lab::CompositeShape::operator=(const this_type& rhs)
 {
-  if (this != std::addressof(rhs))
-  {
-    size_ = rhs.size_;
-    delete[] arr_;
-    arr_ = new value_type[size_];
-    for (size_t i = 0; i < size_; ++i)
-    {
-      arr_[i] = rhs.arr_[i]->clone();
-    }
-  }
+  this_type temp(rhs);
+  swap(temp);
   return *this;
 }
 
 this_type& lab::CompositeShape::operator=(this_type&& rhs) noexcept
 {
-  if (this != std::addressof(rhs))
-  {
-    size_ = rhs.size_;
-    delete[] arr_;
-    arr_ = rhs.arr_;
-    rhs.arr_ = nullptr;
-  }
+  this_type temp(rhs);
+  swap(temp);
   return *this;
 }
 
@@ -137,4 +125,16 @@ void lab::CompositeShape::doScale(double scaleFactor)
 std::unique_ptr< lab::Shape > lab::CompositeShape::clone() const
 {
   return std::unique_ptr< Shape >(new CompositeShape(*this));
+}
+
+void lab::CompositeShape::swap(this_type& rhs)
+{
+  std::swap(size_, rhs.size_);
+  std::swap(arr_, rhs.arr_);
+}
+
+template<>
+inline void std::swap(this_type& lhs, this_type& rhs)
+{
+  lhs.swap(rhs);
 }

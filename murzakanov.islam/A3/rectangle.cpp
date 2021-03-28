@@ -27,8 +27,6 @@ murzakanov::rectangle_t murzakanov::Rectangle::getFrameRect() const
   return {width_, height_, pos_};
 }
 
-
-
 void murzakanov::Rectangle::move(const murzakanov::point_t& point)
 {
   pos_ = point;

@@ -14,8 +14,8 @@ namespace murzakanov
     explicit CompositeShape(std::shared_ptr< Shape > shp);
     ~CompositeShape() override = default;
     Shape& operator [](int index);
-    CompositeShape& operator =(const CompositeShape& src);
-    CompositeShape& operator =(CompositeShape&& src) noexcept;
+    CompositeShape& operator=(const CompositeShape& src);
+    CompositeShape& operator=(CompositeShape&& src) noexcept;
 
     void scale(double coef) override;
     int size() const;

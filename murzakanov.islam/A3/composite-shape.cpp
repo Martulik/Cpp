@@ -36,7 +36,7 @@ murzakanov::CompositeShape::CompositeShape(CompositeShape&& other) noexcept
   other.array_ = nullptr;
 }
 
-murzakanov::CompositeShape& murzakanov::CompositeShape::operator =(const CompositeShape& src)
+murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(const CompositeShape& src)
 {
   if (this == std::addressof(src))
   {
@@ -52,7 +52,7 @@ murzakanov::CompositeShape& murzakanov::CompositeShape::operator =(const Composi
   }
   return *this;
 }
-murzakanov::CompositeShape& murzakanov::CompositeShape::operator =(CompositeShape&& src) noexcept
+murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(CompositeShape&& src) noexcept
 {
   if (this == std::addressof(src))
   {

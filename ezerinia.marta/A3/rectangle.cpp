@@ -37,3 +37,8 @@ void ezerinia::Rectangle::doScale(double k)
   width_ *= k;
   height_ *= k;
 }
+
+std::shared_ptr< ezerinia::Shape > ezerinia::Rectangle::clone() const
+{
+  return std::make_shared< Rectangle >(*this);
+}

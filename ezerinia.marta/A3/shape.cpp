@@ -8,3 +8,23 @@ void ezerinia::Shape::scale(double k)
   }
   doScale(k);
 }
+
+double ezerinia::getX(const Shape &src)
+{
+  return src.getFrameRect().pos.x;
+}
+
+double ezerinia::getY(const Shape &src)
+{
+  return src.getFrameRect().pos.y;
+}
+
+double ezerinia::getWidth(const Shape &src)
+{
+  return src.getFrameRect().width;
+}
+
+double ezerinia::getHeight(const Shape &src)
+{
+  return src.getFrameRect().height;
+}

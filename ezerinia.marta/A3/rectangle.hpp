@@ -12,11 +12,12 @@ namespace ezerinia {
     virtual rectangle_t getFrameRect() const override;
     virtual void move(const point_t &point) override;
     virtual void move(double dx, double dy) override;
-    virtual void doScale(double k) override;
+    virtual std::shared_ptr< Shape > clone() const override;
   private:
     double width_;
     double height_;
     point_t center_;
+    virtual void doScale(double k) override;
   };
 }
 #endif

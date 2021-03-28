@@ -37,3 +37,8 @@ void ezerinia::Circle::doScale(double k)
 {
   radius_ *= k;
 }
+
+std::shared_ptr< ezerinia::Shape > ezerinia::Circle::clone() const
+{
+  return std::make_shared< Circle >(*this);
+}

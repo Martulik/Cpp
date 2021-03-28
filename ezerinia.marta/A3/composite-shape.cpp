@@ -1,18 +1,39 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
+#include <limits>
+#include <algorithm>
 
-ezerinia::CompositeShape::CompositeShape(std::shared_ptr< Shape > src):
+namespace lab = ezerinia;
+
+lab::CompositeShape::CompositeShape(const CompositeShape &src):
+  size_(src.size_),
+  capacity_(src.capacity_),
+  data_(std::make_unique< shapePtr[] >(src.size_))
+{
+  for (size_t i = 0; i < size_; i++) {
+    data_[i] = src.data_[i]->clone();
+  }
+}
+
+lab::CompositeShape &lab::CompositeShape::operator=(const CompositeShape &src)
+{
+  CompositeShape temp(src);
+  swap(temp);
+  return *this;
+}
+
+lab::CompositeShape::CompositeShape(shapePtr src):
   size_(1),
   capacity_(2),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity_))
+  data_(std::make_unique< shapePtr[] >(capacity_))
 {
-  if (src == nullptr) {
+  if (!src) {
     throw std::invalid_argument("The shape must not be nullptr");
   }
   data_[0] = std::move(src);
 }
 
-std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::at(std::size_t index) const
+std::shared_ptr< lab::Shape > lab::CompositeShape::at(size_t index) const
 {
   if (index >= size_) {
     throw std::out_of_range("Index outside the array");
@@ -20,27 +41,23 @@ std::shared_ptr< ezerinia::Shape > ezerinia::CompositeShape::at(std::size_t inde
   return data_[index];
 }
 
-std::size_t ezerinia::CompositeShape::size() const
+size_t lab::CompositeShape::size() const
 {
   return size_;
 }
 
-void ezerinia::CompositeShape::push_back(std::shared_ptr< Shape > src)
+void lab::CompositeShape::pushBack(shapePtr src)
 {
-  if (src == nullptr) {
+  if (!src) {
     throw std::invalid_argument("The shape must not be nullptr");
   }
   if (capacity_ == size_) {
-    capacity_ *= 2;
-    std::unique_ptr<std::shared_ptr<Shape>[]>
-            temp(std::make_unique<std::shared_ptr<Shape>[]>(capacity_));
-    std::swap_ranges(data_.get(), data_.get() + size_, temp.get());
-    data_ = std::move(temp);
+    reserve(capacity_ * 2);
   }
   data_[size_++] = std::move(src);
 }
 
-void ezerinia::CompositeShape::pop_back()
+void lab::CompositeShape::popBack()
 {
   if (size_ == 1) {
     throw std::logic_error("The composite shape must contain at least one shape");
@@ -48,53 +65,77 @@ void ezerinia::CompositeShape::pop_back()
   data_[--size_].reset();
 }
 
-double ezerinia::CompositeShape::getArea() const
+double lab::CompositeShape::getArea() const
 {
   double totalArea = 0.0;
-  for (std::size_t i = 0; i < size_; i++) {
+  for (size_t i = 0; i < size_; i++) {
     totalArea += data_[i]->getArea();
   }
   return totalArea;
 }
 
-ezerinia::rectangle_t ezerinia::CompositeShape::getFrameRect() const
+lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  ezerinia::rectangle_t totalFrameRect = data_[0]->getFrameRect();
-  ezerinia::point_t minXY = {totalFrameRect.pos.x - totalFrameRect.width / 2,
-                             totalFrameRect.pos.y - totalFrameRect.height / 2};
-  ezerinia::point_t maxXY = {totalFrameRect.pos.x + totalFrameRect.width / 2,
-                             totalFrameRect.pos.y + totalFrameRect.height / 2};
-  for (std::size_t i = 1; i < size_; i++) {
-    rectangle_t temp = data_[i]->getFrameRect();
-    minXY = {std::min(minXY.x, (temp.pos.x - temp.width / 2)),
-             std::min(minXY.y, (temp.pos.y - temp.height / 2))};
-    maxXY = {std::max(maxXY.x, (temp.pos.x + temp.width / 2)),
-             std::max(maxXY.y, (temp.pos.y + temp.height / 2))};
+  point_t minXY{std::numeric_limits< double >::max(), std::numeric_limits< double >::max()};
+  point_t maxXY{-minXY.x, -minXY.y};
+  for (size_t i = 0; i < size_; i++) {
+    minXY.x = std::min(minXY.x, getX(*data_[i]) - getWidth(*data_[i]) / 2);
+    minXY.y = std::min(minXY.y, getY(*data_[i]) - getHeight(*data_[i]) / 2);
+    maxXY.x = std::max(maxXY.x, getX(*data_[i]) + getWidth(*data_[i]) / 2);
+    maxXY.y = std::max(maxXY.y, getY(*data_[i]) + getHeight(*data_[i]) / 2);
   }
-  totalFrameRect = {maxXY.x - minXY.x, maxXY.y - minXY.y,
-                    {(maxXY.x + minXY.x) / 2, (maxXY.y + minXY.y) / 2}};
-  return totalFrameRect;
+  point_t pos{(maxXY.x + minXY.x) / 2, (maxXY.y + minXY.y) / 2};
+  return {maxXY.x - minXY.x, maxXY.y - minXY.y, pos};
 }
 
-void ezerinia::CompositeShape::move(const ezerinia::point_t &point)
+void lab::CompositeShape::move(const point_t &point)
 {
-  move(point.x - getFrameRect().pos.x, point.y - getFrameRect().pos.y);
+  move(point.x - getX(*this), point.y - getY(*this));
 }
 
-void ezerinia::CompositeShape::move(double dx, double dy)
+void lab::CompositeShape::move(double dx, double dy)
 {
-  for (std::size_t i = 0; i < size_; i++) {
+  for (size_t i = 0; i < size_; i++) {
     data_[i]->move(dx, dy);
   }
 }
 
-void ezerinia::CompositeShape::doScale(double k)
+void lab::CompositeShape::doScale(double k)
 {
   point_t posOfFrameRect = getFrameRect().pos;
-  for (std::size_t i = 0; i < size_; i++) {
-    double dx = data_[i]->getFrameRect().pos.x - posOfFrameRect.x;
-    double dy = data_[i]->getFrameRect().pos.y - posOfFrameRect.y;
+  for (size_t i = 0; i < size_; i++) {
+    double dx = getX(*data_[i]) - posOfFrameRect.x;
+    double dy = getY(*data_[i]) - posOfFrameRect.y;
     data_[i]->move({posOfFrameRect.x + dx * k, posOfFrameRect.y + dy * k});
     data_[i]->scale(k);
+  }
+}
+
+void lab::CompositeShape::swap(CompositeShape &src) noexcept
+{
+  std::swap(size_, src.size_);
+  std::swap(capacity_, src.capacity_);
+  std::swap(data_, src.data_);
+}
+
+void lab::swap(CompositeShape &lhs, CompositeShape &rhs) noexcept
+{
+  lhs.swap(rhs);
+}
+
+std::shared_ptr< lab::Shape > lab::CompositeShape::clone() const
+{
+  return std::make_shared< CompositeShape >(*this);
+}
+
+void lab::CompositeShape::reserve(size_t newCap)
+{
+  if (newCap > capacity_) {
+    capacity_ = newCap;
+    shapeArr temp(std::make_unique< shapePtr[] >(capacity_));
+    for (size_t i = 0; i < size_; i++) {
+      temp[i] = std::move(data_[i]);
+    }
+    data_ = std::move(temp);
   }
 }

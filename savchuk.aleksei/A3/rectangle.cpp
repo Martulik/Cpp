@@ -1,7 +1,6 @@
 #include "rectangle.hpp"
 
 #include <cassert>
-#include <stdexcept>
 
 namespace lab = savchuk;
 
@@ -33,12 +32,8 @@ void lab::Rectangle::move(double dx, double dy)
   rect_.pos.y += dy;
 }
 
-void lab::Rectangle::scale(double scaleFactor)
+void lab::Rectangle::doScale(double scaleFactor)
 {
-  if (scaleFactor <= 0)
-  {
-    throw std::invalid_argument("The scale factor must be positive");
-  }
   rect_.width *= scaleFactor;
   rect_.height *= scaleFactor;
 }

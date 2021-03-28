@@ -1,7 +1,6 @@
 #include "composite-shape.hpp"
 
 #include <cassert>
-#include <stdexcept>
 #include <algorithm>
 
 namespace lab = savchuk;
@@ -130,12 +129,8 @@ void lab::CompositeShape::move(double dx, double dy)
   }
 }
 
-void lab::CompositeShape::scale(double scaleFactor)
+void lab::CompositeShape::doScale(double scaleFactor)
 {
-  if (scaleFactor <= 0)
-  {
-    throw std::invalid_argument("The scale factor must be positive");
-  }
   lab::point_t pos = (this->getFrameRect()).pos;
   for (size_t i = 0; i < size_; ++i)
   {

@@ -1,7 +1,6 @@
 #include "circle.hpp"
 
 #include <cassert>
-#include <stdexcept>
 
 namespace lab = savchuk;
 
@@ -35,12 +34,8 @@ void lab::Circle::move(double dx, double dy)
   pos_.y += dy;
 }
 
-void lab::Circle::scale(double scaleFactor)
+void lab::Circle::doScale(double scaleFactor)
 {
-  if (scaleFactor <= 0)
-  {
-    throw std::invalid_argument("The scale factor must be positive");
-  }
   radius_ *= scaleFactor;
 }
 

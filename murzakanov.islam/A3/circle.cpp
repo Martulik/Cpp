@@ -4,7 +4,6 @@
 
 double const PI = 3.1415;
 
-
 murzakanov::Circle::Circle(const double radius, const murzakanov::point_t& pos):
   radius_(radius),
   pos_(pos)

@@ -28,14 +28,14 @@ namespace doroshin
     void move(point_t vec, bool absolute = false) override;
     void scale(double s) override;
 
-    friend void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
-
     std::unique_ptr< Shape > copy() const override;
     CompositeShape(const CompositeShape&);
     CompositeShape(CompositeShape&&) noexcept = default;
     CompositeShape& operator=(const CompositeShape&);
     CompositeShape& operator=(CompositeShape&&) noexcept = default;
     ~CompositeShape() override = default;
+
+    static void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
   };
 
   namespace details

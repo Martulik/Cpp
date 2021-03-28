@@ -6,9 +6,6 @@
 
 namespace doroshin
 {
-  // constexpr functions are automatically inline
-  // thus they cannot be shared between translation units
-  // and have to be declared in the header
   class udouble_t
   {
     double value_;

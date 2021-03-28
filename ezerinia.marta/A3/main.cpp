@@ -10,10 +10,8 @@ using shapePtr = std::shared_ptr< lab::Shape >;
 
 void printFrameRectOfShape(const shapePtr shape, std::ostream &out)
 {
-  out << "height = " << shape->getFrameRect().height << "  width = "
-      << shape->getFrameRect().width;
-  out << " center: x = " << shape->getFrameRect().pos.x << ", y = "
-      << shape->getFrameRect().pos.y << "\n";
+  out << "height = " << lab::getHeight(*shape) << "  width = " << lab::getWidth(*shape);
+  out << " center: x = " << lab::getX(*shape) << ", y = " << lab::getY(*shape) << "\n";
 }
 
 int main()
@@ -21,7 +19,7 @@ int main()
   const lab::point_t startPoint{10.0, 10.0};
   const lab::point_t finishPoint = {20.0, 20.0};
   const double radius1 = 3.0;
-  const double radius2 =6.0;
+  const double radius2 = 6.0;
   const double width = 2.0;
   const double height = 1.0;
   const double scaleCoef = 2.0;

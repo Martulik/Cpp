@@ -35,7 +35,7 @@ namespace doroshin
     CompositeShape& operator=(CompositeShape&&) noexcept = default;
     ~CompositeShape() override = default;
 
-    static void swap(CompositeShape& lhs, CompositeShape& rhs) noexcept;
+    void swap(CompositeShape& lhs) noexcept;
   };
 
   namespace details

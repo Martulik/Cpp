@@ -123,22 +123,6 @@ size_t shilyaev::CompositeShape::size() const
   return size_;
 }
 
-const shilyaev::Shape &shilyaev::CompositeShape::at(size_t index) const
-{
-  if (index >= size_) {
-    throw std::out_of_range("Out of range");
-  }
-  return *shapes_[index];
-}
-
-shilyaev::Shape &shilyaev::CompositeShape::at(size_t index)
-{
-  if (index >= size_) {
-    throw std::out_of_range("Out of range");
-  }
-  return *shapes_[index];
-}
-
 void shilyaev::CompositeShape::swap(shilyaev::CompositeShape &other) noexcept
 {
   std::swap(capacity_, other.capacity_);

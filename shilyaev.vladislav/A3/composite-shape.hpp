@@ -20,8 +20,6 @@ namespace shilyaev {
     void move(const point_t &pos) override;
     void move(double dx, double dy) override;
     size_t size() const;
-    const Shape &at(size_t index) const;
-    Shape &at(size_t index);
     void pushBack(ValueType shape);
     void popBack();
     void reserve(size_t newCapacity);

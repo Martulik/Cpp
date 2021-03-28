@@ -43,7 +43,6 @@ BOOST_AUTO_TEST_CASE(TestCompositeShapeArray)
     compositeShape.pushBack(makeCompositeShape());
     BOOST_TEST(compositeShape.getArea() > areaBefore);
   }
-  BOOST_CHECK_THROW(compositeShape.at(iterations + 1), std::out_of_range);
   for (int i = iterations; i >= 1; --i) {
     double areaBefore = compositeShape.getArea();
     compositeShape.popBack();

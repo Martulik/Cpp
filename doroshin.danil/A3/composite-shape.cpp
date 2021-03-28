@@ -70,7 +70,7 @@ void dan::swap(CompositeShape& lhs, CompositeShape& rhs) noexcept
 }
 
 dan::CompositeShape::CompositeShape(const CompositeShape& other):
-  shapes_(std::make_unique<shape_ptr[]>(other.size_)),
+  shapes_(std::make_unique< shape_ptr[] >(other.size_)),
   size_(other.size_)
 {
   for(size_t i = 0; i < size_; ++i) {

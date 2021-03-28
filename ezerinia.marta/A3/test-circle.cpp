@@ -1,7 +1,10 @@
 #include <boost/test/included/unit_test.hpp>
-#include <stdexcept>
 #include "test-tools.hpp"
 #include "circle.hpp"
+
+const double radius = 3.0;
+const double negativeValue = -1.0;
+const ezerinia::point_t StartPos{1.0, -1.0};
 
 namespace lab = ezerinia;
 

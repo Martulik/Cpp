@@ -1,5 +1,11 @@
 #include "test-tools.hpp"
 
+const double accuracy = std::numeric_limits< double >::epsilon();
+const double scaleCoef = 2.0;
+const double deltaAbsX = 5.0;
+const double deltaAbsY = 10.0;
+const ezerinia::point_t FinishPos{-2.0, 2.0};
+
 namespace lab = ezerinia;
 
 void lab::checkWidthHeightArea(Shape *shape, rectangle_t frameRect, double areaBeforeMove)

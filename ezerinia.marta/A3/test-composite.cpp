@@ -5,10 +5,15 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
+const size_t overIndex = 7000;
+const double width = 1.0;
+const double height = 2.0;
+const double radius = 3.0;
+const double negativeValue = -1.0;
+const ezerinia::point_t StartPos{1.0, -1.0};
+
 namespace lab = ezerinia;
 using shapePtr = std::shared_ptr< lab::Shape >;
-
-const size_t overIndex = 7000;
 
 void addShapes(lab::CompositeShape *shape)
 {

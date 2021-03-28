@@ -16,9 +16,8 @@ lab::CompositeShape::CompositeShape(std::initializer_list< lab::Shape* > src):
   std::initializer_list< lab::Shape* >::iterator it = src.begin();
   while (it != src.end())
   {
-    lab::Shape* shape = *it;
-    assert(shape != nullptr && "The pointer to shape cannot be nullptr");
-    arr_[i++] = shape->clone();
+    assert(*it != nullptr && "The pointer to shape cannot be nullptr");
+    arr_[i++] = (*it)->clone();
     ++it;
   }
 }
@@ -29,8 +28,7 @@ lab::CompositeShape::CompositeShape(const this_type& src):
 {
   for (size_t i = 0; i < size_; ++i)
   {
-    lab::Shape* shape = src.arr_[i].get();
-    arr_[i] = shape->clone();
+    arr_[i] = src.arr_[i]->clone();
   }
 }
 
@@ -55,8 +53,7 @@ this_type& lab::CompositeShape::operator=(const this_type& rhs)
     arr_ = new value_type[size_];
     for (size_t i = 0; i < size_; ++i)
     {
-      lab::Shape* shape = rhs.arr_[i].get();
-      arr_[i] = shape->clone();
+      arr_[i] = rhs.arr_[i]->clone();
     }
   }
   return *this;
@@ -79,24 +76,21 @@ double lab::CompositeShape::getArea() const
   double area = 0.0;
   for (size_t i = 0; i < size_; ++i)
   {
-    lab::Shape* shape = arr_[i].get();
-    area += shape->getArea();
+    area += arr_[i]->getArea();
   }
   return area;
 }
 
 lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  lab::Shape* shape = arr_[0].get();
-  lab::rectangle_t rect = shape->getFrameRect();
+  lab::rectangle_t rect = arr_[0]->getFrameRect();
   double maxX = rect.pos.x + rect.width / 2;
   double minX = rect.pos.x - rect.width / 2;
   double maxY = rect.pos.y + rect.height / 2;
   double minY = rect.pos.y - rect.height / 2;
   for (size_t i = 1; i < size_; ++i)
   {
-    shape = arr_[i].get();
-    rect = shape->getFrameRect();
+    rect = arr_[i]->getFrameRect();
     maxX = std::max(maxX, rect.pos.x + rect.width / 2);
     minX = std::min(minX, rect.pos.x - rect.width / 2);
     maxY = std::max(maxY, rect.pos.y + rect.height / 2);
@@ -110,13 +104,12 @@ lab::rectangle_t lab::CompositeShape::getFrameRect() const
 
 void lab::CompositeShape::move(const lab::point_t& point)
 {
-  lab::point_t pos = (this->getFrameRect()).pos;
+  lab::point_t pos = getFrameRect().pos;
   double dx = point.x - pos.x;
   double dy = point.y - pos.y;
   for (size_t i = 0; i < size_; ++i)
   {
-    lab::Shape* shape = arr_[i].get();
-    shape->move(dx, dy);
+    arr_[i]->move(dx, dy);
   }
 }
 
@@ -124,22 +117,20 @@ void lab::CompositeShape::move(double dx, double dy)
 {
   for (size_t i = 0; i < size_; ++i)
   {
-    lab::Shape* shape = arr_[i].get();
-    shape->move(dx, dy);
+    arr_[i]->move(dx, dy);
   }
 }
 
 void lab::CompositeShape::doScale(double scaleFactor)
 {
-  lab::point_t pos = (this->getFrameRect()).pos;
+  lab::point_t pos = getFrameRect().pos;
   for (size_t i = 0; i < size_; ++i)
   {
-    lab::Shape* shape = arr_[i].get();
-    lab::point_t point = (shape->getFrameRect()).pos;
+    lab::point_t point = (arr_[i]->getFrameRect()).pos;
     double dx = (scaleFactor - 1) * (point.x - pos.x);
     double dy = (scaleFactor - 1) * (point.y - pos.y);
-    shape->move(dx, dy);
-    shape->scale(scaleFactor);
+    arr_[i]->move(dx, dy);
+    arr_[i]->scale(scaleFactor);
   }
 }
 

@@ -112,10 +112,7 @@ void murzakanov::CompositeShape::popShape()
 
 void murzakanov::CompositeShape::scale(double coef)
 {
-  if (coef < 0)
-  {
-    throw std::invalid_argument("Coefficient should be more or equal than zero");
-  }
+  check(coef, "Coefficient should be more or equal than zero");
   double dx = 0;
   double xNew = 0;
   double dy = 0;

@@ -8,10 +8,7 @@ murzakanov::Circle::Circle(const double radius, const murzakanov::point_t& pos):
   radius_(radius),
   pos_(pos)
 {
-  if (radius_ < 0)
-  {
-    throw std::invalid_argument("Radius should be more or equal than zero");
-  }
+  check(radius, "Radius should be more or equal than zero");
 }
 
 std::string murzakanov::Circle::getName() const
@@ -42,10 +39,7 @@ void murzakanov::Circle::move(const double dx, const double dy)
 
 void murzakanov::Circle::scale(const double coef)
 {
-  if (coef < 0)
-  {
-    throw std::invalid_argument("Coefficient should be more or equal than zero");
-  }
+  check(coef, "Coefficient should be more or equal than zero");
   radius_ *= coef;
 }
 

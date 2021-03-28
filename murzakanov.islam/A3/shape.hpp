@@ -9,6 +9,7 @@ namespace murzakanov
   class Shape
   {
   public:
+    void check(double arg, const char* mes);
     virtual void scale(double coef) = 0;
     virtual std::string getName() const = 0;
     virtual double getArea() const = 0;

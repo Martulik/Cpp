@@ -8,10 +8,10 @@ namespace doroshin
 {
   class CompositeShape: public Shape
   {
-    using shape_ptr = std::unique_ptr< Shape >;
-    using array_t = std::unique_ptr< shape_ptr[] >;
+    using ShapePtr = std::unique_ptr< Shape >;
+    using ShapeArray = std::unique_ptr< ShapePtr[] >;
 
-    array_t shapes_;
+    ShapeArray shapes_;
     size_t size_;
     void scaleImpl(udouble_t s) override;
   public:
@@ -19,7 +19,7 @@ namespace doroshin
     CompositeShape() = delete;
 
     // For any type T in Shapes the following must be true:
-    // std::is_convertible< shape.copy(), shape_ptr >::value
+    // std::is_convertible< shape.copy(), ShapePtr >::value
     template< typename... Shapes >
     CompositeShape(Shapes...);
 
@@ -43,7 +43,7 @@ namespace doroshin
     // Constructs a unique_ptr-managed array of T (std::unique_ptr< T[] >)
     // From moved argument values.
     template< typename T, typename... Args >
-    std::unique_ptr< T[] > make_unique_array(Args&&... args) noexcept
+    std::unique_ptr< T[] > makeUniqueArray(Args&&... args) noexcept
     {
       return std::unique_ptr< T[] >(new T[sizeof...(Args)] { std::move_if_noexcept(args)... });
     }
@@ -51,7 +51,7 @@ namespace doroshin
 
   template< typename... Shapes >
   CompositeShape::CompositeShape(Shapes... shapes):
-    shapes_(details::make_unique_array< shape_ptr >( shapes.copy()... )),
+    shapes_(details::makeUniqueArray< ShapePtr >( shapes.copy()... )),
     size_(sizeof...(Shapes))
   {
     static_assert(sizeof...(Shapes) > 0, "An empty CompositeShape is illegal");

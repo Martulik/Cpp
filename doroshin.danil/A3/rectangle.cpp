@@ -4,7 +4,7 @@
 
 namespace dan = doroshin;
 
-dan::rectangle_t from_two_points(dan::point_t a, dan::point_t b)
+dan::rectangle_t fromTwoPoints(dan::point_t a, dan::point_t b)
 {
   double min_x = std::min(a.x, b.x);
   double max_x = std::max(a.x, b.x);
@@ -24,7 +24,7 @@ dan::Rectangle::Rectangle(udouble_t w, udouble_t h, point_t pos):
 {}
 
 dan::Rectangle::Rectangle(point_t a, point_t b):
-  rect_(from_two_points(a, b))
+  rect_(fromTwoPoints(a, b))
 {}
 
 double dan::Rectangle::getArea() const

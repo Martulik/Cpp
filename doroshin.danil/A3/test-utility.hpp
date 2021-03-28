@@ -4,11 +4,11 @@
 
 namespace doroshin
 {
-  void equal_size(const rectangle_t&, const rectangle_t&);
+  void equalSize(const rectangle_t&, const rectangle_t&);
 
-  void test_move_rel(Shape&, point_t);
+  void testMoveRel(Shape&, point_t);
 
-  void test_move_abs(Shape&, point_t);
+  void testMoveAbs(Shape&, point_t);
 
-  void test_scale(Shape&, udouble_t coeff);
+  void testScale(Shape&, udouble_t coeff);
 }

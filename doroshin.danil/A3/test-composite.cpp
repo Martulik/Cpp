@@ -25,15 +25,15 @@ BOOST_FIXTURE_TEST_SUITE(Composite, CompositeTestFixture)
 
 BOOST_AUTO_TEST_CASE(test_move)
 {
-  dan::test_move_rel(shape, {1, 2});
-  dan::test_move_rel(shape, {-5, 7});
-  dan::test_move_abs(shape, {65, -33});
+  dan::testMoveRel(shape, {1, 2});
+  dan::testMoveRel(shape, {-5, 7});
+  dan::testMoveAbs(shape, {65, -33});
 }
 
 BOOST_AUTO_TEST_CASE(test_scale)
 {
-  dan::test_scale(shape, 4.5_ud);
-  dan::test_scale(shape, 0.1_ud);
+  dan::testScale(shape, 4.5_ud);
+  dan::testScale(shape, 0.1_ud);
 }
 
 BOOST_AUTO_TEST_CASE(copy)
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(copy)
   dan::CompositeShape cpy(shape);
 
   BOOST_CHECK_EQUAL(shape.getArea(), cpy.getArea());
-  equal_size(shape.getFrameRect(), cpy.getFrameRect());
+  equalSize(shape.getFrameRect(), cpy.getFrameRect());
   BOOST_CHECK_EQUAL(shape.getFrameRect().pos.x, cpy.getFrameRect().pos.x);
   BOOST_CHECK_EQUAL(shape.getFrameRect().pos.y, cpy.getFrameRect().pos.y);
 }

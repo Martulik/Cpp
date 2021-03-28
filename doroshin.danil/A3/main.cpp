@@ -8,13 +8,13 @@
 namespace dan = doroshin;
 using namespace dan::literals;
 
-void print_shape(const dan::Shape& s)
+void printShape(const dan::Shape& s)
 {
   std::cout << "Shape: (" << dan::getX(s) << ", " << dan::getY(s)
     << ") area: " << s.getArea() << '\n';
 }
 
-bool check_position(const dan::Shape& s, const dan::point_t other)
+bool checkPosition(const dan::Shape& s, const dan::point_t other)
 {
   dan::point_t pos = s.getFrameRect().pos;
   return (pos.x == other.x) && (pos.y == other.y);
@@ -32,9 +32,9 @@ int main()
   };
 
   for(auto&& shape: shapes) {
-    print_shape(*shape);
+    printShape(*shape);
     shape->move(move_to, true);
-    check_position(*shape, move_to);
+    checkPosition(*shape, move_to);
   }
 
   return 0;

@@ -2,27 +2,27 @@
 
 namespace dan = doroshin;
 
-void dan::equal_size(const dan::rectangle_t& lhs, const dan::rectangle_t& rhs)
+void dan::equalSize(const dan::rectangle_t& lhs, const dan::rectangle_t& rhs)
 {
   BOOST_CHECK_EQUAL(lhs.height, rhs.height);
   BOOST_CHECK_EQUAL(lhs.width, rhs.width);
 }
 
-void dan::test_move_rel(dan::Shape& s, dan::point_t vec)
+void dan::testMoveRel(dan::Shape& s, dan::point_t vec)
 {
   dan::rectangle_t orig_frame = s.getFrameRect();
   s.move(vec);
-  equal_size(orig_frame, s.getFrameRect());
+  equalSize(orig_frame, s.getFrameRect());
 }
 
-void dan::test_move_abs(dan::Shape& s, dan::point_t point)
+void dan::testMoveAbs(dan::Shape& s, dan::point_t point)
 {
   dan::rectangle_t orig_frame = s.getFrameRect();
   s.move(point, true);
-  equal_size(orig_frame, s.getFrameRect());
+  equalSize(orig_frame, s.getFrameRect());
 }
 
-void dan::test_scale(dan::Shape& s, dan::udouble_t coeff)
+void dan::testScale(dan::Shape& s, dan::udouble_t coeff)
 {
   const double tolerance = std::numeric_limits< double >::epsilon();
   double orig = s.getArea();

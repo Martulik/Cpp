@@ -1,3 +1,5 @@
+#include "test-utility.hpp"
+
 #include <limits>
 
 #include <boost/test/included/unit_test.hpp>

@@ -10,7 +10,7 @@ using namespace dan::literals;
 
 void print_shape(const dan::Shape& s)
 {
-  std::cout << "Shape: (" << s.getFrameRect().pos.x << ", " << s.getFrameRect().pos.y
+  std::cout << "Shape: (" << dan::getX(s) << ", " << dan::getY(s)
     << ") area: " << s.getArea() << '\n';
 }
 

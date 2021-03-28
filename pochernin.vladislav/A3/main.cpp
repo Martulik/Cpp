@@ -26,10 +26,12 @@ int main()
   std::cout << "\nCircle:\n";
   testShape(testCircle, std::cout, finishPos);
 
-  pochernin::CompositeShape compositeShape(0);
   testRectangle->move(startPos);
-  compositeShape.push_back(std::shared_ptr< pochernin::Shape >(testRectangle));
-  compositeShape.push_back(std::shared_ptr< pochernin::Shape >(testCircle));
+
+  std::shared_ptr< pochernin::Shape > testRectangleSharedPtr = std::shared_ptr< pochernin::Shape >(testRectangle);
+  std::shared_ptr< pochernin::Shape > testCircleSharedPtr = std::shared_ptr< pochernin::Shape >(testCircle);
+  pochernin::CompositeShape compositeShape(testRectangleSharedPtr);
+  compositeShape.push_back(testCircleSharedPtr);
   std::cout << "\nComposite Shape:\n";
   print(compositeShape, std::cout);
   compositeShape.move(startPos);

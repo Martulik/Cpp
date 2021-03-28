@@ -14,7 +14,7 @@ namespace pochernin
     CompositeShape(const CompositeShape& src);
     CompositeShape(CompositeShape&& src) noexcept;
 
-    CompositeShape(size_t capacity);
+    CompositeShape(const std::shared_ptr< Shape > shape, size_t capacity = 1);
 
     virtual ~CompositeShape() = default;
 

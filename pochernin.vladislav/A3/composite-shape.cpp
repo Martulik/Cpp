@@ -26,11 +26,18 @@ pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
   src.data_ = nullptr;
 }
 
-pochernin::CompositeShape::CompositeShape(size_t capacity):
+pochernin::CompositeShape::CompositeShape(const std::shared_ptr< Shape > shape, size_t capacity):
   size_(0),
   capacity_(capacity),
   data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity))
-{}
+{
+  if (capacity < 1)
+  {
+    throw (std::invalid_argument("Empty CompositeShape"));
+  }
+  data_[0] = shape;
+  size_++;
+}
 
 std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index)
 {

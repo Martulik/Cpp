@@ -12,7 +12,7 @@ shilyaev::CompositeShape::CompositeShape(std::unique_ptr< shilyaev::Shape > init
   size_(1),
   shapes_(std::make_unique< ValueType[] >(INITIAL_CAPACITY))
 {
-  if (initialShape == nullptr) {
+  if (!initialShape) {
     throw std::invalid_argument("Shape can't be nullptr");
   }
   shapes_[0] = std::move(initialShape);
@@ -89,7 +89,7 @@ void shilyaev::CompositeShape::scaleInternal(double factor)
 
 void shilyaev::CompositeShape::pushBack(std::unique_ptr< Shape > shape)
 {
-  if (shape == nullptr) {
+  if (!shape) {
     throw std::invalid_argument("Shape can't be nullptr");
   }
   if (size_ >= capacity_) {

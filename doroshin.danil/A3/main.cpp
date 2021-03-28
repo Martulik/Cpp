@@ -8,9 +8,9 @@
 namespace dan = doroshin;
 using namespace dan::literals;
 
-void print_shape(const char* name, const dan::Shape& s)
+void print_shape(const dan::Shape& s)
 {
-  std::cout << name << ": (" << s.getFrameRect().pos.x << ", " << s.getFrameRect().pos.y
+  std::cout << "Shape: (" << s.getFrameRect().pos.x << ", " << s.getFrameRect().pos.y
     << ") area: " << s.getArea() << '\n';
 }
 
@@ -22,26 +22,21 @@ bool check_position(const dan::Shape& s, const dan::point_t other)
 
 int main()
 {
-  const dan::point_t start {3, 4};
-  const dan::point_t delta {-1, 6};
-  const dan::point_t finish{2, 10};
+  const dan::point_t move_to{2, 10};
 
-  dan::Circle c(start, 2_ud);
-  print_shape("Circle", c);
-  c.move(delta);
-  assert(check_position(c, finish));
+  const dan::point_t p1{-1, 7}, p2{4, -6}, p3{2, 0}, p4{-8, -3};
+  std::unique_ptr< dan::Shape > shapes[] = {
+    std::make_unique< dan::Circle >(p1, 3_ud),
+    std::make_unique< dan::Rectangle >(2_ud, 5_ud, p2),
+    std::make_unique< dan::CompositeShape >
+        (dan::Circle(p3, 4_ud), dan::Rectangle(5_ud, 1_ud, p4))
+  };
 
-  const dan::udouble_t w = 2_ud, h = 3_ud;
-  dan::Rectangle r{w, h, start};
-  print_shape("Rectangle", r);
-  r.move(delta);
-  assert(check_position(r, finish));
-  assert(r.getArea() == w * h);
-
-  dan::CompositeShape comp(c, r);
-  print_shape("Composite", comp);
-  assert(check_position(comp, finish));
-  r.move(delta);
+  for(auto& shape: shapes) {
+    print_shape(*shape);
+    shape->move(move_to, true);
+    check_position(*shape, move_to);
+  }
 
   return 0;
 }

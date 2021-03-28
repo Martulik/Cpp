@@ -17,7 +17,7 @@ void printFrameRectOfShape(const shapePtr shape, std::ostream &out)
 int main()
 {
   const lab::point_t startPoint{10.0, 10.0};
-  const lab::point_t finishPoint = {20.0, 20.0};
+  const lab::point_t finishPoint{20.0, 20.0};
   const double radius1 = 3.0;
   const double radius2 = 6.0;
   const double width = 2.0;

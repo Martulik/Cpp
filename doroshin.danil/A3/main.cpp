@@ -31,7 +31,7 @@ int main()
     std::make_unique< dan::CompositeShape >(dan::Rectangle(5_ud, 1_ud, p3))
   };
 
-  for(auto& shape: shapes) {
+  for(auto&& shape: shapes) {
     print_shape(*shape);
     shape->move(move_to, true);
     check_position(*shape, move_to);

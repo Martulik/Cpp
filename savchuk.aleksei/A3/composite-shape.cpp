@@ -3,6 +3,9 @@
 #include <cassert>
 #include <utility>
 #include <algorithm>
+#include <limits>
+
+#include "shape-utility.hpp"
 
 namespace lab = savchuk;
 using value_type = std::unique_ptr< lab::Shape >;
@@ -71,18 +74,16 @@ double lab::CompositeShape::getArea() const
 
 lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  rectangle_t rect = arr_[0]->getFrameRect();
-  double maxX = rect.pos.x + rect.width / 2;
-  double minX = rect.pos.x - rect.width / 2;
-  double maxY = rect.pos.y + rect.height / 2;
-  double minY = rect.pos.y - rect.height / 2;
-  for (size_t i = 1; i < size_; ++i)
+  double maxX = std::numeric_limits< double >::max();
+  double minX = std::numeric_limits< double >::min();
+  double maxY = std::numeric_limits< double >::max();
+  double minY = std::numeric_limits< double >::min();
+  for (size_t i = 0; i < size_; ++i)
   {
-    rect = arr_[i]->getFrameRect();
-    maxX = std::max(maxX, rect.pos.x + rect.width / 2);
-    minX = std::min(minX, rect.pos.x - rect.width / 2);
-    maxY = std::max(maxY, rect.pos.y + rect.height / 2);
-    minY = std::min(minY, rect.pos.y - rect.height / 2);
+    maxX = getPosX(*arr_[0]) + getWidth(*arr_[0]) / 2;
+    minX = getPosX(*arr_[0]) - getWidth(*arr_[0]) / 2;
+    maxY = getPosY(*arr_[0]) + getHeight(*arr_[0]) / 2;
+    minY = getPosY(*arr_[0]) - getHeight(*arr_[0]) / 2;
   }
   double width = maxX - minX;
   double height = maxY - minY;
@@ -92,9 +93,8 @@ lab::rectangle_t lab::CompositeShape::getFrameRect() const
 
 void lab::CompositeShape::move(const lab::point_t& point)
 {
-  point_t pos = getFrameRect().pos;
-  double dx = point.x - pos.x;
-  double dy = point.y - pos.y;
+  double dx = point.x - getPosX(*this);
+  double dy = point.y - getPosY(*this);
   for (size_t i = 0; i < size_; ++i)
   {
     arr_[i]->move(dx, dy);
@@ -111,12 +111,10 @@ void lab::CompositeShape::move(double dx, double dy)
 
 void lab::CompositeShape::doScale(double scaleFactor)
 {
-  point_t pos = getFrameRect().pos;
   for (size_t i = 0; i < size_; ++i)
   {
-    point_t point = (arr_[i]->getFrameRect()).pos;
-    double dx = (scaleFactor - 1) * (point.x - pos.x);
-    double dy = (scaleFactor - 1) * (point.y - pos.y);
+    double dx = (scaleFactor - 1) * (getPosX(*arr_[i]) - getPosX(*this));
+    double dy = (scaleFactor - 1) * (getPosY(*arr_[i]) - getPosY(*this));
     arr_[i]->move(dx, dy);
     arr_[i]->scale(scaleFactor);
   }

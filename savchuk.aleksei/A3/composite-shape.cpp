@@ -13,7 +13,7 @@ lab::CompositeShape::CompositeShape(std::initializer_list< lab::Shape* > src):
   assert(size_ == 0 && "The composite shape cannot be empty");
   arr_ = new value_type[size_];
   size_t i = 0;
-  std::initializer_list< lab::Shape* >::iterator it = src.begin();
+  std::initializer_list< Shape* >::iterator it = src.begin();
   while (it != src.end())
   {
     assert(*it != nullptr && "The pointer to shape cannot be nullptr");
@@ -83,7 +83,7 @@ double lab::CompositeShape::getArea() const
 
 lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  lab::rectangle_t rect = arr_[0]->getFrameRect();
+  rectangle_t rect = arr_[0]->getFrameRect();
   double maxX = rect.pos.x + rect.width / 2;
   double minX = rect.pos.x - rect.width / 2;
   double maxY = rect.pos.y + rect.height / 2;
@@ -98,13 +98,13 @@ lab::rectangle_t lab::CompositeShape::getFrameRect() const
   }
   double width = maxX - minX;
   double height = maxY - minY;
-  lab::point_t pos = { minX + width / 2, minY + height / 2 };
+  point_t pos = { minX + width / 2, minY + height / 2 };
   return { pos, width, height };
 }
 
 void lab::CompositeShape::move(const lab::point_t& point)
 {
-  lab::point_t pos = getFrameRect().pos;
+  point_t pos = getFrameRect().pos;
   double dx = point.x - pos.x;
   double dy = point.y - pos.y;
   for (size_t i = 0; i < size_; ++i)
@@ -123,10 +123,10 @@ void lab::CompositeShape::move(double dx, double dy)
 
 void lab::CompositeShape::doScale(double scaleFactor)
 {
-  lab::point_t pos = getFrameRect().pos;
+  point_t pos = getFrameRect().pos;
   for (size_t i = 0; i < size_; ++i)
   {
-    lab::point_t point = (arr_[i]->getFrameRect()).pos;
+    point_t point = (arr_[i]->getFrameRect()).pos;
     double dx = (scaleFactor - 1) * (point.x - pos.x);
     double dy = (scaleFactor - 1) * (point.y - pos.y);
     arr_[i]->move(dx, dy);
@@ -136,5 +136,5 @@ void lab::CompositeShape::doScale(double scaleFactor)
 
 std::unique_ptr< lab::Shape > lab::CompositeShape::clone() const
 {
-  return std::unique_ptr< lab::Shape >(new lab::CompositeShape(*this));
+  return std::unique_ptr< Shape >(new CompositeShape(*this));
 }

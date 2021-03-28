@@ -1,6 +1,6 @@
 #include "test-tools.hpp"
 
-const double accuracy = std::numeric_limits< double >::epsilon();
+const double accuracy = 1000 * std::numeric_limits< double >::epsilon();
 const double scaleCoef = 2.0;
 const double deltaAbsX = 5.0;
 const double deltaAbsY = 10.0;
@@ -10,9 +10,9 @@ namespace lab = ezerinia;
 
 void lab::checkWidthHeightArea(Shape *shape, rectangle_t frameRect, double areaBeforeMove)
 {
-  BOOST_CHECK_EQUAL(getWidth(*shape), frameRect.width);
-  BOOST_CHECK_EQUAL(getHeight(*shape), frameRect.height);
-  BOOST_CHECK_EQUAL(areaBeforeMove, shape->getArea());
+  BOOST_CHECK_CLOSE(getWidth(*shape), frameRect.width, accuracy);
+  BOOST_CHECK_CLOSE(getHeight(*shape), frameRect.height, accuracy);
+  BOOST_CHECK_CLOSE(areaBeforeMove, shape->getArea(), accuracy);
 }
 
 void lab::checkMoveAbs(Shape *shape)

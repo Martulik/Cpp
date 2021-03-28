@@ -1,4 +1,7 @@
-#include <boost/test/included/unit_test.hpp>
+#ifndef TEST_TOOLS_HPP
+#define TEST_TOOLS_HPP
+
+#include <boost/test/unit_test.hpp>
 #include "shape.hpp"
 
 namespace ezerinia {
@@ -7,3 +10,5 @@ namespace ezerinia {
   void checkMovePoint(Shape *shape);
   void checkScale(Shape *shape);
 }
+
+#endif

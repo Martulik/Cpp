@@ -25,9 +25,13 @@ void dan::testMoveAbs(dan::Shape& s, dan::point_t point)
 void dan::testScale(dan::Shape& s, dan::udouble_t coeff)
 {
   const double tolerance = std::numeric_limits< double >::epsilon();
-  double orig = s.getArea();
-  double predicted = coeff * coeff * orig;
+  double orig_area1 = s.getArea();
+  double orig_area2 = dan::getWidth(s) * dan::getHeight(s);
+  double predicted1 = coeff * coeff * orig_area1;
+  double predicted2 = coeff * coeff * orig_area2;
   s.scale(coeff);
-  double n_area = s.getArea();
-  BOOST_CHECK_CLOSE_FRACTION(predicted, n_area, tolerance);
+  double n_area1 = s.getArea();
+  double n_area2 = dan::getWidth(s) * dan::getHeight(s);
+  BOOST_CHECK_CLOSE_FRACTION(predicted1, n_area1, tolerance);
+  BOOST_CHECK_CLOSE_FRACTION(predicted2, n_area2, tolerance);
 }

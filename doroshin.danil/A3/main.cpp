@@ -21,9 +21,9 @@ bool checkPosition(const dan::Shape& s, const dan::point_t other)
 
 int main()
 {
-  const dan::point_t move_to{2, 10};
+  const dan::point_t move_to{ 2, 10 };
 
-  const dan::point_t p1{-1, 7}, p2{4, -6}, p3{-8, -3};
+  const dan::point_t p1{ -1, 7 }, p2{ 4, -6 }, p3{ -8, -3 };
   std::unique_ptr< dan::Shape > shapes[] = {
     std::make_unique< dan::Circle >(p1, 3_ud),
     std::make_unique< dan::Rectangle >(2_ud, 5_ud, p2),

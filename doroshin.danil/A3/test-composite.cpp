@@ -11,7 +11,7 @@ class CompositeTestFixture
 {
 public:
   CompositeTestFixture():
-    shape(dan::Rectangle{2_ud, 3_ud, p1}, dan::Circle{p2, 2_ud})
+    shape(dan::Rectangle{ 2_ud, 3_ud, p1 }, dan::Circle{ p2, 2_ud })
   {}
 
   dan::CompositeShape shape;
@@ -20,16 +20,16 @@ private:
   static const dan::point_t p2;
 };
 
-const dan::point_t CompositeTestFixture::p1{-1, 0};
-const dan::point_t CompositeTestFixture::p2{1, 1};
+const dan::point_t CompositeTestFixture::p1{ -1, 0 };
+const dan::point_t CompositeTestFixture::p2{ 1, 1 };
 
 BOOST_FIXTURE_TEST_SUITE(Composite, CompositeTestFixture)
 
 BOOST_AUTO_TEST_CASE(test_move)
 {
-  dan::testMoveRel(shape, {1, 2});
-  dan::testMoveRel(shape, {-5, 7});
-  dan::testMoveAbs(shape, {65, -33});
+  dan::testMoveRel(shape, { 1, 2 });
+  dan::testMoveRel(shape, { -5, 7 });
+  dan::testMoveAbs(shape, { 65, -33 });
 }
 
 BOOST_AUTO_TEST_CASE(test_scale_area)

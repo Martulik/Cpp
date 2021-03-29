@@ -31,7 +31,7 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
   double height = max_y - min_y;
   double pos_x = min_x + width / 2;
   double pos_y = min_y + height / 2;
-  return {width, height, {pos_x, pos_y}};
+  return { width, height, { pos_x, pos_y } };
 }
 
 void dan::CompositeShape::move(point_t vec, bool absolute)
@@ -40,8 +40,8 @@ void dan::CompositeShape::move(point_t vec, bool absolute)
     double x = getX(*this);
     double y = getY(*this);
     for(size_t i = 0; i < size_; ++i) {
-      point_t delta {getX(*shapes_[i]) - x, getY(*shapes_[i]) - y};
-      shapes_[i]->move({vec.x + delta.x, vec.y + delta.y}, true);
+      point_t delta { getX(*shapes_[i]) - x, getY(*shapes_[i]) - y };
+      shapes_[i]->move({ vec.x + delta.x, vec.y + delta.y }, true);
     }
   }
   else {

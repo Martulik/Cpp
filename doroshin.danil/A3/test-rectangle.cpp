@@ -8,7 +8,7 @@ using namespace dan::literals;
 struct RectangleTestFixture
 {
   RectangleTestFixture():
-    rect(3_ud, 4_ud, dan::point_t{1, 2})
+    rect(3_ud, 4_ud, dan::point_t{ 1, 2 })
   {}
 
   dan::Rectangle rect;
@@ -18,9 +18,9 @@ BOOST_FIXTURE_TEST_SUITE(Rectangle, RectangleTestFixture)
 
 BOOST_AUTO_TEST_CASE(test_move)
 {
-  dan::testMoveRel(rect, {1, 2});
-  dan::testMoveRel(rect, {-5, 7});
-  dan::testMoveAbs(rect, {65, -33});
+  dan::testMoveRel(rect, { 1, 2 });
+  dan::testMoveRel(rect, { -5, 7 });
+  dan::testMoveAbs(rect, { 65, -33 });
 }
 
 BOOST_AUTO_TEST_CASE(test_scale_area)

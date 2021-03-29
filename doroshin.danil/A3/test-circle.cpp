@@ -8,7 +8,7 @@ using namespace dan::literals;
 struct CircleTestFixture
 {
   CircleTestFixture():
-    circle{{1, 2}, 3_ud}
+    circle{ { 1, 2 }, 3_ud }
   {}
 
   dan::Circle circle;
@@ -18,9 +18,9 @@ BOOST_FIXTURE_TEST_SUITE(Circle, CircleTestFixture)
 
 BOOST_AUTO_TEST_CASE(test_move)
 {
-  dan::testMoveRel(circle, {1, 2});
-  dan::testMoveRel(circle, {-5, 7});
-  dan::testMoveAbs(circle, {65, -33});
+  dan::testMoveRel(circle, { 1, 2 });
+  dan::testMoveRel(circle, { -5, 7 });
+  dan::testMoveAbs(circle, { 65, -33 });
 }
 
 BOOST_AUTO_TEST_CASE(test_scale_area)

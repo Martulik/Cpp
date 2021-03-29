@@ -16,11 +16,11 @@ dan::rectangle_t fromTwoPoints(dan::point_t a, dan::point_t b)
   dan::udouble_t w = dan::udouble_t(max_x - min_x);
   dan::udouble_t h = dan::udouble_t(max_y - min_y);
 
-  return dan::rectangle_t{w, h, {x, y}};
+  return dan::rectangle_t{ w, h, { x, y } };
 }
 
 dan::Rectangle::Rectangle(udouble_t w, udouble_t h, point_t pos):
-  rect_{w, h, pos}
+  rect_{ w, h, pos }
 {}
 
 dan::Rectangle::Rectangle(point_t a, point_t b):

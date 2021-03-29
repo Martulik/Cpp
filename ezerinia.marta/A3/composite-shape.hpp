@@ -19,6 +19,7 @@ namespace ezerinia {
     void popBack();
     std::shared_ptr< Shape > at(size_t index) const;
     size_t size() const;
+    size_t capacity() const;
     void swap(CompositeShape& src) noexcept;
     void reserve(size_t newCap);
     virtual double getArea() const override;

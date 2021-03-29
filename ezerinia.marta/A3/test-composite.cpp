@@ -6,6 +6,7 @@
 #include "circle.hpp"
 
 const size_t overIndex = 7000;
+const size_t reserveValue = 10;
 const double width = 1.0;
 const double height = 2.0;
 const double radius = 3.0;
@@ -57,6 +58,13 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
   {
     lab::CompositeShape composite(std::make_shared< lab::Circle >(radius, StartPos));
     BOOST_CHECK_THROW(composite.popBack(), std::logic_error);
+  }
+
+  BOOST_AUTO_TEST_CASE(reserveCompositeShape)
+  {
+    lab::CompositeShape composite(std::make_shared< lab::Circle >(radius, StartPos));
+    composite.reserve(reserveValue);
+    BOOST_CHECK_EQUAL(composite.capacity(), reserveValue);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

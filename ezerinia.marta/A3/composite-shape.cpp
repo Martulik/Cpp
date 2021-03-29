@@ -46,6 +46,11 @@ size_t lab::CompositeShape::size() const
   return size_;
 }
 
+size_t lab::CompositeShape::capacity() const
+{
+  return capacity_;
+}
+
 void lab::CompositeShape::pushBack(shapePtr src)
 {
   if (!src) {

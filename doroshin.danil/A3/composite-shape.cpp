@@ -53,8 +53,10 @@ void dan::CompositeShape::move(point_t vec, bool absolute)
 
 void dan::CompositeShape::scaleImpl(dan::udouble_t s)
 {
+  double x = getX(*this);
+  double y = getY(*this);
   for(size_t i = 0; i < size_; ++i) {
-    point_t move_vec { s * (getX(*shapes_[i]) - getX(*this)), s * (getY(*shapes_[i]) - getY(*this)) };
+    point_t move_vec { (s - 1) * (getX(*shapes_[i]) - x), (s - 1) * (getY(*shapes_[i]) - y) };
     shapes_[i]->move(move_vec);
     shapes_[i]->scale(s);
   }

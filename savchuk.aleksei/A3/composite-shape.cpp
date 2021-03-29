@@ -111,10 +111,12 @@ void lab::CompositeShape::move(double dx, double dy)
 
 void lab::CompositeShape::doScale(double scaleFactor)
 {
+  double posX = getPosX(*this);
+  double posY = getPosY(*this);
   for (size_t i = 0; i < size_; ++i)
   {
-    double dx = (scaleFactor - 1) * (getPosX(*arr_[i]) - getPosX(*this));
-    double dy = (scaleFactor - 1) * (getPosY(*arr_[i]) - getPosY(*this));
+    double dx = (scaleFactor - 1) * (getPosX(*arr_[i]) - posX);
+    double dy = (scaleFactor - 1) * (getPosY(*arr_[i]) - posY);
     arr_[i]->move(dx, dy);
     arr_[i]->scale(scaleFactor);
   }

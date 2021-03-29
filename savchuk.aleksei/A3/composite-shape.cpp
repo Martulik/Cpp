@@ -74,16 +74,16 @@ double lab::CompositeShape::getArea() const
 
 lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  double maxX = std::numeric_limits< double >::max();
-  double minX = std::numeric_limits< double >::min();
-  double maxY = std::numeric_limits< double >::max();
-  double minY = std::numeric_limits< double >::min();
+  double maxX = std::numeric_limits< double >::min();
+  double minX = std::numeric_limits< double >::max();
+  double maxY = std::numeric_limits< double >::min();
+  double minY = std::numeric_limits< double >::max();
   for (size_t i = 0; i < size_; ++i)
   {
-    maxX = getPosX(*arr_[0]) + getWidth(*arr_[0]) / 2;
-    minX = getPosX(*arr_[0]) - getWidth(*arr_[0]) / 2;
-    maxY = getPosY(*arr_[0]) + getHeight(*arr_[0]) / 2;
-    minY = getPosY(*arr_[0]) - getHeight(*arr_[0]) / 2;
+    maxX = std::max(maxX, getPosX(*arr_[0]) + getWidth(*arr_[0]) / 2);
+    minX = std::min(minX, getPosX(*arr_[0]) - getWidth(*arr_[0]) / 2);
+    maxY = std::max(maxY, getPosY(*arr_[0]) + getHeight(*arr_[0]) / 2);
+    minY = std::min(minY, getPosY(*arr_[0]) - getHeight(*arr_[0]) / 2);
   }
   double width = maxX - minX;
   double height = maxY - minY;

@@ -14,9 +14,7 @@ class CompositeTestFixture
 public:
   CompositeTestFixture():
     shape(dan::Rectangle{2_ud, 3_ud, p1}, dan::Circle{p2, 2_ud})
-  {
-    BOOST_TEST_MESSAGE("Composite ctr");
-  }
+  {}
 
   dan::CompositeShape shape;
 };

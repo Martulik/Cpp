@@ -12,7 +12,7 @@ const shkurov::point_t BEGIN_POS = {2.0, -5.5};
 const shkurov::point_t END_POS = {-3.5, 8};
 const double LENGTH_1 = 9.0;
 const double LENGTH_2 = 4.0;
-const double NEGATIVE_LENGTH = -2.0;
+// const double NEGATIVE_LENGTH = -2.0;
 const double SCALE = 4;
 const double NEGATIVE_SCALE = -2;
 const double EPSILON = std::numeric_limits< double >::epsilon();
@@ -24,11 +24,11 @@ BOOST_AUTO_TEST_SUITE(rectangle_test)
 
 std::unique_ptr< shkurov::Shape > rect_ptr(new shkurov::Rectangle(BEGIN_POS, LENGTH_1, LENGTH_2));
 
-BOOST_AUTO_TEST_CASE(constructor_throw_exception)
-{
-  BOOST_CHECK_THROW(std::unique_ptr< shkurov::Shape >
-   rect_ptr2(new shkurov::Rectangle(BEGIN_POS, NEGATIVE_LENGTH, LENGTH_2)), std::invalid_argument);
-}
+// BOOST_AUTO_TEST_CASE(constructor_throw_exception)
+// {
+//   BOOST_CHECK_THROW(std::unique_ptr< shkurov::Shape >
+//    rect_ptr2(new shkurov::Rectangle(BEGIN_POS, NEGATIVE_LENGTH, LENGTH_2)), std::invalid_argument);
+// }
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)
 {
@@ -58,11 +58,11 @@ BOOST_AUTO_TEST_SUITE(circle_test)
 
 std::unique_ptr< shkurov::Shape > circle_ptr(new shkurov::Circle(BEGIN_POS, LENGTH_1));
 
-BOOST_AUTO_TEST_CASE(constructor_throw_exception)
-{
-  BOOST_CHECK_THROW(std::unique_ptr< shkurov::Shape >
-   circle_ptr2(new shkurov::Circle(BEGIN_POS, NEGATIVE_LENGTH)), std::invalid_argument);
-}
+// BOOST_AUTO_TEST_CASE(constructor_throw_exception)
+// {
+//   BOOST_CHECK_THROW(std::unique_ptr< shkurov::Shape >
+//    circle_ptr2(new shkurov::Circle(BEGIN_POS, NEGATIVE_LENGTH)), std::invalid_argument);
+// }
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)
 {

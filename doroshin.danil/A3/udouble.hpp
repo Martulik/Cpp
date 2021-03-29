@@ -27,8 +27,9 @@ namespace doroshin
 
   constexpr udouble_t makeAbs(const double value)
   {
-    if(value < 0)
+    if (value < 0) {
       throw std::invalid_argument("Unsigned double value must be non-negative");
+    }
     return udouble_t(value);
   }
 

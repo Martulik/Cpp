@@ -22,7 +22,7 @@ dan::rectangle_t dan::Circle::getFrameRect() const
 
 void dan::Circle::move(point_t vec, bool absolute)
 {
-  if(absolute) {
+  if (absolute) {
     pos_ = vec;
   }
   else {

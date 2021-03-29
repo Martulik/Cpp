@@ -36,7 +36,7 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
 
 void dan::CompositeShape::move(point_t vec, bool absolute)
 {
-  if(absolute) {
+  if (absolute) {
     double x = getX(*this);
     double y = getY(*this);
     for(size_t i = 0; i < size_; ++i) {

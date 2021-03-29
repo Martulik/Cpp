@@ -16,8 +16,7 @@ void printShape(const dan::Shape& s)
 
 bool checkPosition(const dan::Shape& s, const dan::point_t other)
 {
-  dan::point_t pos = s.getFrameRect().pos;
-  return (pos.x == other.x) && (pos.y == other.y);
+  return (dan::getX(s) == other.x) && (dan::getY(s) == other.y);
 }
 
 int main()

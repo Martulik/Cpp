@@ -37,9 +37,10 @@ dan::rectangle_t dan::CompositeShape::getFrameRect() const
 void dan::CompositeShape::move(point_t vec, bool absolute)
 {
   if(absolute) {
-    point_t center = getFrameRect().pos;
+    double x = getX(*this);
+    double y = getY(*this);
     for(size_t i = 0; i < size_; ++i) {
-      point_t delta {getX(*shapes_[i]) - center.x, getY(*shapes_[i]) - center.y};
+      point_t delta {getX(*shapes_[i]) - x, getY(*shapes_[i]) - y};
       shapes_[i]->move({vec.x + delta.x, vec.y + delta.y}, true);
     }
   }

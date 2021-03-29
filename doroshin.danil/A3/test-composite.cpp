@@ -41,8 +41,8 @@ BOOST_AUTO_TEST_CASE(copy)
 
   BOOST_CHECK_EQUAL(shape.getArea(), cpy.getArea());
   equalSize(shape.getFrameRect(), cpy.getFrameRect());
-  BOOST_CHECK_EQUAL(shape.getFrameRect().pos.x, cpy.getFrameRect().pos.x);
-  BOOST_CHECK_EQUAL(shape.getFrameRect().pos.y, cpy.getFrameRect().pos.y);
+  BOOST_CHECK_EQUAL(dan::getX(shape), dan::getX(cpy));
+  BOOST_CHECK_EQUAL(dan::getY(shape), dan::getY(cpy));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -137,11 +137,13 @@ std::shared_ptr< lab::Shape > lab::CompositeShape::clone() const
 void lab::CompositeShape::reserve(size_t newCap)
 {
   if (newCap > capacity_) {
-    shapeArr temp(std::make_unique< shapePtr[] >(newCap));
+    CompositeShape tempShape(*this);
+    shapeArr tempData = std::make_unique< shapePtr[] >(newCap);
     for (size_t i = 0; i < size_; i++) {
-      temp[i] = std::move_if_noexcept(data_[i]);
+      tempData[i] = std::move_if_noexcept(data_[i]);
     }
-    data_.swap(temp);
-    capacity_ = newCap;
+    tempShape.data_ = std::move_if_noexcept(tempData);
+    tempShape.capacity_ = newCap;
+    swap(tempShape);
   }
 }

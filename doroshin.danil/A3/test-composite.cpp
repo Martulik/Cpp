@@ -16,9 +16,12 @@ public:
 
   dan::CompositeShape shape;
 private:
-  const dan::point_t p1{-1, 0};
-  const dan::point_t p2{1, 1};
+  static const dan::point_t p1;
+  static const dan::point_t p2;
 };
+
+const dan::point_t CompositeTestFixture::p1{-1, 0};
+const dan::point_t CompositeTestFixture::p2{1, 1};
 
 BOOST_FIXTURE_TEST_SUITE(Composite, CompositeTestFixture)
 

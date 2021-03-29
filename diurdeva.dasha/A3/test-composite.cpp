@@ -15,7 +15,7 @@ const double height2 = 2.0;
 const double radius = 3.0;
 const double radius2 = 4.0;
 const double negativeOptions = -8.0;
-const size_t index = 200;
+const size_t testIndex = 200;
 const size_t reserveValue = 2;
 
 using shapePtr = std::shared_ptr< diurdeva::Shape >;
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape)
 {
   diurdeva::CompositeShape composite(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
   BOOST_CHECK_THROW(composite.scale(negativeOptions), std::invalid_argument);
-  BOOST_CHECK_THROW(composite.at(index), std::out_of_range);
+  BOOST_CHECK_THROW(composite.at(testIndex), std::out_of_range);
 }
 
 BOOST_AUTO_TEST_CASE(testPopBack)

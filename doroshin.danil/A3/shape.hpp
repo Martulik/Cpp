@@ -9,7 +9,6 @@ namespace doroshin
 {
   class Shape
   {
-    virtual void scaleImpl(udouble_t) = 0;
   public:
     virtual std::unique_ptr< Shape > copy() const = 0;
     virtual ~Shape() = default;
@@ -19,6 +18,8 @@ namespace doroshin
 
     virtual void move(point_t vec, bool absolute = false) = 0;
     void scale(double);
+  private:
+    virtual void scaleImpl(udouble_t) = 0;
   };
 
   double getX(const Shape&);

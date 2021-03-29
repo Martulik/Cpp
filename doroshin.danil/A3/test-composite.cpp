@@ -9,14 +9,15 @@ using namespace dan::literals;
 
 class CompositeTestFixture
 {
-  const dan::point_t p1{-1, 0};
-  const dan::point_t p2{1, 1};
 public:
   CompositeTestFixture():
     shape(dan::Rectangle{2_ud, 3_ud, p1}, dan::Circle{p2, 2_ud})
   {}
 
   dan::CompositeShape shape;
+private:
+  const dan::point_t p1{-1, 0};
+  const dan::point_t p2{1, 1};
 };
 
 BOOST_FIXTURE_TEST_SUITE(Composite, CompositeTestFixture)

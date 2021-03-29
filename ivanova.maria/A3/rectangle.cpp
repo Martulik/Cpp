@@ -44,5 +44,5 @@ void ivanova::Rectangle::scaleShape(double k)
 
 ivanova::Shape::shared ivanova::Rectangle::clone() const
 {
-  return std::make_shared< Rectangle > (*this);
+  return std::make_shared<Rectangle>(*this);
 }

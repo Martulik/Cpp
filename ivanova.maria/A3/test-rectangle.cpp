@@ -4,7 +4,7 @@
 
 double height = 9.0;
 double width = 4.7;
-ivanova::point_t pos {-8.3, 6.0};
+ivanova::point_t pos{-8.3, 6.0};
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
 BOOST_AUTO_TEST_CASE(moveRectangle)
@@ -21,4 +21,3 @@ BOOST_AUTO_TEST_CASE(scaleRectangle)
   }
 
 BOOST_AUTO_TEST_SUITE_END()
-

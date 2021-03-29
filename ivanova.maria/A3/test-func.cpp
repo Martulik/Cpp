@@ -1,6 +1,6 @@
 #include "test-func.hpp"
 
-const double accuracy = 1000 * std::numeric_limits< double >::epsilon();
+const double accuracy = 1000 * std::numeric_limits<double>::epsilon();
 
 void ivanova::checkScale(ivanova::Shape *shape)
 {

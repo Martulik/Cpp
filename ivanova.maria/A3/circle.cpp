@@ -43,5 +43,5 @@ void ivanova::Circle::scaleShape(double k)
 
 ivanova::Shape::shared ivanova::Circle::clone() const
 {
-  return std::make_shared< Circle > (*this);
+  return std::make_shared<Circle>(*this);
 }

@@ -1,23 +1,24 @@
 #include "composite-shape.hpp"
 #include <cassert>
 
-using shared = std::shared_ptr< ivanova::Shape >;
+using shared = std::shared_ptr<ivanova::Shape>;
 
 ivanova::CompositeShape::CompositeShape(shared other):
   size_(0),
   capacity_(2),
-  data_(std::make_unique< shared [] >(capacity_))
+  data_(std::make_unique<shared[]>(capacity_))
 {
   data_[size_] = std::move(other);
   size_++;
 }
 
 ivanova::CompositeShape::CompositeShape(const CompositeShape &src):
-        size_(src.size_),
-        capacity_(src.capacity_),
-        data_(std::make_unique< shared[] >(src.size_))
+  size_(src.size_),
+  capacity_(src.capacity_),
+  data_(std::make_unique<shared[]>(src.size_))
 {
-  for (size_t i = 0; i < size_; i++) {
+  for (size_t i = 0; i < size_; i++)
+  {
     data_[i] = src.data_[i]->clone();
   }
 }
@@ -61,14 +62,14 @@ ivanova::rectangle_t ivanova::CompositeShape::getFrameRect() const
   double minY = {getY(*data_[0]) - getHeight(*data_[0]) / 2};
   double maxX = {getX(*data_[0]) + getWidth(*data_[0]) / 2};
   double maxY = {getY(*data_[0]) + getHeight(*data_[0]) / 2};
-  ivanova::point_t minXY {minX, minY};
-  ivanova::point_t maxXY {maxX, maxY};
+  ivanova::point_t minXY{minX, minY};
+  ivanova::point_t maxXY{maxX, maxY};
   for (std::size_t i = 1; i < size_; i++)
   {
     minXY = {std::min(minXY.x, (getX(*data_[i]) - getWidth(*data_[i]) / 2)),
              std::min(minXY.y, (getY(*data_[i]) - getHeight(*data_[i]) / 2))};
     maxXY = {std::max(maxXY.x, (getX(*data_[i]) + getWidth(*data_[i]) / 2)),
-             std::max(maxXY.y, (getY(*data_[0]) + getHeight(*data_[0]) / 2))};
+             std::max(maxXY.y, (getY(*data_[i]) + getHeight(*data_[i]) / 2))};
   }
   double width = maxXY.x - minXY.x;
   double height = maxXY.y - minXY.y;
@@ -81,7 +82,7 @@ size_t ivanova::CompositeShape::size() const
   return size_;
 }
 
-size_t ivanova::CompositeShape::capacity () const
+size_t ivanova::CompositeShape::capacity() const
 {
   return capacity_;
 }
@@ -122,9 +123,9 @@ void ivanova::CompositeShape::reserve(size_t capacity)
 
   if (capacity > capacity_)
   {
-    ivanova::CompositeShape tempArr (*this);
-    std::unique_ptr< shared [] > array (std::make_unique< shared [] >(capacity));
-    for (size_t i=0; i<size_; ++i)
+    ivanova::CompositeShape tempArr(*this);
+    std::unique_ptr<shared[]> array(std::make_unique<shared[]>(capacity));
+    for (size_t i = 0; i < size_; ++i)
     {
       array[i] = std::move(data_[i]);
     }
@@ -143,5 +144,5 @@ void ivanova::CompositeShape::swap(CompositeShape &other) noexcept
 
 shared ivanova::CompositeShape::clone() const
 {
-  return std::make_shared< CompositeShape >(*this);
+  return std::make_shared<CompositeShape>(*this);
 }

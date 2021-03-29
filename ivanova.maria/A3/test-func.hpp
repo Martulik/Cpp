@@ -10,5 +10,4 @@ namespace ivanova
   void checkMoveToPoint(ivanova::Shape *shape);
   void checkMoveAbs(ivanova::Shape *shp);
 }
-
 #endif

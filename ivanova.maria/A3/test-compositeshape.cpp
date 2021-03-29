@@ -13,7 +13,7 @@ const ivanova::point_t pos{-8.3, 6.0};
 const double radius = 4.0;
 const ivanova::point_t ctr = {2.1, 7.0};
 const size_t value = 10;
-using shared = std::shared_ptr< ivanova::Shape >;
+using shared = std::shared_ptr<ivanova::Shape>;
 
 BOOST_AUTO_TEST_SUITE(testCompositeShape)
 

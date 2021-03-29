@@ -10,7 +10,7 @@ namespace ivanova
   class Shape
   {
   public:
-    using shared = std::shared_ptr< ivanova::Shape >;
+    using shared = std::shared_ptr<ivanova::Shape>;
     virtual ~Shape() = default;
     virtual double getArea() const = 0;
     virtual rectangle_t getFrameRect() const = 0;
@@ -18,9 +18,10 @@ namespace ivanova
     virtual void move(double dx, double dy) = 0;
     virtual std::string getName() const = 0;
     virtual void scaleShape(double k) = 0;
-    void scale (double k);
+    void scale(double k);
     virtual shared clone() const = 0;
   };
+
   double getWidth(const Shape &source);
   double getHeight(const Shape &source);
   double getX(const Shape &source);

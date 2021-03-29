@@ -8,7 +8,7 @@ namespace ivanova
   class Rectangle: public Shape
   {
   public:
-    using shared = std::shared_ptr< ivanova::Shape >;
+    using shared = std::shared_ptr<ivanova::Shape>;
     Rectangle(double height, double width, point_t pos);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -17,6 +17,7 @@ namespace ivanova
     std::string getName() const override;
     void scaleShape(double k) override;
     shared clone() const override;
+
   private:
     double height_;
     double width_;

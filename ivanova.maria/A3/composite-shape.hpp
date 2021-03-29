@@ -6,10 +6,10 @@
 
 namespace ivanova
 {
-class CompositeShape: public Shape
+  class CompositeShape: public Shape
   {
   public:
-    using shared = std::shared_ptr< ivanova::Shape >;
+    using shared = std::shared_ptr<ivanova::Shape>;
     CompositeShape(shared other);
     CompositeShape(const CompositeShape &other);
     CompositeShape(CompositeShape &&other) noexcept = default;
@@ -26,12 +26,13 @@ class CompositeShape: public Shape
     std::string getName() const override;
     void scaleShape(double k) override;
     void reserve(size_t capacity);
-    void swap(CompositeShape& other) noexcept;
+    void swap(CompositeShape &other) noexcept;
     shared clone() const override;
+
   private:
     size_t size_;
     size_t capacity_;
-    std::unique_ptr< shared[] > data_;
+    std::unique_ptr<shared[]> data_;
   };
 }
 #endif

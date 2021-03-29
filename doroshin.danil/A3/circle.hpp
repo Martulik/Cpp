@@ -18,10 +18,10 @@ namespace doroshin
 
     void move(point_t vec, bool absolute = false) override;
   private:
-    void scaleImpl(udouble_t s) override;
-
     point_t pos_;
     double radius_;
+
+    void scaleImpl(udouble_t s) override;
   };
 }
 

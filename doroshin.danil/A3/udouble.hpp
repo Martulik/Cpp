@@ -8,7 +8,6 @@ namespace doroshin
 {
   class udouble_t
   {
-    double value_;
   public:
     constexpr explicit udouble_t() noexcept:
       value_()
@@ -22,6 +21,8 @@ namespace doroshin
     {
       return value_;
     }
+  private:
+    double value_;
   };
 
   constexpr udouble_t makeAbs(const double value)

@@ -18,9 +18,9 @@ namespace doroshin
 
     void move(point_t vec, bool absolute = false) override;
   private:
-    void scaleImpl(udouble_t s) override;
-
     rectangle_t rect_;
+
+    void scaleImpl(udouble_t s) override;
   };
 }
 

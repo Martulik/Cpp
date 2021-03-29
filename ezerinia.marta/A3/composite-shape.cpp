@@ -142,5 +142,6 @@ void lab::CompositeShape::reserve(size_t newCap)
       temp[i] = std::move_if_noexcept(data_[i]);
     }
     data_.swap(temp);
+    capacity_ = newCap;
   }
 }

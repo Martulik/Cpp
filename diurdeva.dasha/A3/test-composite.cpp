@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include <stdexcept>
+#include <memory>
 #include "test-function.hpp"
 #include "composite-shape.hpp"
 #include "rectangle.hpp"
@@ -14,7 +15,7 @@ const double height2 = 2.0;
 const double radius = 3.0;
 const double radius2 = 4.0;
 const double negativeOptions = -8.0;
-const double index = 200;
+const size_t index = 200;
 const size_t reserveValue = 2;
 
 using shapePtr = std::shared_ptr< diurdeva::Shape >;
@@ -32,7 +33,7 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
 
 BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape)
 {
-  diurdeeva::CompositeShape composite(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
+  diurdeva::CompositeShape composite(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
   BOOST_CHECK_THROW(composite.scale(negativeOptions), std::invalid_argument);
   BOOST_CHECK_THROW(composite.at(index), std::out_of_range);
 }
@@ -40,7 +41,7 @@ BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape)
 BOOST_AUTO_TEST_CASE(testPopBack)
 {
   diurdeva::CompositeShape compositeShape(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
-  BOOST_CHECK_THROW(compositeShape.pop_back(), std::out_of_range);
+  BOOST_CHECK_THROW(compositeShape.popBack(), std::out_of_range);
 }
 
 BOOST_AUTO_TEST_CASE(testReserve)
@@ -52,15 +53,15 @@ BOOST_AUTO_TEST_CASE(testReserve)
 
 BOOST_AUTO_TEST_CASE(moveCompositeShape)
 {
-  diurdeva::CompositeShape composite(std::make_shared< diurdeva::Rectangle >(width, height, StartPos));
-  addShapes(&composite);
+  diurdeva::CompositeShape composite(std::make_shared< diurdeva::Rectangle >(width, height, pointCenter));
+  pushShapes(&composite);
   checkConstOptionsBeforeMoving(&composite);
 }
 
 BOOST_AUTO_TEST_CASE(scaleCompositeShape)
 {
-  diurdeva::CompositeShape composite(std::make_shared< lab::Circle >(radius, StartPos));
-  addShapes(&composite);
+  diurdeva::CompositeShape composite(std::make_shared< diurdeva::Circle >(radius, pointCenter));
+  pushShapes(&composite);
   checkAreaBeforeScale(&composite);
 }
 

@@ -142,23 +142,6 @@ void pochernin::CompositeShape::move(const double dx, const double dy)
   }
 }
 
-void pochernin::CompositeShape::scale(const double factor)
-{
-  if (factor < 0)
-  {
-    throw(std::invalid_argument("Negative factor"));
-  }
-
-  pochernin::point_t centerPos = getFrameRect().pos;
-  for (size_t i = 0; i < size_; i++)
-  {
-    data_[i]->scale(factor);
-    double dx = data_[i]->getFrameRect().pos.x - centerPos.x;
-    double dy = data_[i]->getFrameRect().pos.y - centerPos.y;
-    data_[i]->move({centerPos.x + (dx * factor), centerPos.y + (dy * factor)});
-  }
-}
-
 void pochernin::CompositeShape::push_back(const std::shared_ptr< Shape > shape)
 {
   if (size_ == capacity_)
@@ -196,4 +179,16 @@ size_t pochernin::CompositeShape::size() const
 size_t pochernin::CompositeShape::capacity() const
 {
   return capacity_;
+}
+
+void pochernin::CompositeShape::doScale(const double factor)
+{
+  pochernin::point_t centerPos = getFrameRect().pos;
+  for (size_t i = 0; i < size_; i++)
+  {
+    data_[i]->scale(factor);
+    double dx = data_[i]->getFrameRect().pos.x - centerPos.x;
+    double dy = data_[i]->getFrameRect().pos.y - centerPos.y;
+    data_[i]->move({centerPos.x + (dx * factor), centerPos.y + (dy * factor)});
+  }
 }

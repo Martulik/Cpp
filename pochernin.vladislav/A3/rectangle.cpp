@@ -37,12 +37,8 @@ void pochernin::Rectangle::move(const double dx, const double dy)
   figure_.pos.y += dy;
 }
 
-void pochernin::Rectangle::scale(const double factor)
+void pochernin::Rectangle::doScale(const double factor)
 {
-  if (factor < 0)
-  {
-    throw(std::invalid_argument("Negative factor"));
-  }
   figure_.width *= factor;
   figure_.height *= factor;
 }

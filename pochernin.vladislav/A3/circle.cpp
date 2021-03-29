@@ -35,12 +35,8 @@ void pochernin::Circle::move(const double dx, const double dy)
   figure_.pos.y += dy;
 }
 
-void pochernin::Circle::scale(const double factor)
+void pochernin::Circle::doScale(const double factor)
 {
-  if (factor < 0)
-  {
-    throw(std::invalid_argument("Negative factor"));
-  }
   figure_.width *= factor;
   figure_.height *= factor;
 }

@@ -27,7 +27,6 @@ namespace pochernin
     virtual rectangle_t getFrameRect() const override;
     virtual void move(const point_t& destination) override;
     virtual void move(double dx, double dy) override;
-    virtual void scale(double factor) override;
     void push_back(const std::shared_ptr< Shape > shape);
     void pop_back();
     size_t size() const;
@@ -37,6 +36,8 @@ namespace pochernin
     size_t size_;
     size_t capacity_;
     std::unique_ptr< std::shared_ptr< Shape >[] > data_;
+
+    virtual void doScale(double factor) override;
   };
 }
 

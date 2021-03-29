@@ -6,8 +6,8 @@
 
 void printCoordinates(const shkurov::Shape* figure)
 {
-  std::cout << figure->getName() << " is now located by (" 
-            << figure->getFrameRect().pos.x << ':' 
+  std::cout << figure->getName() << " is now located by ("
+            << figure->getFrameRect().pos.x << ':'
             << figure->getFrameRect().pos.y << ')' << '\n';
 }
 

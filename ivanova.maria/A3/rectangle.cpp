@@ -35,9 +35,14 @@ std::string ivanova::Rectangle::getName() const
   return "Rectangle";
 }
 
-void ivanova::Rectangle::scale(double k)
+void ivanova::Rectangle::scaleShape(double k)
 {
   assert(k > 0);
   height_ *= k;
   width_ *= k;
+}
+
+ivanova::Shape::shared ivanova::Rectangle::clone() const
+{
+  return std::make_shared< Rectangle > (*this);
 }

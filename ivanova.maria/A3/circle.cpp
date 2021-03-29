@@ -35,8 +35,13 @@ std::string ivanova::Circle::getName() const
   return "Circle";
 }
 
-void ivanova::Circle::scale(double k)
+void ivanova::Circle::scaleShape(double k)
 {
   assert(k > 0);
   radius_ *= k;
+}
+
+ivanova::Shape::shared ivanova::Circle::clone() const
+{
+  return std::make_shared< Circle > (*this);
 }

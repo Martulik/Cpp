@@ -1,22 +1,27 @@
 #include <iostream>
 
+#include "composite-shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
-#include "composite-shape.hpp"
 
 void info (ivanova::CompositeShape &array);
 void test(ivanova::CompositeShape &array);
 
 int main()
 {
-  ivanova::Rectangle rectangle (10.9, 5.0, {-4.0, 8.1});
+  const double radius = 12.0;
+  const ivanova::point_t ctr = {4.8, 2.9};
+  const double h = 10.9;
+  const double w = 5.0;
+  const ivanova::point_t pos = {-2.0, 9.1};
+
+  ivanova::Rectangle rectangle (h, w, pos);
   std::shared_ptr< ivanova::Shape > testRect = std::make_shared< ivanova::Rectangle >(rectangle);
 
-  ivanova::Circle circle ({4.8, 2.9}, 12.0);
-  std::shared_ptr< ivanova::Shape > testCircle = std::make_shared< ivanova::Circle >(circle);
-
-  ivanova::CompositeShape testArray(testCircle);
-  testArray.push_back(testRect);
+  ivanova::Circle circle (ctr, radius);
+  ivanova::CompositeShape testArray(std::make_shared< ivanova::Circle >(circle));
+  
+  testArray.pushBack(testRect);
   test(testArray);
   return 0;
 }

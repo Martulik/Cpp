@@ -15,7 +15,7 @@ void diurdeva::checkConstOptionsBeforeMoving(Shape* shape)
   BOOST_CHECK_CLOSE(shape->getArea(), area, accuracy);
 }
 
-void checkAreaBeforeScale(diurdeva::Shape* shape)
+void diurdeva::checkAreaBeforeScale(Shape* shape)
 {
   double areaBeforeScale = shape->getArea();
   shape->scale(factor);

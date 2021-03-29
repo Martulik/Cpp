@@ -8,34 +8,37 @@ namespace doroshin
 {
   class CompositeShape: public Shape
   {
-    using ShapePtr = std::unique_ptr< Shape >;
-    using ShapeArray = std::unique_ptr< ShapePtr[] >;
-
-    ShapeArray shapes_;
-    size_t size_;
-    void scaleImpl(udouble_t s) override;
   public:
     // Empty CompositeShape is forbidden
     CompositeShape() = delete;
+    CompositeShape(const CompositeShape&);
+    CompositeShape(CompositeShape&&) noexcept = default;
 
     // For any type T in Shapes the following must be true:
     // std::is_convertible< shape.copy(), ShapePtr >::value
     template< typename... Shapes >
     CompositeShape(Shapes...);
 
+    ~CompositeShape() override = default;
+
+    CompositeShape& operator=(const CompositeShape&);
+    CompositeShape& operator=(CompositeShape&&) noexcept = default;
+
+    void swap(CompositeShape& lhs) noexcept;
+    std::unique_ptr< Shape > copy() const override;
+
     double getArea() const override;
     rectangle_t getFrameRect() const override;
 
     void move(point_t vec, bool absolute = false) override;
+  private:
+    using ShapePtr = std::unique_ptr< Shape >;
+    using ShapeArray = std::unique_ptr< ShapePtr[] >;
 
-    std::unique_ptr< Shape > copy() const override;
-    CompositeShape(const CompositeShape&);
-    CompositeShape(CompositeShape&&) noexcept = default;
-    CompositeShape& operator=(const CompositeShape&);
-    CompositeShape& operator=(CompositeShape&&) noexcept = default;
-    ~CompositeShape() override = default;
+    ShapeArray shapes_;
+    size_t size_;
 
-    void swap(CompositeShape& lhs) noexcept;
+    void scaleImpl(udouble_t s) override;
   };
 
   namespace details

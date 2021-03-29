@@ -1,5 +1,3 @@
-#define BOOST_TEST_MAIN
-#define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE A3
 
 #include <boost/test/included/unit_test.hpp>
@@ -29,7 +27,7 @@ std::unique_ptr< shkurov::Shape > rect_ptr(new shkurov::Rectangle(BEGIN_POS, LEN
 BOOST_AUTO_TEST_CASE(constructor_throw_exception)
 {
   BOOST_CHECK_THROW(std::unique_ptr< shkurov::Shape >
-    rect_ptr2(new shkurov::Rectangle(BEGIN_POS, NEGATIVE_LENGTH, LENGTH_2)), std::invalid_argument);
+   rect_ptr2(new shkurov::Rectangle(BEGIN_POS, NEGATIVE_LENGTH, LENGTH_2)), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)
@@ -63,7 +61,7 @@ std::unique_ptr< shkurov::Shape > circle_ptr(new shkurov::Circle(BEGIN_POS, LENG
 BOOST_AUTO_TEST_CASE(constructor_throw_exception)
 {
   BOOST_CHECK_THROW(std::unique_ptr< shkurov::Shape >
-    circle_ptr2(new shkurov::Circle(BEGIN_POS, NEGATIVE_LENGTH)), std::invalid_argument);
+   circle_ptr2(new shkurov::Circle(BEGIN_POS, NEGATIVE_LENGTH)), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)

@@ -32,10 +32,16 @@ BOOST_AUTO_TEST_CASE(test_move)
   dan::testMoveAbs(shape, {65, -33});
 }
 
-BOOST_AUTO_TEST_CASE(test_scale)
+BOOST_AUTO_TEST_CASE(test_scale_area)
 {
-  dan::testScale(shape, 4.5_ud);
-  dan::testScale(shape, 0.1_ud);
+  dan::testScaleArea(shape, 4.5_ud);
+  dan::testScaleArea(shape, 0.1_ud);
+}
+
+BOOST_AUTO_TEST_CASE(test_scale_area_frame)
+{
+  dan::testScaleFrame(shape, 100_ud);
+  dan::testScaleFrame(shape, 0.55_ud);
 }
 
 BOOST_AUTO_TEST_CASE(copy)

@@ -10,5 +10,6 @@ namespace doroshin
 
   void testMoveAbs(Shape&, point_t);
 
-  void testScale(Shape&, udouble_t coeff);
+  void testScaleArea(Shape&, udouble_t coeff);
+  void testScaleFrame(Shape&, udouble_t coeff);
 }

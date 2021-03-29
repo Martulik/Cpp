@@ -22,16 +22,29 @@ void dan::testMoveAbs(dan::Shape& s, dan::point_t point)
   equalSize(orig_frame, s.getFrameRect());
 }
 
-void dan::testScale(dan::Shape& s, dan::udouble_t coeff)
+template< typename GetArea >
+void testScale(dan::Shape& s, dan::udouble_t coeff, GetArea getArea)
 {
   const double tolerance = std::numeric_limits< double >::epsilon();
-  double orig_area1 = s.getArea();
-  double orig_area2 = dan::getWidth(s) * dan::getHeight(s);
-  double predicted1 = coeff * coeff * orig_area1;
-  double predicted2 = coeff * coeff * orig_area2;
+  double orig_area = getArea(s);
+  double predicted = coeff * coeff * orig_area;
   s.scale(coeff);
-  double n_area1 = s.getArea();
-  double n_area2 = dan::getWidth(s) * dan::getHeight(s);
-  BOOST_CHECK_CLOSE_FRACTION(predicted1, n_area1, tolerance);
-  BOOST_CHECK_CLOSE_FRACTION(predicted2, n_area2, tolerance);
+  double new_area = getArea(s);
+  BOOST_CHECK_CLOSE_FRACTION(predicted, new_area, tolerance);
+}
+
+void dan::testScaleArea(dan::Shape& shape, dan::udouble_t k)
+{
+  testScale(shape, k,
+    [](const dan::Shape& s) {
+      return s.getArea();
+    });
+}
+
+void dan::testScaleFrame(dan::Shape& shape, dan::udouble_t k)
+{
+  testScale(shape, k,
+    [](const dan::Shape& s) {
+      return dan::getHeight(s) * dan::getWidth(s);
+    });
 }

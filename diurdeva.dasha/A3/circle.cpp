@@ -27,16 +27,18 @@ void diurdeva::Circle::move(const point_t &newCenter)
   pos_ = newCenter;
 }
 
-void diurdeva::Circle::move(double dX, double dY)
+void diurdeva::Circle::move(const double dX, const double dY)
 {
   pos_.x += dX;
   pos_.y += dY;
 }
 
-void diurdeva::Circle::scale(const double factor)
+std::shared_ptr< diurdeva::Shape > diurdeva::Circle::clone() const
 {
-  if (factor < 0.0) {
-    throw (std::invalid_argument("Negative factor"));
-  }
+  return std::make_shared< Circle >(*this);
+}
+
+void diurdeva::Circle::doScale(const double factor)
+{
   rad_ *= factor;
 }

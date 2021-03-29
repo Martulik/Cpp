@@ -2,31 +2,37 @@
 #define A3_COMPOSITE_SHAPE_HPP
 
 #include "shape.hpp"
-#include <memory>
 
 namespace diurdeva {
   class CompositeShape: public Shape {
   public:
-    CompositeShape(std::shared_ptr< Shape > shape);
+    using shapePtr = std::shared_ptr< Shape >;
+    using shapeArray = std::unique_ptr< shapePtr[] >;
+    CompositeShape(shapePtr shape);
     CompositeShape(const CompositeShape &shape);
     CompositeShape(CompositeShape &&other) noexcept;
     ~CompositeShape() = default;
     CompositeShape &operator=(const CompositeShape &other);
     CompositeShape &operator=(CompositeShape &&other) noexcept;
-    std::shared_ptr< Shape > at(std::size_t index) const;
-    bool operator==(const CompositeShape &other);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t &newCenter) override;
     void move(double dX, double dY) override;
-    void scale(double factor) override;
-    void push_back(std::shared_ptr< Shape > newShape);
-    void pop_back();
+    std::shared_ptr< Shape > at(size_t index) const;
+    std::shared_ptr< Shape > clone() const override;
+    void swap(CompositeShape& src) noexcept;
+    void reserve(size_t newCap);
+    void pushBack(shapePtr newShape);
+    void popBack();
     size_t size() const;
+    size_t capacity() const;
   private:
-    std::size_t size_;
-    std::unique_ptr< std::shared_ptr< Shape >[] > shapeArr_;
+    size_t capacity_;
+    size_t size_;
+    shapeArray shapeArr_;
+    void doScale(double factor) override;
   };
+  void swap(CompositeShape& src1, CompositeShape& src2) noexcept;
 }
 
 #endif

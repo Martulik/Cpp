@@ -11,10 +11,11 @@ namespace diurdeva {
     rectangle_t getFrameRect() const override;
     void move(const point_t &newCenter) override;
     void move(double dX, double dY) override;
-    void scale(double factor) override;
+    std::shared_ptr< Shape > clone() const override;
   private:
     double rad_;
     point_t pos_;
+    void doScale(double factor) override;
   };
 }
 

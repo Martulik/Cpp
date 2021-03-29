@@ -1,34 +1,15 @@
-#include "circle.hpp"
-#include "composite-shape.hpp"
-#include "rectangle.hpp"
 #include <iostream>
 #include <memory>
 
-bool testScale(diurdeva::Shape *figura, const int index)
-{
-  double area = figura->getArea();
-  figura->scale(index);
-  if (area * index * index == figura->getArea()) {
-    return true;
-  }
-  return false;
-}
+#include "circle.hpp"
+#include "composite-shape.hpp"
+#include "rectangle.hpp"
 
-void printInfoFrameRect(const char *nameShape, const diurdeva::Shape *figura)
+void printInfoFrameRect(const std::shared_ptr< diurdeva::Shape > figura)
 {
-  std::cout << nameShape << " - Bounding rectangle: width = " << figura->getFrameRect().width << ", height = "
-            << figura->getFrameRect().height
-            << ", center: x = " << figura->getFrameRect().pos.x << ", y = " << figura->getFrameRect().pos.y
-            << "\nArea is: " << figura->getArea();
-}
-
-void testShape(diurdeva::Shape *figura, const char *nameShape, const diurdeva::point_t newCenter, const int index)
-{
-  printInfoFrameRect(nameShape, figura);
-  figura->move(newCenter);
-  bool check = ((figura->getFrameRect().pos.x == newCenter.x) && (figura->getFrameRect().pos.y == newCenter.y));
-  std::cout << "\nThe move has passed: " << (check ? "right" : "wrong");
-  std::cout << "\nThe scale has passed: " << (testScale(figura, index) ? "right" : "wrong") << "\n";
+  std::cout << "\n Bounding rectangle: width = " << diurdeva::getWidth(*figura) << ", height = "
+            << diurdeva::getHeight(*figura)
+            << ", center: x = " << diurdeva::getX(*figura) << ", y = " << diurdeva::getY(*figura);
 }
 
 int main()
@@ -37,17 +18,19 @@ int main()
   const diurdeva::point_t newCenter = {3.0, 2.0};
   const double w = 8.0;
   const double h = 5.0;
-  const double radius = 3;
-  const int scale = 2;
-
-  diurdeva::Shape *rectangle = new diurdeva::Rectangle(w, h, pointCenter);
-  testShape(rectangle, "Rectangle", newCenter, scale);
-  diurdeva::Shape *circle = new diurdeva::Circle(radius, pointCenter);
-  testShape(circle, "Circle", newCenter, scale);
-  delete rectangle;
-  delete circle;
+  const double radius = 3.0;
+  const double radius2 = 2.5;
+  const double factor = 2.0;
 
   diurdeva::CompositeShape compositeShape(std::make_shared< diurdeva::Rectangle >(w, h, pointCenter));
-  compositeShape.push_back(std::make_shared< diurdeva::Circle >(radius, pointCenter));
-  testShape(&compositeShape, "CompositeShape", newCenter, scale);
+  compositeShape.pushBack(std::make_shared< diurdeva::Circle >(radius, pointCenter));
+  compositeShape.pushBack(std::make_shared< diurdeva::Circle >(radius2, pointCenter));
+
+  std::cout << "Area is " << compositeShape.getArea();
+  for (size_t i = 0; i < compositeShape.size(); i++) {
+    printInfoFrameRect(compositeShape.at(i));
+    compositeShape.at(i)->move(newCenter);
+    compositeShape.at(i)->scale(factor);
+    printInfoFrameRect(compositeShape.at(i));
+  }
 }

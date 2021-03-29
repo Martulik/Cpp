@@ -26,17 +26,19 @@ void diurdeva::Rectangle::move(const point_t &newCenter)
   pos_ = newCenter;
 }
 
-void diurdeva::Rectangle::move(double dX, double dY)
+void diurdeva::Rectangle::move(const double dX, const double dY)
 {
   pos_.x += dX;
   pos_.y += dY;
 }
 
-void diurdeva::Rectangle::scale(const double factor)
+std::shared_ptr< diurdeva::Shape > diurdeva::Rectangle::clone() const
 {
-  if (factor < 0.0) {
-    throw (std::invalid_argument("Negative factor"));
-  }
+  return std::make_shared< Rectangle >(*this);
+}
+
+void diurdeva::Rectangle::doScale(const double factor)
+{
   width_ *= factor;
   height_ *= factor;
 }

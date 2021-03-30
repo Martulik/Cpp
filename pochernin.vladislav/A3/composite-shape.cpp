@@ -64,14 +64,8 @@ pochernin::CompositeShape& pochernin::CompositeShape::operator=(const CompositeS
     return *this;
   }
 
-  size_ = src.size_;
-  capacity_ = src.capacity_;
-  data_.reset();
-  data_ = std::make_unique< std::shared_ptr< Shape >[] >(capacity_);
-  for (size_t i = 0; i < size_; i++)
-  {
-    data_[i] = src.data_[i];
-  }
+  CompositeShape temp(src);
+  swap(temp);
   return *this;
 }
 
@@ -181,6 +175,13 @@ size_t pochernin::CompositeShape::capacity() const
   return capacity_;
 }
 
+void pochernin::CompositeShape::swap(CompositeShape& other) noexcept
+{
+  std::swap(size_, other.size_);
+  std::swap(capacity_, other.capacity_);
+  std::swap(data_, other.data_);
+}
+
 void pochernin::CompositeShape::doScale(const double factor)
 {
   pochernin::point_t centerPos = getFrameRect().pos;
@@ -191,4 +192,9 @@ void pochernin::CompositeShape::doScale(const double factor)
     double dy = data_[i]->getFrameRect().pos.y - centerPos.y;
     data_[i]->move({centerPos.x + (dx * factor), centerPos.y + (dy * factor)});
   }
+}
+
+void pochernin::swap(CompositeShape& cs1, CompositeShape& cs2) noexcept
+{
+  cs1.swap(cs2);
 }

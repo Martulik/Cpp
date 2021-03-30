@@ -31,6 +31,7 @@ namespace pochernin
     void pop_back();
     size_t size() const;
     size_t capacity() const;
+    void swap (CompositeShape& other) noexcept;
 
   private:
     size_t size_;
@@ -39,6 +40,8 @@ namespace pochernin
 
     virtual void doScale(double factor) override;
   };
+
+  void swap(CompositeShape& cs1, CompositeShape& cs2) noexcept;
 }
 
 #endif

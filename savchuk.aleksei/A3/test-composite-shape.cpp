@@ -7,7 +7,7 @@
 
 namespace lab = savchuk;
 
-lab::CompositeShape makeComposite(const lab::Rectnagle& r, const lab::Circle& c)
+lab::CompositeShape makeComposite(const lab::Rectangle& r, const lab::Circle& c)
 {
   return lab::CompositeShape({ &r, &c });
 }

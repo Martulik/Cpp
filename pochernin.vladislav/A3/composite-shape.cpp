@@ -100,16 +100,16 @@ pochernin::rectangle_t pochernin::CompositeShape::getFrameRect() const
   {
     return {0.0, 0.0, {0.0, 0.0}};
   }
-  double mostLeft = data_[0]->getFrameRect().pos.x - (data_[0]->getFrameRect().width / 2);
-  double mostRight = data_[0]->getFrameRect().pos.x + (data_[0]->getFrameRect().width / 2);
-  double mostUp = data_[0]->getFrameRect().pos.y + (data_[0]->getFrameRect().height / 2);
-  double mostDown = data_[0]->getFrameRect().pos.y - (data_[0]->getFrameRect().height / 2);
+  double mostLeft = pochernin::getX(*data_[0]) - (pochernin::getWidth(*data_[0]) / 2);
+  double mostRight = pochernin::getX(*data_[0]) + (pochernin::getWidth(*data_[0]) / 2);
+  double mostUp = pochernin::getY(*data_[0]) + (pochernin::getHeight(*data_[0]) / 2);
+  double mostDown = pochernin::getY(*data_[0]) - (pochernin::getHeight(*data_[0]) / 2);
   for (size_t i = 1; i < size_; i++)
   {
-    mostLeft = std::min(mostLeft, data_[i]->getFrameRect().pos.x - (data_[i]->getFrameRect().width / 2));
-    mostRight = std::max(mostRight, data_[i]->getFrameRect().pos.x + (data_[i]->getFrameRect().width / 2));
-    mostUp = std::max(mostUp, data_[i]->getFrameRect().pos.y + (data_[i]->getFrameRect().height / 2));
-    mostDown = std::min(mostDown, data_[i]->getFrameRect().pos.y - (data_[i]->getFrameRect().height / 2));
+    mostLeft = std::min(mostLeft, pochernin::getX(*data_[i]) - (pochernin::getWidth(*data_[i]) / 2));
+    mostRight = std::max(mostRight, pochernin::getX(*data_[i]) + (pochernin::getWidth(*data_[i]) / 2));
+    mostUp = std::max(mostUp, pochernin::getY(*data_[i]) + (pochernin::getHeight(*data_[i]) / 2));
+    mostDown = std::min(mostDown, pochernin::getY(*data_[i]) - (pochernin::getHeight(*data_[i]) / 2));
   }
   double width = mostRight - mostLeft;
   double height = mostUp - mostDown;
@@ -118,8 +118,8 @@ pochernin::rectangle_t pochernin::CompositeShape::getFrameRect() const
 
 void pochernin::CompositeShape::move(const pochernin::point_t& destination)
 {
-  double dx = destination.x - getFrameRect().pos.x;
-  double dy = destination.y - getFrameRect().pos.y;
+  double dx = destination.x - pochernin::getX(*this);
+  double dy = destination.y - pochernin::getY(*this);;
   for (size_t i = 0; i < size_; i++)
   {
     data_[i]->move(dx, dy);
@@ -186,8 +186,8 @@ void pochernin::CompositeShape::doScale(const double factor)
   for (size_t i = 0; i < size_; i++)
   {
     data_[i]->scale(factor);
-    double dx = data_[i]->getFrameRect().pos.x - centerPos.x;
-    double dy = data_[i]->getFrameRect().pos.y - centerPos.y;
+    double dx = pochernin::getX(*data_[i]) - centerPos.x;
+    double dy = pochernin::getY(*data_[i]) - centerPos.y;
     data_[i]->move({centerPos.x + (dx * factor), centerPos.y + (dy * factor)});
   }
 }

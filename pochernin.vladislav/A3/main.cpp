@@ -43,16 +43,16 @@ int main()
 
 void print(const pochernin::Shape& shape, std::ostream& out)
 {
-  out << "width: " << shape.getFrameRect().width << "\n";
-  out << "height: " << shape.getFrameRect().height << "\n";
-  out << "pos: " << "(" << shape.getFrameRect().pos.x
-      << "; " << shape.getFrameRect().pos.y << ")\n";
+  out << "width: " << pochernin::getWidth(shape) << "\n";
+  out << "height: " << pochernin::getHeight(shape) << "\n";
+  out << "pos: " << "(" << pochernin::getX(shape)
+      << "; " << pochernin::getY(shape) << ")\n";
   out << "area: " << shape.getArea() << "\n\n";
 }
 
 bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos)
 {
-  return ((shape.getFrameRect().pos.x == pos.x) && (shape.getFrameRect().pos.y == pos.y));
+  return ((pochernin::getX(shape) == pos.x) && (pochernin::getY(shape) == pos.y));
 }
 
 void testShape(pochernin::Shape* shape, std::ostream& out, const pochernin::point_t& finishPos)

@@ -20,6 +20,11 @@ namespace pochernin
   private:
     virtual void doScale(double factor) = 0;
   };
+
+  double getX(const Shape& shape);
+  double getY(const Shape& shape);
+  double getWidth(const Shape& shape);
+  double getHeight(const Shape& shape);
 }
 
 #endif

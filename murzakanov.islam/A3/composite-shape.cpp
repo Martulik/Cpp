@@ -10,7 +10,7 @@ murzakanov::CompositeShape::CompositeShape(std::shared_ptr< Shape > shp):
   {
     throw std::invalid_argument("Pointer to shape cannot be nullptr");
   }
-  array_[size_].reset(shp->clone());
+  array_[size_ - 1].reset(shp->clone());
 }
 
 murzakanov::CompositeShape::CompositeShape(const CompositeShape& other):

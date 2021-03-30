@@ -11,7 +11,17 @@
 
 namespace lab = savchuk;
 
-const double tolerance = std::numeric_limits< double >::epsilon();
+const double TOLERANCE = std::numeric_limits< double >::epsilon();
+
+lab::Rectangle makeRect(const point_t& p, double w, double h)
+{
+  return { p, w, h };
+}
+
+lab::Circle makeCirc(const point_t& p, double r)
+{
+  return { p, r };
+}
 
 void checkMoveInvariant(lab::Shape& s, const lab::point_t& p)
 {
@@ -45,7 +55,7 @@ void checkScaleArea(lab::Shape& s, double k)
   double a1 = s.getArea();
   s.scale(k);
   double a2 = s.getArea();
-  BOOST_CHECK_CLOSE_FRACTION(a2, k * k * a1, tolerance);
+  BOOST_CHECK_CLOSE_FRACTION(a2, k * k * a1, TOLERANCE);
 }
 
 void checkScaleInvalidArgument(lab::Shape& s, double k)

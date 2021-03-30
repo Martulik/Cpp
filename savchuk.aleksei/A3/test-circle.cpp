@@ -7,32 +7,34 @@ namespace lab = savchuk;
 
 BOOST_AUTO_TEST_SUITE(circle)
 
-lab::Circle circ({ { 2, 3 }, 5 });
+const lab::point_t POS = { 2.3, -7.1 };
+const double RADIUS = 3.5;
+const double CORRECT_SCALE_FACTOR = 4.6;
+const double WRONG_SCALE_FACTOR = -5.1;
 
 BOOST_AUTO_TEST_CASE(move_invariant)
 {
-  lab::Circle c(circ);
-  checkMoveInvariant(c, { 11, 13 });
-  checkMoveInvariant(c, 11, 13);
+  lab::Circle c = makeCirc(POS, RADIUS);
+  checkMoveInvariant(c, { -1.6, 13.5 });
+  checkMoveInvariant(c, 2.3, -12.6);
 }
 
 BOOST_AUTO_TEST_CASE(scale_frame_rectangle)
 {
-  lab::Circle c(circ);
-  checkScaleFrameRect(c, 3);
+  lab::Circle c = makeCirc(POS, RADIUS);
+  checkScaleFrameRect(c, CORRECT_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(scale_area)
 {
-  lab::Circle c(circ);
-  checkScaleArea(c, 3);
-  checkScaleArea(c, 0.3);
+  lab::Circle c = makeCirc(POS, RADIUS);
+  checkScaleArea(c, CORRECT_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(scale_invalid_argument)
 {
-  lab::Circle c(circ);
-  checkScaleInvalidArgument(c, -3);
+  lab::Circle c = makeCirc(POS, RADIUS);
+  checkScaleInvalidArgument(c, WRONG_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

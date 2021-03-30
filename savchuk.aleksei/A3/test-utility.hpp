@@ -1,9 +1,14 @@
 #ifndef TEST_UTILITY_HPP
 #define TEST_UTILITY_HPP
 
-#include "shape.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 namespace lab = savchuk;
+
+lab::Rectangle makeRect(const lab::point_t& p, double w, double h);
+
+lab::Circle makeCirc(const lab::point_t& p, double r);
 
 void checkMoveInvariant(lab::Shape& s, const lab::point_t& p);
 

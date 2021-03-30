@@ -11,13 +11,13 @@ namespace lab = savchuk;
 using value_type = std::unique_ptr< lab::Shape >;
 using this_type = lab::CompositeShape;
 
-lab::CompositeShape::CompositeShape(std::initializer_list< lab::Shape* > src):
+lab::CompositeShape::CompositeShape(std::initializer_list< const lab::Shape* > src):
   size_(src.size())
 {
   assert(size_ != 0 && "The composite shape cannot be empty");
   arr_ = new value_type[size_];
   size_t i = 0;
-  std::initializer_list< Shape* >::iterator it = src.begin();
+  std::initializer_list< const Shape* >::const_iterator it = src.begin();
   while (it != src.end())
   {
     assert(*it != nullptr && "The pointer to shape cannot be nullptr");

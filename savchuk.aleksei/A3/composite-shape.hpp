@@ -15,7 +15,7 @@ namespace savchuk
     using value_type = std::unique_ptr< Shape >;
     using this_type = CompositeShape;
 
-    CompositeShape(std::initializer_list< Shape* >);
+    CompositeShape(std::initializer_list< const Shape* >);
     CompositeShape(const this_type&);
     CompositeShape(this_type&&) noexcept;
     ~CompositeShape();

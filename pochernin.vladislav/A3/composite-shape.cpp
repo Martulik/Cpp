@@ -23,7 +23,6 @@ pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
   data_ = std::move(src.data_);
   src.size_ = 0;
   src.capacity_ = 0;
-  src.data_ = nullptr;
 }
 
 pochernin::CompositeShape::CompositeShape(const std::shared_ptr< Shape > shape, size_t capacity):
@@ -82,7 +81,6 @@ pochernin::CompositeShape& pochernin::CompositeShape::operator=(CompositeShape&&
   data_ = std::move(src.data_);
   src.size_ = 0;
   src.capacity_ = 0;
-  src.data_ = nullptr;
   return *this;
 }
 

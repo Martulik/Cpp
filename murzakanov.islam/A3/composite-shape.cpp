@@ -88,13 +88,9 @@ void murzakanov::CompositeShape::addShape(const std::shared_ptr< Shape >& shp)
       tempArray[i] = std::move(array_[i]);
     }
     capacity_ = capacity_ * 2;
-    tempArray[size_].reset(shp->clone());
     array_ = std::move(tempArray);
   }
-  else
-  {
-    array_[size_].reset(shp->clone());
-  }
+  array_[size_].reset(shp->clone());
   size_++;
 }
 

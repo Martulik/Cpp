@@ -9,7 +9,7 @@ namespace lab = savchuk;
 
 lab::CompositeShape makeComposite(const lab::Rectnagle& r, const lab::Circle& c)
 {
-  return { &r, &c };
+  return lab::CompositeShape({ &r, &c });
 }
 
 BOOST_AUTO_TEST_SUITE(composite_shape)

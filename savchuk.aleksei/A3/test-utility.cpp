@@ -13,14 +13,14 @@ namespace lab = savchuk;
 
 const double TOLERANCE = std::numeric_limits< double >::epsilon();
 
-lab::Rectangle makeRect(const point_t& p, double w, double h)
+lab::Rectangle makeRect(const lab::point_t& p, double w, double h)
 {
-  return { p, w, h };
+  return lab::Rectangle(p, w, h);
 }
 
-lab::Circle makeCirc(const point_t& p, double r)
+lab::Circle makeCirc(const lab::point_t& p, double r)
 {
-  return { p, r };
+  return lab::Circle(p, r);
 }
 
 void checkMoveInvariant(lab::Shape& s, const lab::point_t& p)

@@ -25,7 +25,7 @@ const double WRONG_SCALE_FACTOR = -5.1;
 BOOST_AUTO_TEST_CASE(move_invariant)
 {
   lab::Rectangle r = makeRect(POS_1, WIDTH, HEIGHT);
-  lab::Circle c = makeCirc(POS_1, RADIUS);
+  lab::Circle c = makeCirc(POS_2, RADIUS);
   lab::CompositeShape comp = makeComposite(r, c);
   checkMoveInvariant(comp, { -1.6, 13.5 });
   checkMoveInvariant(comp, 2.3, -12.6);
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(move_invariant)
 BOOST_AUTO_TEST_CASE(scale_frame_rectangle)
 {
   lab::Rectangle r = makeRect(POS_1, WIDTH, HEIGHT);
-  lab::Circle c = makeCirc(POS_1, RADIUS);
+  lab::Circle c = makeCirc(POS_2, RADIUS);
   lab::CompositeShape comp = makeComposite(r, c);
   checkScaleFrameRect(comp, CORRECT_SCALE_FACTOR);
 }
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(scale_frame_rectangle)
 BOOST_AUTO_TEST_CASE(scale_area)
 {
   lab::Rectangle r = makeRect(POS_1, WIDTH, HEIGHT);
-  lab::Circle c = makeCirc(POS_1, RADIUS);
+  lab::Circle c = makeCirc(POS_2, RADIUS);
   lab::CompositeShape comp = makeComposite(r, c);
   checkScaleArea(comp, CORRECT_SCALE_FACTOR);
 }
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(scale_area)
 BOOST_AUTO_TEST_CASE(scale_invalid_argument)
 {
   lab::Rectangle r = makeRect(POS_1, WIDTH, HEIGHT);
-  lab::Circle c = makeCirc(POS_1, RADIUS);
+  lab::Circle c = makeCirc(POS_2, RADIUS);
   lab::CompositeShape comp = makeComposite(r, c);
   checkScaleInvalidArgument(comp, WRONG_SCALE_FACTOR);
 }

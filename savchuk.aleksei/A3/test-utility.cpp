@@ -1,7 +1,5 @@
 #include "test-utility.hpp"
 
-#include <limits>
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
 
@@ -11,7 +9,7 @@
 
 namespace lab = savchuk;
 
-const double TOLERANCE = std::numeric_limits< double >::epsilon();
+const double TOLERANCE = 0.001;
 
 lab::Rectangle makeRect(const lab::point_t& p, double w, double h)
 {
@@ -28,8 +26,8 @@ void checkMoveInvariant(lab::Shape& s, const lab::point_t& p)
   lab::rectangle_t r1 = s.getFrameRect();
   s.move(p);
   lab::rectangle_t r2 = s.getFrameRect();
-  BOOST_CHECK_EQUAL(r2.width, r1.width);
-  BOOST_CHECK_EQUAL(r2.height, r1.height);
+  BOOST_CHECK_CLOSE(r2.width, r1.width, TOLERANCE);
+  BOOST_CHECK_CLOSE(r2.height, r1.height, TOLERANCE);
 }
 
 void checkMoveInvariant(lab::Shape& s, double dx, double dy)
@@ -37,8 +35,8 @@ void checkMoveInvariant(lab::Shape& s, double dx, double dy)
   lab::rectangle_t r1 = s.getFrameRect();
   s.move(dx, dy);
   lab::rectangle_t r2 = s.getFrameRect();
-  BOOST_CHECK_EQUAL(r2.width, r1.width);
-  BOOST_CHECK_EQUAL(r2.height, r1.height);
+  BOOST_CHECK_CLOSE(r2.width, r1.width, TOLERANCE);
+  BOOST_CHECK_CLOSE(r2.height, r1.height, TOLERANCE);
 }
 
 void checkScaleFrameRect(lab::Shape& s, double k)
@@ -46,8 +44,8 @@ void checkScaleFrameRect(lab::Shape& s, double k)
   lab::rectangle_t r1 = s.getFrameRect();
   s.scale(k);
   lab::rectangle_t r2 = s.getFrameRect();
-  BOOST_CHECK_EQUAL(r2.width, k * r1.width);
-  BOOST_CHECK_EQUAL(r2.height, k * r1.height);
+  BOOST_CHECK_CLOSE(r2.width, k * r1.width, TOLERANCE);
+  BOOST_CHECK_CLOSE(r2.height, k * r1.height, TOLERANCE);
 }
 
 void checkScaleArea(lab::Shape& s, double k)
@@ -55,7 +53,7 @@ void checkScaleArea(lab::Shape& s, double k)
   double a1 = s.getArea();
   s.scale(k);
   double a2 = s.getArea();
-  BOOST_CHECK_CLOSE_FRACTION(a2, k * k * a1, TOLERANCE);
+  BOOST_CHECK_CLOSE(a2, k * k * a1, TOLERANCE);
 }
 
 void checkScaleInvalidArgument(lab::Shape& s, double k)

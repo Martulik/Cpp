@@ -1,50 +1,64 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-borisova::CompositeShape::CompositeShape(std::shared_ptr< borisova::Shape > source[], const int size):
-  size_(size)
+borisova::CompositeShape::CompositeShape(const std::initializer_list < std::shared_ptr< Shape > > & source):
+  size_(source.size()),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
 {
-  if (size <= 0)
+  int count = 0;
+  if (size_ == 0)
   {
-    throw (std::invalid_argument("Negative size of array"));
+    throw (std::invalid_argument("Composite Shape mustn't be empty"));
   }
-  data_ = std::make_unique< std::shared_ptr< Shape >[] >(size);
-  for (int i = 0; i < size; i++)
+  for (const std::shared_ptr< Shape > & elem : source)
   {
-    data_[i] = source[i];
+    data_[count] = elem;
+    count++;
+  }
+}
+
+borisova::CompositeShape::CompositeShape(const CompositeShape& src):
+size_(src.size_),
+data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+{
+  for (size_t i = 0; i < size_; ++i)
+  {
+    data_[i] = src.data_[i]->clone();
   }
 }
 
 borisova::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
-  size_(src.size_)
+  size_(src.size_),
+  data_(std::move(src.data_))
 {
-  data_ = std::move(src.data_);
-  src.size_ = 0;
-  src.data_ = nullptr;
 }
 
-std::shared_ptr< borisova::Shape > borisova::CompositeShape::operator[] (int index) const
+std::shared_ptr< borisova::Shape > borisova::CompositeShape::at(const size_t index) const
 {
-  if (!((index <= size_) && (index >= 0)))
-  {
-    throw (std::invalid_argument("Wrong index"));
+  if (index >= size_) {
+    throw std::out_of_range("Index out of bounds");
   }
   return data_[index];
 }
 
+borisova::CompositeShape& borisova::CompositeShape::operator=(const CompositeShape& src)
+{
+  CompositeShape temp(src);
+  swap(temp);
+  return *this;
+}
+
 borisova::CompositeShape& borisova::CompositeShape::operator=(CompositeShape&& src) noexcept
 {
-  size_ = src.size_;
-  data_ = std::move(src.data_);
-  src.size_ = 0;
-  src.data_ = nullptr;
+  CompositeShape temp(src);
+  swap(temp);
   return *this;
 }
 
 double borisova::CompositeShape::getArea() const
 {
   double sum = 0;
-  for (int i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     sum += data_[i]->getArea();
   }
@@ -53,24 +67,17 @@ double borisova::CompositeShape::getArea() const
 
 borisova::rectangle_t borisova::CompositeShape::getFrameRect() const
 {
-  if (size_ == 0)
-  {
-    throw (std::invalid_argument("Wrong index"));
-  }
-  borisova::rectangle_t firstFrameRect = data_[0]->getFrameRect();
-  double left = firstFrameRect.pos.x - firstFrameRect.width / 2;
-  double right = firstFrameRect.pos.x + firstFrameRect.width / 2;
-  double top = firstFrameRect.pos.y + firstFrameRect.height / 2;
-  double bottom = firstFrameRect.pos.y - firstFrameRect.height / 2;
+  double left = data_[0]->getLeft();
+  double right = data_[0]->getRight();
+  double top = data_[0]->getTop();
+  double bottom = data_[0]->getBottom();
 
-  for (int i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
-    borisova::rectangle_t curFrameRect = data_[i]->getFrameRect();
-
-    double leftBorder = curFrameRect.pos.x - curFrameRect.width / 2;
-    double rightBorder = curFrameRect.pos.x + curFrameRect.width / 2;
-    double topBorder = curFrameRect.pos.y + curFrameRect.height / 2;
-    double bottomBorder = curFrameRect.pos.y - curFrameRect.height / 2;
+    double leftBorder = data_[i]->getLeft();
+    double rightBorder = data_[i]->getRight();
+    double topBorder = data_[i]->getTop();
+    double bottomBorder = data_[i]->getBottom();
 
     left = std::min(left, leftBorder);
     right = std::max(right, rightBorder);
@@ -80,25 +87,11 @@ borisova::rectangle_t borisova::CompositeShape::getFrameRect() const
   return {right - left, top - bottom, {(right + left) / 2, (top + bottom) / 2}};
 }
 
-void borisova::CompositeShape::scale(double k)
-{
-  if (k <= 0)
-  {
-    throw (std::invalid_argument("Wrong coefficient"));
-  }
-  borisova::point_t pos = getFrameRect().pos;
-  for (int i = 0; i < size_; i++)
-  {
-    double dx = data_[i]->getFrameRect().pos.x - pos.x;
-    double dy = data_[i]->getFrameRect().pos.y - pos.y;
-    data_[i]->move({ pos.x + dx * k, pos.y + dy * k });
-    data_[i]->scale(k);
-  }
-}
+
 
 void borisova::CompositeShape::move(const double dx, const double dy)
 {
-  for (int i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     data_[i]->move(dx, dy);
   }
@@ -112,4 +105,37 @@ void borisova::CompositeShape::move(const borisova::point_t& dpos)
 std::string borisova::CompositeShape::getName() const
 {
   return "Composite Shape";
+}
+
+void borisova::CompositeShape::swap(CompositeShape& src) noexcept
+{
+  std::swap(size_, src.size_);
+  std::swap(data_, src.data_);
+}
+
+std::shared_ptr< borisova::Shape > borisova::CompositeShape::clone() const
+{
+  return std::make_shared< CompositeShape >(*this);
+}
+
+size_t borisova::CompositeShape::getSize()
+{
+  return size_;
+}
+
+void borisova::CompositeShape::doScale(double k)
+{
+  borisova::point_t pos = getFrameRect().pos;
+  for (size_t i = 0; i < size_; i++)
+  {
+    double dx = data_[i]->getX() - pos.x;
+    double dy = data_[i]->getY() - pos.y;
+    data_[i]->move({ pos.x + dx * k, pos.y + dy * k });
+    data_[i]->scale(k);
+  }
+}
+
+void borisova::swap(CompositeShape& obj1, CompositeShape& obj2) noexcept
+{
+  obj1.swap(obj2);
 }

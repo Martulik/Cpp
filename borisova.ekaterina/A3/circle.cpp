@@ -12,13 +12,8 @@ borisova::Circle::Circle(const point_t& pos, const double radius):
 }
 
 borisova::Circle::Circle(const double x, const double y, const double radius):
-  position_{x, y},
-  radius_(radius)
+  Circle({ x, y }, radius)
 {
-  if (radius <= 0)
-  {
-    throw (std::invalid_argument("Negative radius"));
-  }
 }
 
 double borisova::Circle::getArea() const
@@ -30,15 +25,6 @@ double borisova::Circle::getArea() const
 borisova::rectangle_t borisova::Circle::getFrameRect() const
 {
   return {radius_ * 2, radius_ * 2, position_};
-}
-
-void borisova::Circle::scale(double k)
-{
-  if (k <= 0)
-  {
-    throw (std::invalid_argument("Negative Coefficient for scale"));
-  }
-  radius_ *= k;
 }
 
 void borisova::Circle::move(const double dx, const double dy)
@@ -54,4 +40,26 @@ void borisova::Circle::move(const point_t& dpos)
 std::string borisova::Circle::getName() const
 {
   return "Circle";
+}
+
+std::shared_ptr< borisova::Shape > borisova::Circle::clone() const
+{
+  return std::make_shared< Circle >(*this);
+}
+
+void borisova::Circle::doScale(double k)
+{
+  radius_ *= k;
+}
+
+borisova::Circle& borisova::makeCircle(const point_t& pos, const double radius)
+{
+  borisova::Circle temp(pos, radius);
+  return temp;
+}
+
+borisova::Circle& borisova::makeCircle(const double x, const double y, const double radius)
+{
+  borisova::Circle temp(x, y, radius);
+  return temp;
 }

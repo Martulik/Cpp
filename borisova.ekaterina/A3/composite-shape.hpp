@@ -6,26 +6,30 @@
 
 namespace borisova
 {
-  class CompositeShape : public borisova::Shape
+  class CompositeShape: public Shape
   {
   public:
-    CompositeShape(std::shared_ptr< Shape > source[], const int size);
-    CompositeShape(const CompositeShape& src) = delete;
+    CompositeShape(const std::initializer_list < std::shared_ptr< Shape > > & source);
+    CompositeShape(const CompositeShape& src);
     CompositeShape(CompositeShape&& src) noexcept;
-    CompositeShape& operator=(const CompositeShape& src) = delete;
+    std::shared_ptr< borisova::Shape > at(size_t index) const;
+    CompositeShape& operator=(const CompositeShape& src);
     CompositeShape& operator=(CompositeShape&& src) noexcept;
     virtual ~CompositeShape() = default;
-    std::shared_ptr< borisova::Shape > operator[] (int index) const;
     double getArea() const override;
-    borisova::rectangle_t getFrameRect() const override;
-    void scale(double k) override;
+    rectangle_t getFrameRect() const override;
     void move(double dx, double dy) override;
-    void move(const borisova::point_t & dpos) override;
+    void move(const point_t & dpos) override;
     std::string getName() const override;
+    void swap(CompositeShape& src) noexcept;
+    std::shared_ptr< Shape > clone() const override;
+    size_t getSize();
 
   private:
-    int size_;
+    size_t size_;
     std::unique_ptr< std::shared_ptr< Shape >[] > data_;
+    void doScale(double k) override;
   };
+  void swap(CompositeShape& obj1, CompositeShape& obj2) noexcept;
 }
 #endif

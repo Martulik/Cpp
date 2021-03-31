@@ -13,15 +13,19 @@ namespace borisova
     ~Circle() = default;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    void scale(double k) override;
     void move(double dx, double dy) override;
     void move(const point_t& dpos) override;
     std::string getName() const override;
+    std::shared_ptr< Shape > clone() const override;
+
 
   private:
     point_t position_;
     double radius_;
-  };
+    void doScale(double k) override;
+  }; 
+  Circle& makeCircle(const point_t& pos, double radius);
+  Circle& makeCircle(double x, double y, double radius);
 }
 
 #endif

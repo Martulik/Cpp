@@ -41,10 +41,10 @@ void testAll()
 
   borisova::Shape* compositeShape = new borisova::CompositeShape
   {
-	std::make_shared< borisova::Rectangle >(point1, width, height),
-	std::make_shared< borisova::Circle >(point1, width),
-	std::make_shared< borisova::Rectangle >(point2, width, height),
-	std::make_shared< borisova::Circle >(point2, height)
+    std::make_shared< borisova::Rectangle >(point1, width, height),
+    std::make_shared< borisova::Circle >(point1, width),
+    std::make_shared< borisova::Rectangle >(point2, width, height),
+    std::make_shared< borisova::Circle >(point2, height)
   };
   test(*compositeShape, point3, std::cout, coeff);
   delete compositeShape;

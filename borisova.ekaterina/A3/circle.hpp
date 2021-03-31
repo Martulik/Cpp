@@ -18,7 +18,6 @@ namespace borisova
     std::string getName() const override;
     std::shared_ptr< Shape > clone() const override;
 
-
   private:
     point_t position_;
     double radius_;

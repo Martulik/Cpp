@@ -74,9 +74,9 @@ double lab::CompositeShape::getArea() const
 
 lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  double maxX = std::numeric_limits< double >::min();
+  double maxX = std::numeric_limits< double >::lowest();
   double minX = std::numeric_limits< double >::max();
-  double maxY = std::numeric_limits< double >::min();
+  double maxY = std::numeric_limits< double >::lowest();
   double minY = std::numeric_limits< double >::max();
   for (size_t i = 0; i < size_; ++i)
   {

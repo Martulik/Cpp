@@ -44,14 +44,8 @@ murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(const Composit
     return *this;
   }
   array_.reset();
-  size_ = src.size_;
-  capacity_ = src.capacity_;
-  array_ = std::make_unique< ShapePtr[] >(src.capacity_);
-  for (int i = 0; i < size_; i++)
-  {
-     array_[i].reset();
-     array_[i] = src.array_[i]->clone();
-  }
+  CompositeShape tmp(src);
+  swap(tmp);
   return *this;
 }
 murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(CompositeShape&& src) noexcept
@@ -192,4 +186,11 @@ void murzakanov::CompositeShape::reserve(const double newCapacity)
     capacity_ = newCapacity;
     array_ = std::move(tempArray);
   }
+}
+
+void murzakanov::CompositeShape::swap(CompositeShape& other) noexcept
+{
+  std::swap(capacity_, other.capacity_);
+  std::swap(size_, other.size_);
+  std::swap(array_, other.array_);
 }

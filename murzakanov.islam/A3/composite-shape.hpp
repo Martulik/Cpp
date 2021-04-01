@@ -29,6 +29,7 @@ namespace murzakanov
     void reserve(double newCapacity);
     void addShape(const ShapePtr& shp);
     void popShape();
+    void swap(CompositeShape& other) noexcept;
   private:
     int capacity_;
     int size_;

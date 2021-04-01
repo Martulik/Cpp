@@ -17,14 +17,16 @@ namespace murzakanov
     CompositeShape& operator=(const CompositeShape& src);
     CompositeShape& operator=(CompositeShape&& src) noexcept;
 
-    void scale(double coef) override;
+
     int size() const;
-    std::string getName() const override;
     double getArea() const override;
+    std::string getName() const override;
     rectangle_t getFrameRect() const override;
+    ShapePtr clone() const override;
+    void scale(double coef) override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-    ShapePtr clone() const override;
+    void reserve(double newCapacity);
     void addShape(const ShapePtr& shp);
     void popShape();
   private:

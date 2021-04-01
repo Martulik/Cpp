@@ -83,13 +83,7 @@ void murzakanov::CompositeShape::addShape(const ShapePtr& shp)
   }
   if (capacity_ == size_)
   {
-    ArrayType tempArray(std::make_unique< ShapePtr[] >(capacity_ * 2));
-    for (int i = 0; i < size_; i++)
-    {
-      tempArray[i] = std::move(array_[i]);
-    }
-    capacity_ = capacity_ * 2;
-    array_ = std::move(tempArray);
+    reserve(capacity_ * 2);
   }
   array_[size_].reset();
   array_[size_] = shp->clone();
@@ -184,4 +178,18 @@ int murzakanov::CompositeShape::size() const
 murzakanov::Shape::ShapePtr murzakanov::CompositeShape::clone() const
 {
   return std::make_shared< murzakanov::CompositeShape >(*this);
+}
+
+void murzakanov::CompositeShape::reserve(const double newCapacity)
+{
+  if (capacity_ < newCapacity)
+  {
+    ArrayType tempArray(std::make_unique< ShapePtr[] >(newCapacity));
+    for (int i = 0; i < size_; i++)
+    {
+      tempArray[i] = std::move(array_[i]);
+    }
+    capacity_ = newCapacity;
+    array_ = std::move(tempArray);
+  }
 }

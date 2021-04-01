@@ -112,18 +112,15 @@ void murzakanov::CompositeShape::popShape()
 void murzakanov::CompositeShape::scale(double coef)
 {
   check(coef, "Coefficient should be more or equal than zero");
-  double dx = 0;
-  double xNew = 0;
-  double dy = 0;
-  double yNew = 0;
+  
   double compositeX = getFrameRect().pos.x;
   double compositeY = getFrameRect().pos.y;
   for (int i = 0; i < size_; i++)
   {
-    dx = array_[i]->getFrameRect().pos.x - compositeX;
-    dy = array_[i]->getFrameRect().pos.y - compositeY;
-    xNew = compositeX + dx * coef;
-    yNew = compositeY + dy * coef;
+    double dx = array_[i]->getFrameRect().pos.x - compositeX;
+    double dy = array_[i]->getFrameRect().pos.y - compositeY;
+    double xNew = compositeX + dx * coef;
+    double yNew = compositeY + dy * coef;
     point_t newPoint = {xNew, yNew};
     array_[i]->move(newPoint);
     array_[i]->scale(coef);

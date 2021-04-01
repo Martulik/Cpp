@@ -49,7 +49,7 @@ borisova::CompositeShape compShape4 =
 
 BOOST_AUTO_TEST_CASE(testParametersComp)
 {
-	BOOST_CHECK_THROW(lab::CompositeShape comp({}), exc);
+  BOOST_CHECK_THROW(lab::CompositeShape comp({}), exc);
 }
 
 BOOST_AUTO_TEST_CASE(testAreaAfterMovingComp)

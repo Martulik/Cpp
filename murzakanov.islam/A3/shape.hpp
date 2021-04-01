@@ -27,7 +27,6 @@ namespace murzakanov
     double getY() const;
     double getWidth() const;
     double getHeight() const;
-    
   };
 }
 

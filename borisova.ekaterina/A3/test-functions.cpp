@@ -33,6 +33,6 @@ void borisova::areaAfterScale(Shape* obj)
   BOOST_CHECK_THROW(obj->scale(-3.2), std::invalid_argument);
   if (obj->getName() != "Composite Shape")
   {
-	delete obj;
+    delete obj;
   }
 }

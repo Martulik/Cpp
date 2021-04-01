@@ -43,7 +43,7 @@ void murzakanov::Rectangle::scale(const double coef)
   height_ *= coef;
 }
 
-std::shared_ptr< murzakanov::Shape > murzakanov::Rectangle::clone() const
+murzakanov::Shape::ShapePtr murzakanov::Rectangle::clone() const
 {
   return std::make_shared< murzakanov::Rectangle >(*this);
 }

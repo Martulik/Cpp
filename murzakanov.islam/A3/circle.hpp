@@ -18,7 +18,7 @@ namespace murzakanov
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
     void scale(double coef) override;
-    std::shared_ptr< Shape > clone() const override;
+    ShapePtr clone() const override;
   private:
     double radius_;
     point_t pos_;

@@ -1,10 +1,10 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-murzakanov::CompositeShape::CompositeShape(std::shared_ptr< Shape > shp):
+murzakanov::CompositeShape::CompositeShape(ShapePtr shp):
   capacity_(2),
   size_(1),
-  array_(std::make_unique< std::shared_ptr< Shape >[] >(capacity_))
+  array_(std::make_unique< ShapePtr[] >(capacity_))
 {
   if (shp == nullptr)
   {
@@ -17,7 +17,7 @@ murzakanov::CompositeShape::CompositeShape(std::shared_ptr< Shape > shp):
 murzakanov::CompositeShape::CompositeShape(const CompositeShape& other):
   capacity_(other.capacity_),
   size_(other.size_),
-  array_(std::make_unique< std::shared_ptr< Shape >[] >(other.capacity_))
+  array_(std::make_unique< ShapePtr[] >(other.capacity_))
 {
   for (int i = 0; i < size_; i++)
   {
@@ -46,7 +46,7 @@ murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(const Composit
   array_.reset();
   size_ = src.size_;
   capacity_ = src.capacity_;
-  array_ = std::make_unique< std::shared_ptr< Shape >[] >(src.capacity_);
+  array_ = std::make_unique< ShapePtr[] >(src.capacity_);
   for (int i = 0; i < size_; i++)
   {
      array_[i].reset();
@@ -75,7 +75,7 @@ murzakanov::Shape& murzakanov::CompositeShape::operator [](const int index)
   return *array_[index];
 }
 
-void murzakanov::CompositeShape::addShape(const std::shared_ptr< Shape >& shp)
+void murzakanov::CompositeShape::addShape(const ShapePtr& shp)
 {
   if (shp == nullptr)
   {
@@ -83,8 +83,7 @@ void murzakanov::CompositeShape::addShape(const std::shared_ptr< Shape >& shp)
   }
   if (capacity_ == size_)
   {
-    std::unique_ptr< std::shared_ptr< Shape >[] >
-      tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_ * 2));
+    ArrayType tempArray(std::make_unique< ShapePtr[] >(capacity_ * 2));
     for (int i = 0; i < size_; i++)
     {
       tempArray[i] = std::move(array_[i]);
@@ -99,8 +98,7 @@ void murzakanov::CompositeShape::addShape(const std::shared_ptr< Shape >& shp)
 
 void murzakanov::CompositeShape::popShape()
 {
-  std::unique_ptr< std::shared_ptr< Shape >[] >
-    tempArray(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+  ArrayType tempArray(std::make_unique< ShapePtr[] >(capacity_));
   for (int i = 0; i < size_ - 1; i++)
   {
     tempArray[i] = std::move(array_[i]);
@@ -183,7 +181,7 @@ int murzakanov::CompositeShape::size() const
   return size_;
 }
 
-std::shared_ptr< murzakanov::Shape > murzakanov::CompositeShape::clone() const
+murzakanov::Shape::ShapePtr murzakanov::CompositeShape::clone() const
 {
   return std::make_shared< murzakanov::CompositeShape >(*this);
 }

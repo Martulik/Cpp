@@ -22,8 +22,8 @@ namespace borisova
     rectangle_t parameters_;
     void doScale(double k) override;
   };
-  Rectangle& makeRectangle(const point_t& pos, double width, double height);
-  Rectangle& makeRectangle(double x, double y, double width, double height);
+  Rectangle makeRectangle(const point_t& pos, double width, double height);
+  Rectangle makeRectangle(double x, double y, double width, double height);
 }
 
 #endif

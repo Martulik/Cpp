@@ -12,9 +12,6 @@ void printShapeDescription(const shilyaev::Shape &shape)
 
 int main()
 {
-  using CompositeShapePtr = std::unique_ptr< shilyaev::CompositeShape >;
-  using ShapePtr = std::unique_ptr< shilyaev::Shape >;
-  using ShapeArray = std::unique_ptr< ShapePtr[] >;
   const shilyaev::point_t startPos{2.0, 2.0};
   const shilyaev::point_t finishPos{-1.0, -1.0};
   const double rectangleWidth = 0.5;
@@ -23,10 +20,10 @@ int main()
   const double scaleFactor = 3.5;
   const size_t arraySize = 3;
 
-  ShapeArray shapes = std::make_unique< ShapePtr[] >(arraySize);
+  auto shapes = std::make_unique< std::unique_ptr< shilyaev::Shape >[] >(arraySize);
   shapes[0] = std::make_unique< shilyaev::Circle >(radius, startPos);
   shapes[1] = std::make_unique< shilyaev::Rectangle >(rectangleWidth, rectangleHeight, startPos);
-  CompositeShapePtr compositeShape = std::make_unique< shilyaev::CompositeShape >(shapes[0]->clone());
+  auto compositeShape = std::make_unique< shilyaev::CompositeShape >(shapes[0]->clone());
   compositeShape->pushBack(shapes[1]->clone());
   shapes[2] = std::move(compositeShape);
 

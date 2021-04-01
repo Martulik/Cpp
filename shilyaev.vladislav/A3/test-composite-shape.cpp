@@ -7,9 +7,9 @@
 
 std::unique_ptr< shilyaev::CompositeShape > makeCompositeShape()
 {
-  std::unique_ptr< shilyaev::Shape > circle = std::make_unique< shilyaev::Circle >(RADIUS, CENTER);
-  std::unique_ptr< shilyaev::Shape > rectangle = std::make_unique< shilyaev::Rectangle >(WIDTH, HEIGHT, CENTER);
-  std::unique_ptr< shilyaev::CompositeShape > shape = std::make_unique< shilyaev::CompositeShape >(std::move(circle));
+  auto circle = std::make_unique< shilyaev::Circle >(RADIUS, CENTER);
+  auto rectangle = std::make_unique< shilyaev::Rectangle >(WIDTH, HEIGHT, CENTER);
+  auto shape = std::make_unique< shilyaev::CompositeShape >(std::move(circle));
   shape->pushBack(std::move(rectangle));
   return shape;
 }

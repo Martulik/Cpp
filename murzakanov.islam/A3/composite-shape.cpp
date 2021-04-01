@@ -66,7 +66,7 @@ murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(CompositeShape
   return *this;
 }
 
-murzakanov::Shape& murzakanov::CompositeShape::operator [](const int index)
+murzakanov::Shape& murzakanov::CompositeShape::at(const int index)
 {
   if (index < 0 || index >= size_)
   {

@@ -13,7 +13,7 @@ namespace murzakanov
     CompositeShape(CompositeShape&& other) noexcept;
     explicit CompositeShape(ShapePtr shp);
     ~CompositeShape() override = default;
-    Shape& operator [](int index);
+    Shape& at(int index);
     CompositeShape& operator=(const CompositeShape& src);
     CompositeShape& operator=(CompositeShape&& src) noexcept;
 

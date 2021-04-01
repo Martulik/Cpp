@@ -38,7 +38,7 @@ int main()
   polyCircle->move(point.x, point.y);
   std::cout << "Circle's info after move\n";
   print(std::cout, polyCircle);
-  
+
   CmpShpPtr polyCmpShp(std::make_shared< mur::CompositeShape >(polyCircle));
   polyCmpShp->addShape(polyRectangle);
   print(std::cout, polyCmpShp);

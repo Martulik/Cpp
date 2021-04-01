@@ -10,7 +10,7 @@ void borisova::paramAfterMoving(Shape* obj)
   BOOST_REQUIRE_EQUAL(obj->getWidth(), widthBeforeMoving);
   if (obj->getName() != "Composite Shape")
   {
-	delete obj;
+    delete obj;
   }
 }
 

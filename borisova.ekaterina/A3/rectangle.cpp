@@ -52,14 +52,14 @@ void borisova::Rectangle::doScale(const double k)
   parameters_.height *= k;
 }
 
-borisova::Rectangle borisova::makeRectangle(const point_t& pos, const double width, const double height)
+borisova::Shape* borisova::makeRectangle(const point_t& pos, const double width, const double height)
 {
-  borisova::Rectangle temp(pos, width, height);
+  Shape* temp = new Rectangle(pos, width, height);
   return temp;
 }
 
-borisova::Rectangle borisova::makeRectangle(const double x, const double y, const double width, const double height)
+borisova::Shape* borisova::makeRectangle(const double x, const double y, const double width, const double height)
 {
-  borisova::Rectangle temp(x, y, width, height);
+  Shape* temp = new Rectangle(x, y, width, height);
   return temp;
 }

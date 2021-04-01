@@ -23,8 +23,8 @@ namespace borisova
     double radius_;
     void doScale(double k) override;
   };
-  Circle makeCircle(const point_t& pos, double radius);
-  Circle makeCircle(double x, double y, double radius);
+  Shape* makeCircle(const point_t& pos, double radius);
+  Shape* makeCircle(double x, double y, double radius);
 }
 
 #endif

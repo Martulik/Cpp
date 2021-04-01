@@ -22,22 +22,24 @@ BOOST_AUTO_TEST_CASE(testParametersCir)
 
 BOOST_AUTO_TEST_CASE(testAreaAfterMovingCir)
 {
-  areaAfterMoving(&makeCircle(point1, param1));
+  areaAfterMoving(makeCircle(point1, param1));
 }
 
 BOOST_AUTO_TEST_CASE(testParamAfterMovingCir)
 {
-  paramAfterMoving(&makeCircle(point2, param1));
+  paramAfterMoving(makeCircle(point2, param1));
 }
 
 BOOST_AUTO_TEST_CASE(testScaleCir)
 {
-  areaAfterScale(&makeCircle(point1, param2));
+  areaAfterScale(makeCircle(point1, param2));
 }
 
 BOOST_AUTO_TEST_CASE(testNameCir)
 {
-  BOOST_REQUIRE_EQUAL(makeCircle(point1, param2).getName(), "Circle");
+  lab::Shape* temp = makeCircle(point1, param2);
+  BOOST_REQUIRE_EQUAL(temp->getName(), "Circle");
+  delete temp;
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -24,21 +24,23 @@ BOOST_AUTO_TEST_CASE(testParametersRec)
 
 BOOST_AUTO_TEST_CASE(testAreaAfterMovingRec)
 {
-  areaAfterMoving(&makeRectangle(point1, width, height));
+  areaAfterMoving(makeRectangle(point1, width, height));
 }
 
 BOOST_AUTO_TEST_CASE(testParamAfterMovingRec)
 {
-  paramAfterMoving(&makeRectangle(point2, width, param2));
+  paramAfterMoving(makeRectangle(point2, width, param2));
 }
 BOOST_AUTO_TEST_CASE(testScaleRec)
 {
-  areaAfterScale(&makeRectangle(point1, param1, height));
+  areaAfterScale(makeRectangle(point1, param1, height));
 }
 
 BOOST_AUTO_TEST_CASE(testNameRec)
 {
-  BOOST_REQUIRE_EQUAL(makeRectangle(point2, param1, param2).getName(), "Rectangle");
+  lab::Shape* temp = makeRectangle(point2, param1, param2);
+  BOOST_REQUIRE_EQUAL(temp->getName(), "Rectangle");
+  delete temp;
 }
 
 BOOST_AUTO_TEST_SUITE_END()

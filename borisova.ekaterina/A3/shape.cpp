@@ -1,7 +1,7 @@
 #include "shape.hpp"
 #include <stdexcept>
 
-void borisova::Shape::scale(double k)
+void borisova::Shape::scale(const double k)
 {
   if (k <= 0)
   {

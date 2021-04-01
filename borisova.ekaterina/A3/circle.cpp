@@ -52,13 +52,13 @@ void borisova::Circle::doScale(double k)
   radius_ *= k;
 }
 
-borisova::Circle& borisova::makeCircle(const point_t& pos, const double radius)
+borisova::Circle borisova::makeCircle(const point_t& pos, const double radius)
 {
   borisova::Circle temp(pos, radius);
   return temp;
 }
 
-borisova::Circle& borisova::makeCircle(const double x, const double y, const double radius)
+borisova::Circle borisova::makeCircle(const double x, const double y, const double radius)
 {
   borisova::Circle temp(x, y, radius);
   return temp;

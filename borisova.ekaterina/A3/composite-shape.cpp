@@ -87,8 +87,6 @@ borisova::rectangle_t borisova::CompositeShape::getFrameRect() const
   return {right - left, top - bottom, {(right + left) / 2, (top + bottom) / 2}};
 }
 
-
-
 void borisova::CompositeShape::move(const double dx, const double dy)
 {
   for (size_t i = 0; i < size_; i++)

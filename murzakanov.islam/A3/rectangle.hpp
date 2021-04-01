@@ -1,9 +1,9 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
+#include <memory>
 #include "shape.hpp"
 #include "base-types.hpp"
-#include <memory>
 
 namespace murzakanov
 {

@@ -1,9 +1,9 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include "base-types.hpp"
 #include <string>
 #include <memory>
+#include "base-types.hpp"
 
 namespace murzakanov
 {

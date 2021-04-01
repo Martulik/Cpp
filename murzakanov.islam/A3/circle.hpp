@@ -1,9 +1,9 @@
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
 
+#include <memory>
 #include "shape.hpp"
 #include "base-types.hpp"
-#include <memory>
 
 namespace murzakanov
 {

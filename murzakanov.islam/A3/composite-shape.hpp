@@ -24,7 +24,7 @@ namespace murzakanov
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-    CompositeShape* clone() const override;
+    std::shared_ptr< Shape > clone() const override;
     void addShape(const std::shared_ptr<Shape>& shp);
     void popShape();
   private:

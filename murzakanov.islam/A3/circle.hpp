@@ -3,6 +3,7 @@
 
 #include "shape.hpp"
 #include "base-types.hpp"
+#include <memory>
 
 namespace murzakanov
 {
@@ -17,7 +18,7 @@ namespace murzakanov
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
     void scale(double coef) override;
-    Circle* clone() const override;
+    std::shared_ptr< Shape > clone() const override;
   private:
     double radius_;
     point_t pos_;

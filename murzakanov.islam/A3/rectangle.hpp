@@ -3,6 +3,7 @@
 
 #include "shape.hpp"
 #include "base-types.hpp"
+#include <memory>
 
 namespace murzakanov
 {
@@ -17,7 +18,7 @@ namespace murzakanov
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-    Rectangle* clone() const override;
+    std::shared_ptr< Shape > clone() const override;
   private:
     double width_;
     double height_;

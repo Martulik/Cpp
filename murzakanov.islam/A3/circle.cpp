@@ -43,7 +43,7 @@ void murzakanov::Circle::scale(const double coef)
   radius_ *= coef;
 }
 
-murzakanov::Circle* murzakanov::Circle::clone() const
+std::shared_ptr< murzakanov::Shape > murzakanov::Circle::clone() const
 {
-  return new Circle(*this);
+  return std::make_shared< murzakanov::Circle >(*this);
 }

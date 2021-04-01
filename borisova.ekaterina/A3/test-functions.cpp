@@ -21,7 +21,7 @@ void borisova::areaAfterMoving(Shape* obj)
   BOOST_REQUIRE_EQUAL(obj->getArea(), arBeforeMoving);
   if (obj->getName() != "Composite Shape")
   {
-  delete obj;
+    delete obj;
   }
 }
 

@@ -19,6 +19,11 @@ namespace murzakanov
     virtual void move(const point_t& point) = 0;
     virtual void move(double dx, double dy) = 0;
     virtual ~Shape() = default;
+
+    double getX() const;
+    double getY() const;
+    double getWidth() const;
+    double getHeight() const;
   };
 }
 

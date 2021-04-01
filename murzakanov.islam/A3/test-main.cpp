@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(popShape)
   murzakanov::CompositeShape cmpShp(rect);
 
   BOOST_CHECK_NO_THROW(cmpShp.popShape());
-  BOOST_CHECK_THROW(cmpShp[0], std::invalid_argument);
+  BOOST_CHECK_THROW(cmpShp.at(0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

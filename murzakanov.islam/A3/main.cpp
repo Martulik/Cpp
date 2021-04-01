@@ -13,7 +13,7 @@ void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
   out << "Shape:\n" <<"::Position: " << "(" << shp->getX()
       << ", " << shp->getY() << ")\n";
   out << "Width of frame rectangle: " << shp->getWidth() << "\n"
-      << "Height of frame rectangle: " << shp->getHeight() << "\n";    
+      << "Height of frame rectangle: " << shp->getHeight() << "\n";
   out << "Specific: " << shp->getName() << "\n\n";
 }
 

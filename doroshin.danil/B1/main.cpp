@@ -47,10 +47,11 @@ int main(int argc, char* argv[])
           }
           values.push_back(num);
         }
-        // std::forward_list< int > l_values(values.begin(), values.end());
+        std::forward_list< int > l_values(values.begin(), values.end());
+
         dan::doSort< dan::VectorIndexStrat< int > >(values, cmp);
         dan::doSort< dan::VectorAtStrat< int > >(values, cmp);
-        // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Ascending >(l_values);
+        dan::doSort< dan::ListIterStrat< int > >(l_values, cmp);
       }
       break;
     case 2:

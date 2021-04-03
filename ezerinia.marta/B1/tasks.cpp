@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <memory>
+
 #include "tools.hpp"
 
 namespace lab = ezerinia;

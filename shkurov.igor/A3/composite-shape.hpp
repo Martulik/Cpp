@@ -10,10 +10,10 @@ namespace shkurov
 {
   class CompositeShape: public Shape
   {
-    using member_ptr = Shape*;
+    using member_ptr = std::unique_ptr< Shape >;
     using array_ptr = std::unique_ptr< member_ptr[] >;
   public:
-    CompositeShape(std::initializer_list< Shape* > shape_list);
+    CompositeShape(std::initializer_list< shkurov::Shape* > shape_list);
     CompositeShape(const CompositeShape& src) = delete;
     CompositeShape(CompositeShape&& src);
 

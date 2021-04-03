@@ -17,7 +17,8 @@ shkurov::CompositeShape::CompositeShape(std::initializer_list< shkurov::Shape* >
   size_t i = 0;
   while (it != shapes.end())
   {
-    shape_array_[i++]= *it;
+    std::unique_ptr< shkurov::Shape > ptr(*it);
+    shape_array_[i++] = std::move(ptr);
     it++;
   }
 }

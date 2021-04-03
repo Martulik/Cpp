@@ -1,7 +1,7 @@
 #include "shape.hpp"
 #include <stdexcept>
 
-void murzakanov::Shape::check(double arg, const char* mes)
+void murzakanov::check(double arg, const char* mes)
 {
   if (arg < 0)
   {

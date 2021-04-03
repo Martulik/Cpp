@@ -8,7 +8,7 @@
 pochernin::CompositeShape::CompositeShape(const CompositeShape& src):
   size_(src.size_),
   capacity_(src.capacity_),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity_))
+  data_(std::make_unique< ShapePtr[] >(capacity_))
 {
   for (size_t i = 0; i < size_; i++)
   {
@@ -25,10 +25,10 @@ pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
   src.capacity_ = 0;
 }
 
-pochernin::CompositeShape::CompositeShape(const std::shared_ptr< Shape > shape, size_t capacity):
+pochernin::CompositeShape::CompositeShape(const ShapePtr shape, size_t capacity):
   size_(0),
   capacity_(capacity),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(capacity))
+  data_(std::make_unique< ShapePtr[] >(capacity))
 {
   if (capacity < 1)
   {
@@ -134,7 +134,7 @@ void pochernin::CompositeShape::move(const double dx, const double dy)
   }
 }
 
-void pochernin::CompositeShape::push_back(const std::shared_ptr< Shape > shape)
+void pochernin::CompositeShape::push_back(const ShapePtr shape)
 {
   if (size_ == capacity_)
   {
@@ -195,7 +195,7 @@ void pochernin::CompositeShape::reserve(size_t new_cap)
   if (new_cap > capacity_)
   {
     capacity_ = new_cap;
-    std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+    ShapeArray newData(std::make_unique< ShapePtr[] >(capacity_));
     for (size_t i = 0; i < size_; i++)
     {
       newData[i] = std::move(data_[i]);

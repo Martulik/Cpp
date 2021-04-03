@@ -7,6 +7,8 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
+using ShapePtr = std::shared_ptr < pochernin::Shape >;
+
 void print(const pochernin::Shape& shape, std::ostream& out);
 bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos);
 void testShape(pochernin::Shape* shape, std::ostream& out, const pochernin::point_t& finishPos);
@@ -28,8 +30,8 @@ int main()
 
   testRectangle->move(startPos);
 
-  std::shared_ptr< pochernin::Shape > testRectangleSharedPtr = std::shared_ptr< pochernin::Shape >(testRectangle);
-  std::shared_ptr< pochernin::Shape > testCircleSharedPtr = std::shared_ptr< pochernin::Shape >(testCircle);
+  ShapePtr testRectangleSharedPtr = ShapePtr(testRectangle);
+  ShapePtr testCircleSharedPtr = ShapePtr(testCircle);
   pochernin::CompositeShape compositeShape(testRectangleSharedPtr);
   compositeShape.push_back(testCircleSharedPtr);
   std::cout << "\nComposite Shape:\n";

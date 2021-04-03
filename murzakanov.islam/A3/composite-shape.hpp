@@ -17,7 +17,6 @@ namespace murzakanov
     CompositeShape& operator=(const CompositeShape& src);
     CompositeShape& operator=(CompositeShape&& src) noexcept;
 
-
     int size() const;
     double getArea() const override;
     std::string getName() const override;
@@ -36,6 +35,5 @@ namespace murzakanov
     ArrayType array_;
   };
 }
-
 
 #endif

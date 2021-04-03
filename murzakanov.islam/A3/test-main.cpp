@@ -6,7 +6,6 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-
 double width = 2.0,
        height = 3.0,
        radius = 1.766;

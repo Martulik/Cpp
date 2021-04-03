@@ -13,7 +13,7 @@ void printInfoAboutFrameRect(std::ostream& out,const std::shared_ptr< vika::Shap
 int main()
 {
   try
-  { 
+  {
     const double width = 12.8;
     const double height = 6.4;
     const double radius1 = 3.2;

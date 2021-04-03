@@ -6,9 +6,9 @@
 
 namespace dushechkina
 {
-	void checkBeforeScale(Shape* shape);
-	void checkBeforeCenterMoving(Shape* shape);
-	void checkBeforeDMoving(Shape* shape);
+ void checkBeforeScale(Shape* shape);
+ void checkBeforeCenterMoving(Shape* shape);
+ void checkBeforeDMoving(Shape* shape);
 }
 
 #endif

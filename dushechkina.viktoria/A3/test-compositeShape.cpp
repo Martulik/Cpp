@@ -24,53 +24,53 @@ using shapePtr = std::shared_ptr< vika::Shape >;
 
 void addAllTypesShapes(vika::CompositeShape* shape)
 {
-	shapePtr circle = std::make_shared< vika::Circle >(center, radius2);
-	shape->pushBack(circle);
-	shapePtr rectangle = std::make_shared< vika::Rectangle >(width2, height2, newCenter);
-	shape->pushBack(rectangle);
+  shapePtr circle = std::make_shared< vika::Circle >(center, radius2);
+  shape->pushBack(circle);
+  shapePtr rectangle = std::make_shared< vika::Rectangle >(width2, height2, newCenter);
+  shape->pushBack(rectangle);
 }
 
 BOOST_AUTO_TEST_SUITE(CompositeShape)
 
 BOOST_AUTO_TEST_CASE(invalid_Scale_and_At_CompositeShape)
 {
-	vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
-	BOOST_CHECK_THROW(composite.at(index), std::out_of_range);
-	BOOST_CHECK_THROW(composite.scale(neg), std::invalid_argument);
+  vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
+  BOOST_CHECK_THROW(composite.at(index), std::out_of_range);
+  BOOST_CHECK_THROW(composite.scale(neg), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(Reserve)
 {
-	vika::CompositeShape composite(std::make_shared< vika::Circle >(center, radius1));
-	composite.reserve(rValue);
-	BOOST_CHECK_EQUAL(composite.capacity(), rValue);
+  vika::CompositeShape composite(std::make_shared< vika::Circle >(center, radius1));
+  composite.reserve(rValue);
+  BOOST_CHECK_EQUAL(composite.capacity(), rValue);
 }
 
 BOOST_AUTO_TEST_CASE(PopBack)
 {
-	vika::CompositeShape compositeShape(std::make_shared< vika::Rectangle >(width1, height1, center));
-	BOOST_CHECK_THROW(compositeShape.popBack(), std::logic_error);
+  vika::CompositeShape compositeShape(std::make_shared< vika::Rectangle >(width1, height1, center));
+  BOOST_CHECK_THROW(compositeShape.popBack(), std::logic_error);
 }
 
 BOOST_AUTO_TEST_CASE(MoveCompositeShape_InPoint_CorrectWorkMethod)
 {
-	vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
-	addAllTypesShapes(&composite);
-	checkBeforeCenterMoving(&composite);
+  vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
+  addAllTypesShapes(&composite);
+  checkBeforeCenterMoving(&composite);
 }
 
 BOOST_AUTO_TEST_CASE(MoveCompositeShape_XandYoffset_CorrectWorkMethod)
 {
-	vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
-	addAllTypesShapes(&composite);
-	checkBeforeDMoving(&composite);
+  vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
+  addAllTypesShapes(&composite);
+  checkBeforeDMoving(&composite);
 }
 
 BOOST_AUTO_TEST_CASE(scaleCompositeShape)
 {
-	vika::CompositeShape composite(std::make_shared< vika::Circle >(center, radius1));
-	addAllTypesShapes(&composite);
-	checkBeforeScale(&composite);
+  vika::CompositeShape composite(std::make_shared< vika::Circle >(center, radius1));
+  addAllTypesShapes(&composite);
+  checkBeforeScale(&composite);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

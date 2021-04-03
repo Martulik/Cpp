@@ -28,3 +28,9 @@ double murzakanov::getHeight(const Shape::ShapePtr& shp)
 {
   return shp->getFrameRect().height;
 }
+
+void murzakanov::Shape::scale(double coef)
+{
+  check(coef, "Coefficient should be more or equal than zero");
+  doScale(coef);
+}

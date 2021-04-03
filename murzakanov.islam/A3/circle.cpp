@@ -37,9 +37,8 @@ void murzakanov::Circle::move(const double dx, const double dy)
   pos_.y += dy;
 }
 
-void murzakanov::Circle::scale(const double coef)
+void murzakanov::Circle::doScale(const double coef)
 {
-  check(coef, "Coefficient should be more or equal than zero");
   radius_ *= coef;
 }
 

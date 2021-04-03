@@ -17,11 +17,11 @@ namespace murzakanov
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-    void scale(double coef) override;
     ShapePtr clone() const override;
   private:
     double radius_;
     point_t pos_;
+    void doScale(double coef) override;
   };
 }
 

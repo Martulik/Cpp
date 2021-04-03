@@ -13,7 +13,7 @@ namespace murzakanov
     using ShapePtr = std::shared_ptr < Shape >;
     using ArrayType = std::unique_ptr< ShapePtr[] >;
 
-    virtual void scale(double coef) = 0;
+    void scale(double coef);
     virtual std::string getName() const = 0;
     virtual double getArea() const = 0;
     virtual rectangle_t getFrameRect() const = 0;
@@ -21,6 +21,8 @@ namespace murzakanov
     virtual void move(const point_t& point) = 0;
     virtual void move(double dx, double dy) = 0;
     virtual ~Shape() = default;
+  private:
+    virtual void doScale(double coef) = 0;
   };
   double getX(const Shape::ShapePtr& shp);
   double getY(const Shape::ShapePtr& shp);

@@ -12,7 +12,6 @@ namespace murzakanov
   public:
     Rectangle(double width, double height, const point_t& pos_);
 
-    void scale(double coef) override;
     std::string getName() const override;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -23,6 +22,8 @@ namespace murzakanov
     double width_;
     double height_;
     point_t pos_;
+
+    void doScale(double coef) override;
   };
 }
 

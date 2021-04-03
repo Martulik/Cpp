@@ -22,7 +22,6 @@ namespace murzakanov
     std::string getName() const override;
     rectangle_t getFrameRect() const override;
     ShapePtr clone() const override;
-    void scale(double coef) override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
     void reserve(double newCapacity);
@@ -33,6 +32,8 @@ namespace murzakanov
     int capacity_;
     int size_;
     ArrayType array_;
+
+    void doScale(double coef) override;
   };
 }
 

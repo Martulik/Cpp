@@ -36,9 +36,8 @@ void murzakanov::Rectangle::move(const double dx, const double dy)
   pos_.y += dy;
 }
 
-void murzakanov::Rectangle::scale(const double coef)
+void murzakanov::Rectangle::doScale(const double coef)
 {
-  check(coef, "Coefficient should be more or equal than zero");
   width_ *= coef;
   height_ *= coef;
 }

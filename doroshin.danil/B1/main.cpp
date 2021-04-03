@@ -20,6 +20,24 @@ std::function< bool(int, int) > getOrder(std::string order)
   }
 }
 
+template< typename T >
+std::vector< T > readUntilEof()
+{
+  std::vector< T > values;
+  while(true) {
+    if(std::cin.eof())
+      break;
+
+    T next;
+    std::cin >> next;
+    if(std::cin.fail()) {
+      throw ArgumentParseException("Incorrect input");
+    }
+    values.push_back(next);
+  }
+  return values;
+}
+
 int main(int argc, char* argv[])
 {
   try {
@@ -34,20 +52,10 @@ int main(int argc, char* argv[])
         if(argc < 3) {
           throw ArgumentParseException("No sorting order");
         }
-        std::function< bool(int, int) > cmp = getOrder(argv[2]);
 
-        std::vector< int > values;
-        while(true) {
-          int num;
-          std::cin >> num;
-          if(std::cin.eof())
-            break;
-          if(std::cin.fail()) {
-            throw ArgumentParseException("Not a number");
-          }
-          values.push_back(num);
-        }
-        std::forward_list< int > l_values(values.begin(), values.end());
+        const std::function< bool(int, int) > cmp = getOrder(argv[2]);
+        const std::vector< int > values = readUntilEof< int >();
+        const std::forward_list< int > l_values(values.begin(), values.end());
 
         dan::doSort< dan::VectorIndexStrat< int > >(values, cmp);
         dan::doSort< dan::VectorAtStrat< int > >(values, cmp);

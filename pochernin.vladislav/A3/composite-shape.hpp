@@ -30,12 +30,12 @@ namespace pochernin
     virtual rectangle_t getFrameRect() const override;
     virtual void move(const point_t& destination) override;
     virtual void move(double dx, double dy) override;
-    void push_back(const ShapePtr shape);
-    void pop_back();
+    void pushBack(const ShapePtr shape);
+    void popBack();
     size_t size() const;
     size_t capacity() const;
     void swap (CompositeShape& other) noexcept;
-    void reserve(size_t new_cap);
+    void reserve(size_t newCap);
 
   private:
     size_t size_;

@@ -134,7 +134,7 @@ void pochernin::CompositeShape::move(const double dx, const double dy)
   }
 }
 
-void pochernin::CompositeShape::push_back(const ShapePtr shape)
+void pochernin::CompositeShape::pushBack(const ShapePtr shape)
 {
   if (size_ == capacity_)
   {
@@ -145,7 +145,7 @@ void pochernin::CompositeShape::push_back(const ShapePtr shape)
   size_++;
 }
 
-void pochernin::CompositeShape::pop_back()
+void pochernin::CompositeShape::popBack()
 {
   if (size_ == 0)
   {
@@ -190,11 +190,11 @@ void pochernin::swap(CompositeShape& cs1, CompositeShape& cs2) noexcept
   cs1.swap(cs2);
 }
 
-void pochernin::CompositeShape::reserve(size_t new_cap)
+void pochernin::CompositeShape::reserve(size_t newCap)
 {
-  if (new_cap > capacity_)
+  if (newCap> capacity_)
   {
-    capacity_ = new_cap;
+    capacity_ = newCap;
     ShapeArray newData(std::make_unique< ShapePtr[] >(capacity_));
     for (size_t i = 0; i < size_; i++)
     {

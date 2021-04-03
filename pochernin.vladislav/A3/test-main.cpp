@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(AddElements)
   pochernin::Shape* testRectangle = new pochernin::Rectangle(defaultWidth, defaultHeight, startPos);
   ShapePtr testRectangleSharedPtr = ShapePtr(testRectangle);
   pochernin::CompositeShape testCompositeShape(testRectangleSharedPtr);
-  BOOST_CHECK_NO_THROW(testCompositeShape.push_back(testCircle));
+  BOOST_CHECK_NO_THROW(testCompositeShape.pushBack(testCircle));
   BOOST_REQUIRE_EQUAL(testCompositeShape.size(), 2);
   BOOST_REQUIRE_EQUAL(testCompositeShape.capacity(), 2);
 }

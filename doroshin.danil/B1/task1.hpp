@@ -7,11 +7,10 @@
 
 namespace doroshin
 {
-  template< typename Strat, Ordering::Way order >
-  void doSort(typename Strat::container_t values)
+  template< typename Strat, typename Cmp >
+  void doSort(typename Strat::container_t values, Cmp cmp)
   {
-    insert_sort< int, Strat, Ordering::ordering_op< order > >
-        (values, Strat::begin(values), Strat::end(values));
+    insert_sort< int, Strat >(values, Strat::begin(values), Strat::end(values), cmp);
     for(int num: values) {
       std::cout << num << ' ';
     }

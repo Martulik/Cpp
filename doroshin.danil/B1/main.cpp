@@ -35,20 +35,20 @@ int main(int argc, char* argv[])
         return 1;
       }
       std::string order = argv[2];
+      std::function< bool(int, int) > cmp;
       if(order == "ascending") {
-        dan::doSort< dan::VectorIndexStrat< int >, dan::Ordering::Way::Ascending >(values);
-        dan::doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Ascending >(values);
-        // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Ascending >(l_values);
+        cmp = std::less< int >();
       }
       else if(order == "descending") {
-        dan::doSort< dan::VectorIndexStrat< int >, dan::Ordering::Way::Descending >(values);
-        dan::doSort< dan::VectorAtStrat< int >, dan::Ordering::Way::Descending >(values);
-        // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Descending >(l_values);
+        cmp = std::greater< int >();
       }
       else {
         std::cerr << "Invalid order\n";
         return 1;
       }
+      dan::doSort< dan::VectorIndexStrat< int > >(values, cmp);
+      dan::doSort< dan::VectorAtStrat< int > >(values, cmp);
+      // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Ascending >(l_values);
     }
     break;
   case 2:
@@ -76,16 +76,18 @@ int main(int argc, char* argv[])
         return 1;
       }
       size_t size = atoll(argv[3]);
+      std::function< bool(int, int) > cmp;
       if(order == "ascending") {
-        dan::testRandom< dan::Ordering::Way::Ascending >(size);
+        cmp = std::less< int >();
       }
-      else if (order == "descending") {
-        dan::testRandom< dan::Ordering::Way::Descending >(size);
+      else if(order == "descending") {
+        cmp = std::greater< int >();
       }
       else {
         std::cerr << "Invalid order\n";
         return 1;
       }
+      dan::testRandom(size, cmp);
     }
     break;
   default:

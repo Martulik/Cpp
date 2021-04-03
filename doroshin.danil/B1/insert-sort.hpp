@@ -5,8 +5,8 @@
 #include <functional>
 
 namespace doroshin {
-  template< typename T, typename S, typename Cmp = std::less< T > >
-  void insert_sort(typename S::container_t& cont, typename S::iterator_t begin, typename S::iterator_t end)
+  template< typename T, typename S, typename Cmp >
+  void insert_sort(typename S::container_t& cont, typename S::iterator_t begin, typename S::iterator_t end, Cmp cmp = std::less< T >())
   {
     using std::swap; // lookup for both std::swap and doroshin::swap
     using It = typename S::iterator_t;
@@ -14,7 +14,7 @@ namespace doroshin {
       for(It j = i; j > begin; --j) {
         T& lhs = S::get(cont, j - 1);
         T& rhs = S::get(cont, j);
-        if(Cmp()(lhs, rhs))
+        if(cmp(lhs, rhs))
           break;
         swap(lhs, rhs);
       }

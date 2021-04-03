@@ -6,6 +6,19 @@
 
 namespace dan = doroshin;
 
+std::function< bool(int, int) > getOrder(std::string order)
+{
+  if(order == "ascending") {
+    return std::less< int >();
+  }
+  else if(order == "descending") {
+    return std::greater< int >();
+  }
+  else {
+    throw;
+  }
+}
+
 int main(int argc, char* argv[])
 {
   if(argc < 2) {
@@ -34,18 +47,7 @@ int main(int argc, char* argv[])
         std::cerr << "Provide a sorting order";
         return 1;
       }
-      std::string order = argv[2];
-      std::function< bool(int, int) > cmp;
-      if(order == "ascending") {
-        cmp = std::less< int >();
-      }
-      else if(order == "descending") {
-        cmp = std::greater< int >();
-      }
-      else {
-        std::cerr << "Invalid order\n";
-        return 1;
-      }
+      std::function< bool(int, int) > cmp = getOrder(argv[2]);
       dan::doSort< dan::VectorIndexStrat< int > >(values, cmp);
       dan::doSort< dan::VectorAtStrat< int > >(values, cmp);
       // doSort< dan::ListIterStrat< int >, dan::Ordering::Way::Ascending >(l_values);
@@ -70,23 +72,12 @@ int main(int argc, char* argv[])
         std::cerr << "Provide a sorting order";
         return 1;
       }
-      std::string order = argv[2];
       if(argc < 4) {
         std::cerr << "Provide an array length";
         return 1;
       }
       size_t size = atoll(argv[3]);
-      std::function< bool(int, int) > cmp;
-      if(order == "ascending") {
-        cmp = std::less< int >();
-      }
-      else if(order == "descending") {
-        cmp = std::greater< int >();
-      }
-      else {
-        std::cerr << "Invalid order\n";
-        return 1;
-      }
+      std::function< bool(int, int) > cmp = getOrder(argv[2]);
       dan::testRandom(size, cmp);
     }
     break;

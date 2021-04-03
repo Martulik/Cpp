@@ -36,11 +36,6 @@ int main()
   compositeShape.pushBack(testCircleSharedPtr);
   std::cout << "\nComposite Shape:\n";
   print(compositeShape, std::cout);
-  compositeShape.move(startPos);
-  assert(isPosEqual(compositeShape, startPos));
-  print(compositeShape, std::cout);
-  compositeShape.popBack();
-  print(compositeShape, std::cout);
 }
 
 void print(const pochernin::Shape& shape, std::ostream& out)

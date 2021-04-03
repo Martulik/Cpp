@@ -41,21 +41,17 @@ namespace test_utility
 
 void make_bad_circle()
 {
-  shkurov::Shape* ptr = new shkurov::Circle(CIRCLE_POS, -A);
-
-  ptr++;  // action of no utility to avoid "unused variable" warnings
+  shkurov::Circle circle(CIRCLE_POS, -A);
 }
 
 void make_bad_rectangle()
 {
-  shkurov::Shape* ptr = new shkurov::Rectangle(RECTANGLE_POS, B, -C);
-
-  ptr++;
+  shkurov::Rectangle rect(RECTANGLE_POS, B, -C);
 }
 
 shkurov::Shape* make_circle()
 {
-  shkurov::Shape* ptr = new shkurov::Circle(CIRCLE_POS, A);\
+  shkurov::Shape* ptr = new shkurov::Circle(CIRCLE_POS, A);
 
   return ptr;
 }

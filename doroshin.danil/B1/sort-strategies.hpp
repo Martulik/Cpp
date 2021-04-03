@@ -89,24 +89,6 @@ namespace doroshin {
       return *it;
     }
   };
-
-  struct Ordering
-  {
-    enum class Way: char
-    {
-      Ascending,
-      Descending
-    };
-
-    template< Way Order >
-    struct ordering_op {};
-  };
-
-  template<>
-  struct Ordering::ordering_op< Ordering::Way::Ascending >: std::less<> {};
-
-  template<>
-  struct Ordering::ordering_op< Ordering::Way::Descending >: std::greater<> {};
 }
 
 #endif // SORT_STRATEGIES_HPP

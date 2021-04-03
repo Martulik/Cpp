@@ -10,7 +10,7 @@ namespace vika = dushechkina;
 
 const vika::point_t center = { 1.28, 6.4 };
 const vika::point_t newCenter = { 3.2, 1.28 };
-const size_t index = 100;
+const size_t index1 = 100;
 const size_t rValue = 2;
 const double neg = -5.0;
 const double width1 = 1.28;
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_SUITE(CompositeShape)
 BOOST_AUTO_TEST_CASE(invalid_Scale_and_At_CompositeShape)
 {
   vika::CompositeShape composite(std::make_shared< vika::Rectangle >(width1, height1, center));
-  BOOST_CHECK_THROW(composite.at(index), std::out_of_range);
+  BOOST_CHECK_THROW(composite.at(index1), std::out_of_range);
   BOOST_CHECK_THROW(composite.scale(neg), std::invalid_argument);
 }
 

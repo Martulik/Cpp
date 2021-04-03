@@ -192,15 +192,18 @@ void pochernin::swap(CompositeShape& cs1, CompositeShape& cs2) noexcept
 
 void pochernin::CompositeShape::reserve(size_t newCap)
 {
-  if (newCap> capacity_)
+  if (newCap > capacity_)
   {
-    capacity_ = newCap;
-    ShapeArray newData(std::make_unique< ShapePtr[] >(capacity_));
+    ShapeArray newData(std::make_unique< ShapePtr[] >(newCap));
     for (size_t i = 0; i < size_; i++)
     {
       newData[i] = std::move(data_[i]);
     }
-    data_.reset();
-    data_ = std::move(newData);
+
+    CompositeShape temp(*this);
+    temp.size_ = size_;
+    temp.capacity_ = newCap;
+    temp.data_ = std::move(newData);
+    swap(temp);
   }
 }

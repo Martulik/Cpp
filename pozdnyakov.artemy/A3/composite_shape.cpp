@@ -42,7 +42,7 @@ pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int 
   }
   width = (maxX - minX) / 2;
   height = (maxY - minY) / 2;
-  frame_ = rectangle_t { point_t { minX + width, minY + height }, width, height };  
+  frame_ = rectangle_t { point_t { minX + width, minY + height }, width, height };
 }
 
 double pozdnyakov::CompositeShape::getArea() const

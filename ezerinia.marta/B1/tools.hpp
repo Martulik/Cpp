@@ -1,8 +1,8 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
-#include <iterator>
 #include <list>
+#include <vector>
 #include <iostream>
 
 void fillRandom(double *array, int size);

@@ -9,22 +9,22 @@ void murzakanov::Shape::check(double arg, const char* mes)
   }
 }
 
-double murzakanov::Shape::getX() const
+double murzakanov::getX(const Shape::ShapePtr& shp)
 {
-  return getFrameRect().pos.x;
+  return shp->getFrameRect().pos.x;
 }
 
-double murzakanov::Shape::getY() const
+double murzakanov::getY(const Shape::ShapePtr& shp)
 {
-  return getFrameRect().pos.y;
+  return shp->getFrameRect().pos.y;
 }
 
-double murzakanov::Shape::getWidth() const
+double murzakanov::getWidth(const Shape::ShapePtr& shp)
 {
-  return getFrameRect().width;
+  return shp->getFrameRect().width;
 }
 
-double murzakanov::Shape::getHeight() const
+double murzakanov::getHeight(const Shape::ShapePtr& shp)
 {
-  return getFrameRect().height;
+  return shp->getFrameRect().height;
 }

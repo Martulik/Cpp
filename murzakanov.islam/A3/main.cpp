@@ -10,10 +10,10 @@ using CmpShpPtr = std::shared_ptr< mur::CompositeShape >;
 
 void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
 {
-  out << "Shape:\n" <<"::Position: " << "(" << shp->getX()
-      << ", " << shp->getY() << ")\n";
-  out << "Width of frame rectangle: " << shp->getWidth() << "\n"
-      << "Height of frame rectangle: " << shp->getHeight() << "\n";
+  out << "Shape:\n" <<"::Position: " << "(" << getX(shp)
+      << ", " << getY(shp) << ")\n";
+  out << "Width of frame rectangle: " << getWidth(shp) << "\n"
+      << "Height of frame rectangle: " << getHeight(shp) << "\n";
   out << "Specific: " << shp->getName() << "\n\n";
 }
 

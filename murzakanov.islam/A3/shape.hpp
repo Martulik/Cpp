@@ -22,12 +22,12 @@ namespace murzakanov
     virtual void move(const point_t& point) = 0;
     virtual void move(double dx, double dy) = 0;
     virtual ~Shape() = default;
-
-    double getX() const;
-    double getY() const;
-    double getWidth() const;
-    double getHeight() const;
   };
+
+  double getX(const Shape::ShapePtr& shp);
+  double getY(const Shape::ShapePtr& shp);
+  double getWidth(const Shape::ShapePtr& shp);
+  double getHeight(const Shape::ShapePtr& shp);
 }
 
 #endif

@@ -98,12 +98,12 @@ void murzakanov::CompositeShape::popShape()
 void murzakanov::CompositeShape::scale(double coef)
 {
   check(coef, "Coefficient should be more or equal than zero");
-  double compositeX = getX();
-  double compositeY = getY();
+  double compositeX = getFrameRect().pos.x;
+  double compositeY = getFrameRect().pos.y;
   for (int i = 0; i < size_; i++)
   {
-    double dx = array_[i]->getX() - compositeX;
-    double dy = array_[i]->getY() - compositeY;
+    double dx = getX(array_[i]) - compositeX;
+    double dy = getY(array_[i]) - compositeY;
     double xNew = compositeX + dx * coef;
     double yNew = compositeY + dy * coef;
     point_t newPoint = {xNew, yNew};
@@ -129,25 +129,25 @@ double murzakanov::CompositeShape::getArea() const
 
 murzakanov::rectangle_t murzakanov::CompositeShape::getFrameRect() const
 {
-  double maxX = array_[0]->getX() + array_[0]->getWidth() / 2;
-  double minX = array_[0]->getX() - array_[0]->getWidth() / 2;
-  double maxY = array_[0]->getY() + array_[0]->getHeight() / 2;
-  double minY = array_[0]->getY() - array_[0]->getHeight() / 2;
+  double maxX = getX(array_[0]) + getWidth(array_[0]) / 2;
+  double minX = getX(array_[0]) - getWidth(array_[0]) / 2;
+  double maxY = getY(array_[0]) + getHeight(array_[0]) / 2;
+  double minY = getY(array_[0]) - getHeight(array_[0]) / 2;
 
   for (int i = 1; i < size_; i++)
   {
-    maxX = std::max(maxX, array_[0]->getX() + array_[0]->getWidth() / 2);
-    maxY = std::max(maxY, array_[i]->getY() + array_[i]->getHeight() / 2);
-    minX = std::min(minX, array_[i]->getX() - array_[i]->getWidth() / 2);
-    minY = std::min(minY, array_[i]->getY() - array_[i]->getHeight() / 2);
+    maxX = std::max(maxX, getX(array_[i]) + getWidth(array_[i]) / 2);
+    maxY = std::max(maxY, getY(array_[i]) + getHeight(array_[i]) / 2);
+    minX = std::min(minX, getX(array_[i]) - getWidth(array_[i]) / 2);
+    minY = std::min(minY, getY(array_[i]) - getHeight(array_[i]) / 2);
   }
   return {maxX - minX, maxY - minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
 }
 
 void murzakanov::CompositeShape::move(const murzakanov::point_t &point)
 {
-  double dx = point.x - getX();
-  double dy = point.y - getY();
+  double dx = point.x - getFrameRect().pos.x;
+  double dy = point.y - getFrameRect().pos.y;
   for (int i = 0; i < size_; i++)
   {
     array_[i]->move(dx, dy);

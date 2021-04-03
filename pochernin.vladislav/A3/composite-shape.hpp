@@ -32,6 +32,7 @@ namespace pochernin
     size_t size() const;
     size_t capacity() const;
     void swap (CompositeShape& other) noexcept;
+    void reserve(size_t new_cap);
 
   private:
     size_t size_;

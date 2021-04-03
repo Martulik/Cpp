@@ -138,14 +138,7 @@ void pochernin::CompositeShape::push_back(const std::shared_ptr< Shape > shape)
 {
   if (size_ == capacity_)
   {
-    capacity_++;
-    std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
-    for (size_t i = 0; i < size_; i++)
-    {
-      newData[i] = std::move(data_[i]);
-    }
-    data_.reset();
-    data_ = std::move(newData);
+    reserve(capacity_ + 1);
   }
 
   data_[size_] = shape;
@@ -195,4 +188,19 @@ void pochernin::CompositeShape::doScale(const double factor)
 void pochernin::swap(CompositeShape& cs1, CompositeShape& cs2) noexcept
 {
   cs1.swap(cs2);
+}
+
+void pochernin::CompositeShape::reserve(size_t new_cap)
+{
+  if (new_cap > capacity_)
+  {
+    capacity_ = new_cap;
+    std::unique_ptr< std::shared_ptr< Shape >[] > newData(std::make_unique< std::shared_ptr< Shape >[] >(capacity_));
+    for (size_t i = 0; i < size_; i++)
+    {
+      newData[i] = std::move(data_[i]);
+    }
+    data_.reset();
+    data_ = std::move(newData);
+  }
 }

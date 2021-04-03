@@ -4,6 +4,7 @@
 #include <vector>
 #include <limits>
 #include <memory>
+#include "ArgumentParseException.hpp"
 
 std::streamsize fileLength(std::ifstream& file)
 {
@@ -20,8 +21,7 @@ void doroshin::readFile(std::string filename)
 {
   std::ifstream in(filename);
   if(!in.is_open()) {
-    std::cerr << "Could not open file\n";
-    return;
+    throw ArgumentParseException("Could not open file");
   }
   size_t len = fileLength(in);
   std::unique_ptr< char[] > c_buf = std::make_unique< char[] >(len);

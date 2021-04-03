@@ -1,6 +1,7 @@
 #include "task3.hpp"
 #include <iostream>
 #include <vector>
+#include "ArgumentParseException.hpp"
 
 std::vector< int > input_int_vec()
 {
@@ -8,8 +9,11 @@ std::vector< int > input_int_vec()
   while(true) {
     int num = 0;
     std::cin >> num;
-    if(std::cin.eof() || std::cin.fail()) {
-      std::cerr << "Could not input the next number";
+    if(std::cin.eof()) {
+      throw ArgumentParseException("Input should end with a 0");
+    }
+    if(std::cin.fail()) {
+      throw ArgumentParseException("Not a number");
     }
     if(num == 0)
       break;

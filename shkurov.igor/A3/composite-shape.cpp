@@ -9,6 +9,10 @@ shkurov::CompositeShape::CompositeShape(std::initializer_list< shkurov::Shape* >
   shape_count_(shapes.size()),
   shape_array_(new member_ptr[shape_count_])
 {
+  if (shape_count_ == 0)
+  {
+    throw std::invalid_argument("Exception: empty initializer list is not allowed");
+  }
   std::initializer_list< shkurov::Shape* >::iterator it = shapes.begin();
   size_t i = 0;
   while (it != shapes.end())
@@ -23,6 +27,7 @@ shkurov::CompositeShape::CompositeShape(CompositeShape&& src):
   shape_array_(std::move(src.shape_array_))
 {
   src.shape_count_ = 0;
+  src.shape_array_ = nullptr;
 }
 
 shkurov::CompositeShape& shkurov::CompositeShape::operator=(CompositeShape&& src)
@@ -31,6 +36,7 @@ shkurov::CompositeShape& shkurov::CompositeShape::operator=(CompositeShape&& src
   shape_array_ = std::move(src.shape_array_);
 
   src.shape_count_ = 0;
+  src.shape_array_ = nullptr;
 
   return *this;
 }

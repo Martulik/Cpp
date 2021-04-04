@@ -47,12 +47,12 @@ BOOST_AUTO_TEST_CASE(testReserve)
 
 BOOST_AUTO_TEST_CASE(moveCompositeShape)
 {
-  checkConstOptionsBeforeMoving(*makeComposireShape());
+  checkConstOptionsBeforeMoving(*makeCompositeShape());
 }
 
 BOOST_AUTO_TEST_CASE(scaleCompositeShape)
 {
-  checkAreaBeforeScale(*makeComposireShape());
+  checkAreaBeforeScale(*makeCompositeShape());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

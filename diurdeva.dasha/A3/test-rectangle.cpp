@@ -10,7 +10,7 @@ const double negativeOptions = -8.0;
 
 std::unique_ptr< diurdeva::Rectangle > makeRectangle()
 {
-  return std::make_unique< diurdeva:Rectangle >(width, height, pointCenter);
+  return std::make_unique< diurdeva::Rectangle >(width, height, pointCenter);
 }
 
 BOOST_AUTO_TEST_SUITE(testRectangle)

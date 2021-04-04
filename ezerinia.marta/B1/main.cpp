@@ -8,7 +8,7 @@
 
 bool checkSpace(const char *src)
 {
-  for (int i = 0; i < strlen(src); i++) {
+  for (size_t i = 0; i < strlen(src); i++) {
     if (src[i] == ' ') {
       return 0;
     }

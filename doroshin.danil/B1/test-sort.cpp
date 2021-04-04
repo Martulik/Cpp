@@ -42,8 +42,7 @@ TestRandomInts< Strat, Cmp >::TestRandomInts(size_t N, Cmp cmp):
   std::uniform_int_distribution< int > dist(min, max);
   auto random = std::bind(dist, gen);
 
-  values.reserve(N);
-  std::generate_n(std::back_inserter(values), N, random);
+  std::generate_n(typename Strat::output_iterator_t(values), N, random);
 }
 
 template< typename Strat, typename Cmp >
@@ -67,7 +66,7 @@ void TestRandomInts< Strat, Cmp >::operator()()
 
 test::test_suite* make_suite()
 {
-  using Strategies = mpl::list< dan::VectorIndexStrat< int >, dan::VectorAtStrat< int > >; //, dan::ListIterStrat< int > >;
+  using Strategies = mpl::list< dan::VectorIndexStrat< int >, dan::VectorAtStrat< int >, dan::ListIterStrat< int > >;
   using Orderings = mpl::list< std::less< int >, std::greater< int > >;
 
   test::test_suite* suite = BOOST_TEST_SUITE("Random int");

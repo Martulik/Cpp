@@ -4,7 +4,7 @@
 #include "sort.hpp"
 #include "iterator-utils.hpp"
 #include "order-strategies.hpp"
-#include "iterator-strategies.hpp"
+#include "access-strategies.hpp"
 
 void fillRandom(double *array, int size)
 {

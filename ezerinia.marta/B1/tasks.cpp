@@ -41,10 +41,11 @@ int task2(const char *input)
     return 1;
   }
   file.seekg(0, std::ios_base::end);
-  int length = file.tellg();
+  size_t length = file.tellg();
   file.seekg(0);
 
   if (length == 0) {
+    std::cerr << "Empty file\n";
     return 1;
   }
 
@@ -53,8 +54,10 @@ int task2(const char *input)
   file.close();
 
   std::vector< char > vec(array.get(), array.get() + length);
-  lab::print(vec, std::cout);
 
+  for (size_t i = 0; i < length; i++) {
+    std::cout << vec[i];
+  }
   return 0;
 }
 

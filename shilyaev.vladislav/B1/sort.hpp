@@ -4,18 +4,18 @@
 #include <algorithm>
 #include "iterator-utils.hpp"
 
-template < typename Strategy, typename Order >
-void bubbleSort(typename Strategy::Collection &collection)
+template < typename AccessStrategy, typename Order >
+void bubbleSort(typename AccessStrategy::Collection &collection)
 {
-  using Item = typename Strategy::Item;
-  using Iterator = typename Strategy::Iterator;
-  Iterator begin = Strategy::begin(collection);
-  Iterator end = Strategy::end(collection);
+  using Item = typename AccessStrategy::Item;
+  using Iterator = typename AccessStrategy::Iterator;
+  Iterator begin = AccessStrategy::begin(collection);
+  Iterator end = AccessStrategy::end(collection);
   while (begin != end) {
     Iterator i = begin;
     for (; advanced(i) != end; i++) {
-      Item &current = Strategy::get(collection, i);
-      Item &next = Strategy::get(collection, advanced(i));
+      Item &current = AccessStrategy::get(collection, i);
+      Item &next = AccessStrategy::get(collection, advanced(i));
       if (!Order::isOrdered(current, next)) {
         std::swap(current, next);
       }

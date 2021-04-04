@@ -15,10 +15,10 @@ void inputVector(std::vector< int > &vector)
   }
 }
 
-template < typename Strategy, typename Order >
-void printSorted(typename Strategy::Collection collection)
+template < typename AccessStrategy, typename Order >
+void printSorted(typename AccessStrategy::Collection collection)
 {
-  bubbleSort< Strategy, Order >(collection);
+  bubbleSort< AccessStrategy, Order >(collection);
   print(collection.begin(), collection.end());
 }
 

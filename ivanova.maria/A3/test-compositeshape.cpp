@@ -42,6 +42,8 @@ BOOST_AUTO_TEST_CASE(scaleCompositeShape)
 BOOST_AUTO_TEST_CASE(popBackCompositeShape)
   {
     ivanova::CompositeShape array(std::make_shared< ivanova::Circle >(ctr, radius));
+    shared rectangle = std::make_shared< ivanova::Rectangle > (width, height, pos);
+    array.pushBack(rectangle);
     BOOST_CHECK_NO_THROW(array.popBack());
   }
 

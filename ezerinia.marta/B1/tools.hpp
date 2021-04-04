@@ -101,6 +101,13 @@ namespace ezerinia {
     }
     out << "\n";
   }
+
+  template< typename T >
+  void do_sort(typename T::container_t &cont, int mode)
+  {
+    sort< T >(cont, T::begin(cont), T::end(cont), mode);
+    print(cont, std::cout);
+  }
 }
 
 #endif

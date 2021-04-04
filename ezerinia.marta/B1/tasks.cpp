@@ -9,13 +9,6 @@
 
 namespace lab = ezerinia;
 
-template< typename T >
-void do_sort(typename T::container_t cont, int mode)
-{
-  lab::sort< T >(cont, T::begin(cont), T::end(cont), mode);
-  lab::print(cont, std::cout);
-}
-
 void task1(const int sort_mode)
 {
   std::vector< int > collection_numbers;
@@ -28,13 +21,13 @@ void task1(const int sort_mode)
   }
 
   std::vector< int > index(collection_numbers);
-  do_sort< lab::indexVec< int>>(index, sort_mode);
+  lab::do_sort< lab::indexVec< int > >(index, sort_mode);
 
   std::vector< int > at(collection_numbers);
-  do_sort< lab::atVec< int>>(at, sort_mode);
+  lab::do_sort< lab::atVec< int > >(at, sort_mode);
 
   std::list< int > iter(collection_numbers.begin(), collection_numbers.end());
-  do_sort< lab::iteratorList< int>>(iter, sort_mode);
+  lab::do_sort< lab::iteratorList< int > >(iter, sort_mode);
 
 }
 
@@ -106,5 +99,5 @@ void task4(const int sort_mode, const int size)
   std::vector< double > vec(size);
   fillRandom(&vec[0], size);
   lab::print(vec, std::cout);
-  do_sort< lab::indexVec< double > >(vec, sort_mode);
+  lab::do_sort< lab::indexVec< double > >(vec, sort_mode);
 }

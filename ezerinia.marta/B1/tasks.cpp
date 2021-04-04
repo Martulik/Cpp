@@ -8,8 +8,18 @@
 
 namespace lab = ezerinia;
 
-void task1(std::vector< int > collection_numbers, const int sort_mode)
+int task1(const int sort_mode)
 {
+  std::vector< int > collection_numbers;
+  int number = 0;
+  while (std::cin && !(std::cin >> number).eof()) {
+    if (std::cin.fail() || std::cin.bad()) {
+      std::cerr << "Wrong input\n";
+      return 1;
+    }
+    collection_numbers.push_back(number);
+  }
+
   std::vector< int > index(collection_numbers);
   lab::do_sort< lab::indexVec< int > >(index, sort_mode);
 
@@ -18,19 +28,24 @@ void task1(std::vector< int > collection_numbers, const int sort_mode)
 
   std::list< int > iter(collection_numbers.begin(), collection_numbers.end());
   lab::do_sort< lab::iteratorList< int > >(iter, sort_mode);
+
+  return 0;
 }
 
-void task2(const char *input)
+int task2(const char *input)
 {
   std::ifstream file;
   file.open(input);
-
+  if (!file) {
+    std::cerr << "File does not exist \n";
+    return 1;
+  }
   file.seekg(0, std::ios_base::end);
   int length = file.tellg();
   file.seekg(0);
 
   if (length == 0) {
-    return;
+    return 1;
   }
 
   std::unique_ptr< char[] > array(new char[length]);
@@ -39,15 +54,33 @@ void task2(const char *input)
 
   std::vector< char > vec(array.get(), array.get() + length);
   lab::print(vec, std::cout);
+
+  return 0;
 }
 
-void task3(std::vector< int > vec)
+int task3()
 {
-
+  std::vector< int > vec;
+  int n = 1;
+  while (std::cin && !(std::cin >> n).eof()) {
+    if (std::cin.fail() || std::cin.bad()) {
+      std::cerr << "Error input\n";
+      return 1;
+    }
+    if (n == 0) {
+      break;
+    }
+    vec.push_back(n);
+  }
+  if (vec.empty()) {
+    return 0;
+  }
+  if (n != 0) {
+    std::cerr << "Zero not found\n";
+    return 1;
+  }
   if (!vec.empty()) {
     std::vector< int >::iterator iter = vec.begin();
-    vec.pop_back();
-
     if (vec.back() == 1) {
       while (iter != vec.end()) {
         if (*iter % 2) {
@@ -65,15 +98,16 @@ void task3(std::vector< int > vec)
         iter++;
       }
     }
-
     lab::print(vec, std::cout);
   }
+  return 0;
 }
 
-void task4(const int sort_mode, const int size)
+int task4(const int sort_mode, const int size)
 {
   std::vector< double > vec(size);
   fillRandom(&vec[0], size);
   lab::print(vec, std::cout);
   lab::do_sort< lab::indexVec< double > >(vec, sort_mode);
+  return 0;
 }

@@ -41,3 +41,10 @@ std::string curr::Rectangle::getName() const
 {
   return "Rectangle";
 }
+
+void curr::Rectangle::doScale(double k)
+{
+  width_ *= k;
+  heigh_ *= k;
+}
+

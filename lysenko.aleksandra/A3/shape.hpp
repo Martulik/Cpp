@@ -22,8 +22,10 @@ namespace lysenko
     virtual void move(const point_t& newPos) = 0;
     virtual void move(double dx, double dy) = 0;
     virtual std::string getName() const = 0;
+    void scale(double k);
 
   private:
+    virtual void doScale(double k) = 0;
   };
 }
 

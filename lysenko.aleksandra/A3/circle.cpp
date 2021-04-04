@@ -42,3 +42,8 @@ std::string curr::Circle::getName() const
 {
   return "Circle";
 }
+
+void curr::Circle::doScale(double k)
+{
+  radius_ *= k;
+}

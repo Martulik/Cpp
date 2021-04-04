@@ -23,6 +23,8 @@ namespace lysenko
   private:
     point_t pos_;
     double radius_;
+
+    virtual void doScale(double k) override;
   };
 }
 

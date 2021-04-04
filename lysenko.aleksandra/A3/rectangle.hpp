@@ -24,6 +24,8 @@ namespace lysenko
     double width_;
     double heigh_;
     point_t pos_;
+
+    virtual void doScale(double k) override;
   };
 }
 

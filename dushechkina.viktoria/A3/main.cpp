@@ -7,7 +7,7 @@
 namespace vika = dushechkina;
 void printInfoAboutFrameRect(std::ostream& out,const std::shared_ptr< vika::Shape > f)
 {
-  out << "\nInfo: height = " << vika::getHeight(*f) << ", width = " << vika::getWidth(*f)
+  out << "\nheight = " << vika::getHeight(*f) << ", width = " << vika::getWidth(*f)
       << ", center: { " << vika::getX(*f) << ", " << vika::getY(*f) << " }\n";
 }
 int main()
@@ -28,7 +28,6 @@ int main()
     compositeShape.pushBack(std::make_shared< vika::Circle >(center, radius1));
     compositeShape.pushBack(std::make_shared< vika::Circle >(center, radius2));
 
-    std::cout << "Area: " << compositeShape.getArea();
     for (size_t i = 0; i < compositeShape.size(); i++)
     {
       printInfoAboutFrameRect(std::cout, compositeShape.at(i));

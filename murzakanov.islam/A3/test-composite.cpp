@@ -38,6 +38,6 @@ BOOST_AUTO_TEST_SUITE(test_CompositeShape)
   {
     CmpShp composite(murzakanov::makeCompositeShp());
     composite->popShape();
-    BOOST_CHECK_THROW(composite->popShape(), std::out_of_range);
+    BOOST_CHECK_THROW(composite->popShape(), std::logic_error);
   }
 BOOST_AUTO_TEST_SUITE_END()

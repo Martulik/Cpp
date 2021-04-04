@@ -16,5 +16,5 @@ BOOST_AUTO_TEST_SUITE(test_CompositeShape)
   {
     BOOST_CHECK_THROW(murzakanov::CompositeShape({}), std::invalid_argument);
   }
-  
+
 BOOST_AUTO_TEST_SUITE_END()

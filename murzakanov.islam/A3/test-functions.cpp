@@ -13,13 +13,11 @@ namespace murzakanov
       double height = getHeight(shp);
       double width = getWidth(shp);
 
-      //test move along axes
       shp->move(dX, dY);
       BOOST_CHECK_CLOSE(getWidth(shp), width, epsilon);
       BOOST_CHECK_CLOSE(getHeight(shp), height, epsilon);
       BOOST_CHECK_CLOSE(shp->getArea(), area, epsilon);
 
-    //test move to new pos
       shp->move(newPos);
       BOOST_CHECK_CLOSE(getWidth(shp), width, epsilon);
       BOOST_CHECK_CLOSE(getHeight(shp), height, epsilon);

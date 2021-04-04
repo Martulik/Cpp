@@ -28,7 +28,7 @@ namespace murzakanov
   double getY(const Shape::ShapePtr& shp);
   double getWidth(const Shape::ShapePtr& shp);
   double getHeight(const Shape::ShapePtr& shp);
-
+  
   void check(double arg, const char* mes);
 }
 

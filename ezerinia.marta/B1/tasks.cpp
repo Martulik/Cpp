@@ -3,6 +3,7 @@
 #include <fstream>
 #include <list>
 #include <memory>
+#include <limits>
 
 #include "tools.hpp"
 
@@ -40,16 +41,14 @@ int task2(const char *input)
     std::cerr << "File does not exist \n";
     return 1;
   }
-  file.seekg(0, file.end);
-  int length = file.tellg();
-  file.seekg(file.beg);
+  std::streampos pos = file.tellg();
+  file.seekg(0, std::ios_base::beg);
+  file.ignore(std::numeric_limits< std::streamsize >::max());
+  std::streamsize length = file.gcount();
+  file.seekg(pos);
 
   if (!length) {
     return 0;
-  }
-  if (length == -1) {
-    std::cerr << "Fail get length\n";
-    return 1;
   }
 
   std::unique_ptr< char[] > array(new char[length]);

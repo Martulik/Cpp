@@ -3,7 +3,6 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 #include "composite-shape.hpp"
-#include "test-functions.hpp"
 
 void printCoordinates(const shkurov::Shape* figure)
 {
@@ -16,33 +15,32 @@ int main()
 {
   std::cout << "Rectangle test:" << '\n';
   shkurov::point_t begin_pos = {2, 2};
-  shkurov::Shape* rect = new shkurov::Rectangle(begin_pos, 4, 4);
-;
-  printCoordinates(rect);
+  std::unique_ptr< shkurov::Shape > rect(new shkurov::Rectangle(begin_pos, 4, 4));
+
+  printCoordinates(rect.get());
 
   rect->move(-2, -2);
-  printCoordinates(rect);
+  printCoordinates(rect.get());
 
   std::cout << "Area of rectangle is: " << rect->getArea() << '\n';
 
   std::cout << '\n' << "Circle test:" << '\n';
   begin_pos = {-31.2, 9.21};
-  shkurov::Shape* circle = new shkurov::Circle(begin_pos, 2);
+  std::unique_ptr< shkurov::Shape > circle(new shkurov::Circle(begin_pos, 2));
 
-  printCoordinates(circle);
+  printCoordinates(circle.get());
 
   shkurov::point_t new_pos = {2, 2};
   circle->move(new_pos);
-  printCoordinates(circle);
+  printCoordinates(circle.get());
 
   std::cout << "Area of circle is: " << circle->getArea() << "\n\n";
 
-
   std::cout << '\n' << "Composite-shape test:" << '\n';
-  shkurov::Shape* rect2 = new shkurov::Rectangle({4, 4}, 4, 4);
+  std::unique_ptr< shkurov::Shape > rect2(new shkurov::Rectangle({4, 4}, 4, 4));
 
   std::unique_ptr< shkurov::Shape > composite_shape(
-    new shkurov::CompositeShape({rect, rect2, circle}));
+    new shkurov::CompositeShape(std::move(rect), std::move(rect2), std::move(circle)));
 
   printCoordinates(composite_shape.get());
 

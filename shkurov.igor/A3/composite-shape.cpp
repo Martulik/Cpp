@@ -3,25 +3,6 @@
 #include <stdexcept>
 #include <limits>
 #include <algorithm>
-#include <iostream>
-
-shkurov::CompositeShape::CompositeShape(std::initializer_list< shkurov::Shape* > shapes):
-  shape_count_(shapes.size()),
-  shape_array_(new member_ptr[shape_count_])
-{
-  if (shape_count_ == 0)
-  {
-    throw std::invalid_argument("Exception: empty initializer list is not allowed");
-  }
-  std::initializer_list< shkurov::Shape* >::iterator it = shapes.begin();
-  size_t i = 0;
-  while (it != shapes.end())
-  {
-    std::unique_ptr< shkurov::Shape > ptr(*it);
-    shape_array_[i++] = std::move(ptr);
-    it++;
-  }
-}
 
 shkurov::CompositeShape::CompositeShape(CompositeShape&& src):
   shape_count_(src.shape_count_),

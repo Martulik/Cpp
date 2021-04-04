@@ -11,7 +11,6 @@ namespace murzakanov
   {
   public:
     using ShapePtr = std::shared_ptr < Shape >;
-    using ArrayType = std::unique_ptr< ShapePtr[] >;
 
     void scale(double coef);
     virtual std::string getName() const = 0;

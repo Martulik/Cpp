@@ -9,6 +9,7 @@ namespace murzakanov
   class CompositeShape: public Shape
   {
   public:
+    using ArrayType = std::unique_ptr< ShapePtr[] >;
     CompositeShape(const CompositeShape& other);
     CompositeShape(CompositeShape&& other) noexcept;
     explicit CompositeShape(ShapePtr shp);

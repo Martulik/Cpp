@@ -8,16 +8,6 @@ using RectPtr = std::shared_ptr< mur::Rectangle >;
 using CirclePtr = std::shared_ptr< mur::Circle >;
 using CmpShpPtr = std::shared_ptr< mur::CompositeShape >;
 
-murzakanov::CompositeShape makeCmp()
-{
-  double width = 2.0,
-         height = 3.0;
-  mur::point_t pos{1, 2};
-  RectPtr nwRect(std::make_shared< mur::Rectangle >(width, height, pos));
-  mur::CompositeShape test(nwRect);
-  return test;
-}
-
 void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
 {
   out << "Shape:\n" <<"::Position: " << "(" << getX(shp)
@@ -29,34 +19,42 @@ void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
 
 int main()
 {
-  std::cout << "\n\n\n\n";
-  mur::CompositeShape testMove(makeCmp());
-  std::cout << "\n\n\n\n";
-  double width = 2.0,
-         height = 3.0,
-         radius = 1.766;
-  mur::point_t pos{1, 2};
-  RectPtr polyRectangle(std::make_shared< mur::Rectangle >(width, height, pos));
-  CirclePtr polyCircle(std::make_shared< mur::Circle >(radius, pos));
-  print(std::cout, polyRectangle);
-  print(std::cout, polyCircle);
+  const double width = 2.0,
+               height = 3.0,
+               radius = 1.766,
+               dx = 32,
+               dy = 13;
+  mur::point_t posRect{1, 2};
+  mur::point_t posCircle{-5.1, 7.13};
+  const int size = 3;
+  mur::CompositeShape::ArrayType shapes = std::make_unique< mur::Shape::ShapePtr[] >(size);
+  shapes[0] = std::make_shared< mur::Rectangle >(width, height, posRect);
+  shapes[1] = std::make_shared< mur::Circle >(radius, posCircle);
+  CmpShpPtr cmpShp(std::make_shared< mur::CompositeShape >(shapes[0]));
+  cmpShp->addShape(shapes[1]);
+  shapes[2] = cmpShp;
 
-  mur::point_t point({ 15, 23 });
-  polyRectangle->move(point);
-  std::cout << "Rectangle's info after move\n";
-  print(std::cout, polyRectangle);
-  polyRectangle->scale(2.5);
-  std::cout << "Rectangle's info after scale\n";
-  print(std::cout, polyRectangle);
-  polyCircle->move(point.x, point.y);
-  std::cout << "Circle's info after move\n";
-  print(std::cout, polyCircle);
-
-  CmpShpPtr polyCmpShp(std::make_shared< mur::CompositeShape >(polyCircle));
-  polyCmpShp->addShape(polyRectangle);
-  print(std::cout, polyCmpShp);
-  polyCmpShp->scale(2);
-  std::cout << "Composite shape's info after scale\n";
-  print(std::cout, polyCmpShp);
+  std::cout << "Shape's info before scale\n";
+  for (int i = 0; i < size; i++)
+  {
+    print(std::cout, shapes[i]);
+  }
+  std::cout << "\n\nShape's info after scale\n\n";
+  for (int i = 0; i < size; i++)
+  {
+    shapes[i]->scale(2);
+    print(std::cout, shapes[i]);
+  }
+  std::cout << "Shape's info before move\n";
+  for (int i = 0; i < size; i++)
+  {
+    print(std::cout, shapes[i]);
+  }
+  std::cout << "\n\nShape's info after move\n\n";
+  for (int i = 0; i < size; i++)
+  {
+    shapes[i]->move(dx, dy);
+    print(std::cout, shapes[i]);
+  }
   return 0;
 }

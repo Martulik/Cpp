@@ -10,7 +10,6 @@ murzakanov::CompositeShape::CompositeShape(ShapePtr shp):
   {
     throw std::invalid_argument("Pointer to shape cannot be nullptr");
   }
-  array_[size_ - 1].reset();
   array_[size_ - 1] = shp->clone();
 }
 
@@ -21,7 +20,6 @@ murzakanov::CompositeShape::CompositeShape(const CompositeShape& other):
 {
   for (int i = 0; i < size_; i++)
   {
-    array_[i].reset();
     array_[i] = other.array_[i]->clone();
   }
 }
@@ -79,7 +77,6 @@ void murzakanov::CompositeShape::addShape(const ShapePtr& shp)
   {
     reserve(capacity_ * 2);
   }
-  array_[size_].reset();
   array_[size_] = shp->clone();
   size_++;
 }

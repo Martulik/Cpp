@@ -54,10 +54,10 @@ int task2(const char *input)
   }
 
   std::unique_ptr< char[] > array(new char[length]);
-  file.read(&array[0], length);
+  file.read(array.get(), length);
   file.close();
 
-  std::vector< char > vec(&array[0], &array[0] + length);
+  std::vector< char > vec(array.get(), array.get() + length);
   for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }

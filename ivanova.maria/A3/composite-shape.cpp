@@ -146,3 +146,9 @@ shared ivanova::CompositeShape::clone() const
 {
   return std::make_shared< CompositeShape >(*this);
 }
+
+shared ivanova::CompositeShape::at(size_t i) const
+{
+  assert(i < size_);
+  return data_[i];
+}

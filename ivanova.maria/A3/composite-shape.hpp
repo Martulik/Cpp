@@ -28,7 +28,7 @@ namespace ivanova
     void reserve(size_t capacity);
     void swap(CompositeShape &other) noexcept;
     shared clone() const override;
-
+    shared at(size_t i) const;
   private:
     size_t size_;
     size_t capacity_;

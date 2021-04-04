@@ -13,7 +13,7 @@ void printInfoAboutFrameRect(std::ostream& out,const std::shared_ptr< vika::Shap
 int main()
 {
   try
-  {
+  { 
     const double width = 12.8;
     const double height = 6.4;
     const double radius1 = 3.2;
@@ -33,6 +33,7 @@ int main()
     {
       printInfoAboutFrameRect(std::cout, compositeShape.at(i));
       compositeShape.at(i)->move(center1);
+      compositeShape.at(i)->move(coor1, coor2);
       compositeShape.at(i)->scale(ratio);
       printInfoAboutFrameRect(std::cout, compositeShape.at(i));
     }

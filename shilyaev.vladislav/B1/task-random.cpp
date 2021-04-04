@@ -15,7 +15,7 @@ void fillRandom(double *array, int size)
   }
 }
 
-int taskRandom(int argc, char *argv[])
+int shilyaev::taskRandom(int argc, char *argv[])
 {
   if (argc != 4) {
     std::cerr << "Invalid arguments count";
@@ -30,15 +30,15 @@ int taskRandom(int argc, char *argv[])
   double array[size];
   fillRandom(array, size);
   std::vector< double > vector(array, array + size);
-  print(vector.begin(), vector.end());
+  shilyaev::print(vector.begin(), vector.end());
   if (orderParameter == "ascending") {
-    bubbleSort< VectorBracketsStrategy< double >, AscendingOrder >(vector);
+    shilyaev::bubbleSort< shilyaev::VectorBracketsStrategy< double >, shilyaev::AscendingOrder >(vector);
   } else if (orderParameter == "descending") {
-    bubbleSort< VectorBracketsStrategy< double >, DescendingOrder >(vector);
+    shilyaev::bubbleSort< shilyaev::VectorBracketsStrategy< double >, shilyaev::DescendingOrder >(vector);
   } else {
     std::cerr << "Invalid sorting order";
     return 1;
   }
-  print(vector.begin(), vector.end());
+  shilyaev::print(vector.begin(), vector.end());
   return 0;
 }

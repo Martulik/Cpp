@@ -13,16 +13,16 @@ int main(int argc, char *argv[])
   int taskNumber = std::atoi(argv[1]);
   switch (taskNumber) {
     case 1: {
-      return taskSort(argc, argv);
+      return shilyaev::taskSort(argc, argv);
     }
     case 2: {
-      return taskCopy(argc, argv);
+      return shilyaev::taskCopy(argc, argv);
     }
     case 3: {
-      return taskIterators(argc);
+      return shilyaev::taskIterators(argc);
     }
     case 4: {
-      return taskRandom(argc, argv);
+      return shilyaev::taskRandom(argc, argv);
     }
     default: {
       std::cerr << "Unknown task";

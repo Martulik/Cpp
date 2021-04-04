@@ -41,7 +41,7 @@ void addOnes(std::vector< int > &vector)
   }
 }
 
-int taskIterators(int argc)
+int shilyaev::taskIterators(int argc)
 {
   if (argc != 2) {
     std::cerr << "Invalid arguments count";
@@ -55,6 +55,6 @@ int taskIterators(int argc)
   } else if (last == 2) {
     addOnes(vector);
   }
-  print(vector.begin(), vector.end());
+  shilyaev::print(vector.begin(), vector.end());
   return 0;
 }

@@ -18,8 +18,8 @@ void inputVector(std::vector< int > &vector)
 template < typename AccessStrategy, typename Order >
 void printSorted(typename AccessStrategy::Collection collection)
 {
-  bubbleSort< AccessStrategy, Order >(collection);
-  print(collection.begin(), collection.end());
+  shilyaev::bubbleSort< AccessStrategy, Order >(collection);
+  shilyaev::print(collection.begin(), collection.end());
 }
 
 template < typename Order >
@@ -29,12 +29,12 @@ void doTask()
   inputVector(vector);
   std::forward_list< int > list(vector.begin(), vector.end());
 
-  printSorted< VectorBracketsStrategy< int >, Order >(vector);
-  printSorted< VectorAtStrategy< int >, Order >(vector);
-  printSorted< ForwardListIteratorStrategy< int >, Order >(list);
+  printSorted< shilyaev::VectorBracketsStrategy< int >, Order >(vector);
+  printSorted< shilyaev::VectorAtStrategy< int >, Order >(vector);
+  printSorted< shilyaev::ForwardListIteratorStrategy< int >, Order >(list);
 }
 
-int taskSort(int argc, char *argv[])
+int shilyaev::taskSort(int argc, char *argv[])
 {
   if (argc != 3) {
     std::cerr << "Order not specified";
@@ -42,9 +42,9 @@ int taskSort(int argc, char *argv[])
   }
   const std::string orderParameter = argv[2];
   if (orderParameter == "ascending") {
-    doTask< AscendingOrder >();
+    doTask< shilyaev::AscendingOrder >();
   } else if (orderParameter == "descending") {
-    doTask< DescendingOrder >();
+    doTask< shilyaev::DescendingOrder >();
   } else {
     std::cerr << "Invalid sorting order";
     return 1;

@@ -3,37 +3,41 @@
 
 #include <iostream>
 
-template < typename Iterator >
-void print(Iterator begin, const Iterator &end);
+namespace shilyaev {
 
-template < typename Iterator >
-Iterator advanced(Iterator iterator);
+  template < typename Iterator >
+  void print(Iterator begin, const Iterator &end);
 
-template < typename T >
-void print(T t);
+  template < typename Iterator >
+  Iterator advanced(Iterator iterator);
 
-template <>
-void print< char >(char t);
+  template < typename T >
+  void print(T t);
 
-template < typename Iterator >
-void print(Iterator begin, const Iterator &end)
-{
-  for (; begin != end; begin++) {
-    print(*begin);
+  template <>
+  void print< char >(char t);
+
+  template < typename Iterator >
+  void print(Iterator begin, const Iterator &end)
+  {
+    for (; begin != end; begin++) {
+      print(*begin);
+    }
+    std::cout << '\n';
   }
-  std::cout << '\n';
-}
 
-template < typename Iterator >
-Iterator advanced(Iterator iterator)
-{
-  return ++iterator;
-}
+  template < typename Iterator >
+  Iterator advanced(Iterator iterator)
+  {
+    return ++iterator;
+  }
 
-template < typename T >
-void print(T t)
-{
-  std::cout << t << ' ';
+  template < typename T >
+  void print(T t)
+  {
+    std::cout << t << ' ';
+  }
+
 }
 
 #endif

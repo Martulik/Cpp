@@ -21,7 +21,7 @@ void read(std::istream &istream, char *array, size_t size)
   }
 }
 
-int taskCopy(int argc, char *argv[])
+int shilyaev::taskCopy(int argc, char *argv[])
 {
   if (argc != 3) {
     std::cerr << "Filename not specified";
@@ -40,6 +40,6 @@ int taskCopy(int argc, char *argv[])
   read(ifstream, fileContent, size);
   ifstream.close();
   std::vector< char > vector(fileContent, fileContent + size);
-  print(vector.begin(), vector.end());
+  shilyaev::print(vector.begin(), vector.end());
   return 0;
 }

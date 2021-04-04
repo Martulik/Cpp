@@ -22,6 +22,12 @@ namespace doroshin {
       }
     }
   }
+
+  template< typename T, typename S, typename Cmp = std::less< T > >
+  void insert_sort(typename S::container_t& cont, Cmp cmp = std::less< T >())
+  {
+    insert_sort< T, S >(cont, S::begin(cont), S::end(cont), cmp);
+  }
 }
 
 #endif // INSERT_SORT_HPP

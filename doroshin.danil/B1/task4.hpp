@@ -21,8 +21,7 @@ namespace doroshin
       std::cout << array[i] << ' ';
     }
     std::cout << '\n';
-    insert_sort< double, VectorIndexStrat< double > >
-      (array, VectorIndexStrat< double >::begin(array), VectorIndexStrat< double >::end(array), cmp);
+    insert_sort< double, VectorIndexStrat< double > >(array, cmp);
     for(size_t i = 0; i < size; ++i) {
       std::cout << array[i] << ' ';
     }

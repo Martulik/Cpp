@@ -10,7 +10,7 @@ namespace doroshin
   template< typename Strat, typename Cmp >
   void doSort(typename Strat::container_t values, Cmp cmp)
   {
-    insert_sort< int, Strat >(values, Strat::begin(values), Strat::end(values), cmp);
+    insert_sort< int, Strat >(values, cmp);
     for(int num: values) {
       std::cout << num << ' ';
     }

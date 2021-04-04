@@ -41,7 +41,7 @@ void ivanova::CompositeShape::pushBack(shared &source)
 
 void ivanova::CompositeShape::popBack()
 {
-  assert(size_ > 1);
+  assert(size_ = 1);
   data_[size_--].reset();
 }
 

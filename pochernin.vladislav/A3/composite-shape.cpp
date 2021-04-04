@@ -16,15 +16,6 @@ pochernin::CompositeShape::CompositeShape(const CompositeShape& src):
   }
 }
 
-pochernin::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
-  size_(src.size_),
-  capacity_(src.capacity_)
-{
-  data_ = std::move(src.data_);
-  src.size_ = 0;
-  src.capacity_ = 0;
-}
-
 pochernin::CompositeShape::CompositeShape(const ShapePtr shape, size_t capacity):
   size_(0),
   capacity_(capacity),
@@ -65,22 +56,6 @@ pochernin::CompositeShape& pochernin::CompositeShape::operator=(const CompositeS
 
   CompositeShape temp(src);
   swap(temp);
-  return *this;
-}
-
-pochernin::CompositeShape& pochernin::CompositeShape::operator=(CompositeShape&& src) noexcept
-{
-  if (this == std::addressof(src))
-  {
-    return *this;
-  }
-
-  size_ = src.size_;
-  capacity_ = src.capacity_;
-  data_.reset();
-  data_ = std::move(src.data_);
-  src.size_ = 0;
-  src.capacity_ = 0;
   return *this;
 }
 

@@ -15,7 +15,7 @@ namespace pochernin
     using ShapeArray = std::unique_ptr< ShapePtr[] >;
 
     CompositeShape(const CompositeShape& src);
-    CompositeShape(CompositeShape&& src) noexcept;
+    CompositeShape(CompositeShape&& src) noexcept = default;
 
     explicit CompositeShape(const ShapePtr shape, size_t capacity = 1);
 
@@ -24,7 +24,7 @@ namespace pochernin
     ShapePtr& at(size_t index);
     const ShapePtr& at(size_t index) const;
     CompositeShape& operator=(const CompositeShape& src);
-    CompositeShape& operator=(CompositeShape&& src) noexcept;
+    CompositeShape& operator=(CompositeShape&& src) noexcept = default;
 
     virtual double getArea() const override;
     virtual rectangle_t getFrameRect() const override;

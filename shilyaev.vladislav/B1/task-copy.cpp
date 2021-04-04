@@ -4,6 +4,23 @@
 #include <vector>
 #include "iterator-utils.hpp"
 
+size_t countCharacters(std::istream &istream)
+{
+  size_t size = 0;
+  while (istream) {
+    istream.get();
+    size++;
+  }
+  return size;
+}
+
+void read(std::istream &istream, char *array, size_t size)
+{
+  for (size_t i = 0; i < size; i++) {
+    istream.get(array[i]);
+  }
+}
+
 int taskCopy(int argc, char *argv[])
 {
   if (argc != 3) {
@@ -12,22 +29,13 @@ int taskCopy(int argc, char *argv[])
   }
   std::string filename = argv[2];
   std::ifstream ifstream(filename);
-  size_t size = 0;
-  while (ifstream) {
-    ifstream.get();
-    size++;
-  }
+  const size_t size = countCharacters(ifstream);
   ifstream.clear();
   ifstream.seekg(0, std::ios::beg);
   char fileContent[size];
-  for (size_t i = 0; i < size; i++) {
-    ifstream.get(fileContent[i]);
-  }
+  read(ifstream, fileContent, size);
   ifstream.close();
-
   std::vector< char > vector(fileContent, fileContent + size);
-
   print(vector.begin(), vector.end());
-
   return 0;
 }

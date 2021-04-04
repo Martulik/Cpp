@@ -4,7 +4,7 @@
 
 #include "tasks.hpp"
 
-bool checkSpace(const char *src)
+bool check_space(const char *src)
 {
   for (size_t i = 0; i < strlen(src); i++) {
     if (src[i] == ' ') {
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 {
   int code = 0;
   if (argc > 1) {
-    if (checkSpace(argv[1])) {
+    if (check_space(argv[1])) {
       std::cerr << "Task number should not have space\n";
       return 1;
     }
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     case 4:
       if (argc == 4) {
         int size = atoi(argv[3]);
-        if (size <= 0 || checkSpace(argv[3])) {
+        if (size <= 0 || check_space(argv[3])) {
           std::cerr << "Wrong size of vector\n";
           return 1;
         }

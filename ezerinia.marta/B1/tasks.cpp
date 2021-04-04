@@ -42,7 +42,7 @@ int task2(const char *input)
   }
   file.seekg(0, std::ios_base::end);
   int length = file.tellg();
-  file.seekg(0, std::ios_base::beg);
+  file.seekg(0);
 
   if (!length) {
     return 0;

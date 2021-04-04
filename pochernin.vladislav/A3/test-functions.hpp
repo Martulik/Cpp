@@ -5,7 +5,7 @@
 
 #include "shape.hpp"
 
-namespace pochernin 
+namespace pochernin
 {
   void boostCheckWidthHeightArea(Shape* shape, rectangle_t startFrameRect, double startArea);
   void checkConstWidthHeightArea(Shape* shape);

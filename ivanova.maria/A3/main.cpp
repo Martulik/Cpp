@@ -16,10 +16,10 @@ int main()
   const ivanova::point_t pos = {-2.0, 9.1};
 
   ivanova::Rectangle rectangle(h, w, pos);
-  std::shared_ptr<ivanova::Shape> testRect = std::make_shared<ivanova::Rectangle>(rectangle);
+  std::shared_ptr< ivanova::Shape > testRect = std::make_shared< ivanova::Rectangle >(rectangle);
 
   ivanova::Circle circle(ctr, radius);
-  ivanova::CompositeShape testArray(std::make_shared<ivanova::Circle>(circle));
+  ivanova::CompositeShape testArray(std::make_shared< ivanova::Circle >(circle));
 
   testArray.pushBack(testRect);
   test(testArray);

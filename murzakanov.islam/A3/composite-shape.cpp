@@ -48,10 +48,6 @@ murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(const Composit
 }
 murzakanov::CompositeShape& murzakanov::CompositeShape::operator=(CompositeShape&& src) noexcept
 {
-  if (this == std::addressof(src))
-  {
-    return *this;
-  }
   array_.reset();
   array_ = std::move(src.array_);
   src.array_ = nullptr;

@@ -8,6 +8,16 @@ using RectPtr = std::shared_ptr< mur::Rectangle >;
 using CirclePtr = std::shared_ptr< mur::Circle >;
 using CmpShpPtr = std::shared_ptr< mur::CompositeShape >;
 
+murzakanov::CompositeShape makeCmp()
+{
+  double width = 2.0,
+         height = 3.0;
+  mur::point_t pos{1, 2};
+  RectPtr nwRect(std::make_shared< mur::Rectangle >(width, height, pos));
+  mur::CompositeShape test(nwRect);
+  return test;
+}
+
 void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
 {
   out << "Shape:\n" <<"::Position: " << "(" << getX(shp)
@@ -19,6 +29,9 @@ void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
 
 int main()
 {
+  std::cout << "\n\n\n\n";
+  mur::CompositeShape testMove(makeCmp());
+  std::cout << "\n\n\n\n";
   double width = 2.0,
          height = 3.0,
          radius = 1.766;

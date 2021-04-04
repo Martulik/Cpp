@@ -40,10 +40,9 @@ int task2(const char *input)
     std::cerr << "File does not exist \n";
     return 1;
   }
-  file.seekg(0, std::ios_base::end);
-  file.clear();
+  file.seekg(0, file.end);
   int length = file.tellg();
-  file.seekg(0);
+  file.seekg(file.beg);
 
   if (!length) {
     return 0;
@@ -59,14 +58,9 @@ int task2(const char *input)
     file >> std::noskipws >> array[j];
     ++j;
   }
-  if ((file.eof() && (j + 1 < length)) || (!file.eof() && (j + 1 == length))) {
-    std::cerr << "File was changed\n";
-    return 1;
-  }
   file.close();
 
-  std::vector< char > vec(&array[0], &array.get()[length]);
-
+  std::vector< char > vec(&array[0], &array[length]);
   for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }
@@ -95,27 +89,27 @@ int task3()
     std::cerr << "Zero not found\n";
     return 1;
   }
-  if (!vec.empty()) {
-    std::vector< int >::iterator iter = vec.begin();
-    if (vec.back() == 1) {
-      while (iter != vec.end()) {
-        if (*iter % 2) {
-          iter++;
-        } else {
-          vec.erase(iter);
-        }
-      }
-    } else if (vec.back() == 2) {
-      while (iter != vec.end()) {
-        if (!(*iter % 3)) {
-          iter = vec.insert(++iter, 3, 1);
-          iter += 2;
-        }
+
+  std::vector< int >::iterator iter = vec.begin();
+  if (vec.back() == 1) {
+    while (iter != vec.end()) {
+      if (*iter % 2) {
         iter++;
+      } else {
+        vec.erase(iter);
       }
     }
-    lab::print(vec, std::cout);
+  } else if (vec.back() == 2) {
+    while (iter != vec.end()) {
+      if (!(*iter % 3)) {
+        iter = vec.insert(++iter, 3, 1);
+        iter += 2;
+      }
+      iter++;
+    }
   }
+  lab::print(vec, std::cout);
+
   return 0;
 }
 

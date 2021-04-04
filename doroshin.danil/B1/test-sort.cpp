@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <random>
 #include <limits>
+#include "test-registrar.hpp"
 #include "insert-sort.hpp"
 #include "sort-strategies.hpp"
 
@@ -22,13 +23,9 @@ public:
 
   void operator()();
 private:
-  static size_t count;
   Cmp compare;
   typename Strat::container_t values;
 };
-
-template< typename Strat, typename Cmp >
-size_t TestRandomInts< Strat, Cmp >::count = 0;
 
 template< typename Strat, typename Cmp >
 TestRandomInts< Strat, Cmp >::TestRandomInts(size_t N, Cmp cmp):
@@ -40,8 +37,6 @@ TestRandomInts< Strat, Cmp >::TestRandomInts(size_t N, Cmp cmp):
   std::default_random_engine gen(rd());
   std::uniform_int_distribution< int > dist(min, max);
   auto random = std::bind(dist, gen);
-
-  std::cout << "Random int: " << std::setw(3) << (++count) << '\r';
 
   values.reserve(N);
   std::generate_n(std::back_inserter(values), N, random);
@@ -66,16 +61,17 @@ void TestRandomInts< Strat, Cmp >::operator()()
   test();
 }
 
-BOOST_AUTO_TEST_SUITE(sort_int)
-
-BOOST_AUTO_TEST_CASE(sort)
+test::test_suite* make_suite()
 {
-  test::test_suite& suite = test::framework::current_auto_test_suite();
+  test::test_suite* suite = BOOST_TEST_SUITE("Random int");
   for(size_t i = 0; i < 300; ++i) {
     for(size_t j = 0; j <= std::floor(std::log(i)); ++j) {
-      suite.add(BOOST_TEST_CASE(std::bind(*std::make_shared< TestRandomInts< dan::VectorIndexStrat< int >, std::less<int> > >(i, std::less< int >()))));
+      std::ostringstream name;
+      name << "Vector strat " << i << ' ' << j;
+      suite->add(BOOST_TEST_CASE_NAME(std::bind(*std::make_shared< TestRandomInts< dan::VectorIndexStrat< int >, std::less<int> > >(i, std::less< int >())), name.str()));
     }
   }
+  return suite;
 }
 
-BOOST_AUTO_TEST_SUITE_END()
+static dan::test_suite_registrar registrar(make_suite(), &test::framework::master_test_suite(), test::decorator::collector_t::instance());

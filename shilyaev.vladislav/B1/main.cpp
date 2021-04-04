@@ -13,6 +13,9 @@ int main(int argc, char *argv[])
     case 1: {
       return taskSort(argc, argv);
     }
+    case 2: {
+      return taskCopy(argc, argv);
+    }
     default: {
       std::cerr << "Unknown task";
       return 1;

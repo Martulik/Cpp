@@ -1,7 +1,6 @@
 #include "tasks.hpp"
 
 #include <fstream>
-#include <vector>
 #include <list>
 #include <memory>
 
@@ -9,17 +8,8 @@
 
 namespace lab = ezerinia;
 
-void task1(const int sort_mode)
+void task1(std::vector< int > collection_numbers, const int sort_mode)
 {
-  std::vector< int > collection_numbers;
-  int number = 0;
-  while (std::cin >> number) {
-    collection_numbers.push_back(number);
-  }
-  if ((std::cin.fail()) && (!std::cin.eof())) {
-    std::cerr << "Wrong input";
-  }
-
   std::vector< int > index(collection_numbers);
   lab::do_sort< lab::indexVec< int > >(index, sort_mode);
 
@@ -28,16 +18,12 @@ void task1(const int sort_mode)
 
   std::list< int > iter(collection_numbers.begin(), collection_numbers.end());
   lab::do_sort< lab::iteratorList< int > >(iter, sort_mode);
-
 }
 
 void task2(const char *input)
 {
   std::ifstream file;
   file.open(input);
-  if (!file) {
-    std::cerr << "Failure to open a file";
-  }
 
   file.seekg(0, std::ios_base::end);
   int length = file.tellg();
@@ -55,18 +41,8 @@ void task2(const char *input)
   lab::print(vec, std::cout);
 }
 
-void task3()
+void task3(std::vector< int > vec)
 {
-  std::vector< int > vec;
-  int n = 1;
-  while (n != 0) {
-    std::cin >> n;
-    if ((std::cin.eof() && !vec.empty()) || (!std::cin)) {
-      std::cerr << "Zero not found\n";
-      return;
-    }
-    vec.push_back(n);
-  }
 
   if (!vec.empty()) {
     std::vector< int >::iterator iter = vec.begin();

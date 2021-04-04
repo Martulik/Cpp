@@ -3,4 +3,4 @@
 
 int taskSort(int argc, char *argv[]);
 
-#endif //TASK_SORT_HPP
+#endif

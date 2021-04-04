@@ -15,9 +15,9 @@ namespace shilyaev {
     Iterator end = AccessStrategy::end(collection);
     while (begin != end) {
       Iterator i = begin;
-      for (; advanced(i) != end; i++) {
+      for (; incremented(i) != end; i++) {
         Item &current = AccessStrategy::get(collection, i);
-        Item &next = AccessStrategy::get(collection, advanced(i));
+        Item &next = AccessStrategy::get(collection, incremented(i));
         if (!Order::isOrdered(current, next)) {
           std::swap(current, next);
         }

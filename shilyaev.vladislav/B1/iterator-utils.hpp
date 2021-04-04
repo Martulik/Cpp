@@ -5,14 +5,11 @@
 
 namespace shilyaev {
 
-  template < typename Iterator >
-  void print(Iterator begin, const Iterator &end);
-
-  template < typename Iterator >
-  Iterator advanced(Iterator iterator);
-
   template < typename T >
-  void print(T t);
+  void print(T t)
+  {
+    std::cout << t << ' ';
+  }
 
   template <>
   void print< char >(char t);
@@ -27,15 +24,9 @@ namespace shilyaev {
   }
 
   template < typename Iterator >
-  Iterator advanced(Iterator iterator)
+  Iterator incremented(Iterator iterator)
   {
     return ++iterator;
-  }
-
-  template < typename T >
-  void print(T t)
-  {
-    std::cout << t << ' ';
   }
 
 }

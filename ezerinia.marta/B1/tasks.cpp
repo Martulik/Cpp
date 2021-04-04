@@ -46,6 +46,10 @@ int task2(const char *input)
 
   if (length == 0) {
     std::cerr << "Empty file\n";
+    return 0;
+  }
+  if (length == -1) {
+    std::cerr << "Fail get length\n";
     return 1;
   }
 

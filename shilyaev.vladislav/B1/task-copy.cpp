@@ -29,6 +29,10 @@ int taskCopy(int argc, char *argv[])
   }
   std::string filename = argv[2];
   std::ifstream ifstream(filename);
+  if (!ifstream) {
+    std::cerr << "File not open";
+    return 1;
+  }
   const size_t size = countCharacters(ifstream);
   ifstream.clear();
   ifstream.seekg(0, std::ios::beg);

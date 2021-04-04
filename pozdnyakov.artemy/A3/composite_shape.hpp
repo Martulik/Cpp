@@ -6,8 +6,9 @@
 
 namespace pozdnyakov
 {
-  using UniqueShapes = std::unique_ptr<std::unique_ptr<Shape>>;
-  class CompositeShape: pozdnyakov::Shape
+  using UniqueShapes = std::unique_ptr<std::unique_ptr<Shape>[]>;
+  using UniqueShape = std::unique_ptr<Shape>;
+  class CompositeShape: public pozdnyakov::Shape
   {
   public:
     CompositeShape(UniqueShapes shapes, int shapesLen);

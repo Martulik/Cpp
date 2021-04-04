@@ -21,8 +21,8 @@ namespace pochernin
 
     virtual ~CompositeShape() = default;
 
-    ShapePtr& at(size_t index);
-    const ShapePtr& at(size_t index) const;
+    std::shared_ptr< Shape > at(size_t index);
+    std::shared_ptr< const Shape > at(size_t index) const;
     CompositeShape& operator=(const CompositeShape& src);
     CompositeShape& operator=(CompositeShape&& src) noexcept = default;
 

@@ -29,7 +29,7 @@ pochernin::CompositeShape::CompositeShape(const ShapePtr shape, size_t capacity)
   size_++;
 }
 
-std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index)
+std::shared_ptr< pochernin::Shape > pochernin::CompositeShape::at(size_t index)
 {
   if (index >= size())
   {
@@ -38,7 +38,7 @@ std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index)
   return data_[index];
 }
 
-const std::shared_ptr< pochernin::Shape >& pochernin::CompositeShape::at(size_t index) const
+std::shared_ptr< const pochernin::Shape > pochernin::CompositeShape::at(size_t index) const
 {
   if (index >= size())
   {

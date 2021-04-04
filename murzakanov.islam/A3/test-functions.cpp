@@ -51,7 +51,7 @@ namespace murzakanov
       return std::make_shared< mur::Circle >(mur::Circle(rad, pos));
     }
 
-    std::shared_ptr< mur::CompositeShape > makeCompositeSh()
+    std::shared_ptr< mur::CompositeShape > makeCompositeShp()
     {
       mur::Shape::ShapePtr rectangle = makeRect();
       mur::Shape::ShapePtr circle = makeCircle();

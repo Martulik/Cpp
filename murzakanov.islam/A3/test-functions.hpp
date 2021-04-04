@@ -14,7 +14,7 @@ namespace murzakanov
   void testScale(murzakanov::Shape::ShapePtr shp);
   murzakanov::Shape::ShapePtr makeRect();
   murzakanov::Shape::ShapePtr makeCircle();
-  std::shared_ptr< murzakanov::CompositeShape > makeCompositeSh();
+  std::shared_ptr< murzakanov::CompositeShape > makeCompositeShp();
 }
 
 #endif

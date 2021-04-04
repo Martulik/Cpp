@@ -86,6 +86,10 @@ void murzakanov::CompositeShape::addShape(const ShapePtr& shp)
 
 void murzakanov::CompositeShape::popShape()
 {
+  if (size_ == 1)
+  {
+    throw std::out_of_range("Composite shape cannot be empty");
+  }
   ArrayType tempArray(std::make_unique< ShapePtr[] >(capacity_));
   for (int i = 0; i < size_ - 1; i++)
   {

@@ -3,7 +3,6 @@
 #include <fstream>
 #include <list>
 #include <memory>
-#include <limits>
 
 #include "tools.hpp"
 
@@ -58,11 +57,10 @@ int task2(const char *input)
   file.close();
 
   std::vector< char > vec(array.get(), array.get() + length);
+
   for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }
-  std::cout << "\n";
-
   return 0;
 }
 

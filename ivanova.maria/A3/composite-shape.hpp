@@ -9,7 +9,7 @@ namespace ivanova
   class CompositeShape: public Shape
   {
   public:
-    using shared = std::shared_ptr<ivanova::Shape>;
+    using shared = std::shared_ptr< ivanova::Shape >;
     CompositeShape(shared other);
     CompositeShape(const CompositeShape &other);
     CompositeShape(CompositeShape &&other) noexcept = default;
@@ -32,7 +32,7 @@ namespace ivanova
   private:
     size_t size_;
     size_t capacity_;
-    std::unique_ptr<shared[]> data_;
+    std::unique_ptr< shared[] > data_;
   };
 }
 #endif

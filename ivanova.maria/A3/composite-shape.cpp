@@ -15,7 +15,7 @@ ivanova::CompositeShape::CompositeShape(shared other):
 ivanova::CompositeShape::CompositeShape(const CompositeShape &src):
   size_(src.size_),
   capacity_(src.capacity_),
-  data_(std::make_unique<shared[]>(src.size_))
+  data_(std::make_unique< shared[] >(src.size_))
 {
   for (size_t i = 0; i < size_; i++)
   {
@@ -124,7 +124,7 @@ void ivanova::CompositeShape::reserve(size_t capacity)
   if (capacity > capacity_)
   {
     ivanova::CompositeShape tempArr(*this);
-    std::unique_ptr<shared[]> array(std::make_unique<shared[]>(capacity));
+    std::unique_ptr< shared[] > array(std::make_unique< shared[] >(capacity));
     for (size_t i = 0; i < size_; ++i)
     {
       array[i] = std::move(data_[i]);

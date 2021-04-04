@@ -96,7 +96,6 @@ void task3()
         iter++;
       }
     }
-    //iter = vec.begin();
 
     lab::print(vec, std::cout);
   }

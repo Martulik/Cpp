@@ -71,17 +71,17 @@ namespace ezerinia {
     }
   };
 
-  template< typename S >
-  void sort(typename S::container_t &cont, typename S::iter_t begin, typename S::iter_t end, int mode)
+  template< typename T >
+  void sort(typename T::container_t &cont, typename T::iter_t begin, typename T::iter_t end, int mode)
   {
     if (mode == 0 || mode == 1) {
-      using iter = typename S::iter_t;
+      using iter = typename T::iter_t;
       for (iter it1 = begin; it1 != end; ++it1) {
         iter it2 = it1;
         for (it2++; it2 != end; ++it2) {
-          if (((S::get(cont, it2) > S::get(cont, it1)) && mode) ||
-              ((S::get(cont, it2) < S::get(cont, it1)) && (!mode))) {
-            std::swap(S::get(cont, it2), S::get(cont, it1));
+          if (((T::get(cont, it2) > T::get(cont, it1)) && mode) ||
+              ((T::get(cont, it2) < T::get(cont, it1)) && (!mode))) {
+            std::swap(T::get(cont, it2), T::get(cont, it1));
           }
         }
       }
@@ -93,7 +93,8 @@ namespace ezerinia {
   template< typename T >
   void print(const T &src, std::ostream &out)
   {
-    auto it = src.begin();
+    typedef typename T::const_iterator Iter;
+    Iter it = src.begin();
     while (it != src.end()) {
       out << *it << " ";
       it++;

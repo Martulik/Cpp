@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     case 4:
       if (argc == 4) {
         int size = atoi(argv[3]);
-        if (size == 0) {
+        if (size <= 0) {
           std::cerr << "Wrong size of vector\n";
           return 1;
         }

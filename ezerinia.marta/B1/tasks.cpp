@@ -41,7 +41,7 @@ int task2(const char *input)
     return 1;
   }
   file.seekg(0, std::ios_base::end);
-  size_t length = file.tellg();
+  int length = file.tellg();
   file.seekg(0);
 
   if (length == 0) {
@@ -59,7 +59,7 @@ int task2(const char *input)
 
   std::vector< char > vec(array.get(), array.get() + length);
 
-  for (size_t i = 0; i < length; i++) {
+  for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }
   return 0;

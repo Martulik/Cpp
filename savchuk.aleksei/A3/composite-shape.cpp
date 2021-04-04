@@ -132,9 +132,3 @@ void lab::CompositeShape::swap(this_type& rhs)
   std::swap(size_, rhs.size_);
   std::swap(arr_, rhs.arr_);
 }
-
-template<>
-inline void std::swap(this_type& lhs, this_type& rhs)
-{
-  lhs.swap(rhs);
-}

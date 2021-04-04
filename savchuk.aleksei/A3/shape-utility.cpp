@@ -29,3 +29,8 @@ double lab::getPosY(const lab::Shape& shape)
   rectangle_t r = shape.getFrameRect();
   return r.pos.y;
 }
+
+void lab::swap(lab::CompositeShape& lhs, lab::CompositeShape& rhs)
+{
+  lhs.swap(rhs);
+}

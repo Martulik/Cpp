@@ -41,10 +41,11 @@ int task2(const char *input)
     return 1;
   }
   file.seekg(0, std::ios_base::end);
+  file.clear();
   int length = file.tellg();
   file.seekg(0);
 
-  if (length == 0) {
+  if (!length) {
     return 0;
   }
   if (length == -1) {
@@ -53,14 +54,23 @@ int task2(const char *input)
   }
 
   std::unique_ptr< char[] > array(new char[length]);
-  file.read(array.get(), length);
+  int j = 0;
+  while (j != length && !file.eof() && file) {
+    file >> std::noskipws >> array[j];
+    ++j;
+  }
+  if ((file.eof() && (j + 1 < length)) || (!file.eof() && (j + 1 == length))) {
+    std::cerr << "File was changed\n";
+    return 1;
+  }
   file.close();
 
-  std::vector< char > vec(array.get(), array.get() + length);
+  std::vector< char > vec(&array[0], &array.get()[length]);
 
   for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }
+  std::cout << "\n";
   return 0;
 }
 

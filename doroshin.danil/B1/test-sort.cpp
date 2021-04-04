@@ -1,3 +1,4 @@
+#include <limits>
 #include <boost/test/unit_test.hpp>
 #include <boost/test/parameterized_test.hpp>
 #include <boost/mpl/list.hpp>
@@ -14,23 +15,34 @@ test::test_suite* make_suite()
 {
   using Strategies = mpl::list< dan::VectorIndexStrat< int >, dan::VectorAtStrat< int >, dan::ListIterStrat< int > >;
   using Orderings = mpl::list< std::less< int >, std::greater< int > >;
+  const std::vector< std::pair< int, int > > limits = {
+      { 0, 1 },
+      { -10, 10 },
+      { -1000, 1000 },
+      { std::numeric_limits< int >::min(), std::numeric_limits< int >::max() }
+    };
 
   test::test_suite* suite = BOOST_TEST_SUITE("Random int");
 
   mpl::for_each< Strategies >(
-    [&suite](auto _strat) {
+    [&](auto _strat) {
       using Strategy = decltype(_strat);
       mpl::for_each< Orderings >(
-        [&suite](auto _order) {
+        [&](auto _order) {
           using Order = decltype(_order);
 
-          for(size_t i = 0; i < 300; ++i) {
-              for(size_t j = 0; j <= std::floor(std::log(i)); ++j) {
+          for(const auto& limit: limits) {
+            int min = limit.first;
+            int max = limit.second;
+            for(size_t i = 1; i < 300; ++i) {
+              size_t repeat = std::floor(std::log(i));
+              for(size_t j = 0; j <= repeat; ++j) {
                 std::ostringstream name;
-                name << typeid(Strategy).name() << ' ' << typeid(Order).name() << ' ' << i << ' ' << j;
-                suite->add(BOOST_TEST_CASE_NAME(std::bind(*std::make_shared< dan::TestRandomInts< Strategy, Order > >(i, _order)), name.str()));
+                name << typeid(Strategy).name() << ' ' << typeid(Order).name() << ' ' << min << ' ' << max << ' ' << i << ' ' << j;
+                suite->add(BOOST_TEST_CASE_NAME(std::bind(*std::make_shared< dan::TestRandomSort< int, dan::UniformIntStrat< int >, Strategy, Order > >(min, max, i, _order)), name.str()));
               }
             }
+          }
         }
       );
     }

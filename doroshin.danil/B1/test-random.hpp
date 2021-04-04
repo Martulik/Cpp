@@ -4,59 +4,56 @@
 #include <functional>
 #include <algorithm>
 #include <random>
-#include <limits>
 #include <typeinfo>
 #include "insert-sort.hpp"
 
 namespace doroshin
 {
-  template< typename Strat, typename Cmp >
-  class TestRandomInts
+  template< typename T, typename RandomStrat, typename SortStrat, typename Cmp >
+  class TestRandomSort
   {
   public:
-    TestRandomInts(size_t N, Cmp cmp);
-
-    void sort();
-    void test() const;
+    TestRandomSort(T min, T max, size_t N, Cmp cmp);
 
     void operator()();
   private:
+    T min, max;
     Cmp compare;
-    typename Strat::container_t values;
+    typename SortStrat::container_t values;
   };
 
-  template< typename Strat, typename Cmp >
-  TestRandomInts< Strat, Cmp >::TestRandomInts(size_t N, Cmp cmp):
+  template< typename T, typename RandomStrat, typename SortStrat, typename Cmp >
+  TestRandomSort< T, RandomStrat, SortStrat, Cmp >::TestRandomSort(T min, T max, size_t N, Cmp cmp):
+    min(min),
+    max(max),
     compare(cmp)
   {
-    const int min = std::numeric_limits<int>::min();
-    const int max = std::numeric_limits<int>::max();
     std::random_device rd;
     std::default_random_engine gen(rd());
-    std::uniform_int_distribution< int > dist(min, max);
+    typename RandomStrat::distribution dist(min, max);
     auto random = std::bind(dist, gen);
 
-    std::generate_n(typename Strat::output_iterator_t(values), N, random);
+    std::generate_n(typename SortStrat::output_iterator_t(values), N, random);
   }
 
-  template< typename Strat, typename Cmp >
-  void TestRandomInts< Strat, Cmp >::sort()
+  template< typename T, typename RandomStrat, typename SortStrat, typename Cmp >
+  void TestRandomSort< T, RandomStrat, SortStrat, Cmp >::operator()()
   {
-    insert_sort< int, Strat >(values, Strat::begin(values), Strat::end(values), compare);
-  }
-
-  template< typename Strat, typename Cmp >
-  void TestRandomInts< Strat, Cmp >::test() const
-  {
+    insert_sort< int, SortStrat >(values, SortStrat::begin(values), SortStrat::end(values), compare);
     BOOST_CHECK(std::is_sorted(std::begin(values), std::end(values), compare));
   }
 
-  template< typename Strat, typename Cmp >
-  void TestRandomInts< Strat, Cmp >::operator()()
+  template< typename T >
+  struct UniformIntStrat
   {
-    sort();
-    test();
-  }
+    using distribution = std::uniform_int_distribution< T >;
+  };
+
+  template< typename T >
+  struct UniformRealStrat
+  {
+    using distribution = std::uniform_real_distribution< T >;
+  };
 }
 
 #endif //TEST_RANDOM_HPP

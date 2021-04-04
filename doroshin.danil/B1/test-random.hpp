@@ -39,7 +39,7 @@ namespace doroshin
   template< typename T, typename RandomStrat, typename SortStrat, typename Cmp >
   void TestRandomSort< T, RandomStrat, SortStrat, Cmp >::operator()()
   {
-    insert_sort< int, SortStrat >(values, SortStrat::begin(values), SortStrat::end(values), compare);
+    insert_sort< T, SortStrat >(values, SortStrat::begin(values), SortStrat::end(values), compare);
     BOOST_CHECK(std::is_sorted(std::begin(values), std::end(values), compare));
   }
 

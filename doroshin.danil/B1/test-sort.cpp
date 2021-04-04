@@ -54,3 +54,4 @@ test::test_suite* make_suite()
 }
 
 static dan::test_suite_registrar register_int(make_suite< int, dan::UniformIntStrat< int > >(), &test::framework::master_test_suite(), test::decorator::collector_t::instance());
+static dan::test_suite_registrar register_double(make_suite< double, dan::UniformRealStrat< double > >(), &test::framework::master_test_suite(), test::decorator::collector_t::instance());

@@ -37,12 +37,12 @@ int task2(const char *input)
   std::ifstream file;
   file.open(input);
   if (!file) {
-    std::cerr << "File does not exist \n";
+    std::cerr << "File does not exist\n";
     return 1;
   }
   file.seekg(0, std::ios_base::end);
   int length = file.tellg();
-  file.seekg(0);
+  file.seekg(0, std::ios_base::beg);
 
   if (!length) {
     return 0;
@@ -61,6 +61,7 @@ int task2(const char *input)
   for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }
+  std::cout << "\n";
   return 0;
 }
 

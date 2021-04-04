@@ -41,11 +41,10 @@ int task2(const char *input)
     std::cerr << "File does not exist \n";
     return 1;
   }
-  std::streampos pos = file.tellg();
-  file.seekg(0, std::ios_base::beg);
+  file.seekg(std::ios_base::beg);
   file.ignore(std::numeric_limits< std::streamsize >::max());
   std::streamsize length = file.gcount();
-  file.seekg(pos);
+  file.seekg(std::ios_base::beg);
 
   if (!length) {
     return 0;

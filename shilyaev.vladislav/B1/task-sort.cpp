@@ -26,14 +26,13 @@ void printSorted(typename Strategy::Collection collection)
 template < typename Order >
 void doTask()
 {
-  using Item = int;
-  std::vector< Item > vector;
+  std::vector< int > vector;
   inputVector(vector);
-  std::forward_list< Item > list(vector.begin(), vector.end());
+  std::forward_list< int > list(vector.begin(), vector.end());
 
-  printSorted< VectorBracketsStrategy< Item >, Order >(vector);
-  printSorted< VectorAtStrategy< Item >, Order >(vector);
-  printSorted< ForwardListIteratorStrategy< Item >, Order >(list);
+  printSorted< VectorBracketsStrategy< int >, Order >(vector);
+  printSorted< VectorAtStrategy< int >, Order >(vector);
+  printSorted< ForwardListIteratorStrategy< int >, Order >(list);
 }
 
 int taskSort(int argc, char *argv[])

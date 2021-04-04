@@ -10,6 +10,9 @@ int main(int argc, char *argv[])
   }
   int taskNumber = std::atoi(argv[1]);
   switch (taskNumber) {
+    case 1: {
+      return taskSort(argc, argv);
+    }
     default: {
       std::cerr << "Unknown task";
       return 1;

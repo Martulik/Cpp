@@ -41,28 +41,28 @@ int task2(const char *input)
     std::cerr << "File does not exist \n";
     return 1;
   }
-  file.seekg(std::ios_base::beg);
-  file.ignore(std::numeric_limits< std::streamsize >::max());
-  std::streamsize length = file.gcount();
-  file.seekg(std::ios_base::beg);
+  file.seekg(0, std::ios_base::end);
+  int length = file.tellg();
+  file.seekg(0);
 
   if (!length) {
     return 0;
   }
+  if (length == -1) {
+    std::cerr << "Fail get length\n";
+    return 1;
+  }
 
   std::unique_ptr< char[] > array(new char[length]);
-  int j = 0;
-  while (j != length && !file.eof() && file) {
-    file >> std::noskipws >> array[j];
-    ++j;
-  }
+  file.read(&array[0], length);
   file.close();
 
-  std::vector< char > vec(&array[0], &array[length]);
+  std::vector< char > vec(&array[0], &array[0] + length);
   for (int i = 0; i < length; i++) {
     std::cout << vec[i];
   }
   std::cout << "\n";
+
   return 0;
 }
 

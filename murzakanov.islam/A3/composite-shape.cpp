@@ -87,12 +87,7 @@ void murzakanov::CompositeShape::popShape()
   {
     throw std::logic_error("Composite shape cannot be empty");
   }
-  ArrayType tempArray(std::make_unique< ShapePtr[] >(capacity_));
-  for (int i = 0; i < size_ - 1; i++)
-  {
-    tempArray[i] = std::move(array_[i]);
-  }
-  array_ = std::move(tempArray);
+  array_[size_ - 1].reset();
   size_--;
 }
 

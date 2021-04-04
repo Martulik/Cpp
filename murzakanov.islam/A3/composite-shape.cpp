@@ -167,7 +167,7 @@ murzakanov::Shape::ShapePtr murzakanov::CompositeShape::clone() const
   return std::make_shared< murzakanov::CompositeShape >(*this);
 }
 
-void murzakanov::CompositeShape::reserve(const double newCapacity)
+void murzakanov::CompositeShape::reserve(const int newCapacity)
 {
   if (capacity_ < newCapacity)
   {

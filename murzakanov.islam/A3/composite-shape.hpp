@@ -24,7 +24,7 @@ namespace murzakanov
     ShapePtr clone() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-    void reserve(double newCapacity);
+    void reserve(int newCapacity);
     void addShape(const ShapePtr& shp);
     void popShape();
     void swap(CompositeShape& other) noexcept;

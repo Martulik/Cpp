@@ -20,4 +20,6 @@ void checkScaleArea(lab::Shape& s, double k);
 
 void checkScaleInvalidArgument(lab::Shape& s, double k);
 
+void checkCorrectFrameRect(const lab::Shape& s, const lab::rectangle_t& r);
+
 #endif

@@ -6,6 +6,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 #include "composite-shape.hpp"
+#include "shape-utility.hpp"
 
 namespace lab = savchuk;
 
@@ -59,4 +60,12 @@ void checkScaleArea(lab::Shape& s, double k)
 void checkScaleInvalidArgument(lab::Shape& s, double k)
 {
   BOOST_CHECK_THROW(s.scale(k), std::invalid_argument);
+}
+
+void checkCorrectFrameRect(const lab::Shape& s, const lab::rectangle_t& r)
+{
+  BOOST_CHECK_CLOSE(lab::getWidth(s), r.width, TOLERANCE);
+  BOOST_CHECK_CLOSE(lab::getHeight(s), r.height, TOLERANCE);
+  BOOST_CHECK_CLOSE(lab::getPosX(s), r.pos.x, TOLERANCE);
+  BOOST_CHECK_CLOSE(lab::getPosY(s), r.pos.y, TOLERANCE);
 }

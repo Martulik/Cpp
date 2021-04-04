@@ -41,7 +41,7 @@ void ivanova::CompositeShape::pushBack(shared &source)
 
 void ivanova::CompositeShape::popBack()
 {
-  assert (capacity_ > 1);
+  assert(capacity_ > 1);
   data_[size_--].reset();
 }
 
@@ -144,5 +144,5 @@ void ivanova::CompositeShape::swap(CompositeShape &other) noexcept
 
 shared ivanova::CompositeShape::clone() const
 {
-  return std::make_shared<CompositeShape>(*this);
+  return std::make_shared< CompositeShape >(*this);
 }

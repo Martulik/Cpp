@@ -5,6 +5,7 @@
 #include "order-strategies.hpp"
 #include "iterator-strategies.hpp"
 #include "iterator-utils.hpp"
+#include "sort.hpp"
 
 template < typename T >
 void inputVector(std::vector< T > &vector)
@@ -12,26 +13,6 @@ void inputVector(std::vector< T > &vector)
   T input;
   while (std::cin >> input) {
     vector.push_back(input);
-  }
-}
-
-template < typename Strategy, typename Order >
-void bubbleSort(typename Strategy::Collection &collection)
-{
-  using Item = typename Strategy::Item;
-  using Iterator = typename Strategy::Iterator;
-  Iterator begin = Strategy::begin(collection);
-  Iterator end = Strategy::end(collection);
-  while (begin != end) {
-    Iterator i = begin;
-    for (; advanced(i) != end; i++) {
-      Item &current = Strategy::get(collection, i);
-      Item &next = Strategy::get(collection, advanced(i));
-      if (!Order::isOrdered(current, next)) {
-        std::swap(current, next);
-      }
-    }
-    end = i;
   }
 }
 

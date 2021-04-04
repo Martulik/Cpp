@@ -2,7 +2,7 @@
 #define TEST_FUNCTION_HPP
 
 #include <boost/test/unit_test.hpp>
-#include "composite_shape.hpp"
+#include "composite-shape.hpp"
 
 namespace pozdnyakov
 {

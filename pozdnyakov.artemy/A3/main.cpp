@@ -2,7 +2,7 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 #include "base-types.hpp"
-#include "composite_shape.hpp"
+#include "composite-shape.hpp"
 
 int main()
 {

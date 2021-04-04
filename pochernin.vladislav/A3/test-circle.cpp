@@ -12,7 +12,7 @@ BOOST_AUTO_TEST_SUITE(Circle)
 BOOST_AUTO_TEST_CASE(ConstWidthHeightAreaWhenMoving)
 {
   pochernin::Circle testCircle(radius, startPos);
-  pochernin::checkConstWidthHeightArea(&testCircle); 
+  pochernin::checkConstWidthHeightArea(&testCircle);
 }
 
 BOOST_AUTO_TEST_CASE(QuadraticChangeAreaWhenScale)

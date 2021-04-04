@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_SUITE(CompositeShape)
 
 BOOST_AUTO_TEST_CASE(ConstWidthHeightAreaWhenMoving)
 {
-  pochernin::CompositeShape testCompositeShape(std::make_shared< pochernin::Rectangle >(width, height, startPos)); 
+  pochernin::CompositeShape testCompositeShape(std::make_shared< pochernin::Rectangle >(width, height, startPos));
   fillCompositeShape(&testCompositeShape);
   pochernin::checkConstWidthHeightArea(&testCompositeShape);
 }

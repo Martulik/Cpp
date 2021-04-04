@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_SUITE(Rectangle)
 BOOST_AUTO_TEST_CASE(ConstWidthHeightAreaWhenMoving)
 {
   pochernin::Rectangle testRectangle(width, height, startPos);
-  pochernin::checkConstWidthHeightArea(&testRectangle); 
+  pochernin::checkConstWidthHeightArea(&testRectangle);
 }
 
 BOOST_AUTO_TEST_CASE(QuadraticChangeAreaWhenScale)

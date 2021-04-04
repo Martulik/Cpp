@@ -24,6 +24,6 @@ pozdnyakov::UniqueShape pozdnyakov::makeCompositeShape()
   pozdnyakov::UniqueShapes shapes(new UniqueShape[2]);
   shapes[0] = pozdnyakov::makeCircle();
   shapes[1] = pozdnyakov::makeRect();
-  pozdnyakov::UniqueShape cshape(new pozdnyakov::CompositeShape(std::move(shapes), 2)); 
+  pozdnyakov::UniqueShape cshape(new pozdnyakov::CompositeShape(std::move(shapes), 2));
   return cshape;
 }

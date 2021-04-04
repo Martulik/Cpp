@@ -6,6 +6,11 @@ const diurdeva::point_t pointCenter = { 3.5, 4.0 };
 const double radius = 3.0;
 const double negativeOptions = -8.0;
 
+std::unique_ptr< diurdeva::Circle > makeCircle()
+{
+  return std::make_unique< diurdeva::Circle >(radius, pointCenter);
+}
+
 BOOST_AUTO_TEST_SUITE(testCircle)
 
 BOOST_AUTO_TEST_CASE(invalidOptionsCircle)
@@ -16,14 +21,12 @@ BOOST_AUTO_TEST_CASE(invalidOptionsCircle)
 
 BOOST_AUTO_TEST_CASE(moveCircle)
 {
-  diurdeva::Circle circle(radius, pointCenter);
-  checkConstOptionsBeforeMoving(&circle);
+  checkConstOptionsBeforeMoving(*makeCircle());
 }
 
 BOOST_AUTO_TEST_CASE(scaleCircle)
 {
-  diurdeva::Circle circle(radius, pointCenter);
-  checkAreaBeforeScale(&circle);
+  checkAreaBeforeScale(*makeCircle());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

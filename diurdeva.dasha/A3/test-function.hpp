@@ -5,8 +5,8 @@
 #include "shape.hpp"
 
 namespace diurdeva {
-  void checkAreaBeforeScale(Shape* shape);
-  void checkConstOptionsBeforeMoving(Shape* shape);
+  void checkAreaBeforeScale(Shape &shape);
+  void checkConstOptionsBeforeMoving(Shape &shape);
 }
 
 #endif

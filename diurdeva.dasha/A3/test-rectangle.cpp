@@ -8,6 +8,11 @@ const double width = 8.0;
 const double height = 5.0;
 const double negativeOptions = -8.0;
 
+std::unique_ptr< diurdeva::Rectangle > makeRectangle()
+{
+  return std::make_unique< diurdeva:Rectangle >(width, height, pointCenter);
+}
+
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
 BOOST_AUTO_TEST_CASE(invalidOptionsRectangle)
@@ -19,14 +24,12 @@ BOOST_AUTO_TEST_CASE(invalidOptionsRectangle)
 
 BOOST_AUTO_TEST_CASE(moveRectangle)
 {
-  diurdeva::Rectangle rectangle(width, height, pointCenter);
-  checkConstOptionsBeforeMoving(&rectangle);
+  checkConstOptionsBeforeMoving(*makeRectangle());
 }
 
 BOOST_AUTO_TEST_CASE(scaleRectangle)
 {
-  diurdeva::Rectangle rectangle(width, height, pointCenter);
-  checkAreaBeforeScale(&rectangle);
+  checkAreaBeforeScale(*makeRectangle());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

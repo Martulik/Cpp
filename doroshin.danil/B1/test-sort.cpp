@@ -1,68 +1,14 @@
-#include <functional>
-#include <iomanip>
-#include <algorithm>
-#include <random>
-#include <limits>
-#include <typeinfo>
 #include <boost/test/unit_test.hpp>
 #include <boost/test/parameterized_test.hpp>
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/for_each.hpp>
 #include "test-registrar.hpp"
-#include "insert-sort.hpp"
+#include "test-random.hpp"
 #include "sort-strategies.hpp"
 
 namespace mpl = boost::mpl;
 namespace test = boost::unit_test;
 namespace dan = doroshin;
-
-template< typename Strat, typename Cmp >
-class TestRandomInts
-{
-public:
-  TestRandomInts(size_t N, Cmp cmp);
-
-  void sort();
-  void test() const;
-
-  void operator()();
-private:
-  Cmp compare;
-  typename Strat::container_t values;
-};
-
-template< typename Strat, typename Cmp >
-TestRandomInts< Strat, Cmp >::TestRandomInts(size_t N, Cmp cmp):
-  compare(cmp)
-{
-  const int min = std::numeric_limits<int>::min();
-  const int max = std::numeric_limits<int>::max();
-  std::random_device rd;
-  std::default_random_engine gen(rd());
-  std::uniform_int_distribution< int > dist(min, max);
-  auto random = std::bind(dist, gen);
-
-  std::generate_n(typename Strat::output_iterator_t(values), N, random);
-}
-
-template< typename Strat, typename Cmp >
-void TestRandomInts< Strat, Cmp >::sort()
-{
-  dan::insert_sort< int, Strat >(values, Strat::begin(values), Strat::end(values), compare);
-}
-
-template< typename Strat, typename Cmp >
-void TestRandomInts< Strat, Cmp >::test() const
-{
-  BOOST_CHECK(std::is_sorted(std::begin(values), std::end(values), compare));
-}
-
-template< typename Strat, typename Cmp >
-void TestRandomInts< Strat, Cmp >::operator()()
-{
-  sort();
-  test();
-}
 
 test::test_suite* make_suite()
 {
@@ -82,7 +28,7 @@ test::test_suite* make_suite()
               for(size_t j = 0; j <= std::floor(std::log(i)); ++j) {
                 std::ostringstream name;
                 name << typeid(Strategy).name() << ' ' << typeid(Order).name() << ' ' << i << ' ' << j;
-                suite->add(BOOST_TEST_CASE_NAME(std::bind(*std::make_shared< TestRandomInts< Strategy, Order > >(i, _order)), name.str()));
+                suite->add(BOOST_TEST_CASE_NAME(std::bind(*std::make_shared< dan::TestRandomInts< Strategy, Order > >(i, _order)), name.str()));
               }
             }
         }

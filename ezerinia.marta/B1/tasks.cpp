@@ -45,7 +45,6 @@ int task2(const char *input)
   file.seekg(0);
 
   if (length == 0) {
-    std::cerr << "Empty file\n";
     return 0;
   }
   if (length == -1) {

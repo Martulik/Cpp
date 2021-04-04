@@ -147,9 +147,9 @@ void pochernin::CompositeShape::pushBack(const ShapePtr shape)
 
 void pochernin::CompositeShape::popBack()
 {
-  if (size_ == 0)
+  if (size_ == 1)
   {
-    throw std::logic_error("Pop back empty CompositeShape");
+    throw std::logic_error("Pop back one-shape CompositeShape");
   }
 
   size_--;

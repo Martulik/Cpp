@@ -39,3 +39,8 @@ void ferapontov::Rectangle::scale(const double k)
   rect_.width *= k;
   rect_.height *= k;
 }
+
+std::unique_ptr< ferapontov::Shape > ferapontov::Rectangle::clone() const
+{
+  return std::unique_ptr< Shape >(new Rectangle(*this));
+}

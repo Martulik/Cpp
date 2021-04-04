@@ -7,8 +7,8 @@ namespace fer = ferapontov;
 void print(std::ostream& out, const fer::Shape& shape)
 {
   out << "Name: " << shape.getName() << "\n";
-  out << "Coordinate X: " << shape.getFrameRect().pos.x << "\n";
-  out << "Coordinate Y: " << shape.getFrameRect().pos.y << "\n";
+  out << "Coordinate X: " << getX(shape) << "\n";
+  out << "Coordinate Y: " << getY(shape) << "\n";
 }
 
 void test(fer::Shape* shp, std::ostream& out, const fer::point_t& pos)

@@ -5,7 +5,7 @@
 
 namespace ferapontov
 {
-  class Circle : public Shape
+  class Circle: public Shape
   {
   public:
     Circle(double radius, const point_t& pos);
@@ -18,6 +18,7 @@ namespace ferapontov
     void move(const point_t& pos) override;
     void move(double dx, double dy) override;
     void scale(double k) override;
+    virtual std::unique_ptr< Shape > clone() const override;
   private:
     double radius_;
     point_t pos_;

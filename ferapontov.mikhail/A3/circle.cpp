@@ -40,3 +40,8 @@ void ferapontov::Circle::scale(const double k)
 {
   radius_ *= k;
 }
+
+std::unique_ptr< ferapontov::Shape > ferapontov::Circle::clone() const
+{
+  return std::unique_ptr< Shape >(new Circle(*this));
+}

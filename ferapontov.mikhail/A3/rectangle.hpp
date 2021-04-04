@@ -17,6 +17,7 @@ namespace ferapontov
     void move(const point_t& pos) override;
     void move(double dx, double dy) override;
     void scale(double k) override;
+    virtual std::unique_ptr< Shape > clone() const override;
   private:
     rectangle_t rect_;
   };

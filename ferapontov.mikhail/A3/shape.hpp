@@ -1,6 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 #include <string>
+#include <memory>
 #include "base-types.hpp"
 
 namespace ferapontov
@@ -16,6 +17,11 @@ namespace ferapontov
     virtual void move(const point_t& pos) = 0;
     virtual void move(double dx, double dy) = 0;
     virtual void scale(double k) = 0;
+    virtual std::unique_ptr< Shape > clone() const = 0;
   };
+  double getX(const Shape& src);
+  double getY(const Shape& src);
+  double getHeight(const Shape& src);
+  double getWidth(const Shape& src);
 }
 #endif

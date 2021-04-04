@@ -7,10 +7,9 @@
 #include "iterator-utils.hpp"
 #include "sort.hpp"
 
-template < typename T >
-void inputVector(std::vector< T > &vector)
+void inputVector(std::vector< int > &vector)
 {
-  T input;
+  int input;
   while (std::cin >> input) {
     vector.push_back(input);
   }

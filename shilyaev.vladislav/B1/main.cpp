@@ -1,6 +1,7 @@
 #include <iostream>
 #include "task-sort.hpp"
 #include "task-copy.hpp"
+#include "task-iterators.hpp"
 #include "task-random.hpp"
 
 int main(int argc, char *argv[])
@@ -16,6 +17,9 @@ int main(int argc, char *argv[])
     }
     case 2: {
       return taskCopy(argc, argv);
+    }
+    case 3: {
+      return taskIterators(argc);
     }
     case 4: {
       return taskRandom(argc, argv);

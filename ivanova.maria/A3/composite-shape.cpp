@@ -107,7 +107,6 @@ std::string ivanova::CompositeShape::getName() const
 
 void ivanova::CompositeShape::scaleShape(double k)
 {
-  assert(k > 0);
   ivanova::point_t totalPos = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++)
   {
@@ -149,6 +148,10 @@ shared ivanova::CompositeShape::clone() const
 
 shared ivanova::CompositeShape::at(size_t i) const
 {
-  assert(i < size_);
-  return data_[i];
+//  assert(i < size_);
+ if (size_ < i)
+ {
+   throw std::out_of_range("Wrong index");
+ }
+return data_[i];
 }

@@ -31,9 +31,7 @@ void addOnes(std::vector< int > &vector)
   for (std::vector< int >::iterator i = vector.begin(); i < vector.end();) {
     if (*i % 3 == 0) {
       i++;
-      for (size_t j = 0; j < 3; j++) {
-        i = vector.insert(i, 1);
-      }
+      i = vector.insert(i, 3, 1);
       i += 3;
     } else {
       i++;

@@ -2,7 +2,7 @@
 
 namespace lysenko
 {
-  Shape::ShapePtr lysenko::makeCircle()
+  lysenko::Shape::ShapePtr lysenko::makeCircle()
   {
     double radius = 33.33;
     point_t pos = { 1, 1 };
@@ -10,7 +10,7 @@ namespace lysenko
     return std::make_shared< Circle >(Circle(pos, radius));
   }
 
-  Shape::ShapePtr lysenko::makeRectangle()
+  lysenko::Shape::ShapePtr lysenko::makeRectangle()
   {
     double width = 1.0;
     double height = 2.0;
@@ -19,7 +19,7 @@ namespace lysenko
     return std::make_shared< Rectangle >(Rectangle(width, height, pos));
   }
 
-  std::shared_ptr < CompositeShape > lysenko::makeCompositeShape()
+  std::shared_ptr<lysenko::CompositeShape> lysenko::makeCompositeShape()
   {
     Shape::ShapePtr myCircle = makeCircle();
     Shape::ShapePtr myRectangle = makeRectangle();
@@ -49,10 +49,9 @@ namespace lysenko
     BOOST_CHECK_CLOSE(src->getArea(), area, accuracy);
   }
 
-  void lysenko::testScale(Shape::ShapePtr src)
+  lysenko::testScale(lysenko::Shape::ShapePtr src)
   {
     double k = 5.0;
-    double defaultK = -5.0;
     double oldArea = src->getArea();
 
     src->scale(k);

@@ -73,8 +73,8 @@ test::test_suite* make_suite()
 BOOST_AUTO_TEST_SUITE(sort);
 static dan::test_suite_registrar register_int(
     make_suite< int, dan::UniformIntStrat< int > >(),
-    boost::unit_test::decorator::collector_t::instance());
+    boost::unit_test::decorator::collector::instance());
 static dan::test_suite_registrar register_double(
     make_suite< double, dan::UniformRealStrat< double > >(),
-    boost::unit_test::decorator::collector_t::instance());
+    boost::unit_test::decorator::collector::instance());
 BOOST_AUTO_TEST_SUITE_END();

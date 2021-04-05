@@ -8,16 +8,16 @@ ivanova::point_t pos{-8.3, 6.0};
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
 BOOST_AUTO_TEST_CASE(moveRectangle)
-  {
-    ivanova::Rectangle rectangle(height, width, pos);
-    checkMoveAbs(&rectangle);
-    checkMoveToPoint(&rectangle);
-  }
+{
+  ivanova::Rectangle rectangle(height, width, pos);
+  checkMoveAbs(&rectangle);
+  checkMoveToPoint(&rectangle);
+}
 
 BOOST_AUTO_TEST_CASE(scaleRectangle)
-  {
-    ivanova::Rectangle rectangle(height, width, pos);
-    checkScale(&rectangle);
-  }
+{
+  ivanova::Rectangle rectangle(height, width, pos);
+  checkScale(&rectangle);
+}
 
 BOOST_AUTO_TEST_SUITE_END()

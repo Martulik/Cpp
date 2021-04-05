@@ -55,10 +55,9 @@ test::test_suite* make_suite()
                     << ' ' << i << ' ' << j;
                 suite->add(
                     BOOST_TEST_CASE_NAME(
-                      std::bind(
-                        *std::make_shared<
-                          dan::TestRandomSort< T, RandomStrat, Strategy, Order >
-                        >(min, max, i, _order)),
+                      (*std::make_shared<
+                        dan::TestRandomSort< T, RandomStrat, Strategy, Order >
+                      >(min, max, i, _order)),
                       name.str()));
               }
             }

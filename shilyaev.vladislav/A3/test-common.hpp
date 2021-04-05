@@ -6,7 +6,7 @@
 namespace shilyaev {
 
   const double TOLERANCE = 0.001;
-  const shilyaev::point_t CENTER{5.0, -5.0};
+  const point_t CENTER{5.0, -5.0};
   const double WIDTH = 6.0;
   const double HEIGHT = 2.5;
   const double PI = 3.14159265358979323846;

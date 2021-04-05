@@ -85,3 +85,8 @@ void curr::CompositeShape::doScale(double k)
   }
 }
 
+curr::Shape::ShapePtr curr::CompositeShape::clone() const
+{
+  return std::make_shared < CompositeShape >(*this);
+}
+

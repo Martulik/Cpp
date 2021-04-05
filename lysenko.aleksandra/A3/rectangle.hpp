@@ -20,6 +20,8 @@ namespace lysenko
     virtual void move(double dx, double dy) override;
     virtual std::string getName() const override;
 
+    virtual ShapePtr clone() const override;
+
   private:
     double width_;
     double heigh_;

@@ -47,3 +47,8 @@ void curr::Circle::doScale(double k)
 {
   radius_ *= k;
 }
+
+curr::Shape::ShapePtr curr::Circle::clone() const
+{
+  return std::make_shared < Circle >(*this);
+}

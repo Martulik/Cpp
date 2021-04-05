@@ -48,3 +48,7 @@ void curr::Rectangle::doScale(double k)
   heigh_ *= k;
 }
 
+curr::Shape::ShapePtr curr::Rectangle::clone() const
+{
+  return std::make_shared < Rectangle >(*this);
+}

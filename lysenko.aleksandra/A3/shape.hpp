@@ -24,6 +24,8 @@ namespace lysenko
     virtual std::string getName() const = 0;
     void scale(double k);
 
+    virtual ShapePtr clone() const = 0;
+
   private:
     virtual void doScale(double k) = 0;
   };

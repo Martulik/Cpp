@@ -4,7 +4,6 @@
 #include <functional>
 #include <algorithm>
 #include <random>
-#include <typeinfo>
 #include "insert-sort.hpp"
 
 namespace doroshin

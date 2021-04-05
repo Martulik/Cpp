@@ -1,4 +1,5 @@
 #include <limits>
+#include <typeinfo>
 #include <boost/test/unit_test.hpp>
 #include <boost/test/parameterized_test.hpp>
 #include <boost/mpl/list.hpp>
@@ -15,8 +16,15 @@ namespace dan = doroshin;
 template< typename T, typename RandomStrat >
 test::test_suite* make_suite()
 {
-  using Strategies = mpl::list< dan::VectorIndexStrat< T >, dan::VectorAtStrat< T >, dan::ListIterStrat< T > >;
-  using Orderings = mpl::list< std::less< T >, std::greater< T > >;
+  using Strategies = mpl::list<
+      dan::VectorIndexStrat< T >,
+      dan::VectorAtStrat< T >,
+      dan::ListIterStrat< T >
+  >;
+  using Orderings = mpl::list<
+      std::less< T >,
+      std::greater< T >
+  >;
   const std::vector< std::pair< T, T > > limits = {
     { 0, 1 },
     { -10, 10 },
@@ -40,8 +48,15 @@ test::test_suite* make_suite()
               size_t repeat = std::floor(std::log(i));
               for(size_t j = 0; j <= repeat; ++j) {
                 std::ostringstream name;
-                name << typeid(T).name() << ' ' << typeid(Strategy).name() << ' ' << typeid(Order).name() << ' ' << min << ' ' << max << ' ' << i << ' ' << j;
-                suite->add(BOOST_TEST_CASE_NAME(std::bind(*std::make_shared< dan::TestRandomSort< T, RandomStrat, Strategy, Order > >(min, max, i, _order)), name.str()));
+                name << typeid(T).name() << ' '
+                    << typeid(Strategy).name() << ' '
+                    << typeid(Order).name() << ' '
+                    << min << ' ' << max
+                    << ' ' << i << ' ' << j;
+                suite->add(
+                    BOOST_TEST_CASE_NAME(
+                      std::bind(*std::make_shared< dan::TestRandomSort< T, RandomStrat, Strategy, Order > >(min, max, i, _order)),
+                      name.str()));
               }
             }
           }
@@ -53,5 +68,11 @@ test::test_suite* make_suite()
   return suite;
 }
 
-static dan::test_suite_registrar register_int(make_suite< int, dan::UniformIntStrat< int > >(), &test::framework::master_test_suite(), test::decorator::collector_t::instance());
-static dan::test_suite_registrar register_double(make_suite< double, dan::UniformRealStrat< double > >(), &test::framework::master_test_suite(), test::decorator::collector_t::instance());
+static dan::test_suite_registrar register_int(
+    make_suite< int, dan::UniformIntStrat< int > >(),
+    &test::framework::master_test_suite(),
+    test::decorator::collector_t::instance());
+static dan::test_suite_registrar register_double(
+    make_suite< double, dan::UniformRealStrat< double > >(),
+    &test::framework::master_test_suite(),
+    test::decorator::collector_t::instance());

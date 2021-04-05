@@ -39,27 +39,27 @@ namespace test_utility
   }
 }
 
-void make_bad_circle()
+void makeBadCircle()
 {
   shkurov::Circle circle(CIRCLE_POS, -A);
 }
 
-void make_bad_rectangle()
+void makeBadRectangle()
 {
   shkurov::Rectangle rect(RECTANGLE_POS, B, -C);
 }
 
-std::unique_ptr< shkurov::Shape > make_circle()
+std::unique_ptr< shkurov::Shape > makeCircle()
 {
   return std::unique_ptr< shkurov::Shape >(new shkurov::Circle(CIRCLE_POS, A));
 }
 
-std::unique_ptr< shkurov::Shape > make_rectangle()
+std::unique_ptr< shkurov::Shape > makeRectangle()
 {
   return std::unique_ptr< shkurov::Shape >(new shkurov::Rectangle(RECTANGLE_POS, B, C));
 }
 
-std::unique_ptr< shkurov::Shape > make_composite_shape()
+std::unique_ptr< shkurov::Shape > makeCompositeShape()
 {
   std::unique_ptr< shkurov::Shape > circle(new shkurov::Circle(CIRCLE_POS, A));
   std::unique_ptr< shkurov::Shape > rectangle(new shkurov::Rectangle(RECTANGLE_POS, B, C));
@@ -67,7 +67,7 @@ std::unique_ptr< shkurov::Shape > make_composite_shape()
   return std::unique_ptr< shkurov::Shape >(new shkurov::CompositeShape(std::move(circle), std::move(rectangle)));
 }
 
-void test_move_to_point(shkurov::Shape* shape)
+void testMoveToPoint(shkurov::Shape* shape)
 {
   double origin_height = test_utility::getHeight(shape);
   double origin_width = test_utility::getWidth(shape);
@@ -80,7 +80,7 @@ void test_move_to_point(shkurov::Shape* shape)
   BOOST_CHECK_CLOSE(origin_area, shape->getArea(), EPSILON);
 }
 
-void test_scale(shkurov::Shape* shape)
+void testScale(shkurov::Shape* shape)
 {
   double pred_area = shape->getArea() * K * K;
 
@@ -89,7 +89,7 @@ void test_scale(shkurov::Shape* shape)
   BOOST_CHECK_CLOSE(pred_area, shape->getArea(), EPSILON);
 }
 
-void invalid_scale(shkurov::Shape* shape)
+void invalidScale(shkurov::Shape* shape)
 {
   shape->scale(-K);
 }

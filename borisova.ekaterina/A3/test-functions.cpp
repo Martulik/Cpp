@@ -20,7 +20,7 @@ void borisova::areaAfterMoving(std::unique_ptr< Shape > obj)
 void borisova::areaAfterScale(std::unique_ptr< Shape > obj)
 {
   double arBeforeScale = obj->getArea();
-  BOOST_CHECK_NO_THROW(obj->scale(coeff));
+  obj->scale(coeff);
   BOOST_CHECK_CLOSE(obj->getArea(), arBeforeScale * coeff * coeff, 0.000001);
   BOOST_CHECK_THROW(obj->scale(-3.2), std::invalid_argument);
 }

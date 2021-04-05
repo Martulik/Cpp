@@ -7,7 +7,7 @@ const double PI = 3.1415926;
 
 namespace curr = lysenko;
 
-curr::Circle::Circle(point_t& pos, double radius):
+curr::Circle::Circle(point_t pos, double radius):
   pos_(pos),
   radius_(radius)
 {

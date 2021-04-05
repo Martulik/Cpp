@@ -10,7 +10,7 @@ namespace lysenko
   class Rectangle : public Shape
   {
   public:
-    Rectangle(double width, double height, point_t& pos);
+    Rectangle(double width, double height, point_t pos);
 
     ~Rectangle() = default;
 

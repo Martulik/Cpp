@@ -10,7 +10,7 @@ namespace lysenko
   class Circle : public Shape
   {
   public:
-    Circle(point_t& pos, double radius);
+    Circle(point_t pos, double radius);
 
     ~Circle() = default;
 

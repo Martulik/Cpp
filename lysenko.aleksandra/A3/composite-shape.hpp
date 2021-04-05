@@ -17,12 +17,12 @@ namespace lysenko
 
     ~CompositeShape() override = default;
 
-    CompositeShape& operator=(const CompositeShape& src);
-    CompositeShape& operator=(CompositeShape&& src) noexcept;
+    CompositeShape& operator=(const CompositeShape & src);
+    CompositeShape& operator=(CompositeShape && src) noexcept;
 
     virtual double getArea() const override;
     virtual rectangle_t getFrameRect()const override;
-    virtual void move(const point_t& newPos) override;
+    virtual void move(const point_t & newPos) override;
     virtual void move(double dx, double dy) override;
     virtual std::string getName() const override;
 

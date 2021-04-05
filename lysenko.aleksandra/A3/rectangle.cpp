@@ -5,12 +5,12 @@
 
 namespace curr = lysenko;
 
-curr::Rectangle::Rectangle(double width, double height, point_t& pos):
+curr::Rectangle::Rectangle(double width, double height, point_t pos):
   width_(width),
   heigh_(height),
   pos_(pos)
 {
-  if ((height < 0.0) && (width < 0.0))
+  if ((height < 0.0) || (width < 0.0))
   {
     throw std::invalid_argument("Height and width of rectangle must be positive");
   }
@@ -47,6 +47,7 @@ void curr::Rectangle::doScale(double k)
   width_ *= k;
   heigh_ *= k;
 }
+
 
 curr::Shape::ShapePtr curr::Rectangle::clone() const
 {

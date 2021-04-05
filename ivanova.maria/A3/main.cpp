@@ -4,7 +4,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void info(std::shared_ptr< ivanova::Shape > shp);
+void info(const std::shared_ptr< ivanova::Shape > shp);
 
 int main()
 {

@@ -1,5 +1,5 @@
 #include "shape.hpp"
-#include <cassert>
+#include <stdexcept>
 
 double ivanova::getWidth(const Shape &source)
 {

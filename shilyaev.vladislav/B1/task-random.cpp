@@ -5,6 +5,7 @@
 #include "iterator-utils.hpp"
 #include "order-strategies.hpp"
 #include "access-strategies.hpp"
+#include "string-convert.hpp"
 
 namespace shilyaev {
 
@@ -24,7 +25,13 @@ namespace shilyaev {
       return 1;
     }
     const std::string orderParameter = argv[2];
-    const size_t size = std::atoi(argv[3]);
+    size_t size = 0;
+    try {
+      size = toNatural(argv[3]);
+    } catch (const std::invalid_argument &) {
+      std::cerr << "Size must only contain digits";
+      return 1;
+    }
     if (size == 0) {
       std::cerr << "Invalid size";
       return 1;

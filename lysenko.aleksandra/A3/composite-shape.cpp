@@ -55,7 +55,7 @@ curr::CompositeShape::CompositeShape(ShapePtr src) :
   size_(1),
   array_(std::make_unique < ShapePtr[] >(capacity_))
 {
-  if (&src == nullptr)
+  if (src == nullptr)
   {
     throw "Composite shape can not contain the pointer on nullptr";
   }

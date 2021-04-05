@@ -4,11 +4,11 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-void printCoordinates(const shkurov::Shape* figure)
+void printCoordinates(const shkurov::Shape& figure)
 {
-  std::cout << figure->getName() << " is now located by ("
-            << figure->getFrameRect().pos.x << ':'
-            << figure->getFrameRect().pos.y << ')' << '\n';
+  std::cout << figure.getName() << " is now located by ("
+            << figure.getFrameRect().pos.x << ':'
+            << figure.getFrameRect().pos.y << ')' << '\n';
 }
 
 int main()
@@ -17,10 +17,10 @@ int main()
   shkurov::point_t begin_pos = {2, 2};
   std::unique_ptr< shkurov::Shape > rect(new shkurov::Rectangle(begin_pos, 4, 4));
 
-  printCoordinates(rect.get());
+  printCoordinates(*rect);
 
   rect->move(-2, -2);
-  printCoordinates(rect.get());
+  printCoordinates(*rect);
 
   std::cout << "Area of rectangle is: " << rect->getArea() << '\n';
 
@@ -28,11 +28,11 @@ int main()
   begin_pos = {-31.2, 9.21};
   std::unique_ptr< shkurov::Shape > circle(new shkurov::Circle(begin_pos, 2));
 
-  printCoordinates(circle.get());
+  printCoordinates(*circle);
 
   shkurov::point_t new_pos = {2, 2};
   circle->move(new_pos);
-  printCoordinates(circle.get());
+  printCoordinates(*circle);
 
   std::cout << "Area of circle is: " << circle->getArea() << "\n\n";
 
@@ -41,15 +41,14 @@ int main()
 
   std::unique_ptr< shkurov::Shape > composite_shape(
     new shkurov::CompositeShape(std::move(rect), std::move(rect2), std::move(circle)));
-
-  printCoordinates(composite_shape.get());
+  printCoordinates(*composite_shape);
 
   composite_shape->move(2, -2);
-  printCoordinates(composite_shape.get());
+  printCoordinates(*composite_shape);
   std::cout << "Area of composite-shape is: " << composite_shape->getArea() << "\n\n";
 
   composite_shape->scale(2);
-  printCoordinates(composite_shape.get());
+  printCoordinates(*composite_shape);
   std::cout << "Area of composite-shape after scale is: " << composite_shape->getArea() << "\n\n";
 
   return 0;

@@ -18,17 +18,17 @@ BOOST_AUTO_TEST_CASE(constructor_throw_exception)
 
 BOOST_AUTO_TEST_CASE(move)
 {
-  testMoveToPoint(rect_ptr.get());
+  testMoveToPoint(*rect_ptr);
 }
 
 BOOST_AUTO_TEST_CASE(scale)
 {
-  testScale(rect_ptr.get());
+  testScale(*rect_ptr);
 }
 
 BOOST_AUTO_TEST_CASE(scale_throw_exception)
 {
-  BOOST_CHECK_THROW(invalidScale(rect_ptr.get()), std::invalid_argument);
+  BOOST_CHECK_THROW(invalidScale(*rect_ptr), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
@@ -45,17 +45,17 @@ BOOST_AUTO_TEST_CASE(constructor_throw_exception)
 
 BOOST_AUTO_TEST_CASE(move)
 {
-  testMoveToPoint(circle_ptr.get());
+  testMoveToPoint(*circle_ptr);
 }
 
 BOOST_AUTO_TEST_CASE(scale_correct_modification)
 {
-  testScale(circle_ptr.get());
+  testScale(*circle_ptr);
 }
 
 BOOST_AUTO_TEST_CASE(scale_throw_exception)
 {
-  BOOST_CHECK_THROW(invalidScale(circle_ptr.get()), std::invalid_argument);
+  BOOST_CHECK_THROW(invalidScale(*circle_ptr), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
@@ -78,17 +78,17 @@ BOOST_AUTO_TEST_CASE(move_semantics)
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)
 {
-  testMoveToPoint(composite_ptr.get());
+  testMoveToPoint(*composite_ptr);
 }
 
 BOOST_AUTO_TEST_CASE(scale_correct_modification)
 {
-  testScale(composite_ptr.get());
+  testScale(*composite_ptr);
 }
 
 BOOST_AUTO_TEST_CASE(scale_throw_exception)
 {
-  BOOST_CHECK_THROW(invalidScale(composite_ptr.get()), std::invalid_argument);
+  BOOST_CHECK_THROW(invalidScale(*composite_ptr), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();

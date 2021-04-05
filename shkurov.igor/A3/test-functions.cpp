@@ -16,24 +16,24 @@ const double TOLERANCE = std::numeric_limits< double >::epsilon();
 
 namespace test_utility
 {
-  double getX(const shkurov::Shape* shape)
+  double getX(const shkurov::Shape& shape)
   {
-    return shape->getFrameRect().pos.x;
+    return shape.getFrameRect().pos.x;
   }
 
-  double getY(const shkurov::Shape* shape)
+  double getY(const shkurov::Shape& shape)
   {
-    return shape->getFrameRect().pos.y;
+    return shape.getFrameRect().pos.y;
   }
 
-  double getHeight(const shkurov::Shape* shape)
+  double getHeight(const shkurov::Shape& shape)
   {
-    return shape->getFrameRect().height;
+    return shape.getFrameRect().height;
   }
 
-  double getWidth(const shkurov::Shape* shape)
+  double getWidth(const shkurov::Shape& shape)
   {
-    return shape->getFrameRect().width;
+    return shape.getFrameRect().width;
   }
 }
 
@@ -65,29 +65,29 @@ std::unique_ptr< shkurov::Shape > makeCompositeShape()
   return std::unique_ptr< shkurov::Shape >(new shkurov::CompositeShape(std::move(circle), std::move(rectangle)));
 }
 
-void testMoveToPoint(shkurov::Shape* shape)
+void testMoveToPoint(shkurov::Shape& shape)
 {
   double origin_height = test_utility::getHeight(shape);
   double origin_width = test_utility::getWidth(shape);
-  double origin_area = shape->getArea();
+  double origin_area = shape.getArea();
 
-  shape->move(FINAL_POS);
+  shape.move(FINAL_POS);
 
   BOOST_CHECK_CLOSE_FRACTION(origin_height, test_utility::getHeight(shape), TOLERANCE);
   BOOST_CHECK_CLOSE_FRACTION(origin_width, test_utility::getWidth(shape), TOLERANCE);
-  BOOST_CHECK_CLOSE_FRACTION(origin_area, shape->getArea(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(origin_area, shape.getArea(), TOLERANCE);
 }
 
-void testScale(shkurov::Shape* shape)
+void testScale(shkurov::Shape& shape)
 {
-  double pred_area = shape->getArea() * K * K;
+  double pred_area = shape.getArea() * K * K;
 
-  shape->scale(K);
+  shape.scale(K);
 
-  BOOST_CHECK_CLOSE_FRACTION(pred_area, shape->getArea(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(pred_area, shape.getArea(), TOLERANCE);
 }
 
-void invalidScale(shkurov::Shape* shape)
+void invalidScale(shkurov::Shape& shape)
 {
-  shape->scale(-K);
+  shape.scale(-K);
 }

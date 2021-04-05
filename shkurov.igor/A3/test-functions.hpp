@@ -15,8 +15,8 @@ std::unique_ptr< shkurov::Shape > makeCircle();
 std::unique_ptr< shkurov::Shape > makeRectangle();
 std::unique_ptr< shkurov::Shape > makeCompositeShape();
 
-void testMoveToPoint(shkurov::Shape* shape);
-void testScale(shkurov::Shape* shape);
-void invalidScale(shkurov::Shape* shape);
+void testMoveToPoint(shkurov::Shape& shape);
+void testScale(shkurov::Shape& shape);
+void invalidScale(shkurov::Shape& shape);
 
 #endif

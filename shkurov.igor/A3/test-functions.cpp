@@ -49,27 +49,22 @@ void make_bad_rectangle()
   shkurov::Rectangle rect(RECTANGLE_POS, B, -C);
 }
 
-shkurov::Shape* make_circle()
+std::unique_ptr< shkurov::Shape > make_circle()
 {
-  shkurov::Shape* ptr = new shkurov::Circle(CIRCLE_POS, A);
-
-  return ptr;
+  return std::unique_ptr< shkurov::Shape >(new shkurov::Circle(CIRCLE_POS, A));
 }
 
-shkurov::Shape* make_rectangle()
+std::unique_ptr< shkurov::Shape > make_rectangle()
 {
-  shkurov::Shape* ptr = new shkurov::Rectangle(RECTANGLE_POS, B, C);
-
-  return ptr;
+  return std::unique_ptr< shkurov::Shape >(new shkurov::Rectangle(RECTANGLE_POS, B, C));
 }
 
-shkurov::Shape* make_composite_shape()
+std::unique_ptr< shkurov::Shape > make_composite_shape()
 {
-  shkurov::Shape* circle = new shkurov::Circle(CIRCLE_POS, A);
-  shkurov::Shape* rectangle = new shkurov::Rectangle(RECTANGLE_POS, B, C);
-  shkurov::Shape* ptr = new shkurov::CompositeShape({circle, rectangle});
+  std::unique_ptr< shkurov::Shape > circle(new shkurov::Circle(CIRCLE_POS, A));
+  std::unique_ptr< shkurov::Shape > rectangle(new shkurov::Rectangle(RECTANGLE_POS, B, C));
 
-  return ptr;
+  return std::unique_ptr< shkurov::Shape >(new shkurov::CompositeShape(std::move(circle), std::move(rectangle)));
 }
 
 void test_move_to_point(shkurov::Shape* shape)

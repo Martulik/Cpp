@@ -1,12 +1,15 @@
+#ifndef SORT_HPP
+#define SORT_HPP
+  
 template <typename Container, Strategy strat>
 void sort(Container cont, bool isAscending)
 (
-  typename strat::iterType max;
-  strat::itertype searchRangeEnd = strat.end(cont);
-  for (strat::iterType i = strat.begin(cont); i != strat.end(cont); i++)
+  typename strat::IterType max;
+  strat::Itertype searchRangeEnd = strat.end(cont);
+  for (strat::IterType i = strat.begin(cont); i != strat.end(cont); i++)
   {
     max = strat.begin(cont);
-    for (strat::iterType j = ++strat.begin(cont); j != searchRangeEnd; j++)
+    for (strat::IterType j = ++strat.begin(cont); j != searchRangeEnd; j++)
     {
       if ((strat.getElem(j) > strat.getElem(max)) == isAscending)
       {
@@ -16,3 +19,5 @@ void sort(Container cont, bool isAscending)
     std::swap(strat.getElem(max), strat.getElem(searchRangeEnd));
   }
 )
+
+#endif

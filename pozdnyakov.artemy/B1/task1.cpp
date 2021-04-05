@@ -1,3 +1,4 @@
+#include "tasks.hpp"
 #include "sort.hpp"
 #include "strategies.hpp"
 

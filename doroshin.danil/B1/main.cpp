@@ -24,11 +24,15 @@ std::function< bool(T, T) > getOrder(std::string order)
 template< typename T >
 T readArg(std::string arg)
 {
-  std::ifstream in(arg);
   T res;
+  std::istringstream in (arg);
   in >> res;
   if(in.fail()) {
     throw ArgumentParseException("Invalid read");
+  }
+  in.get();
+  if(!in.eof()) {
+    throw ArgumentParseException("Extra symbols");
   }
   return res;
 }

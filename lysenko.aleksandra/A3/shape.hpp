@@ -35,5 +35,4 @@ namespace lysenko
   double getWidth(Shape::ShapePtr src);
   double getHeight(Shape::ShapePtr src);
 }
-
 #endif

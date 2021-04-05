@@ -29,5 +29,4 @@ namespace lysenko
     virtual void doScale(double k) override;
   };
 }
-
 #endif

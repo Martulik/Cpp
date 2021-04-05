@@ -199,4 +199,3 @@ void curr::CompositeShape::doScale(double k)
     array_[i]->move({ compositeCenterX + dx * k, compositeCenterY + dy * k });
   }
 }
-

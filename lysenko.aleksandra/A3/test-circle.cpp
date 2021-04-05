@@ -17,5 +17,4 @@ BOOST_AUTO_TEST_CASE(test_invalid_radius)
   BOOST_CHECK_THROW(lysenko::Circle myCircle({ 1.0, 1.0}, -33.33), std::invalid_argument);
 }
 
-
 BOOST_AUTO_TEST_SUITE_END()

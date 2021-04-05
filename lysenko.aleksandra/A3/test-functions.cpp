@@ -58,3 +58,4 @@ namespace lysenko
     BOOST_CHECK_CLOSE(src->getArea(), oldArea * k * k, accuracy);
   }
 }
+ 

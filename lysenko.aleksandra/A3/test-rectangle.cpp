@@ -28,4 +28,3 @@ BOOST_AUTO_TEST_CASE(test_invalid_weight_and_height)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

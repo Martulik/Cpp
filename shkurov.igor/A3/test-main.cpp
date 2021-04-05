@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <boost/test/included/unit_test.hpp>
 
-const double EPSILON = std::numeric_limits< double >::epsilon();
+const double TOLERANCE = std::numeric_limits< double >::epsilon();
 
 BOOST_AUTO_TEST_SUITE(rectangle_test)
 
@@ -70,10 +70,10 @@ BOOST_AUTO_TEST_CASE(move_semantics)
   shkurov::CompositeShape composite({makeCircle(), makeRectangle()});
   double origin_area = composite.getArea();
   shkurov::CompositeShape moved_shape(std::move(composite));
-  BOOST_CHECK_CLOSE_FRACTION(origin_area, moved_shape.getArea(), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(origin_area, moved_shape.getArea(), TOLERANCE);
 
   composite = std::move(moved_shape);
-  BOOST_CHECK_CLOSE_FRACTION(origin_area, composite.getArea(), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(origin_area, composite.getArea(), TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)

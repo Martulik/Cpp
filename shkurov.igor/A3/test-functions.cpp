@@ -12,7 +12,7 @@ const double A = 7.0;
 const double B = 10.0;
 const double C = 4.0;
 const double K = 3.0;
-const double EPSILON = std::numeric_limits< double >::epsilon();
+const double TOLERANCE = std::numeric_limits< double >::epsilon();
 
 namespace test_utility
 {
@@ -73,9 +73,9 @@ void testMoveToPoint(shkurov::Shape* shape)
 
   shape->move(FINAL_POS);
 
-  BOOST_CHECK_CLOSE_FRACTION(origin_height, test_utility::getHeight(shape), EPSILON);
-  BOOST_CHECK_CLOSE_FRACTION(origin_width, test_utility::getWidth(shape), EPSILON);
-  BOOST_CHECK_CLOSE_FRACTION(origin_area, shape->getArea(), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(origin_height, test_utility::getHeight(shape), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(origin_width, test_utility::getWidth(shape), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(origin_area, shape->getArea(), TOLERANCE);
 }
 
 void testScale(shkurov::Shape* shape)
@@ -84,7 +84,7 @@ void testScale(shkurov::Shape* shape)
 
   shape->scale(K);
 
-  BOOST_CHECK_CLOSE_FRACTION(pred_area, shape->getArea(), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(pred_area, shape->getArea(), TOLERANCE);
 }
 
 void invalidScale(shkurov::Shape* shape)

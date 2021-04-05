@@ -1,5 +1,6 @@
 #include "shape.hpp"
 #include <stdexcept>
+#include <cassert>
 
 double ivanova::getWidth(const Shape &source)
 {
@@ -19,6 +20,12 @@ double ivanova::getX(const Shape &source)
 double ivanova::getY(const Shape &source)
 {
   return source.getFrameRect().pos.y;
+}
+
+void ivanova::Shape::scaleNoThrow(double k)
+{
+  assert(k > 0);
+  scaleShape(k);
 }
 
 void ivanova::Shape::scale(double k)

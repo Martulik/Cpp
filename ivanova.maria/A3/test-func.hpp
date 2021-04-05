@@ -6,8 +6,8 @@
 
 namespace ivanova
 {
-  void checkScale(ivanova::Shape *shape);
-  void checkMoveToPoint(ivanova::Shape *shape);
-  void checkMoveAbs(ivanova::Shape *shp);
+  void checkScale(ivanova::Shape &shape);
+  void checkMoveToPoint(ivanova::Shape &shape);
+  void checkMoveAbs(ivanova::Shape &shp);
 }
 #endif

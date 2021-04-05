@@ -15,59 +15,46 @@ const ivanova::point_t ctr = {2.1, 7.0};
 const size_t value = 10;
 using shared = std::shared_ptr< ivanova::Shape >;
 
-ivanova::CompositeShape makeCompositeShape()
+std::shared_ptr< ivanova::CompositeShape > makeCompositeShape()
 {
     shared circle = std::make_shared< ivanova::Circle >(ctr, radius);
     shared rectangle = std::make_shared< ivanova::Rectangle >(width, height, pos);
-    ivanova::CompositeShape shape(circle);
-    shape.pushBack(rectangle);
+    std::shared_ptr< ivanova::CompositeShape > shape (std::make_shared< ivanova::CompositeShape >(circle));
+    shape->pushBack(rectangle);
     return shape;
 }
 
 BOOST_AUTO_TEST_SUITE(testCompositeShape)
 
-BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape, *boost::unit_test::expected_failures(1))
+BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape)
 {
-  BOOST_CHECK_THROW(makeCompositeShape().scale(negativeValue), std::invalid_argument);
+  BOOST_CHECK_THROW(makeCompositeShape()->scale(negativeValue), std::invalid_argument);
 
 }
 
-BOOST_AUTO_TEST_CASE(outOfRange, *boost::unit_test::expected_failures(1))
+BOOST_AUTO_TEST_CASE(outOfRange)
 {
-  BOOST_CHECK_THROW(makeCompositeShape().at(value), std::out_of_range);
+  BOOST_CHECK_THROW(makeCompositeShape()->at(value), std::out_of_range);
 }
 
 BOOST_AUTO_TEST_CASE(moveCompositeShape)
 {
-  shared rectangle = std::make_shared< ivanova::Rectangle > (width, height, pos);
-  shared circle = std::make_shared< ivanova::Circle > (ctr, radius);
-  ivanova::CompositeShape array(rectangle);
-  array.pushBack(circle);
-
-  checkMoveAbs(&array);
-  checkMoveToPoint(&array);
+  ivanova::checkMoveAbs(*makeCompositeShape());
+  ivanova::checkMoveToPoint(*makeCompositeShape());
 }
 
 BOOST_AUTO_TEST_CASE(scaleCompositeShape)
 {
-  shared circle0 = std::make_shared< ivanova::Circle >(ctr, radius);
-  shared circle1 = std::make_shared< ivanova::Circle >(ctr, radius);
-
-  ivanova::CompositeShape array(circle0);
-  array.pushBack(circle1);
-  checkScale(&array);
+  ivanova::checkScale(*makeCompositeShape());
 }
 
 BOOST_AUTO_TEST_CASE(popBackCompositeShape)
 {
-  shared circle = std::make_shared< ivanova::Circle >(ctr, radius);
-  shared rectangle = std::make_shared< ivanova::Rectangle > (width, height, pos);
-  ivanova::CompositeShape array(circle);
-  array.pushBack(rectangle);
-  BOOST_CHECK_NO_THROW(array.popBack());
+  std::shared_ptr< ivanova::CompositeShape >array(makeCompositeShape());
+  BOOST_CHECK_NO_THROW(array->popBack());
 }
 
-BOOST_AUTO_TEST_CASE(popBackWrongCompositeShape, *boost::unit_test::expected_failures(1))
+BOOST_AUTO_TEST_CASE(popBackWrongCompositeShape)
 {
   shared circle = std::make_shared< ivanova::Circle >(ctr, radius);
   ivanova::CompositeShape array(circle);

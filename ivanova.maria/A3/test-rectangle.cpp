@@ -5,19 +5,23 @@
 double height = 9.0;
 double width = 4.7;
 ivanova::point_t pos{-8.3, 6.0};
+
+std::unique_ptr< ivanova::Rectangle > makeRectangle()
+{
+  return std::make_unique< ivanova::Rectangle >(width, height, pos);
+}
+
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
 BOOST_AUTO_TEST_CASE(moveRectangle)
 {
-  ivanova::Rectangle rectangle(height, width, pos);
-  checkMoveAbs(&rectangle);
-  checkMoveToPoint(&rectangle);
+  checkMoveAbs(*makeRectangle());
+  checkMoveToPoint(*makeRectangle());
 }
 
 BOOST_AUTO_TEST_CASE(scaleRectangle)
 {
-  ivanova::Rectangle rectangle(height, width, pos);
-  checkScale(&rectangle);
+  checkScale(*makeRectangle());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

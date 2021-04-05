@@ -1,10 +1,8 @@
 #include "test-function.hpp"
 
-const diurdeva::point_t newCenter = { 3.0, 2.0 };
-const double factor = 2.0;
-const double accuracy = 0.001;
+#include <boost/test/unit_test.hpp>
 
-void diurdeva::checkConstOptionsBeforeMoving(diurdeva::Shape &shape)
+void checkConstOptionsBeforeMoving(diurdeva::Shape &shape)
 {
   double widthBeforeMove = getWidth(shape);
   double heightBeforeMove = getHeight(shape);
@@ -15,7 +13,7 @@ void diurdeva::checkConstOptionsBeforeMoving(diurdeva::Shape &shape)
   BOOST_CHECK_CLOSE(shape.getArea(), area, accuracy);
 }
 
-void diurdeva::checkAreaBeforeScale(diurdeva::Shape &shape)
+void checkAreaBeforeScale(diurdeva::Shape &shape)
 {
   double areaBeforeScale = shape.getArea();
   shape.scale(factor);

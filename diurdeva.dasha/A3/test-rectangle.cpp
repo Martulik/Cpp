@@ -3,11 +3,6 @@
 #include "test-function.hpp"
 #include "rectangle.hpp"
 
-const diurdeva::point_t pointCenter = { 3.5, 4.0 };
-const double width = 8.0;
-const double height = 5.0;
-const double negativeOptions = -8.0;
-
 std::unique_ptr< diurdeva::Rectangle > makeRectangle()
 {
   return std::make_unique< diurdeva::Rectangle >(width, height, pointCenter);

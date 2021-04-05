@@ -6,15 +6,6 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-const diurdeva::point_t pointCenter = { 3.5, 4.0 };
-const diurdeva::point_t newCenter = { 3.0, 2.0 };
-const double width = 8.0;
-const double height = 5.0;
-const double radius = 3.0;
-const double negativeOptions = -8.0;
-const size_t testIndex = 200;
-const size_t reserveValue = 10;
-
 std::unique_ptr< diurdeva::CompositeShape > makeCompositeShape()
 {
   auto circle = std::make_unique< diurdeva::Circle >(radius, pointCenter);

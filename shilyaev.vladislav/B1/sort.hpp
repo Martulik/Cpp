@@ -11,7 +11,7 @@ namespace shilyaev {
   {
     using Item = typename AccessStrategy::Item;
     using Iterator = typename AccessStrategy::Iterator;
-    Iterator begin = AccessStrategy::begin(collection);
+    const Iterator begin = AccessStrategy::begin(collection);
     Iterator end = AccessStrategy::end(collection);
     while (begin != end) {
       Iterator i = begin;

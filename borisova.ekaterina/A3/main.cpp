@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <memory>
 #include "composite-shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
@@ -6,7 +7,7 @@
 using sh_ptr = std::shared_ptr< borisova::Shape >;
 
 void testAll();
-void test(const sh_ptr obj, borisova::point_t& dpos, std::ostream& out, double k);
+void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, double k);
 void print(const sh_ptr obj, std::ostream& out);
 void printPos(const sh_ptr obj, std::ostream& out);
 void moving(const sh_ptr obj, std::ostream& out);
@@ -43,7 +44,7 @@ void testAll()
   }
 }
 
-void test(const sh_ptr obj, borisova::point_t& dpos, std::ostream& out, double k)
+void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, const double k)
 {
   print(obj, out);
   obj->move(dpos);

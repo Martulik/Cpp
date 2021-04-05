@@ -16,9 +16,14 @@ namespace ferapontov
 
     CompositeShape(std::initializer_list< const Shape* >);
     CompositeShape(const this_type&);
-    CompositeShape(this_type&&) noexcept;
+    CompositeShape(this_type&&) = default;
+
+    this_type& operator=(const this_type&);
+    this_type& operator=(this_type&&) = default;
+
     ~CompositeShape();
 
+    std::string getName() const override;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t& pos) override;

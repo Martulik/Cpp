@@ -23,9 +23,24 @@ fer::CompositeShape::CompositeShape(std::initializer_list< const Shape* > src):
   }
 }
 
+fer::CompositeShape::CompositeShape(const this_type& src):
+  size_(src.size_),
+  arr_(new value_type[size_])
+{
+  for(int i = 0; i < size_; i++)
+  {
+    arr_[i] = src.arr_[i]->clone();
+  }
+}
+
 fer::CompositeShape::~CompositeShape()
 {
   delete arr_;
+}
+
+std::string fer::CompositeShape::getName() const
+{
+  return "Composite Shape";
 }
 
 double fer::CompositeShape::getArea() const

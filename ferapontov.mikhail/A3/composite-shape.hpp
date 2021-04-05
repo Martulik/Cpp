@@ -14,12 +14,12 @@ namespace ferapontov
     using value_type = std::unique_ptr< Shape >;
     using this_type = CompositeShape;
 
-    CompositeShape(std::initializer_list< const Shape* >);
-    CompositeShape(const this_type&);
-    CompositeShape(this_type&&) = default;
+    CompositeShape(std::initializer_list< const Shape* > src);
+    CompositeShape(const this_type& src);
+    CompositeShape(this_type&& src) noexcept = default;
 
-    this_type& operator=(const this_type&);
-    this_type& operator=(this_type&&) = default;
+    this_type& operator=(const this_type& src);
+    this_type& operator=(this_type&& src) noexcept;
 
     ~CompositeShape();
 
@@ -28,10 +28,13 @@ namespace ferapontov
     rectangle_t getFrameRect() const override;
     void move(const point_t& pos) override;
     void move(double dx, double dy) override;
-    void scale(double k) override;
+    std::unique_ptr< Shape > clone() const override;
+    void swap(this_type& src);
   private:
     size_t size_;
     value_type* arr_;
+
+    void doScale(double k) override;
  };
 }
 #endif

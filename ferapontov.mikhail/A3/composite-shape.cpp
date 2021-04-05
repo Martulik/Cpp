@@ -27,15 +27,29 @@ fer::CompositeShape::CompositeShape(const this_type& src):
   size_(src.size_),
   arr_(new value_type[size_])
 {
-  for(int i = 0; i < size_; i++)
+  for(size_t i = 0; i < size_; i++)
   {
     arr_[i] = src.arr_[i]->clone();
   }
 }
 
+this_type& fer::CompositeShape::operator=(const this_type& src)
+{
+  this_type temp(src);
+  swap(temp);
+  return *this;
+}
+
+this_type& fer::CompositeShape::operator=(this_type&& src) noexcept
+{
+  this_type temp(src);
+  swap(temp);
+  return *this;
+}
+
 fer::CompositeShape::~CompositeShape()
 {
-  delete arr_;
+  delete[] arr_;
 }
 
 std::string fer::CompositeShape::getName() const
@@ -46,7 +60,7 @@ std::string fer::CompositeShape::getName() const
 double fer::CompositeShape::getArea() const
 {
   double area = 0;
-  for (size_t i = 0; i <= size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     area += arr_[i]->getArea();
   }
@@ -91,11 +105,22 @@ void fer::CompositeShape::move(const double dx, const double dy)
   }
 }
 
-void fer::CompositeShape::scale(const double k)
+std::unique_ptr< fer::Shape > fer::CompositeShape::clone() const
+{
+  return std::unique_ptr< Shape >(new CompositeShape(*this));
+}
+
+void fer::CompositeShape::swap(this_type& src)
+{
+  std::swap(size_, src.size_);
+  std::swap(arr_, src.arr_);
+}
+
+void fer::CompositeShape::doScale(const double k)
 {
   double posX = getX(*this);
   double posY = getY(*this);
-  for(size_t i = 0; i< size_; ++i)
+  for(size_t i = 0; i < size_; ++i)
   {
     double dx = (k - 1) * (getX(*arr_[i]) - posX);
     double dy = (k - 1) * (getY(*arr_[i]) - posY);

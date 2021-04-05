@@ -11,6 +11,15 @@ namespace lysenko
   class CompositeShape : public Shape
   {
   public:
+    CompositeShape(const CompositeShape& other);
+    CompositeShape(CompositeShape&& other) noexcept;
+    explicit CompositeShape(ShapePtr src);
+
+    ~CompositeShape() override = default;
+
+    CompositeShape& operator=(const CompositeShape& src);
+    CompositeShape& operator=(CompositeShape&& src) noexcept;
+
     virtual double getArea() const override;
     virtual rectangle_t getFrameRect()const override;
     virtual void move(const point_t& newPos) override;
@@ -18,6 +27,11 @@ namespace lysenko
     virtual std::string getName() const override;
 
     virtual ShapePtr clone() const override;
+
+    void addShape(const ShapePtr& src);
+    void popShape();
+    void swap(CompositeShape& other) noexcept;
+    void enlargeCapacity(size_t newCapacity);
 
   private:
     size_t capacity_;
@@ -34,4 +48,3 @@ namespace lysenko
 }
 
 #endif
-

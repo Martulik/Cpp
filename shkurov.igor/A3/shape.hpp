@@ -14,8 +14,10 @@ namespace shkurov
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(const point_t& new_pos) = 0;
     virtual void move(double x, double y) = 0;
-    virtual void scale(double k) = 0;
     virtual const char* getName() const = 0;
+    void scale(double k);
+  protected:
+    virtual void scaleFigure(double k) = 0;
   };
 }
 

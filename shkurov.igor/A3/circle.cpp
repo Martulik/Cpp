@@ -36,13 +36,8 @@ void shkurov::Circle::move(const double move_x, const double move_y)
   center_.y += move_y;
 }
 
-void shkurov::Circle::scale(const double k)
+void shkurov::Circle::scaleFigure(const double k)
 {
-  if (k < 0)
-  {
-    throw std::invalid_argument("Exception: Scale coefficient is negative");
-  }
-
   radius_ *= k;
 }
 

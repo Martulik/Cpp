@@ -15,9 +15,10 @@ namespace shkurov
     rectangle_t getFrameRect() const override;
     void move(const point_t& new_pos) override;
     void move(double x, double y) override;
-    void scale(double k) override;
     const char* getName() const override;
   private:
+    void scaleFigure(double k) override;
+
     point_t center_;
     double height_;
     double width_;

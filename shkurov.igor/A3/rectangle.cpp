@@ -35,13 +35,8 @@ void shkurov::Rectangle::move(const double move_x, const double move_y)
   center_.y += move_y;
 }
 
-void shkurov::Rectangle::scale(const double k)
+void shkurov::Rectangle::scaleFigure(const double k)
 {
-  if (k < 0)
-  {
-    throw std::invalid_argument("Exception: Scale coefficient is negative");
-  }
-
   height_ *= k;
   width_ *= k;
 }

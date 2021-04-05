@@ -68,12 +68,8 @@ void shkurov::CompositeShape::move(const double x, const double y)
   }
 }
 
-void shkurov::CompositeShape::scale(double k)
+void shkurov::CompositeShape::scaleFigure(double k)
 {
-  if (k < 0)
-  {
-    throw std::invalid_argument("Exception: Scale coefficient < 0");
-  }
   point_t center = getFrameRect().pos;
   for (size_t i = 0; i < shape_count_; i++)
   {

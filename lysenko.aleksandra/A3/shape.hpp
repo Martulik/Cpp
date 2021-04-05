@@ -27,6 +27,11 @@ namespace lysenko
   private:
     virtual void doScale(double k) = 0;
   };
+
+  double getX(const Shape& src);
+  double getY(const Shape& src);
+  double getWidth(const Shape& src);
+  double getHeight(const Shape& src);
 }
 
 #endif

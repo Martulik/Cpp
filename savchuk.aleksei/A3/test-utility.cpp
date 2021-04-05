@@ -3,53 +3,58 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
 
-#include "rectangle.hpp"
-#include "circle.hpp"
-#include "composite-shape.hpp"
+#include "test-values.hpp"
 #include "shape-utility.hpp"
 
 namespace lab = savchuk;
 
 const double TOLERANCE = 0.001;
 
-lab::Rectangle makeRect(const lab::point_t& p, double w, double h)
+lab::Rectangle lab::makeRect()
 {
-  return lab::Rectangle(p, w, h);
+  return Rectangle(RECT_POS, WIDTH, HEIGHT);
 }
 
-lab::Circle makeCirc(const lab::point_t& p, double r)
+lab::Circle lab::makeCirc()
 {
-  return lab::Circle(p, r);
+  return Circle(CIRC_POS, RADIUS);
 }
 
-void checkMoveInvariant(lab::Shape& s, const lab::point_t& p)
+lab::CompositeShape lab::makeComposite()
 {
-  lab::rectangle_t r1 = s.getFrameRect();
+  Rectangle r = makeRect();
+  Circle c = makeCirc();
+  return CompositeShape({ &r, &c });
+}
+
+void lab::checkMoveInvariant(lab::Shape& s, const lab::point_t& p)
+{
+  rectangle_t r1 = s.getFrameRect();
   s.move(p);
-  lab::rectangle_t r2 = s.getFrameRect();
+  rectangle_t r2 = s.getFrameRect();
   BOOST_CHECK_CLOSE(r2.width, r1.width, TOLERANCE);
   BOOST_CHECK_CLOSE(r2.height, r1.height, TOLERANCE);
 }
 
-void checkMoveInvariant(lab::Shape& s, double dx, double dy)
+void lab::checkMoveInvariant(lab::Shape& s, double dx, double dy)
 {
-  lab::rectangle_t r1 = s.getFrameRect();
+  rectangle_t r1 = s.getFrameRect();
   s.move(dx, dy);
-  lab::rectangle_t r2 = s.getFrameRect();
+  rectangle_t r2 = s.getFrameRect();
   BOOST_CHECK_CLOSE(r2.width, r1.width, TOLERANCE);
   BOOST_CHECK_CLOSE(r2.height, r1.height, TOLERANCE);
 }
 
-void checkScaleFrameRect(lab::Shape& s, double k)
+void lab::checkScaleFrameRect(lab::Shape& s, double k)
 {
-  lab::rectangle_t r1 = s.getFrameRect();
+  rectangle_t r1 = s.getFrameRect();
   s.scale(k);
-  lab::rectangle_t r2 = s.getFrameRect();
+  rectangle_t r2 = s.getFrameRect();
   BOOST_CHECK_CLOSE(r2.width, k * r1.width, TOLERANCE);
   BOOST_CHECK_CLOSE(r2.height, k * r1.height, TOLERANCE);
 }
 
-void checkScaleArea(lab::Shape& s, double k)
+void lab::checkScaleArea(lab::Shape& s, double k)
 {
   double a1 = s.getArea();
   s.scale(k);
@@ -57,15 +62,15 @@ void checkScaleArea(lab::Shape& s, double k)
   BOOST_CHECK_CLOSE(a2, k * k * a1, TOLERANCE);
 }
 
-void checkScaleInvalidArgument(lab::Shape& s, double k)
+void lab::checkScaleInvalidArgument(lab::Shape& s, double k)
 {
   BOOST_CHECK_THROW(s.scale(k), std::invalid_argument);
 }
 
-void checkCorrectFrameRect(const lab::Shape& s, const lab::rectangle_t& r)
+void lab::checkCorrectFrameRect(const lab::Shape& s, const lab::rectangle_t& r)
 {
-  BOOST_CHECK_CLOSE(lab::getWidth(s), r.width, TOLERANCE);
-  BOOST_CHECK_CLOSE(lab::getHeight(s), r.height, TOLERANCE);
-  BOOST_CHECK_CLOSE(lab::getPosX(s), r.pos.x, TOLERANCE);
-  BOOST_CHECK_CLOSE(lab::getPosY(s), r.pos.y, TOLERANCE);
+  BOOST_CHECK_CLOSE(getWidth(s), r.width, TOLERANCE);
+  BOOST_CHECK_CLOSE(getHeight(s), r.height, TOLERANCE);
+  BOOST_CHECK_CLOSE(getPosX(s), r.pos.x, TOLERANCE);
+  BOOST_CHECK_CLOSE(getPosY(s), r.pos.y, TOLERANCE);
 }

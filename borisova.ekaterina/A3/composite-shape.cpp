@@ -129,7 +129,7 @@ size_t lab::CompositeShape::getSize() const
 
 void lab::CompositeShape::doScale(double k)
 {
-    lab::point_t pos = getFrameRect().pos;
+  lab::point_t pos = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++)
   {
     double dx = getX(*data_[i]) - pos.x;

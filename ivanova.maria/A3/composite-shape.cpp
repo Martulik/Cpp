@@ -1,12 +1,12 @@
 #include "composite-shape.hpp"
 #include <cassert>
 
-using shared = std::shared_ptr<ivanova::Shape>;
+using shared = std::shared_ptr< ivanova::Shape >;
 
 ivanova::CompositeShape::CompositeShape(shared other):
   size_(0),
   capacity_(2),
-  data_(std::make_unique<shared[]>(capacity_))
+  data_(std::make_unique< shared[] >(capacity_))
 {
   data_[size_] = std::move(other);
   size_++;
@@ -34,15 +34,15 @@ void ivanova::CompositeShape::pushBack(shared &source)
   if (capacity_ == size_)
   {
     reserve(capacity_ * 2);
-    size_++;
   }
-  data_[size_] = std::move_if_noexcept(source);
+  data_[size_++] = std::move_if_noexcept(source);
 }
 
 void ivanova::CompositeShape::popBack()
 {
   assert(size_ > 1);
-  data_[size_--].reset();
+  data_[size_ - 1].reset();
+  size_--;
 }
 
 double ivanova::CompositeShape::getArea() const
@@ -127,9 +127,9 @@ void ivanova::CompositeShape::reserve(size_t capacity)
     std::unique_ptr< shared[] > array(std::make_unique< shared[] >(capacity));
     for (size_t i = 0; i < size_; ++i)
     {
-      array[i] = std::move(data_[i]);
+      array[i] = std::move_if_noexcept(data_[i]);
     }
-    tempArr.data_ = std::move(array);
+    tempArr.data_ = std::move_if_noexcept(array);
     tempArr.capacity_ = capacity;
     swap(tempArr);
   }

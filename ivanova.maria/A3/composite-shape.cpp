@@ -151,7 +151,7 @@ shared ivanova::CompositeShape::clone() const
   return std::make_shared< CompositeShape >(*this);
 }
 
-shared ivanova::CompositeShape::at(size_t i) const
+std:shared_ptr< ivanova::Shape > ivanova::CompositeShape::at(size_t i) const
 {
   if (size_ < i)
   {

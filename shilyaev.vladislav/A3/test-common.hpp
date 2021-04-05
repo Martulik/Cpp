@@ -12,9 +12,9 @@ namespace shilyaev {
   const double PI = 3.14159265358979323846;
   const double RADIUS = 3.3;
 
-  void checkPointsClose(const shilyaev::point_t &lhs, const shilyaev::point_t &rhs, double tolerance);
-  void checkSizeClose(const shilyaev::rectangle_t &lhs, const shilyaev::rectangle_t &rhs, double tolerance);
-  void checkRectanglesClose(const shilyaev::rectangle_t &lhs, const shilyaev::rectangle_t &rhs, double tolerance);
+  void checkPointsClose(const point_t &lhs, const point_t &rhs, double tolerance);
+  void checkSizeClose(const rectangle_t &lhs, const rectangle_t &rhs, double tolerance);
+  void checkRectanglesClose(const rectangle_t &lhs, const rectangle_t &rhs, double tolerance);
 
 }
 

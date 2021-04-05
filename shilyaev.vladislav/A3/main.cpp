@@ -3,11 +3,13 @@
 #include "composite-shape.hpp"
 #include "circle.hpp"
 
-void printShapeDescription(const shilyaev::Shape &shape)
-{
-  std::cout << "Area: " << shape.getArea()
-            << ", Width × Height: " << getWidth(shape) << " × " << getHeight(shape)
-            << ", Center: " << getX(shape) << ' ' << getY(shape) << '\n';
+namespace shilyaev {
+  void printShapeDescription(const shilyaev::Shape &shape)
+  {
+    std::cout << "Area: " << shape.getArea()
+              << ", Width × Height: "<< getWidth(shape) << " × " << getHeight(shape)
+              << ", Center: " << getX(shape) << ' ' << getY(shape) << '\n';
+  }
 }
 
 int main()

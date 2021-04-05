@@ -1,5 +1,5 @@
 #include "composite-shape.hpp"
-#include <cassert>
+#include <stdexcept>
 
 using shared = std::shared_ptr< ivanova::Shape >;
 
@@ -25,7 +25,10 @@ ivanova::CompositeShape::CompositeShape(const CompositeShape &src):
 
 shared ivanova::CompositeShape::operator[](const size_t index) const
 {
-  assert(index < size_);
+  if (index > size_)
+  {
+    throw std::out_of_range("Out of range");
+  }
   return data_[index];
 }
 
@@ -40,7 +43,10 @@ void ivanova::CompositeShape::pushBack(shared &source)
 
 void ivanova::CompositeShape::popBack()
 {
-  assert(size_ > 1);
+  if (size_ == 1)
+  {
+    throw std::out_of_range("Array can not be empty");
+  }
   data_[size_ - 1].reset();
   size_--;
 }
@@ -57,7 +63,6 @@ double ivanova::CompositeShape::getArea() const
 
 ivanova::rectangle_t ivanova::CompositeShape::getFrameRect() const
 {
-  assert(size_ > 0);
   double minX = {getX(*data_[0]) - getWidth(*data_[0]) / 2};
   double minY = {getY(*data_[0]) - getHeight(*data_[0]) / 2};
   double maxX = {getX(*data_[0]) + getWidth(*data_[0]) / 2};
@@ -148,7 +153,6 @@ shared ivanova::CompositeShape::clone() const
 
 shared ivanova::CompositeShape::at(size_t i) const
 {
-//  assert(i < size_);
  if (size_ < i)
  {
    throw std::out_of_range("Wrong index");

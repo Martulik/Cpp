@@ -34,13 +34,13 @@ void borisova::testAll()
   borisova::point_t point1{ x, y };
   borisova::point_t point2{ dx, dy };
 
- borisova::CompositeShape compositeShape
- {
-   std::make_shared< borisova::Rectangle >(point1, width, height),
-   std::make_shared< borisova::Circle >(point1, width),
-   std::make_shared< borisova::Rectangle >(point2, width, height),
-   std::make_shared< borisova::Circle >(point2, height)
- };
+  borisova::CompositeShape compositeShape
+  {
+    std::make_shared< borisova::Rectangle >(point1, width, height),
+    std::make_shared< borisova::Circle >(point1, width),
+    std::make_shared< borisova::Rectangle >(point2, width, height),
+    std::make_shared< borisova::Circle >(point2, height)
+  };
 
   for (size_t i = 0; i < compositeShape.getSize(); i++)
   {

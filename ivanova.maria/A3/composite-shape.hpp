@@ -29,6 +29,7 @@ namespace ivanova
     void swap(CompositeShape &other) noexcept;
     shared clone() const override;
     shared at(size_t i) const;
+    std::shared_ptr< const ivanova::Shape> at(size_t i) const;
   private:
     size_t size_;
     size_t capacity_;

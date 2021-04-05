@@ -153,9 +153,18 @@ shared ivanova::CompositeShape::clone() const
 
 shared ivanova::CompositeShape::at(size_t i) const
 {
- if (size_ < i)
- {
-   throw std::out_of_range("Wrong index");
- }
-return data_[i];
+  if (size_ < i)
+  {
+    throw std::out_of_range("Wrong index");
+  }
+  return data_[i];
+}
+
+std::shared_ptr< const ivanova::Shape > ivanova::CompositeShape::at(size_t i) const
+{
+  if (size_ < i)
+  {
+    throw std::out_of_range("Wrong index");
+  }
+  return data_[i];
 }

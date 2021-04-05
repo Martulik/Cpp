@@ -2,6 +2,7 @@
 #define TEST_FUNCTIONS_HPP
 
 #include <boost/test/unit_test.hpp>
+#include <memory>
 #include "shape.hpp"
 
 namespace borisova

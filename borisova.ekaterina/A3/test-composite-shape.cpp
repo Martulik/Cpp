@@ -1,10 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <stdexcept>
-#include <memory>
 #include "test-functions.hpp"
 #include "composite-shape.hpp"
-#include "circle.hpp"
-#include "rectangle.hpp"
 
 namespace lab = borisova;
 using exc = std::invalid_argument;

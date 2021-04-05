@@ -7,16 +7,14 @@ std::vector< int > input_int_vec()
 {
   std::vector< int > values;
   while(true) {
-    int num = 0;
+    int num;
     std::cin >> num;
     if(std::cin.eof()) {
-      throw ArgumentParseException("Input should end with a 0");
+      break;
     }
     if(std::cin.fail()) {
       throw ArgumentParseException("Not a number");
     }
-    if(num == 0)
-      break;
     values.push_back(num);
   }
   return values;
@@ -51,9 +49,12 @@ void doroshin::filterInput()
 {
   std::vector< int > values = input_int_vec();
   if(values.empty()) {
-    std::cerr << "No values given\n";
-    return;
+    throw ArgumentParseException("No values given");
   }
+  if(values.back() != 0) {
+    throw ArgumentParseException("Output should end with a 0");
+  }
+  values.pop_back();
 
   if(values.back() == 1) {
     filterEven(values);

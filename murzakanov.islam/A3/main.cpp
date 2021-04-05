@@ -19,11 +19,11 @@ void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
 
 int main()
 {
-  const double width = 2.0,
-               height = 3.0,
-               radius = 1.766,
-               dx = 32,
-               dy = 13;
+  const double width = 2.0;
+  const double height = 3.0;
+  const double radius = 1.766;
+  const double dx = 32;
+  const double dy = 13;
   mur::point_t posRect{1, 2};
   mur::point_t posCircle{-5.1, 7.13};
   const int size = 3;

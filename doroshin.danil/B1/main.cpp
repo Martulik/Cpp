@@ -31,6 +31,8 @@ std::vector< T > readUntilEof()
 
     T next;
     std::cin >> next;
+    if(std::cin.eof())
+      break;
     if(std::cin.fail()) {
       throw ArgumentParseException("Incorrect input");
     }

@@ -8,39 +8,29 @@ using exc = std::invalid_argument;
 
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
-const double width = 11.5;
-const double height = 0.01;
-const double param1 = 4.12;
-const double param2 = 91.004;
-const double negParam = -12.91;
-const lab::point_t point1{ 0.4, 2.56 };
-const lab::point_t point2{ 65.03, 0.99 };
-
 BOOST_AUTO_TEST_CASE(testParametersRec)
 {
-  BOOST_CHECK_THROW(lab::Rectangle rect1(point1, negParam, height), exc);
-  BOOST_CHECK_THROW(lab::Rectangle rect2(point2.x, point2.y, width, negParam), exc);
+  BOOST_CHECK_THROW(lab::Rectangle rect1(lab::point1, lab::negParam, lab::height), exc);
+  BOOST_CHECK_THROW(lab::Rectangle rect2(lab::point2.x, lab::point2.y, lab::width, lab::negParam), exc);
 }
 
 BOOST_AUTO_TEST_CASE(testAreaAfterMovingRec)
 {
-  areaAfterMoving(makeRectangle(point1, width, height));
+  areaAfterMoving(makeRectangle(lab::point1, lab::width, lab::height));
 }
 
 BOOST_AUTO_TEST_CASE(testParamAfterMovingRec)
 {
-  paramAfterMoving(makeRectangle(point2, width, param2));
+  paramAfterMoving(makeRectangle(lab::point2, lab::width, lab::param2));
 }
 BOOST_AUTO_TEST_CASE(testScaleRec)
 {
-  areaAfterScale(makeRectangle(point1, param1, height));
+  areaAfterScale(makeRectangle(lab::point1, lab::param1, lab::height));
 }
 
 BOOST_AUTO_TEST_CASE(testNameRec)
 {
-  lab::Shape* temp = makeRectangle(point2, param1, param2);
-  BOOST_REQUIRE_EQUAL(temp->getName(), "Rectangle");
-  delete temp;
+  BOOST_REQUIRE_EQUAL(makeRectangle(lab::point2, lab::param1, lab::param2)->getName(), "Rectangle");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

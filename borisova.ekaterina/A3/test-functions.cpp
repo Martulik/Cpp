@@ -1,38 +1,26 @@
 #include "test-functions.hpp"
 #include <stdexcept>
 
-void borisova::paramAfterMoving(Shape* obj)
+void borisova::paramAfterMoving(std::unique_ptr< Shape > obj)
 {
-  double heightBeforeMoving = obj->getHeight();
-  double widthBeforeMoving = obj->getWidth();
+  double heightBeforeMoving = getHeight(*obj);
+  double widthBeforeMoving = getWidth(*obj);
   obj->move(dpos);
-  BOOST_REQUIRE_EQUAL(obj->getHeight(), heightBeforeMoving);
-  BOOST_REQUIRE_EQUAL(obj->getWidth(), widthBeforeMoving);
-  if (obj->getName() != "Composite Shape")
-  {
-    delete obj;
-  }
+  BOOST_CHECK_CLOSE(getHeight(*obj), heightBeforeMoving, 0.00000001);
+  BOOST_CHECK_CLOSE(getWidth(*obj), widthBeforeMoving, 0.00000001);
 }
 
-void borisova::areaAfterMoving(Shape* obj)
+void borisova::areaAfterMoving(std::unique_ptr< Shape > obj)
 {
   double arBeforeMoving = obj->getArea();
   obj->move(dpos.x, dpos.y);
   BOOST_REQUIRE_EQUAL(obj->getArea(), arBeforeMoving);
-  if (obj->getName() != "Composite Shape")
-  {
-    delete obj;
-  }
 }
 
-void borisova::areaAfterScale(Shape* obj)
+void borisova::areaAfterScale(std::unique_ptr< Shape > obj)
 {
   double arBeforeScale = obj->getArea();
   BOOST_CHECK_NO_THROW(obj->scale(coeff));
-  BOOST_CHECK_CLOSE(obj->getArea(), arBeforeScale * coeff * coeff, 0.0001);
+  BOOST_CHECK_CLOSE(obj->getArea(), arBeforeScale * coeff * coeff, 0.00000001);
   BOOST_CHECK_THROW(obj->scale(-3.2), std::invalid_argument);
-  if (obj->getName() != "Composite Shape")
-  {
-    delete obj;
-  }
 }

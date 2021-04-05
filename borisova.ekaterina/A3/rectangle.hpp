@@ -22,8 +22,8 @@ namespace borisova
     rectangle_t parameters_;
     void doScale(double k) override;
   };
-  Shape* makeRectangle(const point_t& pos, double width, double height);
-  Shape* makeRectangle(double x, double y, double width, double height);
+  std::unique_ptr< Shape > makeRectangle(const point_t& pos, double width, double height);
+  std::unique_ptr< Shape > makeRectangle(double x, double y, double width, double height);
 }
 
 #endif

@@ -19,19 +19,18 @@ namespace borisova
     virtual std::string getName() const = 0;
     virtual std::shared_ptr< Shape > clone() const = 0;
 
-    double getX() const;
-    double getY() const;
-    double getWidth() const;
-    double getHeight() const;
-
-    double getLeft() const;
-    double getRight() const;
-    double getTop() const;
-    double getBottom() const;
-
   private:
     virtual void doScale(double k) = 0;
   };
+  double getX(const Shape & obj);
+  double getY(const Shape & obj);
+  double getWidth(const Shape & obj);
+  double getHeight(const Shape & obj);
+
+  double getLeft(const Shape & obj);
+  double getRight(const Shape & obj);
+  double getTop(const Shape & obj);
+  double getBottom(const Shape & obj);
 }
 
 #endif

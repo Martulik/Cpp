@@ -10,42 +10,42 @@ void borisova::Shape::scale(const double k)
   doScale(k);
 }
 
-double borisova::Shape::getX() const
+double borisova::getX(const Shape& obj)
 {
-  return getFrameRect().pos.x;
+  return obj.getFrameRect().pos.x;
 }
 
-double borisova::Shape::getY() const
+double borisova::getY(const Shape& obj)
 {
-  return getFrameRect().pos.y;
+  return obj.getFrameRect().pos.y;
 }
 
-double borisova::Shape::getWidth() const
+double borisova::getWidth(const Shape& obj)
 {
-  return getFrameRect().width;
+  return obj.getFrameRect().width;
 }
 
-double borisova::Shape::getHeight() const
+double borisova::getHeight(const Shape& obj)
 {
-  return getFrameRect().height;
+  return obj.getFrameRect().height;
 }
 
-double borisova::Shape::getLeft() const
+double borisova::getLeft(const Shape& obj)
 {
-  return (getX() - getWidth() / 2);
+  return (getX(obj) - getWidth(obj) / 2);
 }
 
-double borisova::Shape::getRight() const
+double borisova::getRight(const Shape& obj)
 {
-  return (getX() + getWidth() / 2);
+  return (getX(obj) + getWidth(obj) / 2);
 }
 
-double borisova::Shape::getTop() const
+double borisova::getTop(const Shape& obj)
 {
-  return (getY() + getHeight() / 2);
+  return (getY(obj) + getHeight(obj) / 2);
 }
 
-double borisova::Shape::getBottom() const
+double borisova::getBottom(const Shape& obj)
 {
-  return (getY() - getHeight() / 2);
+  return (getY(obj) - getHeight(obj) / 2);
 }

@@ -9,12 +9,12 @@ namespace borisova
   class CompositeShape: public Shape
   {
   public:
-    CompositeShape(const std::initializer_list < std::shared_ptr< Shape > > & source);
+    CompositeShape(const std::initializer_list < std::shared_ptr< Shape > > source);
     CompositeShape(const CompositeShape& src);
-    CompositeShape(CompositeShape&& src) noexcept;
+    CompositeShape(CompositeShape&& src) noexcept = default;
     std::shared_ptr< borisova::Shape > at(size_t index) const;
     CompositeShape& operator=(const CompositeShape& src);
-    CompositeShape& operator=(CompositeShape&& src) noexcept;
+    CompositeShape& operator=(CompositeShape&& src) noexcept = default;
     virtual ~CompositeShape() = default;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -23,7 +23,7 @@ namespace borisova
     std::string getName() const override;
     void swap(CompositeShape& src) noexcept;
     std::shared_ptr< Shape > clone() const override;
-    size_t getSize();
+    size_t getSize() const;
 
   private:
     size_t size_;
@@ -31,5 +31,6 @@ namespace borisova
     void doScale(double k) override;
   };
   void swap(CompositeShape& obj1, CompositeShape& obj2) noexcept;
+  std::unique_ptr< Shape > makeComposite();
 }
 #endif

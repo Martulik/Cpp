@@ -1,7 +1,12 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
+#include "circle.hpp"
+#include "rectangle.hpp"
+#include "test-functions.hpp"
 
-borisova::CompositeShape::CompositeShape(const std::initializer_list < std::shared_ptr< Shape > > & source):
+namespace lab = borisova;
+
+lab::CompositeShape::CompositeShape(const std::initializer_list < std::shared_ptr< lab::Shape > > source):
   size_(source.size()),
   data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
 {
@@ -10,16 +15,20 @@ borisova::CompositeShape::CompositeShape(const std::initializer_list < std::shar
   {
     throw (std::invalid_argument("Composite Shape mustn't be empty"));
   }
-  for (const std::shared_ptr< Shape > & elem : source)
+  for (const std::shared_ptr< Shape > elem : source)
   {
+    if (elem == nullptr)
+    {
+      throw (std::invalid_argument("Element of Composite Shape mustn't be nullptr"));
+    }
     data_[count] = elem;
     count++;
   }
 }
 
-borisova::CompositeShape::CompositeShape(const CompositeShape& src):
-size_(src.size_),
-data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+lab::CompositeShape::CompositeShape(const CompositeShape& src):
+  size_(src.size_),
+  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
 {
   for (size_t i = 0; i < size_; ++i)
   {
@@ -27,35 +36,24 @@ data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
   }
 }
 
-borisova::CompositeShape::CompositeShape(CompositeShape&& src) noexcept:
-  size_(src.size_),
-  data_(std::move(src.data_))
-{
-}
 
-std::shared_ptr< borisova::Shape > borisova::CompositeShape::at(const size_t index) const
+std::shared_ptr< lab::Shape > lab::CompositeShape::at(const size_t index) const
 {
-  if (index >= size_) {
+  if (index >= size_) 
+  {
     throw std::out_of_range("Index out of bounds");
   }
-  return data_[index];
+  return data_[index]->clone();
 }
 
-borisova::CompositeShape& borisova::CompositeShape::operator=(const CompositeShape& src)
+lab::CompositeShape& lab::CompositeShape::operator=(const CompositeShape& src)
 {
   CompositeShape temp(src);
   swap(temp);
   return *this;
 }
 
-borisova::CompositeShape& borisova::CompositeShape::operator=(CompositeShape&& src) noexcept
-{
-  CompositeShape temp(src);
-  swap(temp);
-  return *this;
-}
-
-double borisova::CompositeShape::getArea() const
+double lab::CompositeShape::getArea() const
 {
   double sum = 0;
   for (size_t i = 0; i < size_; i++)
@@ -65,19 +63,19 @@ double borisova::CompositeShape::getArea() const
   return sum;
 }
 
-borisova::rectangle_t borisova::CompositeShape::getFrameRect() const
+lab::rectangle_t lab::CompositeShape::getFrameRect() const
 {
-  double left = data_[0]->getLeft();
-  double right = data_[0]->getRight();
-  double top = data_[0]->getTop();
-  double bottom = data_[0]->getBottom();
+  double left = getLeft(*data_[0]);
+  double right = getRight(*data_[0]);
+  double top = getTop(*data_[0]);
+  double bottom = getBottom(*data_[0]);
 
   for (size_t i = 0; i < size_; i++)
   {
-    double leftBorder = data_[i]->getLeft();
-    double rightBorder = data_[i]->getRight();
-    double topBorder = data_[i]->getTop();
-    double bottomBorder = data_[i]->getBottom();
+    double leftBorder = getLeft(*data_[i]);
+    double rightBorder = getRight(*data_[i]);
+    double topBorder = getTop(*data_[i]);
+    double bottomBorder = getBottom(*data_[i]);
 
     left = std::min(left, leftBorder);
     right = std::max(right, rightBorder);
@@ -87,7 +85,7 @@ borisova::rectangle_t borisova::CompositeShape::getFrameRect() const
   return {right - left, top - bottom, {(right + left) / 2, (top + bottom) / 2}};
 }
 
-void borisova::CompositeShape::move(const double dx, const double dy)
+void lab::CompositeShape::move(const double dx, const double dy)
 {
   for (size_t i = 0; i < size_; i++)
   {
@@ -95,45 +93,58 @@ void borisova::CompositeShape::move(const double dx, const double dy)
   }
 }
 
-void borisova::CompositeShape::move(const borisova::point_t& dpos)
+void lab::CompositeShape::move(const lab::point_t& dpos)
 {
   move(dpos.x, dpos.y);
 }
 
-std::string borisova::CompositeShape::getName() const
+std::string lab::CompositeShape::getName() const
 {
   return "Composite Shape";
 }
 
-void borisova::CompositeShape::swap(CompositeShape& src) noexcept
+void lab::CompositeShape::swap(CompositeShape& src) noexcept
 {
   std::swap(size_, src.size_);
   std::swap(data_, src.data_);
 }
 
-std::shared_ptr< borisova::Shape > borisova::CompositeShape::clone() const
+std::shared_ptr< lab::Shape > lab::CompositeShape::clone() const
 {
   return std::make_shared< CompositeShape >(*this);
 }
 
-size_t borisova::CompositeShape::getSize()
+size_t lab::CompositeShape::getSize() const
 {
   return size_;
 }
 
-void borisova::CompositeShape::doScale(double k)
+void lab::CompositeShape::doScale(double k)
 {
-  borisova::point_t pos = getFrameRect().pos;
+    lab::point_t pos = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++)
   {
-    double dx = data_[i]->getX() - pos.x;
-    double dy = data_[i]->getY() - pos.y;
+    double dx = getX(*data_[i]) - pos.x;
+    double dy = getY(*data_[i]) - pos.y;
     data_[i]->move({ pos.x + dx * k, pos.y + dy * k });
     data_[i]->scale(k);
   }
 }
 
-void borisova::swap(CompositeShape& obj1, CompositeShape& obj2) noexcept
+void lab::swap(CompositeShape& obj1, CompositeShape& obj2) noexcept
 {
   obj1.swap(obj2);
+}
+
+std::unique_ptr< lab::Shape > lab::makeComposite()
+{
+    lab::CompositeShape compShape =
+  {
+    std::make_shared< lab::Rectangle >(lab::point1, lab::width, lab::param1),
+    std::make_shared< lab::Circle >(lab::point2, lab::width),
+    std::make_shared< lab::Rectangle >(lab::point2, lab::param2, lab::height),
+    std::make_shared< lab::Circle >(lab::point1, lab::height)
+  };
+  auto shape = std::make_unique< lab::CompositeShape >(std::move(compShape));
+  return shape;
 }

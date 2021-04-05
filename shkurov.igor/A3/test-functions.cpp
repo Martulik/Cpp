@@ -1,9 +1,7 @@
+#include "test-functions.hpp"
+
 #include <limits>
 #include <boost/test/unit_test.hpp>
-
-#include "rectangle.hpp"
-#include "circle.hpp"
-#include "composite-shape.hpp"
 
 struct point_t;
 

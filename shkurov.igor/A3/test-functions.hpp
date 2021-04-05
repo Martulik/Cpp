@@ -2,6 +2,11 @@
 #define TEST_FUNCTIONS_HPP
 
 #include "shape.hpp"
+#include <memory>
+
+#include "rectangle.hpp"
+#include "circle.hpp"
+#include "composite-shape.hpp"
 
 void makeBadCircle();
 void makeBadRectangle();

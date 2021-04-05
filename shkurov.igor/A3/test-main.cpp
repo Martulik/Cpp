@@ -5,34 +5,30 @@
 #include <stdexcept>
 #include <boost/test/included/unit_test.hpp>
 
-#include "rectangle.hpp"
-#include "circle.hpp"
-#include "composite-shape.hpp"
-
 const double EPSILON = std::numeric_limits< double >::epsilon();
 
 BOOST_AUTO_TEST_SUITE(rectangle_test)
 
-std::unique_ptr< shkurov::Shape > rect_ptr(make_rectangle());
+std::unique_ptr< shkurov::Shape > rect_ptr = makeRectangle();
 
 BOOST_AUTO_TEST_CASE(constructor_throw_exception)
 {
-  BOOST_CHECK_THROW(make_bad_rectangle(), std::invalid_argument);
+  BOOST_CHECK_THROW(makeBadCircle(), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(move)
 {
-  test_move_to_point(rect_ptr.get());
+  testMoveToPoint(rect_ptr.get());
 }
 
 BOOST_AUTO_TEST_CASE(scale)
 {
-  test_scale(rect_ptr.get());
+  testScale(rect_ptr.get());
 }
 
 BOOST_AUTO_TEST_CASE(scale_throw_exception)
 {
-  BOOST_CHECK_THROW(invalid_scale(rect_ptr.get()), std::invalid_argument);
+  BOOST_CHECK_THROW(invalidScale(rect_ptr.get()), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
@@ -40,26 +36,26 @@ BOOST_AUTO_TEST_SUITE_END();
 
 BOOST_AUTO_TEST_SUITE(circle_test)
 
-std::unique_ptr< shkurov::Shape > circle_ptr(make_circle());
+std::unique_ptr< shkurov::Shape > circle_ptr = makeCircle();
 
 BOOST_AUTO_TEST_CASE(constructor_throw_exception)
 {
-  BOOST_CHECK_THROW(make_bad_circle(), std::invalid_argument);
+  BOOST_CHECK_THROW(makeBadCircle(), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(move)
 {
-  test_move_to_point(circle_ptr.get());
+  testMoveToPoint(circle_ptr.get());
 }
 
 BOOST_AUTO_TEST_CASE(scale_correct_modification)
 {
-  test_scale(circle_ptr.get());
+  testScale(circle_ptr.get());
 }
 
 BOOST_AUTO_TEST_CASE(scale_throw_exception)
 {
-  BOOST_CHECK_THROW(invalid_scale(circle_ptr.get()), std::invalid_argument);
+  BOOST_CHECK_THROW(invalidScale(circle_ptr.get()), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();
@@ -67,11 +63,11 @@ BOOST_AUTO_TEST_SUITE_END();
 
 BOOST_AUTO_TEST_SUITE(composite_shape_test)
 
-std::unique_ptr< shkurov::Shape > composite_ptr(new shkurov::CompositeShape({make_circle(), make_rectangle()}));
+std::unique_ptr< shkurov::Shape > composite_ptr(new shkurov::CompositeShape({makeCircle(), makeRectangle()}));
 
 BOOST_AUTO_TEST_CASE(move_semantics)
 {
-  shkurov::CompositeShape composite({make_circle(), make_rectangle()});
+  shkurov::CompositeShape composite({makeCircle(), makeRectangle()});
   double origin_area = composite.getArea();
   shkurov::CompositeShape moved_shape(std::move(composite));
   BOOST_CHECK_CLOSE(origin_area, moved_shape.getArea(), EPSILON);
@@ -82,17 +78,17 @@ BOOST_AUTO_TEST_CASE(move_semantics)
 
 BOOST_AUTO_TEST_CASE(move_correct_center_translocation)
 {
-  test_move_to_point(composite_ptr.get());
+  testMoveToPoint(composite_ptr.get());
 }
 
 BOOST_AUTO_TEST_CASE(scale_correct_modification)
 {
-  test_scale(composite_ptr.get());
+  testScale(composite_ptr.get());
 }
 
 BOOST_AUTO_TEST_CASE(scale_throw_exception)
 {
-  BOOST_CHECK_THROW(invalid_scale(composite_ptr.get()), std::invalid_argument);
+  BOOST_CHECK_THROW(invalidScale(composite_ptr.get()), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();

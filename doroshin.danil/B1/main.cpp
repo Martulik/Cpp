@@ -22,6 +22,18 @@ std::function< bool(T, T) > getOrder(std::string order)
 }
 
 template< typename T >
+T readArg(std::string arg)
+{
+  std::ifstream in(arg);
+  T res;
+  in >> res;
+  if(in.fail()) {
+    throw ArgumentParseException("Invalid read");
+  }
+  return res;
+}
+
+template< typename T >
 std::vector< T > readUntilEof()
 {
   std::vector< T > values;
@@ -88,7 +100,7 @@ int main(int argc, char* argv[])
         if(argc < 4) {
           throw ArgumentParseException("No array length");
         }
-        size_t size = atoll(argv[3]);
+        const size_t size = readArg< size_t >(argv[3]);
         std::function< bool(double, double) > cmp = getOrder< double >(argv[2]);
         dan::testRandom(size, cmp);
       }

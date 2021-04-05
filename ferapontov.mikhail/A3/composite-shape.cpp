@@ -35,7 +35,7 @@ double fer::CompositeShape::getArea() const
   {
     area += arr_[i]->getArea();
   }
-  
+
   return area;
 }
 
@@ -78,8 +78,13 @@ void fer::CompositeShape::move(const double dx, const double dy)
 
 void fer::CompositeShape::scale(const double k)
 {
+  double posX = getX(*this);
+  double posY = getY(*this);
   for(size_t i = 0; i< size_; ++i)
   {
+    double dx = (k - 1) * (getX(*arr_[i]) - posX);
+    double dy = (k - 1) * (getY(*arr_[i]) - posY);
+    arr_[i]->move(dx, dy);
     arr_[i]->scale(k);
   }
 }

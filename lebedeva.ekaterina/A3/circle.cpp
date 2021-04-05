@@ -1,4 +1,4 @@
-#include <cassert>
+#include <stdexcept>
 #include "circle.hpp"
 
 namespace leb = lebedeva;
@@ -7,7 +7,10 @@ leb::Circle::Circle(const point_t pos, const double radius):
   pos_(pos),
   radius_(radius)
 {
-  assert(radius >= 0);
+  if (radius < 0)
+  {
+    throw std::invalid_argument("Could not create shape with negative parameters.");
+  }
 }
 
 double leb::Circle::getArea() const
@@ -40,6 +43,12 @@ void leb::Circle::move(double dx, double dy)
 
 void leb::Circle::scale(double k)
 {
-  assert(k > 0);
-  radius_ *= k;
+  if (k > 0)
+  {
+    radius_ *= k;
+  }
+  else
+  {
+    throw std::invalid_argument("Negative parameter. Could not scale.");
+  }
 }

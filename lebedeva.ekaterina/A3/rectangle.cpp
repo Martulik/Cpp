@@ -1,4 +1,4 @@
-#include <cassert>
+#include <stdexcept>
 #include "rectangle.hpp"
 
 namespace leb = lebedeva;
@@ -8,7 +8,10 @@ leb::Rectangle::Rectangle(point_t pos, double width, double height):
   width_(width),
   height_(height)
 {
-  assert((width > 0) && (height > 0));
+  if ((width < 0) || (height < 0))
+  {
+    throw std::invalid_argument("Could not create shape with negative parameters.");
+  }
 }
 
 double leb::Rectangle::getArea() const
@@ -39,7 +42,13 @@ void leb::Rectangle::move(double dx, double dy)
 
 void leb::Rectangle::scale(double k)
 {
-  assert(k > 0);
-  width_ *= k;
-  height_ *= k;
+  if (k > 0)
+  {
+    width_ *= k;
+    height_ *= k;
+  }
+  else
+  {
+    throw std::invalid_argument("Negative parameter. Could not scale.");
+  }
 }

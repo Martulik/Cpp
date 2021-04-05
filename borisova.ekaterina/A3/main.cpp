@@ -4,10 +4,11 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-using sh_ptr = std::shared_ptr< borisova::Shape >;
+
 
 namespace borisova
 {
+  using sh_ptr = std::shared_ptr< borisova::Shape >;
   void testAll();
   void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, double k);
   void print(const sh_ptr obj, std::ostream& out);
@@ -17,7 +18,7 @@ namespace borisova
 
 int main()
 {
-    borisova::testAll();
+  borisova::testAll();
 }
 
 void borisova::testAll()

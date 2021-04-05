@@ -57,26 +57,14 @@ shkurov::rectangle_t shkurov::CompositeShape::getFrameRect() const
 
 void shkurov::CompositeShape::move(const shkurov::point_t& new_pos)
 {
-  double origin_x = getFrameRect().pos.x;
-  double origin_y = getFrameRect().pos.y;
-  for (size_t i = 0; i < shape_count_; i++)
-  {
-    double rel_x = shape_array_[i]->getFrameRect().pos.x - origin_x;
-    double rel_y = shape_array_[i]->getFrameRect().pos.y - origin_y;
-    point_t rel_pos{new_pos.x + rel_x, new_pos.y + rel_y};
-    shape_array_[i]->move(rel_pos);
-  }
+  move(new_pos.x - getFrameRect().pos.x, new_pos.y - getFrameRect().pos.y);
 }
 
 void shkurov::CompositeShape::move(const double x, const double y)
 {
-  double origin_x = getFrameRect().pos.x;
-  double origin_y = getFrameRect().pos.y;
   for (size_t i = 0; i < shape_count_; i++)
   {
-    double rel_x = shape_array_[i]->getFrameRect().pos.x - origin_x;
-    double rel_y = shape_array_[i]->getFrameRect().pos.y - origin_y;
-    shape_array_[i]->move(x + rel_x, y + rel_y);
+    shape_array_[i]->move(x, y);
   }
 }
 

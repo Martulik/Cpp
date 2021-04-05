@@ -11,7 +11,7 @@ namespace murzakanov
   public:
     using ArrayType = std::unique_ptr< ShapePtr[] >;
     CompositeShape(const CompositeShape& other);
-    CompositeShape(CompositeShape&& other) noexcept;
+    CompositeShape(CompositeShape&& other) noexcept = default;
     explicit CompositeShape(ShapePtr shp);
     ~CompositeShape() override = default;
     Shape& at(int index);

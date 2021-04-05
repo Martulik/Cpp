@@ -8,8 +8,7 @@ namespace shilyaev {
   void inputVectorZero(std::vector< int > &vector)
   {
     int input;
-    while (true) {
-      std::cin >> input;
+    while (std::cin >> input) {
       if (input == 0) {
         break;
       }
@@ -48,6 +47,14 @@ namespace shilyaev {
     }
     std::vector< int > vector;
     inputVectorZero(vector);
+    if (std::cin.fail()) {
+      std::cerr << "Error while reading";
+      return 1;
+    }
+    if (vector.empty()) {
+      std::cerr << "Empty input";
+      return 1;
+    }
     int last = *(vector.end() - 1);
     if (last == 1) {
       removeEven(vector);

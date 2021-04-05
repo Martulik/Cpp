@@ -29,7 +29,7 @@ namespace shilyaev {
   {
     std::vector< int > vector;
     inputVector(vector);
-    if (std::cin.fail()) {
+    if (std::cin.fail() && !std::cin.eof()) {
       std::cerr << "Error while reading";
       return 1;
     }

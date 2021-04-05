@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_CASE(test_default_shape)
 BOOST_AUTO_TEST_CASE(test_popShape)
 {
   lysenko::CompositeShape myComposite(lysenko::makeCircle());
-  BOOST_CHECK_THROW(myComposite.popShape(), std::string);
+  BOOST_CHECK_THROW(myComposite.popShape(), std::logic_error);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

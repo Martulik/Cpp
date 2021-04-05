@@ -153,7 +153,7 @@ void curr::CompositeShape::popShape()
 {
   if (size_ == 1)
   {
-    throw "Empty composite shape is illegal";
+    throw std::logic_error("Empty composite shape is illegal");
   }
   ArrayOfShapes reducedData(std::make_unique < ShapePtr[] >(capacity_));
   for (size_t i = 0; i < size_ - 1; i++)

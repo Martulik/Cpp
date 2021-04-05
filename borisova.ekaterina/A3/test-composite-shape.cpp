@@ -11,7 +11,6 @@ BOOST_AUTO_TEST_SUITE(testCompositeShape)
 BOOST_AUTO_TEST_CASE(testParametersComp)
 {
   BOOST_CHECK_THROW(lab::CompositeShape comp({}), exc);
-  BOOST_CHECK_THROW(lab::CompositeShape comp1({nullptr}), exc);
 }
 
 BOOST_AUTO_TEST_CASE(testAreaAfterMovingComp)

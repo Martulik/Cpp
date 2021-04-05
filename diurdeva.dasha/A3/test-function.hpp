@@ -3,7 +3,7 @@
 
 #include "shape.hpp"
 
-nemespace diurdeva {
+namespace diurdeva {
   const diurdeva::point_t pointCenter = { 3.5, 4.0 };
   const double width = 8.0;
   const double height = 5.0;

@@ -49,7 +49,7 @@ namespace lysenko
     BOOST_CHECK_CLOSE(src->getArea(), area, accuracy);
   }
 
-  lysenko::testScale(lysenko::Shape::ShapePtr src)
+  void lysenko::testScale(lysenko::Shape::ShapePtr src)
   {
     double k = 5.0;
     double oldArea = src->getArea();

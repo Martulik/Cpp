@@ -7,13 +7,14 @@
 
 namespace dan = doroshin;
 
-std::function< bool(int, int) > getOrder(std::string order)
+template< typename T >
+std::function< bool(T, T) > getOrder(std::string order)
 {
   if(order == "ascending") {
-    return std::less< int >();
+    return std::less< T >();
   }
   else if(order == "descending") {
-    return std::greater< int >();
+    return std::greater< T >();
   }
   else {
     throw ArgumentParseException("Invalid sorting order");
@@ -56,7 +57,7 @@ int main(int argc, char* argv[])
           throw ArgumentParseException("No sorting order");
         }
 
-        const std::function< bool(int, int) > cmp = getOrder(argv[2]);
+        const std::function< bool(int, int) > cmp = getOrder< int >(argv[2]);
         const std::vector< int > values = readUntilEof< int >();
         const std::forward_list< int > l_values(values.begin(), values.end());
 
@@ -86,7 +87,7 @@ int main(int argc, char* argv[])
           throw ArgumentParseException("No array length");
         }
         size_t size = atoll(argv[3]);
-        std::function< bool(int, int) > cmp = getOrder(argv[2]);
+        std::function< bool(double, double) > cmp = getOrder< double >(argv[2]);
         dan::testRandom(size, cmp);
       }
       break;

@@ -4,20 +4,28 @@
 #include <vector>
 #include "iterator-utils.hpp"
 
-size_t countCharacters(std::istream &istream)
+void seekBegin(std::ifstream &ifstream)
 {
+  ifstream.clear();
+  ifstream.seekg(0, std::ios::beg);
+}
+
+size_t countCharacters(std::ifstream &ifstream)
+{
+  seekBegin(ifstream);
   size_t size = 0;
-  while (istream) {
-    istream.get();
+  while (ifstream) {
+    ifstream.get();
     size++;
   }
   return size;
 }
 
-void read(std::istream &istream, char *array, size_t size)
+void read(std::ifstream &ifstream, char *array, size_t size)
 {
-  for (size_t i = 0; i < size; i++) {
-    istream.get(array[i]);
+  seekBegin(ifstream);
+  for (size_t i = 0; i < size && ifstream; i++) {
+    ifstream.get(array[i]);
   }
 }
 
@@ -34,8 +42,6 @@ int shilyaev::taskCopy(int argc, char *argv[])
     return 1;
   }
   const size_t size = countCharacters(ifstream);
-  ifstream.clear();
-  ifstream.seekg(0, std::ios::beg);
   char fileContent[size];
   read(ifstream, fileContent, size);
   ifstream.close();

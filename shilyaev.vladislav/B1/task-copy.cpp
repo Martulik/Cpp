@@ -20,7 +20,7 @@ namespace shilyaev {
       ifstream.get();
       size++;
     }
-    return size;
+    return size - 1;
   }
 
   void read(std::ifstream &ifstream, char *array, size_t size)

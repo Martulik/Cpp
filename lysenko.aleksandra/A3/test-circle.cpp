@@ -1,7 +1,7 @@
 #include "test-functions.hpp"
 
 BOOST_AUTO_TEST_SUITE(test_circle)
-  
+
 BOOST_AUTO_TEST_CASE(test_move)
 {
   lysenko::testMove(lysenko::makeCircle());

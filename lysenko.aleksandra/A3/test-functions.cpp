@@ -27,6 +27,7 @@ namespace lysenko
     myComposite->addShape(myRectangle);
     return myComposite;
   }
+
   void lysenko::testMove(lysenko::Shape::ShapePtr src)
   {
     const double dx = 1.0;
@@ -58,4 +59,3 @@ namespace lysenko
     BOOST_CHECK_CLOSE(src->getArea(), oldArea * k * k, accuracy);
   }
 }
- 

@@ -41,6 +41,10 @@ int task2(const char *input)
     return 1;
   }
 
+  if (file.peek() == EOF) {
+    return 0;
+  }
+
   size_t capacity = 5;
   size_t count = 0;
   std::unique_ptr< char[] > array(new char[capacity]);
@@ -49,14 +53,13 @@ int task2(const char *input)
     file.read(&array[count], capacity - count);
     count += file.gcount();
     capacity *= 2;
-    std::unique_ptr< char[] > tmpArray(new char[capacity]);
+    std::unique_ptr< char[] > temp(static_cast< char *>(realloc(&array[0], capacity)));
     array.release();
-    std::swap(array, tmpArray);
+    std::swap(array, temp);
   }
   file.close();
 
   std::vector< char > vector(&array[0], &array[count]);
-
   for (size_t i = 0; i < count; i++) {
     std::cout << vector[i];
   }

@@ -9,7 +9,6 @@ shkurov::CompositeShape::CompositeShape(CompositeShape&& src):
   shape_array_(std::move(src.shape_array_))
 {
   src.shape_count_ = 0;
-  src.shape_array_ = nullptr;
 }
 
 shkurov::CompositeShape& shkurov::CompositeShape::operator=(CompositeShape&& src)
@@ -18,7 +17,6 @@ shkurov::CompositeShape& shkurov::CompositeShape::operator=(CompositeShape&& src
   shape_array_ = std::move(src.shape_array_);
 
   src.shape_count_ = 0;
-  src.shape_array_ = nullptr;
 
   return *this;
 }
@@ -30,6 +28,7 @@ double shkurov::CompositeShape::getArea() const
   {
     summary_area += shape_array_[i]->getArea();
   }
+
   return summary_area;
 }
 

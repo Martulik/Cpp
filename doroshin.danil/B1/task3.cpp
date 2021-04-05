@@ -1,7 +1,9 @@
 #include "task3.hpp"
 #include <iostream>
 #include <vector>
-#include "ArgumentParseException.hpp"
+#include "lab-exception.hpp"
+
+namespace dan = doroshin;
 
 std::vector< int > input_int_vec()
 {
@@ -13,7 +15,7 @@ std::vector< int > input_int_vec()
       break;
     }
     if(std::cin.fail()) {
-      throw ArgumentParseException("Not a number");
+      throw dan::LabException("Not a number");
     }
     values.push_back(num);
   }
@@ -45,14 +47,14 @@ void put1after3(std::vector< int >& vec)
   }
 }
 
-void doroshin::filterInput()
+void dan::filterInput()
 {
   std::vector< int > values = input_int_vec();
   if(values.empty()) {
-    throw ArgumentParseException("No values given");
+    throw LabException("No values given", false);
   }
   if(values.back() != 0) {
-    throw ArgumentParseException("Output should end with a 0");
+    throw LabException("Output should end with a 0");
   }
   values.pop_back();
 

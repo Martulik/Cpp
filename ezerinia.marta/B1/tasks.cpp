@@ -40,28 +40,26 @@ int task2(const char *input)
     std::cerr << "File does not exist\n";
     return 1;
   }
-  file.seekg(0, std::ios_base::end);
-  int length = file.tellg();
-  file.seekg(0);
 
-  if (!length) {
-    return 0;
-  }
-  if (length == -1) {
-    std::cerr << "Fail get length\n";
-    return 1;
-  }
+  size_t capacity = 5;
+  size_t count = 0;
+  std::unique_ptr< char[] > array(new char[capacity]);
 
-  std::unique_ptr< char[] > array(new char[length]);
-  file.read(array.get(), length);
+  while (!file.eof()) {
+    file.read(&array[count], capacity - count);
+    count += file.gcount();
+    capacity *= 2;
+    std::unique_ptr< char[] > tmpArray(new char[capacity]);
+    array.release();
+    std::swap(array, tmpArray);
+  }
   file.close();
 
-  std::vector< char > vec(array.get(), array.get() + length);
+  std::vector< char > vector(&array[0], &array[count]);
 
-  for (int i = 0; i < length; i++) {
-    std::cout << vec[i];
+  for (size_t i = 0; i < count; i++) {
+    std::cout << vector[i];
   }
-  std::cout << "\n";
   return 0;
 }
 

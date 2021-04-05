@@ -32,6 +32,5 @@ namespace borisova
     void doScale(double k) override;
   };
   void swap(CompositeShape& obj1, CompositeShape& obj2) noexcept;
-  std::unique_ptr< Shape > makeComposite();
 }
 #endif

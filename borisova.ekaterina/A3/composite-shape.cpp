@@ -15,13 +15,13 @@ lab::CompositeShape::CompositeShape(const std::initializer_list < std::shared_pt
   {
     throw (std::invalid_argument("Composite Shape mustn't be empty"));
   }
-  for (const std::shared_ptr< Shape > elem : source)
+  for (const std::shared_ptr< Shape > elem: source)
   {
     if (elem == nullptr)
     {
       throw (std::invalid_argument("Element of Composite Shape mustn't be nullptr"));
     }
-    data_[count] = elem;
+    data_[count] = elem->clone();
     count++;
   }
 }
@@ -142,17 +142,4 @@ void lab::CompositeShape::doScale(double k)
 void lab::swap(CompositeShape& obj1, CompositeShape& obj2) noexcept
 {
   obj1.swap(obj2);
-}
-
-std::unique_ptr< lab::Shape > lab::makeComposite()
-{
-    lab::CompositeShape compShape =
-  {
-    std::make_shared< lab::Rectangle >(lab::point1, lab::width, lab::param1),
-    std::make_shared< lab::Circle >(lab::point2, lab::width),
-    std::make_shared< lab::Rectangle >(lab::point2, lab::param2, lab::height),
-    std::make_shared< lab::Circle >(lab::point1, lab::height)
-  };
-  auto shape = std::make_unique< lab::CompositeShape >(std::move(compShape));
-  return shape;
 }

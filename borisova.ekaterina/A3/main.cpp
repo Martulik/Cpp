@@ -6,18 +6,21 @@
 
 using sh_ptr = std::shared_ptr< borisova::Shape >;
 
-void testAll();
-void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, double k);
-void print(const sh_ptr obj, std::ostream& out);
-void printPos(const sh_ptr obj, std::ostream& out);
-void moving(const sh_ptr obj, std::ostream& out);
+namespace borisova
+{
+  void testAll();
+  void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, double k);
+  void print(const sh_ptr obj, std::ostream& out);
+  void printPos(const sh_ptr obj, std::ostream& out);
+  void moving(const sh_ptr obj, std::ostream& out);
+}
 
 int main()
 {
-  testAll();
+    borisova::testAll();
 }
 
-void testAll()
+void borisova::testAll()
 {
   double x = 0.4;
   double y = 2.56;
@@ -40,11 +43,11 @@ void testAll()
 
   for (size_t i = 0; i < compositeShape.getSize(); i++)
   {
-    test(compositeShape.at(i), point1, std::cout, coeff);
+    borisova::test(compositeShape.at(i), point1, std::cout, coeff);
   }
 }
 
-void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, const double k)
+void borisova::test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, const double k)
 {
   print(obj, out);
   obj->move(dpos);
@@ -56,19 +59,19 @@ void test(sh_ptr obj, borisova::point_t& dpos, std::ostream& out, const double k
   out << "Area after scale on " << k << " is: " << obj->getArea() << '\n';
 }
 
-void print(const sh_ptr obj, std::ostream& out)
+void borisova::print(const sh_ptr obj, std::ostream& out)
 {
   out << "\nShape:\n" << "::Position: ";
   printPos(obj, out);
   out << "\nSpecific: " << obj->getName() << '\n';
 }
 
-void printPos(const sh_ptr obj, std::ostream& out)
+void borisova::printPos(const sh_ptr obj, std::ostream& out)
 {
   out << getX(*obj) << ", " << getY(*obj) << '\n';
 }
 
-void moving(const sh_ptr obj, std::ostream& out)
+void borisova::moving(const sh_ptr obj, std::ostream& out)
 {
   out << "Figure moved on: ";
   printPos(obj, out);

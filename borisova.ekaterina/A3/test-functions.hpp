@@ -13,6 +13,7 @@ namespace borisova
   void paramAfterMoving(std::unique_ptr< Shape > obj);
   void areaAfterMoving(std::unique_ptr< Shape > obj);
   void areaAfterScale(std::unique_ptr< Shape > obj);
+  std::unique_ptr< Shape > makeComposite();
 }
 
 #endif

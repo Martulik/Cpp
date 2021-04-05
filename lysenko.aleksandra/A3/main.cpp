@@ -5,6 +5,7 @@
 #include "shape.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
+#include "composite-shape.hpp"
 
 namespace curr = lysenko;
 
@@ -27,6 +28,9 @@ int main()
   double radius = 33.33;
   curr::Shape::ShapePtr myCircle(std::make_shared <curr::Circle> (myPos, radius));
   testMyFigure(myCircle);
+
+  curr::Shape::ShapePtr myCompositeShape(std::make_shared <curr::CompositeShape>(myRectangle));
+  testMyFigure(myCompositeShape);
   return 0;
 }
 
@@ -63,4 +67,8 @@ void testMyFigure(curr::Shape::ShapePtr figure)
   std::cout << "Move figure's center along x-asix by 1 along the y-asix by 1\n";
   figure->move(1.0, 1.0);
   printFiguresCenter("new", figure);
+  double coef = 5;
+  figure->scale(coef);
+  printFigure(figure);
+  printFrameRect(figure);
 }

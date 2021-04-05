@@ -9,9 +9,12 @@ namespace doroshin
   struct test_suite_registrar {
     test_suite_registrar(
         boost::unit_test::test_suite* suite,
-        boost::unit_test::test_suite* to,
         boost::unit_test::decorator::collector_t& collector);
   };
+
+  #define CUSTOM_REGISTER_SUITE(name, suite) \
+    static doroshin::test_suite_registrar name \
+      (suite, boost::unit_test::decorator::collector_t::instance());
 }
 
 #endif //TEST_REGISTRAR_HPP

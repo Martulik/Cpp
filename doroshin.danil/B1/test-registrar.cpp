@@ -5,10 +5,10 @@ namespace dan = doroshin;
 
 dan::test_suite_registrar::test_suite_registrar(
         test::test_suite* suite,
-        test::test_suite* to,
         test::decorator::collector_t& collector)
 {
-  to->add(suite);
-  collector.store_in(*to);
+  test::test_suite& parent = test::framework::current_auto_test_suite();
+  parent.add(suite);
+  collector.store_in(parent);
   collector.reset();
 }

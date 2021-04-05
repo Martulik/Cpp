@@ -47,14 +47,16 @@ int task2(const char *input)
 
   size_t capacity = 5;
   size_t count = 0;
-  std::unique_ptr< char[] > array(new char[capacity]);
+  std::unique_ptr< char[] > array = std::make_unique< char[] >(capacity);
 
   while (!file.eof()) {
     file.read(&array[count], capacity - count);
     count += file.gcount();
     capacity *= 2;
-    std::unique_ptr< char[] > temp(static_cast< char *>(realloc(&array[0], capacity)));
-    array.release();
+    std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
+    for (size_t i = 0; i < count; i++) {
+      temp[i] = std::move(array[i]);
+    }
     std::swap(array, temp);
   }
   file.close();

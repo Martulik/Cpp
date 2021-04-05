@@ -11,10 +11,6 @@ namespace doroshin
         boost::unit_test::test_suite* suite,
         boost::unit_test::decorator::collector_t& collector);
   };
-
-  #define CUSTOM_REGISTER_SUITE(name, suite) \
-    static doroshin::test_suite_registrar name \
-      (suite, boost::unit_test::decorator::collector_t::instance());
 }
 
 #endif //TEST_REGISTRAR_HPP

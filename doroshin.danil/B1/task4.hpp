@@ -17,13 +17,13 @@ namespace doroshin
     std::vector< double > array(size);
     fillRandom(array.data(), array.size());
     std::cout << std::fixed << std::setprecision(5);
-    for(size_t i = 0; i < size; ++i) {
-      std::cout << array[i] << ' ';
+    for(double val: array) {
+      std::cout << val << ' ';
     }
     std::cout << '\n';
     insert_sort< double, VectorIndexStrat< double > >(array, cmp);
-    for(size_t i = 0; i < size; ++i) {
-      std::cout << array[i] << ' ';
+    for(double val: array) {
+      std::cout << val << ' ';
     }
     std::cout << '\n';
   }

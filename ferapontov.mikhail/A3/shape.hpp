@@ -16,9 +16,12 @@ namespace ferapontov
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(const point_t& pos) = 0;
     virtual void move(double dx, double dy) = 0;
-    virtual void scale(double k) = 0;
+    virtual void scale(double k);
     virtual std::unique_ptr< Shape > clone() const = 0;
+  private:
+    virtual void doScale(double k) = 0;
   };
+
   double getX(const Shape& src);
   double getY(const Shape& src);
   double getHeight(const Shape& src);

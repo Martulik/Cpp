@@ -35,6 +35,8 @@ double fer::CompositeShape::getArea() const
   {
     area += arr_[i]->getArea();
   }
+  
+  return area;
 }
 
 fer::rectangle_t fer::CompositeShape::getFrameRect() const

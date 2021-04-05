@@ -16,10 +16,11 @@ namespace ferapontov
     rectangle_t getFrameRect() const override;
     void move(const point_t& pos) override;
     void move(double dx, double dy) override;
-    void scale(double k) override;
     virtual std::unique_ptr< Shape > clone() const override;
   private:
     rectangle_t rect_;
+
+    void doScale(double k) override;
   };
 }
 #endif

@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <stdexcept>
 #include "test-functions.hpp"
+#include "test-variables.hpp"
 #include "rectangle.hpp"
 
 namespace lab = borisova;

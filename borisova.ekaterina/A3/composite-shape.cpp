@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "circle.hpp"
 #include "rectangle.hpp"
-#include "test-functions.hpp"
+#include "test-variables.hpp"
 
 namespace lab = borisova;
 

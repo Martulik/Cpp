@@ -1,6 +1,6 @@
 #include "composite-shape.hpp"
+#include <stdexcept>
 
-#include <string>
 
 namespace curr = lysenko;
 
@@ -50,14 +50,14 @@ curr::CompositeShape& curr::CompositeShape::operator=(CompositeShape&& src) noex
   return *this;
 }
 
-curr::CompositeShape::CompositeShape(ShapePtr src) :
+curr::CompositeShape::CompositeShape(ShapePtr src):
   capacity_(1),
   size_(1),
-  array_(std::make_unique < ShapePtr[] >(capacity_))
+  array_(std::make_unique < ShapePtr [] > (capacity_))
 {
-  if (src == nullptr)
+  if (&src == nullptr)
   {
-    throw "Composite shape can not contain the pointer on nullptr";
+    throw std::exception("Composite shape can not contain the pointer on nullptr");
   }
   array_[0].reset();
   array_[0] = src->clone();
@@ -75,22 +75,22 @@ double curr::CompositeShape::getArea() const
 
 double lysenko::getShapesLeftmostAbscissa(Shape::ShapePtr const src)
 {
-  return getX(*src) + getWidth(*src) / 2;
+  return getX(src) + getWidth(src) / 2;
 }
 
 double lysenko::getShapesRightmostAbscissa(Shape::ShapePtr const src)
 {
-  return getX(*src) - getWidth(*src) / 2;
+  return getX(src) - getWidth(src) / 2;
 }
 
 double lysenko::getShapesBottomOrdinate(Shape::ShapePtr const src)
 {
-  return getY(*src) - getHeight(*src) / 2;
+  return getY(src) - getHeight(src) / 2;
 }
 
 double lysenko::getShapesTopOrdinate(Shape::ShapePtr const src)
 {
-  return getY(*src) + getHeight(*src) / 2;
+  return getY(src) + getHeight(src) / 2;
 }
 
 curr::rectangle_t curr::CompositeShape::getFrameRect() const
@@ -108,13 +108,13 @@ curr::rectangle_t curr::CompositeShape::getFrameRect() const
     minY = std::min(minY, getShapesBottomOrdinate(current));
     maxY = std::max(maxY, getShapesTopOrdinate(current));
   }
-  return { maxX - minX, maxY - minY, {(minX + (maxX - minX) / 2), (minY + (maxY - minY) / 2)} };
+  return {maxX - minX, maxY - minY, {(minX + (maxX - minX) / 2), (minY + (maxY - minY) / 2)}};
 }
 
 void curr::CompositeShape::move(const point_t& newPos)
 {
-  double dx = newPos.x - getX(*this);
-  double dy = newPos.y - getY(*this);
+  double dx = newPos.x - getFrameRect().pos.x;
+  double dy = newPos.y - getFrameRect().pos.y;
   move(dx, dy);
 }
 
@@ -139,7 +139,7 @@ void curr::CompositeShape::addShape(const ShapePtr& src)
 {
   if (src == nullptr)
   {
-    throw "Composite shape can not contain the pointer on nullptr";
+    throw std::invalid_argument ("Composite shape can not contain the pointer on nullptr");
   }
   if (size_ == capacity_)
   {
@@ -154,7 +154,7 @@ void curr::CompositeShape::popShape()
 {
   if (size_ == 1)
   {
-    throw "Empty composite shape is illegal";
+    throw std::exception("Empty composite shape is illegal");
   }
   ArrayOfShapes reducedData(std::make_unique < ShapePtr[] >(capacity_));
   for (size_t i = 0; i < size_ - 1; i++)
@@ -176,7 +176,7 @@ void curr::CompositeShape::enlargeCapacity(size_t newCapacity)
 {
   if (capacity_ > newCapacity)
   {
-    throw "New capacity must be a number larger than old capacity";
+    throw std::invalid_argument("New capacity must be a number larger than old capacity");
   }
   ArrayOfShapes newCapacityOldData(std::make_unique < ShapePtr[] >(newCapacity));
   for (size_t i = 0; i < size_; i++)
@@ -189,13 +189,14 @@ void curr::CompositeShape::enlargeCapacity(size_t newCapacity)
 
 void curr::CompositeShape::doScale(double k)
 {
-  double compositeCenterX = getX(*this);
-  double compositeCenterY = getY(*this);
+  double compositeCenterX = getFrameRect().pos.x;
+  double compositeCenterY = getFrameRect().pos.y;
   for (size_t i = 0; i < size_; i++)
   {
     array_[i]->scale(k);
-    double dx = compositeCenterX - getX(*array_[i]);
-    double dy = compositeCenterY - getY(*array_[i]);
+    double dx = compositeCenterX - getX(array_[i]);
+    double dy = compositeCenterY - getY(array_[i]);
     array_[i]->move({ compositeCenterX + dx * k, compositeCenterY + dy * k });
   }
 }
+

@@ -1,4 +1,5 @@
 #include "test-registrar.hpp"
+#include <boost/test/framework.hpp>
 
 namespace test = boost::unit_test;
 namespace dan = doroshin;

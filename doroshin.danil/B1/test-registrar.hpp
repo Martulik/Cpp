@@ -1,11 +1,8 @@
 #ifndef TEST_REGISTRAR_HPP
 #define TEST_REGISTRAR_HPP
 
-#include <boost/test/impl/decorator.ipp>
-#include <boost/test/framework.hpp>
-#include <boost/test/tree/auto_registration.hpp>
-#include <boost/test/tree/test_case_template.hpp>
-#include <boost/test/tree/global_fixture.hpp>
+#include <boost/test/tree/test_unit.hpp>
+#include <boost/test/tree/decorator.hpp>
 
 namespace doroshin
 {

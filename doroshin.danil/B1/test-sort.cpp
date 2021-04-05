@@ -54,11 +54,12 @@ test::test_suite* make_suite()
                     << min << ' ' << max
                     << ' ' << i << ' ' << j;
                 suite->add(
-                    BOOST_TEST_CASE_NAME(
-                      (*std::make_shared<
+                    test::make_test_case(
+                      *std::make_shared<
                         dan::TestRandomSort< T, RandomStrat, Strategy, Order >
-                      >(min, max, i, _order)),
-                      name.str()));
+                      >(min, max, i, _order),
+                      name.str(), __FILE__, __LINE__
+                      ));
               }
             }
           }

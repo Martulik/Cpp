@@ -4,23 +4,6 @@
 #include <limits>
 #include <algorithm>
 
-shkurov::CompositeShape::CompositeShape(CompositeShape&& src):
-  shape_count_(src.shape_count_),
-  shape_array_(std::move(src.shape_array_))
-{
-  src.shape_count_ = 0;
-}
-
-shkurov::CompositeShape& shkurov::CompositeShape::operator=(CompositeShape&& src)
-{
-  shape_count_ = src.shape_count_;
-  shape_array_ = std::move(src.shape_array_);
-
-  src.shape_count_ = 0;
-
-  return *this;
-}
-
 double shkurov::CompositeShape::getArea() const
 {
   double summary_area = 0.0;

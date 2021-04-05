@@ -16,10 +16,10 @@ namespace shkurov
     template< typename... Pointers >
     CompositeShape(Pointers... pointers);
     CompositeShape(const CompositeShape& src) = delete;
-    CompositeShape(CompositeShape&& src);
+    CompositeShape(CompositeShape&& src) = default;
 
     CompositeShape& operator=(const CompositeShape& src) = delete;
-    CompositeShape& operator=(CompositeShape&& src);
+    CompositeShape& operator=(CompositeShape&& src) = default;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

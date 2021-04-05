@@ -1,7 +1,6 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
 
-
 namespace curr = lysenko;
 
 curr::CompositeShape::CompositeShape(const curr::CompositeShape& other)
@@ -154,7 +153,7 @@ void curr::CompositeShape::popShape()
 {
   if (size_ == 1)
   {
-    throw std::exception("Empty composite shape is illegal");
+    throw "Empty composite shape is illegal";
   }
   ArrayOfShapes reducedData(std::make_unique < ShapePtr[] >(capacity_));
   for (size_t i = 0; i < size_ - 1; i++)

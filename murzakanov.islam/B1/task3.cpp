@@ -1,1 +1,4 @@
-void task3();
+void task3()
+{
+
+}

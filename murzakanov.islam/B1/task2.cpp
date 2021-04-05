@@ -1,4 +1,4 @@
+void checkAndOut()
+{
 
-
-
-void checkAndOut();
+}

@@ -1,6 +1,9 @@
+#include "tasks.hpp"
+
 #include <vector>
 #include <list>
 #include <iostream>
+
 #include "sorting.hpp"
 #include "strategy.hpp"
 
@@ -13,7 +16,7 @@ void task1(const std::string& order)
     std::cin >> x;
     firstVector.push_back(x);
   }
-  int i = 0;
+  unsigned int i = 0;
   while (i < firstVector.size() - 1)
   {
     std::cout << firstVector.at(i++) << " ";

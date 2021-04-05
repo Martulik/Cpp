@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[])
 {
-  if (argc < 3)
+  if (argc < 2)
   {
     throw std::invalid_argument("Should be more parametrs");
   }
@@ -14,5 +14,5 @@ int main(int argc, char* argv[])
     std::string order = argv[2];
     task1(order);
   }
+  return 0;
 }
-

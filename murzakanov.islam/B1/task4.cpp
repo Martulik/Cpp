@@ -1,1 +1,4 @@
-void fillRandom(double* array, int size);
+void fillRandom(double* /*array*/, int /*size*/)
+{
+
+}

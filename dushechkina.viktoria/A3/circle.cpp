@@ -42,5 +42,5 @@ void dushechkina::Circle::doScale(const double ratio)
 
 std::shared_ptr< dushechkina::Shape > dushechkina::Circle::clone() const
 {
-  return std::make_shared < Circle > (*this);
+  return std::make_shared< Circle >(*this);
 }

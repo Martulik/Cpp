@@ -4,7 +4,6 @@
 #include "base-types.hpp"
 
 namespace shilyaev {
-
   const double TOLERANCE = 0.001;
   const point_t CENTER{5.0, -5.0};
   const double WIDTH = 6.0;
@@ -15,7 +14,6 @@ namespace shilyaev {
   void checkPointsClose(const point_t &lhs, const point_t &rhs, double tolerance);
   void checkSizeClose(const rectangle_t &lhs, const rectangle_t &rhs, double tolerance);
   void checkRectanglesClose(const rectangle_t &lhs, const rectangle_t &rhs, double tolerance);
-
 }
 
 #endif

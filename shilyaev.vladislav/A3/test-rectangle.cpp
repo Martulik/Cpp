@@ -3,26 +3,28 @@
 #include "test-common.hpp"
 #include "test-shape.hpp"
 
-std::unique_ptr< shilyaev::Rectangle > makeRectangle()
-{
-  return std::make_unique< shilyaev::Rectangle >(shilyaev::WIDTH, shilyaev::HEIGHT, shilyaev::CENTER);
+namespace shilyaev {
+  std::unique_ptr< Rectangle > makeRectangle()
+  {
+    return std::make_unique< Rectangle >(WIDTH, HEIGHT, CENTER);
+  }
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangle)
 {
-  testShape(*makeRectangle());
+  testShape(*shilyaev::makeRectangle());
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangleArea)
 {
   const double expectedArea = shilyaev::HEIGHT * shilyaev::WIDTH;
-  BOOST_CHECK_CLOSE(makeRectangle()->getArea(), expectedArea, shilyaev::TOLERANCE);
+  BOOST_CHECK_CLOSE(shilyaev::makeRectangle()->getArea(), expectedArea, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangleFrameRect)
 {
   const shilyaev::rectangle_t expectedFrameRect{shilyaev::WIDTH, shilyaev::HEIGHT, shilyaev::CENTER};
-  checkRectanglesClose(makeRectangle()->getFrameRect(), expectedFrameRect, shilyaev::TOLERANCE);
+  checkRectanglesClose(shilyaev::makeRectangle()->getFrameRect(), expectedFrameRect, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangleInvalidArgument)

@@ -24,7 +24,7 @@ namespace ivanova
     void move(const point_t &point) override;
     void move(double dx, double dy) override;
     std::string getName() const override;
-    void scaleShape(double k) override;
+
     void reserve(size_t capacity);
     void swap(CompositeShape &other) noexcept;
     shared clone() const override;
@@ -34,6 +34,7 @@ namespace ivanova
     size_t size_;
     size_t capacity_;
     std::unique_ptr< shared[] > data_;
+    void scaleShape(double k) override;
   };
 }
 #endif

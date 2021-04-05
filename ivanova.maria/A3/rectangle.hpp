@@ -15,13 +15,13 @@ namespace ivanova
     void move(const point_t &newPos) override;
     void move(double dx, double dy) override;
     std::string getName() const override;
-    void scaleShape(double k) override;
     shared clone() const override;
 
   private:
     double height_;
     double width_;
     point_t pos_;
+    void scaleShape(double k) override;
   };
 }
 #endif

@@ -118,7 +118,7 @@ void ivanova::CompositeShape::scaleShape(double k)
     double dx = getX(*data_[i]) - totalPos.x;
     double dy = getY(*data_[i]) - totalPos.y;
     data_[i]->move({totalPos.x + dx * k, totalPos.y + dy * k});
-    data_[i]->scaleShape(k);
+    data_[i]->scale(k);
   }
 }
 

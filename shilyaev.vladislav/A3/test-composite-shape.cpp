@@ -7,8 +7,8 @@
 
 std::unique_ptr< shilyaev::CompositeShape > makeCompositeShape()
 {
-  auto circle = std::make_unique< shilyaev::Circle >(RADIUS, CENTER);
-  auto rectangle = std::make_unique< shilyaev::Rectangle >(WIDTH, HEIGHT, CENTER);
+  auto circle = std::make_unique< shilyaev::Circle >(shilyaev::RADIUS, shilyaev::CENTER);
+  auto rectangle = std::make_unique< shilyaev::Rectangle >(shilyaev::WIDTH, shilyaev::HEIGHT, shilyaev::CENTER);
   auto shape = std::make_unique< shilyaev::CompositeShape >(std::move(circle));
   shape->pushBack(std::move(rectangle));
   return shape;
@@ -21,16 +21,20 @@ BOOST_AUTO_TEST_CASE(TestCompositeShape)
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeArea)
 {
-  const double expectedArea = RADIUS * RADIUS * PI + WIDTH * HEIGHT;
-  BOOST_CHECK_CLOSE(makeCompositeShape()->getArea(), expectedArea, TOLERANCE);
+  const double expectedCircleArea = shilyaev::RADIUS * shilyaev::RADIUS * shilyaev::PI;
+  const double expectedRectangleArea = shilyaev::WIDTH * shilyaev::HEIGHT;
+  const double expectedArea = expectedCircleArea + expectedRectangleArea;
+  BOOST_CHECK_CLOSE(makeCompositeShape()->getArea(), expectedArea, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeFrameRect)
 {
   const shilyaev::rectangle_t expectedFrameRect{
-    std::max(WIDTH, RADIUS * 2), std::max(HEIGHT, RADIUS * 2), CENTER
+    std::max(shilyaev::WIDTH, shilyaev::RADIUS * 2),
+    std::max(shilyaev::HEIGHT, shilyaev::RADIUS * 2),
+    shilyaev::CENTER
   };
-  checkRectanglesClose(makeCompositeShape()->getFrameRect(), expectedFrameRect, TOLERANCE);
+  checkRectanglesClose(makeCompositeShape()->getFrameRect(), expectedFrameRect, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCompositeShapeArray)

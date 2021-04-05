@@ -5,7 +5,7 @@
 
 std::unique_ptr< shilyaev::Circle > makeCircle()
 {
-  return std::make_unique< shilyaev::Circle >(RADIUS, CENTER);
+  return std::make_unique< shilyaev::Circle >(shilyaev::RADIUS, shilyaev::CENTER);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircle)
@@ -15,17 +15,21 @@ BOOST_AUTO_TEST_CASE(TestCircle)
 
 BOOST_AUTO_TEST_CASE(TestCircleArea)
 {
-  const double expectedArea = RADIUS * RADIUS * PI;
-  BOOST_CHECK_CLOSE(makeCircle()->getArea(), expectedArea, TOLERANCE);
+  const double expectedArea = shilyaev::RADIUS * shilyaev::RADIUS * shilyaev::PI;
+  BOOST_CHECK_CLOSE(makeCircle()->getArea(), expectedArea, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleFrameRect)
 {
-  const shilyaev::rectangle_t expectedFrameRect{RADIUS * 2, RADIUS * 2, CENTER};
-  checkRectanglesClose(makeCircle()->getFrameRect(), expectedFrameRect, TOLERANCE);
+  const shilyaev::rectangle_t expectedFrameRect{
+    shilyaev::RADIUS * 2,
+    shilyaev::RADIUS * 2,
+    shilyaev::CENTER
+  };
+  checkRectanglesClose(makeCircle()->getFrameRect(), expectedFrameRect, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleInvalidArgument)
 {
-  BOOST_CHECK_THROW(shilyaev::Circle circle(-RADIUS, CENTER), std::invalid_argument);
+  BOOST_CHECK_THROW(shilyaev::Circle circle(-shilyaev::RADIUS, shilyaev::CENTER), std::invalid_argument);
 }

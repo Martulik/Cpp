@@ -5,7 +5,7 @@
 
 std::unique_ptr< shilyaev::Rectangle > makeRectangle()
 {
-  return std::make_unique< shilyaev::Rectangle >(WIDTH, HEIGHT, CENTER);
+  return std::make_unique< shilyaev::Rectangle >(shilyaev::WIDTH, shilyaev::HEIGHT, shilyaev::CENTER);
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangle)
@@ -15,18 +15,19 @@ BOOST_AUTO_TEST_CASE(TestRectangle)
 
 BOOST_AUTO_TEST_CASE(TestRectangleArea)
 {
-  const double expectedArea = HEIGHT * WIDTH;
-  BOOST_CHECK_CLOSE(makeRectangle()->getArea(), expectedArea, TOLERANCE);
+  const double expectedArea = shilyaev::HEIGHT * shilyaev::WIDTH;
+  BOOST_CHECK_CLOSE(makeRectangle()->getArea(), expectedArea, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangleFrameRect)
 {
-  const shilyaev::rectangle_t expectedFrameRect{WIDTH, HEIGHT, CENTER};
-  checkRectanglesClose(makeRectangle()->getFrameRect(), expectedFrameRect, TOLERANCE);
+  const shilyaev::rectangle_t expectedFrameRect{shilyaev::WIDTH, shilyaev::HEIGHT, shilyaev::CENTER};
+  checkRectanglesClose(makeRectangle()->getFrameRect(), expectedFrameRect, shilyaev::TOLERANCE);
 }
 
 BOOST_AUTO_TEST_CASE(TestRectangleInvalidArgument)
 {
-  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(-WIDTH, HEIGHT, CENTER), std::invalid_argument);
-  BOOST_CHECK_THROW(shilyaev::Rectangle rectangle(WIDTH, -HEIGHT, CENTER), std::invalid_argument);
+  namespace shi = shilyaev;
+  BOOST_CHECK_THROW(shi::Rectangle r(-shi::WIDTH, shi::HEIGHT, shi::CENTER), std::invalid_argument);
+  BOOST_CHECK_THROW(shi::Rectangle r(shi::WIDTH, -shi::HEIGHT, shi::CENTER), std::invalid_argument);
 }

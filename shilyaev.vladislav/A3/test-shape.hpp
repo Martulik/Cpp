@@ -3,6 +3,8 @@
 
 #include "shape.hpp"
 
-void testShape(shilyaev::Shape &shape);
+namespace shilyaev {
+  void testShape(shilyaev::Shape &shape);
+}
 
 #endif

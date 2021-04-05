@@ -10,10 +10,10 @@ namespace diurdeva {
     using shapeArray = std::unique_ptr< shapePtr[] >;
     CompositeShape(shapePtr shape);
     CompositeShape(const CompositeShape &shape);
-    CompositeShape(CompositeShape &&other) noexcept;
+    CompositeShape(CompositeShape &&other) noexcept = default;
     ~CompositeShape() = default;
     CompositeShape &operator=(const CompositeShape &other);
-    CompositeShape &operator=(CompositeShape &&other) noexcept;
+    CompositeShape &operator=(CompositeShape &&other) noexcept = default;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t &newCenter) override;

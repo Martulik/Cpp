@@ -22,26 +22,10 @@ diurdeva::CompositeShape::CompositeShape(const CompositeShape& other):
   }
 }
 
-diurdeva::CompositeShape::CompositeShape(CompositeShape&& other) noexcept :
-  capacity_(other.capacity_),
-  size_(other.size_),
-  shapeArr_(std::move(other.shapeArr_))
-{}
-
 diurdeva::CompositeShape& diurdeva::CompositeShape::operator=(const CompositeShape& other)
 {
   CompositeShape temp(other);
   swap(temp);
-  return *this;
-}
-
-diurdeva::CompositeShape& diurdeva::CompositeShape::operator=(CompositeShape&& other) noexcept
-{
-  if (this != std::addressof(other)) {
-    capacity_ = other.capacity_,
-    size_ = other.size_;
-    shapeArr_ = std::move(other.shapeArr_);
-  }
   return *this;
 }
 

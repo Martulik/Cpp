@@ -73,9 +73,9 @@ void testMoveToPoint(shkurov::Shape* shape)
 
   shape->move(FINAL_POS);
 
-  BOOST_CHECK_CLOSE(origin_height, test_utility::getHeight(shape), EPSILON);
-  BOOST_CHECK_CLOSE(origin_width, test_utility::getWidth(shape), EPSILON);
-  BOOST_CHECK_CLOSE(origin_area, shape->getArea(), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(origin_height, test_utility::getHeight(shape), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(origin_width, test_utility::getWidth(shape), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(origin_area, shape->getArea(), EPSILON);
 }
 
 void testScale(shkurov::Shape* shape)
@@ -84,7 +84,7 @@ void testScale(shkurov::Shape* shape)
 
   shape->scale(K);
 
-  BOOST_CHECK_CLOSE(pred_area, shape->getArea(), EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(pred_area, shape->getArea(), EPSILON);
 }
 
 void invalidScale(shkurov::Shape* shape)

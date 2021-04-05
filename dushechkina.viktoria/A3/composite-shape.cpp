@@ -47,7 +47,7 @@ double vika::CompositeShape::getArea() const
 
 vika::rectangle_t vika::CompositeShape::getFrameRect() const
 {
-  if (size_ == 0)
+  if (size_ == 1)
   {
     return { 0.0, 0.0, { 0.0, 0.0 } };
   }

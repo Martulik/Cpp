@@ -3,18 +3,18 @@
 
 namespace leb = lebedeva;
 
-leb::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], const std::size_t& n):
+leb::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], const size_t& n):
   countElements_(n),
-  data_(std::make_unique< leb::Shape::Ptr[] >(n))
+  data_(std::make_unique< shapePtr[] >(n))
 {
   assert(n != 0);
-  for (std::size_t i = 0; i < n; i++)
+  for (size_t i = 0; i < n; i++)
   {
     data_[i] = composition[i];
   }
 }
 
-leb::Shape::Ptr& leb::CompositeShape::operator[](const std::size_t& i) const
+leb::CompositeShape::shapePtr& leb::CompositeShape::operator[](const size_t& i) const
 {
   assert(i < countElements_);
   return data_[i];
@@ -23,7 +23,7 @@ leb::Shape::Ptr& leb::CompositeShape::operator[](const std::size_t& i) const
 double leb::CompositeShape::getArea() const
 {
   double result = 0;
-  for (std::size_t i = 0; i < countElements_; i++)
+  for (size_t i = 0; i < countElements_; i++)
   {
     result += data_[i]->getArea();
   }
@@ -41,7 +41,7 @@ leb::rectangle_t leb::CompositeShape::getFrameRect() const
     double maxY = frameRect.pos.y + (frameRect.height / 2);
     double minY = frameRect.pos.y - (frameRect.height / 2);
 
-    for (std::size_t i = 1; i < countElements_; i++)
+    for (size_t i = 1; i < countElements_; i++)
     {
       frameRect = data_[i]->getFrameRect();
       maxX = std::max(maxX, frameRect.pos.x + (frameRect.width / 2));
@@ -68,7 +68,7 @@ void leb::CompositeShape::move(const point_t& newPos)
 
 void leb::CompositeShape::move(double dx, double dy)
 {
-  for (std::size_t i = 0; i < countElements_; i++)
+  for (size_t i = 0; i < countElements_; i++)
   {
     data_[i]->move(dx, dy);
   }
@@ -78,7 +78,7 @@ void leb::CompositeShape::scale(double k)
 {
   assert(k > 0);
   leb::point_t collectionPos = this->getFrameRect().pos;
-  for (std::size_t i = 0; i < countElements_; i++)
+  for (size_t i = 0; i < countElements_; i++)
   {
     leb::point_t tempPos = data_[i]->getFrameRect().pos;
     double dx = (tempPos.x - collectionPos.x) * k;

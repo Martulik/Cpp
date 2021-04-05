@@ -6,39 +6,43 @@
 #include "order-strategies.hpp"
 #include "access-strategies.hpp"
 
-void fillRandom(double *array, int size)
-{
-  std::uniform_real_distribution< double > distribution(-1.0, 1.0);
-  std::random_device randomDevice;
-  for (int i = 0; i < size; i++) {
-    array[i] = distribution(randomDevice);
-  }
-}
+namespace shilyaev {
 
-int shilyaev::taskRandom(int argc, char *argv[])
-{
-  if (argc != 4) {
-    std::cerr << "Invalid arguments count";
-    return 1;
+  void fillRandom(double *array, int size)
+  {
+    std::uniform_real_distribution< double > distribution(-1.0, 1.0);
+    std::random_device randomDevice;
+    for (int i = 0; i < size; i++) {
+      array[i] = distribution(randomDevice);
+    }
   }
-  const std::string orderParameter = argv[2];
-  const size_t size = std::atoi(argv[3]);
-  if (size == 0) {
-    std::cerr << "Invalid size";
-    return 1;
+
+  int taskRandom(int argc, char *argv[])
+  {
+    if (argc != 4) {
+      std::cerr << "Invalid arguments count";
+      return 1;
+    }
+    const std::string orderParameter = argv[2];
+    const size_t size = std::atoi(argv[3]);
+    if (size == 0) {
+      std::cerr << "Invalid size";
+      return 1;
+    }
+    double array[size];
+    fillRandom(array, size);
+    std::vector< double > vector(array, array + size);
+    print(vector.begin(), vector.end());
+    if (orderParameter == "ascending") {
+      bubbleSort< VectorBracketsStrategy< double >, AscendingOrder >(vector);
+    } else if (orderParameter == "descending") {
+      bubbleSort< VectorBracketsStrategy< double >, DescendingOrder >(vector);
+    } else {
+      std::cerr << "Invalid sorting order";
+      return 1;
+    }
+    print(vector.begin(), vector.end());
+    return 0;
   }
-  double array[size];
-  fillRandom(array, size);
-  std::vector< double > vector(array, array + size);
-  shilyaev::print(vector.begin(), vector.end());
-  if (orderParameter == "ascending") {
-    shilyaev::bubbleSort< shilyaev::VectorBracketsStrategy< double >, shilyaev::AscendingOrder >(vector);
-  } else if (orderParameter == "descending") {
-    shilyaev::bubbleSort< shilyaev::VectorBracketsStrategy< double >, shilyaev::DescendingOrder >(vector);
-  } else {
-    std::cerr << "Invalid sorting order";
-    return 1;
-  }
-  shilyaev::print(vector.begin(), vector.end());
-  return 0;
+
 }

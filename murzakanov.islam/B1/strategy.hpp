@@ -56,7 +56,7 @@ struct StrategyIter
   {
     return store.end();
   }
-  static T& get(store_type& store, iterator& iter)
+  static T& get(store_type&, iterator& iter)
   {
     return *iter;
   }

@@ -3,9 +3,10 @@
 #include "composite-shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
-
-void info(const std::shared_ptr< ivanova::Shape > shp);
-
+namespace ivanova
+{
+  void info(const std::shared_ptr <ivanova::Shape> shp);
+}
 int main()
 {
   const double radius = 12.0;
@@ -34,7 +35,7 @@ int main()
   return 0;
 }
 
-void info(std::shared_ptr< ivanova::Shape > shp)
+void ivanova::info(std::shared_ptr< ivanova::Shape > shp)
 {
   std::cout << "\nFrame Rectangle: width = " << ivanova::getWidth(*shp);
   std::cout << "\nheight = " << ivanova::getHeight(*shp);

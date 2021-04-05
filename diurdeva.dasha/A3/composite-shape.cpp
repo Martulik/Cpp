@@ -9,7 +9,7 @@ diurdeva::CompositeShape::CompositeShape(shapePtr shape):
   if (!shape) {
     throw std::invalid_argument("Pointer must be not null");
   }
-  shapeArr_[0] = std::move(shape);
+  shapeArr_[0] = shape->clone();
 }
 
 diurdeva::CompositeShape::CompositeShape(const CompositeShape& other):
@@ -29,7 +29,16 @@ diurdeva::CompositeShape& diurdeva::CompositeShape::operator=(const CompositeSha
   return *this;
 }
 
-std::shared_ptr< diurdeva::Shape > diurdeva::CompositeShape::at(const size_t index) const
+std::shared_ptr< diurdeva::Shape > diurdeva::CompositeShape::at(const size_t index)
+{
+  if (index >= size_)
+  {
+    throw std::out_of_range("Out of range");
+  }
+  return shapeArr_[index];
+}
+
+std::shared_ptr< const diurdeva::Shape > diurdeva::CompositeShape::at(const size_t index) const
 {
   if (index >= size_) {
     throw std::out_of_range("Index goes out of bounds");
@@ -129,7 +138,7 @@ void diurdeva::CompositeShape::pushBack(shapePtr newShape)
   if (capacity_ == size_) {
     reserve(capacity_ * 2);
   }
-  shapeArr_[size_++] = std::move(newShape);
+  shapeArr_[size_++] = newShape->clone();
 }
 
 void diurdeva::CompositeShape::popBack()

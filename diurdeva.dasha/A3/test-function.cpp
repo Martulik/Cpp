@@ -2,7 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-void checkConstOptionsBeforeMoving(diurdeva::Shape &shape)
+void diurdeva::checkConstOptionsBeforeMoving(diurdeva::Shape &shape)
 {
   double widthBeforeMove = getWidth(shape);
   double heightBeforeMove = getHeight(shape);
@@ -13,7 +13,7 @@ void checkConstOptionsBeforeMoving(diurdeva::Shape &shape)
   BOOST_CHECK_CLOSE(shape.getArea(), area, accuracy);
 }
 
-void checkAreaBeforeScale(diurdeva::Shape &shape)
+void diurdeva::checkAreaBeforeScale(diurdeva::Shape &shape)
 {
   double areaBeforeScale = shape.getArea();
   shape.scale(factor);

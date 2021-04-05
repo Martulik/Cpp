@@ -3,18 +3,20 @@
 #include "test-function.hpp"
 #include "rectangle.hpp"
 
-std::unique_ptr< diurdeva::Rectangle > makeRectangle()
+namespace lab = diurdeva;
+
+std::unique_ptr< lab::Rectangle > makeRectangle()
 {
-  return std::make_unique< diurdeva::Rectangle >(width, height, pointCenter);
+  return std::make_unique< lab::Rectangle >(lab::width, lab::height, lab::pointCenter);
 }
 
 BOOST_AUTO_TEST_SUITE(testRectangle)
 
 BOOST_AUTO_TEST_CASE(invalidOptionsRectangle)
 {
-  BOOST_CHECK_THROW(diurdeva::Rectangle(width, negativeOptions, pointCenter), std::invalid_argument);
-  BOOST_CHECK_THROW(diurdeva::Rectangle(negativeOptions, height, pointCenter), std::invalid_argument);
-  BOOST_CHECK_THROW(diurdeva::Rectangle(width, height, pointCenter).scale(negativeOptions), std::invalid_argument);
+  BOOST_CHECK_THROW(lab::Rectangle(lab::width, lab::negativeOptions, lab::pointCenter), std::invalid_argument);
+  BOOST_CHECK_THROW(lab::Rectangle(lab::negativeOptions, lab::height, lab::pointCenter), std::invalid_argument);
+  BOOST_CHECK_THROW(makeRectangle()->scale(lab::negativeOptions), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(moveRectangle)

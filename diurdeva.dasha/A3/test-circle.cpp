@@ -2,17 +2,19 @@
 #include "test-function.hpp"
 #include "circle.hpp"
 
-std::unique_ptr< diurdeva::Circle > makeCircle()
+namespace lab = diurdeva;
+
+std::unique_ptr< lab::Circle > makeCircle()
 {
-  return std::make_unique< diurdeva::Circle >(radius, pointCenter);
+  return std::make_unique< lab::Circle >(lab::radius, lab::pointCenter);
 }
 
 BOOST_AUTO_TEST_SUITE(testCircle)
 
 BOOST_AUTO_TEST_CASE(invalidOptionsCircle)
 {
-  BOOST_CHECK_THROW(diurdeva::Circle(negativeOptions, pointCenter), std::invalid_argument);
-  BOOST_CHECK_THROW(diurdeva::Circle(radius, pointCenter).scale(negativeOptions), std::invalid_argument);
+  BOOST_CHECK_THROW(lab::Circle(lab::negativeOptions, lab::pointCenter), std::invalid_argument);
+  BOOST_CHECK_THROW(makeCircle()->scale(lab::negativeOptions), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(moveCircle)

@@ -18,7 +18,8 @@ namespace diurdeva {
     rectangle_t getFrameRect() const override;
     void move(const point_t &newCenter) override;
     void move(double dX, double dY) override;
-    std::shared_ptr< Shape > at(size_t index) const;
+    std::shared_ptr< const Shape > at(size_t index) const;
+    std::shared_ptr< Shape > at(size_t index);
     std::shared_ptr< Shape > clone() const override;
     void swap(CompositeShape& src) noexcept;
     void reserve(size_t newCap);

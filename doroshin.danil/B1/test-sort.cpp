@@ -44,23 +44,20 @@ test::test_suite* make_suite()
           for(const auto& limit: limits) {
             T min = limit.first;
             T max = limit.second;
-            for(size_t i = 1; i < 300; ++i) {
-              size_t repeat = std::floor(std::log(i));
-              for(size_t j = 0; j <= repeat; ++j) {
-                std::ostringstream name;
-                name << typeid(T).name() << ' '
-                    << typeid(Strategy).name() << ' '
-                    << typeid(Order).name() << ' '
-                    << min << ' ' << max
-                    << ' ' << i << ' ' << j;
-                suite->add(
-                    test::make_test_case(
-                      *std::make_shared<
-                        dan::TestRandomSort< T, RandomStrat, Strategy, Order >
-                      >(min, max, i, _order),
-                      name.str(), __FILE__, __LINE__
-                      ));
-              }
+            for(size_t i = 1; i < 100; ++i) {
+              std::ostringstream name;
+              name << typeid(T).name() << ' '
+                  << typeid(Strategy).name() << ' '
+                  << typeid(Order).name() << ' '
+                  << min << ' ' << max
+                  << ' ' << i;
+              suite->add(
+                  test::make_test_case(
+                    *std::make_shared<
+                      dan::TestRandomSort< T, RandomStrat, Strategy, Order >
+                    >(min, max, i, _order),
+                    name.str(), __FILE__, __LINE__
+                    ));
             }
           }
         }

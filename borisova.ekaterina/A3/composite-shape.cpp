@@ -39,7 +39,7 @@ lab::CompositeShape::CompositeShape(const CompositeShape& src):
 
 std::shared_ptr< lab::Shape > lab::CompositeShape::at(const size_t index) const
 {
-  if (index >= size_) 
+  if (index >= size_)
   {
     throw std::out_of_range("Index out of bounds");
   }

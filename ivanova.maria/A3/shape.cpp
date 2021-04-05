@@ -23,6 +23,9 @@ double ivanova::getY(const Shape &source)
 
 void ivanova::Shape::scale(double k)
 {
-  assert(k > 0.0);
+  if (k < 0)
+  {
+    throw std::invalid_argument("Invalid argument");
+  }
   scaleShape(k);
 }

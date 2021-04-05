@@ -12,7 +12,7 @@ namespace shilyaev {
     using Collection = typename std::vector< Item >;
     using Iterator = size_t;
 
-    static Iterator begin(__attribute__((unused)) const Collection &collection)
+    static Iterator begin(const Collection &)
     {
       return 0;
     }
@@ -34,7 +34,7 @@ namespace shilyaev {
     using Collection = typename std::vector< Item >;
     using Iterator = size_t;
 
-    static Iterator begin(__attribute__((unused)) const Collection &collection)
+    static Iterator begin(const Collection &)
     {
       return 0;
     }
@@ -66,7 +66,7 @@ namespace shilyaev {
       return collection.end();
     }
 
-    static Item &get(__attribute__((unused)) Collection &collection, const Iterator &iterator)
+    static Item &get(Collection &, const Iterator &iterator)
     {
       return *iterator;
     }

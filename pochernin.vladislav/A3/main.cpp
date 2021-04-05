@@ -9,9 +9,12 @@
 
 using ShapePtr = std::shared_ptr < pochernin::Shape >;
 
-void print(const pochernin::Shape& shape, std::ostream& out);
-bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos);
-void testShape(pochernin::Shape* shape, std::ostream& out, const pochernin::point_t& finishPos);
+namespace pochernin
+{
+  void print(const pochernin::Shape& shape, std::ostream& out);
+  bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos);
+  void testShape(pochernin::Shape& shape, std::ostream& out, const pochernin::point_t& finishPos);
+}
 
 int main()
 {
@@ -20,25 +23,23 @@ int main()
   const pochernin::point_t startPos = {10.0, 20.0};
   const pochernin::point_t finishPos = {-100.0, 50.0};
 
-  pochernin::Shape* testRectangle = new pochernin::Rectangle(figureWidth, figureHeight, startPos);
+  ShapePtr testRectangle = std::make_shared< pochernin::Rectangle >(figureWidth, figureHeight, startPos);
   std::cout << "\nRectangle:\n";
-  testShape(testRectangle, std::cout, finishPos);
+  testShape(*testRectangle, std::cout, finishPos);
 
-  pochernin::Shape* testCircle = new pochernin::Circle(figureWidth, startPos);
+  ShapePtr testCircle = std::make_shared< pochernin::Circle >(figureWidth, startPos);
   std::cout << "\nCircle:\n";
-  testShape(testCircle, std::cout, finishPos);
+  testShape(*testCircle, std::cout, finishPos);
 
   testRectangle->move(startPos);
 
-  ShapePtr testRectangleSharedPtr = ShapePtr(testRectangle);
-  ShapePtr testCircleSharedPtr = ShapePtr(testCircle);
-  pochernin::CompositeShape compositeShape(testRectangleSharedPtr);
-  compositeShape.pushBack(testCircleSharedPtr);
+  pochernin::CompositeShape compositeShape(testRectangle);
+  compositeShape.pushBack(testCircle);
   std::cout << "\nComposite Shape:\n";
   print(compositeShape, std::cout);
 }
 
-void print(const pochernin::Shape& shape, std::ostream& out)
+void pochernin::print(const pochernin::Shape& shape, std::ostream& out)
 {
   out << "width: " << pochernin::getWidth(shape) << "\n";
   out << "height: " << pochernin::getHeight(shape) << "\n";
@@ -47,15 +48,15 @@ void print(const pochernin::Shape& shape, std::ostream& out)
   out << "area: " << shape.getArea() << "\n\n";
 }
 
-bool isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos)
+bool pochernin::isPosEqual(const pochernin::Shape& shape, const pochernin::point_t& pos)
 {
   return ((pochernin::getX(shape) == pos.x) && (pochernin::getY(shape) == pos.y));
 }
 
-void testShape(pochernin::Shape* shape, std::ostream& out, const pochernin::point_t& finishPos)
+void pochernin::testShape(pochernin::Shape& shape, std::ostream& out, const pochernin::point_t& finishPos)
 {
-  print(*shape, out);
-  shape->move(finishPos);
-  assert(isPosEqual(*shape, finishPos));
-  print(*shape, out);
+  print(shape, out);
+  shape.move(finishPos);
+  assert(isPosEqual(shape, finishPos));
+  print(shape, out);
 }

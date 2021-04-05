@@ -3,29 +3,34 @@
 #include "circle.hpp"
 #include "test-functions.hpp"
 
-const double radius = 200.0;
-const double negativeValue = -10.0;
-const pochernin::point_t startPos = {10.0, 20.0};
+namespace lab = pochernin;
+
+namespace pochernin
+{
+  const double radius = 200.0;
+  const double negativeValue = -10.0;
+  const point_t startPos = {10.0, 20.0};
+}
 
 BOOST_AUTO_TEST_SUITE(Circle)
 
 BOOST_AUTO_TEST_CASE(ConstWidthHeightAreaWhenMoving)
 {
-  pochernin::Circle testCircle(radius, startPos);
-  pochernin::checkConstWidthHeightArea(&testCircle);
+  lab::Circle testCircle(lab::radius, lab::startPos);
+  lab::checkConstWidthHeightArea(testCircle);
 }
 
 BOOST_AUTO_TEST_CASE(QuadraticChangeAreaWhenScale)
 {
-  pochernin::Circle testCircle(radius, startPos);
-  pochernin::checkQuadraticChangeAreaWhenScale(&testCircle);
+  lab::Circle testCircle(lab::radius, lab::startPos);
+  lab::checkQuadraticChangeAreaWhenScale(testCircle);
 }
 
 BOOST_AUTO_TEST_CASE(HandlingIncorrectParameters)
 {
-  BOOST_CHECK_THROW(pochernin::Circle(negativeValue, startPos), std::invalid_argument);
-  pochernin::Circle testCircle(radius, startPos);
-  BOOST_CHECK_THROW(testCircle.scale(negativeValue), std::invalid_argument);
+  BOOST_CHECK_THROW(lab::Circle(lab::negativeValue, lab::startPos), std::invalid_argument);
+  lab::Circle testCircle(lab::radius, lab::startPos);
+  BOOST_CHECK_THROW(testCircle.scale(lab::negativeValue), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END();

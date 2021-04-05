@@ -7,9 +7,9 @@
 
 namespace pochernin
 {
-  void boostCheckWidthHeightArea(Shape* shape, rectangle_t startFrameRect, double startArea);
-  void checkConstWidthHeightArea(Shape* shape);
-  void checkQuadraticChangeAreaWhenScale(Shape* shape);
+  void boostCheckWidthHeightArea(Shape& shape, rectangle_t startFrameRect, double startArea);
+  void checkConstWidthHeightArea(Shape& shape);
+  void checkQuadraticChangeAreaWhenScale(Shape& shape);
 }
 
 #endif

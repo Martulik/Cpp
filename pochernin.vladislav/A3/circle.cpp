@@ -3,7 +3,10 @@
 #include <cassert>
 #include <stdexcept>
 
-const double PI = 3.14159265358979323846;
+namespace pochernin
+{
+  const double PI = 3.14159265358979323846;
+}
 
 pochernin::Circle::Circle(const double radius, const pochernin::point_t& pos):
   figure_({2.0 * radius, 2.0 * radius, pos})
@@ -16,7 +19,7 @@ pochernin::Circle::Circle(const double radius, const pochernin::point_t& pos):
 
 double pochernin::Circle::getArea() const
 {
-  return PI * (figure_.width / 2.0) * (figure_.width / 2.0);
+  return pochernin::PI * (figure_.width / 2.0) * (figure_.width / 2.0);
 }
 
 pochernin::rectangle_t pochernin::Circle::getFrameRect() const

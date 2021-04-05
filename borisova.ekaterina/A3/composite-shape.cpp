@@ -36,14 +36,22 @@ lab::CompositeShape::CompositeShape(const CompositeShape& src):
   }
 }
 
-
-std::shared_ptr< lab::Shape > lab::CompositeShape::at(const size_t indx) const
+std::shared_ptr< lab::Shape > lab::CompositeShape::at(size_t indx)
 {
   if (indx >= size_)
   {
     throw std::out_of_range("Index out of bounds");
   }
-  return data_[indx]->clone();
+  return data_[indx];
+}
+
+std::shared_ptr< const lab::Shape > lab::CompositeShape::at(const size_t indx) const
+{
+  if (indx >= size_)
+  {
+    throw std::out_of_range("Index out of bounds");
+  }
+  return data_[indx];
 }
 
 lab::CompositeShape& lab::CompositeShape::operator=(const CompositeShape& src)

@@ -21,11 +21,7 @@ BOOST_AUTO_TEST_CASE(TestCircleArea)
 
 BOOST_AUTO_TEST_CASE(TestCircleFrameRect)
 {
-  const shilyaev::rectangle_t expectedFrameRect{
-    shilyaev::RADIUS * 2,
-    shilyaev::RADIUS * 2,
-    shilyaev::CENTER
-  };
+  const shilyaev::rectangle_t expectedFrameRect{shilyaev::RADIUS * 2,shilyaev::RADIUS * 2, shilyaev::CENTER};
   checkRectanglesClose(makeCircle()->getFrameRect(), expectedFrameRect, shilyaev::TOLERANCE);
 }
 

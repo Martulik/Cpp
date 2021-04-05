@@ -25,15 +25,20 @@ namespace shilyaev {
   }
 
   template < typename Order >
-  void doTask()
+  int doTask()
   {
     std::vector< int > vector;
     inputVector(vector);
+    if (std::cin.fail()) {
+      std::cerr << "Error while reading";
+      return 1;
+    }
     std::forward_list< int > list(vector.begin(), vector.end());
 
     printSorted< VectorBracketsStrategy< int >, Order >(vector);
     printSorted< VectorAtStrategy< int >, Order >(vector);
     printSorted< ForwardListIteratorStrategy< int >, Order >(list);
+    return 0;
   }
 
   int taskSort(int argc, char *argv[])
@@ -44,14 +49,13 @@ namespace shilyaev {
     }
     const std::string orderParameter = argv[2];
     if (orderParameter == "ascending") {
-      doTask< AscendingOrder >();
+      return doTask< AscendingOrder >();
     } else if (orderParameter == "descending") {
-      doTask< DescendingOrder >();
+      return doTask< DescendingOrder >();
     } else {
       std::cerr << "Invalid sorting order";
       return 1;
     }
-    return 0;
   }
 
 }

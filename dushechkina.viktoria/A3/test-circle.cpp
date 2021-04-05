@@ -13,7 +13,7 @@ vika::Circle circle(centre, rad);
 BOOST_AUTO_TEST_SUITE(Circle)
 BOOST_AUTO_TEST_CASE(ConstructorCircle)
 {
-  BOOST_CHECK_CLOSE(getWidth(circle)/2, rad, EPSILON);
+  BOOST_CHECK_CLOSE(getWidth(circle) / 2, rad, EPSILON);
   BOOST_CHECK_CLOSE(getX(circle), centre.x, EPSILON);
   BOOST_CHECK_CLOSE(getY(circle), centre.y, EPSILON);
 }

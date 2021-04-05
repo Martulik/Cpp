@@ -4,21 +4,21 @@
 #include "composite-shape.hpp"
 
 namespace mur = murzakanov;
-using RectPtr = std::shared_ptr< mur::Rectangle >;
-using CirclePtr = std::shared_ptr< mur::Circle >;
-using CmpShpPtr = std::shared_ptr< mur::CompositeShape >;
-
-void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
+namespace murzakanov
 {
-  out << "Shape:\n" <<"::Position: " << "(" << getX(shp)
-      << ", " << getY(shp) << ")\n";
-  out << "Width of frame rectangle: " << getWidth(shp) << "\n"
-      << "Height of frame rectangle: " << getHeight(shp) << "\n";
-  out << "Specific: " << shp->getName() << "\n\n";
+  void print(std::ostream& out, const murzakanov::Shape::ShapePtr shp)
+  {
+    out << "Shape:\n" <<"::Position: " << "(" << getX(shp)
+        << ", " << getY(shp) << ")\n";
+    out << "Width of frame rectangle: " << getWidth(shp) << "\n"
+        << "Height of frame rectangle: " << getHeight(shp) << "\n";
+    out << "Specific: " << shp->getName() << "\n\n";
+  }
 }
-
 int main()
 {
+  using CmpShpPtr = std::shared_ptr< mur::CompositeShape >;
+
   const double width = 2.0;
   const double height = 3.0;
   const double radius = 1.766;
@@ -37,24 +37,24 @@ int main()
   std::cout << "Shape's info before scale\n";
   for (int i = 0; i < size; i++)
   {
-    print(std::cout, shapes[i]);
+    mur::print(std::cout, shapes[i]);
   }
   std::cout << "\n\nShape's info after scale\n\n";
   for (int i = 0; i < size; i++)
   {
     shapes[i]->scale(2);
-    print(std::cout, shapes[i]);
+    mur::print(std::cout, shapes[i]);
   }
   std::cout << "Shape's info before move\n";
   for (int i = 0; i < size; i++)
   {
-    print(std::cout, shapes[i]);
+    mur::print(std::cout, shapes[i]);
   }
   std::cout << "\n\nShape's info after move\n\n";
   for (int i = 0; i < size; i++)
   {
     shapes[i]->move(dx, dy);
-    print(std::cout, shapes[i]);
+    mur::print(std::cout, shapes[i]);
   }
   return 0;
 }

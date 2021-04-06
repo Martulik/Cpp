@@ -1,36 +1,30 @@
 #include "test-function.hpp"
 
-const double X = 3.2;
-const double Y = 2.56;
-const dushechkina::point_t CENTER = { X, Y };
-const double RATIO = 6.4;
-const double EPSILON = 0.00001;
-
-void dushechkina::checkBeforeScale(Shape* shape)
+void dushechkina::checkBeforeScale(dushechkina::Shape& shape)
 {
-  double areaBefore = shape->getArea();
-  shape->scale(RATIO);
-  BOOST_CHECK_CLOSE(areaBefore * RATIO * RATIO, shape->getArea(), EPSILON);
+  double area = shape.getArea();
+  shape.scale(ratio);
+  BOOST_CHECK_CLOSE(area * ratio * ratio, shape.getArea(), TOLERANCE);
 }
 
-void dushechkina::checkBeforeCenterMoving(Shape* shape)
+void dushechkina::checkBeforeCenterMoving(dushechkina::Shape& shape)
 {
-  double widthBefore = getWidth(*shape);
-  double heightBefore = getHeight(*shape);
-  double area = shape->getArea();
-  shape->move(CENTER);
-  BOOST_CHECK_CLOSE(getWidth(*shape), widthBefore, EPSILON);
-  BOOST_CHECK_CLOSE(getHeight(*shape), heightBefore, EPSILON);
-  BOOST_CHECK_CLOSE(shape->getArea(), area, EPSILON);
+  double width = getWidth(shape);
+  double height = getHeight(shape);
+  double area = shape.getArea();
+  shape.move(newCenter);
+  BOOST_CHECK_CLOSE(getWidth(shape), width, TOLERANCE);
+  BOOST_CHECK_CLOSE(getHeight(shape), height, TOLERANCE);
+  BOOST_CHECK_CLOSE(shape.getArea(), area, TOLERANCE);
 }
 
-void dushechkina::checkBeforeDMoving(Shape* shape)
+void dushechkina::checkBeforeDMoving(dushechkina::Shape& shape)
 {
-  double widthBefore = getWidth(*shape);
-  double heightBefore = getHeight(*shape);
-  double area = shape->getArea();
-  shape->move(X,Y);
-  BOOST_CHECK_CLOSE(getWidth(*shape), widthBefore, EPSILON);
-  BOOST_CHECK_CLOSE(getHeight(*shape), heightBefore, EPSILON);
-  BOOST_CHECK_CLOSE(shape->getArea(), area, EPSILON);
+  double width = getWidth(shape);
+  double height = getHeight(shape);
+  double area = shape.getArea();
+  shape.move(X,Y);
+  BOOST_CHECK_CLOSE(getWidth(shape), width, TOLERANCE);
+  BOOST_CHECK_CLOSE(getHeight(shape), height, TOLERANCE);
+  BOOST_CHECK_CLOSE(shape.getArea(), area, TOLERANCE);
 }

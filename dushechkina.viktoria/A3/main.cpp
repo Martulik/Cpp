@@ -5,37 +5,48 @@
 #include "composite-shape.hpp"
 
 namespace vika = dushechkina;
-void printInfoAboutFrameRect(std::ostream& out,const std::shared_ptr< vika::Shape > f)
+
+using ShapePtr = std::shared_ptr < vika::Shape >;
+void printInfoFrameRect(const std::shared_ptr< vika::Shape > f, std::ostream& out)
 {
   out << "\nheight = " << vika::getHeight(*f) << ", width = " << vika::getWidth(*f)
-      << ", center: { " << vika::getX(*f) << ", " << vika::getY(*f) << " }\n";
+      << ", center: { " << vika::getX(*f) << ", " << vika::getY(*f) << " }";
 }
+
+void testShape(const std::shared_ptr< vika::Shape > f, std::ostream& out, const vika::point_t& p)
+{
+  printInfoFrameRect(f, out);
+  f->move(p);
+  printInfoFrameRect(f, out);
+  out << "\n";
+}
+
 int main()
 {
   try
   {
-    const double width = 12.8;
-    const double height = 6.4;
-    const double radius1 = 3.2;
-    const double radius2 = 16.0;
-    const double ratio = 2.56;
-    const double coor1 = 0.8;
-    const double coor2 = 20.48;
-    const vika::point_t center = { coor1, coor2 };
-    const vika::point_t center1 = { coor2, coor1 };
+  const double width = 0.08;
+  const double height = 20.48;
+  const vika::point_t p1 = { 12.8, 25.6 };
+  const vika::point_t p2 = { -8.0, 3.2 };
 
-    vika::CompositeShape compositeShape(std::make_shared< vika::Rectangle >(width, height, center));
-    compositeShape.pushBack(std::make_shared< vika::Circle >(center, radius1));
-    compositeShape.pushBack(std::make_shared< vika::Circle >(center, radius2));
+  ShapePtr rec = std::make_shared< vika::Rectangle >(width, height, p1);
+  std::cout << "Rectangle: ";
+  testShape(rec, std::cout, p2);
 
-    for (size_t i = 0; i < compositeShape.size(); i++)
-    {
-      printInfoAboutFrameRect(std::cout, compositeShape.at(i));
-      compositeShape.at(i)->move(center1);
-      compositeShape.at(i)->move(coor1, coor2);
-      compositeShape.at(i)->scale(ratio);
-      printInfoAboutFrameRect(std::cout, compositeShape.at(i));
-    }
+  ShapePtr circle = std::make_shared< vika::Circle >(p1, width);
+  std::cout << "\nCircle: ";
+  testShape(circle, std::cout, p2);
+  circle->move(p1);
+
+  vika::CompositeShape compositeShape(rec);
+  compositeShape.pushBack(circle);
+  compositeShape.pushBack(std::make_shared< vika::Circle >(p2, height));
+  std::cout << "\nComposite Shape: ";
+  for (size_t i = 0; i < compositeShape.size(); i++)
+  {
+    testShape(compositeShape.at(i), std::cout, p2);
+  }
   }
   catch (const std::invalid_argument& e)
   {
@@ -52,5 +63,5 @@ int main()
     std::cerr << e.what() << "\n";
     return 1;
   }
-  return 0;
 }
+

@@ -37,7 +37,6 @@ int main()
   std::cout << "Figure 3.\n";
   lebedeva::testShape(composition, newPos, scaleParameter);
 
-  std::cout << "Worked!\n";
   return 0;
 }
 

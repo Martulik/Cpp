@@ -1,33 +1,49 @@
 #include <stdexcept>
 #include "composite-shape.hpp"
+#include <iostream>
 
 namespace leb = lebedeva;
 
-leb::CompositeShape::CompositeShape(std::shared_ptr< Shape > composition[], size_t n):
-  countElements_(n),
-  data_(std::make_unique< shapePtr[] >(n))
+leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > composition):
+  countElements_(composition.size()),
+  data_(std::make_unique< ShapePtr[] >(countElements_))
 {
-  if (n == 0)
+  if (countElements_ == 0)
   {
-    throw std::invalid_argument("Could not create empty composition.");
+    throw std::invalid_argument("Could not create an empty composition.");
   }
-  else
+
+  size_t i = 0;
+  for (const ShapePtr shape : composition)
   {
-    for (size_t i = 0; i < n; i++)
+    if (shape == nullptr)
     {
-      if (composition[i] == nullptr)
-      {
-        throw std::invalid_argument("Composition could not contain an empty figure.");
-      }
-      else
-      {
-        data_[i] = composition[i];
-      }
+      throw std::invalid_argument("Composition could not contain an empty figure.");
     }
+    
+    data_[i] = shape;
+    i++;
   }
 }
 
-leb::CompositeShape::shapePtr leb::CompositeShape::operator[](size_t i) const
+leb::CompositeShape::CompositeShape(const CompositeShape& composition):
+  countElements_(composition.countElements_),
+  data_(std::make_unique< ShapePtr[] >(countElements_))
+{
+  for (size_t i = 0; i < countElements_; ++i)
+  {
+    data_[i] = composition.data_[i]->clone();
+  }
+}
+
+leb::CompositeShape& leb::CompositeShape::operator=(const CompositeShape& composition)
+{
+  CompositeShape temp(composition);
+  swap(temp);
+  return *this;
+}
+
+std::shared_ptr< const leb::Shape > leb::CompositeShape::operator[](size_t i) const
 {
   if (i < countElements_)
   {
@@ -75,9 +91,14 @@ std::string leb::CompositeShape::getName() const
   return "Composite Shape";
 }
 
+std::shared_ptr< leb::Shape > leb::CompositeShape::clone() const
+{
+  return std::make_shared< CompositeShape >(*this);
+}
+
 void leb::CompositeShape::move(const point_t& newPos)
 {
-  leb::point_t oldPos = this->getFrameRect().pos;
+  point_t oldPos = this->getFrameRect().pos;
   move(newPos.x - oldPos.x, newPos.y - oldPos.y);
 }
 
@@ -107,4 +128,10 @@ void leb::CompositeShape::scale(double k)
   {
     throw std::invalid_argument("Negative parameter. Could not scale.");
   }
+}
+
+void leb::CompositeShape::swap(CompositeShape& composition) noexcept
+{
+  std::swap(countElements_, composition.countElements_);
+  std::swap(data_, composition.data_);
 }

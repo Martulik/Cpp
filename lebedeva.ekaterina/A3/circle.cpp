@@ -30,6 +30,11 @@ std::string leb::Circle::getName() const
   return "Circle";
 }
 
+std::shared_ptr< leb::Shape > leb::Circle::clone() const
+{
+  return std::make_shared< Circle >(*this);
+}
+
 void leb::Circle::move(const point_t& newPos)
 {
   pos_ = newPos;

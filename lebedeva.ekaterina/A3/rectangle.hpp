@@ -14,6 +14,7 @@ namespace lebedeva
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     std::string getName() const override;
+    std::shared_ptr< Shape > clone() const override;
 
     void move(const point_t& newPos) override;
     void move(double dx, double dy) override;

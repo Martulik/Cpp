@@ -29,6 +29,11 @@ std::string leb::Rectangle::getName() const
   return "Rectangle";
 }
 
+std::shared_ptr< leb::Shape > leb::Rectangle::clone() const
+{
+  return std::make_shared< Rectangle >(*this);
+}
+
 void leb::Rectangle::move(const point_t& newPos)
 {
   pos_ = newPos;

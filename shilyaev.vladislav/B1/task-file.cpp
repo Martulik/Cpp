@@ -1,4 +1,4 @@
-#include "task-copy.hpp"
+#include "task-file.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -31,7 +31,7 @@ namespace shilyaev {
     }
   }
 
-  int taskCopy(int argc, char *argv[])
+  int taskFile(int argc, char **argv)
   {
     if (argc != 3) {
       std::cerr << "Filename not specified";

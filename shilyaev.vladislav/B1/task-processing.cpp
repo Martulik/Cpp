@@ -1,4 +1,4 @@
-#include "task-iterators.hpp"
+#include "task-processing.hpp"
 #include <iostream>
 #include <vector>
 #include "iterator-utils.hpp"
@@ -39,7 +39,7 @@ namespace shilyaev {
     }
   }
 
-  int taskIterators(int argc)
+  int taskProcessing(int argc)
   {
     if (argc != 2) {
       std::cerr << "Invalid arguments count";

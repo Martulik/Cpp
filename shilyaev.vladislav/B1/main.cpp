@@ -1,7 +1,7 @@
 #include <iostream>
 #include "task-sort.hpp"
-#include "task-copy.hpp"
-#include "task-iterators.hpp"
+#include "task-file.hpp"
+#include "task-processing.hpp"
 #include "task-random.hpp"
 #include "string-convert.hpp"
 
@@ -23,10 +23,10 @@ int main(int argc, char *argv[])
       return shilyaev::taskSort(argc, argv);
     }
     case 2: {
-      return shilyaev::taskCopy(argc, argv);
+      return shilyaev::taskFile(argc, argv);
     }
     case 3: {
-      return shilyaev::taskIterators(argc);
+      return shilyaev::taskProcessing(argc);
     }
     case 4: {
       return shilyaev::taskRandom(argc, argv);

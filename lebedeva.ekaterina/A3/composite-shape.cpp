@@ -20,7 +20,7 @@ leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > com
     {
       throw std::invalid_argument("Composition could not contain an empty figure.");
     }
-    
+
     data_[i] = shape;
     i++;
   }
@@ -66,7 +66,7 @@ double leb::CompositeShape::getArea() const
 }
 
 leb::rectangle_t leb::CompositeShape::getFrameRect() const
-{ 
+{
   rectangle_t frameRect = data_[0]->getFrameRect();
   double maxX = frameRect.pos.x + (frameRect.width / 2);
   double minX = frameRect.pos.x - (frameRect.width / 2);

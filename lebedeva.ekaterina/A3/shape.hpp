@@ -19,5 +19,8 @@ namespace lebedeva
     virtual void move(double dx, double dy) = 0;
     virtual void scale(double k) = 0;
   };
+
+  double getBorderCoordinate(const rectangle_t frameRect,
+    const std::string direction);
 }
 #endif

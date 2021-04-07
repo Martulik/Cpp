@@ -36,8 +36,6 @@ namespace lebedeva
     void swap(CompositeShape& composition) noexcept;
   };
 
-  double getBorderCoordinate(const rectangle_t frameRect,
-    const std::string direction);
   point_t getPos(const double minX, const double maxX,
     const double minY, const double maxY);
   double getWidth(const double minX, const double maxX);

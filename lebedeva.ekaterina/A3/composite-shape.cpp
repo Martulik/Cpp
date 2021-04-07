@@ -21,7 +21,7 @@ leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > com
       throw std::invalid_argument("Composition could not contain an empty figure.");
     }
 
-    data_[i] = shape;
+    data_[i] = shape->clone();
     i++;
   }
 }

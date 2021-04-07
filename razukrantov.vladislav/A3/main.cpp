@@ -3,7 +3,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void print(const Shape& shp, std::ostream& out)
+void print(const razukrantov::Shape& shp, std::ostream& out)
 {
   out << "width is: " << shp.getFrameRect().width << "\n";
   out << "height is: " << shp.getFrameRect().height << "\n";
@@ -12,7 +12,7 @@ void print(const Shape& shp, std::ostream& out)
       << shp.getFrameRect().pos.y << "\n";
 }
 
-void test(Shape* shp, std::ostream& out)
+void test(razukrantov::Shape* shp, std::ostream& out)
 {
   out << "test 1:" << "\n";
   shp->move({ 10.5, 11.5 });
@@ -24,13 +24,13 @@ void test(Shape* shp, std::ostream& out)
 
 int main()
 {
-  point_t point{ 8.5, 7.5 };
-  Shape* ownRectangle = new Rectangle(5, 7, point);
+  razukrantov::point_t point{ 8.5, 7.5 };
+  razukrantov::Shape* ownRectangle = new razukrantov::Rectangle(5, 7, point);
   std::cout << "Rectangle characters:" << "\n";
   test(ownRectangle, std::cout);
 
-  point_t point2{ 2.5, 3.5 };
-  Shape* ownCircle = new Circle(8, point2);
+  razukrantov::point_t point2{ 2.5, 3.5 };
+  razukrantov::Shape* ownCircle = new razukrantov::Circle(8, point2);
   std::cout << "Circle characters:" << "\n";
   test(ownCircle, std::cout);
 

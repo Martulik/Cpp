@@ -3,22 +3,25 @@
 
 #include "shape.hpp"
 
-class Rectangle: public Shape
+namespace razukrantov
 {
-public:
-  Rectangle(double width, double height, const point_t &center);
+  class Rectangle : public Shape
+  {
+  public:
+	Rectangle(double width, double height, const point_t& center);
 
-  ~Rectangle() = default;
+	~Rectangle() = default;
 
-  double getArea() const override;
-  rectangle_t getFrameRect() const override;
-  void move(const point_t &center) override;
-  void move(double dx, double dy) override;
+	double getArea() const override;
+	rectangle_t getFrameRect() const override;
+	void move(const point_t& center) override;
+	void move(double dx, double dy) override;
 
-private:
-  double width_;
-  double height_;
-  point_t center_;
-};
+  private:
+	double width_;
+	double height_;
+	point_t center_;
+  };
+}
 
 #endif

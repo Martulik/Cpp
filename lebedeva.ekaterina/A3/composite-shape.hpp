@@ -27,13 +27,13 @@ namespace lebedeva
 
     void move(const point_t& newPos) override;
     void move(double dx, double dy) override;
-    void scale(double k) override;
 
   private:
     size_t countElements_;
     std::unique_ptr< ShapePtr [] > data_;
 
     void swap(CompositeShape& composition) noexcept;
+    void doScale(double k) override;
   };
 
   point_t getPos(const double minX, const double maxX,

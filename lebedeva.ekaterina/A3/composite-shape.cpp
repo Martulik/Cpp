@@ -110,23 +110,16 @@ void leb::CompositeShape::move(double dx, double dy)
   }
 }
 
-void leb::CompositeShape::scale(double k)
+void leb::CompositeShape::doScale(double k)
 {
-  if (k > 0)
+  leb::point_t collectionPos = this->getFrameRect().pos;
+  for (size_t i = 0; i < countElements_; i++)
   {
-    leb::point_t collectionPos = this->getFrameRect().pos;
-    for (size_t i = 0; i < countElements_; i++)
-    {
-      leb::point_t tempPos = data_[i]->getFrameRect().pos;
-      double dx = (tempPos.x - collectionPos.x) * k;
-      double dy = (tempPos.y - collectionPos.y) * k;
-      data_[i]->move({ collectionPos.x + dx, collectionPos.y + dy });
-      data_[i]->scale(k);
-    }
-  }
-  else
-  {
-    throw std::invalid_argument("Negative parameter. Could not scale.");
+    leb::point_t tempPos = data_[i]->getFrameRect().pos;
+    double dx = (tempPos.x - collectionPos.x) * k;
+    double dy = (tempPos.y - collectionPos.y) * k;
+    data_[i]->move({ collectionPos.x + dx, collectionPos.y + dy });
+    data_[i]->scale(k);
   }
 }
 

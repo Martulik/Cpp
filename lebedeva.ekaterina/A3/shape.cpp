@@ -3,6 +3,15 @@
 
 namespace leb = lebedeva;
 
+void leb::Shape::scale(double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Invalid parameter. Could not scale.");
+  }
+  doScale(k);
+}
+
 double leb::getBorderCoordinate(const rectangle_t frameRect,
   const std::string direction)
 {

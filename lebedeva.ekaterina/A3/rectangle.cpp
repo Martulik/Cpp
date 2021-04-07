@@ -45,15 +45,8 @@ void leb::Rectangle::move(double dx, double dy)
   pos_.y += dy;
 }
 
-void leb::Rectangle::scale(double k)
+void leb::Rectangle::doScale(double k)
 {
-  if (k > 0)
-  {
-    width_ *= k;
-    height_ *= k;
-  }
-  else
-  {
-    throw std::invalid_argument("Negative parameter. Could not scale.");
-  }
+  width_ *= k;
+  height_ *= k;
 }

@@ -46,14 +46,7 @@ void leb::Circle::move(double dx, double dy)
   pos_.y += dy;
 }
 
-void leb::Circle::scale(double k)
+void leb::Circle::doScale(double k)
 {
-  if (k > 0)
-  {
-    radius_ *= k;
-  }
-  else
-  {
-    throw std::invalid_argument("Negative parameter. Could not scale.");
-  }
+  radius_ *= k;
 }

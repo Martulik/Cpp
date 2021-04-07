@@ -147,7 +147,7 @@ double leb::getWidth(const double minX, const double maxX)
   return (maxX - minX);
 }
 
-double getHeight(const double minY, const double maxY)
+double leb::getHeight(const double minY, const double maxY)
 {
   return (maxY - minY);
 }

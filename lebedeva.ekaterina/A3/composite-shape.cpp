@@ -68,22 +68,22 @@ double leb::CompositeShape::getArea() const
 leb::rectangle_t leb::CompositeShape::getFrameRect() const
 {
   rectangle_t frameRect = data_[0]->getFrameRect();
-  double maxX = frameRect.pos.x + (frameRect.width / 2);
-  double minX = frameRect.pos.x - (frameRect.width / 2);
-  double maxY = frameRect.pos.y + (frameRect.height / 2);
-  double minY = frameRect.pos.y - (frameRect.height / 2);
+  double maxX = getBorderCoordinate(frameRect, "right");
+  double minX = getBorderCoordinate(frameRect, "left");
+  double maxY = getBorderCoordinate(frameRect, "top");
+  double minY = getBorderCoordinate(frameRect, "bottom");
 
   for (size_t i = 1; i < countElements_; i++)
   {
     frameRect = data_[i]->getFrameRect();
-    maxX = std::max(maxX, frameRect.pos.x + (frameRect.width / 2));
-    minX = std::min(minX, frameRect.pos.x - (frameRect.width / 2));
-    maxY = std::max(maxY, frameRect.pos.y + (frameRect.height / 2));
-    minY = std::min(minY, frameRect.pos.y - (frameRect.height / 2));
+    maxX = std::max(maxX, getBorderCoordinate(frameRect, "right"));
+    minX = std::min(minX, getBorderCoordinate(frameRect, "left"));
+    maxY = std::max(maxY, getBorderCoordinate(frameRect, "top"));
+    minY = std::min(minY, getBorderCoordinate(frameRect, "bottom"));
   }
 
-  frameRect = { { (maxX + minX) / 2, (maxY + minY) / 2 }, (maxX - minX), (maxY - minY) };
-  return frameRect;
+  return { getPos(minX, maxX, minY, maxY),
+    getWidth(minX, maxX), getHeight(minY, maxY) };
 }
 
 std::string leb::CompositeShape::getName() const
@@ -134,4 +134,42 @@ void leb::CompositeShape::swap(CompositeShape& composition) noexcept
 {
   std::swap(countElements_, composition.countElements_);
   std::swap(data_, composition.data_);
+}
+
+double leb::getBorderCoordinate(const rectangle_t frameRect,
+  const std::string direction)
+{
+  if (direction == "right")
+  {
+    return (frameRect.pos.x + (frameRect.width / 2));
+  }
+  if (direction == "left")
+  {
+    return (frameRect.pos.x - (frameRect.width / 2));
+  }
+  if (direction == "top")
+  {
+    return (frameRect.pos.y + (frameRect.height / 2));
+  }
+  if (direction == "bottom")
+  {
+    return (frameRect.pos.y - (frameRect.height / 2));
+  }
+  throw std::invalid_argument("Unknown direction.");
+}
+
+leb::point_t leb::getPos(const double minX, const double maxX,
+  const double minY, const double maxY)
+{
+  return { (maxX + minX) / 2, (maxY + minY) / 2 };
+}
+
+double leb::getWidth(const double minX, const double maxX)
+{
+  return (maxX - minX);
+}
+
+double getHeight(const double minY, const double maxY)
+{
+  return (maxY - minY);
 }

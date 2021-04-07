@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-
 #include "rectangle.hpp"
 #include "circle.hpp"
 #include "composite-shape.hpp"

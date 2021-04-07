@@ -14,7 +14,7 @@ leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > com
   }
 
   size_t i = 0;
-  for (const ShapePtr shape : composition)
+  for (const ShapePtr shape: composition)
   {
     if (shape == nullptr)
     {

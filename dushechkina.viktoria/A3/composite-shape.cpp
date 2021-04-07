@@ -47,10 +47,6 @@ double vika::CompositeShape::getArea() const
 
 vika::rectangle_t vika::CompositeShape::getFrameRect() const
 {
-  if (size_ == 1)
-  {
-    return { 0.0, 0.0, { 0.0, 0.0 } };
-  }
   double left = getX(*arr_[0]) - getWidth(*arr_[0]) / 2;
   double right = getX(*arr_[0]) + getWidth(*arr_[0]) / 2;
   double up = getY(*arr_[0]) - getHeight(*arr_[0]) / 2;

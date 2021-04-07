@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <memory>
 #include "iterator-utils.hpp"
 
 namespace shilyaev {
@@ -23,12 +24,15 @@ namespace shilyaev {
     return --size;
   }
 
-  void read(std::ifstream &ifstream, char *array, size_t size)
+  std::unique_ptr< char[] > read(std::ifstream &ifstream, size_t size)
   {
+    std::unique_ptr< char[] > fileContent = std::make_unique< char[] >(size);
+
     seekBegin(ifstream);
     for (size_t i = 0; i < size && ifstream; i++) {
-      ifstream.get(array[i]);
+      ifstream.get(fileContent[i]);
     }
+    return fileContent;
   }
 
   int taskFile(int argc, char **argv)
@@ -44,11 +48,9 @@ namespace shilyaev {
       return 1;
     }
     const size_t size = countCharacters(ifstream);
-    std::cout << "Size: " << size;
-    char fileContent[size];
-    read(ifstream, fileContent, size);
+    std::unique_ptr< char[] > fileContent = read(ifstream, size);
     ifstream.close();
-    std::vector< char > vector(fileContent, fileContent + size);
+    std::vector< char > vector(fileContent.get(), fileContent.get() + size);
     print(vector.begin(), vector.end(), "", "");
     return 0;
   }

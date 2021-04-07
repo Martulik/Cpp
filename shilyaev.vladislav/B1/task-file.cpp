@@ -20,7 +20,7 @@ namespace shilyaev {
       ifstream.get();
       size++;
     }
-    return size - 1;
+    return --size;
   }
 
   void read(std::ifstream &ifstream, char *array, size_t size)
@@ -44,6 +44,7 @@ namespace shilyaev {
       return 1;
     }
     const size_t size = countCharacters(ifstream);
+    std::cout << "Size: " << size;
     char fileContent[size];
     read(ifstream, fileContent, size);
     ifstream.close();

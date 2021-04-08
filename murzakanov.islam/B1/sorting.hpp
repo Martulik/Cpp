@@ -1,7 +1,7 @@
 #ifndef SORTING_HPP
 #define SORTING_HPP
 
-
+#include <string>
 
 namespace murzakanov
 {

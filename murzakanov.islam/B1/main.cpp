@@ -42,6 +42,5 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Wrong task number");
     }
   }
-
   return 0;
 }

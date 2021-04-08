@@ -2,6 +2,7 @@
 #define RECTANGLE_HPP
 
 #include "shape.hpp"
+
 namespace ferapontov
 {
   class Rectangle : public Shape

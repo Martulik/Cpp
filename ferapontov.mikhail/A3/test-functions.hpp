@@ -7,8 +7,9 @@
 
 namespace ferapontov
 {
-  Rectangle make_rectangle();
-  Circle make_circle();
+  Rectangle makeRectangle();
+  Circle makeCircle();
+  CompositeShape makeComposite();
 
   void test_move(Shape& shp, const point_t& pos);
   void test_move(Shape& shp, double dx, double dy);

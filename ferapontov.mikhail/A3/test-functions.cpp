@@ -7,9 +7,21 @@ namespace fer = ferapontov;
 
 const double e = 0.001;
 
-fer::Rectangle fer::make_rectangle()
+fer::Rectangle fer::makeRectangle()
 {
   return Rectangle(5, 5, {0, 0});
+}
+
+fer::Circle fer::makeCircle()
+{
+  return Circle(5, {0, 0});
+}
+
+fer::CompositeShape fer::makeComposite()
+{
+  Circle circ = makeCircle();
+  Rectangle rec = makeRectangle();
+  return CompositeShape({std::addressof(circ), std::addressof(rec)});
 }
 
 void fer::test_move(fer::Shape& shp, const fer::point_t& pos)

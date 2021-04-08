@@ -1,5 +1,6 @@
 #ifndef TEST_FUNCTIONS_HPP
 #define TEST_FUNCTIONS_HPP
+
 #include <boost/test/unit_test.hpp>
 #include "rectangle.hpp"
 #include "circle.hpp"

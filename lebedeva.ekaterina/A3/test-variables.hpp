@@ -1,5 +1,7 @@
 #ifndef TEST_VARIABLES_HPP
 #define TEST_VARIABLES_HPP
+
+#include <cstddef>
 #include "base-types.hpp"
 
 namespace lebedeva

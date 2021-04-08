@@ -28,7 +28,6 @@ test::test_suite* make_suite()
   const std::vector< std::pair< T, T > > limits = {
     { 0, 1 },
     { -10, 10 },
-    { -1000, 1000 },
     { std::numeric_limits< T >::lowest(), std::numeric_limits< T >::max() }
   };
 
@@ -44,7 +43,8 @@ test::test_suite* make_suite()
           for(const auto& limit: limits) {
             T min = limit.first;
             T max = limit.second;
-            for(size_t i = 1; i < 100; ++i) {
+            for(size_t i = 1; i < 10; ++i) {
+              size_t length = i * 10;
               std::ostringstream name;
               name << typeid(T).name() << ' '
                   << typeid(Strategy).name() << ' '
@@ -55,7 +55,7 @@ test::test_suite* make_suite()
                   test::make_test_case(
                     *std::make_shared<
                       dan::TestRandomSort< T, RandomStrat, Strategy, Order >
-                    >(min, max, i, _order),
+                    >(min, max, length, _order),
                     name.str(), __FILE__, __LINE__
                     ));
             }

@@ -32,4 +32,3 @@ namespace ferapontov
     return src.getFrameRect().width;
   }
 }
-

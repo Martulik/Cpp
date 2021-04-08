@@ -9,11 +9,13 @@ namespace lebedeva
   const double radius = 2;
   const double parameter = 2;
   const double tolerance = 0.000001;
+  const size_t iIndex = 228;
 
   const double nWidth = -1;
   const double nHeight = -7.3;
   const double nRadius = -4;
   const double nParameter = -1;
+  const size_t nIndex = -3;
 
   const point_t pos = { 3, 1 };
   const point_t pos1 = { -1.1, -4 };

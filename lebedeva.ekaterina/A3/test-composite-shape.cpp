@@ -16,6 +16,12 @@ BOOST_AUTO_TEST_CASE(invalidArgumentCompositeShape)
   BOOST_CHECK_THROW(leb::makeCompositeShape()->scale(leb::nParameter), std::invalid_argument);
 }
 
+BOOST_AUTO_TEST_CASE(OutOfRangeCompositeShape)
+{
+  BOOST_CHECK_THROW(leb::makeCompositeShape()->at(leb::nIndex), std::out_of_range);
+  BOOST_CHECK_THROW(leb::makeCompositeShape()->at(leb::iIndex), std::out_of_range);
+}
+
 BOOST_AUTO_TEST_CASE(GetCompositeShapeName)
 {
   leb::checkName("Composite Shape", leb::makeCompositeShape()->getName());

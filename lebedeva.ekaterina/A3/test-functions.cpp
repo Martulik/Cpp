@@ -50,7 +50,7 @@ std::unique_ptr< leb::Circle > lebedeva::makeCircle()
   return std::make_unique< Circle >(pos, radius);
 }
 
-std::unique_ptr< leb::Shape > leb::makeCompositeShape()
+std::unique_ptr< leb::CompositeShape > leb::makeCompositeShape()
 {
   CompositeShape subComposition
   {

@@ -16,7 +16,7 @@ namespace lebedeva
 
   std::unique_ptr< Rectangle > makeRectangle();
   std::unique_ptr< Circle > makeCircle();
-  std::unique_ptr< Shape > makeCompositeShape();
+  std::unique_ptr< CompositeShape > makeCompositeShape();
 }
 
 #endif

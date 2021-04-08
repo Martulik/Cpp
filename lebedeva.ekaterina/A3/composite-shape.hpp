@@ -20,6 +20,7 @@ namespace lebedeva
     ~CompositeShape() override = default;
 
     std::shared_ptr< const Shape > operator[](size_t i) const;
+    std::shared_ptr< const Shape > at(size_t i) const;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     std::string getName() const override;
@@ -27,6 +28,7 @@ namespace lebedeva
 
     void move(const point_t& newPos) override;
     void move(double dx, double dy) override;
+    std::shared_ptr< Shape > at(size_t i);
 
   private:
     size_t countElements_;

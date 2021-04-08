@@ -45,14 +45,25 @@ leb::CompositeShape& leb::CompositeShape::operator=(const CompositeShape& compos
 
 std::shared_ptr< const leb::Shape > leb::CompositeShape::operator[](size_t i) const
 {
-  if (i < countElements_)
-  {
-    return data_[i];
-  }
-  else
+  return data_[i];
+}
+
+std::shared_ptr< const leb::Shape > leb::CompositeShape::at(size_t i) const
+{
+  if (i >= countElements_)
   {
     throw std::out_of_range("Out of range");
   }
+  return data_[i];
+}
+
+std::shared_ptr< leb::Shape > leb::CompositeShape::at(size_t i)
+{
+  if (i >= countElements_)
+  {
+    throw std::out_of_range("Out of range");
+  }
+  return data_[i];
 }
 
 double leb::CompositeShape::getArea() const

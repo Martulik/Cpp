@@ -13,10 +13,10 @@ void testArea(fer::Shape& shp)
 
 void testMove(fer::Shape& shp, const fer::point_t& pos)
 {
-  std::cout << "Shape before move: X = " 
+  std::cout << "Shape before move: X = "
             << getX(shp) << " Y = " << getY(shp) << '\n';
   shp.move(pos);
-  std::cout << "Shape after move: X = " 
+  std::cout << "Shape after move: X = "
             << getX(shp) << " Y = " << getY(shp) << '\n';
 }
 

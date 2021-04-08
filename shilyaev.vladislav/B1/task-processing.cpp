@@ -47,12 +47,12 @@ namespace shilyaev {
     }
     std::vector< int > vector;
     inputVectorZero(vector);
-    if (vector.empty()) {
-      return 0;
-    }
-    if (std::cin.fail()) {
+    if (std::cin.fail() && !std::cin.eof()) {
       std::cerr << "Error while reading";
       return 1;
+    }
+    if (vector.empty()) {
+      return 0;
     }
     if (vector.back() == 1) {
       removeEven(vector);

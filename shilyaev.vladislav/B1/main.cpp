@@ -17,21 +17,16 @@ int main(int argc, char *argv[])
     return 1;
   }
   switch (*taskNumber) {
-    case 1: {
-      return shilyaev::taskSort(argc, argv);
-    }
-    case 2: {
-      return shilyaev::taskFile(argc, argv);
-    }
-    case 3: {
-      return shilyaev::taskProcessing(argc);
-    }
-    case 4: {
-      return shilyaev::taskRandom(argc, argv);
-    }
-    default: {
-      std::cerr << "Unknown task";
-      return 1;
-    }
+  case 1:
+    return shilyaev::taskSort(argc, argv);
+  case 2:
+    return shilyaev::taskFile(argc, argv);
+  case 3:
+    return shilyaev::taskProcessing(argc);
+  case 4:
+    return shilyaev::taskRandom(argc, argv);
+  default:
+    std::cerr << "Unknown task";
+    return 1;
   }
 }

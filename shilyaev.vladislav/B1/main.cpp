@@ -11,14 +11,12 @@ int main(int argc, char *argv[])
     std::cerr << "Task not specified";
     return 1;
   }
-  int taskNumber = -1;
-  try {
-    taskNumber = shilyaev::toNatural(argv[1]);
-  } catch (const std::invalid_argument &) {
+  boost::optional< unsigned long > taskNumber = shilyaev::toNatural(argv[1]);
+  if (!taskNumber) {
     std::cerr << "Task must be an integer";
     return 1;
   }
-  switch (taskNumber) {
+  switch (*taskNumber) {
     case 1: {
       return shilyaev::taskSort(argc, argv);
     }

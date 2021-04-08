@@ -27,20 +27,14 @@ namespace shilyaev {
     using Item = double;
     using Compare = std::function< bool(Item, Item) >;
     boost::optional< Compare > compare = getCompareFunction< Item >(argv[2]);
-    size_t size = 0;
-    try {
-      size = toNatural(argv[3]);
-    } catch (const std::invalid_argument &) {
-      std::cerr << "Size must only contain digits";
-      return 1;
-    }
-    if (!compare || size == 0) {
+    boost::optional< unsigned long > size = toNatural(argv[3]);
+    if (!size || !compare || *size == 0) {
       std::cerr << "Invalid arguments";
       return 1;
     }
-    Item array[size];
-    fillRandom(array, size);
-    std::vector< Item > vector(array, array + size);
+    Item array[*size];
+    fillRandom(array, *size);
+    std::vector< Item > vector(array, array + *size);
     print(vector.cbegin(), vector.cend());
     bubbleSort< VectorBracketsStrategy< Item > >(vector, *compare);
     print(vector.cbegin(), vector.cend());

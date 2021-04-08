@@ -3,15 +3,15 @@
 
 BOOST_AUTO_TEST_CASE(NaturalInvalidArgument)
 {
-  BOOST_CHECK_THROW(shilyaev::toNatural(""), std::invalid_argument);
-  BOOST_CHECK_THROW(shilyaev::toNatural("435a"), std::invalid_argument);
-  BOOST_CHECK_THROW(shilyaev::toNatural("-334"), std::invalid_argument);
-  BOOST_CHECK_THROW(shilyaev::toNatural("20 30"), std::invalid_argument);
-  BOOST_CHECK_THROW(shilyaev::toNatural("20.30"), std::invalid_argument);
+  BOOST_CHECK(!shilyaev::toNatural(""));
+  BOOST_CHECK(!shilyaev::toNatural("435a"));
+  BOOST_CHECK(!shilyaev::toNatural("-334"));
+  BOOST_CHECK(!shilyaev::toNatural("20 30"));
+  BOOST_CHECK(!shilyaev::toNatural("20.30"));
 }
 
 BOOST_AUTO_TEST_CASE(Natural)
 {
-  BOOST_TEST(shilyaev::toNatural("0") == 0);
-  BOOST_TEST(shilyaev::toNatural("435") == 435);
+  BOOST_TEST(*shilyaev::toNatural("0") == 0);
+  BOOST_TEST(*shilyaev::toNatural("435") == 435);
 }

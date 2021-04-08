@@ -2,9 +2,15 @@
 #define SORT_HPP
 
 #include <algorithm>
-#include "iterator-utils.hpp"
+#include "iterator-print.hpp"
 
 namespace shilyaev {
+
+  template < typename Iterator >
+  Iterator incremented(Iterator iterator)
+  {
+    return ++iterator;
+  }
 
   template < typename AccessStrategy, typename Order >
   void bubbleSort(typename AccessStrategy::Collection &collection)

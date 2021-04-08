@@ -24,7 +24,7 @@ namespace shilyaev {
         fileContent = std::move(temp);
       }
     }
-    return std::make_tuple(std::move(fileContent), i);
+    return std::make_tuple(std::move(fileContent), i - 1);
   }
 
   int taskFile(int argc, char **argv)

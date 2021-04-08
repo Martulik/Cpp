@@ -2,6 +2,7 @@
 #define SORT_HPP
 
 #include <algorithm>
+#include <functional>
 #include "iterator-print.hpp"
 
 namespace shilyaev {
@@ -12,10 +13,9 @@ namespace shilyaev {
     return ++iterator;
   }
 
-  template < typename AccessStrategy, typename Order >
-  void bubbleSort(typename AccessStrategy::Collection &collection)
+  template < typename AccessStrategy, typename Item = typename AccessStrategy::Item >
+  void bubbleSort(typename AccessStrategy::Collection &collection, const std::function< bool(Item, Item) > &compare)
   {
-    using Item = typename AccessStrategy::Item;
     using Iterator = typename AccessStrategy::Iterator;
     const Iterator begin = AccessStrategy::begin(collection);
     Iterator end = AccessStrategy::end(collection);
@@ -24,7 +24,7 @@ namespace shilyaev {
       for (; incremented(i) != end; i++) {
         Item &current = AccessStrategy::get(collection, i);
         Item &next = AccessStrategy::get(collection, incremented(i));
-        if (!Order::isOrdered(current, next)) {
+        if (compare(next, current)) {
           std::swap(current, next);
         }
       }

@@ -52,8 +52,7 @@ namespace shilyaev {
       return 1;
     }
     if (vector.empty()) {
-      std::cerr << "Empty input";
-      return 1;
+      return 0;
     }
     int last = *(vector.end() - 1);
     if (last == 1) {

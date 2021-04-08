@@ -14,7 +14,7 @@ namespace shilyaev {
     size_t capacity = INITIAL_CAPACITY;
     std::unique_ptr< char[] > fileContent = std::make_unique< char[] >(capacity);
     size_t i = 0;
-    while (fstream.get(fileContent[i++])) {
+    while (fstream.get(fileContent[i++]).good()) {
       if (i == capacity) {
         capacity *= CAPACITY_INCREASE_FACTOR;
         std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);

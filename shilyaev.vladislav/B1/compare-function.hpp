@@ -9,11 +9,11 @@ namespace shilyaev {
   boost::optional< std::function< bool(T, T) > > getCompareFunction(const std::string &string)
   {
     if (string == "ascending") {
-      return boost::optional< std::function< bool(T, T) > >(std::less< T >());
+      return {std::less< T >()};
     } else if (string == "descending") {
-      return boost::optional< std::function< bool(T, T) > >(std::greater< T >());
+      return {std::greater< T >()};
     }
-    return boost::optional< std::function< bool(T, T) > >();
+    return {};
   }
 }
 

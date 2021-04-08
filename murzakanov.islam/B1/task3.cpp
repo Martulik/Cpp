@@ -20,7 +20,7 @@ void murzakanov::task3()
   {
     throw std::invalid_argument("Read error");
   }
-  
+
   if (vec.empty())
   {
     return;

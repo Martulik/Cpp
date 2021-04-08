@@ -1,9 +1,9 @@
+#include "tasks.hpp"
+#include <iostream>
 #include <vector>
 #include <fstream>
-#include <string>
-#include <iostream>
 
-void task2(const std::string& fileName)
+void murzakanov::task2(std::string& fileName)
 {
   std::ifstream input;
   input.open(fileName);
@@ -12,26 +12,22 @@ void task2(const std::string& fileName)
     throw;
   }
   int n = 0;
-  int x = 0;
+  char x = 0;
   while (input >> x && !input.eof())
   {
     n++;
   }
-  input.close();
-  input.open(fileName);
-  int* arr = new int[n];
+  input.clear();
+  input.seekg(0);
+  char* arr = new char[n];
   for (int i = 0; i < n; i++)
   {
-    input >> arr[i];
+    input.get(arr[i]);
   }
-  std::vector< int > vec(arr, arr+n);
-  std::vector< int >::iterator it = vec.begin();
-  std::vector< int >::iterator end = vec.end();
-  while (it != end)
+  std::vector< char > vec(arr, arr+n);
+  for (int i = 0; i < n; i++)
   {
-    std::cout << *it << " ";
-    it++;
+    std::cout << vec[i];
   }
-  std::cout << "\n";
   delete[] arr;
 }

@@ -1,4 +1,6 @@
-void task3()
+#include "tasks.hpp"
+
+void murzakanov::task3()
 {
 
 }

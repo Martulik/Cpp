@@ -54,7 +54,6 @@ namespace lysenko
   void testScale(lysenko::Shape::ShapePtr src)
   {
     double k = 5.0;
-    double defaultK = -5.0;
     double oldArea = src->getArea();
     double centerX = getX(src);
     double centerY = getY(src);

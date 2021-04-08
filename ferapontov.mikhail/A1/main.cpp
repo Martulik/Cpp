@@ -2,32 +2,28 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
+void print(std::ostream& out, const Shape& shape)
+{
+  out << "Name: " << shape.getName() << "\n";
+  out << "Coordinate X: " << shape.getFrameRect().pos.x << "\n";
+  out << "Coordinate Y: " << shape.getFrameRect().pos.y << "\n";
+}
+
+void test(Shape* shp, std::ostream& out, const point_t& pos)
+{
+  print(out, *shp);
+  shp->move(pos);
+  print(out, *shp);
+}
+
 int main()
 {
   const point_t point_zero = {0, 0};
-  Shape* rect = new Rectangle(5, 10, {0,0});
-  std::cout << "Area of rectangle equals to: " << rect->getArea() << std::endl;
-  std::cout << "Position before move(): X = "<< rect->getFrameRect().pos.x
-            <<" Y = " << rect->getFrameRect().pos.y << std::endl;
-  rect->move(2, 3.9);
-  std::cout << "Position after move(): X = " << rect->getFrameRect().pos.x
-            << " Y = " << rect->getFrameRect().pos.y << std::endl;
-  rect->move(point_zero);
-  std::cout << "Position after second move(): X = " << rect->getFrameRect().pos.x
-            << " Y = " << rect->getFrameRect().pos.y << std::endl;
-
+  const point_t not_zero = {123, 3};
+  Shape* rect = new Rectangle(5, 10, {23, 3});
   Shape* circle = new Circle(3.5, point_zero);
-  std::cout << "Area of circle equals to: " << circle->getArea() << std::endl;
-  std::cout << "Frame Rectangle width = " << circle->getFrameRect().height << " "
-            << " height = "<<circle->getFrameRect().width << std::endl;
-  std::cout << "Position before move(): X = " << circle->getFrameRect().pos.x
-            << " Y = " << circle->getFrameRect().pos.y << std::endl;
-  circle->move(4.9, 8.3);
-  std::cout << "Position after move(): X = " << circle->getFrameRect().pos.x
-    << " Y = " << circle->getFrameRect().pos.y << std::endl;
-  circle->move(point_zero);
-  std::cout << "Position after second move(): X = " << circle->getFrameRect().pos.x
-    << " Y = " << circle->getFrameRect().pos.y << std::endl;
+  test(rect, std::cout, point_zero);
+  test(circle, std::cout, not_zero);
   delete rect;
   delete circle;
   return 0;

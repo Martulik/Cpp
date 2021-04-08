@@ -1,29 +1,35 @@
 #include "rectangle.hpp"
 #include <cassert>
 
-Rectangle::Rectangle(const double width, const double height, const point_t pos) :
-  proportions_({width, height, pos})
+Rectangle::Rectangle(const double width, const double height, const point_t& pos):
+  rect_({width, height, pos})
 {
   assert(width > 0 && "Incorrect width");
   assert(height > 0 && "Incorrect height");
 }
 
+std::string Rectangle::getName() const
+{
+  return "Rectangle";
+}
+
 double Rectangle::getArea() const
 {
-  return proportions_.width * proportions_.height;
+  return rect_.width * rect_.height;
 }
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return proportions_;
+  return rect_;
 }
 
 void Rectangle::move(const point_t& pos)
 {
-  proportions_.pos = pos;
+  rect_.pos = pos;
 }
+
 void Rectangle::move(const double dx, const double dy)
 {
-  proportions_.pos.x += dx;
-  proportions_.pos.y += dy;
+  rect_.pos.x += dx;
+  rect_.pos.y += dy;
 }

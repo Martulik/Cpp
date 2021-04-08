@@ -9,22 +9,22 @@ namespace shilyaev {
   const size_t INITIAL_CAPACITY = 1024;
   const size_t CAPACITY_INCREASE_FACTOR = 2;
 
-  std::tuple< std::unique_ptr< char[] >, size_t > read(std::fstream &fstream)
+  std::tuple< std::unique_ptr< char[] >, size_t > read(std::ifstream &ifstream)
   {
     size_t capacity = INITIAL_CAPACITY;
     std::unique_ptr< char[] > fileContent = std::make_unique< char[] >(capacity);
-    size_t i = 0;
-    while (fstream.get(fileContent[i++]).good()) {
-      if (i == capacity) {
-        capacity *= CAPACITY_INCREASE_FACTOR;
-        std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
-        for (size_t j = 0; j < i; j++) {
-          temp[j] = fileContent[j];
-        }
-        fileContent = std::move(temp);
+    size_t size = 0;
+    while (ifstream.good()) {
+      ifstream.read(fileContent.get() + size, capacity - size);
+      size += ifstream.gcount();
+      capacity *= CAPACITY_INCREASE_FACTOR;
+      std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
+      for (size_t j = 0; j < size; j++) {
+        temp[j] = fileContent[j];
       }
+      fileContent = std::move(temp);
     }
-    return std::make_tuple(std::move(fileContent), i - 1);
+    return std::make_tuple(std::move(fileContent), size);
   }
 
   int taskFile(int argc, char **argv)
@@ -34,15 +34,15 @@ namespace shilyaev {
       return 1;
     }
     std::string filename = argv[2];
-    std::fstream fstream(filename);
-    if (!fstream) {
+    std::ifstream ifstream(filename);
+    if (!ifstream) {
       std::cerr << "File not open";
       return 1;
     }
     std::unique_ptr< char[] > fileContent;
     size_t size;
-    std::tie(fileContent, size) = read(fstream);
-    fstream.close();
+    std::tie(fileContent, size) = read(ifstream);
+    ifstream.close();
     std::vector< char > vector(fileContent.get(), fileContent.get() + size);
     print(vector.begin(), vector.end(), "", "");
     return 0;

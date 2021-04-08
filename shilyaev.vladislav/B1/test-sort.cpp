@@ -14,7 +14,9 @@ namespace shilyaev {
   template < typename Iterator >
   void fill(Iterator begin, const Iterator& end)
   {
-    std::uniform_int_distribution< int > distribution(std::numeric_limits< int >::lowest(), std::numeric_limits< int >::max());
+    int min = std::numeric_limits< int >::lowest();
+    int max = std::numeric_limits< int >::max();
+    std::uniform_int_distribution< int > distribution(min, max);
     std::random_device randomDevice;
     for (; begin != end; begin++) {
       *begin = distribution(randomDevice);

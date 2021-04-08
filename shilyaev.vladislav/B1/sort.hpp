@@ -13,9 +13,11 @@ namespace shilyaev {
     return ++iterator;
   }
 
-  template < typename AccessStrategy, typename Item = typename AccessStrategy::Item >
-  void bubbleSort(typename AccessStrategy::Collection &collection, const std::function< bool(Item, Item) > &compare)
+  template < typename AccessStrategy >
+  void bubbleSort(typename AccessStrategy::Collection &collection,
+      const std::function< bool(typename AccessStrategy::Item, typename AccessStrategy::Item) > &compare)
   {
+    using Item = typename AccessStrategy::Item;
     using Iterator = typename AccessStrategy::Iterator;
     const Iterator begin = AccessStrategy::begin(collection);
     Iterator end = AccessStrategy::end(collection);

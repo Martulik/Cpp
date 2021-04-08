@@ -7,31 +7,17 @@
 
 namespace shilyaev {
 
-  void seekBegin(std::ifstream &ifstream)
-  {
-    ifstream.clear();
-    ifstream.seekg(0, std::ios::beg);
-  }
-
   size_t countCharacters(std::ifstream &ifstream)
   {
-    seekBegin(ifstream);
-    size_t size = 0;
-    while (ifstream) {
-      ifstream.get();
-      size++;
-    }
-    return --size;
+    ifstream.seekg(0,std::ios_base::end);
+    return ifstream.tellg();
   }
 
   std::unique_ptr< char[] > read(std::ifstream &ifstream, size_t size)
   {
+    ifstream.seekg(0,std::ios_base::beg);
     std::unique_ptr< char[] > fileContent = std::make_unique< char[] >(size);
-
-    seekBegin(ifstream);
-    for (size_t i = 0; i < size && ifstream; i++) {
-      ifstream.get(fileContent[i]);
-    }
+    ifstream.read(fileContent.get(), size);
     return fileContent;
   }
 

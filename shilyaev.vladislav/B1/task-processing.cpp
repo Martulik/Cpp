@@ -47,9 +47,13 @@ namespace shilyaev {
     }
     std::vector< int > vector;
     inputVectorZero(vector);
-    if (std::cin.fail() && !std::cin.eof()) {
-      std::cerr << "Error while reading";
-      return 1;
+    if (std::cin.fail()) {
+      if (std::cin.eof() && vector.empty()) {
+        return 0;
+      } else {
+        std::cerr << "Error while reading";
+        return 1;
+      }
     }
     if (vector.empty()) {
       return 0;

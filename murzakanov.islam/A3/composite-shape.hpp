@@ -9,30 +9,33 @@ namespace murzakanov
   class CompositeShape: public Shape
   {
   public:
+    using ArrayType = std::unique_ptr< ShapePtr[] >;
     CompositeShape(const CompositeShape& other);
-    CompositeShape(CompositeShape&& other) noexcept;
-    explicit CompositeShape(std::shared_ptr< Shape > shp);
+    CompositeShape(CompositeShape&& other) noexcept = default;
+    explicit CompositeShape(ShapePtr shp);
     ~CompositeShape() override = default;
-    Shape& operator [](int index);
-    CompositeShape& operator =(const CompositeShape& src);
-    CompositeShape& operator =(CompositeShape&& src) noexcept;
+    Shape& at(int index);
+    CompositeShape& operator=(const CompositeShape& src);
+    CompositeShape& operator=(CompositeShape&& src) noexcept;
 
-    void scale(double coef) override;
     int size() const;
-    std::string getName() const override;
     double getArea() const override;
+    std::string getName() const override;
     rectangle_t getFrameRect() const override;
+    ShapePtr clone() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
-    CompositeShape* clone() const override;
-    void addShape(const std::shared_ptr<Shape>& shp);
+    void reserve(int newCapacity);
+    void addShape(const ShapePtr& shp);
     void popShape();
+    void swap(CompositeShape& other) noexcept;
   private:
     int capacity_;
     int size_;
-    std::unique_ptr< std::shared_ptr< Shape >[] > array_;
+    ArrayType array_;
+
+    void doScale(double coef) override;
   };
 }
-
 
 #endif

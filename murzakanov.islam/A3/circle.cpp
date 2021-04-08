@@ -4,15 +4,11 @@
 
 double const PI = 3.1415;
 
-
 murzakanov::Circle::Circle(const double radius, const murzakanov::point_t& pos):
   radius_(radius),
   pos_(pos)
 {
-  if (radius_ < 0)
-  {
-    throw std::invalid_argument("Radius should be more or equal than zero");
-  }
+  check(radius, "Radius should be more or equal than zero");
 }
 
 std::string murzakanov::Circle::getName() const
@@ -41,16 +37,12 @@ void murzakanov::Circle::move(const double dx, const double dy)
   pos_.y += dy;
 }
 
-void murzakanov::Circle::scale(const double coef)
+void murzakanov::Circle::doScale(const double coef)
 {
-  if (coef < 0)
-  {
-    throw std::invalid_argument("Coefficient should be more or equal than zero");
-  }
   radius_ *= coef;
 }
 
-murzakanov::Circle* murzakanov::Circle::clone() const
+murzakanov::Shape::ShapePtr murzakanov::Circle::clone() const
 {
-  return new Circle(*this);
+  return std::make_shared< murzakanov::Circle >(*this);
 }

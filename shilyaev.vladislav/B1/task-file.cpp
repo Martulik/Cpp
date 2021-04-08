@@ -7,17 +7,17 @@
 
 namespace shilyaev {
 
-  size_t countCharacters(std::ifstream &ifstream)
+  size_t countCharacters(std::fstream &fstream)
   {
-    ifstream.seekg(0,std::ios_base::end);
-    return ifstream.tellg();
+    fstream.seekg(0,std::ios_base::end);
+    return fstream.tellg();
   }
 
-  std::unique_ptr< char[] > read(std::ifstream &ifstream, size_t size)
+  std::unique_ptr< char[] > read(std::fstream &fstream, size_t size)
   {
-    ifstream.seekg(0,std::ios_base::beg);
+    fstream.seekg(0,std::ios_base::beg);
     std::unique_ptr< char[] > fileContent = std::make_unique< char[] >(size);
-    ifstream.read(fileContent.get(), size);
+    fstream.read(fileContent.get(), size);
     return fileContent;
   }
 
@@ -28,14 +28,14 @@ namespace shilyaev {
       return 1;
     }
     std::string filename = argv[2];
-    std::ifstream ifstream(filename);
-    if (!ifstream) {
+    std::fstream fstream(filename);
+    if (!fstream) {
       std::cerr << "File not open";
       return 1;
     }
-    const size_t size = countCharacters(ifstream);
-    std::unique_ptr< char[] > fileContent = read(ifstream, size);
-    ifstream.close();
+    const size_t size = countCharacters(fstream);
+    std::unique_ptr< char[] > fileContent = read(fstream, size);
+    fstream.close();
     std::vector< char > vector(fileContent.get(), fileContent.get() + size);
     print(vector.begin(), vector.end(), "", "");
     return 0;

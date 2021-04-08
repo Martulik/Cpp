@@ -39,7 +39,7 @@ namespace shilyaev {
     double array[size];
     fillRandom(array, size);
     std::vector< double > vector(array, array + size);
-    print(vector.begin(), vector.end());
+    print(vector.cbegin(), vector.cend());
     if (orderParameter == "ascending") {
       bubbleSort< VectorBracketsStrategy< double >, AscendingOrder >(vector);
     } else if (orderParameter == "descending") {
@@ -48,7 +48,7 @@ namespace shilyaev {
       std::cerr << "Invalid sorting order";
       return 1;
     }
-    print(vector.begin(), vector.end());
+    print(vector.cbegin(), vector.cend());
     return 0;
   }
 

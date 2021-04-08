@@ -63,7 +63,7 @@ namespace shilyaev {
     } else if (vector.back() == 2) {
       addOnes(vector);
     }
-    print(vector.begin(), vector.end());
+    print(vector.cbegin(), vector.cend());
     return 0;
   }
 

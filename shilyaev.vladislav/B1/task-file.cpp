@@ -44,7 +44,7 @@ namespace shilyaev {
     std::tie(fileContent, size) = read(ifstream);
     ifstream.close();
     std::vector< char > vector(fileContent.get(), fileContent.get() + size);
-    print(vector.begin(), vector.end(), "", "");
+    print(vector.cbegin(), vector.cend(), "", "");
     return 0;
   }
 

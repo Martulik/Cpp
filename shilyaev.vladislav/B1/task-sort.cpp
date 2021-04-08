@@ -21,7 +21,7 @@ namespace shilyaev {
   void printSorted(typename AccessStrategy::Collection collection)
   {
     bubbleSort< AccessStrategy, Order >(collection);
-    print(collection.begin(), collection.end());
+    print(collection.cbegin(), collection.cend());
   }
 
   template < typename Order >
@@ -33,7 +33,7 @@ namespace shilyaev {
       std::cerr << "Error while reading";
       return 1;
     }
-    std::forward_list< int > list(vector.begin(), vector.end());
+    std::forward_list< int > list(vector.cbegin(), vector.cend());
 
     printSorted< VectorBracketsStrategy< int >, Order >(vector);
     printSorted< VectorAtStrategy< int >, Order >(vector);

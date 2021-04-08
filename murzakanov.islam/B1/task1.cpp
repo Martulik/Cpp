@@ -11,7 +11,7 @@ void task1(const std::string& order)
 {
   int x;
   std::vector< int > firstVector;
-  while(std::cin >> x && !std::cin.eof())
+  while (std::cin >> x && !std::cin.eof())
   {
     firstVector.push_back(x);
   }

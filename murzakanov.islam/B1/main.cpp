@@ -14,5 +14,10 @@ int main(int argc, char* argv[])
     std::string order = argv[2];
     task1(order);
   }
+  if (exNum == 2)
+  {
+    std::string name = argv[2];
+    task2(name);
+  }
   return 0;
 }

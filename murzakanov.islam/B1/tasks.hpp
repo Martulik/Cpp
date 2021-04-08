@@ -3,7 +3,7 @@
 #include <string>
 
 void task1(const std::string& order);
-void checkAndOut();
+void task2(const std::string& fileName);
 void task3();
 void fillRandom(double* /*array*/, int /*size*/);
 

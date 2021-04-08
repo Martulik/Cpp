@@ -11,10 +11,10 @@ void sort(typename Strategy::store_type& store, const std::string& order)
     for (j++; j != end; j++)
     {
       if (((order == "ascending") && (Strategy::get(store, i) > Strategy::get(store, j))) ||
-          ((order == "discending") && (Strategy::get(store, i) < Strategy::get(store, j))))
-          {
-            std::swap(Strategy::get(store, i), Strategy::get(store, j));
-          }
+        ((order == "discending") && (Strategy::get(store, i) < Strategy::get(store, j))))
+      {
+        std::swap(Strategy::get(store, i), Strategy::get(store, j));
+      }
     }
   }
 }

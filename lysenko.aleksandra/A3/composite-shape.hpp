@@ -28,6 +28,7 @@ namespace lysenko
 
     virtual ShapePtr clone() const override;
 
+    ShapePtr at(int index);
     void addShape(const ShapePtr& src);
     void popShape();
     void swap(CompositeShape& other) noexcept;

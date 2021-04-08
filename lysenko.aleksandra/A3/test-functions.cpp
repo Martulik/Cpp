@@ -39,6 +39,8 @@ namespace lysenko
     double area = src->getArea();
 
     src->move(dx, dy);
+
+    BOOST_CHECK_CLOSE(getWidth(src), width, accuracy);
     BOOST_CHECK_CLOSE(getWidth(src), width, accuracy);
     BOOST_CHECK_CLOSE(getHeight(src), height, accuracy);
     BOOST_CHECK_CLOSE(src->getArea(), area, accuracy);
@@ -52,9 +54,15 @@ namespace lysenko
   void testScale(lysenko::Shape::ShapePtr src)
   {
     double k = 5.0;
+    double defaultK = -5.0;
     double oldArea = src->getArea();
+    double centerX = getX(src);
+    double centerY = getY(src);
 
     src->scale(k);
     BOOST_CHECK_CLOSE(src->getArea(), oldArea * k * k, accuracy);
+    BOOST_CHECK_CLOSE(centerX, getX(src), accuracy);
+    BOOST_CHECK_CLOSE(centerY, getY(src), accuracy);
+
   }
 }

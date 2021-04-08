@@ -134,6 +134,16 @@ curr::Shape::ShapePtr curr::CompositeShape::clone() const
 {
   return std::make_shared < CompositeShape >(*this);
 }
+
+curr::Shape::ShapePtr curr::CompositeShape::at(int index)
+{
+  if (index < 0)
+  {
+    throw std::invalid_argument("Index can not be negative");
+  }
+  return array_[index];
+}
+
 void curr::CompositeShape::addShape(const ShapePtr& src)
 {
   if (src == nullptr)

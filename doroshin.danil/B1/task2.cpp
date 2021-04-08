@@ -6,15 +6,22 @@
 #include <memory>
 #include "lab-exception.hpp"
 
-std::streamsize fileLength(std::ifstream& file)
+std::pair< std::unique_ptr< char[] >, size_t > read(std::ifstream& in)
 {
-  std::streampos save_pos = file.tellg();
-  file.seekg(0, std::ios_base::beg);
-  file.ignore(std::numeric_limits<std::streamsize>::max());
-  std::streamsize length = file.gcount();
-  file.clear();
-  file.seekg(save_pos);
-  return length;
+  const size_t chunk_len = 1024;
+  size_t capacity = chunk_len;
+  size_t size = 0;
+  auto buffer = std::make_unique< char[] >(capacity);
+
+  while(in.good()) {
+    in.read(&buffer[size], chunk_len);
+    auto temp = std::make_unique< char[] >(capacity + chunk_len);
+    std::move(buffer.get(), buffer.get() + capacity, temp.get());
+    std::swap(buffer, temp);
+    capacity += chunk_len;
+    size += in.gcount();
+  }
+  return { std::move(buffer), size };
 }
 
 void doroshin::readFile(std::string filename)
@@ -23,10 +30,10 @@ void doroshin::readFile(std::string filename)
   if(!in.is_open()) {
     throw LabException("Could not open file");
   }
-  size_t len = fileLength(in);
-  std::unique_ptr< char[] > c_buf = std::make_unique< char[] >(len);
-  in.read(c_buf.get(), len);
-  std::vector< char > v_buf(c_buf.get(), c_buf.get() + len);
+  auto arr_len = read(in);
+  std::unique_ptr< char[] > arr = std::move(arr_len.first);
+  size_t len = arr_len.second;
+  std::vector< char > v_buf(arr.get(), arr.get() + len);
   for(char c: v_buf) {
     std::cout << c;
   }

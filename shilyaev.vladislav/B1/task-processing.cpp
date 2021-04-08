@@ -54,10 +54,9 @@ namespace shilyaev {
     if (vector.empty()) {
       return 0;
     }
-    int last = *(vector.end() - 1);
-    if (last == 1) {
+    if (vector.back() == 1) {
       removeEven(vector);
-    } else if (last == 2) {
+    } else if (vector.back() == 2) {
       addOnes(vector);
     }
     print(vector.begin(), vector.end());

@@ -19,7 +19,7 @@ void murzakanov::task1(const std::string& order)
     }
     firstVector.push_back(x);
   }
-  
+
   unsigned int i = 0;
   std::cout << "\n";
   std::vector< int > secondVector(firstVector);

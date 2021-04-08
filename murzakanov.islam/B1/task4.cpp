@@ -5,8 +5,6 @@
 #include "tools.hpp"
 #include "tasks.hpp"
 
-
-
 void murzakanov::task4(std::string& order, int size)
 {
   double* arr = new double[size];

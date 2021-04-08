@@ -1,6 +1,7 @@
 #include "task-random.hpp"
 #include <iostream>
 #include <random>
+#include <memory>
 #include "sort.hpp"
 #include "iterator-print.hpp"
 #include "compare-function.hpp"
@@ -32,9 +33,9 @@ namespace shilyaev {
       std::cerr << "Invalid arguments";
       return 1;
     }
-    Item array[*size];
-    fillRandom(array, *size);
-    std::vector< Item > vector(array, array + *size);
+    std::unique_ptr< Item[] > array = std::make_unique< Item[] >(*size);
+    fillRandom(array.get(), *size);
+    std::vector< Item > vector(array.get(), array.get() + *size);
     print(vector.cbegin(), vector.cend());
     bubbleSort< VectorBracketsStrategy< Item > >(vector, *compare);
     print(vector.cbegin(), vector.cend());

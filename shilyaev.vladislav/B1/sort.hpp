@@ -1,9 +1,7 @@
 #ifndef SORT_HPP
 #define SORT_HPP
 
-#include <algorithm>
 #include <functional>
-#include "iterator-print.hpp"
 
 namespace shilyaev {
 

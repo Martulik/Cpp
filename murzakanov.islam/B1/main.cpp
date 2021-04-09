@@ -26,7 +26,7 @@ bool checkIsNumber(std::string& str)
 
 bool checkForSpaces(std::string& str)
 {
-  if (str.find(' '))
+  if ((str.find(' ') != std::string::npos))
   {
     return true;
   }
@@ -41,6 +41,7 @@ int main(int argc, char* argv[])
   {
     inArg = false;
   }
+  std::cout << firstArg << "\n";
   if (argc < 2) {
     inArg = false;
   }

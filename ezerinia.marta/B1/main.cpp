@@ -52,12 +52,13 @@ void setError(std::string src)
 
 int main(int argc, char *argv[])
 {
-
+  bool enterTask = false;
   if (argc > 1 && checkIsDigit(argv[1]) && atoi(argv[1]) > 0 && atoi(argv[1]) < 5) {
 
     if (atoi(argv[1]) == 1 && argc == 3) {
       if (checkSortMode(argv[2])) {
         code = lab::task1(getSortMode< double >(argv[2]));
+        enterTask = true;
       } else {
         setError("Incorrect sort mode\n");
       }
@@ -65,15 +66,18 @@ int main(int argc, char *argv[])
 
     if (atoi(argv[1]) == 2 && argc == 3) {
       code = lab::task2(argv[2]);
+      enterTask = true;
     }
 
     if (atoi(argv[1]) == 3 && argc == 2) {
       code = lab::task3();
+      enterTask = true;
     }
 
     if (atoi(argv[1]) == 4 && argc == 4) {
       if (atoi(argv[3]) > 0 && checkIsDigit(argv[3]) && checkSortMode(argv[2])) {
         code = lab::task4(getSortMode< double >(argv[2]), atoi(argv[3]));
+        enterTask = true;
       } else {
         setError("Incorrect arguments\n");
       }
@@ -84,6 +88,9 @@ int main(int argc, char *argv[])
     code = 1;
   }
 
+  if (!enterTask) {
+    setError("Wrong number or arguments\n");
+  }
   if (error != "no errors") {
     std::cerr << error;
   }

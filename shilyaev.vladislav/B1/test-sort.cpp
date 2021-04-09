@@ -9,8 +9,6 @@
 namespace shi = shilyaev;
 
 namespace shilyaev {
-  const size_t ITEM_COUNT = 1000;
-
   template < typename Iterator >
   void fill(Iterator begin, const Iterator& end)
   {
@@ -24,9 +22,9 @@ namespace shilyaev {
   }
 
   template < typename AccessStrategy >
-  bool testSort(const typename std::function< bool(int, int) > &compare)
+  bool testSort(const typename std::function< bool(int, int) > &compare, size_t itemCount)
   {
-    typename AccessStrategy::Collection collection(ITEM_COUNT);
+    typename AccessStrategy::Collection collection(itemCount);
     fill(collection.begin(), collection.end());
     bubbleSort< AccessStrategy >(collection, compare);
     return std::is_sorted(collection.cbegin(), collection.cend(), compare);
@@ -35,11 +33,13 @@ namespace shilyaev {
 
 BOOST_AUTO_TEST_CASE(Sort)
 {
-  BOOST_CHECK((shi::testSort< shi::VectorAtStrategy< int > >(std::less<>())));
-  BOOST_CHECK((shi::testSort< shi::VectorBracketsStrategy< int > >(std::less<>())));
-  BOOST_CHECK((shi::testSort< shi::ForwardListIteratorStrategy< int > >(std::less<>())));
-
-  BOOST_CHECK((shi::testSort< shi::VectorAtStrategy< int > >(std::greater<>())));
-  BOOST_CHECK((shi::testSort< shi::VectorBracketsStrategy< int > >(std::greater<>())));
-  BOOST_CHECK((shi::testSort< shi::ForwardListIteratorStrategy< int > >(std::greater<>())));
+  const size_t sizes[] = {0, 1, 2, 1000};
+  for (size_t size: sizes) {
+    BOOST_CHECK((shi::testSort< shi::VectorAtStrategy< int > >(std::less<>(), size)));
+    BOOST_CHECK((shi::testSort< shi::VectorBracketsStrategy< int > >(std::less<>(), size)));
+    BOOST_CHECK((shi::testSort< shi::ForwardListIteratorStrategy< int > >(std::less<>(), size)));
+    BOOST_CHECK((shi::testSort< shi::VectorAtStrategy< int > >(std::greater<>(), size)));
+    BOOST_CHECK((shi::testSort< shi::VectorBracketsStrategy< int > >(std::greater<>(), size)));
+    BOOST_CHECK((shi::testSort< shi::ForwardListIteratorStrategy< int > >(std::greater<>(), size)));
+  }
 }

@@ -26,6 +26,13 @@ BOOST_AUTO_TEST_CASE(test_changing_of_shapes_centers_after_scale)
   BOOST_CHECK_CLOSE(oldCenterYCircle + (oldCenterY - oldCenterYCircle) * k, lysenko::getY(myCompositePtr), lysenko::accuracy);
 }
 
+BOOST_AUTO_TEST_CASE(test_at)
+{
+  lysenko::CompositeShape myComposite(lysenko::makeCircle());
+  BOOST_CHECK_THROW(myComposite.at(-1), std::invalid_argument);
+  BOOST_CHECK_THROW(myComposite.at(1), std::out_of_range);
+}
+
 BOOST_AUTO_TEST_CASE(test_enlargeCapacity_invalid_argument)
 {
   BOOST_CHECK_THROW(lysenko::makeCompositeShape()->enlargeCapacity(1), std::invalid_argument);

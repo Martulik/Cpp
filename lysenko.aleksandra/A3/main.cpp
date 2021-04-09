@@ -19,18 +19,26 @@ void printFigure(const curr::Shape::ShapePtr figure);
 
 int main()
 {
-  curr::point_t myPos{ 33.33, 33.33 };
-  double width = 1.0;
-  double heigth = 2.0;
-  curr::Shape::ShapePtr myRectangle(std::make_shared <curr::Rectangle> (width, heigth, myPos));
-  testMyFigure(myRectangle);
+  try
+  {
+    curr::point_t myPos{ 33.33, 33.33 };
+    double width = 1.0;
+    double heigth = 2.0;
+    curr::Shape::ShapePtr myRectangle(std::make_shared <curr::Rectangle>(width, heigth, myPos));
+    testMyFigure(myRectangle);
 
-  double radius = 33.33;
-  curr::Shape::ShapePtr myCircle(std::make_shared <curr::Circle> (myPos, radius));
-  testMyFigure(myCircle);
+    double radius = 33.33;
+    curr::Shape::ShapePtr myCircle(std::make_shared <curr::Circle>(myPos, radius));
+    testMyFigure(myCircle);
 
-  curr::Shape::ShapePtr myCompositeShape(std::make_shared <curr::CompositeShape>(myRectangle));
-  testMyFigure(myCompositeShape);
+    curr::Shape::ShapePtr myCompositeShape(std::make_shared <curr::CompositeShape>(myRectangle));
+    testMyFigure(myCompositeShape);
+  }
+  catch (...)
+  {
+    std::cerr << "Exceptions are detected. Program can not be finished";
+    return 1;
+  }
   return 0;
 }
 

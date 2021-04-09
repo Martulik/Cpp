@@ -141,6 +141,10 @@ curr::Shape::ShapePtr curr::CompositeShape::at(int index)
   {
     throw std::invalid_argument("Index can not be negative");
   }
+  else if (index >= size_)
+  {
+    throw std::out_of_range("Index out of range");
+  }
   return array_[index];
 }
 

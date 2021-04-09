@@ -7,6 +7,11 @@
 
 int murzakanov::task4(std::string& order, int size)
 {
+  if (order != "ascending" && order != "descending")
+  {
+    std::cerr << "Wrong order";
+    return 1;
+  }
   double* arr = new double[size];
   murzakanov::fillRandom(arr, size);
   std::vector< double > vec(arr, arr + size);

@@ -28,7 +28,7 @@ int murzakanov::task1(const std::string& order)
   }
   if (firstVector.empty())
   {
-    return 1;
+    return 0;
   }
   std::vector< int > secondVector(firstVector);
   std::forward_list< int > list(firstVector.begin(), firstVector.end());

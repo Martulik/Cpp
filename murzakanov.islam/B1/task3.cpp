@@ -24,7 +24,7 @@ int murzakanov::task3()
 
   if (vec.empty())
   {
-    return 1;
+    return 0;
   }
 
   if (x != 0)

@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-void fillRandom(double *array, int size)
+void ezerinia::fillRandom(double *array, int size)
 {
   srand(time(NULL));
   for (int i = 0; i < size; ++i) {

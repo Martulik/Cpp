@@ -1,13 +1,13 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
-#include <list>
+#include <forward_list>
 #include <vector>
 #include <iostream>
 
-void fillRandom(double *array, int size);
-
 namespace ezerinia {
+  void fillRandom(double *array, int size);
+
   template< typename T >
   struct indexVec {
     using container_t = std::vector< T >;
@@ -52,8 +52,8 @@ namespace ezerinia {
 
   template< typename T >
   struct iteratorList {
-    using container_t = std::list< T >;
-    using iter_t = typename std::list< T >::iterator;
+    using container_t = std::forward_list< T >;
+    using iter_t = typename std::forward_list< T >::iterator;
 
     static iter_t begin(container_t &list)
     {
@@ -71,22 +71,17 @@ namespace ezerinia {
     }
   };
 
-  template< typename T >
-  void sort(typename T::container_t &cont, typename T::iter_t begin, typename T::iter_t end, int mode)
+  template< typename T, typename C >
+  void sort(typename T::container_t &cont, typename T::iter_t begin, typename T::iter_t end, C sort_mode)
   {
-    if (mode == 0 || mode == 1) {
-      using iter = typename T::iter_t;
-      for (iter it1 = begin; it1 != end; ++it1) {
-        iter it2 = it1;
-        for (it2++; it2 != end; ++it2) {
-          if (((T::get(cont, it2) > T::get(cont, it1)) && mode) ||
-              ((T::get(cont, it2) < T::get(cont, it1)) && (!mode))) {
-            std::swap(T::get(cont, it2), T::get(cont, it1));
-          }
+    using iter = typename T::iter_t;
+    for (iter it1 = begin; it1 != end; ++it1) {
+      iter it2 = it1;
+      for (it2++; it2 != end; ++it2) {
+        if (sort_mode(T::get(cont, it2), T::get(cont, it1))) {
+          std::swap(T::get(cont, it2), T::get(cont, it1));
         }
       }
-    } else {
-      std::cerr << "Wrong sort mode";
     }
   }
 
@@ -102,12 +97,11 @@ namespace ezerinia {
     out << "\n";
   }
 
-  template< typename T >
-  void do_sort(typename T::container_t &cont, int mode)
+  template< typename T, typename C >
+  void sortAndPrint(typename T::container_t &cont, C cmp)
   {
-    sort< T >(cont, T::begin(cont), T::end(cont), mode);
+    sort< T, C >(cont, T::begin(cont), T::end(cont), cmp);
     print(cont, std::cout);
   }
 }
-
 #endif

@@ -24,9 +24,9 @@ int murzakanov::task2(std::string& fileName)
   std::unique_ptr< char > arr = std::make_unique< char >(n);
   for (int i = 0; i < n; i++)
   {
-    input.get(arr[i]);
+    input.get(arr.get()[i]);
   }
-  std::vector< char > vec(arr, arr+n);
+  std::vector< char > vec(arr.get(), arr.get() + n);
   for (int i = 0; i < n; i++)
   {
     std::cout << vec[i];

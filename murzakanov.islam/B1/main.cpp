@@ -12,8 +12,23 @@ void setError(std::string err)
   code = 1;
 }
 
+bool checkIsNumber(std::string str)
+{
+  for (int i = 0; i < int(str.length()); i++)
+  {
+    if (str[i] < '0' || str[i] > '9')
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
 int main(int argc, char* argv[])
 {
+  if (argc < 2) {
+    setError("Invalid arguments\n");
+  }
   int exNum = int(argv[1][0] - '0');
   if (exNum == 1 && argc == 3) {
     std::string order = argv[2];
@@ -28,18 +43,17 @@ int main(int argc, char* argv[])
   }
   else if (exNum == 4 && argc == 4) {
     std::string order = argv[2];
-    try
-    {
-    int size = std::stoi(argv[3]);
-    code = murzakanov::task4(order, size);
+    if (checkIsNumber(argv[3])) {
+      int size = std::atoi(argv[3]);
+      code = murzakanov::task4(order, size);
     }
-    catch(std::invalid_argument& err)
-    {
-      setError("Invalid argument");
+    else {
+      setError("Invalid arguments\n");
+      std::cerr << error;
     }
   }
   else {
-    setError("Invalid arguments");
+    setError("Invalid arguments\n");
     std::cerr << error;
   }
   return code;

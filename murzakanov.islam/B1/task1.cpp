@@ -12,7 +12,7 @@ int murzakanov::task1(const std::string& order)
 {
   if (order != "ascending" && order != "descending")
   {
-    std::cerr << "Wrong order";
+    std::cerr << "Wrong order\n";
     return 1;
   }
   int x = 0;
@@ -23,7 +23,7 @@ int murzakanov::task1(const std::string& order)
   }
   if (std::cin.fail() && !std::cin.eof())
   {
-    std::cerr << "Read error";
+    std::cerr << "Read error\n";
     return 1;
   }
   if (firstVector.empty())

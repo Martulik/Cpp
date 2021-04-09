@@ -9,7 +9,7 @@ int murzakanov::task4(std::string& order, int size)
 {
   if (order != "ascending" && order != "descending")
   {
-    std::cerr << "Wrong order";
+    std::cerr << "Wrong order\n";
     return 1;
   }
   double* arr = new double[size];

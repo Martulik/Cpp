@@ -9,7 +9,7 @@ int murzakanov::task2(std::string& fileName)
   input.open(fileName);
   if (!input.is_open())
   {
-    std::cerr << "Error with opening";
+    std::cerr << "Error with opening\n";
     return 1;
   }
   int n = 0;

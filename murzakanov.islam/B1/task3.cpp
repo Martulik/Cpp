@@ -18,7 +18,7 @@ int murzakanov::task3()
 
   if (std::cin.fail() && !std::cin.eof())
   {
-    std::cerr << "Read error";
+    std::cerr << "Read error\n";
     return 1;
   }
 
@@ -29,7 +29,7 @@ int murzakanov::task3()
 
   if (x != 0)
   {
-    std::cerr << "Wrong input";
+    std::cerr << "Wrong input\n";
     return 1;
   }
 

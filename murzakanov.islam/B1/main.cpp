@@ -27,9 +27,16 @@ int main(int argc, char* argv[])
     code = murzakanov::task3();
   }
   else if (exNum == 4 && argc == 4) {
-    std::string order = argv[2];//проверить на правильность написания
-    int size = atoi(argv[3]);// проверить на то, что argv число
+    std::string order = argv[2];
+    try
+    {
+    int size = std::stoi(argv[3]);
     code = murzakanov::task4(order, size);
+    }
+    catch(std::invalid_argument& err)
+    {
+      setError("Invalid argument");
+    }
   }
   else {
     setError("Invalid arguments");

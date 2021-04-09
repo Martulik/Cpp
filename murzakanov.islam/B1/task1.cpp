@@ -8,11 +8,12 @@
 #include "sorting.hpp"
 #include "tools.hpp"
 
-void murzakanov::task1(const std::string& order)
+int murzakanov::task1(const std::string& order)
 {
   if (order != "ascending" && order != "descending")
   {
-    throw std::invalid_argument("Wrong order");
+    std::cerr << "Wrong order";
+    return 1;
   }
   int x = 0;
   std::vector< int > firstVector;
@@ -22,11 +23,12 @@ void murzakanov::task1(const std::string& order)
   }
   if (std::cin.fail() && !std::cin.eof())
   {
-    throw std::invalid_argument("Read error");
+    std::cerr << "Read error";
+    return 1;
   }
   if (firstVector.empty())
   {
-    return;
+    return 1;
   }
   std::vector< int > secondVector(firstVector);
   std::forward_list< int > list(firstVector.begin(), firstVector.end());
@@ -37,4 +39,5 @@ void murzakanov::task1(const std::string& order)
   print(firstVector, std::cout);
   print(secondVector, std::cout);
   print(list, std::cout);
+  return 0;
 }

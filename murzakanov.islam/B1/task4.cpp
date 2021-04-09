@@ -5,7 +5,7 @@
 #include "tools.hpp"
 #include "tasks.hpp"
 
-void murzakanov::task4(std::string& order, int size)
+int murzakanov::task4(std::string& order, int size)
 {
   double* arr = new double[size];
   murzakanov::fillRandom(arr, size);
@@ -13,4 +13,5 @@ void murzakanov::task4(std::string& order, int size)
   murzakanov::print< std::vector< double> >(vec, std::cout);
   murzakanov::sort< murzakanov::StrategyBrackets< double > >(vec, order);
   murzakanov::print< std::vector< double > >(vec, std::cout);
+  return 0;
 }

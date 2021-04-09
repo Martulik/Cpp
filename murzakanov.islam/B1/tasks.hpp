@@ -5,9 +5,9 @@
 
 namespace murzakanov
 {
-  void task1(const std::string& order);
-  void task2(std::string& fileName);
-  void task3();
-  void task4(std::string& order, int size);
+  int task1(const std::string& order);
+  int task2(std::string& fileName);
+  int task3();
+  int task4(std::string& order, int size);
 }
 #endif

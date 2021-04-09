@@ -3,7 +3,7 @@
 #include <vector>
 #include "tools.hpp"
 
-void murzakanov::task3()
+int murzakanov::task3()
 {
   std::vector< int > vec;
   int x = 0;
@@ -18,17 +18,19 @@ void murzakanov::task3()
 
   if (std::cin.fail() && !std::cin.eof())
   {
-    throw std::invalid_argument("Read error");
+    std::cerr << "Read error";
+    return 1;
   }
 
   if (vec.empty())
   {
-    return;
+    return 1;
   }
 
   if (x != 0)
   {
-    throw std::invalid_argument("Wrong input");
+    std::cerr << "Wrong input";
+    return 1;
   }
 
   std::vector< int >::iterator it = vec.begin();
@@ -61,4 +63,5 @@ void murzakanov::task3()
     }
   }
   print(vec, std::cout);
+  return 0;
 }

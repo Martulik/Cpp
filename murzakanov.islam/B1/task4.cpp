@@ -1,9 +1,12 @@
+#include "tasks.hpp"
+
 #include <string>
 #include <iostream>
+#include <memory>
+
 #include "sorting.hpp"
 #include "strategy.hpp"
 #include "tools.hpp"
-#include "tasks.hpp"
 
 int murzakanov::task4(std::string& order, int size)
 {
@@ -12,9 +15,9 @@ int murzakanov::task4(std::string& order, int size)
     std::cerr << "Wrong order\n";
     return 1;
   }
-  double* arr = new double[size];
-  murzakanov::fillRandom(arr, size);
-  std::vector< double > vec(arr, arr + size);
+  std::unique_ptr< double > arr = std::make_unique< double >(size);
+  murzakanov::fillRandom(arr.get(), size);
+  std::vector< double > vec(arr.get(), arr.get() + size);
   murzakanov::sort< murzakanov::StrategyBrackets< double > >(vec, order);
   murzakanov::print< std::vector< double > >(vec, std::cout);
   return 0;

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <memory>
 
 int murzakanov::task2(std::string& fileName)
 {
@@ -20,7 +21,7 @@ int murzakanov::task2(std::string& fileName)
   }
   input.clear();
   input.seekg(0);
-  char* arr = new char[n];
+  std::unique_ptr< char > arr = std::make_unique< char >(n);
   for (int i = 0; i < n; i++)
   {
     input.get(arr[i]);
@@ -30,6 +31,5 @@ int murzakanov::task2(std::string& fileName)
   {
     std::cout << vec[i];
   }
-  delete[] arr;
   return 0;
 }

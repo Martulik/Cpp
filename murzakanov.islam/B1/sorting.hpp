@@ -15,7 +15,7 @@ namespace murzakanov
       for (j++; j != end; j++)
       {
         if (((order == "ascending") && (Strategy::get(store, i) > Strategy::get(store, j))) ||
-          ((order == "discending") && (Strategy::get(store, i) < Strategy::get(store, j))))
+          ((order == "descending") && (Strategy::get(store, i) < Strategy::get(store, j))))
         {
           std::swap(Strategy::get(store, i), Strategy::get(store, j));
         }

@@ -135,13 +135,9 @@ curr::Shape::ShapePtr curr::CompositeShape::clone() const
   return std::make_shared < CompositeShape >(*this);
 }
 
-curr::Shape::ShapePtr curr::CompositeShape::at(int index)
+curr::Shape::ShapePtr curr::CompositeShape::at(size_t index)
 {
-  if (index < 0)
-  {
-    throw std::invalid_argument("Index can not be negative");
-  }
-  else if (index >= size_)
+  if (index >= size_)
   {
     throw std::out_of_range("Index out of range");
   }

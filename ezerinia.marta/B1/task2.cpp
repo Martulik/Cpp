@@ -1,6 +1,7 @@
 #include "task2.hpp"
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include "tools.hpp"
 
 namespace lab = ezerinia;

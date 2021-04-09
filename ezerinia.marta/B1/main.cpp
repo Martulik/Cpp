@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <functional>
 
 #include "task1.hpp"
 #include "task2.hpp"

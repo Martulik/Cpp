@@ -91,9 +91,11 @@ fer::rectangle_t fer::CompositeShape::getFrameRect() const
 
 void fer::CompositeShape::move(const point_t& pos)
 {
+  int dx = pos.x - getX(*this);
+  int dy = pos.y - getY(*this);
   for (size_t i = 0; i < size_; ++i)
   {
-    arr_[i]->move(pos);
+    arr_[i]->move(dx, dy);
   }
 }
 

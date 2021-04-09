@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <forward_list>
-#include <iostream>
 #include "tools.hpp"
 
 namespace ezerinia {

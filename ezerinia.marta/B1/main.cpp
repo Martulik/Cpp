@@ -70,16 +70,14 @@ int main(int argc, char *argv[])
       enterTask = true;
       if (atoi(argv[3]) > 0 && checkIsDigit(argv[3]) && getSortMode< double >(argv[2])) {
         code = lab::task4(getSortMode< double >(argv[2]), atoi(argv[3]));
-        enterTask = true;
       } else {
         setError("Incorrect arguments\n");
       }
     }
 
   } else {
-    error = "Not enough arguments or incorrect task number\n";
+    setError("Not enough arguments or incorrect task number\n");
     enterTask = true;
-    code = 1;
   }
 
   if (!enterTask) {

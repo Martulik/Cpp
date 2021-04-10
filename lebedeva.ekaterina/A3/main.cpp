@@ -29,13 +29,14 @@ int main()
     std::make_shared< lebedeva::Rectangle >(pos2, 3.0, 4.1),
     std::make_shared< lebedeva::Circle >(pos1, 3.24)
   };
+  ShapePtr cShapePtr = std::make_shared< lebedeva::CompositeShape >(std::move(composition));
 
   std::cout << "Figure 1.\n";
   lebedeva::testShape(std::cout, *rectPtr, newPos, scaleParameter);
   std::cout << "Figure 2.\n";
   lebedeva::testShape(std::cout, *circPtr, newPos, scaleParameter);
   std::cout << "Figure 3.\n";
-  lebedeva::testShape(std::cout, composition, newPos, scaleParameter);
+  lebedeva::testShape(std::cout, *cShapePtr, newPos, scaleParameter);
 
   return 0;
 }

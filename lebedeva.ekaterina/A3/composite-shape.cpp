@@ -96,6 +96,7 @@ void leb::CompositeShape::move(double dx, double dy)
   {
     data_[i]->move(dx, dy);
   }
+  frameRect_ = makeFrameRect();
 }
 
 std::shared_ptr< leb::Shape > leb::CompositeShape::operator[](size_t i)

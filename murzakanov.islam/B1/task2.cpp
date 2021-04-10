@@ -36,5 +36,6 @@ int murzakanov::task2(std::string& fileName)
   {
     std::cout << vec[i];
   }
+  std::cout << "\n";
   return 0;
 }

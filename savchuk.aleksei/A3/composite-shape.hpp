@@ -36,6 +36,8 @@ namespace savchuk
 
     void doScale(double scaleFactor) override;
   };
+
+  void swap(CompositeShape& lhs, CompositeShape& rhs);
 }
 
 #endif

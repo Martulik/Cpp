@@ -37,7 +37,10 @@ int murzakanov::task1(const std::string& order)
   sort< StrategyIter< int > >(list, order);
 
   print(firstVector, std::cout);
+  std::cout << "\n";
   print(secondVector, std::cout);
+  std::cout << "\n";
   print(list, std::cout);
+  std::cout << "\n";
   return 0;
 }

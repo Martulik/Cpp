@@ -27,15 +27,16 @@ int murzakanov::task2(std::string& fileName)
     std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);
     for (int i = 0; i < size; i++)
     {
-      temp[i] = text[i];
+      temp[i] = std::move(text[i]);
     }
     text = std::move(temp);
+    input.close();
   }
+
   std::vector< char > vec(&text[0], &text[size]);
   for (size_t i = 0; i < vec.size(); i++)
   {
     std::cout << vec[i];
   }
-  std::cout << "\n";
   return 0;
 }

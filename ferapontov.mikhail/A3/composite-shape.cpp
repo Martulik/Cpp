@@ -17,7 +17,7 @@ fer::CompositeShape::CompositeShape(std::initializer_list< const Shape* > src):
   std::initializer_list< const Shape* >::const_iterator it = src.begin();
   while(it != src.end())
   {
-    assert(*it != nullptr && "The pointer to shape can not be nullptr");
+    assert(*it && "The pointer to shape can not be nullptr");
     arr_[i++] = (*it)->clone();
     ++it;
   }

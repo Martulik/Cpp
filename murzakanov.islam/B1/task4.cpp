@@ -15,9 +15,9 @@ int murzakanov::task4(std::string& order, int size)
     std::cerr << "Wrong order\n";
     return 1;
   }
-  std::unique_ptr< double > arr = std::make_unique< double >(size);
-  murzakanov::fillRandom(arr.get(), size);
-  std::vector< double > vec(arr.get(), arr.get() + size);
+  std::vector < double > arr(size);
+  murzakanov::fillRandom(&arr[0], size);
+  std::vector< double > vec(arr);
   murzakanov::sort< murzakanov::StrategyBrackets< double > >(vec, order);
   murzakanov::print< std::vector< double > >(vec, std::cout);
   return 0;

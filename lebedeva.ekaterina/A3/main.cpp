@@ -6,9 +6,9 @@
 
 namespace lebedeva
 {
-  void testShape(Shape& figure, const point_t& newPos, const double k);
-  void testMove(Shape& figure, const point_t& newPos);
-  void testScale(Shape& figure, const double k);
+  void testShape(std::ostream& out, Shape& figure, const point_t& newPos, const double k);
+  void testMove(std::ostream& out, Shape& figure, const point_t& newPos);
+  void testScale(std::ostream& out, Shape& figure, const double k);
   void printCentre(std::ostream& out, const Shape& figure);
   void printInfo(std::ostream& out, const Shape& figure);
 }
@@ -31,11 +31,11 @@ int main()
   };
 
   std::cout << "Figure 1.\n";
-  lebedeva::testShape(*rectPtr, newPos, scaleParameter);
+  lebedeva::testShape(std::cout, *rectPtr, newPos, scaleParameter);
   std::cout << "Figure 2.\n";
-  lebedeva::testShape(*circPtr, newPos, scaleParameter);
+  lebedeva::testShape(std::cout, *circPtr, newPos, scaleParameter);
   std::cout << "Figure 3.\n";
-  lebedeva::testShape(composition, newPos, scaleParameter);
+  lebedeva::testShape(std::cout, composition, newPos, scaleParameter);
 
   return 0;
 }
@@ -58,28 +58,28 @@ void lebedeva::printInfo(std::ostream& out, const Shape& figure)
   out << " x " << rect.height << '\n';
 }
 
-void lebedeva::testShape(Shape& figure, const point_t& newPos, const double k)
+void lebedeva::testShape(std::ostream& out, Shape& figure, const point_t& newPos, const double k)
 {
-  printInfo(std::cout, figure);
-  testMove(figure, newPos);
-  testScale(figure, k);
+  printInfo(out, figure);
+  testMove(out, figure, newPos);
+  testScale(out, figure, k);
 }
 
-void lebedeva::testMove(Shape& figure, const point_t& newPos)
+void lebedeva::testMove(std::ostream& out, Shape& figure, const point_t& newPos)
 {
-  std::cout << "Centre position after moving to point (";
-  std::cout << newPos.x << ", " << newPos.y << ") is ";
+  out << "Centre position after moving to point (";
+  out << newPos.x << ", " << newPos.y << ") is ";
   figure.move(newPos);
   printCentre(std::cout, figure);
-  std::cout << "\nCentre position after moving to point (x + dx, y - dy) is ";
+  out << "\nCentre position after moving to point (x + dx, y - dy) is ";
   figure.move(newPos.x, -newPos.y);
   printCentre(std::cout, figure);
-  std::cout << "\n";
+  out << "\n";
 }
 
-void lebedeva::testScale(Shape& figure, const double k)
+void lebedeva::testScale(std::ostream& out, Shape& figure, const double k)
 {
-  std::cout << "Area after scale " << k << " times: ";
+  out << "Area after scale " << k << " times: ";
   figure.scale(k);
-  std::cout << figure.getArea() << "\n\n";
+  out << figure.getArea() << "\n\n";
 }

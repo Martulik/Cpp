@@ -24,6 +24,7 @@ leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > com
     data_[i] = shape->clone();
     i++;
   }
+  frameRect_ = makeFrameRect();
 }
 
 leb::CompositeShape::CompositeShape(const CompositeShape& composition):
@@ -34,6 +35,7 @@ leb::CompositeShape::CompositeShape(const CompositeShape& composition):
   {
     data_[i] = composition.data_[i]->clone();
   }
+  frameRect_ = makeFrameRect();
 }
 
 leb::CompositeShape& leb::CompositeShape::operator=(const CompositeShape& composition)
@@ -69,22 +71,7 @@ double leb::CompositeShape::getArea() const
 
 leb::rectangle_t leb::CompositeShape::getFrameRect() const
 {
-  rectangle_t frameRect = data_[0]->getFrameRect();
-  double maxX = getBorderCoordinate(frameRect, "right");
-  double minX = getBorderCoordinate(frameRect, "left");
-  double maxY = getBorderCoordinate(frameRect, "top");
-  double minY = getBorderCoordinate(frameRect, "bottom");
-
-  for (size_t i = 1; i < countElements_; i++)
-  {
-    frameRect = data_[i]->getFrameRect();
-    maxX = std::max(maxX, getBorderCoordinate(frameRect, "right"));
-    minX = std::min(minX, getBorderCoordinate(frameRect, "left"));
-    maxY = std::max(maxY, getBorderCoordinate(frameRect, "top"));
-    minY = std::min(minY, getBorderCoordinate(frameRect, "bottom"));
-  }
-
-  return { getPos(minX, maxX, minY, maxY), getWidth(minX, maxX), getHeight(minY, maxY) };
+  return frameRect_;
 }
 
 std::string leb::CompositeShape::getName() const
@@ -136,12 +123,33 @@ void leb::CompositeShape::doScale(double k)
     data_[i]->move({ collectionPos.x + dx, collectionPos.y + dy });
     data_[i]->scale(k);
   }
+  frameRect_ = makeFrameRect();
 }
 
 void leb::CompositeShape::swap(CompositeShape& composition) noexcept
 {
   std::swap(countElements_, composition.countElements_);
   std::swap(data_, composition.data_);
+}
+
+leb::rectangle_t leb::CompositeShape::makeFrameRect() const
+{
+  rectangle_t frameRect = data_[0]->getFrameRect();
+  double maxX = getBorderCoordinate(frameRect, "right");
+  double minX = getBorderCoordinate(frameRect, "left");
+  double maxY = getBorderCoordinate(frameRect, "top");
+  double minY = getBorderCoordinate(frameRect, "bottom");
+
+  for (size_t i = 1; i < countElements_; i++)
+  {
+    frameRect = data_[i]->getFrameRect();
+    maxX = std::max(maxX, getBorderCoordinate(frameRect, "right"));
+    minX = std::min(minX, getBorderCoordinate(frameRect, "left"));
+    maxY = std::max(maxY, getBorderCoordinate(frameRect, "top"));
+    minY = std::min(minY, getBorderCoordinate(frameRect, "bottom"));
+  }
+
+  return { getPos(minX, maxX, minY, maxY), getWidth(minX, maxX), getHeight(minY, maxY) };
 }
 
 leb::point_t leb::CompositeShape::getPos(const double minX, const double maxX, const double minY, const double maxY) const

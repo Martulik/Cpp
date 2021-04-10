@@ -34,9 +34,12 @@ namespace lebedeva
   private:
     size_t countElements_;
     std::unique_ptr< ShapePtr [] > data_;
+    rectangle_t frameRect_;
 
     void swap(CompositeShape& composition) noexcept;
     void doScale(double k) override;
+
+    rectangle_t makeFrameRect() const;
     point_t getPos(double minX, double maxX, double minY, double maxY) const;
     double getWidth(double minX, double maxX) const;
     double getHeight(double minY, double maxY) const;

@@ -43,13 +43,6 @@ thisType& lab::CompositeShape::operator=(const thisType& rhs)
   return *this;
 }
 
-thisType& lab::CompositeShape::operator=(thisType&& rhs) noexcept
-{
-  thisType temp(rhs);
-  swap(temp);
-  return *this;
-}
-
 double lab::CompositeShape::getArea() const
 {
   double area = 0.0;
@@ -118,7 +111,7 @@ std::unique_ptr< lab::Shape > lab::CompositeShape::clone() const
 void lab::CompositeShape::swap(thisType& rhs)
 {
   std::swap(size_, rhs.size_);
-  std::swap(arr_, rhs.arr_);
+  arr_.swap(rhs.arr_);
 }
 
 void lab::swap(lab::CompositeShape& lhs, lab::CompositeShape& rhs)

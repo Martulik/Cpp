@@ -21,7 +21,7 @@ namespace savchuk
     ~CompositeShape() = default;
 
     thisType& operator=(const thisType&);
-    thisType& operator=(thisType&&) noexcept;
+    thisType& operator=(thisType&&) noexcept = default;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

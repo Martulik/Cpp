@@ -27,17 +27,17 @@ BOOST_AUTO_TEST_CASE(test_changing_of_weight_and_height_after_scale)
 
 BOOST_AUTO_TEST_CASE(test_invalid_width)
 {
-  BOOST_CHECK_THROW(lysenko::Rectangle myRectangle(-1.0, 2.0, {33.33, 33.33}), std::invalid_argument);
+  BOOST_CHECK_THROW(lysenko::createMyRectangle(-1.0, 2.0, {33.33, 33.33}), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(test_invalid_height)
 {
-  BOOST_CHECK_THROW(lysenko::Rectangle myRectangle( 1.0, - 2.0, {33.33, 33.33}), std::invalid_argument);
+  BOOST_CHECK_THROW(lysenko::createMyRectangle( 1.0, - 2.0, {33.33, 33.33}), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(test_invalid_weight_and_height)
 {
-  BOOST_CHECK_THROW(lysenko::Rectangle myRectangle(-1.0, -2.0, { 33.33, 33.33 }), std::invalid_argument);
+  BOOST_CHECK_THROW(lysenko::createMyRectangle(-1.0, -2.0, { 33.33, 33.33 }), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

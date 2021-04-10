@@ -10,6 +10,11 @@ namespace lysenko
     return std::make_shared< Circle >(Circle(pos, radius));
   }
 
+  lysenko::Shape::ShapePtr createMyCircle(double radius, point_t pos)
+  {
+    return std::make_shared< Circle >(Circle(pos, radius));
+  }
+
   lysenko::Shape::ShapePtr makeRectangle()
   {
     double width = 1.0;
@@ -19,11 +24,16 @@ namespace lysenko
     return std::make_shared< Rectangle >(Rectangle(width, height, pos));
   }
 
-  std::shared_ptr<lysenko::CompositeShape> makeCompositeShape()
+  lysenko::Shape::ShapePtr createMyRectangle(double width, double height, point_t pos)
+  {
+    return std::make_shared< Rectangle >(Rectangle(width, height, pos));
+  }
+
+  std::shared_ptr< lysenko::CompositeShape > makeCompositeShape()
   {
     Shape::ShapePtr myCircle = makeCircle();
     Shape::ShapePtr myRectangle = makeRectangle();
-    std::shared_ptr <CompositeShape> myComposite = std::make_shared< CompositeShape >(myCircle);
+    std::shared_ptr < CompositeShape > myComposite = std::make_shared< CompositeShape >(myCircle);
     myComposite->addShape(myRectangle);
     return myComposite;
   }
@@ -62,6 +72,5 @@ namespace lysenko
     BOOST_CHECK_CLOSE(src->getArea(), oldArea * k * k, accuracy);
     BOOST_CHECK_CLOSE(centerX, getX(src), accuracy);
     BOOST_CHECK_CLOSE(centerY, getY(src), accuracy);
-
   }
 }

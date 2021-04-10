@@ -11,7 +11,9 @@ namespace lysenko
 {
   const double accuracy = 1.0;
   lysenko::Shape::ShapePtr makeCircle();
+  lysenko::Shape::ShapePtr createMyCircle(double radius, point_t pos);
   lysenko::Shape::ShapePtr makeRectangle();
+  lysenko::Shape::ShapePtr createMyRectangle(double width, double height, point_t pos);
   std::shared_ptr <lysenko::CompositeShape> makeCompositeShape();
 
   void testMove(Shape::ShapePtr src);

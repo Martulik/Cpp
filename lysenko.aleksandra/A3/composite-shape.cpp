@@ -154,7 +154,6 @@ void curr::CompositeShape::addShape(const ShapePtr& src)
   {
     enlargeCapacity(capacity_ * 2);
   }
-  array_[size_].reset();
   array_[size_] = src->clone();
   size_++;
 }
@@ -166,10 +165,7 @@ void curr::CompositeShape::popShape()
     throw std::logic_error("Empty composite shape is illegal");
   }
   ArrayOfShapes reducedData(std::make_unique < ShapePtr[] >(capacity_));
-  for (size_t i = 0; i < size_ - 1; i++)
-  {
-    reducedData[i] = array_[i];
-  }
+  reducedData.swap(array_);
   array_ = std::move(reducedData);
   size_--;
 }

@@ -7,31 +7,32 @@
 #include "rectangle.hpp"
 #include "composite-shape.hpp"
 
-namespace curr = lysenko;
+namespace lysenko
+{
+  void testMyFigure(lysenko::Shape::ShapePtr figure);
 
-void testMyFigure(curr::Shape::ShapePtr figure);
+  void printFrameRect(const lysenko::Shape::ShapePtr figure);
 
-void printFrameRect(const curr::Shape::ShapePtr figure);
+  void printFiguresCenter(std::string adj, const lysenko::Shape::ShapePtr figure);
 
-void printFiguresCenter(std::string adj, const curr::Shape::ShapePtr figure);
-
-void printFigure(const curr::Shape::ShapePtr figure);
+  void printFigure(const lysenko::Shape::ShapePtr figure);
+}
 
 int main()
 {
   try
   {
-    curr::point_t myPos{ 33.33, 33.33 };
+    lysenko::point_t myPos{ 33.33, 33.33 };
     double width = 1.0;
     double heigth = 2.0;
-    curr::Shape::ShapePtr myRectangle(std::make_shared <curr::Rectangle>(width, heigth, myPos));
+    lysenko::Shape::ShapePtr myRectangle(std::make_shared < lysenko::Rectangle >(width, heigth, myPos));
     testMyFigure(myRectangle);
 
     double radius = 33.33;
-    curr::Shape::ShapePtr myCircle(std::make_shared <curr::Circle>(myPos, radius));
+    lysenko::Shape::ShapePtr myCircle(std::make_shared < lysenko::Circle >(myPos, radius));
     testMyFigure(myCircle);
 
-    curr::Shape::ShapePtr myCompositeShape(std::make_shared <curr::CompositeShape>(myRectangle));
+    lysenko::Shape::ShapePtr myCompositeShape(std::make_shared < lysenko::CompositeShape >(myRectangle));
     testMyFigure(myCompositeShape);
   }
   catch (...)
@@ -42,7 +43,7 @@ int main()
   return 0;
 }
 
-void printFrameRect(const curr::Shape::ShapePtr figure)
+void lysenko::printFrameRect(const lysenko::Shape::ShapePtr figure)
 {
   std::cout << "Its frame rectangle's width: " << figure->getFrameRect().width << ", "
             << "height: " << figure->getFrameRect().height << ", "
@@ -50,13 +51,13 @@ void printFrameRect(const curr::Shape::ShapePtr figure)
             << "centers's ordinate " << figure->getFrameRect().pos.y << "\n";
 }
 
-void printFiguresCenter(const std::string adj, const curr::Shape::ShapePtr figure)
+void lysenko::printFiguresCenter(const std::string adj, const lysenko::Shape::ShapePtr figure)
 {
   std::cout << "Its " << adj << " center's abscissa " << figure->getFrameRect().pos.x << "\n"
             << "Its " << adj << " centers's ordinate " << figure->getFrameRect().pos.y << "\n";
 }
 
-void printFigure(const curr::Shape::ShapePtr figure)
+void lysenko::printFigure(const lysenko::Shape::ShapePtr figure)
 {
   std::string typeOfFigure = figure->getName();
   std::cout << "Type of figure:" << typeOfFigure << "\n";
@@ -65,10 +66,10 @@ void printFigure(const curr::Shape::ShapePtr figure)
   printFrameRect(figure);
 }
 
-void testMyFigure(curr::Shape::ShapePtr figure)
+void lysenko::testMyFigure(lysenko::Shape::ShapePtr figure)
 {
   printFigure(figure);
-  curr::point_t newPos{ 0.0, 0.0 };
+  lysenko::point_t newPos{ 0.0, 0.0 };
   std::cout << "Move the figure's center to point (" << newPos.x << ", " << newPos.y << ")\n";
   figure->move(newPos);
   printFiguresCenter("new", figure);

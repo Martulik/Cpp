@@ -22,9 +22,11 @@ BOOST_AUTO_TEST_CASE(test_changing_of_radius_after_scale)
   BOOST_CHECK_CLOSE(oldRadius * 5, getWidth(myCircle) / 2, lysenko::accuracy);
 }
 
-BOOST_AUTO_TEST_CASE(test_invalid_radius)
+BOOST_AUTO_TEST_CASE(test_default_radius)
 {
-  BOOST_CHECK_THROW(lysenko::Circle myCircle({ 1.0, 1.0}, -33.33), std::invalid_argument);
+  lysenko::point_t pos{ 10.0, 0.5 };
+  double defaultRadius = -5.0;
+  BOOST_CHECK_THROW(lysenko::createMyCircle(defaultRadius, pos), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

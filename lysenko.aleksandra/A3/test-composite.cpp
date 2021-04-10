@@ -1,51 +1,55 @@
 #include "test-functions.hpp"
+ 
+namespace curr = lysenko;
 
 BOOST_AUTO_TEST_SUITE(test_composite)
 
 BOOST_AUTO_TEST_CASE(test_move)
 {
-  lysenko::testMove(lysenko::makeCompositeShape());
+  curr::testMove(curr::makeCompositeShape());
 }
 
 BOOST_AUTO_TEST_CASE(test_scale)
 {
-  lysenko::testScale(lysenko::makeCompositeShape());
+  curr::testScale(curr::makeCompositeShape());
 }
 
 BOOST_AUTO_TEST_CASE(test_changing_of_shapes_centers_after_scale)
 {
-  lysenko::CompositeShape myComposite(lysenko::makeCircle());
-  lysenko::Shape::ShapePtr myCompositePtr(std::make_unique<lysenko::CompositeShape>(myComposite));
-  double oldCenterX= lysenko::getX(myCompositePtr);
-  double oldCenterY = lysenko::getY(myCompositePtr);
-  double oldCenterXCircle = lysenko::getX(myComposite.at(0));
-  double oldCenterYCircle = lysenko::getY(lysenko::makeCircle());
+  curr::CompositeShape myComposite(curr::makeCircle());
+  curr::Shape::ShapePtr myCompositePtr(std::make_unique< curr::CompositeShape >(myComposite));
+  double oldCentX= curr::getX(myCompositePtr);
+  double oldCentY = curr::getY(myCompositePtr);
+  double oldCentXCircle = curr::getX(myComposite.at(0));
+  double oldCentYCircle = curr::getY(curr::makeCircle());
   double k = 5.0;
   myComposite.scale(k);
-  BOOST_CHECK_CLOSE(oldCenterXCircle + (oldCenterX - oldCenterXCircle) * k, lysenko::getX(myCompositePtr), lysenko::accuracy);
-  BOOST_CHECK_CLOSE(oldCenterYCircle + (oldCenterY - oldCenterYCircle) * k, lysenko::getY(myCompositePtr), lysenko::accuracy);
+  double newCentXCircle = oldCentXCircle + (oldCentX - oldCentXCircle) * k;
+  double newCentYCircle = oldCentYCircle + (oldCentY - oldCentYCircle) * k;
+  BOOST_CHECK_CLOSE(newCentXCircle, curr::getX(myCompositePtr), curr::accuracy);
+  BOOST_CHECK_CLOSE(newCentYCircle, curr::getY(myCompositePtr), curr::accuracy);
 }
 
 BOOST_AUTO_TEST_CASE(test_at)
 {
-  lysenko::CompositeShape myComposite(lysenko::makeCircle());
+  curr::CompositeShape myComposite(curr::makeCircle());
   BOOST_CHECK_THROW(myComposite.at(-1), std::out_of_range);
   BOOST_CHECK_THROW(myComposite.at(1), std::out_of_range);
 }
 
 BOOST_AUTO_TEST_CASE(test_enlargeCapacity_invalid_argument)
 {
-  BOOST_CHECK_THROW(lysenko::makeCompositeShape()->enlargeCapacity(1), std::invalid_argument);
+  BOOST_CHECK_THROW(curr::makeCompositeShape()->enlargeCapacity(1), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(test_default_shape)
 {
-  BOOST_CHECK_THROW(lysenko::CompositeShape myComposite(nullptr), std::invalid_argument);
+  BOOST_CHECK_THROW(curr::CompositeShape myComposite(nullptr), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(test_popShape)
 {
-  lysenko::CompositeShape myComposite(lysenko::makeCircle());
+  curr::CompositeShape myComposite(curr::makeCircle());
   BOOST_CHECK_THROW(myComposite.popShape(), std::logic_error);
 }
 

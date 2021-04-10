@@ -40,9 +40,6 @@ namespace lebedeva
     void doScale(double k) override;
 
     rectangle_t makeFrameRect() const;
-    point_t getPos(double minX, double maxX, double minY, double maxY) const;
-    double getWidth(double minX, double maxX) const;
-    double getHeight(double minY, double maxY) const;
   };
  }
 

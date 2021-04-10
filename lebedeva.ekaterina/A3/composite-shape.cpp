@@ -154,20 +154,27 @@ leb::rectangle_t leb::CompositeShape::makeFrameRect() const
     minY = std::min(minY, getBorderCoordinate(frameRect, bottom));
   }
 
-  return { getPos(minX, maxX, minY, maxY), getWidth(minX, maxX), getHeight(minY, maxY) };
+  return { getPos({ minX, minY }, { maxX, maxY }), getWidth(minX, maxX), getHeight(minY, maxY) };
 }
 
-leb::point_t leb::CompositeShape::getPos(const double minX, const double maxX, const double minY, const double maxY) const
+namespace lebedeva
 {
-  return { (maxX + minX) / 2, (maxY + minY) / 2 };
-}
+  point_t getPos(point_t botLeft, point_t topRight);
+  double getWidth(double minX, double maxX);
+  double getHeight(double minY, double maxY);
 
-double leb::CompositeShape::getWidth(const double minX, const double maxX) const
-{
-  return (maxX - minX);
-}
+  point_t getPos(point_t botLeft, point_t topRight)
+  {
+    return { (topRight.x + botLeft.x) / 2, (topRight.y + botLeft.y) / 2 };
+  }
 
-double leb::CompositeShape::getHeight(const double minY, const double maxY) const
-{
-  return (maxY - minY);
+  double getWidth(const double minX, const double maxX)
+  {
+    return (maxX - minX);
+  }
+
+  double getHeight(const double minY, const double maxY)
+  {
+    return (maxY - minY);
+  }
 }

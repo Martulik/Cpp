@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
   } else if (taskNumber == 4 && argc == 4) {
     const std::function< bool(int, int) > &sort_mode = getSortMode< int >(argv[2]);
     err = sort_mode && isDigit(argv[3]) ? lab::task4(sort_mode, atoi(argv[3])) : lab::error::sort_mode;
+  } else {
+    err = lab::error::number_args;
   }
 
   if (!lab::isNoErrors(err)) {

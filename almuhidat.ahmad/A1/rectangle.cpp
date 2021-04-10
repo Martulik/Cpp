@@ -1,12 +1,12 @@
 #include "rectangle.hpp"
 #include <iostream>
 
-double Rectangle::getArea()const
+double Rectangle::getArea() const
 {
   return width_ * height_;
 }
 
-rectangle_t Rectangle::getFrameRect()const
+rectangle_t Rectangle::getFrameRect() const
 {
   return{ width_, height_, pos_ };
 }

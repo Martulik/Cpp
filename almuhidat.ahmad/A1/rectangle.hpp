@@ -1,6 +1,5 @@
-#ifndef _RECTANGLE_HPP_
-#define _RECTANGLE_HPP_
-
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 #include "shape.hpp"
 
 class Rectangle : public Shape
@@ -12,8 +11,8 @@ public:
         pos_(valuePos)
     {
     }
-    double getArea()const override;
-    rectangle_t getFrameRect()const override;
+    double getArea() const override;
+    rectangle_t getFrameRect() const override;
     void move(point_t newPos) override;
     void move(double abscissa, double ordinate) override;
 private:

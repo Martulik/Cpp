@@ -4,7 +4,7 @@
 #include "composite-shape.hpp"
 
 namespace fer = ferapontov;
-using unique_shp = std::unique_ptr< fer::Shape > ;
+using UniqueShp = std::unique_ptr< fer::Shape > ;
 
 void testArea(fer::Shape& shp)
 {
@@ -37,12 +37,12 @@ int main()
 {
   const fer::point_t point_zero = {0, 0};
   const fer::point_t not_zero = {123, 3};
-  unique_shp rectangle(new fer::Rectangle(10, 20, {23, 4}));
-  unique_shp circle(new fer::Circle(5, point_zero));
+  UniqueShp rectangle(new fer::Rectangle(10, 20, {23, 4}));
+  UniqueShp circle(new fer::Circle(5, point_zero));
 
   fer::Circle circ(5, point_zero);
   fer::Rectangle rect(10, 20, {23, 4});
-  unique_shp comp(new fer::CompositeShape({std::addressof(circ), std::addressof(rect)}));
+  UniqueShp comp(new fer::CompositeShape({std::addressof(circ), std::addressof(rect)}));
 
   testArea(*rectangle);
   testArea(*circle);

@@ -12,27 +12,27 @@ BOOST_AUTO_TEST_SUITE(composite_shape)
 
 BOOST_AUTO_TEST_CASE(move_invariant)
 {
-  lab::CompositeShape comp = lab::makeComposite();
-  lab::checkMoveInvariant(comp, { -1.6, 13.5 });
-  lab::checkMoveInvariant(comp, 2.3, -12.6);
+  std::unique_ptr< lab::Shape > comp = lab::makeComposite();
+  lab::checkMoveInvariant(*comp, { -1.6, 13.5 });
+  lab::checkMoveInvariant(*comp, 2.3, -12.6);
 }
 
 BOOST_AUTO_TEST_CASE(scale_frame_rectangle)
 {
-  lab::CompositeShape comp = lab::makeComposite();
-  lab::checkScaleFrameRect(comp, CORRECT_SCALE_FACTOR);
+  std::unique_ptr< lab::Shape > comp = lab::makeComposite();
+  lab::checkScaleFrameRect(*comp, CORRECT_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(scale_area)
 {
-  lab::CompositeShape comp = lab::makeComposite();
-  lab::checkScaleArea(comp, CORRECT_SCALE_FACTOR);
+  std::unique_ptr< lab::Shape > comp = lab::makeComposite();
+  lab::checkScaleArea(*comp, CORRECT_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(scale_invalid_argument)
 {
-  lab::CompositeShape comp = lab::makeComposite();
-  lab::checkScaleInvalidArgument(comp, WRONG_SCALE_FACTOR);
+  std::unique_ptr< lab::Shape > comp = lab::makeComposite();
+  lab::checkScaleInvalidArgument(*comp, WRONG_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(correct_frame_rectangle)

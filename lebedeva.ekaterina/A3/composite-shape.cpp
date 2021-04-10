@@ -29,7 +29,8 @@ leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > com
 
 leb::CompositeShape::CompositeShape(const CompositeShape& composition):
   countElements_(composition.countElements_),
-  data_(std::make_unique< ShapePtr[] >(countElements_))
+  data_(std::make_unique< ShapePtr[] >(countElements_)),
+  frameRect_(composition.frameRect_)
 {
   for (size_t i = 0; i < countElements_; ++i)
   {

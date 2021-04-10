@@ -22,7 +22,7 @@ namespace lebedeva
     virtual void doScale(double k) = 0;
   };
 
-  double getBorderCoordinate(const rectangle_t frameRect,
-    const std::string direction);
+  enum class Direction { Right, Left, Top, Bottom };
+  double getBorderCoordinate(const rectangle_t frameRect, Direction direction);
 }
 #endif

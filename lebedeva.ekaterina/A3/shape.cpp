@@ -12,24 +12,24 @@ void leb::Shape::scale(double k)
   doScale(k);
 }
 
-double leb::getBorderCoordinate(const rectangle_t frameRect,
-  const std::string direction)
+double leb::getBorderCoordinate(const rectangle_t frameRect, Direction direction)
 {
-  if (direction == "right")
+  double result = 0;
+  if (direction == Direction::Right)
   {
-    return (frameRect.pos.x + (frameRect.width / 2));
+    result = frameRect.pos.x + (frameRect.width / 2);
   }
-  if (direction == "left")
+  if (direction == Direction::Left)
   {
-    return (frameRect.pos.x - (frameRect.width / 2));
+    result = frameRect.pos.x - (frameRect.width / 2);
   }
-  if (direction == "top")
+  if (direction == Direction::Top)
   {
-    return (frameRect.pos.y + (frameRect.height / 2));
+    result = frameRect.pos.y + (frameRect.height / 2);
   }
-  if (direction == "bottom")
+  if (direction == Direction::Bottom)
   {
-    return (frameRect.pos.y - (frameRect.height / 2));
+    result = frameRect.pos.y - (frameRect.height / 2);
   }
-  throw std::invalid_argument("Unknown direction.");
+  return result;
 }

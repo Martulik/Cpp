@@ -135,18 +135,22 @@ void leb::CompositeShape::swap(CompositeShape& composition) noexcept
 leb::rectangle_t leb::CompositeShape::makeFrameRect() const
 {
   rectangle_t frameRect = data_[0]->getFrameRect();
-  double maxX = getBorderCoordinate(frameRect, "right");
-  double minX = getBorderCoordinate(frameRect, "left");
-  double maxY = getBorderCoordinate(frameRect, "top");
-  double minY = getBorderCoordinate(frameRect, "bottom");
+  Direction left = Direction::Left;
+  Direction right = Direction::Right;
+  Direction top = Direction::Top;
+  Direction bottom = Direction::Bottom;
+  double maxX = getBorderCoordinate(frameRect, right);
+  double minX = getBorderCoordinate(frameRect, left);
+  double maxY = getBorderCoordinate(frameRect, top);
+  double minY = getBorderCoordinate(frameRect, bottom);
 
   for (size_t i = 1; i < countElements_; i++)
   {
     frameRect = data_[i]->getFrameRect();
-    maxX = std::max(maxX, getBorderCoordinate(frameRect, "right"));
-    minX = std::min(minX, getBorderCoordinate(frameRect, "left"));
-    maxY = std::max(maxY, getBorderCoordinate(frameRect, "top"));
-    minY = std::min(minY, getBorderCoordinate(frameRect, "bottom"));
+    maxX = std::max(maxX, getBorderCoordinate(frameRect, right));
+    minX = std::min(minX, getBorderCoordinate(frameRect, left));
+    maxY = std::max(maxY, getBorderCoordinate(frameRect, top));
+    minY = std::min(minY, getBorderCoordinate(frameRect, bottom));
   }
 
   return { getPos(minX, maxX, minY, maxY), getWidth(minX, maxX), getHeight(minY, maxY) };

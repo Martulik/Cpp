@@ -28,6 +28,7 @@ namespace lebedeva
 
     void move(const point_t& newPos) override;
     void move(double dx, double dy) override;
+    std::shared_ptr< Shape > operator[](size_t i);
     std::shared_ptr< Shape > at(size_t i);
 
   private:

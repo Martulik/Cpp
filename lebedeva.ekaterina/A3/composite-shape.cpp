@@ -57,15 +57,6 @@ std::shared_ptr< const leb::Shape > leb::CompositeShape::at(size_t i) const
   return data_[i];
 }
 
-std::shared_ptr< leb::Shape > leb::CompositeShape::at(size_t i)
-{
-  if (i >= countElements_)
-  {
-    throw std::out_of_range("Out of range");
-  }
-  return data_[i];
-}
-
 double leb::CompositeShape::getArea() const
 {
   double result = 0;
@@ -119,6 +110,20 @@ void leb::CompositeShape::move(double dx, double dy)
   {
     data_[i]->move(dx, dy);
   }
+}
+
+std::shared_ptr< leb::Shape > leb::CompositeShape::operator[](size_t i)
+{
+  return data_[i];
+}
+
+std::shared_ptr< leb::Shape > leb::CompositeShape::at(size_t i)
+{
+  if (i >= countElements_)
+  {
+    throw std::out_of_range("Out of range");
+  }
+  return data_[i];
 }
 
 void leb::CompositeShape::doScale(double k)

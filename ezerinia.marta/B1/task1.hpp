@@ -8,7 +8,7 @@
 
 namespace ezerinia {
   template< typename C >
-  error task1(C sort_mode)
+  error task1(const C sort_mode)
   {
     std::vector< int > collection_numbers;
     int number = 0;

@@ -6,7 +6,7 @@ namespace lab = ezerinia;
 const int max_size_collection = 3;
 
 template< typename I >
-void fillCout(I begin, const I &end)
+void fillCont(I begin, const I &end)
 {
   srand(time(NULL));
   while (begin != end) {
@@ -19,7 +19,7 @@ template< typename S >
 void testSort(const std::function< bool(int, int) > cmp, const int size)
 {
   typename S::container_t cont(size);
-  fillCout(cont.begin(), cont.end());
+  fillCont(cont.begin(), cont.end());
   lab::sortAndPrint< S >(cont, cmp);
   BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), cmp));
 }
@@ -28,8 +28,8 @@ template< typename S >
 void doTestSort()
 {
   for (int i = 0; i < max_size_collection; i++) {
-    testSort< S >(std::greater<>(), i);
-    testSort< S >(std::less<>(), i);
+    testSort< S >(std::greater< >(), i);
+    testSort< S >(std::less< >(), i);
   }
 }
 

@@ -7,7 +7,7 @@
 
 namespace ezerinia {
   template< typename C >
-  error task4(C sort_mode, const int size)
+  error task4(const C sort_mode, const int size)
   {
     if (size < 0) {
       return error::input;

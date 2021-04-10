@@ -2,7 +2,7 @@
 
 namespace lab = ezerinia;
 
-bool lab::isNoErrors(const error err)
+bool lab::isNoErrors(const error &err)
 {
   return err == lab::error::success;
 }

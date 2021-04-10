@@ -21,7 +21,7 @@ lab::error lab::task3()
     return lab::error::success;
   }
   if (n != 0) {
-    return lab::error::task_failed;
+    return lab::error::input;
   }
 
   std::vector< int >::iterator iter = vec.begin();

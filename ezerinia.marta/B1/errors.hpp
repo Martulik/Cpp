@@ -11,6 +11,6 @@ namespace ezerinia {
     input
   };
 
-  bool isNoErrors(const error err);
+  bool isNoErrors(const error &err);
 }
 #endif

@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
   } else if (taskNumber == 3 && argc == 2) {
     err = lab::task3();
   } else if (taskNumber == 4 && argc == 4) {
-    const std::function< bool(int, int) > &sort_mode = getSortMode< int >(argv[2]);
+    const std::function< bool(double, double) > &sort_mode = getSortMode< double >(argv[2]);
     err = sort_mode && isDigit(argv[3]) ? lab::task4(sort_mode, atoi(argv[3])) : lab::error::sort_mode;
   } else {
     err = lab::error::number_args;

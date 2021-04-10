@@ -21,7 +21,7 @@ int murzakanov::task2(std::string& fileName)
   std::unique_ptr< char[] > text = std::make_unique< char [] >(capacity);
   while (!input.eof())
   {
-    input.read(&text[0], capacity - size);
+    input.read(&text[size], capacity - size);
     size += input.gcount();
     capacity *= 2;
     std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);

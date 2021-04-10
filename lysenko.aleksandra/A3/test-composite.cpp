@@ -1,5 +1,5 @@
 #include "test-functions.hpp"
- 
+
 namespace curr = lysenko;
 
 BOOST_AUTO_TEST_SUITE(test_composite)

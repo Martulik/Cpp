@@ -1,8 +1,11 @@
 #include "tasks.hpp"
+
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <memory>
+
+#include "tools.hpp"
 
 int murzakanov::task2(std::string& fileName)
 {
@@ -13,21 +16,23 @@ int murzakanov::task2(std::string& fileName)
     std::cerr << "Error with opening\n";
     return 1;
   }
-  int n = 0;
-  char x = 0;
-  while (input >> x && !input.eof())
+  int capacity = 128;
+  int size = 0;
+  std::unique_ptr< char[] > text = std::make_unique< char [] >(capacity);
+  while (!input.eof())
   {
-    n++;
+    input.read(&text[0], capacity - size);
+    size += input.gcount();
+    capacity *= 2;
+    std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);
+    for (int i = 0; i < size; i++)
+    {
+      temp[i] = text[i];
+    }
+    text = std::move(temp);
   }
-  input.clear();
-  input.seekg(0);
-  std::unique_ptr< char > arr = std::make_unique< char >(n);
-  for (int i = 0; i < n; i++)
-  {
-    input.get(arr.get()[i]);
-  }
-  std::vector< char > vec(arr.get(), arr.get() + n);
-  for (int i = 0; i < n; i++)
+  std::vector< char > vec(&text[0], &text[size]);
+  for (size_t i = 0; i < vec.size(); i++)
   {
     std::cout << vec[i];
   }

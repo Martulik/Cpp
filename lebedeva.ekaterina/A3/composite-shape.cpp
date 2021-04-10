@@ -45,20 +45,6 @@ leb::CompositeShape& leb::CompositeShape::operator=(const CompositeShape& compos
   return *this;
 }
 
-std::shared_ptr< const leb::Shape > leb::CompositeShape::operator[](size_t i) const
-{
-  return data_[i];
-}
-
-std::shared_ptr< const leb::Shape > leb::CompositeShape::at(size_t i) const
-{
-  if (i >= countElements_)
-  {
-    throw std::out_of_range("Out of range");
-  }
-  return data_[i];
-}
-
 double leb::CompositeShape::getArea() const
 {
   double result = 0;
@@ -99,20 +85,6 @@ void leb::CompositeShape::move(double dx, double dy)
   frameRect_ = makeFrameRect();
 }
 
-std::shared_ptr< leb::Shape > leb::CompositeShape::operator[](size_t i)
-{
-  return data_[i];
-}
-
-std::shared_ptr< leb::Shape > leb::CompositeShape::at(size_t i)
-{
-  if (i >= countElements_)
-  {
-    throw std::out_of_range("Out of range");
-  }
-  return data_[i];
-}
-
 void leb::CompositeShape::doScale(double k)
 {
   leb::point_t collectionPos = this->getFrameRect().pos;
@@ -131,30 +103,6 @@ void leb::CompositeShape::swap(CompositeShape& composition) noexcept
 {
   std::swap(countElements_, composition.countElements_);
   std::swap(data_, composition.data_);
-}
-
-leb::rectangle_t leb::CompositeShape::makeFrameRect() const
-{
-  rectangle_t frameRect = data_[0]->getFrameRect();
-  Direction left = Direction::Left;
-  Direction right = Direction::Right;
-  Direction top = Direction::Top;
-  Direction bottom = Direction::Bottom;
-  double maxX = getBorderCoordinate(frameRect, right);
-  double minX = getBorderCoordinate(frameRect, left);
-  double maxY = getBorderCoordinate(frameRect, top);
-  double minY = getBorderCoordinate(frameRect, bottom);
-
-  for (size_t i = 1; i < countElements_; i++)
-  {
-    frameRect = data_[i]->getFrameRect();
-    maxX = std::max(maxX, getBorderCoordinate(frameRect, right));
-    minX = std::min(minX, getBorderCoordinate(frameRect, left));
-    maxY = std::max(maxY, getBorderCoordinate(frameRect, top));
-    minY = std::min(minY, getBorderCoordinate(frameRect, bottom));
-  }
-
-  return { getPos({ minX, minY }, { maxX, maxY }), getWidth(minX, maxX), getHeight(minY, maxY) };
 }
 
 namespace lebedeva
@@ -177,4 +125,28 @@ namespace lebedeva
   {
     return (maxY - minY);
   }
+}
+
+leb::rectangle_t leb::CompositeShape::makeFrameRect() const
+{
+  rectangle_t frameRect = data_[0]->getFrameRect();
+  //Direction left = Direction::Left;
+  //Direction right = Direction::Right;
+  //Direction top = Direction::Top;
+  //Direction bottom = Direction::Bottom;
+  double maxX = getBorderCoordinate(frameRect, Direction::Right);
+  double minX = getBorderCoordinate(frameRect, Direction::Left);
+  double maxY = getBorderCoordinate(frameRect, Direction::Top);
+  double minY = getBorderCoordinate(frameRect, Direction::Bottom);
+
+  for (size_t i = 1; i < countElements_; i++)
+  {
+    frameRect = data_[i]->getFrameRect();
+    maxX = std::max(maxX, getBorderCoordinate(frameRect, Direction::Right));
+    minX = std::min(minX, getBorderCoordinate(frameRect, Direction::Left));
+    maxY = std::max(maxY, getBorderCoordinate(frameRect, Direction::Top));
+    minY = std::min(minY, getBorderCoordinate(frameRect, Direction::Bottom));
+  }
+
+  return { getPos({ minX, minY }, { maxX, maxY }), getWidth(minX, maxX), getHeight(minY, maxY) };
 }

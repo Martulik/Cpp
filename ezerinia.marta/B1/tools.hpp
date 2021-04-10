@@ -103,5 +103,6 @@ namespace ezerinia {
     sort< T, C >(cont, T::begin(cont), T::end(cont), cmp);
     print(cont, std::cout);
   }
+
 }
 #endif

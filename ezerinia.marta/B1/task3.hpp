@@ -1,8 +1,10 @@
 #ifndef TASK3_HPP
 #define TASK3_HPP
 
+#include "errors.hpp"
+
 namespace ezerinia {
-  int task3();
+  error task3();
 }
 
 #endif

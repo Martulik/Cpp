@@ -4,14 +4,13 @@
 
 namespace lab = ezerinia;
 
-int lab::task3()
+lab::error lab::task3()
 {
   std::vector< int > vec;
   int n = 1;
   while (std::cin && !(std::cin >> n).eof()) {
     if (std::cin.fail() || std::cin.bad()) {
-      std::cerr << "Error input\n";
-      return 1;
+      return lab::error::input;
     }
     if (n == 0) {
       break;
@@ -19,11 +18,10 @@ int lab::task3()
     vec.push_back(n);
   }
   if (vec.empty()) {
-    return 0;
+    return lab::error::success;
   }
   if (n != 0) {
-    std::cerr << "Zero not found\n";
-    return 1;
+    return lab::error::task_failed;
   }
 
   std::vector< int >::iterator iter = vec.begin();
@@ -46,5 +44,5 @@ int lab::task3()
   }
   lab::print(vec, std::cout);
 
-  return 0;
+  return lab::error::success;
 }

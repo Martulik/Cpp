@@ -4,17 +4,17 @@
 #include <vector>
 #include <forward_list>
 #include "tools.hpp"
+#include "errors.hpp"
 
 namespace ezerinia {
   template< typename C >
-  int task1(C sort_mode)
+  error task1(C sort_mode)
   {
     std::vector< int > collection_numbers;
     int number = 0;
     while (std::cin && !(std::cin >> number).eof()) {
       if (std::cin.fail() || std::cin.bad()) {
-        std::cerr << "Wrong input\n";
-        return 1;
+        return error::input;
       }
       collection_numbers.push_back(number);
     }
@@ -28,7 +28,7 @@ namespace ezerinia {
     std::forward_list< int > iter(collection_numbers.begin(), collection_numbers.end());
     sortAndPrint< iteratorList< int > >(iter, sort_mode);
 
-    return 0;
+    return error::success;
   }
 }
 #endif

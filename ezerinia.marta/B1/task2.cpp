@@ -6,17 +6,16 @@
 
 namespace lab = ezerinia;
 
-int lab::task2(const char *input)
+lab::error lab::task2(const char *input)
 {
   std::ifstream file;
   file.open(input);
   if (!file) {
-    std::cerr << "File does not exist\n";
-    return 1;
+    return lab::error::task_failed;
   }
 
   if (file.peek() == EOF) {
-    return 0;
+    return lab::error::success;
   }
 
   size_t capacity = 5;
@@ -39,5 +38,5 @@ int lab::task2(const char *input)
   for (size_t i = 0; i < count; i++) {
     std::cout << vector[i];
   }
-  return 0;
+  return lab::error::success;
 }

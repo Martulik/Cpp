@@ -1,3 +1,6 @@
+#include <initializer_list>
+#include <memory>
+
 #include <boost/test/unit_test.hpp>
 
 #include "test-utility.hpp"
@@ -38,9 +41,10 @@ BOOST_AUTO_TEST_CASE(correct_frame_rectangle)
   const double SIDE = 1;
   const double RAD = 100;
   const lab::rectangle_t FRAME_RECT = { POS, 2 * RAD, 2 * RAD };
-  lab::Rectangle r(POS, SIDE, SIDE);
-  lab::Circle c(POS, RAD);
-  lab::CompositeShape comp({ &r, &c });
+  std::unique_ptr< lab::Shape > r = std::make_unique< lab::Rectangle >(POS, SIDE, SIDE);
+  std::unique_ptr< lab::Shape > c = std::make_unique< lab::Circle >(POS, RAD);
+  std::initializer_list< std::unique_ptr< lab::Shape > > il{ std::move(r), std::move(c) };
+  lab::CompositeShape comp(il);
   lab::checkCorrectFrameRect(comp, FRAME_RECT);
 }
 

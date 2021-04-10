@@ -1,5 +1,8 @@
 #include "test-utility.hpp"
 
+#include <initializer_list>
+#include <memory>
+
 #include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
 
@@ -22,9 +25,10 @@ lab::Circle lab::makeCirc()
 
 lab::CompositeShape lab::makeComposite()
 {
-  Rectangle r = makeRect();
-  Circle c = makeCirc();
-  return CompositeShape({ &r, &c });
+  std::unique_ptr< lab::Shape > r = std::make_unique< lab::Rectangle >(makeRect());
+  std::unique_ptr< lab::Shape > c = std::make_unique< lab::Circle >(makeCirc());
+  std::initializer_list< std::unique_ptr< lab::Shape > > il{std::move(r), std::move(c)};
+  return CompositeShape(il);
 }
 
 void lab::checkMoveInvariant(lab::Shape& s, const lab::point_t& p)

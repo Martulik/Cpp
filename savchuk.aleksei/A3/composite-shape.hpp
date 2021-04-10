@@ -15,10 +15,10 @@ namespace savchuk
     using valueType = std::unique_ptr< Shape >;
     using thisType = CompositeShape;
 
-    CompositeShape(std::initializer_list< const Shape* >);
+    CompositeShape(std::initializer_list< valueType >);
     CompositeShape(const thisType&);
-    CompositeShape(thisType&&) noexcept;
-    ~CompositeShape();
+    CompositeShape(thisType&&) noexcept = default;
+    ~CompositeShape() = default;
 
     thisType& operator=(const thisType&);
     thisType& operator=(thisType&&) noexcept;
@@ -32,7 +32,7 @@ namespace savchuk
 
   private:
     size_t size_;
-    valueType* arr_;
+    std::unique_ptr< valueType[] > arr_;
 
     void doScale(double scaleFactor) override;
   };

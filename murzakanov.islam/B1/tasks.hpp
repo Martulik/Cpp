@@ -10,4 +10,5 @@ namespace murzakanov
   int task3();
   int task4(std::string& order, int size);
 }
+
 #endif

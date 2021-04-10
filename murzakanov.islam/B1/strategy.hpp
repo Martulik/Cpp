@@ -4,7 +4,6 @@
 #include <vector>
 #include <forward_list>
 
-
 namespace murzakanov
 {
   template< class T >
@@ -66,4 +65,5 @@ namespace murzakanov
     }
   };
 }
+
 #endif

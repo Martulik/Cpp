@@ -1,9 +1,10 @@
+#include "tasks.hpp"
+
 #include <vector>
 #include <string>
 #include <iostream>
 #include <forward_list>
 
-#include "tasks.hpp"
 #include "strategy.hpp"
 #include "sorting.hpp"
 #include "tools.hpp"
@@ -15,21 +16,25 @@ int murzakanov::task1(const std::string& order)
     std::cerr << "Wrong order\n";
     return 1;
   }
+
   int x = 0;
   std::vector< int > firstVector;
   while (std::cin >> x)
   {
     firstVector.push_back(x);
   }
+
   if (std::cin.fail() && !std::cin.eof())
   {
     std::cerr << "Read error\n";
     return 1;
   }
+
   if (firstVector.empty())
   {
     return 0;
   }
+
   std::vector< int > secondVector(firstVector);
   std::forward_list< int > list(firstVector.begin(), firstVector.end());
   sort< StrategyBrackets< int > >(firstVector, order);

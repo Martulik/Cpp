@@ -1,9 +1,16 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
+
 #include <iostream>
+#include "sorting.hpp"
+#include "strategy.hpp"
 
 namespace murzakanov
 {
+  void fillRandom(double* array, int size);
+  bool checkIsNumber(std::string& str);
+  bool checkForSpaces(std::string& str);
+
   template< typename T >
   void print(const T& store, std::ostream& out)
   {
@@ -17,7 +24,6 @@ namespace murzakanov
     }
     std::cout << "\n";
   }
-
-  void fillRandom(double* array, int size);
 }
+
 #endif

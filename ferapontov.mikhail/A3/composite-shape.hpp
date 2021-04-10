@@ -11,15 +11,15 @@ namespace ferapontov
   class CompositeShape: public Shape
   {
   public:
-    using value_type = std::unique_ptr< Shape >;
-    using this_type = CompositeShape;
+    using ValueType = std::unique_ptr< Shape >;
+    using ThisType = CompositeShape;
 
     CompositeShape(std::initializer_list< const Shape* > src);
-    CompositeShape(const this_type& src);
-    CompositeShape(this_type&& src) noexcept = default;
+    CompositeShape(const ThisType& src);
+    CompositeShape(ThisType&& src) noexcept = default;
 
-    this_type& operator=(const this_type& src);
-    this_type& operator=(this_type&& src) noexcept;
+    ThisType& operator=(const ThisType& src);
+    ThisType& operator=(ThisType&& src) noexcept;
 
     ~CompositeShape();
 
@@ -29,10 +29,10 @@ namespace ferapontov
     void move(const point_t& pos) override;
     void move(double dx, double dy) override;
     std::unique_ptr< Shape > clone() const override;
-    void swap(this_type& src);
+    void swap(ThisType& src);
   private:
     size_t size_;
-    value_type* arr_;
+    ValueType* arr_;
 
     void doScale(double k) override;
  };

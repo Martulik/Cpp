@@ -5,14 +5,14 @@
 #include <algorithm>
 
 namespace fer = ferapontov;
-using value_type = std::unique_ptr< fer::Shape >;
-using this_type = fer::CompositeShape;
+using ValueType = std::unique_ptr< fer::Shape >;
+using ThisType = fer::CompositeShape;
 
 fer::CompositeShape::CompositeShape(std::initializer_list< const Shape* > src):
   size_(src.size())
 {
   assert(size_ != 0 && "Composite Shape can not be empty");
-  arr_ = new value_type[size_];
+  arr_ = new ValueType[size_];
   size_t i = 0;
   std::initializer_list< const Shape* >::const_iterator it = src.begin();
   while(it != src.end())
@@ -23,9 +23,9 @@ fer::CompositeShape::CompositeShape(std::initializer_list< const Shape* > src):
   }
 }
 
-fer::CompositeShape::CompositeShape(const this_type& src):
+fer::CompositeShape::CompositeShape(const ThisType& src):
   size_(src.size_),
-  arr_(new value_type[size_])
+  arr_(new ValueType[size_])
 {
   for(size_t i = 0; i < size_; i++)
   {
@@ -33,16 +33,16 @@ fer::CompositeShape::CompositeShape(const this_type& src):
   }
 }
 
-this_type& fer::CompositeShape::operator=(const this_type& src)
+ThisType& fer::CompositeShape::operator=(const ThisType& src)
 {
-  this_type temp(src);
+  ThisType temp(src);
   swap(temp);
   return *this;
 }
 
-this_type& fer::CompositeShape::operator=(this_type&& src) noexcept
+ThisType& fer::CompositeShape::operator=(ThisType&& src) noexcept
 {
-  this_type temp(src);
+  ThisType temp(src);
   swap(temp);
   return *this;
 }
@@ -112,7 +112,7 @@ std::unique_ptr< fer::Shape > fer::CompositeShape::clone() const
   return std::unique_ptr< Shape >(new CompositeShape(*this));
 }
 
-void fer::CompositeShape::swap(this_type& src)
+void fer::CompositeShape::swap(ThisType& src)
 {
   std::swap(size_, src.size_);
   std::swap(arr_, src.arr_);

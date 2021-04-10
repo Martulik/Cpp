@@ -124,7 +124,7 @@ void lab::CompositeShape::doScale(double scaleFactor)
 
 std::unique_ptr< lab::Shape > lab::CompositeShape::clone() const
 {
-  return std::unique_ptr< Shape >(new CompositeShape(*this));
+  return std::make_unique< CompositeShape >(*this);
 }
 
 void lab::CompositeShape::swap(thisType& rhs)

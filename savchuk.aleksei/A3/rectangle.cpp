@@ -40,5 +40,5 @@ void lab::Rectangle::doScale(double scaleFactor)
 
 std::unique_ptr< lab::Shape > lab::Rectangle::clone() const
 {
-  return std::unique_ptr< Shape >(new Rectangle(*this));
+  return std::make_unique< Rectangle >(*this);
 }

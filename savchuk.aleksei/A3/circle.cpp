@@ -41,5 +41,5 @@ void lab::Circle::doScale(double scaleFactor)
 
 std::unique_ptr< lab::Shape > lab::Circle::clone() const
 {
-  return std::unique_ptr< Shape >(new Circle(*this));
+  return std::make_unique< Circle >(*this);
 }

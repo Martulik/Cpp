@@ -37,12 +37,10 @@ namespace lebedeva
 
     void swap(CompositeShape& composition) noexcept;
     void doScale(double k) override;
+    point_t getPos(double minX, double maxX, double minY, double maxY) const;
+    double getWidth(double minX, double maxX) const;
+    double getHeight(double minY, double maxY) const;
   };
-
-  point_t getPos(const double minX, const double maxX,
-    const double minY, const double maxY);
-  double getWidth(const double minX, const double maxX);
-  double getHeight(const double minY, const double maxY);
  }
 
 #endif

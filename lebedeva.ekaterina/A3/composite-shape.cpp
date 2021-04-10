@@ -84,8 +84,7 @@ leb::rectangle_t leb::CompositeShape::getFrameRect() const
     minY = std::min(minY, getBorderCoordinate(frameRect, "bottom"));
   }
 
-  return { getPos(minX, maxX, minY, maxY),
-    getWidth(minX, maxX), getHeight(minY, maxY) };
+  return { getPos(minX, maxX, minY, maxY), getWidth(minX, maxX), getHeight(minY, maxY) };
 }
 
 std::string leb::CompositeShape::getName() const
@@ -145,18 +144,17 @@ void leb::CompositeShape::swap(CompositeShape& composition) noexcept
   std::swap(data_, composition.data_);
 }
 
-leb::point_t leb::getPos(const double minX, const double maxX,
-  const double minY, const double maxY)
+leb::point_t leb::CompositeShape::getPos(const double minX, const double maxX, const double minY, const double maxY) const
 {
   return { (maxX + minX) / 2, (maxY + minY) / 2 };
 }
 
-double leb::getWidth(const double minX, const double maxX)
+double leb::CompositeShape::getWidth(const double minX, const double maxX) const
 {
   return (maxX - minX);
 }
 
-double leb::getHeight(const double minY, const double maxY)
+double leb::CompositeShape::getHeight(const double minY, const double maxY) const
 {
   return (maxY - minY);
 }

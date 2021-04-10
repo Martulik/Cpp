@@ -15,6 +15,7 @@ namespace murzakanov
       out << *it << " ";
       it++;
     }
+    std::cout << "\n";
   }
 
   void fillRandom(double* array, int size);

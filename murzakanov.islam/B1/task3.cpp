@@ -63,6 +63,5 @@ int murzakanov::task3()
     }
   }
   print(vec, std::cout);
-  std::cout << "\n";
   return 0;
 }

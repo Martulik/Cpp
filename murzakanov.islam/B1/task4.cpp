@@ -18,7 +18,8 @@ int murzakanov::task4(std::string& order, int size)
   std::vector < double > arr(size);
   murzakanov::fillRandom(&arr[0], size);
   std::vector< double > vec(arr);
+  murzakanov::print(vec, std::cout);
   murzakanov::sort< murzakanov::StrategyBrackets< double > >(vec, order);
-  murzakanov::print< std::vector< double > >(vec, std::cout);
+  murzakanov::print(vec, std::cout);
   return 0;
 }

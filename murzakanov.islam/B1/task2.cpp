@@ -16,25 +16,25 @@ int murzakanov::task2(std::string& fileName)
     std::cerr << "Error with opening\n";
     return 1;
   }
-  int capacity = 128;
+  int capacity = 512;
   int size = 0;
-  std::unique_ptr< char[] > text = std::make_unique< char [] >(capacity);
+  std::unique_ptr< char[] > arr = std::make_unique< char [] >(capacity);
   while (!input.eof())
   {
-    input.read(&text[size], capacity - size);
+    input.read(&arr[size], capacity - size);
     size += input.gcount();
     capacity *= 2;
     std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);
     for (int i = 0; i < size; i++)
     {
-      temp[i] = std::move(text[i]);
+      temp[i] = std::move(arr[i]);
     }
-    text = std::move(temp);
-    input.close();
+    arr = std::move(temp);
   }
 
-  std::vector< char > vec(&text[0], &text[size]);
-  for (size_t i = 0; i < vec.size(); i++)
+  input.close();
+  std::vector< char > vec(&arr[0], &arr[size]);
+  for (int i = 0; i < size; i++)
   {
     std::cout << vec[i];
   }

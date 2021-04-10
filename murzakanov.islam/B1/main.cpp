@@ -36,16 +36,22 @@ bool checkForSpaces(std::string& str)
 int main(int argc, char* argv[])
 {
   bool inArg = true;
-  std::string firstArg = argv[1];
-  if (checkForSpaces(firstArg))
-  {
-    inArg = false;
-  }
-  std::cout << firstArg << "\n";
+
   if (argc < 2) {
     inArg = false;
   }
-  int exNum = int(argv[1][0] - '0');
+
+  int exNum = 0;
+  if (inArg)
+  {
+    exNum = int(argv[1][0] - '0');
+    std::string firstArg = argv[1];
+    if (checkForSpaces(firstArg))
+    {
+      inArg = false;
+    }
+  }
+
   if (inArg && exNum == 1 && argc == 3) {
     std::string order = argv[2];
     code = murzakanov::task1(order);

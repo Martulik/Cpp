@@ -12,27 +12,27 @@ namespace savchuk
   class CompositeShape: public Shape
   {
   public:
-    using value_type = std::unique_ptr< Shape >;
-    using this_type = CompositeShape;
+    using valueType = std::unique_ptr< Shape >;
+    using thisType = CompositeShape;
 
     CompositeShape(std::initializer_list< const Shape* >);
-    CompositeShape(const this_type&);
-    CompositeShape(this_type&&) noexcept;
+    CompositeShape(const thisType&);
+    CompositeShape(thisType&&) noexcept;
     ~CompositeShape();
 
-    this_type& operator=(const this_type&);
-    this_type& operator=(this_type&&) noexcept;
+    thisType& operator=(const thisType&);
+    thisType& operator=(thisType&&) noexcept;
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t& point) override;
     void move(double dx, double dy) override;
     std::unique_ptr< Shape > clone() const override;
-    void swap(this_type&);
+    void swap(thisType&);
 
   private:
     size_t size_;
-    value_type* arr_;
+    valueType* arr_;
 
     void doScale(double scaleFactor) override;
   };

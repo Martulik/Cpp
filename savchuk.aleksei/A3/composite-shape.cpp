@@ -8,14 +8,14 @@
 #include "shape-utility.hpp"
 
 namespace lab = savchuk;
-using value_type = std::unique_ptr< lab::Shape >;
-using this_type = lab::CompositeShape;
+using valueType = std::unique_ptr< lab::Shape >;
+using thisType = lab::CompositeShape;
 
 lab::CompositeShape::CompositeShape(std::initializer_list< const lab::Shape* > src):
   size_(src.size())
 {
   assert(size_ != 0 && "The composite shape cannot be empty");
-  arr_ = new value_type[size_];
+  arr_ = new valueType[size_];
   size_t i = 0;
   std::initializer_list< const Shape* >::const_iterator it = src.begin();
   while (it != src.end())
@@ -26,9 +26,9 @@ lab::CompositeShape::CompositeShape(std::initializer_list< const lab::Shape* > s
   }
 }
 
-lab::CompositeShape::CompositeShape(const this_type& src):
+lab::CompositeShape::CompositeShape(const thisType& src):
   size_(src.size_),
-  arr_(new value_type[size_])
+  arr_(new valueType[size_])
 {
   for (size_t i = 0; i < size_; ++i)
   {
@@ -36,7 +36,7 @@ lab::CompositeShape::CompositeShape(const this_type& src):
   }
 }
 
-lab::CompositeShape::CompositeShape(this_type&& src) noexcept:
+lab::CompositeShape::CompositeShape(thisType&& src) noexcept:
   size_(src.size_),
   arr_(src.arr_)
 {
@@ -48,16 +48,16 @@ lab::CompositeShape::~CompositeShape()
   delete[] arr_;
 }
 
-this_type& lab::CompositeShape::operator=(const this_type& rhs)
+thisType& lab::CompositeShape::operator=(const thisType& rhs)
 {
-  this_type temp(rhs);
+  thisType temp(rhs);
   swap(temp);
   return *this;
 }
 
-this_type& lab::CompositeShape::operator=(this_type&& rhs) noexcept
+thisType& lab::CompositeShape::operator=(thisType&& rhs) noexcept
 {
-  this_type temp(rhs);
+  thisType temp(rhs);
   swap(temp);
   return *this;
 }
@@ -127,7 +127,7 @@ std::unique_ptr< lab::Shape > lab::CompositeShape::clone() const
   return std::unique_ptr< Shape >(new CompositeShape(*this));
 }
 
-void lab::CompositeShape::swap(this_type& rhs)
+void lab::CompositeShape::swap(thisType& rhs)
 {
   std::swap(size_, rhs.size_);
   std::swap(arr_, rhs.arr_);

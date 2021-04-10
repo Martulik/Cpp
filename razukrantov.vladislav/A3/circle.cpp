@@ -29,3 +29,8 @@ void razukrantov::Circle::move(const double dx, const double dy)
   center_.x += dx;
   center_.y += dy;
 }
+
+void razukrantov::Circle::scale(double k)
+{
+	radius_ *= k;
+}

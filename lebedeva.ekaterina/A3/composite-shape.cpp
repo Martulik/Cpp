@@ -6,7 +6,8 @@ namespace leb = lebedeva;
 
 leb::CompositeShape::CompositeShape(const std::initializer_list < ShapePtr > composition):
   countElements_(composition.size()),
-  data_(std::make_unique< ShapePtr[] >(countElements_))
+  data_(std::make_unique< ShapePtr[] >(countElements_)),
+  frameRect_({ 0, 0 }, 0, 0)
 {
   if (countElements_ == 0)
   {
@@ -36,7 +37,6 @@ leb::CompositeShape::CompositeShape(const CompositeShape& composition):
   {
     data_[i] = composition.data_[i]->clone();
   }
-  frameRect_ = makeFrameRect();
 }
 
 leb::CompositeShape& leb::CompositeShape::operator=(const CompositeShape& composition)
@@ -58,7 +58,7 @@ double leb::CompositeShape::getArea() const
 
 leb::rectangle_t leb::CompositeShape::getFrameRect() const
 {
-  return frameRect_;
+  return frameRect_.getFrameRect();
 }
 
 std::string leb::CompositeShape::getName() const
@@ -83,7 +83,7 @@ void leb::CompositeShape::move(double dx, double dy)
   {
     data_[i]->move(dx, dy);
   }
-  frameRect_ = makeFrameRect();
+  frameRect_.move(dx, dy);
 }
 
 void leb::CompositeShape::doScale(double k)
@@ -97,13 +97,14 @@ void leb::CompositeShape::doScale(double k)
     data_[i]->move({ collectionPos.x + dx, collectionPos.y + dy });
     data_[i]->scale(k);
   }
-  frameRect_ = makeFrameRect();
+  frameRect_.scale(k);
 }
 
 void leb::CompositeShape::swap(CompositeShape& composition) noexcept
 {
   std::swap(countElements_, composition.countElements_);
   std::swap(data_, composition.data_);
+  std::swap(frameRect_, composition.frameRect_);
 }
 
 namespace lebedeva
@@ -128,13 +129,9 @@ namespace lebedeva
   }
 }
 
-leb::rectangle_t leb::CompositeShape::makeFrameRect() const
+leb::Rectangle leb::CompositeShape::makeFrameRect() const
 {
   rectangle_t frameRect = data_[0]->getFrameRect();
-  //Direction left = Direction::Left;
-  //Direction right = Direction::Right;
-  //Direction top = Direction::Top;
-  //Direction bottom = Direction::Bottom;
   double maxX = getBorderCoordinate(frameRect, Direction::Right);
   double minX = getBorderCoordinate(frameRect, Direction::Left);
   double maxY = getBorderCoordinate(frameRect, Direction::Top);

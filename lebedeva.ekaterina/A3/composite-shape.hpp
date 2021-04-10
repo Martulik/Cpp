@@ -1,8 +1,9 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include "shape.hpp"
 #include <iostream>
+#include "shape.hpp"
+#include "rectangle.hpp"
 
 namespace lebedeva
 {
@@ -26,16 +27,15 @@ namespace lebedeva
 
     void move(const point_t& newPos) override;
     void move(double dx, double dy) override;
-
   private:
     size_t countElements_;
     std::unique_ptr< ShapePtr [] > data_;
-    rectangle_t frameRect_;
+    Rectangle frameRect_;
 
     void swap(CompositeShape& composition) noexcept;
     void doScale(double k) override;
 
-    rectangle_t makeFrameRect() const;
+    Rectangle makeFrameRect() const;
   };
  }
 

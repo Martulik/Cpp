@@ -13,7 +13,7 @@ int murzakanov::task3()
     vec.push_back(x);
   }
 
-  if (firstVector.empty())
+  if (vec.empty())
   {
     return 0;
   }

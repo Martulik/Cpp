@@ -37,12 +37,12 @@ std::function< bool(T, T) > getSortMode(char *mode)
 int main(int argc, char *argv[])
 {
   std::map< lab::error, std::string > errors{
-    {lab::error::success,    {}},
+    {lab::error::success, {}},
     {lab::error::taskNumber, "Incorrect number for task\n"},
     {lab::error::numberArgs, "Wrong number or arguments\n"},
-    {lab::error::sortMode,   "Incorrect sort mode\n"},
+    {lab::error::sortMode, "Incorrect sort mode\n"},
     {lab::error::taskFailed, "Task failed\n"},
-    {lab::error::input,      "Incorrect input\n"}
+    {lab::error::input, "Incorrect input\n"}
   };
 
   lab::error err = (argc > 1) ? lab::error::success : lab::error::numberArgs;

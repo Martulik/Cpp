@@ -34,7 +34,7 @@ lab::error lab::task2(const char *input)
   }
   file.close();
 
-  std::vector< char > vector(array.get(), &array[count]);
+  std::vector< char > vector(array.get(), array.get() + count);
   for (size_t i = 0; i < count; i++) {
     std::cout << vector[i];
   }

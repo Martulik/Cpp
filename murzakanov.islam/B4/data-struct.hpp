@@ -18,5 +18,6 @@ namespace murzakanov
   static bool readDelimiter(std::istream& in, char delimiter);
   static std::string readString(std::istream& in);
 
+  bool operator <(const DataStruct& data1, const DataStruct& data2);
 }
 #endif

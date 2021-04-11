@@ -1,5 +1,7 @@
 #include "data-struct.hpp"
 
+#include <iomanip>
+
 std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)
 {
   std::istream::sentry sentry(in);
@@ -9,15 +11,13 @@ std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)
     int key1;
     int key2;
     std::string str;
-
-    {
-      in >> key1;
-      readDelimiter(in, ',');
-      in >> key2;
-      readDelimiter(in, ',');
-      str = readString(in);
-    }
-
+    
+    in >> key1;
+    readDelimiter(in, ',');
+    in >> key2;
+    readDelimiter(in, ',');
+    str = readString(in);
+    
     if (in)
     {
       data = DataStruct{ key1, key2, str };
@@ -29,8 +29,8 @@ std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)
 
 std::ostream& murzakanov::operator<<(std::ostream& out, const DataStruct& data)
 {
-
-
+  out << std::left << data.key1 << " " << data.key2
+      << " " << data.str << "\n";
   return out;
 }
 
@@ -50,6 +50,20 @@ static bool murzakanov::readDelimiter(std::istream& in, char delimiter)
 static std::string murzakanov::readString(std::istream& in)
 {
   std::string result;
+  in >> std::ws;
   getline(in, result, '\n');
   return result;
+}
+
+bool murzakanov::operator <(const DataStruct& data1, const DataStruct& data2)
+{
+  if (data1.key1 == data2.key1)
+  {
+    if (data1.key2 == data2.key2)
+    {
+      return (data1.str.size() < data2.str.size());
+    }
+    return (data1.key2 < data2.key2);
+  }
+  return (data1.key1 < data2.key1);
 }

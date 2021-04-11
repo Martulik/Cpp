@@ -8,12 +8,8 @@ int murzakanov::task3()
 {
   std::vector< int > vec;
   int x = 0;
-  while (std::cin >> x)
+  while (std::cin >> x && x != 0)
   {
-    if (x == 0)
-    {
-      break;
-    }
     vec.push_back(x);
   }
 

@@ -20,19 +20,19 @@ BOOST_AUTO_TEST_CASE(move_invariant)
 BOOST_AUTO_TEST_CASE(scale_frame_rectangle)
 {
   std::unique_ptr< lab::Shape > comp = lab::makeComposite();
-  lab::checkScaleFrameRect(*comp, CORRECT_SCALE_FACTOR);
+  lab::checkScaleFrameRect(*comp, lab::CORRECT_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(scale_area)
 {
   std::unique_ptr< lab::Shape > comp = lab::makeComposite();
-  lab::checkScaleArea(*comp, CORRECT_SCALE_FACTOR);
+  lab::checkScaleArea(*comp, lab::CORRECT_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(scale_invalid_argument)
 {
   std::unique_ptr< lab::Shape > comp = lab::makeComposite();
-  lab::checkScaleInvalidArgument(*comp, WRONG_SCALE_FACTOR);
+  lab::checkScaleInvalidArgument(*comp, lab::WRONG_SCALE_FACTOR);
 }
 
 BOOST_AUTO_TEST_CASE(correct_frame_rectangle)

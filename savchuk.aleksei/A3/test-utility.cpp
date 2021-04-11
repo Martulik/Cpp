@@ -14,12 +14,12 @@ const double TOLERANCE = 0.001;
 
 std::unique_ptr< lab::Shape > lab::makeRect()
 {
-  return std::make_unique< Rectangle >(RECT_POS, WIDTH, HEIGHT);
+  return std::make_unique< Rectangle >(lab::RECT_POS, lab::WIDTH, lab::HEIGHT);
 }
 
 std::unique_ptr< lab::Shape > lab::makeCirc()
 {
-  return std::make_unique< Circle >(CIRC_POS, RADIUS);
+  return std::make_unique< Circle >(lab::CIRC_POS, lab::RADIUS);
 }
 
 std::unique_ptr< lab::Shape > lab::makeComposite()

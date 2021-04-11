@@ -1,8 +1,8 @@
 #ifndef DATA_STRUCT_HPP
 #define DATA_STRUCT_HPP
 
-#include <iostream>
 #include <string>
+
 namespace murzakanov
 {
   struct DataStruct
@@ -14,10 +14,7 @@ namespace murzakanov
 
   std::istream& operator >>(std::istream& in, DataStruct& data);
   std::ostream& operator <<(std::ostream& out, const DataStruct& data);
-
-  static bool readDelimiter(std::istream& in, char delimiter);
-  static std::string readString(std::istream& in);
-
   bool operator <(const DataStruct& data1, const DataStruct& data2);
 }
+
 #endif

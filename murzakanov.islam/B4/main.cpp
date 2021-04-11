@@ -5,14 +5,14 @@
 #include <fstream>
 
 #include "data-struct.hpp"
+#include "tools.hpp"
 
 int main()
 {
   std::vector< murzakanov::DataStruct > vec;
-  std::fstream in("input.txt");
   murzakanov::DataStruct temp;
 
-  while (in >> temp)
+  while (std::cin >> temp)
   {
     vec.push_back(temp);
   }

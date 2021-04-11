@@ -44,8 +44,6 @@ void doTestSort()
 
 }
 
-
-
 BOOST_AUTO_TEST_SUITE(test_sort)
 
   BOOST_AUTO_TEST_CASE(sort_vector_by_strategies)

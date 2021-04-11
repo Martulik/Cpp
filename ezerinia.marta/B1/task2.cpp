@@ -11,7 +11,7 @@ lab::error lab::task2(const char *input)
   std::ifstream file;
   file.open(input);
   if (!file) {
-    return lab::error::task_failed;
+    return lab::error::taskFailed;
   }
 
   if (file.peek() == EOF) {
@@ -23,7 +23,7 @@ lab::error lab::task2(const char *input)
   std::unique_ptr< char[] > array = std::make_unique< char[] >(capacity);
 
   while (!file.eof()) {
-    file.read(&array[count], capacity - count);
+    file.read(array.get() + count, capacity - count);
     count += file.gcount();
     capacity *= 2;
     std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
@@ -34,7 +34,7 @@ lab::error lab::task2(const char *input)
   }
   file.close();
 
-  std::vector< char > vector(&array[0], &array[count]);
+  std::vector< char > vector(array.get(), &array[count]);
   for (size_t i = 0; i < count; i++) {
     std::cout << vector[i];
   }

@@ -4,10 +4,10 @@
 namespace ezerinia {
   enum class error: int {
     success,
-    task_number,
-    number_args,
-    sort_mode,
-    task_failed,
+    taskNumber,
+    numberArgs,
+    sortMode,
+    taskFailed,
     input
   };
 

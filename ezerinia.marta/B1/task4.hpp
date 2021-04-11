@@ -13,7 +13,7 @@ namespace ezerinia {
       return error::input;
     }
     std::vector< double > vec(size);
-    fillRandom(&vec[0], size);
+    fillRandom(vec.data(), size);
     print(vec, std::cout);
     sortAndPrint< indexVec< double > >(vec, sort_mode);
     return error::success;

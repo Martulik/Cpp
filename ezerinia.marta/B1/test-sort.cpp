@@ -15,8 +15,8 @@ void fillCont(I begin, const I &end)
   }
 }
 
-template< typename S >
-void testSort(const std::function< bool(int, int) > cmp, const int size)
+template< typename S, typename C >
+void testSort(const C cmp, const int size)
 {
   typename S::container_t cont(size);
   fillCont(cont.begin(), cont.end());
@@ -24,12 +24,12 @@ void testSort(const std::function< bool(int, int) > cmp, const int size)
   BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), cmp));
 }
 
-template< typename S >
+template< typename T, typename S >
 void doTestSort()
 {
   for (int i = 0; i < max_size_collection; i++) {
-    testSort< S >(std::greater< >(), i);
-    testSort< S >(std::less< >(), i);
+    testSort< S >(std::greater< T >(), i);
+    testSort< S >(std::less< T >(), i);
   }
 }
 
@@ -37,17 +37,17 @@ BOOST_AUTO_TEST_SUITE(sort)
 
   BOOST_AUTO_TEST_CASE(sort_vector_by_index)
   {
-    doTestSort< lab::indexVec< int > >();
+    doTestSort< int, lab::indexVec< int > >();
   }
 
   BOOST_AUTO_TEST_CASE(sort_vector_by_at)
   {
-    doTestSort< lab::atVec< int > >();
+    doTestSort< int, lab::atVec< int > >();
   }
 
   BOOST_AUTO_TEST_CASE(sort_iter)
   {
-    doTestSort< lab::iteratorList< int > >();
+    doTestSort< int, lab::iteratorList< int > >();
   }
 
 BOOST_AUTO_TEST_SUITE_END()

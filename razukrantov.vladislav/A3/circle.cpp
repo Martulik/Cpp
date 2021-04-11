@@ -34,7 +34,7 @@ void razukrantov::Circle::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void razukrantov::Circle::scale(double k)
+void razukrantov::Circle::doScale(double k)
 {
 	radius_ *= k;
 }

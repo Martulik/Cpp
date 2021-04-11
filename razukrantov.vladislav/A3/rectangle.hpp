@@ -16,12 +16,12 @@ namespace razukrantov
 	rectangle_t getFrameRect() const override;
 	void move(const point_t& center) override;
 	void move(double dx, double dy) override;
-	void scale(double k) override;
 
   private:
 	double width_;
 	double height_;
 	point_t center_;
+	void doScale(double k) override;
   };
 }
 

@@ -33,7 +33,7 @@ void razukrantov::Rectangle::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void razukrantov::Rectangle::scale(const double k)
+void razukrantov::Rectangle::doScale(const double k)
 {
   width_ *= k;
   height_ *= k;

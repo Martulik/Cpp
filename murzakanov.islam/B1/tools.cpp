@@ -26,9 +26,5 @@ bool murzakanov::checkIsNumber(const std::string& str)
 
 bool murzakanov::checkForSpaces(const std::string& str)
 {
-  if ((str.find(' ') != std::string::npos))
-  {
-    return true;
-  }
-  return false;
+  return (str.find(' ') != std::string::npos);
 }

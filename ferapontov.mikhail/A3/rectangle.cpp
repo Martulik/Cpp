@@ -42,5 +42,5 @@ void ferapontov::Rectangle::doScale(const double k)
 
 std::unique_ptr< ferapontov::Shape > ferapontov::Rectangle::clone() const
 {
-  return std::unique_ptr< Shape >(new Rectangle(*this));
+  return std::make_unique< Rectangle >(*this);
 }

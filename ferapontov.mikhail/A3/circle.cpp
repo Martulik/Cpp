@@ -43,5 +43,5 @@ void ferapontov::Circle::doScale(const double k)
 
 std::unique_ptr< ferapontov::Shape > ferapontov::Circle::clone() const
 {
-  return std::unique_ptr< Shape >(new Circle(*this));
+  return std::make_unique< Circle >(*this);
 }

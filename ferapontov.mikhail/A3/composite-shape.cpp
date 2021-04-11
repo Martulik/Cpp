@@ -109,7 +109,7 @@ void fer::CompositeShape::move(const double dx, const double dy)
 
 std::unique_ptr< fer::Shape > fer::CompositeShape::clone() const
 {
-  return std::unique_ptr< Shape >(new CompositeShape(*this));
+  return std::make_unique< CompositeShape >(*this);
 }
 
 void fer::CompositeShape::swap(ThisType& src)

@@ -42,10 +42,10 @@ namespace lysenko
     virtual void doScale(double k) override;
   };
 
-  double getShapesLeftmostAbscissa(Shape::ShapePtr src);
-  double getShapesRightmostAbscissa(Shape::ShapePtr src);
-  double getShapesBottomOrdinate(Shape::ShapePtr src);
-  double getShapesTopOrdinate(Shape::ShapePtr src);
+  double getShapesLeftmostAbscissa(const Shape::ShapePtr src);
+  double getShapesRightmostAbscissa(const Shape::ShapePtr src);
+  double getShapesBottomOrdinate(const Shape::ShapePtr src);
+  double getShapesTopOrdinate(const Shape::ShapePtr  src);
 }
 
 #endif

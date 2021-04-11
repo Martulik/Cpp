@@ -72,22 +72,22 @@ double curr::CompositeShape::getArea() const
   return resultArea;
 }
 
-double lysenko::getShapesLeftmostAbscissa(Shape::ShapePtr const src)
+double lysenko::getShapesLeftmostAbscissa(const Shape::ShapePtr const src)
 {
   return getX(src) + getWidth(src) / 2;
 }
 
-double lysenko::getShapesRightmostAbscissa(Shape::ShapePtr const src)
+double lysenko::getShapesRightmostAbscissa(const Shape::ShapePtr const src)
 {
   return getX(src) - getWidth(src) / 2;
 }
 
-double lysenko::getShapesBottomOrdinate(Shape::ShapePtr const src)
+double lysenko::getShapesBottomOrdinate(const Shape::ShapePtr const src)
 {
   return getY(src) - getHeight(src) / 2;
 }
 
-double lysenko::getShapesTopOrdinate(Shape::ShapePtr const src)
+double lysenko::getShapesTopOrdinate(const Shape::ShapePtr const src)
 {
   return getY(src) + getHeight(src) / 2;
 }

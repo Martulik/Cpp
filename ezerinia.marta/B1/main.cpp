@@ -22,7 +22,7 @@ bool isDigit(const char *src)
 }
 
 template< typename T >
-std::function< bool(T, T) > getSortMode(char *mode)
+std::function< bool(T, T) > getSortMode(const char *mode)
 {
   const char ascending[] = "ascending";
   const char descending[] = "descending";

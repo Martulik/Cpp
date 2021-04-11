@@ -33,7 +33,7 @@ int murzakanov::task2(std::string& fileName)
   }
 
   input.close();
-  std::vector< char > vec(&arr[0], &arr[size]);
+  std::vector< char > vec(arr.get()[0], arr.get()[size]);
   for (int i = 0; i < size; i++)
   {
     std::cout << vec[i];

@@ -21,7 +21,7 @@ int murzakanov::task2(std::string& fileName)
   std::unique_ptr< char[] > arr = std::make_unique< char [] >(capacity);
   while (!input.eof())
   {
-    input.read(&arr[size], capacity - size);
+    input.read(arr.get() + size, capacity - size);
     size += input.gcount();
     capacity *= 2;
     std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);
@@ -33,7 +33,7 @@ int murzakanov::task2(std::string& fileName)
   }
 
   input.close();
-  std::vector< char > vec(arr.get()[0], arr.get()[size]);
+  std::vector< char > vec(arr.get(), arr.get() + size);
   for (int i = 0; i < size; i++)
   {
     std::cout << vec[i];

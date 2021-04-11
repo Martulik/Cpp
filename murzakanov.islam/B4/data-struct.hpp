@@ -1,0 +1,22 @@
+#ifndef DATA_STRUCT_HPP
+#define DATA_STRUCT_HPP
+
+#include <iostream>
+#include <string>
+namespace murzakanov
+{
+  struct DataStruct
+  {
+    int key1;
+    int key2;
+    std::string str;
+  };
+
+  std::istream& operator >>(std::istream& in, DataStruct& data);
+  std::ostream& operator <<(std::ostream& out, const DataStruct& data);
+
+  static bool readDelimiter(std::istream& in, char delimiter);
+  static std::string readString(std::istream& in);
+
+}
+#endif

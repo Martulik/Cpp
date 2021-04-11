@@ -50,5 +50,5 @@ void curr::Rectangle::doScale(double k)
 
 curr::Shape::ShapePtr curr::Rectangle::clone() const
 {
-  return std::make_shared < Rectangle >(*this);
+  return std::make_shared< Rectangle >(*this);
 }

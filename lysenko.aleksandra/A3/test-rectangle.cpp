@@ -17,7 +17,7 @@ BOOST_AUTO_TEST_CASE(test_changing_of_weight_and_height_after_scale)
   lysenko::point_t myPos{ 33.33, 33.33 };
   double width = 1.0;
   double heigth = 2.0;
-  lysenko::Shape::ShapePtr myRectangle(std::make_shared <lysenko::Rectangle>(width, heigth, myPos));
+  lysenko::Shape::ShapePtr myRectangle(std::make_shared<lysenko::Rectangle>(width, heigth, myPos));
   double oldWidth = getWidth(myRectangle);
   double oldHeight = getHeight(myRectangle);
   myRectangle->scale(5);

@@ -50,5 +50,5 @@ void curr::Circle::doScale(double k)
 
 curr::Shape::ShapePtr curr::Circle::clone() const
 {
-  return std::make_shared < Circle >(*this);
+  return std::make_shared< Circle >(*this);
 }

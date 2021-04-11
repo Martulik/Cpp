@@ -7,7 +7,7 @@ curr::CompositeShape::CompositeShape(const curr::CompositeShape& other)
 {
   capacity_ = other.capacity_;
   size_ = other.size_;
-  array_ = std::make_unique < ShapePtr[] >(capacity_);
+  array_ = std::make_unique< ShapePtr[] >(capacity_);
   for (size_t i = 0; i < size_; i++)
   {
     array_[i].reset();
@@ -52,7 +52,7 @@ curr::CompositeShape& curr::CompositeShape::operator=(CompositeShape&& src) noex
 curr::CompositeShape::CompositeShape(ShapePtr src):
   capacity_(1),
   size_(1),
-  array_(std::make_unique < ShapePtr [] > (capacity_))
+  array_(std::make_unique< ShapePtr [] > (capacity_))
 {
   if (src == nullptr)
   {
@@ -132,7 +132,7 @@ std::string curr::CompositeShape::getName() const
 
 curr::Shape::ShapePtr curr::CompositeShape::clone() const
 {
-  return std::make_shared < CompositeShape >(*this);
+  return std::make_shared< CompositeShape >(*this);
 }
 
 curr::Shape::ShapePtr curr::CompositeShape::at(size_t index)
@@ -164,7 +164,7 @@ void curr::CompositeShape::popShape()
   {
     throw std::logic_error("Empty composite shape is illegal");
   }
-  ArrayOfShapes reducedData(std::make_unique < ShapePtr[] >(capacity_));
+  ArrayOfShapes reducedData(std::make_unique< ShapePtr[] >(capacity_));
   array_[size_ - 1].reset();
   reducedData.swap(array_);
   array_ = std::move(reducedData);
@@ -184,7 +184,7 @@ void curr::CompositeShape::enlargeCapacity(size_t newCapacity)
   {
     throw std::invalid_argument("New capacity must be a number larger than old capacity");
   }
-  ArrayOfShapes newCapacityOldData(std::make_unique < ShapePtr[] >(newCapacity));
+  ArrayOfShapes newCapacityOldData(std::make_unique< ShapePtr[] >(newCapacity));
   for (size_t i = 0; i < size_; i++)
   {
     newCapacityOldData[i] = array_[i];

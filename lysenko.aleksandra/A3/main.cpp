@@ -25,14 +25,14 @@ int main()
     lysenko::point_t myPos{ 33.33, 33.33 };
     double width = 1.0;
     double heigth = 2.0;
-    lysenko::Shape::ShapePtr myRectangle(std::make_shared < lysenko::Rectangle >(width, heigth, myPos));
+    lysenko::Shape::ShapePtr myRectangle(std::make_shared< lysenko::Rectangle >(width, heigth, myPos));
     testMyFigure(myRectangle);
 
     double radius = 33.33;
-    lysenko::Shape::ShapePtr myCircle(std::make_shared < lysenko::Circle >(myPos, radius));
+    lysenko::Shape::ShapePtr myCircle(std::make_shared< lysenko::Circle >(myPos, radius));
     testMyFigure(myCircle);
 
-    lysenko::Shape::ShapePtr myCompositeShape(std::make_shared < lysenko::CompositeShape >(myRectangle));
+    lysenko::Shape::ShapePtr myCompositeShape(std::make_shared< lysenko::CompositeShape >(myRectangle));
     testMyFigure(myCompositeShape);
   }
   catch (...)

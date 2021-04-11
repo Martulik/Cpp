@@ -12,7 +12,7 @@ namespace lysenko
   class Shape
   {
   public:
-    using ShapePtr = std::shared_ptr < Shape >;
+    using ShapePtr = std::shared_ptr< Shape >;
     using ArrayOfShapes = std::unique_ptr< ShapePtr[] >;
 
     virtual ~Shape() = default;

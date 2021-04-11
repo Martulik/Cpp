@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <iostream>
 
+#include "tasks.hpp"
+
 int main(int argc, char* argv[])
 {
   try
@@ -16,28 +18,28 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 1"));
       }
-      // task1(argv[2]);
+      pochernin::task1(argv[2]);
       break;
     case 2:
       if (argc != 3)
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 2"));
       }
-      // task2(argv[2]);
+      pochernin::task2(argv[2]);
       break;
     case 3:
       if (argc != 2)
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 3"));
       }
-      // task3;
+      pochernin::task3();
       break;
     case 4:
       if (argc != 4)
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 4"));
       }
-      // task4(argv[2], atoi(argv[3]));
+      pochernin::task4(argv[2], atoi(argv[3]));
       break;
     default:
       throw(std::invalid_argument("Incorrect task number"));

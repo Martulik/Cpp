@@ -8,7 +8,7 @@
 
 namespace lysenko
 {
-  class CompositeShape : public Shape
+  class CompositeShape: public Shape
   {
   public:
     CompositeShape(const CompositeShape& other);

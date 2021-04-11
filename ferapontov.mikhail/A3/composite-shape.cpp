@@ -8,13 +8,13 @@ namespace fer = ferapontov;
 using ValueType = std::unique_ptr< fer::Shape >;
 using ThisType = fer::CompositeShape;
 
-fer::CompositeShape::CompositeShape(std::initializer_list< const Shape* > src):
+fer::CompositeShape::CompositeShape(std::initializer_list< ValueType > src):
   size_(src.size())
 {
   assert(size_ != 0 && "Composite Shape can not be empty");
-  arr_ = new ValueType[size_];
+  arr_ = std::make_unique< ValueType[] >(size_);
   size_t i = 0;
-  std::initializer_list< const Shape* >::const_iterator it = src.begin();
+  std::initializer_list< ValueType >::const_iterator it = src.begin();
   while(it != src.end())
   {
     assert(*it && "The pointer to shape can not be nullptr");
@@ -25,7 +25,7 @@ fer::CompositeShape::CompositeShape(std::initializer_list< const Shape* > src):
 
 fer::CompositeShape::CompositeShape(const ThisType& src):
   size_(src.size_),
-  arr_(new ValueType[size_])
+  arr_(std::make_unique< ValueType[] >(size_))
 {
   for(size_t i = 0; i < size_; i++)
   {
@@ -45,11 +45,6 @@ ThisType& fer::CompositeShape::operator=(ThisType&& src) noexcept
   ThisType temp(src);
   swap(temp);
   return *this;
-}
-
-fer::CompositeShape::~CompositeShape()
-{
-  delete[] arr_;
 }
 
 std::string fer::CompositeShape::getName() const

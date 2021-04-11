@@ -37,23 +37,23 @@ int main()
 {
   const fer::point_t point_zero = {0, 0};
   const fer::point_t not_zero = {123, 3};
-  UniqueShp rectangle(new fer::Rectangle(10, 20, {23, 4}));
-  UniqueShp circle(new fer::Circle(5, point_zero));
-
-  fer::Circle circ(5, point_zero);
-  fer::Rectangle rect(10, 20, {23, 4});
-  UniqueShp comp(new fer::CompositeShape({std::addressof(circ), std::addressof(rect)}));
+  UniqueShp rectangle = std::make_unique< fer::Rectangle >(10, 20, not_zero);
+  UniqueShp circle = std::make_unique< fer::Circle >(5, point_zero);
 
   testArea(*rectangle);
   testArea(*circle);
-  testArea(*comp);
 
   testMove(*rectangle, not_zero);
   testMove(*circle, not_zero);
-  testMove(*comp, not_zero);
 
   testScale(*rectangle, 4);
   testScale(*circle, 5);
+
+  std::initializer_list< UniqueShp > c{std::move(rectangle), std::move(circle)};
+  UniqueShp comp = std::make_unique< fer::CompositeShape >(c);
+
+  testMove(*comp, not_zero);
+  testArea(*comp);
   testScale(*comp, 6);
   return 0;
 }

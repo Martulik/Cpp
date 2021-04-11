@@ -2,8 +2,11 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
+#include <initializer_list>
+#include <memory>
 
 namespace fer = ferapontov;
+using UniqueShp = std::unique_ptr< fer::Shape >;
 
 const double e = 0.001;
 
@@ -19,9 +22,10 @@ fer::Circle fer::makeCircle()
 
 fer::CompositeShape fer::makeComposite()
 {
-  Circle circ = makeCircle();
-  Rectangle rec = makeRectangle();
-  return CompositeShape({std::addressof(circ), std::addressof(rec)});
+  UniqueShp circ = std::make_unique< fer::Circle >(makeCircle());
+  UniqueShp rec = std::make_unique< fer::Rectangle >(makeRectangle());
+  std::initializer_list< UniqueShp > c{std::move(circ), std::move(rec)};
+  return CompositeShape(c);
 }
 
 void fer::test_move(fer::Shape& shp, const fer::point_t& pos)

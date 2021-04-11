@@ -14,14 +14,14 @@ namespace ferapontov
     using ValueType = std::unique_ptr< Shape >;
     using ThisType = CompositeShape;
 
-    CompositeShape(std::initializer_list< const Shape* > src);
+    CompositeShape(std::initializer_list< ValueType > src);
     CompositeShape(const ThisType& src);
     CompositeShape(ThisType&& src) noexcept = default;
 
     ThisType& operator=(const ThisType& src);
     ThisType& operator=(ThisType&& src) noexcept;
 
-    ~CompositeShape();
+    ~CompositeShape() = default;
 
     std::string getName() const override;
     double getArea() const override;
@@ -32,7 +32,7 @@ namespace ferapontov
     void swap(ThisType& src);
   private:
     size_t size_;
-    ValueType* arr_;
+    std::unique_ptr< ValueType[] > arr_;
 
     void doScale(double k) override;
  };

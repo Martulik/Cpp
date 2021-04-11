@@ -8,8 +8,8 @@
 namespace murzakanov
 {
   void fillRandom(double* array, int size);
-  bool checkIsNumber(std::string& str);
-  bool checkForSpaces(std::string& str);
+  bool checkIsNumber(const std::string& str);
+  bool checkForSpaces(const std::string& str);
 
   template< typename T >
   void print(const T& store, std::ostream& out)

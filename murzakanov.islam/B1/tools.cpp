@@ -12,7 +12,7 @@ void murzakanov::fillRandom(double* array, int size)
   }
 }
 
-bool murzakanov::checkIsNumber(std::string& str)
+bool murzakanov::checkIsNumber(const std::string& str)
 {
   for (int i = 0; i < int(str.length()); i++)
   {
@@ -24,7 +24,7 @@ bool murzakanov::checkIsNumber(std::string& str)
   return true;
 }
 
-bool murzakanov::checkForSpaces(std::string& str)
+bool murzakanov::checkForSpaces(const std::string& str)
 {
   if ((str.find(' ') != std::string::npos))
   {

@@ -30,11 +30,6 @@ int murzakanov::task1(const std::string& order)
     return 1;
   }
 
-  if (firstVector.empty())
-  {
-    return 0;
-  }
-
   std::vector< int > secondVector(firstVector);
   std::forward_list< int > list(firstVector.begin(), firstVector.end());
   sort< StrategyBrackets< int > >(firstVector, order);

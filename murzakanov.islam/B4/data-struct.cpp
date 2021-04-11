@@ -34,7 +34,7 @@ std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)
     readDelimiter(in, ',');
     str = readString(in);
 
-    if (in)
+    if (in && key1 > -5 && key1 < 5 && key2 > -5 && key2 < 5)
     {
       data = DataStruct{ key1, key2, str };
     }

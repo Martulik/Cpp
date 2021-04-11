@@ -16,6 +16,7 @@ namespace razukrantov
 	rectangle_t getFrameRect() const override;
 	void move(const point_t& center) override;
 	void move(double dx, double dy) override;
+	std::shared_ptr< Shape > clone() const override;
 
   private:
 	double width_;

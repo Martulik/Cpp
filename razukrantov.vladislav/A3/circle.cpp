@@ -36,5 +36,10 @@ void razukrantov::Circle::move(const double dx, const double dy)
 
 void razukrantov::Circle::doScale(double k)
 {
-	radius_ *= k;
+  radius_ *= k;
+}
+
+std::shared_ptr< razukrantov::Shape > razukrantov::Circle::clone() const
+{
+  return std::make_shared< Circle >(*this);
 }

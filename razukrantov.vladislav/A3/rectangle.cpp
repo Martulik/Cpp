@@ -38,3 +38,8 @@ void razukrantov::Rectangle::doScale(const double k)
   width_ *= k;
   height_ *= k;
 }
+
+std::shared_ptr< razukrantov::Shape > razukrantov::Rectangle::clone() const
+{
+  return std::make_shared< Rectangle >(*this);
+}

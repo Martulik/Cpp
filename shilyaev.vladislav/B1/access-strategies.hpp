@@ -1,5 +1,5 @@
-#ifndef ITERATOR_STRATEGIES_HPP
-#define ITERATOR_STRATEGIES_HPP
+#ifndef ACCESS_STRATEGIES_HPP
+#define ACCESS_STRATEGIES_HPP
 
 #include <vector>
 #include <forward_list>

@@ -41,7 +41,6 @@ void doTestSort()
   BOOST_CHECK(std::is_sorted(vecBrackets.begin(), vecBrackets.end()));
   BOOST_CHECK(std::is_sorted(vecInd.begin(), vecInd.end()));
   BOOST_CHECK(std::is_sorted(listIt.begin(), listIt.end()));
-
 }
 
 BOOST_AUTO_TEST_SUITE(test_sort)

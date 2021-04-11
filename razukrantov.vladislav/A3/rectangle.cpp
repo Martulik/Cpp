@@ -1,10 +1,15 @@
 #include "rectangle.hpp"
+#include <stdexcept>
 
 razukrantov::Rectangle::Rectangle(double width, double height, const point_t &center):
   width_(width),
   height_(height),
   center_(center)
 {
+  if (width_ < 0.0 || height_ < 0.0)
+  {
+	throw std::invalid_argument("Width and height cannot be negative");
+  }
 }
 
 double razukrantov::Rectangle::getArea() const

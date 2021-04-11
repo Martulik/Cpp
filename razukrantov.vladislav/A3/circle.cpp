@@ -1,5 +1,5 @@
 #include "circle.hpp"
-#include <iostream>
+#include <stdexcept>
 
 const double PI = 3.14;
 
@@ -7,6 +7,10 @@ razukrantov::Circle::Circle(double rad, const point_t &center):
   radius_(rad),
   center_(center)
 {
+  if (radius_ < 0.0)
+  {
+	throw std::invalid_argument("The radius cannot be negative")
+  }
 }
 
 double razukrantov::Circle::getArea() const

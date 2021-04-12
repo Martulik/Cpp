@@ -28,12 +28,12 @@ void pochernin::task1(const char* sortingDirection)
   std::vector<int> atVector(bracketsVector);
   std::forward_list<int> iteratorForwardList(bracketsVector.begin(), bracketsVector.end());
 
-  pochernin::sort< bracketsAccess< int > >(bracketsVector, sortingDirection);
+  pochernin::sort< bracketsAccess< int > >(bracketsVector, isAscending(sortingDirection));
   pochernin::print(bracketsVector);
 
-  pochernin::sort< atAccess< int > >(atVector, sortingDirection);
+  pochernin::sort< atAccess< int > >(atVector, isAscending(sortingDirection));
   pochernin::print(atVector);
 
-  pochernin::sort< iteratorAccess< int > >(iteratorForwardList, sortingDirection);
+  pochernin::sort< iteratorAccess< int > >(iteratorForwardList, isAscending(sortingDirection));
   pochernin::print(iteratorForwardList);
 }

@@ -20,26 +20,8 @@ namespace pochernin
   }
 
   template < typename Access >
-  void sort(typename Access::Container& container, const char* sortingDirection)
+  void sort(typename Access::Container& container, bool isAscending)
   {
-    if (sortingDirection == nullptr)
-    {
-      throw(std::invalid_argument("Incorrect sorting direction"));
-    }
-    bool isAscending = true;
-    if (!strcmp(sortingDirection, "ascending"))
-    {
-      isAscending = true;
-    }
-    else if (!strcmp(sortingDirection, "descending"))
-    {
-      isAscending = false;
-    }
-    else
-    {
-      throw(std::invalid_argument("Incorrect sorting direction"));
-    }
-
     typename Access::Iterator begin = Access::begin(container);
     typename Access::Iterator end = Access::end(container);
     for (typename Access::Iterator i = begin; i != end; i++)
@@ -58,6 +40,8 @@ namespace pochernin
       std::swap(Access::get(container, i), Access::get(container, criticalIterator));
     }
   }
+
+  bool isAscending(const char* sortingDirection);
 }
 
 #endif

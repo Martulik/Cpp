@@ -8,18 +8,17 @@ void ShapeInfo(const Shape* figure)
         << figure->getFrameRect().height << "\n" << "Width: "
         << figure->getFrameRect().width <<  "\n" <<"Abscissa of the center: "
         << figure->getFrameRect().pos.x << "\n" << "Ordinate of the center: "
-        << figure->getFrameRect().pos.y
-        << "\n";
-    std::cout << "\n";
+        << figure->getFrameRect().pos.y << "\n";               
+      std::cout << "\n";
 }
 
 int main()
 {
-    point_t posCircle = { 1.3, 3.7 };
-    Shape* circle = new Circle(3, posCircle);
+   point_t posCircle = { 1.3, 3.7 };
+   Shape* circle = new Circle(3, posCircle);
     std::cout << "Testing the circle\n";
     std::cout << "\n";
-    
+
     std::cout << "The area of a given circle: " << circle->getArea() << "\n";
     std::cout << "Described rectangle of a given circle:\n";
     ShapeInfo(circle);

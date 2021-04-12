@@ -25,14 +25,14 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 2"));
       }
-      pochernin::task2(argv[2]);
+      //pochernin::task2(argv[2]);
       break;
     case 3:
       if (argc != 2)
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 3"));
       }
-      pochernin::task3();
+      //pochernin::task3();
       break;
     case 4:
       if (argc != 4)
@@ -43,16 +43,16 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect array size"));
       }
-      pochernin::task4(argv[2], atoi(argv[3]));
+      //pochernin::task4(argv[2], atoi(argv[3]));
       break;
     default:
       throw(std::invalid_argument("Incorrect task number"));
       break;
     }
   }
-  catch (std::invalid_argument& error)
+  catch (std::exception& error)
   {
-    std::cerr << error.what();
+    std::cerr << error.what() << "\n";
     return 1;
   }
 

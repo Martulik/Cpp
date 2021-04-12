@@ -20,11 +20,6 @@ int murzakanov::task3()
     return 1;
   }
 
-  if (vec.empty())
-  {
-    return 0;
-  }
-
   if (x != 0)
   {
     std::cerr << "Wrong input\n";
@@ -32,7 +27,7 @@ int murzakanov::task3()
   }
 
   std::vector< int >::iterator it = vec.begin();
-  if (vec.back() == 1)
+  if (!vec.empty() && vec.back() == 1)
   {
     while (it != vec.end())
     {
@@ -46,7 +41,7 @@ int murzakanov::task3()
       }
     }
   }
-  if (vec.back() == 2)
+  if (!vec.empty() && vec.back() == 2)
   {
     while (it != vec.end())
     {

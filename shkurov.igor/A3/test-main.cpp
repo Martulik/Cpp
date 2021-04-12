@@ -63,11 +63,11 @@ BOOST_AUTO_TEST_SUITE_END();
 
 BOOST_AUTO_TEST_SUITE(composite_shape_test)
 
-std::unique_ptr< shkurov::Shape > composite_ptr(new shkurov::CompositeShape({makeCircle(), makeRectangle()}));
+std::unique_ptr< shkurov::Shape > composite_ptr(new shkurov::CompositeShape(makeCircle(), makeRectangle()));
 
 BOOST_AUTO_TEST_CASE(move_semantics)
 {
-  shkurov::CompositeShape composite({makeCircle(), makeRectangle()});
+  shkurov::CompositeShape composite(makeCircle(), makeRectangle());
   double origin_area = composite.getArea();
   shkurov::CompositeShape moved_shape(std::move(composite));
   BOOST_CHECK_CLOSE_FRACTION(origin_area, moved_shape.getArea(), TOLERANCE);

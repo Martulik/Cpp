@@ -46,6 +46,10 @@ namespace shkurov
       std::unique_ptr< shkurov::Shape > temp_collection[] = {std::move(pointers)...};
       for (size_t i = 0; i < shape_count_; i++)
       {
+        if (temp_collection[i] == nullptr)
+        {
+          throw std::invalid_argument("Exception: nullptr ");
+        }
         shape_array_[i] = std::move(temp_collection[i]);
       }
     }

@@ -4,6 +4,9 @@
 #include <forward_list>
 #include <iostream>
 
+#include "accesses.hpp"
+#include "functions.hpp"
+
 void pochernin::task1(const char* sortingDirection)
 {
   std::vector<int> bracketsVector;
@@ -17,9 +20,20 @@ void pochernin::task1(const char* sortingDirection)
     throw(std::runtime_error("Incorrect input in task1\n"));
   }
 
+  if (bracketsVector.size() == 0)
+  {
+    return;
+  }
+
   std::vector<int> atVector(bracketsVector);
   std::forward_list<int> iteratorForwardList(bracketsVector.begin(), bracketsVector.end());
 
+  pochernin::sort< bracketsAccess< int > >(bracketsVector, sortingDirection);
+  pochernin::print(bracketsVector);
 
-  std::cout << sortingDirection; // Это временно, чтобы компилилась программа!
+  pochernin::sort< atAccess< int > >(atVector, sortingDirection);
+  pochernin::print(atVector);
+
+  pochernin::sort< iteratorAccess< int > >(iteratorForwardList, sortingDirection);
+  pochernin::print(iteratorForwardList);
 }

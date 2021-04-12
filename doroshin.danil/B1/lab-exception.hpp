@@ -9,7 +9,7 @@ namespace doroshin
   class LabException: public std::exception
   {
   public:
-    explicit LabException(std::string msg, bool fatal = true);
+    explicit LabException(std::string msg, bool fatal = true) noexcept;
 
     bool fatal() const noexcept;
     const char* what() const noexcept override;

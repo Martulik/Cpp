@@ -1,6 +1,6 @@
 #include "lab-exception.hpp"
 
-doroshin::LabException::LabException(std::string msg, bool fatal):
+doroshin::LabException::LabException(std::string msg, bool fatal) noexcept:
   message_(std::move(msg)),
   fatal_(fatal)
 {}

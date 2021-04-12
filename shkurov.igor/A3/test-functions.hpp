@@ -19,14 +19,6 @@ namespace shkurov
   void testMoveToPoint(shkurov::Shape& shape);
   void testScale(shkurov::Shape& shape);
   void invalidScale(shkurov::Shape& shape);
-
-  namespace test_utility
-  {
-    double getX(const shkurov::Shape& shape);
-    double getY(const shkurov::Shape& shape);
-    double getHeight(const shkurov::Shape& shape);
-    double getWidth(const shkurov::Shape& shape);
-  }
 }
 
 #endif

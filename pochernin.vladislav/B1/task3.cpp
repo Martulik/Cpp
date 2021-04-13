@@ -21,7 +21,7 @@ void pochernin::task3()
   {
     throw(std::runtime_error("Incorrect input in task3\n"));
   }
-  
+
   if (vec.size() == 0)
   {
     return;

@@ -132,7 +132,7 @@ size_t vika::CompositeShape::capacity() const
   return capacity_;
 }
 
-std::shared_ptr< vika::Shape > vika::CompositeShape::at(size_t index) const
+std::shared_ptr< const vika::Shape > vika::CompositeShape::at(size_t index) const
 {
   if (index >= size_)
   {

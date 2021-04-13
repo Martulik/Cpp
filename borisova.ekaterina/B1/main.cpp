@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     return exitCode;
   }
   int numberTask = borisova::toInt(argv[1]);
-  if (!numberTask == -1)
+  if (numberTask != -1)
   {
     return exitCode;
   }

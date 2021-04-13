@@ -13,7 +13,7 @@ namespace shkurov
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    void move(const point_t& new_pos) override;
+    void move(const point_t& newPos) override;
     void move(double x, double y) override;
     const char* getName() const override;
   private:

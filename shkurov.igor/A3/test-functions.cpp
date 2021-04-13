@@ -46,24 +46,24 @@ std::unique_ptr< shkurov::Shape > shkurov::makeCompositeShape()
 
 void shkurov::testMoveToPoint(shkurov::Shape& shape)
 {
-  double origin_height = shape.getHeight();
-  double origin_width = shape.getWidth();
-  double origin_area = shape.getArea();
+  double originHeight = shape.getHeight();
+  double originWidth = shape.getWidth();
+  double originArea = shape.getArea();
 
   shape.move(FINAL_POS);
 
-  BOOST_CHECK_CLOSE_FRACTION(origin_height, shape.getHeight(), TOLERANCE);
-  BOOST_CHECK_CLOSE_FRACTION(origin_width, shape.getWidth(), TOLERANCE);
-  BOOST_CHECK_CLOSE_FRACTION(origin_area, shape.getArea(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(originHeight, shape.getHeight(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(originWidth, shape.getWidth(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(originArea, shape.getArea(), TOLERANCE);
 }
 
 void shkurov::testScale(shkurov::Shape& shape)
 {
-  double pred_area = shape.getArea() * K * K;
+  double predArea = shape.getArea() * K * K;
 
   shape.scale(K);
 
-  BOOST_CHECK_CLOSE_FRACTION(pred_area, shape.getArea(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(predArea, shape.getArea(), TOLERANCE);
 }
 
 void shkurov::invalidScale(shkurov::Shape& shape)

@@ -23,34 +23,34 @@ namespace shkurov
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;
-    void move(const point_t& new_pos) override;
+    void move(const point_t& newPos) override;
     void move(double x, double y) override;
     const char* getName() const override;
   private:
-    size_t shape_count_;
-    array_ptr shape_array_;
+    size_t shapeCount_;
+    array_ptr shapeArray_;
 
     void scaleFigure(double k) override;
   };
 
   template< typename... Pointers >
   CompositeShape::CompositeShape(Pointers... pointers):
-    shape_count_(sizeof...(Pointers)),
-    shape_array_(std::make_unique< member_ptr[] >(shape_count_))
+    shapeCount_(sizeof...(Pointers)),
+    shapeArray_(std::make_unique< member_ptr[] >(shapeCount_))
   {
-    if (shape_count_ == 0)
+    if (shapeCount_ == 0)
     {
       throw std::invalid_argument("Exception: empty parameter pack is not allowed");
     }
 
-    std::unique_ptr< shkurov::Shape > temp_collection[] = {std::move(pointers)...};
-    for (size_t i = 0; i < shape_count_; i++)
+    std::unique_ptr< shkurov::Shape > tempCollection[] = {std::move(pointers)...};
+    for (size_t i = 0; i < shapeCount_; i++)
     {
-      if (temp_collection[i] == nullptr)
+      if (tempCollection[i] == nullptr)
       {
         throw std::invalid_argument("Exception: nullptr ");
       }
-      shape_array_[i] = std::move(temp_collection[i]);
+      shapeArray_[i] = std::move(tempCollection[i]);
     }
   }
 }

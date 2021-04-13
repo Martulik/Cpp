@@ -7,8 +7,8 @@
 void printCoordinates(const shkurov::Shape& figure)
 {
   std::cout << figure.getName() << " is now located by ("
-            << figure.getFrameRect().pos.x << ':'
-            << figure.getFrameRect().pos.y << ')' << '\n';
+            << figure.getX() << ':'
+            << figure.getY() << ')' << '\n';
 }
 
 int main()
@@ -32,8 +32,8 @@ int main()
 
   printCoordinates(*circle);
 
-  shkurov::point_t new_pos = {2, 2};
-  circle->move(new_pos);
+  shkurov::point_t newPos = {2, 2};
+  circle->move(newPos);
   printCoordinates(*circle);
 
   std::cout << "Area of circle is: " << circle->getArea() << "\n\n";

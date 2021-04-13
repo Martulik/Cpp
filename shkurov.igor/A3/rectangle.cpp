@@ -24,15 +24,15 @@ shkurov::rectangle_t shkurov::Rectangle::getFrameRect() const
   return {height_, width_, center_};
 }
 
-void shkurov::Rectangle::move(const shkurov::point_t& new_pos)
+void shkurov::Rectangle::move(const shkurov::point_t& newPos)
 {
-  center_ = new_pos;
+  center_ = newPos;
 }
 
-void shkurov::Rectangle::move(const double move_x, const double move_y)
+void shkurov::Rectangle::move(const double moveX, const double moveY)
 {
-  center_.x += move_x;
-  center_.y += move_y;
+  center_.x += moveX;
+  center_.y += moveY;
 }
 
 void shkurov::Rectangle::scaleFigure(const double k)

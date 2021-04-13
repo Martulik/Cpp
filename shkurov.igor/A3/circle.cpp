@@ -25,15 +25,15 @@ shkurov::rectangle_t shkurov::Circle::getFrameRect() const
   return {2 * radius_, 2 * radius_, center_};
 }
 
-void shkurov::Circle::move(const shkurov::point_t& new_pos)
+void shkurov::Circle::move(const shkurov::point_t& newPos)
 {
-  center_ = new_pos;
+  center_ = newPos;
 }
 
-void shkurov::Circle::move(const double move_x, const double move_y)
+void shkurov::Circle::move(const double moveX, const double moveY)
 {
-  center_.x += move_x;
-  center_.y += move_y;
+  center_.x += moveX;
+  center_.y += moveY;
 }
 
 void shkurov::Circle::scaleFigure(const double k)

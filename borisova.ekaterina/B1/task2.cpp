@@ -29,7 +29,7 @@ int borisova::doTask2(const std::string& name)
     {
       temp[i] = std::move(mass[i]);
     }
-    std::swap(temp, mass); 
+    std::swap(temp, mass);
     count++;
   }
 

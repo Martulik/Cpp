@@ -25,6 +25,10 @@ int diurdeva::task3()
     return 1;
   }
 
+  if (vector.empty()) {
+    return 0;
+  }
+
   switch (vector.back()) {
   case 1:
     for (auto i = vector.begin(); i != vector.end();) {

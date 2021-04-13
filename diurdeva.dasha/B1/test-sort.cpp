@@ -27,13 +27,11 @@ namespace diurdeva {
 
 BOOST_AUTO_TEST_CASE(testSort)
 {
-  const size_t containerSize[] = {3, 6, 20, 40};
-  for (size_t size : containerSize) {
-    BOOST_CHECK((diurdeva::testSort< diurdeva::atAccess< int > >(std::less<>(), size)));
-    BOOST_CHECK((diurdeva::testSort< diurdeva::indexAccess< int > >(std::less<>(), size)));
-    BOOST_CHECK((diurdeva::testSort< diurdeva::iteratorAccess< int > >(std::less<>(), size)));
-    BOOST_CHECK((diurdeva::testSort< diurdeva::atAccess< int > >(std::greater<>(), size)));
-    BOOST_CHECK((diurdeva::testSort< diurdeva::indexAccess< int > >(std::greater<>(), size)));
-    BOOST_CHECK((diurdeva::testSort< diurdeva::iteratorAccess< int > >(std::greater<>(), size)));
-  }
+  const int containerSize = 6;
+  BOOST_CHECK((diurdeva::testSort< diurdeva::atAccess< int > >(std::less<>(), containerSize)));
+  BOOST_CHECK((diurdeva::testSort< diurdeva::atAccess< int > >(std::greater<>(), containerSize)));
+  BOOST_CHECK((diurdeva::testSort< diurdeva::indexAccess< int > >(std::less<>(), containerSize)));
+  BOOST_CHECK((diurdeva::testSort< diurdeva::indexAccess< int > >(std::greater<>(), containerSize)));
+  BOOST_CHECK((diurdeva::testSort< diurdeva::iteratorAccess< int > >(std::less<>(), containerSize)));
+  BOOST_CHECK((diurdeva::testSort< diurdeva::iteratorAccess< int > >(std::greater<>(), containerSize)));
 }

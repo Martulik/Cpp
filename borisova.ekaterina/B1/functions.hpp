@@ -7,6 +7,8 @@
 namespace borisova
 {
   void fillRandom(double* array, int size);
+  bool checkNumber(const std::string& number);
+  int toInt(const std::string& number);
 
   template < typename C >
   int sort(typename C::container & src, const std::string & mode)

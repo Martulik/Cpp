@@ -36,13 +36,13 @@ int borisova::doTask3()
   {
     while (iter != collection.end())
     {
-      if (*iter % 2 == 1)
+      if (*iter % 2 == 0)
       {
-        iter++;
+        iter = collection.erase(iter);
       }
       else
       {
-        iter = collection.erase(iter);
+        iter++;
       }
     }
   }
@@ -52,10 +52,14 @@ int borisova::doTask3()
     {
       if (*iter % 3 == 0)
       {
-        iter = collection.insert(++iter, 3, 1);
+        iter++;
+        iter = collection.insert(iter, 3, 1);
         iter += 2;
       }
-      iter++;
+      else
+      {
+        iter++;
+      }
     }
   }
   borisova::print(collection, std::cout);

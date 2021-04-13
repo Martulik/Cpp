@@ -24,7 +24,7 @@ int diurdeva::task3()
     std::cerr << "Wrong input\n";
     return 1;
   }
-  
+
   switch (vector.back()) {
   case 1:
     for (auto i = vector.begin(); i != vector.end();) {

@@ -4,18 +4,17 @@
 
 class Circle : public Shape
 {
+private:
+  double radius_;
+  point_t pos_;
+  
 public:
-  Circle(double valueRadius, point_t valuePos) :
-      radius_(valueRadius),
-      pos_(valuePos)
-  {}
+  Circle(double valueRadius, point_t valuePos);
+
   virtual double getArea() const override;
   virtual rectangle_t getFrameRect() const override;
   virtual void move(point_t newPos) override;
   virtual void move(double abscissa, double ordinate) override;
-private:
-  double radius_;
-  point_t pos_;
 };
 
 #endif

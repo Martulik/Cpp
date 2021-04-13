@@ -2,6 +2,12 @@
 
 const int PI  = 3.141592653589793;
 
+circle::circle(double valueRadius, point_t valuePos)
+{
+  radius_ = valueRadius;
+  pos_ = valuePos;
+}
+
 double Circle::getArea() const
 {
   return PI * radius_ * radius_;

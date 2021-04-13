@@ -42,6 +42,7 @@ namespace pochernin
   }
 
   bool isAscending(const char* sortingDirection);
+  void fillRandom(double* array, int size);
 }
 
 #endif

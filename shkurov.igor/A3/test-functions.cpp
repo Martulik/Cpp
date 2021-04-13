@@ -1,7 +1,7 @@
 #include "test-functions.hpp"
 
 #include <limits>
-#include <boost/test/unit_test.hpp>
+#include "boost/test/unit_test.hpp"
 
 struct point_t;
 
@@ -12,11 +12,10 @@ const double A = 7.0;
 const double B = 10.0;
 const double C = 4.0;
 const double K = 3.0;
-const double TOLERANCE = std::numeric_limits< double >::epsilon();
 
 std::unique_ptr< shkurov::Shape > shkurov::makeBadCircle()
 {
-   return std::make_unique< shkurov::Circle >(shkurov::Circle(CIRCLE_POS, -A));
+  return std::make_unique< shkurov::Circle >(shkurov::Circle(CIRCLE_POS, -A));
 }
 
 std::unique_ptr< shkurov::Shape > shkurov::makeBadRectangle()

@@ -27,10 +27,10 @@ namespace shkurov
     void move(double x, double y) override;
     const char* getName() const override;
   private:
-    void scaleFigure(double k) override;
-
     size_t shape_count_;
     array_ptr shape_array_;
+
+    void scaleFigure(double k) override;
   };
 
   template< typename... Pointers >

@@ -141,6 +141,15 @@ std::shared_ptr< const vika::Shape > vika::CompositeShape::at(size_t index) cons
   return arr_[index];
 }
 
+std::shared_ptr< vika::Shape > vika::CompositeShape::at(size_t index)
+{
+  if (index >= size_)
+  {
+    throw std::out_of_range("The value has gone out of bounds of the array");
+  }
+  return arr_[index];
+}
+
 std::shared_ptr< vika::Shape > vika::CompositeShape::clone() const
 {
   return std::make_shared< CompositeShape >(*this);

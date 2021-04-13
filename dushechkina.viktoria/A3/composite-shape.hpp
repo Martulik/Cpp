@@ -28,7 +28,8 @@ namespace dushechkina
     void pushBack(shapePtr src);
     size_t size() const;
     size_t capacity() const;
-    std::shared_ptr< Shape > at(size_t index) const;
+    std::shared_ptr< const dushechkina::Shape > at(size_t index) const;
+    std::shared_ptr< dushechkina::Shape > at(size_t index);
     std::shared_ptr< Shape > clone() const override;
   private:
     size_t size_;

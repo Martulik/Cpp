@@ -13,6 +13,7 @@ namespace pyatizbyantsev
     rectangle_t getFrameRect() const override;
     void move(const point_t& newPos) override;
     void move(double abscissa, double ordinate) override;
+    void scale(double scaleCoefficient) override;
 
   private:
     double radius_;

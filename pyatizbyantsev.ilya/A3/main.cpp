@@ -1,6 +1,7 @@
-﻿#include "rectangle.hpp"
+﻿#include <iostream>
+
+#include "rectangle.hpp"
 #include "circle.hpp"
-#include <iostream>
 
 using namespace pyatizbyantsev;
 

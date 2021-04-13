@@ -34,5 +34,6 @@ int diurdeva::task2(const char *fileName)
   std::vector< char > vector(arr.get(), arr.get() + count);
   for (size_t i = 0; i < count; i++) {
     std::cout << vector[i];
+  }
   return 0;
 }

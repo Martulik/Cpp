@@ -17,10 +17,10 @@ namespace shkurov
     void move(double x, double y) override;
     const char* getName() const override;
   private:
-    void scaleFigure(double k) override;
-
     point_t center_;
     double radius_;
+
+    void scaleFigure(double k) override;
   };
 }
 

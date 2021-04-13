@@ -55,8 +55,8 @@ void shkurov::CompositeShape::scaleFigure(double k)
   point_t center = getFrameRect().pos;
   for (size_t i = 0; i < shape_count_; i++)
   {
-    shape_array_[i]->move((center.x - shape_array_[i]->getX())
-      * k, (center.y - shape_array_[i]->getY()) * k);
+    shape_array_[i]->move((center.x - shape_array_[i]->getX()) * k,
+     (center.y - shape_array_[i]->getY()) * k);
     shape_array_[i]->scale(k);
   }
 }

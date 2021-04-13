@@ -13,20 +13,20 @@ void dushechkina::Shape::scale(double ratio)
 
 double dushechkina::getX(const Shape& shape)
 {
-    return shape.getFrameRect().pos.x;
+  return shape.getFrameRect().pos.x;
 }
 
 double dushechkina::getY(const Shape& shape)
 {
-    return shape.getFrameRect().pos.y;
+  return shape.getFrameRect().pos.y;
 }
 
 double dushechkina::getWidth(const Shape& shape)
 {
-    return shape.getFrameRect().width;
+  return shape.getFrameRect().width;
 }
 
 double dushechkina::getHeight(const Shape& shape)
 {
-    return shape.getFrameRect().height;
+  return shape.getFrameRect().height;
 }

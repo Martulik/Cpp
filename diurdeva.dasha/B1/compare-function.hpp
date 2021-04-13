@@ -2,6 +2,7 @@
 #define COMPARE_FUNCTION_HPP
 
 #include<functional>
+#include <cstring>
 
 namespace diurdeva {
   template< typename T >

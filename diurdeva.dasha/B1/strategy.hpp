@@ -12,7 +12,7 @@ namespace diurdeva {
     using iterator = size_t;
     using container_type = std::vector< T >;
 
-    static iterator begin(container_type &data)
+    static iterator begin(container_type &)
     {
       return 0;
     }
@@ -34,7 +34,7 @@ namespace diurdeva {
     using iterator = size_t;
     using container_type = std::vector< T >;
 
-    static iterator begin(container_type &data)
+    static iterator begin(container_type &)
     {
       return 0;
     }

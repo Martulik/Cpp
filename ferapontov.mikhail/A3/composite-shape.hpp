@@ -35,6 +35,6 @@ namespace ferapontov
     std::unique_ptr< ValueType[] > arr_;
 
     void doScale(double k) override;
- };
+  };
 }
 #endif

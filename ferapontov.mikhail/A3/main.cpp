@@ -4,7 +4,6 @@
 #include "composite-shape.hpp"
 
 namespace fer = ferapontov;
-using UniqueShp = std::unique_ptr< fer::Shape > ;
 
 void testArea(fer::Shape& shp)
 {
@@ -35,6 +34,8 @@ void testScale(fer::Shape& shp, const double k)
 
 int main()
 {
+  using UniqueShp = std::unique_ptr< fer::Shape >;
+
   const fer::point_t point_zero = {0, 0};
   const fer::point_t not_zero = {123, 3};
   UniqueShp rectangle = std::make_unique< fer::Rectangle >(10, 20, not_zero);

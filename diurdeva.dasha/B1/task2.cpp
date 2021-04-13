@@ -16,7 +16,7 @@ int diurdeva::task2(const char *fileName)
     return 0;
   }
   size_t count = 0;
-  size_t capacity = 8;
+  size_t capacity = 4;
   std::unique_ptr< char[] > arr = std::make_unique< char[] >(capacity);
 
   while (!inputStream.eof()) {

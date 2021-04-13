@@ -24,11 +24,10 @@ shkurov::rectangle_t shkurov::CompositeShape::getFrameRect() const
 
   for (size_t i = 0; i < shape_count_; i++)
   {
-    rectangle_t rect = shape_array_[i]->getFrameRect();
-    max_x = std::max(max_x, rect.pos.x + rect.width / 2);
-    min_x = std::min(min_x, rect.pos.x - rect.width / 2);
-    max_y = std::max(max_y, rect.pos.y + rect.height / 2);
-    min_y = std::min(min_y, rect.pos.y - rect.height / 2);
+    max_x = std::max(max_x, shape_array_[i]->getX() + shape_array_[i]->getWidth() / 2);
+    min_x = std::min(min_x, shape_array_[i]->getX() - shape_array_[i]->getWidth() / 2);
+    max_y = std::max(max_y, shape_array_[i]->getY() + shape_array_[i]->getHeight() / 2);
+    min_y = std::min(min_y, shape_array_[i]->getY() - shape_array_[i]->getHeight() / 2);
   }
 
   double width = max_x - min_x;
@@ -40,7 +39,7 @@ shkurov::rectangle_t shkurov::CompositeShape::getFrameRect() const
 
 void shkurov::CompositeShape::move(const shkurov::point_t& new_pos)
 {
-  move(new_pos.x - getFrameRect().pos.x, new_pos.y - getFrameRect().pos.y);
+  move(new_pos.x - getX(), new_pos.y - getY());
 }
 
 void shkurov::CompositeShape::move(const double x, const double y)
@@ -56,8 +55,8 @@ void shkurov::CompositeShape::scaleFigure(double k)
   point_t center = getFrameRect().pos;
   for (size_t i = 0; i < shape_count_; i++)
   {
-    point_t shape_center = shape_array_[i]->getFrameRect().pos;
-    shape_array_[i]->move((center.x - shape_center.x) * k, (center.y - shape_center.y) * k);
+    shape_array_[i]->move((center.x - shape_array_[i]->getX())
+      * k, (center.y - shape_array_[i]->getY()) * k);
     shape_array_[i]->scale(k);
   }
 }

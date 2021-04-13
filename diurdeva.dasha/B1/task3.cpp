@@ -26,23 +26,21 @@ int diurdeva::task3()
   }
 
   std::vector< int >::iterator iterator = vector.begin();
-  if (!vector.empty() && vector.back() == 1) {
-    while (iterator != vector.end()) {
-      if (*iterator % 2 == 0) {
-        iterator = vector.erase(iterator);
-      } else {
-        iterator++;
-      }
+  switch (vector.back()) {
+  case 1:
+    for (auto i = vector.begin(); i != vector.end();) {
+      i = ((*i % 2) == 0) ? vector.erase(i) : ++i;
     }
-  }
-  if (!vector.empty() && vector.back() == 2) {
-    while (iterator != vector.end()) {
-      if (*iterator % 3 == 0) {
-        iterator = vector.insert(iterator + 1, 3, 1) + 2;
-      } else {
-        iterator++;
-      }
+    break;
+
+  case 2:
+    for (auto i = vector.begin(); i != vector.end();) {
+      i = ((*i % 3) == 0) ? (vector.insert(++i, 3, 1) + 3) : ++i;
     }
+    break;
+
+  default:
+    break;
   }
   print(vector);
   return 0;

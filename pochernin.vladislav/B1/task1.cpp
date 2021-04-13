@@ -29,11 +29,11 @@ void pochernin::task1(const char* sortingDirection)
   std::forward_list<int> iteratorForwardList(bracketsVector.begin(), bracketsVector.end());
 
   pochernin::sort< bracketsAccess< int > >(bracketsVector, isAscending(sortingDirection));
-  pochernin::print(bracketsVector);
+  pochernin::print(bracketsVector, " ");
 
   pochernin::sort< atAccess< int > >(atVector, isAscending(sortingDirection));
-  pochernin::print(atVector);
+  pochernin::print(atVector, " ");
 
   pochernin::sort< iteratorAccess< int > >(iteratorForwardList, isAscending(sortingDirection));
-  pochernin::print(iteratorForwardList);
+  pochernin::print(iteratorForwardList, " ");
 }

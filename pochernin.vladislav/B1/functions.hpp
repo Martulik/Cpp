@@ -7,14 +7,14 @@
 namespace pochernin
 {
   template < typename Container >
-  void print (const Container& container)
+  void print (const Container& container, const char* delimiter = "")
   {
     using Iterator = typename Container::const_iterator;
 
     Iterator end = container.end();
     for (Iterator current = container.begin(); current != end; current++)
     {
-      std::cout << *current << " ";
+      std::cout << *current << delimiter;
     }
     std::cout << "\n";
   }

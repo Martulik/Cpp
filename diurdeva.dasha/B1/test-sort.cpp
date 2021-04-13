@@ -16,7 +16,7 @@ namespace diurdeva {
   }
 
   template< typename Strategy >
-  bool testSort(const std::function< bool(typename Strategy::type, typename Strategy::type) > compare, const int size)
+  bool testSort(const std::function< bool(int, int) > compare, const int size)
   {
     typename Strategy::container_type container(size);
     fillCont(container.begin(), container.end());
@@ -27,7 +27,7 @@ namespace diurdeva {
 
 BOOST_AUTO_TEST_CASE(testSort)
 {
-  const size_t containerSize[] = { 3, 6, 20, 40 };
+  const size_t containerSize[] = {3, 6, 20, 40};
   for (size_t size : containerSize) {
     BOOST_CHECK((diurdeva::testSort< diurdeva::atAccess< int > >(std::less<>(), size)));
     BOOST_CHECK((diurdeva::testSort< diurdeva::indexAccess< int > >(std::less<>(), size)));

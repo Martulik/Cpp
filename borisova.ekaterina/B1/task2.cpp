@@ -5,28 +5,31 @@
 #include <vector>
 #include <memory>
 
-void borisova::doTask2(const std::string& name)
+int borisova::doTask2(const std::string& name)
 {
   std::ifstream file;
   file.open(name);
-  assert(file);
+  if (!file.is_open())
+  {
+    std::cerr << "File mustn't be open";
+    return 1;
+  }
   size_t step = 2;
   size_t count = 0;
   std::unique_ptr< char[] > mass = std::make_unique< char[] >(step);
 
-  while (file.peek() != EOF)
+  while (!file.eof())
   {
-    file >> mass[count];
-    if (count + 1 == step)
+    file.read(mass.get() + count, step - count);
+    count += file.gcount();
+    step *= 2;
+    std::unique_ptr< char[] > temp = std::make_unique< char[] >(step);
+
+    for (size_t i = 0; i < count; i++)
     {
-      step *= 2;
-      std::unique_ptr< char[] > temp = std::make_unique< char[] >(step);
-      for (size_t i = 0; i <= count; i++)
-      {
-        temp[i] = std::move(mass[i]);
-      }
-      std::swap(temp, mass);
+      temp[i] = std::move(mass[i]);
     }
+    std::swap(temp, mass); 
     count++;
   }
 
@@ -36,4 +39,5 @@ void borisova::doTask2(const std::string& name)
   {
     std::cout << vec[i];
   }
+  return 0;
 }

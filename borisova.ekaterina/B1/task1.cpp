@@ -4,7 +4,7 @@
 #include "functions.hpp"
 #include "strategies.hpp"
 
-void borisova::doTask1(const std::string& mode)
+int borisova::doTask1(const std::string& mode)
 {
   std::vector < int > collection;
   int number;
@@ -13,6 +13,7 @@ void borisova::doTask1(const std::string& mode)
     if (std::cin.fail() || std::cin.bad())
     {
       std::cerr << "Incorrect input\n";
+      return 1;
     }
     collection.push_back(number);
   }
@@ -27,4 +28,5 @@ void borisova::doTask1(const std::string& mode)
   std::forward_list< int > iterList(collection.begin(), collection.end());
   sort< listStrategy< int > >(iterList, mode);
   print(iterList, std::cout);
+  return 0;
 }

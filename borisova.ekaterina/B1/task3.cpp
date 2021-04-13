@@ -4,7 +4,7 @@
 #include "strategies.hpp"
 #include "functions.hpp"
 
-void borisova::doTask3()
+int borisova::doTask3()
 {
   std::vector < int > collection;
   int number = 1;
@@ -13,6 +13,7 @@ void borisova::doTask3()
     if (std::cin.fail() || std::cin.bad())
     {
       std::cerr << "Incorrect input\n";
+      return 1;
     }
     if (number != 0)
     {
@@ -27,6 +28,7 @@ void borisova::doTask3()
   if (number != 0)
   {
     std::cerr << "Last value must be 0\n";
+    return 1;
   }
 
   std::vector< int >::iterator iter = collection.begin();
@@ -40,7 +42,7 @@ void borisova::doTask3()
       }
       else
       {
-        collection.erase(iter);
+        iter = collection.erase(iter);
       }
     }
   }
@@ -57,4 +59,5 @@ void borisova::doTask3()
     }
   }
   borisova::print(collection, std::cout);
+  return 0;
 }

@@ -9,7 +9,7 @@ namespace borisova
   void fillRandom(double* array, int size);
 
   template < typename C >
-  void sort(typename C::container & src, const std::string & mode)
+  int sort(typename C::container & src, const std::string & mode)
   {
     using itr = typename C::iterator;
     bool value = 0;
@@ -24,6 +24,7 @@ namespace borisova
     else
     {
       std::cerr << "Wrong mode\n";
+      return 1;
     }
 
     itr end = C::end(src);
@@ -37,6 +38,7 @@ namespace borisova
         }
       }
     }
+    return 0;
   }
 
   template< typename T >

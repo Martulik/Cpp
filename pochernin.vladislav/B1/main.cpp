@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 3"));
       }
-      //pochernin::task3();
+      pochernin::task3();
       break;
     case 4:
       if (argc != 4)

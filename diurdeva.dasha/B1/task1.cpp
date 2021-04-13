@@ -1,0 +1,26 @@
+#include "tasks.hpp"
+#include <vector>
+#include <forward_list>
+#include <iostream>
+#include "tools.hpp"
+
+int diurdeva::task1(const std::function< bool(int, int) > compare)
+{
+  std::vector< int > vectorBr;
+  int num = 0;
+  while (std::cin && !(std::cin >> num).eof()) {
+    if (std::cin.fail() || std::cin.bad()) {
+      std::cerr << "Read error\n";
+      return 1;
+    }
+    vectorBr.push_back(num);
+  }
+
+  std::vector< int > vectorAt = vectorBr;
+  std::forward_list< int > listIt(vectorBr.begin(), vectorBr.end());
+
+  printAndSorted< indexAccess< int > >(vectorBr, compare);
+  printAndSorted< atAccess< int > >(vectorAt, compare);
+  printAndSorted< iteratorAccess< int > >(listIt, compare);
+  return 0;
+}

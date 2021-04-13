@@ -16,13 +16,13 @@ int diurdeva::task2(const char *fileName)
     return 0;
   }
   size_t count = 0;
-  size_t capacity = 4;
+  size_t capacity = 8;
   std::unique_ptr< char[] > arr = std::make_unique< char[] >(capacity);
 
   while (!inputStream.eof()) {
     inputStream.read(arr.get() + count, capacity - count);
-    count += inputStream.gcount();
     capacity *= 2;
+    count += inputStream.gcount();
     std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
     for (size_t i = 0; i < count; i++) {
       temp[i] = std::move(arr[i]);
@@ -32,6 +32,7 @@ int diurdeva::task2(const char *fileName)
   inputStream.close();
 
   std::vector< char > vector(arr.get(), arr.get() + count);
-  print(vector);
+  for (size_t i = 0; i < count; i++) {
+    std::cout << vector[i];
   return 0;
 }

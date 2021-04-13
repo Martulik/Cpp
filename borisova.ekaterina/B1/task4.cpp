@@ -3,8 +3,13 @@
 #include "strategies.hpp"
 #include "functions.hpp"
 
-int borisova::doTask4(const std::string & mode, const int size)
+int borisova::doTask4(const int argc, const std::string & mode, const int size)
 {
+  if (argc != 4)
+  {
+    std::cerr << "Incorrect number of arguments";
+    return 2;
+  }
   if (size < 0)
   {
     std::cerr << "Incorrect size\n";

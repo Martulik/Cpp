@@ -5,8 +5,13 @@
 #include <vector>
 #include <memory>
 
-int borisova::doTask2(const std::string& name)
+int borisova::doTask2(const int argc, const std::string& name)
 {
+  if (argc != 4)
+  {
+    std::cerr << "Incorrect number of arguments";
+    return 2;
+  }
   std::ifstream file;
   file.open(name);
   if (!file.is_open())

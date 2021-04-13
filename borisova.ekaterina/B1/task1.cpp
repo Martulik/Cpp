@@ -4,8 +4,13 @@
 #include "functions.hpp"
 #include "strategies.hpp"
 
-int borisova::doTask1(const std::string& mode)
+int borisova::doTask1(const int argc, const std::string& mode)
 {
+  if (argc != 3)
+  {
+    std::cerr << "Incorrect number of arguments";
+    return 2;
+  }
   std::vector < int > collection;
   int number;
   while (std::cin && !(std::cin >> number).eof())
@@ -23,6 +28,10 @@ int borisova::doTask1(const std::string& mode)
   {
     print(indVec, std::cout);
   }
+  else
+  {
+    return exitCode1;
+  }
 
   std::vector< int > atVec(collection);
   int exitCode2 = sort< atStrategy< int > >(atVec, mode);
@@ -30,11 +39,19 @@ int borisova::doTask1(const std::string& mode)
   {
     print(atVec, std::cout);
   }
+  else
+  {
+    return exitCode2;
+  }
   std::forward_list< int > iterList(collection.begin(), collection.end());
   int exitCode3 = sort< listStrategy< int > >(iterList, mode);
   if (!exitCode3)
   {
     print(iterList, std::cout);
   }
-  return (exitCode1 || exitCode2 || exitCode3);
+  else
+  {
+    return exitCode3;
+  }
+  return 0;
 }

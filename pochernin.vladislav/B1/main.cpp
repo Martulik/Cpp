@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect array size"));
       }
-      //pochernin::task4(argv[2], atoi(argv[3]));
+      pochernin::task4(argv[2], atoi(argv[3]));
       break;
     default:
       throw(std::invalid_argument("Incorrect task number"));

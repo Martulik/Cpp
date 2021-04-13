@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 2"));
       }
-      //pochernin::task2(argv[2]);
+      pochernin::task2(argv[2]);
       break;
     case 3:
       if (argc != 2)

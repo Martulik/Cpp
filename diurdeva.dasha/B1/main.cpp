@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
     error = compare && lab::checkIsNumber(argv[3]) ? "Null" : "Incorrect direction";
     code = (error == "Null") ? lab::task4(compare, atoi(argv[3])) : 1;
   } else {
-    code = setError("Incorrect number of arguments.\n");
+    error = "Incorrect number of arguments.\n";
+    code = 1;
   }
 
   if (error != "Null") {

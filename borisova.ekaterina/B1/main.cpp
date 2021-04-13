@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
   switch (numberTask)
   {
   case 1:
-    if (argc != 4)
+    if (argc != 3)
     {
       exitCode = 1;
       break;
@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     break;
 
   case 2:
-    if (argc != 3)
+    if (argc != 4)
     {
       exitCode = 1;
       break;

@@ -18,15 +18,23 @@ int borisova::doTask1(const std::string& mode)
     collection.push_back(number);
   }
   std::vector< int > indVec(collection);
-  sort< bracketStrategy< int > >(indVec, mode);
-  print(indVec, std::cout);
+  int exitCode1 = sort< bracketStrategy< int > >(indVec, mode);
+  if (!exitCode1)
+  {
+    print(indVec, std::cout);
+  }
 
   std::vector< int > atVec(collection);
-  sort< atStrategy< int > >(atVec, mode);
-  print(atVec, std::cout);
-
+  int exitCode2 = sort< atStrategy< int > >(atVec, mode);
+  if (!exitCode2)
+  {
+    print(atVec, std::cout);
+  }
   std::forward_list< int > iterList(collection.begin(), collection.end());
-  sort< listStrategy< int > >(iterList, mode);
-  print(iterList, std::cout);
-  return 0;
+  int exitCode3 = sort< listStrategy< int > >(iterList, mode);
+  if (!exitCode3)
+  {
+    print(iterList, std::cout);
+  }
+  return (exitCode1 || exitCode2 || exitCode3);
 }

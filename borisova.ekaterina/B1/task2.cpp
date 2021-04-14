@@ -7,7 +7,7 @@
 
 int borisova::doTask2(const int argc, const std::string& name)
 {
-  if (argc != 4)
+  if (argc != 3)
   {
     std::cerr << "Incorrect number of arguments";
     return 2;
@@ -35,10 +35,9 @@ int borisova::doTask2(const int argc, const std::string& name)
       temp[i] = std::move(mass[i]);
     }
     std::swap(temp, mass);
-    count++;
   }
-
   file.close();
+
   std::vector< char > vec(mass.get(), mass.get() + count);
   for (size_t i = 0; i < vec.size(); i++)
   {

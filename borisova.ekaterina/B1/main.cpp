@@ -8,11 +8,11 @@ int main(int argc, char* argv[])
   int exitCode = 1;
   if (argc < 2)
   {
-    std::cerr << "Arguments isn't find";
+    std::cerr << "Arguments aren't find";
     return exitCode;
   }
   int numberTask = borisova::toInt(argv[1]);
-  if (numberTask != -1)
+  if (numberTask == -1)
   {
     return exitCode;
   }

@@ -30,6 +30,11 @@ int borisova::doTask3(const int argc)
     }
   }
 
+  if (collection.empty())
+  {
+    return 0;
+  }
+
   if (number != 0)
   {
     std::cerr << "Last value must be 0\n";
@@ -37,7 +42,7 @@ int borisova::doTask3(const int argc)
   }
 
   std::vector< int >::iterator iter = collection.begin();
-  if (!collection.empty() && collection.back() == 1)
+  if (collection.back() == 1)
   {
     while (iter != collection.end())
     {
@@ -51,7 +56,7 @@ int borisova::doTask3(const int argc)
       }
     }
   }
-  else if (!collection.empty() && collection.back() == 2)
+  else if (collection.back() == 2)
   {
     while (iter != collection.end())
     {
@@ -67,6 +72,7 @@ int borisova::doTask3(const int argc)
       }
     }
   }
+
   borisova::print(collection, std::cout);
   return 0;
 }

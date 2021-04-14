@@ -15,16 +15,6 @@ curr::CompositeShape::CompositeShape(const curr::CompositeShape& other)
   }
 }
 
-curr::CompositeShape::CompositeShape(CompositeShape&& other) noexcept
-{
-  capacity_ = std::move(other.capacity_);
-  size_ = std::move(other.size_);
-  array_ = std::move(other.array_);
-
-  other.capacity_ = 0;
-  other.size_ = 0;
-  other.array_ = nullptr;
-}
 curr::CompositeShape& curr::CompositeShape::operator=(const CompositeShape& src)
 {
   if (this == std::addressof(src))

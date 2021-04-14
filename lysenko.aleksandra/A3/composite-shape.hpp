@@ -12,7 +12,7 @@ namespace lysenko
   {
   public:
     CompositeShape(const CompositeShape& other);
-    CompositeShape(CompositeShape&& other) noexcept;
+    CompositeShape(CompositeShape&& other) = default;
     explicit CompositeShape(ShapePtr src);
 
     ~CompositeShape() override = default;

@@ -1,13 +1,15 @@
 #include <iostream>
 #include <stdexcept>
 
-//namespace lab = savchuk;
+#include "tools.hpp"
+
+namespace lab = savchuk;
 
 int main(int argc, const char** argv)
 {
   try
   {
-    int task = 0; //lab::convertToNumber(argv[1]);
+    int task = lab::convertToNumber(argv[1]);
     if (task == 1 && argc == 3)
     {
       //lab::doTask1(argv[2]);

@@ -17,7 +17,7 @@ void pochernin::task3()
     }
     vec.push_back(n);
   }
-  if ((n != 0) || std::cin.fail() || std::cin.bad())
+  if ((n != 0) || (!std::cin.eof() && std::cin.fail()) || std::cin.bad())
   {
     throw(std::runtime_error("Incorrect input in task3\n"));
   }

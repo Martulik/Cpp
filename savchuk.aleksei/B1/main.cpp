@@ -25,7 +25,7 @@ int main(int argc, const char** argv)
     }
     else if (task == 4 && argc == 4)
     {
-      //lab::doTask4(argv[2], argv[3]);
+      lab::doTask4(argv[2], argv[3]);
     }
     else
     {

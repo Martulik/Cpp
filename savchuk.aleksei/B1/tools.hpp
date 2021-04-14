@@ -5,10 +5,13 @@
 #include <functional>
 #include <iostream>
 #include <sstream>
+#include <random>
 
 namespace savchuk
 {
   size_t convertToNumber(const std::string& order);
+  void fillRandom(double* array, size_t size);
+
   template< typename T >
   std::function< bool(const T&, const T&) > getCompare(const std::string& order)
   {

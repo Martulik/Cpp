@@ -1,10 +1,11 @@
 #include "tools.hpp"
 
 #include <cstddef>
+#include <stdexcept>
 
 namespace lab = savchuk;
 
-int lab::convertToNumber(const std::string& str)
+size_t lab::convertToNumber(const std::string& str)
 {
   size_t len = str.size();
   int num = 0;
@@ -17,7 +18,7 @@ int lab::convertToNumber(const std::string& str)
     }
     else
     {
-      return -1;
+      throw std::invalid_argument("invalid number format");
     }
   }
   return num;

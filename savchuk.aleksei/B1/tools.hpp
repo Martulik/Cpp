@@ -8,7 +8,7 @@
 
 namespace savchuk
 {
-  int convertToNumber(const std::string& order);
+  size_t convertToNumber(const std::string& order);
   template< typename T >
   std::function< bool(const T&, const T&) > getCompare(const std::string& order)
   {

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <functional>
+#include <iostream>
+#include <sstream>
 
 namespace savchuk
 {
@@ -19,6 +21,19 @@ namespace savchuk
       return std::greater< T >();
     }
     throw std::invalid_argument("invalid sort order");
+  }
+  template< typename Iterator >
+  void print(Iterator first, Iterator last, std::ostream& os)
+  {
+    char delim = ' ';
+    std::ostringstream buf;
+    while (first != last)
+    {
+      buf << *first << delim;
+      ++first;
+    }
+    buf << '\n';
+    os << buf.str();
   }
 }
 

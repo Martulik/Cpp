@@ -13,7 +13,7 @@ namespace savchuk
     using container = std::vector< T >;
     using iterator = size_t;
     
-    static iterator begin(container& cnt)
+    static iterator begin(container&)
     {
       return 0;
     }
@@ -33,7 +33,7 @@ namespace savchuk
     using container = std::vector< T >;
     using iterator = size_t;
 
-    static iterator begin(container& cnt)
+    static iterator begin(container&)
     {
       return 0;
     }
@@ -43,7 +43,7 @@ namespace savchuk
     }
     static T& get(container& cnt, iterator it)
     {
-      return cnt.at(iter);
+      return cnt.at(it);
     }
   };
 
@@ -61,9 +61,9 @@ namespace savchuk
     {
       return cnt.end();
     }
-    static T& get(container& cnt, iterator it)
+    static T& get(container&, iterator it)
     {
-      return *iter;
+      return *it;
     }
   };
 }

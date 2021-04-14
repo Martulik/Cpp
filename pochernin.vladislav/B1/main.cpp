@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "tasks.hpp"
+#include "functions.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -10,6 +11,10 @@ int main(int argc, char* argv[])
     if ((argc < 2) || (argc > 4))
     {
       throw(std::invalid_argument("Incorrect count of arguments"));
+    }
+    if (!pochernin::isNumber(argv[1]))
+    {
+      throw(std::invalid_argument("Incorrect first argument (task number)"));
     }
     switch (atoi(argv[1]))
     {
@@ -38,6 +43,10 @@ int main(int argc, char* argv[])
       if (argc != 4)
       {
         throw(std::invalid_argument("Incorrect count of arguments for task 4"));
+      }
+      if (!pochernin::isNumber(argv[3]))
+      {
+        throw(std::invalid_argument("Incorrect third argument (vector size in task 3)"));
       }
       if (atoi(argv[3]) <= 0)
       {

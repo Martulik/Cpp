@@ -34,3 +34,15 @@ void pochernin::fillRandom(double* array, int size)
     array[i] = (static_cast< double >(rand()) / RAND_MAX) * 2 - 1;
   }
 }
+
+bool pochernin::isNumber(const char* string)
+{
+  for (size_t i = 0; i < strlen(string); i++)
+  {
+    if ((string[i] < '0') || (string[i] > '9'))
+    {
+      return false;
+    }
+  }
+  return true;
+}

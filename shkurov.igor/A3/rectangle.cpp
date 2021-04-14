@@ -3,7 +3,9 @@
 #include <cassert>
 #include <stdexcept>
 
-shkurov::Rectangle::Rectangle(const shkurov::point_t& pos, const double height, const double width):
+namespace ss = shkurov;
+
+ss::Rectangle::Rectangle(const ss::point_t& pos, const double height, const double width):
   center_(pos),
   height_(height),
   width_(width)
@@ -14,34 +16,34 @@ shkurov::Rectangle::Rectangle(const shkurov::point_t& pos, const double height, 
   }
 }
 
-double shkurov::Rectangle::getArea() const
+double ss::Rectangle::getArea() const
 {
   return height_ * width_;
 }
 
-shkurov::rectangle_t shkurov::Rectangle::getFrameRect() const
+ss::rectangle_t ss::Rectangle::getFrameRect() const
 {
   return {height_, width_, center_};
 }
 
-void shkurov::Rectangle::move(const shkurov::point_t& newPos)
+void ss::Rectangle::move(const ss::point_t& newPos)
 {
   center_ = newPos;
 }
 
-void shkurov::Rectangle::move(const double moveX, const double moveY)
+void ss::Rectangle::move(const double moveX, const double moveY)
 {
   center_.x += moveX;
   center_.y += moveY;
 }
 
-void shkurov::Rectangle::scaleFigure(const double k)
+void ss::Rectangle::scaleFigure(const double k)
 {
   height_ *= k;
   width_ *= k;
 }
 
-const char* shkurov::Rectangle::getName() const
+const char* ss::Rectangle::getName() const
 {
   return "Rectangle";
 }

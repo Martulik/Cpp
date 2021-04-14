@@ -10,22 +10,22 @@ void shkurov::Shape::scale(const double k)
   scaleFigure(k);
 }
 
-double shkurov::Shape::getX() const
+double shkurov::getX(const shkurov::Shape& shape)
 {
-  return getFrameRect().pos.x;
+  return shape.getFrameRect().pos.x;
 }
 
-double shkurov::Shape::getY() const
+double shkurov::getY(const shkurov::Shape& shape)
 {
-  return getFrameRect().pos.y;
+  return shape.getFrameRect().pos.y;
 }
 
-double shkurov::Shape::getHeight() const
+double shkurov::getHeight(const shkurov::Shape& shape)
 {
-  return getFrameRect().height;
+  return shape.getFrameRect().height;
 }
 
-double shkurov::Shape::getWidth() const
+double shkurov::getWidth(const shkurov::Shape& shape)
 {
-  return getFrameRect().width;
+  return shape.getFrameRect().width;
 }

@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <iostream>
+#include <stdexcept>
 
 #include "shape.hpp"
 
@@ -43,16 +44,18 @@ namespace shkurov
       throw std::invalid_argument("Exception: empty parameter pack is not allowed");
     }
 
-    std::unique_ptr< shkurov::Shape > tempCollection[] = {std::move(pointers)...};
+    std::unique_ptr< Shape > tempCollection[] = {std::move(pointers)...};
     for (size_t i = 0; i < shapeCount_; i++)
     {
       if (tempCollection[i] == nullptr)
       {
-        throw std::invalid_argument("Exception: nullptr ");
+        throw std::invalid_argument("Exception: nullptr parameters are not allowed");
       }
       shapeArray_[i] = std::move(tempCollection[i]);
     }
   }
 }
+
+using CShape = shkurov::CompositeShape;
 
 #endif

@@ -1,8 +1,6 @@
 #ifndef TEST_FUNCTIONS_HPP
 #define TEST_FUNCTIONS_HPP
 
-#include <memory>
-#include <stdexcept>
 #include <limits>
 
 #include "shape.hpp"
@@ -10,19 +8,22 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
+using std::unique_ptr;
+using shapePtr = unique_ptr< shkurov::Shape >;
+
 const double TOLERANCE = std::numeric_limits< double >::epsilon();
 
 namespace shkurov
 {
-  std::unique_ptr< shkurov::Shape > makeBadCircle();
-  std::unique_ptr< shkurov::Shape > makeBadRectangle();
-  std::unique_ptr< shkurov::Shape > makeCircle();
-  std::unique_ptr< shkurov::Shape > makeRectangle();
-  std::unique_ptr< shkurov::Shape > makeCompositeShape();
+  shapePtr makeBadCircle();
+  shapePtr makeBadRectangle();
+  shapePtr makeCircle();
+  shapePtr makeRectangle();
+  shapePtr makeCompositeShape();
 
-  void testMoveToPoint(shkurov::Shape& shape);
-  void testScale(shkurov::Shape& shape);
-  void invalidScale(shkurov::Shape& shape);
+  void testMoveToPoint(Shape& shape);
+  void testScale(Shape& shape);
+  void invalidScale(Shape& shape);
 }
 
 #endif

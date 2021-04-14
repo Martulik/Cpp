@@ -3,61 +3,65 @@
 #include <limits>
 #include "boost/test/unit_test.hpp"
 
+namespace ss = shkurov;
+
+using std::make_unique;
+
 struct point_t;
 
-const shkurov::point_t CIRCLE_POS = {3, -5};
-const shkurov::point_t RECTANGLE_POS = {-8, 1};
-const shkurov::point_t FINAL_POS = {0, 4};
+const ss::point_t CIRCLE_POS = {3, -5};
+const ss::point_t RECTANGLE_POS = {-8, 1};
+const ss::point_t FINAL_POS = {0, 4};
 const double A = 7.0;
 const double B = 10.0;
 const double C = 4.0;
 const double K = 3.0;
 
-std::unique_ptr< shkurov::Shape > shkurov::makeBadCircle()
+unique_ptr< ss::Shape > ss::makeBadCircle()
 {
-  return std::make_unique< shkurov::Circle >(shkurov::Circle(CIRCLE_POS, -A));
+  return make_unique< ss::Circle >(ss::Circle(CIRCLE_POS, -A));
 }
 
-std::unique_ptr< shkurov::Shape > shkurov::makeBadRectangle()
+unique_ptr< ss::Shape > ss::makeBadRectangle()
 {
-  return std::make_unique< shkurov::Rectangle >(shkurov::Rectangle(RECTANGLE_POS, B, -C));
+  return make_unique< ss::Rectangle >(ss::Rectangle(RECTANGLE_POS, B, -C));
 }
 
-std::unique_ptr< shkurov::Shape > shkurov::makeCircle()
+unique_ptr< ss::Shape > ss::makeCircle()
 {
-  return std::make_unique< shkurov::Circle >(shkurov::Circle(CIRCLE_POS, A));
+  return make_unique< ss::Circle >(ss::Circle(CIRCLE_POS, A));
 }
 
-std::unique_ptr< shkurov::Shape > shkurov::makeRectangle()
+unique_ptr< ss::Shape > ss::makeRectangle()
 {
-  return std::make_unique< shkurov::Rectangle >(shkurov::Rectangle(RECTANGLE_POS, B, C));
+  return make_unique< ss::Rectangle >(ss::Rectangle(RECTANGLE_POS, B, C));
 }
 
-std::unique_ptr< shkurov::Shape > shkurov::makeCompositeShape()
+std::unique_ptr< ss::Shape > ss::makeCompositeShape()
 {
-  std::unique_ptr< shkurov::Shape > circle(std::make_unique< shkurov::Circle >
-    (shkurov::Circle(CIRCLE_POS, A)));
-  std::unique_ptr< shkurov::Shape > rectangle(std::make_unique< shkurov::Rectangle >
-    (shkurov::Rectangle(RECTANGLE_POS, B, C)));
+  std::unique_ptr< ss::Shape > circle(std::make_unique< ss::Circle >
+    (ss::Circle(CIRCLE_POS, A)));
+  std::unique_ptr< ss::Shape > rectangle(std::make_unique< ss::Rectangle >
+    (ss::Rectangle(RECTANGLE_POS, B, C)));
 
-  return std::unique_ptr< shkurov::Shape >(std::make_unique< shkurov::CompositeShape>
-    (shkurov::CompositeShape(std::move(circle), std::move(rectangle))));
+  return std::unique_ptr< ss::Shape >(std::make_unique< ss::CompositeShape>
+    (ss::CompositeShape(std::move(circle), std::move(rectangle))));
 }
 
-void shkurov::testMoveToPoint(shkurov::Shape& shape)
+void ss::testMoveToPoint(ss::Shape& shape)
 {
-  double originHeight = shape.getHeight();
-  double originWidth = shape.getWidth();
+  double originHeight = ss::getHeight(shape);
+  double originWidth = ss::getWidth(shape);
   double originArea = shape.getArea();
 
   shape.move(FINAL_POS);
 
-  BOOST_CHECK_CLOSE_FRACTION(originHeight, shape.getHeight(), TOLERANCE);
-  BOOST_CHECK_CLOSE_FRACTION(originWidth, shape.getWidth(), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(originHeight, ss::getHeight(shape), TOLERANCE);
+  BOOST_CHECK_CLOSE_FRACTION(originWidth, ss::getWidth(shape), TOLERANCE);
   BOOST_CHECK_CLOSE_FRACTION(originArea, shape.getArea(), TOLERANCE);
 }
 
-void shkurov::testScale(shkurov::Shape& shape)
+void ss::testScale(ss::Shape& shape)
 {
   double predArea = shape.getArea() * K * K;
 
@@ -66,7 +70,7 @@ void shkurov::testScale(shkurov::Shape& shape)
   BOOST_CHECK_CLOSE_FRACTION(predArea, shape.getArea(), TOLERANCE);
 }
 
-void shkurov::invalidScale(shkurov::Shape& shape)
+void ss::invalidScale(ss::Shape& shape)
 {
   shape.scale(-K);
 }

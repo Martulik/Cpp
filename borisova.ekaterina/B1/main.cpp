@@ -16,26 +16,20 @@ int main(int argc, char* argv[])
   {
     return exitCode;
   }
-  std::string line = "";
-  int size = 0;
 
   switch (numberTask)
   {
   case 1:
-    line = argv[2];
-    return borisova::doTask1(argc, line);
+    return borisova::doTask1(argc, argv);
 
   case 2:
-    line = argv[2];
-    return borisova::doTask2(argc, line);
+    return borisova::doTask2(argc, argv);
 
   case 3:
     return borisova::doTask3(argc);
 
   case 4:
-    line = argv[2];
-    size = borisova::toInt(argv[3]);
-    return borisova::doTask4(argc, line, size);
+    return borisova::doTask4(argc, argv);
 
   default:
     std::cerr << "Unknown task";

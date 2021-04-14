@@ -4,13 +4,14 @@
 #include "functions.hpp"
 #include "strategies.hpp"
 
-int borisova::doTask1(const int argc, const std::string& mode)
+int borisova::doTask1(const int argc, char* argv[])
 {
   if (argc != 3)
   {
     std::cerr << "Incorrect number of arguments";
     return 2;
   }
+  std::string mode = argv[2];
   std::vector < int > collection;
   int number;
   while (std::cin && !(std::cin >> number).eof())

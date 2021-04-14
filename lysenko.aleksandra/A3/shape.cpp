@@ -12,22 +12,22 @@ void curr::Shape::scale(double k)
   doScale(k);
 }
 
-double lysenko::getX(Shape::ShapePtr src)
+double lysenko::getX(std::shared_ptr< const Shape >src)
 {
   return src->getFrameRect().pos.x;
 }
 
-double lysenko::getY(Shape::ShapePtr src)
+double lysenko::getY(std::shared_ptr< const Shape >src)
 {
   return src->getFrameRect().pos.y;
 }
 
-double lysenko::getWidth(Shape::ShapePtr src)
+double lysenko::getWidth(std::shared_ptr< const Shape >src)
 {
   return src->getFrameRect().width;
 }
 
-double lysenko::getHeight(Shape::ShapePtr src)
+double lysenko::getHeight(std::shared_ptr< const Shape >src)
 {
   return src->getFrameRect().height;
 }

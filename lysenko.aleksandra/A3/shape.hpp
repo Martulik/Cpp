@@ -30,9 +30,9 @@ namespace lysenko
     virtual void doScale(double k) = 0;
   };
 
-  double getX(Shape::ShapePtr src);
-  double getY(Shape::ShapePtr src);
-  double getWidth(Shape::ShapePtr src);
-  double getHeight(Shape::ShapePtr src);
+  double getX(std::shared_ptr< const Shape >src);
+  double getY(std::shared_ptr< const Shape >src);
+  double getWidth(std::shared_ptr< const Shape >src);
+  double getHeight(std::shared_ptr< const Shape >src);
 }
 #endif

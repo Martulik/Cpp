@@ -19,6 +19,7 @@ int main()
   std::sort(vec.begin(), vec.end());
   auto it = vec.begin();
   auto end = vec.end();
+
   while (it != end)
   {
     std::cout << *it;

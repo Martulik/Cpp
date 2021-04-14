@@ -41,5 +41,8 @@ void pochernin::task2(const char* fileName)
 
   file.close();
   std::vector< char > vec(data.get(), data.get() + size);
-  pochernin::print(vec);
+  for (size_t i = 0; i < size; i++)
+  {
+    std::cout << vec[i];
+  }
 }

@@ -17,34 +17,32 @@ const double B = 10.0;
 const double C = 4.0;
 const double K = 3.0;
 
-unique_ptr< ss::Shape > ss::makeBadCircle()
+shapePtr ss::makeBadCircle()
 {
   return make_unique< ss::Circle >(ss::Circle(CIRCLE_POS, -A));
 }
 
-unique_ptr< ss::Shape > ss::makeBadRectangle()
+shapePtr ss::makeBadRectangle()
 {
   return make_unique< ss::Rectangle >(ss::Rectangle(RECTANGLE_POS, B, -C));
 }
 
-unique_ptr< ss::Shape > ss::makeCircle()
+shapePtr ss::makeCircle()
 {
   return make_unique< ss::Circle >(ss::Circle(CIRCLE_POS, A));
 }
 
-unique_ptr< ss::Shape > ss::makeRectangle()
+shapePtr ss::makeRectangle()
 {
   return make_unique< ss::Rectangle >(ss::Rectangle(RECTANGLE_POS, B, C));
 }
 
-std::unique_ptr< ss::Shape > ss::makeCompositeShape()
+shapePtr ss::makeCompositeShape()
 {
-  std::unique_ptr< ss::Shape > circle(std::make_unique< ss::Circle >
-    (ss::Circle(CIRCLE_POS, A)));
-  std::unique_ptr< ss::Shape > rectangle(std::make_unique< ss::Rectangle >
-    (ss::Rectangle(RECTANGLE_POS, B, C)));
+  shapePtr circle(make_unique< ss::Circle >(ss::Circle(CIRCLE_POS, A)));
+  shapePtr rectangle(make_unique< ss::Rectangle >(ss::Rectangle(RECTANGLE_POS, B, C)));
 
-  return std::unique_ptr< ss::Shape >(std::make_unique< ss::CompositeShape>
+  return shapePtr(std::make_unique< ss::CompositeShape>
     (ss::CompositeShape(std::move(circle), std::move(rectangle))));
 }
 

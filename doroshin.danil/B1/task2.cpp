@@ -4,7 +4,7 @@
 #include <vector>
 #include <limits>
 #include <memory>
-#include "lab-exception.hpp"
+#include <stdexcept>
 
 std::pair< std::unique_ptr< char[] >, size_t > read(std::ifstream& in)
 {
@@ -28,7 +28,7 @@ void doroshin::readFile(std::string filename)
 {
   std::ifstream in(filename);
   if(!in.is_open()) {
-    throw LabException("Could not open file");
+    throw std::runtime_error("Could not open file");
   }
   auto arr_len = read(in);
   std::unique_ptr< char[] > arr = std::move(arr_len.first);

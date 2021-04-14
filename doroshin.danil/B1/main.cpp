@@ -1,5 +1,5 @@
 #include <iostream>
-#include "lab-exception.hpp"
+#include <stdexcept>
 #include "task1.hpp"
 #include "task2.hpp"
 #include "task3.hpp"
@@ -17,7 +17,7 @@ std::function< bool(T, T) > getOrder(std::string order)
     return std::greater< T >();
   }
   else {
-    throw dan::LabException("Invalid sorting order");
+    throw std::runtime_error("Invalid sorting order");
   }
 }
 
@@ -28,11 +28,11 @@ T readArg(std::string arg)
   std::istringstream in (arg);
   in >> res;
   if(in.fail()) {
-    throw dan::LabException("Invalid read");
+    throw std::runtime_error("Invalid read");
   }
   in.get();
   if(!in.eof()) {
-    throw dan::LabException("Extra symbols");
+    throw std::runtime_error("Extra symbols");
   }
   return res;
 }
@@ -50,7 +50,7 @@ std::vector< T > readUntilEof()
     if(std::cin.eof())
       break;
     if(std::cin.fail()) {
-      throw dan::LabException("Incorrect input");
+      throw std::runtime_error("Incorrect input");
     }
     values.push_back(next);
   }
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 {
   try {
     if(argc < 2) {
-      throw dan::LabException("No task number");
+      throw std::runtime_error("No task number");
     }
     const int task_num = readArg< int >(argv[1]);
     switch (task_num)
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
     case 1:
       {
         if(argc < 3) {
-          throw dan::LabException("No sorting order");
+          throw std::runtime_error("No sorting order");
         }
 
         const std::function< bool(int, int) > cmp = getOrder< int >(argv[2]);
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
     case 2:
       {
         if(argc < 3) {
-          throw dan::LabException("No filename");
+          throw std::runtime_error("No filename");
         }
         std::string filename = argv[2];
         dan::readFile(filename);
@@ -96,10 +96,10 @@ int main(int argc, char* argv[])
     case 4:
       {
         if(argc < 3) {
-          throw dan::LabException("No sorting order");
+          throw std::runtime_error("No sorting order");
         }
         if(argc < 4) {
-          throw dan::LabException("No array length");
+          throw std::runtime_error("No array length");
         }
         const size_t size = readArg< size_t >(argv[3]);
         std::function< bool(double, double) > cmp = getOrder< double >(argv[2]);
@@ -107,14 +107,14 @@ int main(int argc, char* argv[])
       }
       break;
     default:
-      throw dan::LabException("Unknown task");
+      throw std::runtime_error("Unknown task");
     }
   }
-  catch(const dan::LabException& e) {
-    if(e.fatal()) {
-      std::cerr << e.what() << '\n';
-    }
-    return e.fatal();
+  catch(const std::runtime_error& e) {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
+  catch(const std::logic_error& e) {
   }
   return 0;
 }

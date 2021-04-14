@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "task.hpp"
 #include "tools.hpp"
 
 namespace lab = savchuk;
@@ -12,7 +13,7 @@ int main(int argc, const char** argv)
     int task = lab::convertToNumber(argv[1]);
     if (task == 1 && argc == 3)
     {
-      //lab::doTask1(argv[2]);
+      lab::doTask1(argv[2]);
     }
     else if (task == 2 && argc == 3)
     {

@@ -13,11 +13,6 @@ using unPtr = std::unique_ptr<char[], decltype(&free)>;
 
 int iva::task2(const char *fileName)
 {
-  if (fileName == nullptr)
-  {
-    std::cerr << ("The inFile with this fileName does not exist!");
-    return 1;
-  }
   size_t maxArraySize = 128;
   std::ifstream inFile(fileName);
   if (!inFile.is_open())
@@ -27,7 +22,7 @@ int iva::task2(const char *fileName)
   }
   unPtr array(static_cast< char * >(malloc(maxArraySize)), &free);
   size_t countElements = 0;
-  while (inFile)
+  while (!inFile.eof())
   {
     inFile.read(&array[countElements], maxArraySize - countElements);
     countElements += inFile.gcount();
@@ -35,22 +30,14 @@ int iva::task2(const char *fileName)
     {
       maxArraySize *= 2;
       unPtr newArray(static_cast< char * >(realloc(array.get(), maxArraySize)), &free);
-      if (!newArray)
+      for (int i = 0; i < maxArraySize; i++)
       {
-        inFile.close();
-        std::cerr << ("Bad alloc");
-        return 1;
+        newArray[i] = std::move(array[i]);
       }
-      array.release();
-      std::swap(array, newArray);
+      array = std::move(newArray);
     }
   }
   inFile.close();
-  if (inFile.is_open())
-  {
-    std::cerr << ("The file was not closed!");
-    return 1;
-  }
   std::vector< char > resultVector(&array[0], &array[countElements]);
   print(resultVector, std::cout);
   return 0;

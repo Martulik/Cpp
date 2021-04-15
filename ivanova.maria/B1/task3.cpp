@@ -36,9 +36,12 @@ int iva::task3()
     {
       if (*i % 2 == 0)
       {
-       i++;
+        vector.erase(i);
       }
-      else vector.erase(i);
+      else
+      {
+        i++;
+      }
     }
   }
   else if (vector.back() == 2)

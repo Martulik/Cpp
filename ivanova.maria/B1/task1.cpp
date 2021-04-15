@@ -31,7 +31,7 @@ int iva::task1(const char *kindOfSort)
   {
     throw std::invalid_argument("Invalid Sort Order");
   }
-  if (!strcmp(kindOfSort, NULL))
+  if (kindOfSort == nullptr)
   {
     throw std::invalid_argument(" Missing Sort Order");
   }

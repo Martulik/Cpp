@@ -78,6 +78,10 @@ void sort(typename T::cont &cont, typename T::iter begin, typename T::iter end, 
   {
     throw std::invalid_argument("Incorrect sort order!");
   }
+  if (method == nullptr)
+  {
+    throw std::invalid_argument("Missing sort order");
+  }
   bool ascending = false;
   if (!strcmp(method, "ascending"))
   {

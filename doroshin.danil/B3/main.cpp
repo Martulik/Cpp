@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include "phone-book.hpp"
+#include "factorials.hpp"
 
 namespace dan = doroshin;
 
@@ -33,9 +34,9 @@ std::istream& quotedString(std::istream& in, std::string& res)
   return in;
 }
 
-int main()
+int task1()
 {
-  dan::PhoneBook book;
+dan::PhoneBook book;
   std::string line_;
   while(std::getline(std::cin, line_).good()) {
     std::istringstream line(line_);
@@ -115,6 +116,34 @@ int main()
     else {
       std::cout << "<INVALID COMMAND>\n";
     }
+  }
+  return 0;
+}
+
+int main(int argc, char* argv[])
+{
+  if(argc != 2) {
+    std::cerr << "No task number\n";
+    return 1;
+  }
+  if(argv[1][1] != '\0') {
+    std::cerr << "Extra symbols in task number\n";
+    return 1;
+  }
+  int task = argv[1][0] - '0';
+  if(task == 1) {
+    return task1();
+  }
+  else if(task == 2) {
+    dan::Factorials fact(1, 10);
+    std::ostream_iterator< dan::Factorials::value_t > out(std::cout, " ");
+    std::copy(fact.begin(), fact.end(), out);
+    std::cout << '\n';
+    std::copy(std::make_reverse_iterator(fact.end()), std::make_reverse_iterator(fact.begin()), out);
+  }
+  else {
+    std::cerr << "Unknown task\n";
+    return 1;
   }
   return 0;
 }

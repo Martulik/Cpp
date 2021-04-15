@@ -35,9 +35,9 @@ void UserInterface::insert(const std::string &position, std::string &markName, P
     std::cout << invalidBookmark;
     return;
   }
-//  if (iter->second == phoneBook_.end()) {
-//    add(record);
-//  }
+  if (iter->second == phoneBook_.end()) {
+    add(record);
+  }
   if (position == "before") {
     phoneBook_.add(iter->second, record);
   } else {

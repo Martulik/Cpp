@@ -23,7 +23,6 @@ size_t lab::convertToNumber(const std::string& str)
   }
   return num;
 }
-
 void lab::fillRandom(double* array, size_t size)
 {
   std::random_device rd;

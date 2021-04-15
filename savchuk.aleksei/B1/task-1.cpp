@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <forward_list>
-#include <iosfwd>
+#include <iostream>
 
 #include "access-policy.hpp"
 #include "sort.hpp"

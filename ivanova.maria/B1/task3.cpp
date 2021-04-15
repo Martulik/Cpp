@@ -7,9 +7,9 @@
 #include <istream>
 #include "functions.hpp"
 
-int task3()
+namespace iva = ivanova;
+int iva::task3()
 {
-  int exitCode = 0;
   std::vector< int > vector;
   int element = 0;
   while (std::cin >> element)
@@ -22,17 +22,15 @@ int task3()
   }
   if (!std::cin.eof() && std::cin.fail())
   {
-    exitCode = 1;
     throw std::invalid_argument("Incorrect data!");
   }
   if (element != 0)
   {
-    exitCode = 1;
     throw std::invalid_argument("The last element must be zero!");
   }
   if (vector.empty())
   {
-    return exitCode;
+    return 0;
   }
   if (vector.back() == 1)
   {
@@ -55,7 +53,7 @@ int task3()
       }
     }
   }
-  ivanova::print(vector, std::cout);
-  return exitCode;
+  iva::print(vector, std::cout);
+  return 0;
 }
 #endif

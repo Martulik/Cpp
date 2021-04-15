@@ -71,7 +71,6 @@ namespace ivanova
     }
   };
 
-
 template< typename T>
 void sort(typename T::cont &cont, typename T::iter begin, typename T::iter end, const char *method)
 {

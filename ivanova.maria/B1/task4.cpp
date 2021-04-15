@@ -4,14 +4,17 @@
 #include <iostream>
 #include "functions.hpp"
 
-namespace ivanova {
+namespace ivanova
+{
   int task4(const char *method, const int size)
   {
     int exitCode = 0;
-    if (size < 0) {
+    if (size < 0)
+    {
       exitCode = 1;
     }
-    else {
+    else
+    {
       std::vector<double> vec(size);
       fillRandom(vec.data(), size);
       print(vec, std::cout);

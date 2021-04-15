@@ -1,5 +1,4 @@
 #include "functions.hpp"
-
 #include <cstdlib>
 
 void ivanova::fillRandom(double* array, int size)

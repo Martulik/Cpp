@@ -1,5 +1,6 @@
 #ifndef B1_FUNCTIONS_H
 #define B1_FUNCTIONS_H
+
 #include <iostream>
 #include <vector>
 #include <forward_list>
@@ -12,7 +13,7 @@ namespace ivanova
 
   template< typename T > struct strategyBrackets
   {
-    using cont = std::vector<T>;
+    using cont = std::vector< T >;
     using iter = size_t;
     static iter begin(cont &)
     {
@@ -32,7 +33,7 @@ namespace ivanova
 
   template< typename T > struct strategyAt
   {
-    using cont = std::vector<T>;
+    using cont = std::vector< T >;
     using iter = size_t;
     static iter begin(cont &)
     {
@@ -52,8 +53,8 @@ namespace ivanova
 
   template< typename T > struct strategyList
   {
-    using cont = std::forward_list<T>;
-    using iter = typename std::forward_list<T>::iterator;
+    using cont = std::forward_list< T >;
+    using iter = typename std::forward_list< T >::iterator;
     static iter begin(cont &list)
     {
       return list.begin();
@@ -108,7 +109,8 @@ template< typename T > void print(const T &src, std::ostream &out)
 {
   typedef typename T::const_iterator Iter;
   Iter it = src.begin();
-  while (it != src.end()) {
+  while (it != src.end())
+  {
     out << *it << " ";
     it++;
   }

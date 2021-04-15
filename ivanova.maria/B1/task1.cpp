@@ -8,7 +8,8 @@ namespace ivanova
   void pushVec(std::vector< int > &vector)
   {
     int in;
-    while (std::cin >> in) {
+    while (std::cin >> in)
+    {
       vector.push_back(in);
     }
   }

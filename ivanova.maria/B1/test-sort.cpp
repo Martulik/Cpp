@@ -6,9 +6,7 @@
 namespace iva = ivanova;
 
 const int maxSize = 3;
-
-template< typename T >
-void fillContainer(T it, const T &end)
+template< typename T > void fillContainer(T it, const T &end)
 {
   srand(time(NULL));
   while (it != end) {

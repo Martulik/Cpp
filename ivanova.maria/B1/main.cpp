@@ -33,14 +33,14 @@ int main(int argc, char* argv[])
   std::string errMsg = " ";
   if (argc < 2)
   {
-    throw std::invalid_argument("Function must have more arguments");
     exitCode = 1;
+    throw std::invalid_argument("Function must have more arguments");
   }
   const int number = iva::convNum(argv[1]);
   if (!number)
   {
     exitCode = 1;
-    errMsg = "Takl number must be integer";
+    errMsg = "Task number must be integer";
   }
   if (number == 1 && argc == 3)
   {
@@ -60,12 +60,12 @@ int main(int argc, char* argv[])
   {
     std::string order = argv[2];
     int size = atoi(argv[3]);
-    exitCode = iva::task4(argv[2], size, std::cout);
+    exitCode = iva::task4(argv[2], size);
   }
   else
   {
-    throw std::invalid_argument("Wrong arguments");
     exitCode = 1;
+    throw std::invalid_argument("Wrong arguments");
   }
   std::cerr << errMsg;
   return exitCode;

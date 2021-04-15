@@ -58,5 +58,4 @@ int task3(std::istream &in, std::ostream &out)
   ivanova::print(vector, out);
   return exitCode;
 }
-
 #endif

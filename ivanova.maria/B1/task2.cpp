@@ -13,13 +13,15 @@ namespace ivanova
   int task2(const char *fileName)
   {
     int exitCode = 0;
-    if (fileName == nullptr) {
+    if (fileName == nullptr)
+    {
       exitCode = 1;
       throw std::invalid_argument("The inFile with this fileName does not exist!");
     }
     size_t maxArraySize = 128;
     std::ifstream inFile(fileName);
-    if (!inFile.is_open()) {
+    if (!inFile.is_open())
+    {
       exitCode = 1;
       throw std::logic_error("Can't open the file!");
     }
@@ -29,10 +31,12 @@ namespace ivanova
     {
       inFile.read(&array[countElements], maxArraySize - countElements);
       countElements += inFile.gcount();
-      if (countElements == maxArraySize) {
+      if (countElements == maxArraySize)
+      {
         maxArraySize *= 2;
         unPtr newArray(static_cast< char * >(realloc(array.get(), maxArraySize)), &free);
-        if (!newArray) {
+        if (!newArray)
+        {
           inFile.close();
           exitCode = 1;
           throw std::bad_alloc();
@@ -42,16 +46,13 @@ namespace ivanova
       }
     }
     inFile.close();
-    if (inFile.is_open()) {
+    if (inFile.is_open())
+    {
       exitCode = 1;
       throw std::ios_base::failure("The file was not closed!");
     }
     std::vector< char > resultVector(&array[0], &array[countElements]);
     print(resultVector, std::cout);
-//    for (auto element: resultVector)
-//    {
-//      std::cout << element;
-//    }
 return exitCode;
   }
 }

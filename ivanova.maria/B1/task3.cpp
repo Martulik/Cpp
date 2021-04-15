@@ -29,37 +29,35 @@ int iva::task3()
   }
   if (vector.empty())
   {
-    return 0;
+    std::cerr << "Invalid Number";
+    return 1;
   }
-  else
+  std::vector< int >::iterator i = vector.begin();
+  if (vector.back() == 1)!
   {
-    std::vector<int>::iterator i = vector.begin();
-    if (vector.back() == 1)
+    while (i != vector.end())
     {
-      while (i != vector.end())
+      if (*i % 2)
       {
-        if (*i % 2)
-        {
-          i++;
-        }
-        else
-          {
-          vector.erase(i);
-          }
+        i++;
+      }
+      else
+      {
+        vector.erase(i);
       }
     }
-    else if (vector.back() == 2)
+  }
+  else if (vector.back() == 2)
+  {
+    while (i != vector.end())
     {
-      while (i != vector.end())
+      if (*i % 3 == 0)
       {
-        if (*i % 3 == 0)
-        {
-          i = vector.insert(++i, 3, 1) + 2;
-        }
-        else
-        {
-          i++;
-        }
+        i = vector.insert(++i, 3, 1) + 2;
+      }
+      else
+      {
+        i++;
       }
     }
   }

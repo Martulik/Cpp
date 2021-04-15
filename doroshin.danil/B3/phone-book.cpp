@@ -6,12 +6,13 @@ dan::PhoneBook::PhoneBook():
   entries_(),
   bookmarks_()
 {
-
+  bookmarks_.emplace("current", entries_.end());
 }
 
 void dan::PhoneBook::add(Entry entry)
 {
   entries_.emplace_back(std::move(entry));
+  bookmarks_.at("current") = --entries_.end();
 }
 
 void dan::PhoneBook::store(const Name& from, const Name& to)
@@ -21,13 +22,13 @@ void dan::PhoneBook::store(const Name& from, const Name& to)
 
 void dan::PhoneBook::insert_before(const Name& mark, Entry entry)
 {
-  entries_.emplace(bookmarks_.at(mark), std::move(entry));
+  bookmarks_.at("current") = entries_.emplace(bookmarks_.at(mark), std::move(entry));
 }
 
 void dan::PhoneBook::insert_after(const Name& mark, Entry entry)
 {
   Iter i = bookmarks_.at(mark);
-  entries_.emplace(++i, std::move(entry));
+  bookmarks_.at("current") = entries_.emplace(++i, std::move(entry));
 }
 
 void dan::PhoneBook::delete_contents(const Name& mark)

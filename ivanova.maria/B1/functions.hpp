@@ -74,7 +74,7 @@ namespace ivanova
 template< typename T>
 void sort(typename T::cont &cont, typename T::iter begin, typename T::iter end, const char *method)
 {
-  if (strcmp(method, "ascending") && strcmp(method, "descending"))
+  if (strcmp(method, "ascending") && strcmp(method, "discending"))
   {
     throw std::invalid_argument("Incorrect sort order!");
   }

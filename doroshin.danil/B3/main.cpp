@@ -43,7 +43,7 @@ int main()
     std::string command;
     line >> command;
     if(command == "add") {
-      int number;
+      dan::PhoneBook::Number number;
       std::string name;
       line >> number;
       if(!line) {
@@ -65,7 +65,7 @@ int main()
     }
     else if(command == "insert") {
       std::string where, mark, name;
-      int number;
+      dan::PhoneBook::Number number;
       line >> where >> mark >> number;
       if(!quotedString(line, name)) {
         std::cerr << "Invalid name\n";

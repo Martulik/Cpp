@@ -9,19 +9,24 @@
 
 namespace iva = ivanova;
 
-using unPtr = std::unique_ptr<char[], decltype(&free)>;
+using unPtr = std::unique_ptr< char[] >;
 
 int iva::task2(const char *fileName)
 {
-  size_t maxArraySize = 128;
-  std::ifstream inFile(fileName);
-  if (!inFile.is_open())
+  std::ifstream inFile;
+  inFile.open(fileName);
+  if (!inFile)
   {
     std::cerr << ("Can't open the file!");
     return 1;
   }
-  unPtr array(static_cast< char * >(malloc(maxArraySize)), &free);
+  if (inFile.peek() == EOF)
+  {
+    return 0;
+  }
+  size_t maxArraySize = 128;
   size_t countElements = 0;
+  unPtr array = std::make_unique< char[] >(maxArraySize);
   while (!inFile.eof())
   {
     inFile.read(&array[countElements], maxArraySize - countElements);
@@ -29,7 +34,7 @@ int iva::task2(const char *fileName)
     if (countElements == maxArraySize)
     {
       maxArraySize *= 2;
-      unPtr newArray(static_cast< char * >(realloc(array.get(), maxArraySize)), &free);
+      unPtr newArray = std::make_unique< char[] > (maxArraySize);
       for (size_t i = 0; i < countElements; i++)
       {
         newArray[i] = std::move(array[i]);

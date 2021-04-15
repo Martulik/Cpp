@@ -4,7 +4,6 @@
 #include <string>
 #include <functional>
 #include <iostream>
-#include <sstream>
 #include <random>
 
 namespace savchuk
@@ -29,14 +28,12 @@ namespace savchuk
   void print(Iterator first, Iterator last, std::ostream& os)
   {
     char delim = ' ';
-    std::ostringstream buf;
     while (first != last)
     {
-      buf << *first << delim;
+      os << *first << delim;
       ++first;
     }
-    buf << '\n';
-    os << buf.str();
+    os << '\n';
   }
 }
 

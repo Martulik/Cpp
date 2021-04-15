@@ -18,7 +18,7 @@ size_t lab::convertToNumber(const std::string& str)
     }
     else
     {
-      throw std::invalid_argument("invalid number format");
+      throw std::runtime_error("invalid number format");
     }
   }
   return num;

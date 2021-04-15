@@ -17,7 +17,7 @@ int main(int argc, const char** argv)
     }
     else if (task == 2 && argc == 3)
     {
-      //lab::doTask2(argv[2]);
+      lab::doTask2(argv[2]);
     }
     else if (task == 3 && argc == 2)
     {
@@ -32,9 +32,14 @@ int main(int argc, const char** argv)
       throw std::invalid_argument("invalid command line arguments");
     }
   }
-  catch (const std::invalid_argument& err)
+  catch (const std::invalid_argument& e)
   {
-    std::cerr << err.what();
+    std::cerr << e.what();
+    return 1;
+  }
+  catch (const std::runtime_error& e)
+  {
+    std::cerr << e.what();
     return 1;
   }
   catch (...)
@@ -42,5 +47,4 @@ int main(int argc, const char** argv)
     std::cerr << "Oops!.. Something went wrong";
     return 2;
   }
-  return 0;
 }

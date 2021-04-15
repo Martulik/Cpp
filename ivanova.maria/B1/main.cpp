@@ -44,8 +44,7 @@ int main(int argc, char* argv[])
   }
   if (number == 1 && argc == 3)
   {
-    const char* kindOfSort = argv[2];
-    exitCode = iva::task1< int >(kindOfSort);
+    exitCode = iva::task1< int >(argv[2]);
   }
   else if (number == 2 && argc == 2)
   {
@@ -58,8 +57,7 @@ int main(int argc, char* argv[])
   else if (number == 4 && argc == 4)
   {
     std::string order = argv[2];
-    int size = atoi(argv[3]);
-    exitCode = iva::task4(argv[2], size);
+    exitCode = iva::task4(argv[2], atoi(argv[3]));
   }
   else
   {

@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
   }
   else if (number == 3 && argc == 1)
   {
-    exitCode = iva::task3(std::cin, std::cout);
+    exitCode = iva::task3();
   }
   else if (number == 4 && argc == 4)
   {

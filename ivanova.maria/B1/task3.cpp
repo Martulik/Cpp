@@ -7,12 +7,12 @@
 #include <istream>
 #include "functions.hpp"
 
-int task3(std::istream &in, std::ostream &out)
+int task3()
 {
   int exitCode = 0;
   std::vector< int > vector;
   int element = 0;
-  while (in >> element)
+  while (std::cin >> element)
   {
     if (element == 0)
     {
@@ -20,7 +20,7 @@ int task3(std::istream &in, std::ostream &out)
     }
     vector.push_back(element);
   }
-  if (!in.eof() && in.fail())
+  if (!std::cin.eof() && std::cin.fail())
   {
     exitCode = 1;
     throw std::invalid_argument("Incorrect data!");
@@ -55,7 +55,7 @@ int task3(std::istream &in, std::ostream &out)
       }
     }
   }
-  ivanova::print(vector, out);
+  ivanova::print(vector, std::cout);
   return exitCode;
 }
 #endif

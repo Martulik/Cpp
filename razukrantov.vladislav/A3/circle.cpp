@@ -9,7 +9,7 @@ razukrantov::Circle::Circle(double rad, const point_t &center):
 {
   if (radius_ < 0.0)
   {
-	throw std::invalid_argument("The radius cannot be negative")
+	throw std::invalid_argument("The radius cannot be negative");
   }
 }
 

@@ -13,9 +13,9 @@ int main()
   pozdnyakov::UniqueShape circle(new pozdnyakov::Circle(rad, o));
   pozdnyakov::UniqueShape rect(new pozdnyakov::Rectangle(width, height, o));
   pozdnyakov::UniqueShapes shapes(new pozdnyakov::UniqueShape[2]);
-  shapes.get()[0] = std::move(circle);
-  shapes.get()[1] = std::move(rect);
-  std::cout << shapes.get()[0]->getArea() << '\n';
+  shapes[0] = std::move(circle);
+  shapes.get[1] = std::move(rect);
+  std::cout << shapes[0]->getArea() << '\n';
   pozdnyakov::CompositeShape cshape(std::move(shapes), 2);
   std::cout << "The area of composite shape is " << cshape.getArea() << '\n';
   cshape.scale(2);

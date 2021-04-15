@@ -5,7 +5,6 @@
 pozdnyakov::Rectangle::Rectangle(double width, double height, point_t center):
   rec_(rectangle_t{center, width,height})
 {
-  assert(width > 0 && height > 0);
   if (!(width > 0 && height > 0))
   {
     throw ShapeArgException();

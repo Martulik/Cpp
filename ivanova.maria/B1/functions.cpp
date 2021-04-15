@@ -16,6 +16,7 @@ void iva::fillRandom(double* array, int size)
   }
 }
 
+bool iva::checkIsNumber(const std::string& str)
 {
   for (int i = 0; i < int(str.length()); i++)
   {

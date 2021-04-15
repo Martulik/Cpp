@@ -63,7 +63,8 @@ int main(int argc, char* argv[])
   }
   else
   {
-    throw std::invalid_argument("Wrong arguments number");
+    std::cerr << ("Wrong arguments number");
+    exitCode = 1;
   }
   return exitCode;
 }

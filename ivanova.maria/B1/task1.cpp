@@ -29,17 +29,20 @@ int iva::task1(const char *kindOfSort)
 {
   if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
   {
-    throw std::invalid_argument("Invalid Sort Order");
+    std::cerr << ("Invalid Sort Order");
+    exit(1);
   }
   if (kindOfSort == nullptr)
   {
-    throw std::invalid_argument(" Missing Sort Order");
+    std::cerr << (" Missing Sort Order");
+    exit(1);
   }
   std::vector< int > collection;
   pushVec(collection);
   if (!std::cin.eof() && std::cin.fail())
   {
-    throw std::logic_error("Reading failed");
+    std::cerr << ("Reading failed");
+    exit(1);
   }
   if (collection.empty())
   {

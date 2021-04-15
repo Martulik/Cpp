@@ -14,7 +14,7 @@ namespace lysenko
   lysenko::Shape::ShapePtr createMyCircle(double radius, point_t pos);
   lysenko::Shape::ShapePtr makeRectangle();
   lysenko::Shape::ShapePtr createMyRectangle(double width, double height, point_t pos);
-  std::shared_ptr <lysenko::CompositeShape> makeCompositeShape();
+  std::shared_ptr< lysenko::CompositeShape > makeCompositeShape();
 
   void testMove(Shape::ShapePtr src);
   void testScale(Shape::ShapePtr src);

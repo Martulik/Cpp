@@ -27,17 +27,6 @@ curr::CompositeShape& curr::CompositeShape::operator=(const CompositeShape& src)
   return *this;
 }
 
-curr::CompositeShape& curr::CompositeShape::operator=(CompositeShape&& src) noexcept
-{
-  if (this == std::addressof(src))
-  {
-    return *this;
-  }
-  array_.reset();
-  array_ = std::move(src.array_);
-  src.array_ = nullptr;
-  return *this;
-}
 
 curr::CompositeShape::CompositeShape(ShapePtr src):
   capacity_(1),

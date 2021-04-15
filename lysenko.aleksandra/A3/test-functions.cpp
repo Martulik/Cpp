@@ -33,7 +33,7 @@ namespace lysenko
   {
     Shape::ShapePtr myCircle = makeCircle();
     Shape::ShapePtr myRectangle = makeRectangle();
-    std::shared_ptr < CompositeShape > myComposite = std::make_shared< CompositeShape >(myCircle);
+    std::shared_ptr< CompositeShape > myComposite = std::make_shared< CompositeShape >(myCircle);
     myComposite->addShape(myRectangle);
     return myComposite;
   }

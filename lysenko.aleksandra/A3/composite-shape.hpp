@@ -18,7 +18,7 @@ namespace lysenko
     ~CompositeShape() override = default;
 
     CompositeShape& operator=(const CompositeShape & src);
-    CompositeShape& operator=(CompositeShape && src) noexcept;
+    CompositeShape& operator=(CompositeShape && src) = default;
 
     virtual double getArea() const override;
     virtual rectangle_t getFrameRect()const override;

@@ -2,6 +2,8 @@
 #include <cstring>
 #include <iostream>
 
+#include "tasks.hpp";
+
 namespace lysenko
 {
   bool correctNumberOfArgs(int argc);///проверяем что argc в диапазоне от 2 до 4, если нет выбрасываем исключение
@@ -23,8 +25,7 @@ int main(int argc, char* argv[])
       {
         if (lysenko::isTypeOfSort(argv[2]))
         {
-          std::cout << "Yohooo";
-          ///вызов 1 задания
+          lysenko::task1(argv[2]);
         }
         else
         {

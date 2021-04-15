@@ -5,24 +5,14 @@
 #include "UserInterface.hpp"
 
 void task1();
-
 std::string getName(std::string &name);
-
 std::string getNumber(std::string &number);
-
-std::string getMarkName(std::string &name);
-
+std::string getMarkName(std::string &markName);
 void add(UserInterface &phoneBook, std::stringstream &input);
-
 void store(UserInterface &phoneBook, std::stringstream &input);
-
 void insert(UserInterface &phoneBook, std::stringstream &input);
-
 void deleteRecord(UserInterface &phoneBook, std::stringstream &input);
-
 void show(UserInterface &phoneBook, std::stringstream &input);
-
 void move(UserInterface &phoneBook, std::stringstream &input);
-
 
 #endif

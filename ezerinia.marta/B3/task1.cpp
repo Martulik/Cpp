@@ -19,7 +19,6 @@ void task1()
     std::stringstream input(string);
     std::string inputCommand;
     input >> inputCommand;
-
     if (inputCommand == "add") {
       add(phoneBook, input);
     } else if (inputCommand == "store") {
@@ -78,17 +77,17 @@ std::string getNumber(std::string &number)
   return number;
 }
 
-std::string getMarkName(std::string &name)
+std::string getMarkName(std::string &markName)
 {
-  if (name.empty()) {
+  if (markName.empty()) {
     return emptyStr;
   }
-  for (size_t i = 0; i < name.size(); i++) {
-    if ((!isalnum(name[i])) && (name[i] != '-')) {
+  for (size_t i = 0; i < markName.size(); i++) {
+    if ((!isalnum(markName[i])) && (markName[i] != '-')) {
       return emptyStr;
     }
   }
-  return name;
+  return markName;
 }
 
 void add(UserInterface &phoneBook, std::stringstream &input)
@@ -114,11 +113,10 @@ void add(UserInterface &phoneBook, std::stringstream &input)
 void store(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string markName;
-  std::string newMarkName;
-
   input >> std::ws >> markName;
   markName = getMarkName(markName);
 
+  std::string newMarkName;
   input >> std::ws >> newMarkName;
   newMarkName = getMarkName(newMarkName);
 

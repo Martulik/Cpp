@@ -35,13 +35,13 @@ void UserInterface::insert(const std::string &position, std::string &markName, P
     std::cout << invalidBookmark;
     return;
   }
-  if (iter->second == phoneBook_.end()) {
-    add(record);
-  }
+//  if (iter->second == phoneBook_.end()) {
+//    add(record);
+//  }
   if (position == "before") {
-    phoneBook_.insert(iter->second, record);
+    phoneBook_.add(iter->second, record);
   } else {
-    phoneBook_.insert(std::next(iter->second), record);
+    phoneBook_.add(std::next(iter->second), record);
   }
 }
 
@@ -52,13 +52,18 @@ void UserInterface::deleteRecord(std::string &markName)
     std::cout << invalidCommand;
     return;
   } else {
-    //auto deleteIter = iter->second; //check
-    if (std::next(iter->second) == phoneBook_.end()) {
-      iter->second = phoneBook_.movePrev(iter->second);
-    } else {
-      iter->second = phoneBook_.moveNext(iter->second);
+    auto deleteIter = iter->second;
+    for (std::map< std::string, PhoneBook::iterator >::iterator i = bookmarks_.begin(); i != bookmarks_.end(); i++) {
+      if (i->second == deleteIter) {
+        if (std::next(i->second) == phoneBook_.end()) {
+          i->second = phoneBook_.movePrev(deleteIter);
+        } else {
+          i->second = phoneBook_.moveNext(deleteIter);
+        }
+        break;
+      }
     }
-    phoneBook_.remove(iter->second);
+    phoneBook_.remove(deleteIter);
   }
 }
 

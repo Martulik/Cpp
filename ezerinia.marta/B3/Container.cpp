@@ -1,23 +1,27 @@
 #include "Container.hpp"
 
+const size_t minIndex = 1;
+const size_t maxValue = 11;
+
 Container::Iterator::Iterator(size_t index):
   index_(index),
   value_(getFactorial(index))
-{}
+{
+}
 
 Container::Iterator Container::begin()
 {
-  return Iterator(1);
+  return Iterator(minIndex);
 }
 
 Container::Iterator Container::end()
 {
-  return Iterator(11);
+  return Iterator(maxValue);
 }
 
 bool Container::Iterator::operator==(const Container::Iterator &src) const
 {
-  return (value_ == src.value_) && (index_ == src.index_);
+  return value_ == src.value_ && index_ == src.index_;
 }
 
 bool Container::Iterator::operator!=(const Container::Iterator &src) const

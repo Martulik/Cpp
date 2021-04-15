@@ -3,34 +3,34 @@
 
 bool PhoneBook::empty()
 {
-  return listPhoneBookEntry.empty();
+  return listPhoneBook_.empty();
 }
 
 PhoneBook::iterator PhoneBook::begin()
 {
-  return listPhoneBookEntry.begin();
+  return listPhoneBook_.begin();
 }
 
 PhoneBook::iterator PhoneBook::end()
 {
-  return listPhoneBookEntry.end();
+  return listPhoneBook_.end();
 }
 
-PhoneBook::iterator PhoneBook::insert(iterator iter, data &src)
+PhoneBook::iterator PhoneBook::add(iterator iter, data &src)
 {
-  return listPhoneBookEntry.insert(iter, src);
+  return listPhoneBook_.insert(iter, src);
 }
 
 PhoneBook::iterator PhoneBook::move(iterator iter, int step)
 {
   int counter = 0;
   if (step >= 0) {
-    while ((std::next(iter) != listPhoneBookEntry.end()) && (counter != step)) {
+    while ((std::next(iter) != listPhoneBook_.end()) && (counter != step)) {
       ++iter;
       ++counter;
     }
   } else {
-    while ((iter != listPhoneBookEntry.begin()) && (counter != step)) {
+    while ((iter != listPhoneBook_.begin()) && (counter != step)) {
       --iter;
       --counter;
     }
@@ -50,7 +50,7 @@ PhoneBook::iterator PhoneBook::movePrev(iterator iter)
 
 PhoneBook::iterator PhoneBook::remove(iterator iter)
 {
-  return listPhoneBookEntry.erase(iter);
+  return listPhoneBook_.erase(iter);
 }
 
 void PhoneBook::show(iterator iter)
@@ -66,5 +66,5 @@ PhoneBook::iterator PhoneBook::replace(iterator iter, data &src)
 
 void PhoneBook::pushBack(data &src)
 {
-  return listPhoneBookEntry.push_back(src);
+  return listPhoneBook_.push_back(src);
 }

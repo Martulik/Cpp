@@ -1,13 +1,9 @@
 #include <iostream>
-
 #include "task1.hpp"
-
-void task2();
+#include "task2.hpp"
 
 int main(int argc, char *argv[])
 {
-  //std::string num = "-65";
-  //std::cout<<stoi(num);
   try {
     if (argc != 2) {
       throw std::runtime_error("Invalid arguments");

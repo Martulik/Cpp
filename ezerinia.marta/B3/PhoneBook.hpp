@@ -11,7 +11,7 @@ public:
   bool empty();
   iterator begin();
   iterator end();
-  iterator insert(iterator iter, data &src);
+  iterator add(iterator iter, data &src);
   iterator move(iterator iter, int step);
   iterator moveNext(iterator iter);
   iterator movePrev(iterator iter);
@@ -20,7 +20,7 @@ public:
   void show(iterator iter);
   void pushBack(data &src);
 private:
-  std::list< data > listPhoneBookEntry;
+  std::list< data > listPhoneBook_;
 };
 
 #endif

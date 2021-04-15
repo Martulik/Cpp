@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
   }
   else if (number == 4 && argc == 4)
   {
-    if (iva::checkForSpaces(argv[3]))
+    if (iva::checkIsNumber(argv[3]))
     {
       exitCode = iva::task4(argv[2], atoi(argv[3]));
     }

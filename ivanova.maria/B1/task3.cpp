@@ -30,23 +30,24 @@ int iva::task3()
   {
     return 0;
   }
+  std::vector< int >::iterator i = vector.begin();
   if (vector.back() == 1)
   {
-    for (std::vector< int >::iterator i = vector.begin(); i != vector.end(); i++)
+    while (i != vector.end())
     {
-      if (*i % 2 == 0)
+      if (*i % 2)
       {
-        vector.erase(i);
+        i++;
       }
       else
       {
-        i++;
+        vector.erase(i);
       }
     }
   }
   else if (vector.back() == 2)
   {
-    for (std::vector< int >::iterator i = vector.begin(); i != vector.end(); i++)
+    while (i != vector.end())
     {
       if (*i % 3 == 0)
       {

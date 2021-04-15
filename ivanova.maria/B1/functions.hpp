@@ -10,6 +10,8 @@
 namespace ivanova
 {
   void fillRandom(double* array, int size);
+  bool checkIsNumber(const std::string& str);
+  bool checkForSpaces(const std::string& str);
 
   template< typename T > struct strategyBrackets
   {

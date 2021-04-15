@@ -15,3 +15,20 @@ void iva::fillRandom(double* array, int size)
     array[i] = double(rand()) / RAND_MAX * 2 - 1;
   }
 }
+
+c
+{
+  for (int i = 0; i < int(str.length()); i++)
+  {
+    if (str[i] < '0' || str[i] > '9')
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool iva::checkForSpaces(const std::string& str)
+{
+  return (str.find(' ') != std::string::npos);
+}

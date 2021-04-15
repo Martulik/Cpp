@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "tasks.hpp"
-
+#include "functions.hpp"
 namespace iva = ivanova;
 
 namespace ivanova
@@ -60,7 +60,15 @@ int main(int argc, char* argv[])
   }
   else if (number == 4 && argc == 4)
   {
-    exitCode = iva::task4(argv[2], atoi(argv[3]));
+    if (iva::checkForSpaces(argv[3]))
+    {
+      exitCode = iva::task4(argv[2], atoi(argv[3]));
+    }
+    else
+    {
+      std::cerr << " Number Count With Space";
+      exitCode = 1;
+    }
   }
   else
   {

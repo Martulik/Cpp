@@ -7,10 +7,10 @@ namespace iva = ivanova;
 
 void pushVec(std::vector<int> &vector)
 {
-  int in;
+  char in;
   while (std::cin >> in)
   {
-    if (isdigit(in))
+    if (isdigit(in) || in == '-' || in == '+')
     {
       vector.push_back(in);
     }
@@ -20,7 +20,7 @@ void pushVec(std::vector<int> &vector)
       exit(1);
     }
   }
-  if (!std::cin.eof())
+  if (std::cin.fail() && !std::cin.eof())
   {
     std::cerr << ("Invalid character!");
     exit(1);

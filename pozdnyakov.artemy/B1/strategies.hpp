@@ -2,48 +2,93 @@
 #define STRATEGIES_HPP
 
 #include <vector>
-#inclide <list>
+#include <list>
 
-template <template <typename T> class Container, template <typename T> class IterType, typename ElemType>
-class Strategy
+template <typename T>
+class IndexStrategy
 {
 public:
-  IterType begin(ContType& cont) const = 0;
-  IterType end(ContType& cont) const = 0;
-  ElemType* getElem(IterType iter) const = 0;
+  using ContType = std::vector<T>;
+  using IterType = T*;
+  static T* begin(std::vector<T>& cont);
+  static T* end(std::vector<T>& cont);
+  static T* getElem(T* iter);
 };
 
 template <typename T>
-class IndexStrategy: public Strategy<std::vector<T>, T*, T>
+class VectorAtStrategy
 {
   using ContType = std::vector<T>;
   using IterType = T*;
 public:
-  T* begin(std::vector<T>& cont) const override;
-  T* end(std::vector<T>& cont) const override;
-  T* getElem(T* iter) const override;
+  static T* begin(std::vector<T>& cont);
+  static T* end(std::vector<T>& cont);
+  static T* getElem(T* iter);
 };
 
 template <typename T>
-class VectorAtStrategy: public Strategy<std::vector<T>, T*, T>
-{
-  using ContType = std::vector<T>;
-  using IterType = T*;
-public:
-  T* begin(std::vector<T>& cont) const override;
-  T* end(std::vector<T>& cont) const override;
-  T* getElem(T* iter) const override;
-};
-
-template <typename T>
-class ListStrategy: public Strategy<std::list<T>, std::list<T>::iterator, T>
+class ListStrategy
 {
   using ContType = std::list<T>;
-  using IterType = std::list<T>::iterator;
+  using IterType = typename std::list<T>::iterator;
 public:
-  IterType begin(std::list<T>& cont) const override;
-  IterType end(std::list<T>& cont) const override;
-  T* getElem(IterType iter) const override;
+  static IterType begin(std::list<T>& cont);
+  static IterType end(std::list<T>& cont);
+  static T* getElem(IterType iter);
 };
+
+template <typename T>
+T* IndexStrategy<T>::begin(std::vector<T>& cont)
+{
+  return &cont[0];
+}
+
+template <typename T>
+T* IndexStrategy<T>::end(std::vector<T>& cont)
+{
+  return &cont[cont.size() - 1];
+}
+
+template <typename T>
+T* IndexStrategy<T>::getElem(T* iter)
+{
+  return iter;
+}
+
+template <typename T>
+T* VectorAtStrategy<T>::begin(std::vector<T>& cont)
+{
+  return &cont.at(0);
+}
+
+template <typename T>
+T* VectorAtStrategy<T>::end(std::vector<T>& cont)
+{
+  return &cont.at(cont.size() - 1);
+}
+
+template <typename T>
+T* VectorAtStrategy<T>::getElem(T* iter)
+{
+  return iter;
+}
+
+template <typename T>
+typename std::list<T>::iterator ListStrategy<T>::begin(std::list<T>& cont)
+{
+  return cont.begin();
+}
+
+template <typename T>
+typename std::list<T>::iterator ListStrategy<T>::end(std::list<T>& cont)
+{
+  return cont.end();
+}
+
+template <typename T>
+T* ListStrategy<T>::getElem(typename std::list<T>::iterator iter)
+{
+  return *iter;
+}
 
 #endif

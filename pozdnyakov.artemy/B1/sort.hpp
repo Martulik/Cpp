@@ -1,23 +1,27 @@
 #ifndef SORT_HPP
 #define SORT_HPP
-  
-template <typename Container, Strategy strat>
-void sort(Container cont, bool isAscending)
-(
-  typename strat::IterType max;
-  strat::Itertype searchRangeEnd = strat.end(cont);
-  for (strat::IterType i = strat.begin(cont); i != strat.end(cont); i++)
+
+#include <algorithm>
+
+template <typename S>
+void sort(typename S::ContType cont, bool isAscending)
+{
+  using IterType = typename S::IterType;
+  IterType max;
+  IterType searchRangeEnd = S::end(cont);
+  for (IterType i = S::begin(cont); i != S::end(cont); i++)
   {
-    max = strat.begin(cont);
-    for (strat::IterType j = ++strat.begin(cont); j != searchRangeEnd; j++)
+    max = S::begin(cont);
+    for (IterType j = S::begin(cont) + 1; j != searchRangeEnd; j++)
     {
-      if ((strat.getElem(j) > strat.getElem(max)) == isAscending)
+      if ((S::getElem(j) > S::getElem(max)) == isAscending)
       {
-        strat.getElem(max) = strat.getElem(j);
+        *S::getElem(max) = *S::getElem(j);
       }
     }
-    std::swap(strat.getElem(max), strat.getElem(searchRangeEnd));
+    std::swap(*S::getElem(max), *S::getElem(searchRangeEnd));
+    searchRangeEnd--;
   }
-)
+}
 
 #endif

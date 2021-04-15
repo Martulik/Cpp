@@ -56,7 +56,11 @@ int iva::task3()
       }
     }
   }
-  iva::print(vector, std::cout);
-  return 0;
+  if (!vector.empty())
+  {
+    iva::print(vector, std::cout);
+    return 0;
+  }
+  else return 1;
 }
 #endif

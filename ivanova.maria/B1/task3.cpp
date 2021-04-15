@@ -11,7 +11,7 @@ namespace iva = ivanova;
 int iva::task3()
 {
   std::vector< int > vector;
-  int element = 0;
+  int element = 1;
   while ((std::cin >> element) && (element != 0))
   {
     vector.push_back(element);
@@ -36,11 +36,11 @@ int iva::task3()
     {
       if (*i % 2 == 0)
       {
-        vector.erase(i);
+        i++;
       }
       else
       {
-        i++;
+        vector.erase(i);
       }
     }
   }

@@ -18,12 +18,12 @@ int iva::task3()
   }
   if (!std::cin.eof() && std::cin.fail())
   {
-    std::cerr << ("Incorrect data!");
+    std::cerr << "Incorrect data!";
     return 1;
   }
   if (element != 0)
   {
-    std::cerr << ("The last element must be zero!");
+    std::cerr << "The last element must be zero!";
     return 1;
   }
   std::vector< int >::iterator i = vector.begin();
@@ -37,7 +37,7 @@ int iva::task3()
       }
       else
       {
-        vector.erase(i);
+        i = vector.erase(i);
       }
     }
   }

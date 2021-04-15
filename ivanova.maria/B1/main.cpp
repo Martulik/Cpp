@@ -49,8 +49,7 @@ int main(int argc, char* argv[])
   }
   else if (number == 2 && argc == 2)
   {
-    const char* fileName = argv[2];
-    exitCode = iva::task2(fileName);
+    exitCode = iva::task2(argv[2]);
   }
   else if (number == 3 && argc == 1)
   {

@@ -16,7 +16,6 @@ void iva::fillRandom(double* array, int size)
   }
 }
 
-c
 {
   for (int i = 0; i < int(str.length()); i++)
   {

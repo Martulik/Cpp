@@ -32,7 +32,8 @@ int main(int argc, char* argv[])
   int exitCode = 0;
   if ((argc < 2) || (argc > 4))
   {
-    throw std::invalid_argument("Function must have more arguments");
+    std::cerr << ("Function must have more arguments");
+    return 1;
   }
   if (argv[1][1] != '\0')
   {

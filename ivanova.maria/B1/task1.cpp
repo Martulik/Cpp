@@ -16,12 +16,14 @@ void pushVec(std::vector<int> &vector)
     }
     else
     {
-      throw std::invalid_argument("Invalid Number In A Middle");
+      std::cerr << ("Invalid Number In A Middle");
+      exit(1);
     }
   }
   if (!std::cin.eof())
   {
-    throw std::invalid_argument("Invalid character!");
+    std::cerr << ("Invalid character!");
+    exit(1);
   }
 }
 

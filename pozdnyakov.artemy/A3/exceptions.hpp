@@ -6,24 +6,24 @@
 
 namespace pozdnyakov
 {
-  class ScaleException: public std::exception
+  class ScaleException
   {
   public:
     ScaleException() = default;
-    const char* what() const noexcept override;
+    const std::string what() const;
 
   private:
-    const char* error_ = static_cast<char*>(const_cast<char*>("Wrong scale coefficient"));
+    const std::string error_ = "Wrong scale coefficient";
   };
 
-  class ShapeArgException: public std::exception
+  class ShapeArgException
   {
   public:
     ShapeArgException() = default;
-    const char* what() const noexcept override;
+    const std::string what() const;
 
   private:
-    const char* error_ = static_cast<char*>(const_cast<char*>("Wrong shape argument"));
+    const std::string error_ = "Wrong shape argument";
   };
 }
 

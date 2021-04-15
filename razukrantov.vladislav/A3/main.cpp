@@ -2,38 +2,35 @@
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include "composite-shape.hpp"
 
-void print(const razukrantov::Shape& shp, std::ostream& out)
+void printFrameRect(const std::shared_ptr< razukrantov::Shape > shape, std::ostream& out)
 {
-  out << "width is: " << shp.getFrameRect().width << "\n";
-  out << "height is: " << shp.getFrameRect().height << "\n";
-  out << "area is: " << shp.getArea() << "\n";
-  out << "center is: " << shp.getFrameRect().pos.x << "; "
-      << shp.getFrameRect().pos.y << "\n";
-}
-
-void test(razukrantov::Shape* shp, std::ostream& out)
-{
-  out << "test 1:" << "\n";
-  shp->move({ 10.5, 11.5 });
-  print(*shp, out);
-  out << "test 2:" << "\n";
-  shp->move(4.5, 7.5);
-  print(*shp, out);
+  out << "width is: " << razukrantov::getWidth(*shape) << "\n";
+  out << "height is: " << razukrantov::getHeight(*shape) << "\n";
+  out << "center is: " << razukrantov::getX(*shape) << "; "
+      << razukrantov::getY(*shape) << "\n";
 }
 
 int main()
 {
-  razukrantov::point_t point{ 8.5, 7.5 };
-  razukrantov::Shape* ownRectangle = new razukrantov::Rectangle(5, 7, point);
-  std::cout << "Rectangle characters:" << "\n";
-  test(ownRectangle, std::cout);
+  const razukrantov::point_t point{ 8.5, 7.5 };
+  const razukrantov::point_t point2{ 17.0, 15.0 };
+  const double width = 2.0;
+  const double height = 3.0;
+  const double radius = 4.0;
+  const double radius2 = 5.0;
+  const double coef = 2.0;
 
-  razukrantov::point_t point2{ 2.5, 3.5 };
-  razukrantov::Shape* ownCircle = new razukrantov::Circle(8, point2);
-  std::cout << "Circle characters:" << "\n";
-  test(ownCircle, std::cout);
+  razukrantov::CompositeShape compositeShape(std::make_shared< razukrantov::Circle >(radius, point));
+  compositeShape.pushBack(std::make_shared< razukrantov::Rectangle >(width, height, point));
+  compositeShape.pushBack(std::make_shared< razukrantov::Circle >(radius2, point));
 
-  delete ownRectangle;
-  delete ownCircle;
+  for (size_t i = 0; i < compositeShape.size(); i++)
+  {
+    printFrameRect(compositeShape.at(i), std::cout);
+    compositeShape.at(i)->move(point2);
+    compositeShape.at(i)->scale(coef);
+    printFrameRect(compositeShape.at(i), std::cout);
+  }
 }

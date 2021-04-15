@@ -4,6 +4,7 @@
 namespace savchuk
 {
   void doTask1(const char* order);
+  void doTask2(const char* fileName);
   void doTask4(const char* order, const char* size);
 }
 

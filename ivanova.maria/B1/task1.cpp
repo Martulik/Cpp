@@ -34,7 +34,7 @@ int iva::task1(const char *kindOfSort)
     std::cerr << (" Missing Sort Order");
     return 1;
   }
-  if ((kindOfSort != "ascending") && (kindOfSort != "descending"))
+  if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
   {
     std::cerr << ("Invalid Sort Order");
     return 1;

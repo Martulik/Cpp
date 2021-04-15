@@ -29,21 +29,23 @@ int iva::task2(const char *fileName)
   unPtr array = std::make_unique< char[] >(maxArraySize);
   while (!inFile.eof())
   {
-    inFile.read(&array[countElements], maxArraySize - countElements);
+    inFile.read(array.get() + countElements, maxArraySize - countElements);
     countElements += inFile.gcount();
     if (countElements == maxArraySize)
     {
       maxArraySize *= 2;
-      unPtr newArray = std::make_unique< char[] > (maxArraySize);
-      for (size_t i = 0; i < countElements; i++)
-      {
-        newArray[i] = std::move(array[i]);
-      }
-      array = std::move(newArray);
     }
+    unPtr newArray = std::make_unique< char[] > (maxArraySize);
+    for (size_t i = 0; i < countElements; i++)
+    {
+      newArray[i] = std::move(array[i]);
+    }
+    std::swap(array, newArray);
   }
   inFile.close();
-  std::vector< char > resultVector(&array[0], &array[countElements]);
+  char *first = array.get() + countElements;
+  size_t second = maxArraySize - countElements;
+  std::vector< char > resultVector(*first, second);
   print(resultVector, std::cout);
   return 0;
 }

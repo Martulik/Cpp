@@ -12,50 +12,54 @@ int iva::task3()
 {
   std::vector< int > vector;
   int element = 1;
-  while (!(std::cin >> element).eof() && (element != 0) && std::cin)
+  while ((element != 0) && std::cin >> element)
   {
-    if (!std::cin.eof() && std::cin.fail())
-    {
-      std::cerr << ("Incorrect data!");
-      return 1;
-    }
     vector.push_back(element);
   }
-  if (vector.empty())
+
+  if (!std::cin.eof() && std::cin.fail())
   {
-    return 0;
+    std::cerr << ("Incorrect data!");
+    return 1;
   }
   if (element != 0)
   {
     std::cerr << ("The last element must be zero!");
     return 1;
   }
-  std::vector< int >::iterator i = vector.begin();
-  if (vector.back() == 1)
+  if (vector.empty())
   {
-    while (i != vector.end())
+    return 0;
+  }
+  else
+  {
+    std::vector<int>::iterator i = vector.begin();
+    if (vector.back() == 1)
     {
-      if (*i % 2)
+      while (i != vector.end())
       {
-        i++;
-      }
-      else
-      {
-        vector.erase(i);
+        if (*i % 2)
+        {
+          i++;
+        }
+        else
+          {
+          vector.erase(i);
+          }
       }
     }
-  }
-  else if (vector.back() == 2)
-  {
-    while (i != vector.end())
+    else if (vector.back() == 2)
     {
-      if (*i % 3 == 0)
+      while (i != vector.end())
       {
-        i = vector.insert(++i, 3, 1) + 2;
-      }
-      else
-      {
-        i++;
+        if (*i % 3 == 0)
+        {
+          i = vector.insert(++i, 3, 1) + 2;
+        }
+        else
+        {
+          i++;
+        }
       }
     }
   }

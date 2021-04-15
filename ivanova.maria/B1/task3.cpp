@@ -27,13 +27,8 @@ int iva::task3()
     std::cerr << ("The last element must be zero!");
     return 1;
   }
-  if (vector.empty())
-  {
-    std::cerr << "Invalid Number";
-    return 1;
-  }
   std::vector< int >::iterator i = vector.begin();
-  if (vector.back() == 1)
+  if ((vector.back() == 1) && !(vector.empty()))
   {
     while (i != vector.end())
     {
@@ -47,7 +42,7 @@ int iva::task3()
       }
     }
   }
-  else if (vector.back() == 2)
+  else if ((vector.back() == 2 && !(vector.empty()))
   {
     while (i != vector.end())
     {

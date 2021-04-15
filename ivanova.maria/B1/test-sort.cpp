@@ -25,7 +25,7 @@ void testSort(const char* method, const int size)
   {
     BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), std::less< int >()));
   }
-  if (!strcmp(method, "discending"))
+  if (!strcmp(method, "descending"))
   {
     BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), std::greater< int >()));
   }
@@ -37,7 +37,7 @@ void doTestSort()
   for (int i = 0; i < maxSize; i++)
   {
     testSort< T >("ascending", i);
-    testSort< T >("discending", i);
+    testSort< T >("descending", i);
   }
 }
 

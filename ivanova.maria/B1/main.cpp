@@ -34,6 +34,11 @@ int main(int argc, char* argv[])
   {
     throw std::invalid_argument("Function must have more arguments");
   }
+  if (argv[1][1] != '\0')
+  {
+    std::cerr << "Incorrect task number!";
+    return 1;
+  }
   const int number = iva::charToInt(argv[1]);
   if (!number)
   {
@@ -58,7 +63,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    throw std::invalid_argument("Wrong arguments");
+    throw std::invalid_argument("Wrong arguments number");
   }
   return exitCode;
 }

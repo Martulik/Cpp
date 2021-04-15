@@ -16,7 +16,7 @@ void pushVec(std::vector<int> &vector)
 
 int iva::task1(const char *kindOfSort)
 {
-  if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "discending"))
+  if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
   {
     throw std::invalid_argument("Wrong argument");
   }

@@ -12,7 +12,7 @@ int iva::task3()
 {
   std::vector< int > vector;
   int element = 1;
-  while ((element != 0) && std::cin >> element)
+  while (std::cin >> element && (element != 0))
   {
     vector.push_back(element);
   }

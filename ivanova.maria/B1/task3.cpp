@@ -12,7 +12,7 @@ int iva::task3()
 {
   std::vector< int > vector;
   int element = 0;
-  while (std::cin >> element && (element != 0))
+  while (std::cin >> element && element != 0)
   {
     vector.push_back(element);
   }
@@ -21,33 +21,35 @@ int iva::task3()
     std::cerr << "Incorrect data!";
     return 1;
   }
+
   if (element != 0)
   {
     std::cerr << "The last element must be zero!";
     return 1;
   }
+
   std::vector< int >::iterator i = vector.begin();
-  if (vector.back() == 1 && !vector.empty())
+  if (!vector.empty() && vector.back() == 1)
   {
     while (i != vector.end())
     {
-      if (*i % 2)
-      {
-        i++;
-      }
-      else
+      if (*i % 2 == 0)
       {
         i = vector.erase(i);
       }
+      else
+      {
+        i++;
+      }
     }
   }
-  else if (vector.back() == 2 && !vector.empty())
+  else if (!vector.empty() && vector.back())
   {
     while (i != vector.end())
     {
       if (*i % 3 == 0)
       {
-        i = vector.insert(++i, 3, 1) + 2;
+        i = vector.insert(i + 1, 3, 1) + 2;
       }
       else
       {
@@ -55,7 +57,10 @@ int iva::task3()
       }
     }
   }
-  iva::print(vector, std::cout);
+  if (!vector.empty())
+  {
+    iva::print(vector, std::cout);
+  }
   return 0;
 }
 #endif

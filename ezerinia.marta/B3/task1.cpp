@@ -149,12 +149,9 @@ void insert(UserInterface &phoneBook, std::stringstream &input)
     std::cout << invalidCommand;
     return;
   }
-
-  PhoneBook::data record = {name, number};
-  if (direction == "before") {
-    phoneBook.insert(direction, markName, record);
-  } else if (direction == "after") {
-    phoneBook.insert(direction, markName, record);
+  PhoneBook::data pair = std::make_pair(number, name);
+  if (direction == "before" || direction == "after") {
+    phoneBook.insert(direction, markName, pair);
   } else {
     std::cout << invalidCommand;
   }
@@ -198,7 +195,11 @@ void move(UserInterface &phoneBook, std::stringstream &input)
   if (num == "first" || num == "last") {
     phoneBook.move(markName, num);
   } else {
+    int numberSign = 1;
     if (num[0] == '-') {
+      int numberSign = -1;
+      num.erase(num.begin());
+    } else if (num[0] == '+') {
       num.erase(num.begin());
     }
     num = getNumber(num);
@@ -206,6 +207,6 @@ void move(UserInterface &phoneBook, std::stringstream &input)
       std::cout << invalidStep;
       return;
     }
-    phoneBook.move(markName, stoi(num));
+    phoneBook.move(markName, numberSign * stoi(num));
   }
 }

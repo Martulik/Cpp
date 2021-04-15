@@ -14,7 +14,7 @@ public:
   Iterator end();
 };
 
-class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned long long > {
+class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned int > {
 public:
   Iterator(size_t index);
 

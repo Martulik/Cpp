@@ -10,7 +10,14 @@ void pushVec(std::vector<int> &vector)
   int in;
   while (std::cin >> in)
   {
-    vector.push_back(in);
+    if (isdigit(in))
+    {
+      vector.push_back(in);
+    }
+    else
+    {
+      throw std::invalid_argument("Invalid Number In A Middle");
+    }
   }
   if (!std::cin.eof())
   {
@@ -22,7 +29,11 @@ int iva::task1(const char *kindOfSort)
 {
   if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
   {
-    throw std::invalid_argument("Wrong argument");
+    throw std::invalid_argument("Invalid Sort Order");
+  }
+  if (!strcmp(kindOfSort, NULL))
+  {
+    throw std::invalid_argument(" Missing Sort Order");
   }
   std::vector< int > collection;
   pushVec(collection);

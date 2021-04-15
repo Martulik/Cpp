@@ -37,7 +37,6 @@ curr::CompositeShape::CompositeShape(ShapePtr src):
   {
     throw std::invalid_argument("Composite shape can not contain the pointer on nullptr");
   }
-  array_[0].reset();
   array_[0] = src->clone();
 }
 

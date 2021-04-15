@@ -28,7 +28,7 @@ int iva::task3()
     return 1;
   }
   std::vector< int >::iterator i = vector.begin();
-  if ((vector.back() == 1) && !(vector.empty()))
+  if (vector.back() == 1 && !vector.empty())
   {
     while (i != vector.end())
     {
@@ -42,7 +42,7 @@ int iva::task3()
       }
     }
   }
-  else if ((vector.back() == 2 && !(vector.empty()))
+  else if (vector.back() == 2 && !vector.empty())
   {
     while (i != vector.end())
     {

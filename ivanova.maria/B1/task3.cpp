@@ -22,11 +22,13 @@ int iva::task3()
   }
   if (!std::cin.eof() && std::cin.fail())
   {
-    throw std::invalid_argument("Incorrect data!");
+    std::cerr << ("Incorrect data!");
+    exit(1);
   }
   if (element != 0)
   {
-    throw std::invalid_argument("The last element must be zero!");
+    std::cerr << ("The last element must be zero!");
+    exit(1);
   }
   if (vector.empty())
   {

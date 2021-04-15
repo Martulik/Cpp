@@ -12,9 +12,13 @@ int iva::task3()
 {
   std::vector< int > vector;
   int element = 1;
-  while ((std::cin >> element) && (element != 0))
+  while (!(std::cin >> element).eof() && (element != 0) && std::cin)
   {
     vector.push_back(element);
+  }
+  if (vector.empty())
+  {
+    return 0;
   }
   if (!std::cin.eof() && std::cin.fail())
   {
@@ -25,10 +29,6 @@ int iva::task3()
   {
     std::cerr << ("The last element must be zero!");
     return 1;
-  }
-  if (vector.empty())
-  {
-    return 0;
   }
   std::vector< int >::iterator i = vector.begin();
   if (vector.back() == 1)

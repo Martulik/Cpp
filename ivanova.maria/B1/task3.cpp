@@ -11,7 +11,7 @@ namespace iva = ivanova;
 int iva::task3()
 {
   std::vector< int > vector;
-  int element = 1;
+  int element = 0;
   while (std::cin >> element && (element != 0))
   {
     vector.push_back(element);

@@ -6,9 +6,11 @@
 
 namespace lysenko
 {
+  int conditionCode = 0;
   bool correctNumberOfArgs(int argc);///проверяем что argc в диапазоне от 2 до 4, если нет выбрасываем исключение
   bool correctData(char* argv);///проверяем не содержит ли строка в себе пробелов
   bool isTypeOfSort(char* argv);///проверяем на ascending/descending и возвращаем 1 в случае совпадения, в противном случае возвращаем 0
+  bool accurateTaskNumber(char* argv, const char* reference);
 }
 
 int main(int argc, char* argv[])
@@ -21,18 +23,25 @@ int main(int argc, char* argv[])
     }
     else if (argc == 3)
     {
-      if (lysenko::correctData(argv[1])) 
+      if (lysenko::correctData(argv[1]))
       {
         if (lysenko::isTypeOfSort(argv[2]))
         {
-          lysenko::task1(argv[2]);
+          if (lysenko::accurateTaskNumber(argv[1], "1"))
+          {
+            lysenko::conditionCode = lysenko::task1(argv[2]);
+          }
         }
         else
         {
           //вызов 2 задания
         }
       }
-      throw std::invalid_argument("Format of task's number is not correct");
+      else
+      {
+        std::cerr << "Format of task's number is not correct";
+        exit(1);
+      }
     }
     else
     {
@@ -41,9 +50,10 @@ int main(int argc, char* argv[])
   }
   else
   {
-    throw std::invalid_argument("Invalid number of arguments");
+    std::cerr << "Invalid number of arguments";
+    exit(1);
   }
-  return 0;
+  return lysenko::conditionCode;
 }
 
 bool lysenko::correctNumberOfArgs(int argc)
@@ -80,4 +90,17 @@ bool lysenko::isTypeOfSort(char* argv)
     return 1;
   }
   return 0;
+}
+
+bool lysenko::accurateTaskNumber(char* argv, const char* reference)
+{
+  if (strcmp(argv, reference) == 0)
+  {
+     return 1;
+  }
+  else
+  {
+    std::cerr << "Illegal task's number for these arguments";
+    exit(1);
+  }
 }

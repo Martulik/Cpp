@@ -5,51 +5,42 @@
 
 namespace iva = ivanova;
 
-void pushVec(std::vector< int > &vector)
-{
-  char in;
-  while (std::cin >> in)
-  {
-    if (isdigit(in) || in == '-' || in == '+')
-    {
-      vector.push_back(in);
-    }
-    else
-    {
-      std::cerr << ("Invalid Number In A Middle");
-      exit(1);
-    }
-  }
-  if (std::cin.fail() && !std::cin.eof())
-  {
-    std::cerr << ("Invalid character!");
-    exit(1);
-  }
-}
-
 int iva::task1(const char *kindOfSort)
 {
-  if (kindOfSort == nullptr)
+  std::vector<int> collection;
+  int element = 0;
+  while (!std::cin.eof() && (std::cin >> element))
   {
-    std::cerr << (" Missing Sort Order");
+    collection.push_back(element);
+  }
+  if (!std::cin.eof())
+  {
+    std::cerr << ("Invalid character!");
     return 1;
   }
-  if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
-  {
-    std::cerr << ("Invalid Sort Order");
-    return 1;
-  }
-  std::vector< int > collection;
-  pushVec(collection);
-  if (!std::cin.eof() && std::cin.fail())
-  {
-    std::cerr << ("Reading failed");
-    return 1;
-  }
-  if (collection.empty())
-  {
-    return 0;
-  }
+//  if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
+//  {
+//    std::cerr << ("Invalid Sort Order");
+//    return 1;
+//  }
+//
+//  int x = 0;
+//  std::vector< int > collection;
+//  while (std::cin >> x)
+//  {
+//    collection.push_back(x);
+//  }
+//
+//  if (std::cin.fail() && !std::cin.eof())
+//  {
+//    std::cerr << "Read error\n";
+//    return 1;
+//  }
+//
+//  if (collection.empty())
+//  {
+//    return 0;
+//  }
   std::vector< int > bracketsVector(collection);
   std::forward_list< int > iteratorForwardList(collection.begin(), collection.end());
   sortAndPrint < iva::strategyBrackets < int > > (collection, kindOfSort);

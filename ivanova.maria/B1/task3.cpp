@@ -14,16 +14,16 @@ int iva::task3()
   int element = 1;
   while (!(std::cin >> element).eof() && (element != 0) && std::cin)
   {
+    if (!std::cin.eof() && std::cin.fail())
+    {
+      std::cerr << ("Incorrect data!");
+      return 1;
+    }
     vector.push_back(element);
   }
   if (vector.empty())
   {
     return 0;
-  }
-  if (!std::cin.eof() && std::cin.fail())
-  {
-    std::cerr << ("Incorrect data!");
-    return 1;
   }
   if (element != 0)
   {

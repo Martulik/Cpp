@@ -44,18 +44,18 @@ void doTestSort()
 BOOST_AUTO_TEST_SUITE(sort)
 
 BOOST_AUTO_TEST_CASE(sortVectorByIndex)
-  {
-    doTestSort< iva::strategyBrackets< int > >();
-  }
+{
+  doTestSort< iva::strategyBrackets< int > >();
+}
 
 BOOST_AUTO_TEST_CASE(sortVectorUsingAt)
-  {
-    doTestSort< iva::strategyAt< int > >();
-  }
+{
+  doTestSort< iva::strategyAt< int > >();
+}
 
 BOOST_AUTO_TEST_CASE(sortIterator)
-  {
-    doTestSort< iva::strategyList< int > >();
-  }
+{
+  doTestSort< iva::strategyList< int > >();
+}
 
 BOOST_AUTO_TEST_SUITE_END()

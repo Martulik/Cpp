@@ -7,7 +7,7 @@ namespace iva = ivanova;
 
 namespace ivanova
 {
-  int convNum(char* string)
+  int charToInt(char* string)
   {
     std::string str = string;
     int result = 0;
@@ -30,12 +30,11 @@ namespace ivanova
 int main(int argc, char* argv[])
 {
   int exitCode = 0;
-  std::string errMsg = " ";
-  if (argc < 2)
+  if ((argc < 2) || (argc > 4))
   {
     throw std::invalid_argument("Function must have more arguments");
   }
-  const int number = iva::convNum(argv[1]);
+  const int number = iva::charToInt(argv[1]);
   if (!number)
   {
     std::cerr << "Task number must be integer";
@@ -45,11 +44,11 @@ int main(int argc, char* argv[])
   {
     exitCode = iva::task1(argv[2]);
   }
-  else if (number == 2 && argc == 2)
+  else if (number == 2 && argc == 3)
   {
     exitCode = iva::task2(argv[2]);
   }
-  else if (number == 3 && argc == 1)
+  else if (number == 3 && argc == 2)
   {
     exitCode = iva::task3();
   }

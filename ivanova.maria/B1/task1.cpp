@@ -12,6 +12,10 @@ void pushVec(std::vector<int> &vector)
   {
     vector.push_back(in);
   }
+  if (!std::cin.eof())
+  {
+    throw std::invalid_argument("Invalid character!");
+  }
 }
 
 int iva::task1(const char *kindOfSort)
@@ -20,7 +24,7 @@ int iva::task1(const char *kindOfSort)
   {
     throw std::invalid_argument("Wrong argument");
   }
-  std::vector<int> collection;
+  std::vector< int > collection;
   pushVec(collection);
   if (!std::cin.eof() && std::cin.fail())
   {

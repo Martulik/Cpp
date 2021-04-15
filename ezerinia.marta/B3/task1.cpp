@@ -169,7 +169,7 @@ void deleteRecord(UserInterface &phoneBook, std::stringstream &input)
     std::cout << invalidCommand;
     return;
   }
-  phoneBook.deleteNote(markName);
+  phoneBook.deleteRecord(markName);
 }
 
 void show(UserInterface &phoneBook, std::stringstream &input)

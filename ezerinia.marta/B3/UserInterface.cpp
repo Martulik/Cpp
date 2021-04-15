@@ -45,7 +45,7 @@ void UserInterface::insert(const std::string &position, std::string &markName, P
   }
 }
 
-void UserInterface::deleteNote(std::string &markName)
+void UserInterface::deleteRecord(std::string &markName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {

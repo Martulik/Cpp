@@ -18,9 +18,9 @@ class Container::Iterator {
 public:
   Iterator(size_t index);
 
-  bool operator==(const Iterator &other) const;
+  bool operator==(const Iterator &src) const;
 
-  bool operator!=(const Iterator &other) const;
+  bool operator!=(const Iterator &src) const;
 
   unsigned int &operator*();
 
@@ -38,7 +38,7 @@ private:
   size_t index_;
   unsigned int value_;
 
-  unsigned int getValue(size_t index) const;
+  unsigned int getFactorial(size_t index) const;
 };
 
 #endif

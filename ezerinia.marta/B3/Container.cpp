@@ -2,7 +2,7 @@
 
 Container::Iterator::Iterator(size_t index):
   index_(index),
-  value_(getValue(index))
+  value_(getFactorial(index))
 {}
 
 Container::Iterator Container::begin()
@@ -15,14 +15,14 @@ Container::Iterator Container::end()
   return Iterator(11);
 }
 
-bool Container::Iterator::operator==(const Container::Iterator &other) const
+bool Container::Iterator::operator==(const Container::Iterator &src) const
 {
-  return ((value_ == other.value_) && (index_ == other.index_));
+  return (value_ == src.value_) && (index_ == src.index_);
 }
 
-bool Container::Iterator::operator!=(const Container::Iterator &other) const
+bool Container::Iterator::operator!=(const Container::Iterator &src) const
 {
-  return (!(*this == other));
+  return !(*this == src);
 }
 
 unsigned int &Container::Iterator::operator*()
@@ -55,7 +55,6 @@ Container::Iterator Container::Iterator::operator++(int)
 {
   Iterator temp = *this;
   ++(*this);
-
   return temp;
 }
 
@@ -63,15 +62,14 @@ Container::Iterator Container::Iterator::operator--(int)
 {
   Iterator temp = *this;
   --(*this);
-
   return temp;
 }
 
-unsigned int Container::Iterator::getValue(size_t index) const
+unsigned int Container::Iterator::getFactorial(size_t index) const
 {
   if (index <= 1) {
     return 1;
   } else {
-    return index * getValue(index - 1);
+    return index * getFactorial(index - 1);
   }
 }

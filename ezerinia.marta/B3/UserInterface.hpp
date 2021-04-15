@@ -16,7 +16,7 @@ public:
 
   void insert(const std::string &position, std::string &bookmark, PhoneBook::data &record);
 
-  void deleteNote(std::string &bookmark);
+  void deleteRecord(std::string &bookmark);
 
   void show(std::string &bookmark);
 

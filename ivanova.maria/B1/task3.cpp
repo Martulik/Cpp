@@ -12,23 +12,19 @@ int iva::task3()
 {
   std::vector< int > vector;
   int element = 0;
-  while (std::cin >> element)
+  while ((std::cin >> element) && (element != 0))
   {
-    if (element == 0)
-    {
-      break;
-    }
     vector.push_back(element);
   }
   if (!std::cin.eof() && std::cin.fail())
   {
     std::cerr << ("Incorrect data!");
-    exit(1);
+    return 1;
   }
   if (element != 0)
   {
     std::cerr << ("The last element must be zero!");
-    exit(1);
+    return 1;
   }
   if (vector.empty())
   {
@@ -52,6 +48,10 @@ int iva::task3()
       if (*i % 3 == 0)
       {
         i = vector.insert(++i, 3, 1) + 2;
+      }
+      else
+      {
+        i++;
       }
     }
   }

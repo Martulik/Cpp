@@ -5,7 +5,7 @@
 
 namespace iva = ivanova;
 
-void pushVec(std::vector<int> &vector)
+void pushVec(std::vector< int > &vector)
 {
   char in;
   while (std::cin >> in)
@@ -29,29 +29,29 @@ void pushVec(std::vector<int> &vector)
 
 int iva::task1(const char *kindOfSort)
 {
-  if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "descending"))
-  {
-    std::cerr << ("Invalid Sort Order");
-    exit(1);
-  }
   if (kindOfSort == nullptr)
   {
     std::cerr << (" Missing Sort Order");
-    exit(1);
+    return 1;
+  }
+  if ((kindOfSort != "ascending") && (kindOfSort != "descending"))
+  {
+    std::cerr << ("Invalid Sort Order");
+    return 1;
   }
   std::vector< int > collection;
   pushVec(collection);
   if (!std::cin.eof() && std::cin.fail())
   {
     std::cerr << ("Reading failed");
-    exit(1);
+    return 1;
   }
   if (collection.empty())
   {
     return 0;
   }
-  std::vector<int> bracketsVector(collection);
-  std::forward_list<int> iteratorForwardList(collection.begin(), collection.end());
+  std::vector< int > bracketsVector(collection);
+  std::forward_list< int > iteratorForwardList(collection.begin(), collection.end());
   sortAndPrint < iva::strategyBrackets < int > > (collection, kindOfSort);
   sortAndPrint <  iva::strategyAt < int > > (bracketsVector, kindOfSort);
   sortAndPrint <  iva::strategyList < int > > (iteratorForwardList, kindOfSort);

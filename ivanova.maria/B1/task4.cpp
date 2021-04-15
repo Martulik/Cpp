@@ -9,8 +9,14 @@ namespace iva = ivanova;
 
 int iva::task4(const char *method, const int size)
 {
+  if ((method != "ascending") && (method != "descending"))
+  {
+    std::cerr << ("Invalid Sort Order");
+    return 1;
+  }
   if (size < 0)
   {
+    std::cerr << ("Size must be nonzero");
     return 1;
   }
   else

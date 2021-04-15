@@ -21,11 +21,11 @@ void testSort(const char* method, const int size)
   typename T::cont cont(size);
   fillContainer(cont.begin(), cont.end());
   iva::sortAndPrint< T >(cont, method);
-  if (!strcmp(method, "ascending"))
+  if (method == "ascending")
   {
     BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), std::less< int >()));
   }
-  if (!strcmp(method, "descending"))
+  if (method == "descending")
   {
     BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), std::greater< int >()));
   }

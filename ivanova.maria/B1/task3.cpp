@@ -55,15 +55,7 @@ int iva::task3()
       }
     }
   }
-  if (!vector.empty())
-  {
-    iva::print(vector, std::cout);
-    return 0;
-  }
-  else
-  {
-    std::cerr << "Omitted due to size";
-    return 1;
-  }
+  iva::print(vector, std::cout);
+  return 0;
 }
 #endif

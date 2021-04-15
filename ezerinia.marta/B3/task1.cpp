@@ -52,7 +52,7 @@ std::string getName(std::string &name)
         return "";
       }
     }
-    ++i;
+    i++;
   }
   if (i == name.size()) {
     return "";
@@ -197,7 +197,7 @@ void move(UserInterface &phoneBook, std::stringstream &input)
   } else {
     int numberSign = 1;
     if (num[0] == '-') {
-      int numberSign = -1;
+      numberSign = -1;
       num.erase(num.begin());
     } else if (num[0] == '+') {
       num.erase(num.begin());
@@ -207,6 +207,6 @@ void move(UserInterface &phoneBook, std::stringstream &input)
       std::cout << invalidStep;
       return;
     }
-    phoneBook.move(markName, numberSign * stoi(num));
+    phoneBook.move(markName, stoi(num) * numberSign);
   }
 }

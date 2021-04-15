@@ -52,7 +52,7 @@ void UserInterface::deleteRecord(std::string &markName)
     std::cout << invalidCommand;
     return;
   } else {
-    auto deleteIter = iter->second;
+    auto deleteIter = iter->second; //check
     for (std::map< std::string, PhoneBook::iterator >::iterator i = bookmarks_.begin(); i != bookmarks_.end(); i++) {
       if (i->second == deleteIter) {
         if (std::next(i->second) == phoneBook_.end()) {
@@ -60,6 +60,7 @@ void UserInterface::deleteRecord(std::string &markName)
         } else {
           i->second = phoneBook_.moveNext(deleteIter);
         }
+        break;
       }
     }
     phoneBook_.remove(deleteIter);

@@ -90,7 +90,8 @@ int main()
     else if(command == "show") {
       std::string mark;
       line >> mark;
-      std::cout << book.show(mark).second << '\n';
+      dan::PhoneBook::Entry entry = book.show(mark);
+      std::cout << entry.first << ' ' << entry.second << '\n';
     }
     else if(command == "move") {
       std::string mark, steps;
@@ -115,5 +116,5 @@ int main()
       std::cout << "<INVALID COMMAND>\n";
     }
   }
-  return 2;
+  return 0;
 }

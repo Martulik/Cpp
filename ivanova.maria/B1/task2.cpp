@@ -24,17 +24,14 @@ int iva::task2(const char *fileName)
   {
     return 0;
   }
-  size_t maxArraySize = 128;
+  size_t maxArraySize = 100;
   size_t countElements = 0;
   unPtr array = std::make_unique< char[] >(maxArraySize);
   while (!inFile.eof())
   {
     inFile.read(array.get() + countElements, maxArraySize - countElements);
     countElements += inFile.gcount();
-    if (countElements == maxArraySize)
-    {
-      maxArraySize *= 2;
-    }
+    maxArraySize *= 2;
     unPtr newArray = std::make_unique< char[] > (maxArraySize);
     for (size_t i = 0; i < countElements; i++)
     {
@@ -43,10 +40,12 @@ int iva::task2(const char *fileName)
     std::swap(array, newArray);
   }
   inFile.close();
-  char *first = array.get() + countElements;
-  size_t second = maxArraySize - countElements;
-  std::vector< char > resultVector(*first, second);
-  print(resultVector, std::cout);
+
+  std::vector< char > resultVector(array.get(), array.get() + countElements);
+  for (size_t i = 0; i < countElements; i++)
+  {
+    std::cout << resultVector[i];
+  }
   return 0;
 }
 

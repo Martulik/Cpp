@@ -30,7 +30,7 @@ int iva::task2(const char *fileName)
     {
       maxArraySize *= 2;
       unPtr newArray(static_cast< char * >(realloc(array.get(), maxArraySize)), &free);
-      for (int i = 0; i < maxArraySize; i++)
+      for (int i = 0; i < countElements; i++)
       {
         newArray[i] = std::move(array[i]);
       }

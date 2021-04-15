@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
   }
   if (number == 1 && argc == 3)
   {
-    exitCode = iva::task1< int >(argv[2]);
+    exitCode = iva::task1(argv[2]);
   }
   else if (number == 2 && argc == 2)
   {

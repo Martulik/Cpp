@@ -14,7 +14,7 @@ namespace ivanova
     }
   }
 
-  template < typename T > int task1(const char* kindOfSort)
+  int task1(const char* kindOfSort)
   {
     int exitCode = 0;
     if (strcmp(kindOfSort, "ascending") && strcmp(kindOfSort, "discending"))

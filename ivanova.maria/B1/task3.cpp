@@ -33,7 +33,7 @@ int iva::task3()
     return 1;
   }
   std::vector< int >::iterator i = vector.begin();
-  if (vector.back() == 1)!
+  if (vector.back() == 1)
   {
     while (i != vector.end())
     {

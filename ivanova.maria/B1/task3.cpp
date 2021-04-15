@@ -16,7 +16,6 @@ int iva::task3()
   {
     vector.push_back(element);
   }
-
   if (!std::cin.eof() && std::cin.fail())
   {
     std::cerr << ("Incorrect data!");
@@ -61,6 +60,10 @@ int iva::task3()
     iva::print(vector, std::cout);
     return 0;
   }
-  else return 1;
+  else
+  {
+    std::cerr << "Omitted due to size";
+    return 1;
+  }
 }
 #endif

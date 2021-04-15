@@ -43,7 +43,7 @@ int iva::task3()
       }
     }
   }
-  else if (!vector.empty() && vector.back())
+  else if (!vector.empty() && vector.back() == 2)
   {
     while (i != vector.end())
     {

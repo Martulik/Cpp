@@ -17,7 +17,6 @@ namespace pozdnyakov
     rectangle_t getFrameRect() const override;
     void move(point_t point) override;
     void move(double dx, double dy) override;
-    void scale(double coef) override;
     std::unique_ptr<Shape> at(int i);
 
   private:
@@ -25,6 +24,7 @@ namespace pozdnyakov
     int shapesLen_;
     int area_;
     rectangle_t frame_;
+    void safeScale(double coef) override;
   };
 }
 

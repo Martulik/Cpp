@@ -34,11 +34,7 @@ void pozdnyakov::Circle::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void pozdnyakov::Circle::scale(double coef)
+void pozdnyakov::Circle::safeScale(double coef)
 {
-  if (coef <= 0)
-  {
-    throw pozdnyakov::ScaleException();
-  }
   rad_ *= coef;
 }

@@ -77,7 +77,7 @@ void pozdnyakov::CompositeShape::move(double dx, double dy)
   }
 }
 
-void pozdnyakov::CompositeShape::scale(double coef)
+void pozdnyakov::CompositeShape::safeScale(double coef)
 {
   area_ *= coef * coef;
   point_t newPoint;

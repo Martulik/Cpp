@@ -31,12 +31,8 @@ void pozdnyakov::Rectangle::move(const double dx, const double dy)
   rec_.pos.y += dy;
 }
 
-void pozdnyakov::Rectangle::scale(double coef)
+void pozdnyakov::Rectangle::safeScale(double coef)
 {
-  if (coef <= 0)
-  {
-    throw ScaleException();
-  }
   rec_.width *= coef;
   rec_.height *= coef;
 }

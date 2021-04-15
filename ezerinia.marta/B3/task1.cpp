@@ -5,6 +5,7 @@
 
 const std::string invalidCommand = "<INVALID COMMAND>\n";
 const std::string invalidStep = "<INVALID STEP>\n";
+const std::string emptyStr = "";
 
 void task1()
 {
@@ -40,7 +41,7 @@ void task1()
 std::string getName(std::string &name)
 {
   if ((name.empty()) || (name.front() != '\"') || (name.back() != '\"')) {
-    return "";
+    return emptyStr;
   }
   name.erase(name.begin());
   size_t i = 0;
@@ -49,17 +50,17 @@ std::string getName(std::string &name)
       if ((name[i + 1] == '\"') && (i + 2 < name.size())) {
         name.erase(i, 1);
       } else {
-        return "";
+        return emptyStr;
       }
     }
     i++;
   }
   if (i == name.size()) {
-    return "";
+    return emptyStr;
   }
   name.erase(i);
   if (name.empty()) {
-    return "";
+    return emptyStr;
   }
   return name;
 }
@@ -67,11 +68,11 @@ std::string getName(std::string &name)
 std::string getNumber(std::string &number)
 {
   if (number.empty()) {
-    return "";
+    return emptyStr;
   }
   for (size_t i = 0; i < number.size(); i++) {
     if (!std::isdigit(number[i])) {
-      return "";
+      return emptyStr;
     }
   }
   return number;
@@ -80,11 +81,11 @@ std::string getNumber(std::string &number)
 std::string getMarkName(std::string &name)
 {
   if (name.empty()) {
-    return "";
+    return emptyStr;
   }
   for (size_t i = 0; i < name.size(); i++) {
     if ((!isalnum(name[i])) && (name[i] != '-')) {
-      return "";
+      return emptyStr;
     }
   }
   return name;

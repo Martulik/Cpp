@@ -52,18 +52,13 @@ void UserInterface::deleteRecord(std::string &markName)
     std::cout << invalidCommand;
     return;
   } else {
-    auto deleteIter = iter->second; //check
-    for (std::map< std::string, PhoneBook::iterator >::iterator i = bookmarks_.begin(); i != bookmarks_.end(); i++) {
-      if (i->second == deleteIter) {
-        if (std::next(i->second) == phoneBook_.end()) {
-          i->second = phoneBook_.movePrev(deleteIter);
-        } else {
-          i->second = phoneBook_.moveNext(deleteIter);
-        }
-        break;
-      }
+    //auto deleteIter = iter->second; //check
+    if (std::next(iter->second) == phoneBook_.end()) {
+      iter->second = phoneBook_.movePrev(iter->second);
+    } else {
+      iter->second = phoneBook_.moveNext(iter->second);
     }
-    phoneBook_.remove(deleteIter);
+    phoneBook_.remove(iter->second);
   }
 }
 

@@ -6,7 +6,7 @@ pozdnyakov::Circle::Circle(double rad, point_t center): center_(center), rad_(ra
 {
   if (rad <= 0)
   {
-    throw pozdnyakov::ShapeArgException();
+    throw ShapeArgException();
   }
 }
 

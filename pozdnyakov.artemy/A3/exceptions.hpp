@@ -4,27 +4,24 @@
 #include <exception>
 #include <string>
 
-namespace pozdnyakov
+class ScaleException
 {
-  class ScaleException
-  {
-  public:
-    ScaleException() = default;
-    const std::string what() const;
+public:
+  ScaleException() = default;
+  const std::string what() const;
 
-  private:
-    const std::string error_ = "Wrong scale coefficient";
-  };
+private:
+  const std::string error_ = "Wrong scale coefficient";
+};
 
-  class ShapeArgException
-  {
-  public:
-    ShapeArgException() = default;
-    const std::string what() const;
+class ShapeArgException
+{
+public:
+  ShapeArgException() = default;
+  const std::string what() const;
 
-  private:
-    const std::string error_ = "Wrong shape argument";
-  };
-}
+private:
+  const std::string error_ = "Wrong shape argument";
+};
 
 #endif

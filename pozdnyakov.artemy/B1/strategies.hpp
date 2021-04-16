@@ -9,86 +9,71 @@ class IndexStrategy
 {
 public:
   using ContType = std::vector<T>;
-  using IterType = T*;
-  static T* begin(std::vector<T>& cont);
-  static T* end(std::vector<T>& cont);
-  static T* getElem(T* iter);
+  using IterType = size_t;
+  static size_t begin(const std::vector<T>&)
+  {
+    return 0;
+  }
+  static size_t end(const std::vector<T>& cont)
+  {
+    return cont.size();
+  }
+  static T& getElem(std::vector<T>& cont, size_t iter)
+  {
+    return cont[iter];
+  }
+  static size_t getIterPrev(const size_t iter)
+  {
+    return iter - 1;
+  }
 };
 
 template <typename T>
 class VectorAtStrategy
 {
-  using ContType = std::vector<T>;
-  using IterType = T*;
 public:
-  static T* begin(std::vector<T>& cont);
-  static T* end(std::vector<T>& cont);
-  static T* getElem(T* iter);
+  using ContType = std::vector<T>;
+  using IterType = size_t;
+  static size_t begin(const std::vector<T>&)
+  {
+    return 0;
+  }
+  static size_t end(const std::vector<T>& cont)
+  {
+    return cont.size();
+  }
+  static T& getElem(std::vector<T>& cont, size_t iter)
+  {
+    return cont.at(iter);
+  }
+  static size_t getIterPrev(const size_t iter)
+  {
+    return iter - 1;
+  }
 };
 
 template <typename T>
 class ListStrategy
 {
+public:
   using ContType = std::list<T>;
   using IterType = typename std::list<T>::iterator;
-public:
-  static IterType begin(std::list<T>& cont);
-  static IterType end(std::list<T>& cont);
-  static T* getElem(IterType iter);
+  static typename std::list<T>::iterator begin(const std::vector<T>& cont)
+  {
+    return cont.begin();
+  }
+  static typename std::list<T>::iterator end(const std::vector<T>& cont)
+  {
+    return cont.end();
+  }
+  static T& getElem(const std::vector<T>&, const typename std::list<T>::iterator iter)
+  {
+    return *iter;
+  }
+  static typename std::list<T>::iterator getIterPrev(const typename std::list<T>::iterator& iter)
+  {
+    return iter.prev();
+  }
 };
-
-template <typename T>
-T* IndexStrategy<T>::begin(std::vector<T>& cont)
-{
-  return &cont[0];
-}
-
-template <typename T>
-T* IndexStrategy<T>::end(std::vector<T>& cont)
-{
-  return &cont[cont.size() - 1];
-}
-
-template <typename T>
-T* IndexStrategy<T>::getElem(T* iter)
-{
-  return iter;
-}
-
-template <typename T>
-T* VectorAtStrategy<T>::begin(std::vector<T>& cont)
-{
-  return &cont.at(0);
-}
-
-template <typename T>
-T* VectorAtStrategy<T>::end(std::vector<T>& cont)
-{
-  return &cont.at(cont.size() - 1);
-}
-
-template <typename T>
-T* VectorAtStrategy<T>::getElem(T* iter)
-{
-  return iter;
-}
-
-template <typename T>
-typename std::list<T>::iterator ListStrategy<T>::begin(std::list<T>& cont)
-{
-  return cont.begin();
-}
-
-template <typename T>
-typename std::list<T>::iterator ListStrategy<T>::end(std::list<T>& cont)
-{
-  return cont.end();
-}
-
-template <typename T>
-T* ListStrategy<T>::getElem(typename std::list<T>::iterator iter)
-{
-  return *iter;
-}
 
 #endif

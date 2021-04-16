@@ -11,15 +11,19 @@ void sort(typename S::ContType cont, bool isAscending)
   IterType searchRangeEnd = S::end(cont);
   for (IterType i = S::begin(cont); i != S::end(cont); i++)
   {
-    max = S::begin(cont);
-    for (IterType j = S::begin(cont) + 1; j != searchRangeEnd; j++)
+    max = S::getElem(cont, S::begin(cont));
+    for (IterType j = S::begin(cont); j != searchRangeEnd; j++)
     {
-      if ((S::getElem(j) > S::getElem(max)) == isAscending)
+      if (isAscending)
       {
-        *S::getElem(max) = *S::getElem(j);
+        max = (S::getElem(cont, j) < S::getElem(cont, max)) ? max : j;
+      }
+      else
+      {
+        max = (S::getElem(cont, j) > S::getElem(cont, max)) ? max : j;
       }
     }
-    std::swap(*S::getElem(max), *S::getElem(searchRangeEnd));
+    std::swap(S::getElem(cont, max), S::getElem(cont, S::getIterPrev(searchRangeEnd)));
     searchRangeEnd--;
   }
 }

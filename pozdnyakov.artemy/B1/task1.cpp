@@ -1,5 +1,6 @@
 #include "tasks.hpp"
 #include <string>
+#include <stdexcept>
 #include <cstring>
 #include <iostream>
 #include "sort.hpp"
@@ -12,17 +13,17 @@ void task1(char* argv[])
   std::string desc = "descending";
   bool isAscending;
   std::cout << argv[0] << '\n';
-  if (strcmp(argv[0], asc.c_str()))
+  if (!strcmp(argv[0], asc.c_str()))
   {
     isAscending = true;
   }
-  else if (strcmp(argv[0], desc.c_str()))
+  else if (!strcmp(argv[0], desc.c_str()))
   {
     isAscending = false;
   }
   else
   {
-    throw -1; //
+    throw std::invalid_argument("Wrong argument");
   }
   std::vector<int> vector;
   for (unsigned int i = 0; i < sizeof(VALUES) / sizeof(VALUES[0]); i++)

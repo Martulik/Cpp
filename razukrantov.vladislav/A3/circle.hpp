@@ -5,7 +5,7 @@
 
 namespace razukrantov
 {
-  class Circle : public Shape
+  class Circle: public Shape
   {
   public:
     Circle(double rad, const point_t& pos);
@@ -19,7 +19,7 @@ namespace razukrantov
 	std::shared_ptr< Shape > clone() const override;
 
   private:
-	double radius_;
+    double radius_;
 	point_t center_;
 	void doScale(double k) override;
   };

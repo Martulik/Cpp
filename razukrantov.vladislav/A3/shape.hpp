@@ -9,17 +9,17 @@ namespace razukrantov
   class Shape
   {
   public:
-	virtual ~Shape() = default;
+	  virtual ~Shape() = default;
 
-	virtual double getArea() const = 0;
-	virtual rectangle_t getFrameRect() const = 0;
-	virtual void move(const point_t& center) = 0;
-	virtual void move(double dx, double dy) = 0;
-	virtual std::shared_ptr< Shape > clone() const = 0;
-	void scale(double k);
+	  virtual double getArea() const = 0;
+	  virtual rectangle_t getFrameRect() const = 0;
+	  virtual void move(const point_t& center) = 0;
+	  virtual void move(double dx, double dy) = 0;
+	  virtual std::shared_ptr< Shape > clone() const = 0;
+	  void scale(double k);
 
   private:
-	virtual void doScale(double k) = 0;
+	  virtual void doScale(double k) = 0;
   };
 
   double getX(const Shape& shape);

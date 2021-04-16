@@ -12,20 +12,20 @@ void razukrantov::Shape::scale(double k)
 
 double::razukrantov::getX(const Shape& shape)
 {
-	return shape.getFrameRect().pos.x;
+  return shape.getFrameRect().pos.x;
 }
 
 double::razukrantov::getY(const Shape& shape)
 {
-	return shape.getFrameRect().pos.y;
+  return shape.getFrameRect().pos.y;
 }
 
 double::razukrantov::getWidth(const Shape& shape)
 {
-	return shape.getFrameRect().width;
+  return shape.getFrameRect().width;
 }
 
 double::razukrantov::getHeight(const Shape& shape)
 {
-	return shape.getFrameRect().height;
+  return shape.getFrameRect().height;
 }

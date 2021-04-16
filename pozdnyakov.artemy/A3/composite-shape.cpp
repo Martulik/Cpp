@@ -22,6 +22,7 @@ pozdnyakov::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   double maxY = std::numeric_limits<double>::max();
   double minY = minX;
   double maxX = maxY;
+  area_ = 0;
   for (int i = 0; i < shapesLen; i++)
   {
     minX = std::max(minX, shapes_[i]->getFrameRect().getMinX());

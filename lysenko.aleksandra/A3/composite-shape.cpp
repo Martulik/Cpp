@@ -10,7 +10,6 @@ curr::CompositeShape::CompositeShape(const curr::CompositeShape& other)
   array_ = std::make_unique< ShapePtr[] >(capacity_);
   for (size_t i = 0; i < size_; i++)
   {
-    array_[i].reset();
     array_[i] = other.array_[i]->clone();
   }
 }
@@ -21,7 +20,6 @@ curr::CompositeShape& curr::CompositeShape::operator=(const CompositeShape& src)
   {
     return *this;
   }
-  array_.reset();
   CompositeShape tmp(src);
   swap(tmp);
   return *this;

@@ -12,7 +12,7 @@ pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int 
   }
   for (int i = 0; i < shapesLen; i++)
   {
-    if (shapes[i] == nullptr)
+    if (shapes_[i] == nullptr)
     {
       throw ShapeArgException();
     }

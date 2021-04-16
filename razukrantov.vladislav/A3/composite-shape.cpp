@@ -140,7 +140,6 @@ void razukrantov::CompositeShape::doScale(double k)
     double dx = getX(*shapeArr_[i]) - center.x;
     double dy = getY(*shapeArr_[i]) - center.y;
     shapeArr_[i]->move({ center.x + (dx * k), center.y + (dy * k) });
-    shapeArr_[i]->scale(k);
   }
 }
 

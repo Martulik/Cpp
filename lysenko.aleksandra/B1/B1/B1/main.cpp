@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
       else
       {
         std::cerr << "Format of task's number is not correct";
-        exit(1);
+        lysenko::conditionCode = 1;
       }
     }
     else
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
   else
   {
     std::cerr << "Invalid number of arguments";
-    exit(1);
+    lysenko::conditionCode = 1;
   }
   return lysenko::conditionCode;
 }
@@ -101,6 +101,7 @@ bool lysenko::accurateTaskNumber(char* argv, const char* reference)
   else
   {
     std::cerr << "Illegal task's number for these arguments";
-    exit(1);
+    lysenko::conditionCode = 1;
+    return 0;
   }
 }

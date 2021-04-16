@@ -18,7 +18,7 @@ int main()
     shapes[0] = std::move(circle);
     shapes[1] = std::move(rect);
     std::cout << shapes[0]->getArea() << '\n';
-    CompositeShape cshape(std::move(shapes), 2);
+    pozdnyakov::CompositeShape cshape(std::move(shapes), 2);
     std::cout << "The area of composite shape is " << cshape.getArea() << '\n';
     cshape.scale(2);
     std::cout << "The area of composite shape is " << cshape.getArea() << '\n';

@@ -7,22 +7,25 @@
 using UniqueShapes = std::unique_ptr< std::unique_ptr< pozdnyakov::Shape >[] >;
 using UniqueShape = std::unique_ptr< pozdnyakov::Shape >;
 
-class CompositeShape: public pozdnyakov::Shape
+namespace pozdnyakov
 {
-public:
-  CompositeShape(UniqueShapes shapes, int shapesLen);
-  ~CompositeShape() override = default;
-  double getArea() const override;
-  pozdnyakov::rectangle_t getFrameRect() const override;
-  void move(pozdnyakov::point_t point) override;
-  void move(double dx, double dy) override;
+  class CompositeShape: public pozdnyakov::Shape
+  {
+  public:
+    CompositeShape(UniqueShapes shapes, int shapesLen);
+    ~CompositeShape() override = default;
+    double getArea() const override;
+    pozdnyakov::rectangle_t getFrameRect() const override;
+    void move(pozdnyakov::point_t point) override;
+    void move(double dx, double dy) override;
 
-private:
-  UniqueShapes shapes_;
-  int shapesLen_;
-  int area_;
-  pozdnyakov::rectangle_t frame_;
-  void safeScale(double coef) override;
-};
+  private:
+    UniqueShapes shapes_;
+    int shapesLen_;
+    int area_;
+    pozdnyakov::rectangle_t frame_;
+    void safeScale(double coef) override;
+  };
+}
 
 #endif

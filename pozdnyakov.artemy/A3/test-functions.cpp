@@ -55,6 +55,6 @@ UniqueShape makeCompositeShape()
   UniqueShapes shapes = std::make_unique< UniqueShape[] >(2);
   shapes[0] = makeCircle();
   shapes[1] = makeRect();
-  UniqueShape cshape = std::make_unique< CompositeShape >(std::move(shapes), 2);
+  UniqueShape cshape = std::make_unique< pozdnyakov::CompositeShape >(std::move(shapes), 2);
   return cshape;
 }

@@ -3,7 +3,7 @@
 #include <limits>
 #include <algorithm>
 
-CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
+pozdnyakov::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   shapes_(std::move(shapes)),
   shapesLen_(shapesLen)
 {
@@ -35,17 +35,17 @@ CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   frame_ = pozdnyakov::rectangle_t{pozdnyakov::point_t{minX + width, minY + height}, width, height};
 }
 
-double CompositeShape::getArea() const
+double pozdnyakov::CompositeShape::getArea() const
 {
   return area_;
 }
 
-pozdnyakov::rectangle_t CompositeShape::getFrameRect() const
+pozdnyakov::rectangle_t pozdnyakov::CompositeShape::getFrameRect() const
 {
   return frame_;
 }
 
-void CompositeShape::move(pozdnyakov::point_t point)
+void pozdnyakov::CompositeShape::move(pozdnyakov::point_t point)
 {
   double dx = point.x - frame_.pos.x;
   double dy = point.y - frame_.pos.y;
@@ -57,7 +57,7 @@ void CompositeShape::move(pozdnyakov::point_t point)
   }
 }
 
-void CompositeShape::move(double dx, double dy)
+void pozdnyakov::CompositeShape::move(double dx, double dy)
 {
   frame_.pos.x += dx;
   frame_.pos.y += dy;
@@ -67,7 +67,7 @@ void CompositeShape::move(double dx, double dy)
   }
 }
 
-void CompositeShape::safeScale(double coef)
+void pozdnyakov::CompositeShape::safeScale(double coef)
 {
   area_ *= coef * coef;
   pozdnyakov::point_t newPoint;

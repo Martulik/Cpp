@@ -1,6 +1,7 @@
 #include "composite-shape.hpp"
 #include "exceptions.hpp"
 #include <limits>
+#include <algorithm>
 
 pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int shapesLen)
     : shapes_(std::move(shapes)), shapesLen_(shapesLen)
@@ -16,33 +17,28 @@ pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int 
       throw ShapeArgException();
     }
   }
-  double shapeMinX, shapeMinY, shapeMaxX, shapeMaxY, width, height;
-  double maxX = std::numeric_limits< double >::max();
-  double maxY = maxX;
-  double minX = std::numeric_limits< double >::min();
-  double minY = minX;
+  auto minXCompare = [](pozdnyakov::UniqueShape shape)
+  {
+    return shape->getFrameRect().getMinX() < shape->getFrameRect().getMinX();
+  }
+  auto maxXCompare = [](pozdnyakov::UniqueShape shape)
+  {
+    return shape->getFrameRect().getMaxX() < shape->getFrameRect().getMaxX();
+  }
+  auto minYCompare = [](pozdnyakov::UniqueShape shape)
+  {
+    return shape->getFrameRect().getMinY() < shape->getFrameRect().getMinY();
+  }
+  auto maxYCompare = [](pozdnyakov::UniqueShape shape)
+  {
+    return shape->getFrameRect().getMaxY() < shape->getFrameRect().getMaxY();
+  }
+  double minX = std::min_element<minXCompare>(&shapes[0], &shapes[shapesLen]);
+  double maxX = std::max_element<maxXCompare>(&shapes[0], &shapes[shapesLen]);
+  double minY = std::min_element<minYCompare>(&shapes[0], &shapes[shapesLen]);
+  double maxY = std::max_element<maxYCompare>(&shapes[0], &shapes[shapesLen]);
   for (int i = 0; i < shapesLen; i++)
   {
-    shapeMaxX = shapes_[i]->getFrameRect().pos.x + shapes_[i]->getFrameRect().width / 2;
-    shapeMaxY = shapes_[i]->getFrameRect().pos.y + shapes_[i]->getFrameRect().width / 2;
-    shapeMinX = shapes_[i]->getFrameRect().pos.x - shapes_[i]->getFrameRect().width / 2;
-    shapeMinY = shapes_[i]->getFrameRect().pos.y - shapes_[i]->getFrameRect().width / 2;
-    if (shapeMaxX > maxX)
-    {
-      maxX = shapeMaxX;
-    }
-    else if (shapeMinX < minX)
-    {
-      minX = shapeMinX;
-    }
-    if (shapeMaxY > maxY)
-    {
-      maxY = shapeMaxY;
-    }
-    else if (shapeMinY < minY)
-    {
-      minY = shapeMinY;
-    }
     area_ += shapes_[i]->getArea();
   }
   width = (maxX - minX) / 2;

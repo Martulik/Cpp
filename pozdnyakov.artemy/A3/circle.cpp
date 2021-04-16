@@ -2,9 +2,7 @@
 #include "exceptions.hpp"
 #include <cassert>
 
-pozdnyakov::Circle::Circle(double rad, point_t center):
-  center_(center),
-  rad_(rad)
+pozdnyakov::Circle::Circle(double rad, point_t center): center_(center), rad_(rad)
 {
   if (rad <= 0)
   {
@@ -18,15 +16,9 @@ double pozdnyakov::Circle::getArea() const
   return PI * rad_ * rad_;
 }
 
-pozdnyakov::rectangle_t pozdnyakov::Circle::getFrameRect() const
-{
-  return rectangle_t { center_, 2 * rad_, 2 * rad_ };
-}
+pozdnyakov::rectangle_t pozdnyakov::Circle::getFrameRect() const { return rectangle_t{center_, 2 * rad_, 2 * rad_}; }
 
-void pozdnyakov::Circle::move(const point_t point)
-{
-  center_ = point;
-}
+void pozdnyakov::Circle::move(const point_t point) { center_ = point; }
 
 void pozdnyakov::Circle::move(const double dx, const double dy)
 {
@@ -34,7 +26,4 @@ void pozdnyakov::Circle::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void pozdnyakov::Circle::safeScale(double coef)
-{
-  rad_ *= coef;
-}
+void pozdnyakov::Circle::safeScale(double coef) { rad_ *= coef; }

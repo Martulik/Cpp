@@ -5,7 +5,7 @@
 
 namespace pozdnyakov
 {
-  class Circle: public Shape
+  class Circle : public Shape
   {
   public:
     Circle(double rad, point_t center);

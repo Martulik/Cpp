@@ -1,8 +1,8 @@
 #ifndef TEST_FUNCTION_HPP
 #define TEST_FUNCTION_HPP
 
-#include <boost/test/unit_test.hpp>
 #include "composite-shape.hpp"
+#include <boost/test/unit_test.hpp>
 
 namespace pozdnyakov
 {

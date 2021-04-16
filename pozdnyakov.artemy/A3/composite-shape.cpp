@@ -1,20 +1,25 @@
 #include "composite-shape.hpp"
-#include <limits>
 #include "exceptions.hpp"
+#include <limits>
 
-pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int shapesLen):
-  shapes_(std::move(shapes)),
-  shapesLen_(shapesLen),
-  area_(0)
+pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int shapesLen)
+    : shapes_(std::move(shapes)), shapesLen_(shapesLen)
 {
   if (shapes_ == nullptr)
   {
     throw pozdnyakov::ShapeArgException();
   }
+  for (int i = 0; i < shapesLen; i++)
+  {
+    if (shapes[i] == nullptr)
+    {
+      throw ShapeArgException();
+    }
+  }
   double shapeMinX, shapeMinY, shapeMaxX, shapeMaxY, width, height;
-  double maxX = std::numeric_limits<double>::max();
+  double maxX = std::numeric_limits< double >::max();
   double maxY = maxX;
-  double minX = std::numeric_limits<double>::min();
+  double minX = std::numeric_limits< double >::min();
   double minY = minX;
   for (int i = 0; i < shapesLen; i++)
   {
@@ -42,18 +47,12 @@ pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int 
   }
   width = (maxX - minX) / 2;
   height = (maxY - minY) / 2;
-  frame_ = rectangle_t { point_t { minX + width, minY + height }, width, height };
+  frame_ = rectangle_t{point_t{minX + width, minY + height}, width, height};
 }
 
-double pozdnyakov::CompositeShape::getArea() const
-{
-  return area_;
-}
+double pozdnyakov::CompositeShape::getArea() const { return area_; }
 
-pozdnyakov::rectangle_t pozdnyakov::CompositeShape::getFrameRect() const
-{
-  return frame_;
-}
+pozdnyakov::rectangle_t pozdnyakov::CompositeShape::getFrameRect() const { return frame_; }
 
 void pozdnyakov::CompositeShape::move(point_t point)
 {
@@ -83,7 +82,7 @@ void pozdnyakov::CompositeShape::safeScale(double coef)
   point_t newPoint;
   for (int i = 0; i < shapesLen_; i++)
   {
-    newPoint = point_t { shapes_[i]->getFrameRect().pos.x * coef, shapes_[i]->getFrameRect().pos.y * coef };
+    newPoint = point_t{shapes_[i]->getFrameRect().pos.x * coef, shapes_[i]->getFrameRect().pos.y * coef};
     shapes_[i]->move(newPoint);
     shapes_[i]->scale(coef);
   }

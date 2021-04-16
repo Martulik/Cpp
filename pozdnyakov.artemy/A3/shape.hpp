@@ -14,6 +14,7 @@ namespace pozdnyakov
     virtual void move(point_t point) = 0;
     virtual void move(double dx, double dy) = 0;
     void scale(double coef);
+
   private:
     virtual void safeScale(double coef) = 0;
   };

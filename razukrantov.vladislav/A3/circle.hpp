@@ -10,18 +10,18 @@ namespace razukrantov
   public:
     Circle(double rad, const point_t& pos);
 
-	virtual ~Circle() = default;
+    virtual ~Circle() = default;
 
-	double getArea() const override;
-	rectangle_t getFrameRect() const override;
-	void move(const point_t& center) override;
-	void move(double dx, double dy) override;
-	std::shared_ptr< Shape > clone() const override;
+    double getArea() const override;
+    rectangle_t getFrameRect() const override;
+    void move(const point_t& center) override;
+    void move(double dx, double dy) override;
+    std::shared_ptr< Shape > clone() const override;
 
   private:
     double radius_;
-	point_t center_;
-	void doScale(double k) override;
+    point_t center_;
+    void doScale(double k) override;
   };
 }
 

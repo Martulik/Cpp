@@ -3,7 +3,7 @@
 BOOST_AUTO_TEST_SUITE(test_CompositeShape)
 BOOST_AUTO_TEST_CASE(test_size_immutabilty)
 {
-  pozdnyakov::UniqueShape cshape = pozdnyakov::makeCompositeShape();
+  UniqueShape cshape = pozdnyakov::makeCompositeShape();
   pozdnyakov::rectangle_t frame1 = cshape->getFrameRect();
   cshape->move(1, 1);
   pozdnyakov::rectangle_t frame2 = cshape->getFrameRect();

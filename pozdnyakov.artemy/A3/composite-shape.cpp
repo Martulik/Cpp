@@ -3,8 +3,9 @@
 #include <limits>
 #include <algorithm>
 
-CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen)
-    : shapes_(std::move(shapes)), shapesLen_(shapesLen)
+CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
+  shapes_(std::move(shapes)),
+  shapesLen_(shapesLen)
 {
   if (shapes_ == nullptr)
   {
@@ -34,9 +35,15 @@ CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen)
   frame_ = pozdnyakov::rectangle_t{pozdnyakov::point_t{minX + width, minY + height}, width, height};
 }
 
-double CompositeShape::getArea() const { return area_; }
+double CompositeShape::getArea() const
+{
+  return area_;
+}
 
-pozdnyakov::rectangle_t CompositeShape::getFrameRect() const { return frame_; }
+pozdnyakov::rectangle_t CompositeShape::getFrameRect() const
+{
+  return frame_;
+}
 
 void CompositeShape::move(pozdnyakov::point_t point)
 {

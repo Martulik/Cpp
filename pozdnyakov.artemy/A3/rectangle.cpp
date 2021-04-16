@@ -2,18 +2,28 @@
 #include "exceptions.hpp"
 #include <cassert>
 
-pozdnyakov::Rectangle::Rectangle(double width, double height, point_t center): rec_(rectangle_t{center, width, height})
+pozdnyakov::Rectangle::Rectangle(double width, double height, point_t center):
+  rec_(rectangle_t{center, width, height})
 {
   if (!(width > 0 && height > 0))
   {
     throw ShapeArgException();
   }
 }
-double pozdnyakov::Rectangle::getArea() const { return rec_.width * rec_.height; }
+double pozdnyakov::Rectangle::getArea() const
+{
+  return rec_.width * rec_.height;
+}
 
-pozdnyakov::rectangle_t pozdnyakov::Rectangle::getFrameRect() const { return rec_; }
+pozdnyakov::rectangle_t pozdnyakov::Rectangle::getFrameRect() const
+{
+  return rec_;
+}
 
-void pozdnyakov::Rectangle::move(const point_t point) { rec_.pos = point; }
+void pozdnyakov::Rectangle::move(const point_t point)
+{
+  rec_.pos = point;
+}
 
 void pozdnyakov::Rectangle::move(const double dx, const double dy)
 {

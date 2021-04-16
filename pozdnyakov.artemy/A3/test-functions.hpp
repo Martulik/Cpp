@@ -7,9 +7,9 @@
 namespace pozdnyakov
 {
   const double delta = 0.5;
-  pozdnyakov::UniqueShape makeRect();
-  pozdnyakov::UniqueShape makeCircle();
-  pozdnyakov::UniqueShape makeCompositeShape();
+  UniqueShape makeRect();
+  UniqueShape makeCircle();
+  UniqueShape makeCompositeShape();
 }
 
 #endif

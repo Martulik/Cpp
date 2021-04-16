@@ -17,28 +17,16 @@ pozdnyakov::CompositeShape::CompositeShape(pozdnyakov::UniqueShapes shapes, int 
       throw ShapeArgException();
     }
   }
-  auto minXCompare = [](pozdnyakov::UniqueShape shape)
-  {
-    return shape->getFrameRect().getMinX() < shape->getFrameRect().getMinX();
-  }
-  auto maxXCompare = [](pozdnyakov::UniqueShape shape)
-  {
-    return shape->getFrameRect().getMaxX() < shape->getFrameRect().getMaxX();
-  }
-  auto minYCompare = [](pozdnyakov::UniqueShape shape)
-  {
-    return shape->getFrameRect().getMinY() < shape->getFrameRect().getMinY();
-  }
-  auto maxYCompare = [](pozdnyakov::UniqueShape shape)
-  {
-    return shape->getFrameRect().getMaxY() < shape->getFrameRect().getMaxY();
-  }
-  double minX = std::min_element<minXCompare>(&shapes[0], &shapes[shapesLen]);
-  double maxX = std::max_element<maxXCompare>(&shapes[0], &shapes[shapesLen]);
-  double minY = std::min_element<minYCompare>(&shapes[0], &shapes[shapesLen]);
-  double maxY = std::max_element<maxYCompare>(&shapes[0], &shapes[shapesLen]);
+  double minX = std::numeric_limits<double>::min();
+  double maxY = std::numeric_limits<double>::max();
+  double minY = minX;
+  double maxX = maxY;
   for (int i = 0; i < shapesLen; i++)
   {
+    minX = std::max(minX, shapes_[i]->getFrameRect().getMinX());
+    maxY = std::max(maxY, shapes_[i]->getFrameRect().getMaxY());
+    minY = std::max(minY, shapes_[i]->getFrameRect().getMinY());
+    maxX = std::max(maxX, shapes_[i]->getFrameRect().getMaxX());
     area_ += shapes_[i]->getArea();
   }
   double width = (maxX - minX) / 2;

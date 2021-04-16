@@ -17,7 +17,7 @@ namespace pozdnyakov
     rectangle_t getFrameRect() const override;
     void move(point_t point) override;
     void move(double dx, double dy) override;
-    std::unique_ptr< Shape > at(int i);
+    std::unique_ptr< Shape >& at(int i);
 
   private:
     UniqueShapes shapes_;

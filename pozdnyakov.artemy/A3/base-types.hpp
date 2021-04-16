@@ -14,6 +14,10 @@ namespace pozdnyakov
     point_t pos;
     double width;
     double height;
+    double getMinX();
+    double getMaxX();
+    double getMinY();
+    double getMaxY();
   };
 }
 

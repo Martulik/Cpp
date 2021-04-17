@@ -1,12 +1,13 @@
 #ifndef SORTING_HPP
 #define SORTING_HPP
 
+#include <functional>
 #include <string>
 
 namespace murzakanov
 {
-  template < class Strategy >
-  void sort(typename Strategy::store_type& store, const std::string& order)
+  template < class Strategy, typename itemType >
+  void sort(typename Strategy::store_type& store, std::function< bool(itemType, itemType) > cmp)
   {
     typename Strategy::iterator end = Strategy::end(store);
     for (typename Strategy::iterator i = Strategy::begin(store); i != end; i++)
@@ -14,8 +15,7 @@ namespace murzakanov
       typename Strategy::iterator j = i;
       for (j++; j != end; j++)
       {
-        if (((order == "ascending") && (Strategy::get(store, i) > Strategy::get(store, j))) ||
-          ((order == "descending") && (Strategy::get(store, i) < Strategy::get(store, j))))
+        if (cmp(Strategy::get(store, i), Strategy::get(store, j)))
         {
           std::swap(Strategy::get(store, i), Strategy::get(store, j));
         }

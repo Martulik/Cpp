@@ -1,5 +1,6 @@
 #include "tools.hpp"
 
+#include <functional>
 #include <random>
 #include <ctime>
 

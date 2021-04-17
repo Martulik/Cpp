@@ -1,6 +1,8 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
+#include <functional>
+#include <string>
 #include <iostream>
 #include "sorting.hpp"
 #include "strategy.hpp"
@@ -23,6 +25,20 @@ namespace murzakanov
       it++;
     }
     std::cout << "\n";
+  }
+
+  template < typename T >
+  std::function< bool(T, T) > getSortMode(const std::string& order)
+  {
+    if (order == "ascending")
+    {
+      return std::greater< T >();
+    }
+    if (order == "descending")
+    {
+      return std::less< T >();
+    }
+    return nullptr;
   }
 }
 

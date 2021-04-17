@@ -58,21 +58,21 @@ class ListStrategy
 public:
   using ContType = std::list<T>;
   using IterType = typename std::list<T>::iterator;
-  static typename std::list<T>::iterator begin(const std::vector<T>& cont)
+  static typename std::list<T>::iterator begin(std::list<T>& cont)
   {
     return cont.begin();
   }
-  static typename std::list<T>::iterator end(const std::vector<T>& cont)
+  static typename std::list<T>::iterator end(std::list<T>& cont)
   {
     return cont.end();
   }
-  static T& getElem(const std::vector<T>&, const typename std::list<T>::iterator iter)
+  static T& getElem(const std::list<T>&, const typename std::list<T>::iterator iter)
   {
     return *iter;
   }
-  static typename std::list<T>::iterator getIterPrev(const typename std::list<T>::iterator& iter)
+  static typename std::list<T>::iterator getIterPrev(typename std::list<T>::iterator& iter)
   {
-    return iter.prev();
+    return std::prev(iter);
   }
 };
 

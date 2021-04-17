@@ -4,14 +4,14 @@
 #include <algorithm>
 
 template <typename S>
-void sort(typename S::ContType cont, bool isAscending)
+void sort(typename S::ContType& cont, bool isAscending)
 {
   using IterType = typename S::IterType;
   IterType max;
   IterType searchRangeEnd = S::end(cont);
   for (IterType i = S::begin(cont); i != S::end(cont); i++)
   {
-    max = S::getElem(cont, S::begin(cont));
+    max = S::begin(cont);
     for (IterType j = S::begin(cont); j != searchRangeEnd; j++)
     {
       if (isAscending)

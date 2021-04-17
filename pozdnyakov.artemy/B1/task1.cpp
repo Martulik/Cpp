@@ -5,14 +5,13 @@
 #include <iostream>
 #include "sort.hpp"
 #include "strategies.hpp"
+#include "functions.hpp"
 
 void task1(char* argv[])
 {
-  const int VALUES[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
   std::string asc = "ascending";
   std::string desc = "descending";
   bool isAscending;
-  std::cout << argv[0] << '\n';
   if (!strcmp(argv[0], asc.c_str()))
   {
     isAscending = true;
@@ -26,14 +25,22 @@ void task1(char* argv[])
     throw std::invalid_argument("Wrong argument");
   }
   std::vector<int> vector;
-  for (unsigned int i = 0; i < sizeof(VALUES) / sizeof(VALUES[0]); i++)
+  int n;
+  while (std::cin >> n)
   {
-    vector.push_back(VALUES[i]);
+    vector.push_back(n);
   }
-  sort<IndexStrategy<int>>(vector, isAscending);
-  for (unsigned int i = 0; i < vector.size(); i++)
+  if (std::cin.fail() && !std::cin.eof())
   {
-    std::cout << vector[i] << ' ';
+    throw std::runtime_error("Invalid file content");
   }
-  std::cout << '\n';
+  std::vector< int > indexVector(vector);
+  std::vector< int > atVector(vector);
+  std::list< int > list(vector.begin(), vector.end());
+  sort< IndexStrategy< int > >(indexVector, isAscending);
+  sort< VectorAtStrategy< int > >(atVector, isAscending);
+  sort< ListStrategy< int > >(list, isAscending);
+  print(indexVector, std::cout);
+  print(atVector, std::cout);
+  print(list, std::cout);
 }

@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     }
     else if (argv[1][0] == numbers.c_str()[1])
     {
-      // do task 2
+      task2(argv + 2);
     }
     else if (argv[1][0] == numbers.c_str()[2])
     {

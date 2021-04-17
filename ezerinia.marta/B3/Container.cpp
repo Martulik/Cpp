@@ -3,50 +3,52 @@
 const size_t minIndex = 1;
 const size_t maxValue = 11;
 
-Container::Iterator::Iterator(size_t index):
+namespace lab = ezerinia;
+
+lab::Container::Iterator::Iterator(size_t index):
   index_(index),
   value_(getFactorial(index))
 {
 }
 
-Container::Iterator Container::begin()
+lab::Container::Iterator lab::Container::begin()
 {
   return Iterator(minIndex);
 }
 
-Container::Iterator Container::end()
+lab::Container::Iterator lab::Container::end()
 {
   return Iterator(maxValue);
 }
 
-bool Container::Iterator::operator==(const Container::Iterator &src) const
+bool lab::Container::Iterator::operator==(const Container::Iterator &src) const
 {
   return value_ == src.value_ && index_ == src.index_;
 }
 
-bool Container::Iterator::operator!=(const Container::Iterator &src) const
+bool lab::Container::Iterator::operator!=(const Container::Iterator &src) const
 {
   return !(*this == src);
 }
 
-unsigned int &Container::Iterator::operator*()
+unsigned int &lab::Container::Iterator::operator*()
 {
   return value_;
 }
 
-unsigned int *Container::Iterator::operator->()
+unsigned int *lab::Container::Iterator::operator->()
 {
   return &value_;
 }
 
-Container::Iterator &Container::Iterator::operator++()
+lab::Container::Iterator &lab::Container::Iterator::operator++()
 {
   ++index_;
   value_ *= index_;
   return *this;
 }
 
-Container::Iterator &Container::Iterator::operator--()
+lab::Container::Iterator &lab::Container::Iterator::operator--()
 {
   if (index_ > 1) {
     value_ /= index_;
@@ -55,21 +57,21 @@ Container::Iterator &Container::Iterator::operator--()
   return *this;
 }
 
-Container::Iterator Container::Iterator::operator++(int)
+lab::Container::Iterator lab::Container::Iterator::operator++(int)
 {
   Iterator temp = *this;
   ++(*this);
   return temp;
 }
 
-Container::Iterator Container::Iterator::operator--(int)
+lab::Container::Iterator lab::Container::Iterator::operator--(int)
 {
   Iterator temp = *this;
   --(*this);
   return temp;
 }
 
-unsigned int Container::Iterator::getFactorial(size_t index) const
+unsigned int lab::Container::Iterator::getFactorial(size_t index) const
 {
   if (index <= 1) {
     return 1;

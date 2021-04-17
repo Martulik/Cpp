@@ -3,7 +3,9 @@
 #include <iostream>
 #include "Container.hpp"
 
-void task2()
+namespace lab = ezerinia;
+
+void lab::task2()
 {
   Container container;
   std::copy(container.begin(), container.end(), std::ostream_iterator< int >(std::cout, " "));

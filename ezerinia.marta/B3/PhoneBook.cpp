@@ -1,27 +1,29 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 
-bool PhoneBook::empty()
+namespace lab = ezerinia;
+
+bool lab::PhoneBook::empty()
 {
   return listPhoneBook_.empty();
 }
 
-PhoneBook::iterator PhoneBook::begin()
+lab::PhoneBook::iterator lab::PhoneBook::begin()
 {
   return listPhoneBook_.begin();
 }
 
-PhoneBook::iterator PhoneBook::end()
+lab::PhoneBook::iterator lab::PhoneBook::end()
 {
   return listPhoneBook_.end();
 }
 
-PhoneBook::iterator PhoneBook::add(iterator iter, data &src)
+lab::PhoneBook::iterator lab::PhoneBook::add(iterator iter, data &src)
 {
   return listPhoneBook_.insert(iter, src);
 }
 
-PhoneBook::iterator PhoneBook::move(iterator iter, int step)
+lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
 {
   int counter = 0;
   if (step >= 0) {
@@ -38,33 +40,33 @@ PhoneBook::iterator PhoneBook::move(iterator iter, int step)
   return iter;
 }
 
-PhoneBook::iterator PhoneBook::moveNext(iterator iter)
+lab::PhoneBook::iterator lab::PhoneBook::moveNext(iterator iter)
 {
   return ++iter;
 }
 
-PhoneBook::iterator PhoneBook::movePrev(iterator iter)
+lab::PhoneBook::iterator lab::PhoneBook::movePrev(iterator iter)
 {
   return --iter;
 }
 
-PhoneBook::iterator PhoneBook::remove(iterator iter)
+lab::PhoneBook::iterator lab::PhoneBook::remove(iterator iter)
 {
   return listPhoneBook_.erase(iter);
 }
 
-void PhoneBook::show(iterator iter)
+void lab::PhoneBook::show(iterator iter)
 {
   std::cout << (*iter).first << " " << (*iter).second << "\n";
 }
 
-PhoneBook::iterator PhoneBook::replace(iterator iter, data &src)
+lab::PhoneBook::iterator lab::PhoneBook::replace(iterator iter, data &src)
 {
   *iter = src;
   return iter;
 }
 
-void PhoneBook::pushBack(data &src)
+void lab::PhoneBook::pushBack(data &src)
 {
   return listPhoneBook_.push_back(src);
 }

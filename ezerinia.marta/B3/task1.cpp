@@ -7,9 +7,11 @@ const std::string invalidCommand = "<INVALID COMMAND>\n";
 const std::string invalidStep = "<INVALID STEP>\n";
 const std::string emptyStr = "";
 
-void task1()
+namespace lab = ezerinia;
+
+void lab::task1()
 {
-  UserInterface phoneBook;
+  lab::UserInterface phoneBook;
   std::string string;
 
   while (std::getline(std::cin, string)) {
@@ -37,7 +39,7 @@ void task1()
   }
 }
 
-std::string getName(std::string &name)
+std::string lab::getName(std::string &name)
 {
   if ((name.empty()) || (name.front() != '\"') || (name.back() != '\"')) {
     return emptyStr;
@@ -64,7 +66,7 @@ std::string getName(std::string &name)
   return name;
 }
 
-std::string getNumber(std::string &number)
+std::string lab::getNumber(std::string &number)
 {
   if (number.empty()) {
     return emptyStr;
@@ -77,7 +79,7 @@ std::string getNumber(std::string &number)
   return number;
 }
 
-std::string getMarkName(std::string &markName)
+std::string lab::getMarkName(std::string &markName)
 {
   if (markName.empty()) {
     return emptyStr;
@@ -90,7 +92,7 @@ std::string getMarkName(std::string &markName)
   return markName;
 }
 
-void add(UserInterface &phoneBook, std::stringstream &input)
+void lab::add(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string number;
   std::string name;
@@ -110,7 +112,7 @@ void add(UserInterface &phoneBook, std::stringstream &input)
   phoneBook.add(pair);
 }
 
-void store(UserInterface &phoneBook, std::stringstream &input)
+void lab::store(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string markName;
   input >> std::ws >> markName;
@@ -127,7 +129,7 @@ void store(UserInterface &phoneBook, std::stringstream &input)
   phoneBook.store(markName, newMarkName);
 }
 
-void insert(UserInterface &phoneBook, std::stringstream &input)
+void lab::insert(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string direction;
   input >> std::ws >> direction;
@@ -156,7 +158,7 @@ void insert(UserInterface &phoneBook, std::stringstream &input)
   }
 }
 
-void deleteRecord(UserInterface &phoneBook, std::stringstream &input)
+void lab::deleteRecord(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string markName;
   input >> std::ws >> markName;
@@ -168,7 +170,7 @@ void deleteRecord(UserInterface &phoneBook, std::stringstream &input)
   phoneBook.deleteRecord(markName);
 }
 
-void show(UserInterface &phoneBook, std::stringstream &input)
+void lab::show(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string markName;
   input >> std::ws >> markName;
@@ -180,7 +182,7 @@ void show(UserInterface &phoneBook, std::stringstream &input)
   phoneBook.show(markName);
 }
 
-void move(UserInterface &phoneBook, std::stringstream &input)
+void lab::move(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string markName;
   input >> std::ws >> markName;

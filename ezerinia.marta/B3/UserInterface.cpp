@@ -5,12 +5,14 @@ const std::string invalidCommand = "<INVALID COMMAND>\n";
 const std::string invalidBookmark = "<INVALID BOOKMARK>\n";
 const std::string empty = "<EMPTY>\n";
 
-UserInterface::UserInterface()
+namespace lab = ezerinia;
+
+lab::UserInterface::UserInterface()
 {
   bookmarks_["current"] = phoneBook_.begin();
 }
 
-void UserInterface::add(PhoneBook::data &record)
+void lab::UserInterface::add(PhoneBook::data &record)
 {
   phoneBook_.pushBack(record);
   if (std::next(phoneBook_.begin()) == phoneBook_.end()) {
@@ -18,7 +20,7 @@ void UserInterface::add(PhoneBook::data &record)
   }
 }
 
-void UserInterface::store(std::string &markName, std::string &newMarkName)
+void lab::UserInterface::store(std::string &markName, std::string &newMarkName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter != bookmarks_.end()) {
@@ -28,7 +30,7 @@ void UserInterface::store(std::string &markName, std::string &newMarkName)
   std::cout << invalidCommand;
 }
 
-void UserInterface::insert(const std::string &position, std::string &markName, PhoneBook::data &record)
+void lab::UserInterface::insert(const std::string &position, std::string &markName, PhoneBook::data &record)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
@@ -45,7 +47,7 @@ void UserInterface::insert(const std::string &position, std::string &markName, P
   }
 }
 
-void UserInterface::deleteRecord(std::string &markName)
+void lab::UserInterface::deleteRecord(std::string &markName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
@@ -67,7 +69,7 @@ void UserInterface::deleteRecord(std::string &markName)
   }
 }
 
-void UserInterface::show(std::string &markName)
+void lab::UserInterface::show(std::string &markName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter != bookmarks_.end()) {
@@ -80,7 +82,7 @@ void UserInterface::show(std::string &markName)
   std::cout << invalidBookmark;
 }
 
-void UserInterface::move(std::string &markName, int steps)
+void lab::UserInterface::move(std::string &markName, int steps)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
@@ -90,7 +92,7 @@ void UserInterface::move(std::string &markName, int steps)
   iter->second = phoneBook_.move(iter->second, steps);
 }
 
-void UserInterface::move(std::string &markName, const std::string &movePosition)
+void lab::UserInterface::move(std::string &markName, const std::string &movePosition)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {

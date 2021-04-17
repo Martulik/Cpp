@@ -2,7 +2,7 @@
 
 #include <cstddef>
 #include <vector>
-#include <iostream> 
+#include <iostream>
 
 #include "access-policies.hpp"
 #include "sort.hpp"

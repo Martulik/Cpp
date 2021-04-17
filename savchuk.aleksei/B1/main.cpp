@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "task.hpp"
+#include "tasks.hpp"
 #include "tools.hpp"
 
 namespace lab = savchuk;
@@ -34,7 +34,7 @@ int main(int argc, const char** argv)
   }
   catch (const std::invalid_argument& e)
   {
-    std::cerr << e.what();
+    std::cerr << e.what() << '\n';
     return 1;
   }
   catch (const std::runtime_error& e)

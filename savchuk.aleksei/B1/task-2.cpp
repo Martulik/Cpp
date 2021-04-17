@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <vector>
 #include <memory>
 
@@ -17,34 +16,31 @@ void lab::doTask2(const char* fileName)
   std::ifstream ifs(fileName);
   if (!ifs)
   {
-    throw std::runtime_error("can't open file");
+    throw std::runtime_error("Can't open file");
   }
-  std::stringstream buf;
-  size_t count = 0;
-  int x;
-  while (ifs >> x)
+  size_t capacity = 1000;
+  size_t size = 0;
+  std::unique_ptr< char[] > arr = std::make_unique< char[] >(capacity);
+  while (!ifs.eof())
   {
-    ++count;
-    buf << x << ' ';
-  }
-  if (count == 0)
-  {
-    throw std::runtime_error("array can't be empty");
-  }
-  if (ifs.fail() && !ifs.eof())
-  {
-    throw std::runtime_error("incorrect input format");
+    ifs.read(arr.get() + size, capacity - size);
+    size += ifs.gcount();
+    if (size == capacity)
+    {
+      capacity *= 2;
+      std::unique_ptr< char[] > tmp = std::make_unique< char[] >(capacity);
+      for (size_t i = 0; i < size; ++i)
+      {
+        tmp[i] = arr[i];
+      }
+      arr.swap(tmp);
+    }
   }
   if (ifs.bad())
   {
-    throw std::runtime_error("input file error");
+    throw std::runtime_error("Input file error");
   }
   ifs.close();
-  std::unique_ptr< int[] > arr = std::make_unique< int[] >(count);
-  for (size_t i = 0; i < count; ++i)
-  {
-    buf >> arr[i];
-  }
-  std::vector< int > vec(arr.get(), arr.get() + count);
+  std::vector< char > vec(arr.get(), arr.get() + size);
   print(vec.cbegin(), vec.cend(), std::cout);
 }

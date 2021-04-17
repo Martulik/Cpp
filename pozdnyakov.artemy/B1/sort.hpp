@@ -3,28 +3,31 @@
 
 #include <algorithm>
 
-template <typename S>
-void sort(typename S::ContType& cont, bool isAscending)
+namespace poz
 {
-  using IterType = typename S::IterType;
-  IterType max;
-  IterType searchRangeEnd = S::end(cont);
-  for (IterType i = S::begin(cont); i != S::end(cont); i++)
+  template <typename S>
+  void sort(typename S::ContType& cont, bool isAscending)
   {
-    max = S::begin(cont);
-    for (IterType j = S::begin(cont); j != searchRangeEnd; j++)
+    using IterType = typename S::IterType;
+    IterType max;
+    IterType searchRangeEnd = S::end(cont);
+    for (IterType i = S::begin(cont); i != S::end(cont); i++)
     {
-      if (isAscending)
+      max = S::begin(cont);
+      for (IterType j = S::begin(cont); j != searchRangeEnd; j++)
       {
-        max = (S::getElem(cont, j) < S::getElem(cont, max)) ? max : j;
+        if (isAscending)
+        {
+          max = (S::getElem(cont, j) < S::getElem(cont, max)) ? max : j;
+        }
+        else
+        {
+          max = (S::getElem(cont, j) > S::getElem(cont, max)) ? max : j;
+        }
       }
-      else
-      {
-        max = (S::getElem(cont, j) > S::getElem(cont, max)) ? max : j;
-      }
+      std::swap(S::getElem(cont, max), S::getElem(cont, S::getIterPrev(searchRangeEnd)));
+      searchRangeEnd--;
     }
-    std::swap(S::getElem(cont, max), S::getElem(cont, S::getIterPrev(searchRangeEnd)));
-    searchRangeEnd--;
   }
 }
 

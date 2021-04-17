@@ -4,7 +4,7 @@
 #include <functional>
 #include <utility>
 
-#include "access-policy.hpp"
+#include "access-policies.hpp"
 
 namespace savchuk
 {

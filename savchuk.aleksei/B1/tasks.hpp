@@ -1,5 +1,5 @@
-#ifndef TASK_HPP
-#define TASK_HPP
+#ifndef TASKS_HPP
+#define TASKS_HPP
 
 namespace savchuk
 {

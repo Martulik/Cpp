@@ -1,5 +1,5 @@
-#ifndef ACCESS_POLICY_HPP
-#define ACCESS_POLICY_HPP
+#ifndef ACCESS_POLICIES_HPP
+#define ACCESS_POLICIES_HPP
 
 #include <cstddef>
 #include <vector>

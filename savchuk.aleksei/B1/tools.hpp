@@ -4,12 +4,15 @@
 #include <string>
 #include <functional>
 #include <iostream>
+#include <vector>
 #include <random>
 
 namespace savchuk
 {
   size_t convertToNumber(const std::string& order);
   void fillRandom(double* array, size_t size);
+  void removeEvenNumbers(std::vector< int >& vec);
+  void addExtraNumbers(std::vector< int >& vec);
 
   template< typename T >
   std::function< bool(const T&, const T&) > getCompare(const std::string& order)
@@ -25,9 +28,8 @@ namespace savchuk
     throw std::invalid_argument("invalid sort order");
   }
   template< typename Iterator >
-  void print(Iterator first, Iterator last, std::ostream& os)
+  void print(Iterator first, Iterator last, std::ostream& os, const char* delim = "")
   {
-    char delim = ' ';
     while (first != last)
     {
       os << *first << delim;

@@ -29,7 +29,7 @@ int main(int argc, const char** argv)
     }
     else
     {
-      throw std::invalid_argument("invalid command line arguments");
+      throw std::invalid_argument("Invalid command line arguments");
     }
   }
   catch (const std::invalid_argument& e)
@@ -39,12 +39,12 @@ int main(int argc, const char** argv)
   }
   catch (const std::runtime_error& e)
   {
-    std::cerr << e.what();
+    std::cerr << e.what() << '\n';
     return 1;
   }
-  catch (...)
+  catch (const std::exception& e)
   {
-    std::cerr << "Oops!.. Something went wrong";
+    std::cerr << "Internal program error\n" << e.what() << '\n';
     return 2;
   }
 }

@@ -15,15 +15,15 @@ int main(int argc, char* argv[])
     {
       task1(argv + 2);
     }
-    else if (argv[1][0] == numbers.c_str()[1])
+    else if (argv[1][0] == numbers.c_str()[1] && argc == 3)
     {
       task2(argv + 2);
     }
-    else if (argv[1][0] == numbers.c_str()[2])
+    else if (argv[1][0] == numbers.c_str()[2] and argc == 2)
     {
-      // do task 3
+      task3();
     }
-    else if (argv[1][0] == numbers.c_str()[3])
+    else if (argv[1][0] == numbers.c_str()[3] && argc == 4)
     {
      // do task 4
     }

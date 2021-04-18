@@ -10,7 +10,7 @@ namespace lab = savchuk;
 void lab::doTask3()
 {
   std::vector< int > vec;
-  int x;
+  int x = 0;
   while (std::cin >> x && x != 0)
   {
     vec.push_back(x);

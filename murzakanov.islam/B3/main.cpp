@@ -1,7 +1,18 @@
 #include <iostream>
 
-int main()
+#include "tasks.hpp"
+
+int main(int argc, char* argv[])
 {
-  std::cout << "Hello, world!";
+  if (argc < 2)
+  {
+
+  }
+
+
+  if (atoi(argv[1]) == 2)
+  {
+    murzakanov::task2();
+  }
   return 0;
 }

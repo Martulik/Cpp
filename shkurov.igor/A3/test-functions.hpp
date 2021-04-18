@@ -8,7 +8,7 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-using shapePtr = unique_ptr< shkurov::Shape >;
+using shapePtr = std::unique_ptr< shkurov::Shape >;
 
 using std::unique_ptr;
 

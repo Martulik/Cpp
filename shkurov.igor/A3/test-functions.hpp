@@ -11,7 +11,7 @@
 using std::unique_ptr;
 using shapePtr = unique_ptr< shkurov::Shape >;
 
-const double TOLERANCE = std::numeric_limits< double >::epsilon();
+const double EPSILON = std::numeric_limits< double >::epsilon();
 
 namespace shkurov
 {

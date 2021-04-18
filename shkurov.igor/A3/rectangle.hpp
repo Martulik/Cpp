@@ -25,6 +25,4 @@ namespace shkurov
   };
 }
 
-using Rect = shkurov::Rectangle;
-
 #endif

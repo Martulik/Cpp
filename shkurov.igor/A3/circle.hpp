@@ -24,6 +24,4 @@ namespace shkurov
   };
 }
 
-using Circle = shkurov::Circle;
-
 #endif

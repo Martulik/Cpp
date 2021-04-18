@@ -56,6 +56,4 @@ namespace shkurov
   }
 }
 
-using CShape = shkurov::CompositeShape;
-
 #endif

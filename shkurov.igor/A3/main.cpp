@@ -4,25 +4,28 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-namespace ss = shkurov;
+namespace lab = shkurov;
+
+using shapePtr = std::unique_ptr< lab::Shape >;
+using Rect = lab::Rectangle;
+using Circle = lab::Circle;
+using CShape = lab::CompositeShape;
 
 using std::make_unique;
 using std::unique_ptr;
 
-using shapePtr = unique_ptr < ss::Shape >;
-
-void printCoordinates(const ss::Shape& figure)
+void printCoordinates(const lab::Shape& figure)
 {
   std::cout << figure.getName() << " is now located by ("
-            << ss::getX(figure) << ':'
-            << ss::getY(figure) << ')' << '\n';
+            << lab::getX(figure) << ':'
+            << lab::getY(figure) << ')' << '\n';
 }
 
 int main()
 {
   std::cout << "Rectangle test:" << '\n';
-  ss::point_t begin_pos = {2, 2};
-  shapePtr rect(make_unique< Rect > (Rect(begin_pos, 4, 4)));
+  lab::point_t begin_pos = {2, 2};
+  shapePtr rect(make_unique< Rect >(Rect(begin_pos, 4, 4)));
 
   printCoordinates(*rect);
 
@@ -33,21 +36,20 @@ int main()
 
   std::cout << '\n' << "Circle test:" << '\n';
   begin_pos = {-31.2, 9.21};
-  shapePtr circle(make_unique< Circle > (Circle(begin_pos, 2)));
+  shapePtr circle(make_unique< Circle >(Circle(begin_pos, 2)));
 
   printCoordinates(*circle);
 
-  ss::point_t newPos = {2, 2};
+  lab::point_t newPos = {2, 2};
   circle->move(newPos);
   printCoordinates(*circle);
 
   std::cout << "Area of circle is: " << circle->getArea() << "\n\n";
 
   std::cout << '\n' << "Composite-shape test:" << '\n';
-  shapePtr rect2(make_unique< Rect >
-    (Rect({4, 4}, 4, 4)));
+  shapePtr rect2(make_unique< Rect >(Rect({4, 4}, 4, 4)));
 
-  shapePtr composite(make_unique< CShape > (CShape(std::move(rect), std::move(rect2), std::move(circle))));
+  shapePtr composite(make_unique< CShape >(CShape(std::move(rect), std::move(rect2), std::move(circle))));
 
   printCoordinates(*composite);
 

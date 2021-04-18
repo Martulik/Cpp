@@ -5,9 +5,9 @@
 
 const double PI = 3.1415;
 
-namespace ss = shkurov;
+namespace lab = shkurov;
 
-ss::Circle::Circle(const ss::point_t& center, const double radius):
+lab::Circle::Circle(const lab::point_t& center, const double radius):
   center_(center),
   radius_(radius)
 {
@@ -17,33 +17,33 @@ ss::Circle::Circle(const ss::point_t& center, const double radius):
   }
 }
 
-double ss::Circle::getArea() const
+double lab::Circle::getArea() const
 {
   return (PI * radius_ * radius_);
 }
 
-ss::rectangle_t ss::Circle::getFrameRect() const
+lab::rectangle_t lab::Circle::getFrameRect() const
 {
   return {2 * radius_, 2 * radius_, center_};
 }
 
-void ss::Circle::move(const ss::point_t& newPos)
+void lab::Circle::move(const lab::point_t& newPos)
 {
   center_ = newPos;
 }
 
-void ss::Circle::move(const double moveX, const double moveY)
+void lab::Circle::move(const double moveX, const double moveY)
 {
   center_.x += moveX;
   center_.y += moveY;
 }
 
-void ss::Circle::scaleFigure(const double k)
+void lab::Circle::scaleFigure(const double k)
 {
   radius_ *= k;
 }
 
-const char* ss::Circle::getName() const
+const char* lab::Circle::getName() const
 {
   return "Circle";
 }

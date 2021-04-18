@@ -42,5 +42,10 @@ void lab::doTask2(const char* fileName)
   }
   ifs.close();
   std::vector< char > vec(arr.get(), arr.get() + size);
-  print(vec.cbegin(), vec.cend(), std::cout);
+  std::vector< char >::const_iterator it = vec.cbegin();
+  while (it != vec.cend())
+  {
+    std::cout << *it;
+    ++it;
+  }
 }

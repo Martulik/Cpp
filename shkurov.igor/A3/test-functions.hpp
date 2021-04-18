@@ -8,8 +8,9 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-using std::unique_ptr;
 using shapePtr = unique_ptr< shkurov::Shape >;
+
+using std::unique_ptr;
 
 const double EPSILON = std::numeric_limits< double >::epsilon();
 

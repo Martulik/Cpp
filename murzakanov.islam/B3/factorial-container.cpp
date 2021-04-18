@@ -21,7 +21,7 @@ mur::FactorialContainer::Iterator::Iterator(const size_t num):
 {
 }
 
-mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator++()
+mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator ++()
 {
   if (num_ == (MAX_INDEX))
   {
@@ -33,14 +33,14 @@ mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator++
   return *this;
 }
 
-murzakanov::FactorialContainer::Iterator mur::FactorialContainer::Iterator::operator++(int)
+murzakanov::FactorialContainer::Iterator mur::FactorialContainer::Iterator::operator ++(int)
 {
   Iterator tempIt = *this;
   ++(*this);
   return tempIt;
 }
 
-mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator--()
+mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator --()
 {
   if (num_ == 1)
   {
@@ -52,29 +52,29 @@ mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator--
   return *this;
 }
 
-mur::FactorialContainer::Iterator mur::FactorialContainer::Iterator::operator--(int)
+mur::FactorialContainer::Iterator mur::FactorialContainer::Iterator::operator --(int)
 {
   Iterator tempIt = *this;
   --(*this);
   return tempIt;
 }
 
-size_t& murzakanov::FactorialContainer::Iterator::operator*()
+size_t& murzakanov::FactorialContainer::Iterator::operator *()
 {
   return value_;
 }
 
-size_t* murzakanov::FactorialContainer::Iterator::operator->()
+size_t* murzakanov::FactorialContainer::Iterator::operator ->()
 {
   return std::addressof(value_);
 }
 
-bool murzakanov::FactorialContainer::Iterator::operator==(const Iterator& rhs) const
+bool murzakanov::FactorialContainer::Iterator::operator ==(const Iterator& rhs) const
 {
   return (value_ == rhs.value_);
 }
 
-bool murzakanov::FactorialContainer::Iterator::operator!=(const Iterator& rhs) const
+bool murzakanov::FactorialContainer::Iterator::operator !=(const Iterator& rhs) const
 {
   return !(value_ == rhs.value_);
 }

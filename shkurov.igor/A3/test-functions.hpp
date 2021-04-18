@@ -8,19 +8,15 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-using shapePtr = std::unique_ptr< shkurov::Shape >;
-
-using std::unique_ptr;
-
 const double EPSILON = std::numeric_limits< double >::epsilon();
 
 namespace shkurov
 {
-  shapePtr makeBadCircle();
-  shapePtr makeBadRectangle();
-  shapePtr makeCircle();
-  shapePtr makeRectangle();
-  shapePtr makeCompositeShape();
+  std::unique_ptr< Shape > makeBadCircle();
+  std::unique_ptr< Shape > makeBadRectangle();
+  std::unique_ptr< Shape > makeCircle();
+  std::unique_ptr< Shape > makeRectangle();
+  std::unique_ptr< Shape > makeCompositeShape();
 
   void testMoveToPoint(Shape& shape);
   void testScale(Shape& shape);

@@ -5,7 +5,10 @@
 
 namespace lab = shkurov;
 
+using shapePtr = std::unique_ptr< lab::Shape >;
+
 using std::make_unique;
+using std::unique_ptr;
 
 struct point_t;
 

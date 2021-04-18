@@ -52,10 +52,12 @@ void fer::task1(const std::string& mode)
     std::exit(-1);
   }
   std::function< bool(int, int) > cmp = getSortMode< int >(mode);
-  std::vector< int > first_vec(vec);
   std::vector< int > second_vec(vec);
-  fer::sort<int, fer::index_access< int > >(first_vec, cmp);
-  fer::sort<int, fer::at_access< int > >(second_vec, cmp);
-  print(first_vec);
+  std::forward_list< int > list(vec.begin(), vec.end());
+  fer::sort< int, fer::index_access< int > >(vec, cmp);
+  fer::sort< int, fer::at_access< int > >(second_vec, cmp);
+  fer::sort< int, fer::iterator_access< int > >(list, cmp);
+  print(vec);
   print(second_vec);
+  print(list);
 }

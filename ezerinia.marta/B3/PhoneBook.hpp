@@ -21,7 +21,7 @@ namespace ezerinia {
     void show(iterator iter);
     void pushBack(data &src);
   private:
-    std::list< data > listPhoneBook_;
+    std::list< data > list_;
   };
 }
 #endif

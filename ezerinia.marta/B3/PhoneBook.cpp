@@ -5,34 +5,34 @@ namespace lab = ezerinia;
 
 bool lab::PhoneBook::empty()
 {
-  return listPhoneBook_.empty();
+  return list_.empty();
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::begin()
 {
-  return listPhoneBook_.begin();
+  return list_.begin();
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::end()
 {
-  return listPhoneBook_.end();
+  return list_.end();
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::add(iterator iter, data &src)
 {
-  return listPhoneBook_.insert(iter, src);
+  return list_.insert(iter, src);
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
 {
   int counter = 0;
   if (step >= 0) {
-    while ((std::next(iter) != listPhoneBook_.end()) && (counter != step)) {
+    while ((std::next(iter) != list_.end()) && (counter != step)) {
       ++iter;
       ++counter;
     }
   } else {
-    while ((iter != listPhoneBook_.begin()) && (counter != step)) {
+    while ((iter != list_.begin()) && (counter != step)) {
       --iter;
       --counter;
     }
@@ -52,7 +52,7 @@ lab::PhoneBook::iterator lab::PhoneBook::movePrev(iterator iter)
 
 lab::PhoneBook::iterator lab::PhoneBook::remove(iterator iter)
 {
-  return listPhoneBook_.erase(iter);
+  return list_.erase(iter);
 }
 
 void lab::PhoneBook::show(iterator iter)
@@ -68,5 +68,5 @@ lab::PhoneBook::iterator lab::PhoneBook::replace(iterator iter, data &src)
 
 void lab::PhoneBook::pushBack(data &src)
 {
-  return listPhoneBook_.push_back(src);
+  return list_.push_back(src);
 }

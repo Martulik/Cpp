@@ -1,7 +1,7 @@
 #include "Container.hpp"
 
 const size_t minIndex = 1;
-const size_t maxValue = 11;
+const size_t maxIndex = 11;
 
 namespace lab = ezerinia;
 
@@ -18,7 +18,7 @@ lab::Container::Iterator lab::Container::begin()
 
 lab::Container::Iterator lab::Container::end()
 {
-  return Iterator(maxValue);
+  return Iterator(maxIndex);
 }
 
 bool lab::Container::Iterator::operator==(const Container::Iterator &src) const
@@ -43,14 +43,16 @@ unsigned int *lab::Container::Iterator::operator->()
 
 lab::Container::Iterator &lab::Container::Iterator::operator++()
 {
-  ++index_;
-  value_ *= index_;
+  if (index_ < maxIndex) {
+    ++index_;
+    value_ *= index_;
+  }
   return *this;
 }
 
 lab::Container::Iterator &lab::Container::Iterator::operator--()
 {
-  if (index_ > 1) {
+  if (index_ > minIndex) {
     value_ /= index_;
     --index_;
   }
@@ -73,9 +75,8 @@ lab::Container::Iterator lab::Container::Iterator::operator--(int)
 
 unsigned int lab::Container::Iterator::getFactorial(size_t index) const
 {
-  if (index <= 1) {
-    return 1;
-  } else {
+  if (index > 1) {
     return index * getFactorial(index - 1);
   }
+  return 1;
 }

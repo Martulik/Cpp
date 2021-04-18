@@ -19,19 +19,19 @@ void lab::task1()
       throw std::runtime_error("Read fail");
     }
     std::stringstream input(string);
-    std::string inputCommand;
-    input >> inputCommand;
-    if (inputCommand == "add") {
+    std::string command;
+    input >> command;
+    if (command == "add") {
       add(phoneBook, input);
-    } else if (inputCommand == "store") {
+    } else if (command == "store") {
       store(phoneBook, input);
-    } else if (inputCommand == "insert") {
+    } else if (command == "insert") {
       insert(phoneBook, input);
-    } else if (inputCommand == "delete") {
+    } else if (command == "delete") {
       deleteRecord(phoneBook, input);
-    } else if (inputCommand == "show") {
+    } else if (command == "show") {
       show(phoneBook, input);
-    } else if (inputCommand == "move") {
+    } else if (command == "move") {
       move(phoneBook, input);
     } else {
       std::cout << invalidCommand;
@@ -96,7 +96,6 @@ void lab::add(UserInterface &phoneBook, std::stringstream &input)
 {
   std::string number;
   std::string name;
-  std::string line;
 
   input >> std::ws >> number;
   std::getline(input >> std::ws, name);
@@ -106,27 +105,27 @@ void lab::add(UserInterface &phoneBook, std::stringstream &input)
 
   if (name.empty() || number.empty()) {
     std::cout << invalidCommand;
-    return;
+  } else {
+    PhoneBook::data pair = std::make_pair(number, name);
+    phoneBook.add(pair);
   }
-  PhoneBook::data pair = std::make_pair(number, name);
-  phoneBook.add(pair);
 }
 
 void lab::store(UserInterface &phoneBook, std::stringstream &input)
 {
-  std::string markName;
-  input >> std::ws >> markName;
-  markName = getMarkName(markName);
+  std::string oldMarkName;
+  input >> std::ws >> oldMarkName;
+  oldMarkName = getMarkName(oldMarkName);
 
   std::string newMarkName;
   input >> std::ws >> newMarkName;
   newMarkName = getMarkName(newMarkName);
 
-  if (markName.empty() || newMarkName.empty()) {
+  if (oldMarkName.empty() || newMarkName.empty()) {
     std::cout << invalidCommand;
-    return;
+  } else {
+    phoneBook.store(oldMarkName, newMarkName);
   }
-  phoneBook.store(markName, newMarkName);
 }
 
 void lab::insert(UserInterface &phoneBook, std::stringstream &input)
@@ -148,13 +147,13 @@ void lab::insert(UserInterface &phoneBook, std::stringstream &input)
 
   if (markName.empty() || number.empty() || name.empty()) {
     std::cout << invalidCommand;
-    return;
-  }
-  PhoneBook::data pair = std::make_pair(number, name);
-  if (direction == "before" || direction == "after") {
-    phoneBook.insert(direction, markName, pair);
   } else {
-    std::cout << invalidCommand;
+    PhoneBook::data pair = std::make_pair(number, name);
+    if (direction == "before" || direction == "after") {
+      phoneBook.insert(direction, markName, pair);
+    } else {
+      std::cout << invalidCommand;
+    }
   }
 }
 
@@ -165,9 +164,9 @@ void lab::deleteRecord(UserInterface &phoneBook, std::stringstream &input)
   markName = getMarkName(markName);
   if (markName.empty()) {
     std::cout << invalidCommand;
-    return;
+  } else {
+    phoneBook.deleteRecord(markName);
   }
-  phoneBook.deleteRecord(markName);
 }
 
 void lab::show(UserInterface &phoneBook, std::stringstream &input)
@@ -177,9 +176,9 @@ void lab::show(UserInterface &phoneBook, std::stringstream &input)
   markName = getMarkName(markName);
   if (markName.empty()) {
     std::cout << invalidCommand;
-    return;
+  } else {
+    phoneBook.show(markName);
   }
-  phoneBook.show(markName);
 }
 
 void lab::move(UserInterface &phoneBook, std::stringstream &input)
@@ -206,8 +205,8 @@ void lab::move(UserInterface &phoneBook, std::stringstream &input)
     num = getNumber(num);
     if (num.empty()) {
       std::cout << invalidStep;
-      return;
+    } else {
+      phoneBook.move(markName, stoi(num) * numberSign);
     }
-    phoneBook.move(markName, stoi(num) * numberSign);
   }
 }

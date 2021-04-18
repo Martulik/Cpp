@@ -20,14 +20,14 @@ void lab::UserInterface::add(PhoneBook::data &record)
   }
 }
 
-void lab::UserInterface::store(std::string &markName, std::string &newMarkName)
+void lab::UserInterface::store(std::string &oldMarkName, std::string &newMarkName)
 {
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
-  if (iter != bookmarks_.end()) {
+  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(oldMarkName);
+  if (iter == bookmarks_.end()) {
+    std::cout << invalidCommand;
+  } else {
     bookmarks_[newMarkName] = iter->second;
-    return;
   }
-  std::cout << invalidCommand;
 }
 
 void lab::UserInterface::insert(const std::string &position, std::string &markName, PhoneBook::data &record)
@@ -52,7 +52,6 @@ void lab::UserInterface::deleteRecord(std::string &markName)
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
     std::cout << invalidCommand;
-    return;
   } else {
     auto deleteIter = iter->second;
     for (std::map< std::string, PhoneBook::iterator >::iterator i = bookmarks_.begin(); i != bookmarks_.end(); i++) {
@@ -72,14 +71,13 @@ void lab::UserInterface::deleteRecord(std::string &markName)
 void lab::UserInterface::show(std::string &markName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
-  if (iter != bookmarks_.end()) {
-    if (phoneBook_.empty()) {
-      std::cout << empty;
-      return;
-    }
-    return phoneBook_.show(iter->second);
+  if (iter == bookmarks_.end()) {
+    std::cout << invalidBookmark;
+  } else if (phoneBook_.empty()) {
+    std::cout << empty;
+  } else {
+    phoneBook_.show(iter->second);
   }
-  std::cout << invalidBookmark;
 }
 
 void lab::UserInterface::move(std::string &markName, int steps)
@@ -87,19 +85,17 @@ void lab::UserInterface::move(std::string &markName, int steps)
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
     std::cout << invalidBookmark;
-    return;
+  } else {
+    iter->second = phoneBook_.move(iter->second, steps);
   }
-  iter->second = phoneBook_.move(iter->second, steps);
 }
 
-void lab::UserInterface::move(std::string &markName, const std::string &movePosition)
+void lab::UserInterface::move(std::string &markName, const std::string &position)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
     std::cout << invalidBookmark;
-    return;
-  }
-  if (movePosition == "first") {
+  } else if (position == "first") {
     iter->second = phoneBook_.begin();
   } else {
     iter->second = phoneBook_.movePrev(phoneBook_.end());

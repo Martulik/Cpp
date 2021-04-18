@@ -11,9 +11,6 @@ using Rect = lab::Rectangle;
 using Circle = lab::Circle;
 using CShape = lab::CompositeShape;
 
-using std::make_unique;
-using std::unique_ptr;
-
 void printCoordinates(const lab::Shape& figure)
 {
   std::cout << figure.getName() << " is now located by ("
@@ -25,7 +22,7 @@ int main()
 {
   std::cout << "Rectangle test:" << '\n';
   lab::point_t begin_pos = {2, 2};
-  shapePtr rect(make_unique< Rect >(Rect(begin_pos, 4, 4)));
+  shapePtr rect(std::make_unique< Rect >(Rect(begin_pos, 4, 4)));
 
   printCoordinates(*rect);
 
@@ -36,7 +33,7 @@ int main()
 
   std::cout << '\n' << "Circle test:" << '\n';
   begin_pos = {-31.2, 9.21};
-  shapePtr circle(make_unique< Circle >(Circle(begin_pos, 2)));
+  shapePtr circle(std::make_unique< Circle >(Circle(begin_pos, 2)));
 
   printCoordinates(*circle);
 
@@ -47,9 +44,9 @@ int main()
   std::cout << "Area of circle is: " << circle->getArea() << "\n\n";
 
   std::cout << '\n' << "Composite-shape test:" << '\n';
-  shapePtr rect2(make_unique< Rect >(Rect({4, 4}, 4, 4)));
+  shapePtr rect2(std::make_unique< Rect >(Rect({4, 4}, 4, 4)));
 
-  shapePtr composite(make_unique< CShape >(CShape(std::move(rect), std::move(rect2), std::move(circle))));
+  shapePtr composite(std::make_unique< CShape >(CShape(std::move(rect), std::move(rect2), std::move(circle))));
 
   printCoordinates(*composite);
 

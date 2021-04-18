@@ -6,9 +6,7 @@
 namespace lab = shkurov;
 
 using shapePtr = std::unique_ptr< lab::Shape >;
-
-using std::make_unique;
-using std::unique_ptr;
+using CShape = lab::CompositeShape;
 
 struct point_t;
 
@@ -22,31 +20,30 @@ const double K = 3.0;
 
 shapePtr lab::makeBadCircle()
 {
-  return make_unique< lab::Circle >(lab::Circle(CIRCLE_POS, -A));
+  return std::make_unique< Circle >(Circle(CIRCLE_POS, -A));
 }
 
 shapePtr lab::makeBadRectangle()
 {
-  return make_unique< lab::Rectangle >(lab::Rectangle(RECTANGLE_POS, B, -C));
+  return std::make_unique< Rectangle >(Rectangle(RECTANGLE_POS, B, -C));
 }
 
 shapePtr lab::makeCircle()
 {
-  return make_unique< lab::Circle >(lab::Circle(CIRCLE_POS, A));
+  return std::make_unique< Circle >(Circle(CIRCLE_POS, A));
 }
 
 shapePtr lab::makeRectangle()
 {
-  return make_unique< lab::Rectangle >(lab::Rectangle(RECTANGLE_POS, B, C));
+  return std::make_unique< Rectangle >(Rectangle(RECTANGLE_POS, B, C));
 }
 
 shapePtr lab::makeCompositeShape()
 {
-  shapePtr circle(make_unique< lab::Circle >(lab::Circle(CIRCLE_POS, A)));
-  shapePtr rectangle(make_unique< lab::Rectangle >(lab::Rectangle(RECTANGLE_POS, B, C)));
+  shapePtr circle(std::make_unique< Circle >(Circle(CIRCLE_POS, A)));
+  shapePtr rect(std::make_unique< Rectangle >(Rectangle(RECTANGLE_POS, B, C)));
 
-  return shapePtr(std::make_unique< lab::CompositeShape>
-    (lab::CompositeShape(std::move(circle), std::move(rectangle))));
+  return shapePtr(std::make_unique< CShape >(CShape(std::move(circle), std::move(rect))));
 }
 
 void lab::testMoveToPoint(lab::Shape& shape)

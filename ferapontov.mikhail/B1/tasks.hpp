@@ -7,6 +7,7 @@
 namespace ferapontov
 {
   void task1(const std::string& mode);
+  void task3();
 }
 
 #endif

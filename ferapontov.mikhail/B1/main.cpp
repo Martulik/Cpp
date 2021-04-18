@@ -27,8 +27,7 @@ int main(int argc, char *argv[])
   }
 
   int TaskNumber = readArg< int >(argv[1]);
-  std::string mode = readArg< std::string >(argv[2]);
-
+  
   if(TaskNumber > 4 || TaskNumber < 1)
   {
     std::cerr << "Invalid number of the Task";
@@ -36,7 +35,12 @@ int main(int argc, char *argv[])
   }
   else if(TaskNumber == 1)
   {
+    std::string mode = readArg< std::string >(argv[2]);
     fer::task1(mode);
+  }
+  else if(TaskNumber == 3)
+  {
+    fer::task3();
   }
   return 0;
 }

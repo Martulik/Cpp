@@ -1,6 +1,7 @@
 #include "tasks.hpp"
 #include "sort.hpp"
 #include "strategy.hpp"
+#include "functions.hpp"
 
 namespace fer = ferapontov;
 
@@ -16,20 +17,6 @@ std::function< bool(T, T) > getSortMode(const std::string& mode)
     return std::less< T >();
   }
   return nullptr;
-}
-
-template< typename T>
-void print(const T& arr)
-{
-  typedef typename T::const_iterator iter;
-  iter it = arr.begin();
-  iter end = arr.end();
-  while(it != end)
-  {
-    std::cout << *it << ' ';
-    it++;
-  }
-  std::cout << '\n';
 }
 
 void fer::task1(const std::string& mode)

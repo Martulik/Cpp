@@ -16,10 +16,7 @@ void lab::UserInterface::add(PhoneBook::data &record)
 {
   phoneBook_.pushBack(record);
   if (std::next(phoneBook_.begin()) == phoneBook_.end()) {
-    if (!bookmarks_.empty()) {
-      bookmarks_.clear();
-    }
-    bookmarks_.insert(std::make_pair("current", phoneBook_.begin()));
+    bookmarks_["current"] = phoneBook_.begin();
   }
 }
 

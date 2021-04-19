@@ -154,7 +154,7 @@ Accepted Labs
 | Ivanova Maria         | ✓  | ✓  |    |    |    |    |
 | Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
-| Lysenko Aleksandra    | ✓  |    |    |    |    |    |
+| Lysenko Aleksandra    | ✓  | ✓  |    |    |    |    |
 | Murzakanov Islam      | ✓  | ✓  |    |    |    |    |
 | Pochernin Vladislav   | ✓  | ✓  |    |    |    |    |
 | Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
@@ -164,4 +164,4 @@ Accepted Labs
 | Shilyaev Vladislav    | ✓  | ✓  |    |    |    |    |
 | Shkurov Igor          | ✓  |    |    |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  12|   0|   0|   0|   0|
+| __Total__             |  20|  13|   0|   0|   0|   0|

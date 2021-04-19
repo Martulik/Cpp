@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cstring>
 #include <stdlib.h>
+#include <stdexcept>
 
 #include "tasks.hpp"
 
@@ -16,9 +16,16 @@ int main(int argc, char* argv[])
   {
     lab::taskTwo(argv[2]);
   }
+  else if ((argc == 2) && atoi(argv[1]) == 3)
+  {
+    lab::taskThree();
+  }
+  else if ((argc == 4) && atoi(argv[1]) == 4)
+  {
+  }
   else
   {
-    std::cerr << "incorrect input";
+    throw std::invalid_argument("Mismatched arguments. ");
   }
 
   return 0;

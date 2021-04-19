@@ -20,13 +20,13 @@ namespace ezerinia {
     }
 
     std::vector< int > index(collection_numbers);
-    sortAndPrint< indexVec< int > >(index, sort_mode);
+    sortAndPrint< indexVec< int > >(index, sort_mode, std::cout);
 
     std::vector< int > at(collection_numbers);
-    sortAndPrint< atVec< int > >(at, sort_mode);
+    sortAndPrint< atVec< int > >(at, sort_mode, std::cout);
 
     std::forward_list< int > iter(collection_numbers.begin(), collection_numbers.end());
-    sortAndPrint< iteratorList< int > >(iter, sort_mode);
+    sortAndPrint< iteratorList< int > >(iter, sort_mode, std::cout);
 
     return error::success;
   }

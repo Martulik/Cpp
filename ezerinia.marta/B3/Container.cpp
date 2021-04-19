@@ -75,8 +75,5 @@ lab::Container::Iterator lab::Container::Iterator::operator--(int)
 
 unsigned int lab::Container::Iterator::getFactorial(size_t index) const
 {
-  if (index > 1) {
-    return index * getFactorial(index - 1);
-  }
-  return 1;
+  return index > 1 ? index * getFactorial(index - 1) : 1;
 }

@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <random>
 
 #include "tasks.hpp"
 #include "tools.hpp"
@@ -16,6 +17,7 @@ void setError(std::string err)
 int main(int argc, char* argv[])
 {
   namespace mur = murzakanov;
+  srand(time(0));
   bool inArg = true;
 
   if (argc < 2) {

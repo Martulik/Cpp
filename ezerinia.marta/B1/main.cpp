@@ -2,6 +2,8 @@
 #include <cstring>
 #include <functional>
 #include <map>
+#include <ctime>
+#include <cstdlib>
 
 #include "task1.hpp"
 #include "task2.hpp"
@@ -36,6 +38,8 @@ std::function< bool(T, T) > getSortMode(const char *mode)
 
 int main(int argc, char *argv[])
 {
+  srand(time(NULL));
+
   std::map< lab::error, std::string > errors{
     {lab::error::success, {}},
     {lab::error::taskNumber, "Incorrect number for task\n"},

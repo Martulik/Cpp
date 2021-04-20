@@ -3,12 +3,13 @@
 
 #include <vector>
 #include <forward_list>
+#include <stdexcept>
 #include "strategies.hpp"
 
 namespace lysenko
 {
   template< template< typename > typename sortBy, typename container_type >
-  void sortShaker(container_type& container,
+  void sortBubble(container_type& container,
     bool (*cmp)(const typename container_type::value_type& a, const typename container_type::value_type& b))
   {
     if (cmp == nullptr)
@@ -16,28 +17,18 @@ namespace lysenko
       throw std::invalid_argument("The comparator was not passed");
     }
 
-    typedef sortBy<container_type> sortStrategy;
+    typedef sortBy< container_type > sortStrategy;
     typedef typename sortStrategy::iterator iterator;
 
-    iterator left = 0;
-    iterator right = sortStrategy::getEnd(container) - 1;
-    while (left <= right)
+    for (iterator i = sortStrategy::getBegin(container); i != sortStrategy::getEnd(container); ++i)
     {
-      for (iterator i = right; i > left; --i)
+      for (iterator j = i; j != sortStrategy::getEnd(container); ++j)
       {
-        if (cmp), sortStrategy::getElement(container, i), sortStrategy::getElement(container, i - 1)))
+        if (cmp(sortStrategy::getElement(container, j), sortStrategy::getElement(container, i)))
         {
-          std::swap(sortStrategy::getElement(container,i), sortStrategy::getElement(container, i - 1));
+          std::swap(sortStrategy::getElement(container, j), sortStrategy::getElement(container, i));
         }
-        ++left;
-
-        for (iterator i = left ; i < right; ++i)
-        {
-          if (cmp), sortStrategy::getElement(container, i + 1), sortStrategy::getElement(container, i)))
-        {
-        std::swap(sortStrategy::getElement(container, i + 1), sortStrategy::getElement(container, i));
-        }
-        --right;
+      }
     }
   }
 }

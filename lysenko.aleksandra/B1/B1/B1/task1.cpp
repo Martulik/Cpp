@@ -33,9 +33,9 @@ int lysenko::task1(const char* order)
     
     std::forward_list< int > myList(myVect.begin(), myVect.end());
 
-    lysenko::sortShaker< lysenko::strategyForIndexSort, std::vector< int > >(myVect, comparator);
-    lysenko::sortShaker< lysenko::strategyForAtSort, std::vector< int > >(myVect, comparator);
-    lysenko::sortShaker< lysenko::strategyForIteratorSort, std::forward_list< int > >(myList, comparator);
+    lysenko::sortBubble< lysenko::strategyForIndexSort, std::vector< int > >(myVect, comparator);
+    lysenko::sortBubble< lysenko::strategyForAtSort, std::vector< int > >(myVect, comparator);
+    lysenko::sortBubble< lysenko::strategyForIteratorSort, std::forward_list< int > >(myList, comparator);
   }
   catch (std::invalid_argument &err)
   {

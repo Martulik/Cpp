@@ -18,6 +18,11 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("No spaces allowed in arguments.");
     }
 
+    if (!lab::isNumber(argv[1]))
+    {
+      throw std::invalid_argument("First argument is always numeric representing task number.");
+    }
+
     if ((argc == 3) && atoi(argv[1]) == 1)
     {
       lab::taskOne(argv[2]);
@@ -32,6 +37,10 @@ int main(int argc, char* argv[])
     }
     else if ((argc == 4) && atoi(argv[1]) == 4)
     {
+      if (!lab::isNumber(argv[3]))
+      {
+        throw std::invalid_argument("Array size should be a number.");
+      }
       lab::taskFour(argv[2], atoi(argv[3]));
     }
     else

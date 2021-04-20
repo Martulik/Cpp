@@ -1,6 +1,7 @@
 #include "functions.hpp"
 
 #include <cmath>
+#include <ctype.h>
 
 namespace lab = shkurov;
 
@@ -23,4 +24,16 @@ bool lab::containsSpaces(size_t argsCount, char* argv[])
   }
 
   return false;
+}
+
+bool lab::isNumber(const std::string& str)
+{
+  for (size_t i = 0; i < str.size(); i++)
+  {
+    if (!std::isdigit(str[i]))
+    {
+      return false;
+    }
+  }
+  return true;
 }

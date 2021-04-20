@@ -13,7 +13,7 @@ namespace shkurov
     using iterator = size_t;
     using container = std::vector< T >;
 
-    static iterator begin(container &cont)
+    static iterator begin(container&)
     {
       return 0;
     }
@@ -36,7 +36,7 @@ namespace shkurov
     using iterator = size_t;
     using container = std::vector< T >;
 
-    static iterator begin(container &cont)
+    static iterator begin(container&)
     {
       return 0;
     }
@@ -69,7 +69,7 @@ namespace shkurov
       return cont.end();
     }
 
-    static T& get(container &cont, iterator iter)
+    static T& get(container&, iterator iter)
     {
       return *iter;
     }

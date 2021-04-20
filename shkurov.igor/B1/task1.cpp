@@ -7,7 +7,23 @@ namespace lab = shkurov;
 
 void lab::taskOne(const char* cmp)
 {
-  std::vector< int > vecOne {9, 4, 5, 12, 1, 3};
+  std::vector< int > vecOne;
+
+  int x;
+  while (std::cin >> x)
+  {
+    vecOne.push_back(x);
+  }
+
+  if (std::cin.fail() && !std::cin.eof())
+  {
+    throw std::invalid_argument("Incorrect input.");
+  }
+  if (vecOne.empty())
+  {
+    throw std::length_error("Vector can not be empty.");
+  }
+
   std::vector< int > vecTwo(vecOne);
   std::forward_list< int > list(vecOne.begin(), vecOne.end());
 

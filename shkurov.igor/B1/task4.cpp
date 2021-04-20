@@ -6,13 +6,13 @@ namespace lab = shkurov;
 
 void lab::taskFour(const char* cmp, int size)
 {
-  double *arr = new double[size];
-  fillRandom(arr, size);
+  std::unique_ptr< double > arr(std::make_unique< double >(size));
+  fillRandom(arr.get(), size);
 
   std::vector< double > vec;
   for (int i = size - 1; i >= 0; i--)
   {
-    vec.push_back(arr[i]);
+    vec.push_back(arr.get()[i]);
   }
 
   printContainer(vec, ' ');

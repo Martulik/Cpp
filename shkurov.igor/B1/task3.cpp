@@ -20,7 +20,7 @@ void lab::taskThree()
   }
   if (vec.empty())
   {
-    throw std::invalid_argument("Vector can not be empty.");
+    throw std::length_error("Vector can not be empty.");
   }
 
   std::vector< int >::iterator it;

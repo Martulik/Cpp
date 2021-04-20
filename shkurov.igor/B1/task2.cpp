@@ -33,5 +33,5 @@ void lab::taskTwo(const char* filename)
   file.read(str.get(), length);
 
   std::vector< char > vec(str.get(), str.get() + length);
-  printContainer(vec, (char) 0);
+  printContainer(vec, static_cast<char>(0));
 }

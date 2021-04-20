@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstring>
+#include <memory>
 
 #include "strategies.hpp"
 

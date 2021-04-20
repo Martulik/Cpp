@@ -24,10 +24,14 @@ void lab::taskTwo(const char* filename)
 
   size_t length = 0;
   file.seekg(0, file.end);
+  if (file.tellg() == 0)
+  {
+    throw std::invalid_argument("File is empty.");
+  }
   length = file.tellg();
   file.seekg(0, file.beg);
 
-  std::unique_ptr< char > str(std::make_unique< char >(length));
+  std::unique_ptr< char > str(std::make_unique< char >(length + 1));
   file.read(str.get(), length);
 
   std::vector< char > vec(str.get(), str.get() + length);

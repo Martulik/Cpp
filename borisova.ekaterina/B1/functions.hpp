@@ -31,7 +31,6 @@ namespace borisova
   int sort(typename C::container & src, T sortMode)
   {
     using itr = typename C::iterator;
-    bool value = 0;
     if (sortMode == nullptr)
     {
       std::cerr << "\nWrong mode of sort\n";

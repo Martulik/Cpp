@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 
-#include "tasks.hpp";
+#include "tasks.hpp"
 
 namespace lysenko
 {
@@ -34,7 +34,18 @@ int main(int argc, char* argv[])
         }
         else
         {
-          //вызов 2 задания
+          if (lysenko::correctData(argv[2]))
+          {
+            if (lysenko::accurateTaskNumber(argv[1], "2"))
+            {
+              lysenko::conditionCode = lysenko::task2(argv[1]);
+            }
+          }
+          else
+          {
+            std::cerr << "Invalid second argument";
+            lysenko::conditionCode = 1;
+          }
         }
       }
       else

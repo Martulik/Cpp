@@ -21,7 +21,7 @@ int borisova::doTask4(const int argc, char* argv[])
   fillRandom(std::addressof(arr[0]), size);
   print(arr, std::cout);
   std::vector< double > indVec(arr);
-  int exitCode = sort< bracketStrategy< double > >(indVec, mode);
+  int exitCode = sort< bracketStrategy< double > >(indVec, sortMode<double>(mode));
   if (!exitCode)
   {
     print(indVec, std::cout);

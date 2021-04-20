@@ -2,6 +2,7 @@
 #define FINCTIONS_HPP
 
 #include <iostream>
+#include <functional>
 #include "strategies.hpp"
 
 namespace borisova
@@ -10,33 +11,40 @@ namespace borisova
   bool checkNumber(const std::string& number);
   int toInt(const std::string& number);
 
-  template < typename C >
-  int sort(typename C::container & src, const std::string & mode)
+  template< typename T >
+  std::function< bool(T, T) > sortMode(const std::string& mode)
+  {
+    const std::string ascending = "ascending";
+    const std::string descending = "descending";
+    if (mode == ascending)
+    {
+      return std::greater< T >();
+    }
+    else if (mode == descending)
+    {
+      return std::less< T >();
+    }
+    return nullptr;
+  }
+
+  template < typename C, typename T >
+  int sort(typename C::container & src, T sortMode)
   {
     using itr = typename C::iterator;
     bool value = 0;
-    if (mode == "ascending")
+    if (sortMode == nullptr)
     {
-      value = true;
-    }
-    else if (mode == "descending")
-    {
-      value = false;
-    }
-    else
-    {
-      std::cerr << "Wrong mode\n";
+      std::cerr << "\nWrong mode of sort\n";
       return 1;
     }
-
     itr end = C::end(src);
     for (itr i = C::begin(src); i != end; i++)
     {
       for (itr j = i; j != end; j++)
       {
-        if ((C::get(src, i) <= C::get(src, j)) != value)
+        if (sortMode(C::get(src, j), C::get(src, i)))
         {
-          std::swap(C::get(src, i), C::get(src, j));
+          std::swap(C::get(src, j), C::get(src, i));
         }
       }
     }

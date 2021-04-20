@@ -20,6 +20,11 @@ namespace shkurov
     iterator_t end = Strategy::end(cont);
     iterator_t begin = Strategy::begin(cont);
 
+    if (cmp == nullptr)
+    {
+      throw std::invalid_argument("Incorrect comparsion method");
+    }
+
     for (iterator_t i = begin; i != end; i++)
     {
       iterator_t swapId = i;
@@ -63,10 +68,8 @@ namespace shkurov
     {
       return std::greater< T >();
     }
-    else
-    {
-      throw std::invalid_argument("Comparsion method has to be either 'descending' or 'ascending'");
-    }
+
+    return nullptr;
   }
 
   void fillRandom(double *array, int size);

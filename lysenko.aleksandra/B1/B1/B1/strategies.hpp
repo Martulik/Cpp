@@ -6,7 +6,7 @@ namespace lysenko
   template<typename Container>
   struct strategyForIndexSort
   {
-    typedef typename container::value_type type;
+    typedef typename Container::value_type type;
     typedef size_t iterator;
 
     static iterator getBegin(const Container&)
@@ -16,7 +16,7 @@ namespace lysenko
 
     static iterator getEnd(const Container& myContainer)
     {
-      return container.size();
+      return myContainer.size();
     }
 
     static type& getElement(Container& myContainer, iterator i)

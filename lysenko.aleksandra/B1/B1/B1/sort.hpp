@@ -1,8 +1,6 @@
 #ifndef SORT_HPP
 #define SORT_HPP
 
-#include <vector>
-#include <forward_list>
 #include <stdexcept>
 #include "strategies.hpp"
 

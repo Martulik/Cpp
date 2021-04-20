@@ -4,6 +4,14 @@
 #include <iostream>
 #include <stdexcept>
 
+#include <vector>
+#include <forward_list>
+
+#include "comparator.hpp"
+#include "strategies.hpp"
+#include "sort.hpp"
+#include "print.hpp"
+
 namespace lysenko
 {
   int task1(const char* order);

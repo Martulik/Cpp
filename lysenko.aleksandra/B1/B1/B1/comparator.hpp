@@ -1,6 +1,8 @@
 #ifndef COMPARATOR_HPP
 #define COMPARATOR_HPP
 
+#include <cstring>
+
 template<typename T>
 bool cmpAscending(const T& a, const T& b)
 {

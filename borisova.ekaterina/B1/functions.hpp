@@ -41,7 +41,7 @@ namespace borisova
     {
       for (itr j = i; j != end; j++)
       {
-        if (sortMode(C::get(src, j), C::get(src, i)))
+        if (sortMode(C::get(src, i), C::get(src, j)))
         {
           std::swap(C::get(src, j), C::get(src, i));
         }

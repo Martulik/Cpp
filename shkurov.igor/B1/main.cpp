@@ -1,8 +1,9 @@
 #include <iostream>
-#include <stdlib.h>
 #include <stdexcept>
+#include <stdlib.h>
 
 #include "tasks.hpp"
+#include "functions.hpp"
 
 namespace lab = shkurov;
 
@@ -11,6 +12,11 @@ int main(int argc, char* argv[])
   try
   {
     srand(time(NULL));
+
+    if (lab::containsSpaces(argc, argv))
+    {
+      throw std::invalid_argument("No spaces allowed in arguments.");
+    }
 
     if ((argc == 3) && atoi(argv[1]) == 1)
     {

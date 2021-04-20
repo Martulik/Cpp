@@ -9,6 +9,7 @@
 #include <ctime>
 #include <cstring>
 #include <memory>
+#include <string>
 
 #include "strategies.hpp"
 
@@ -74,5 +75,7 @@ namespace shkurov
   }
 
   void fillRandom(double *array, int size);
+  bool containsSpaces(size_t argsCount, char* argv[]);
 }
+
 #endif

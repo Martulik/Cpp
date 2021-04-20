@@ -19,10 +19,6 @@ void lab::taskOne(const char* cmp)
   {
     throw std::invalid_argument("Incorrect input.");
   }
-  if (vecOne.empty())
-  {
-    throw std::length_error("Vector can not be empty.");
-  }
 
   std::vector< int > vecTwo(vecOne);
   std::forward_list< int > list(vecOne.begin(), vecOne.end());

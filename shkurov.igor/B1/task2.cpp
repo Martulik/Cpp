@@ -31,9 +31,9 @@ void lab::taskTwo(const char* filename)
   length = file.tellg();
   file.seekg(0, file.beg);
 
-  std::unique_ptr< char > str(std::make_unique< char >(length + 1));
+  std::unique_ptr< char[] > str(std::make_unique< char[] >(length + 1));
   file.read(str.get(), length);
 
   std::vector< char > vec(str.get(), str.get() + length);
-  printContainer(vec, static_cast<char>(0));
+  printContainer(vec, static_cast< char >(0));
 }

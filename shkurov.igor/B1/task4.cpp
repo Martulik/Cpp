@@ -6,7 +6,7 @@ namespace lab = shkurov;
 
 void lab::taskFour(const char* cmp, int size)
 {
-  std::unique_ptr< double > arr(std::make_unique< double >(size));
+  std::unique_ptr< double[] > arr(std::make_unique< double[] >(size));
   fillRandom(arr.get(), size);
 
   std::vector< double > vec;

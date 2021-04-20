@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <ctime>
+#include <cstring>
 
 #include "strategies.hpp"
 

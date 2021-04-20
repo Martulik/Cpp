@@ -4,9 +4,9 @@
 namespace shkurov
 {
   void taskOne(const char* cmp);
-  void taskTwo(char* filename);
+  void taskTwo(const char* filename);
   void taskThree();
-//   void taskFour();
+  void taskFour(const char* cmp, int size);
 }
 
 #endif

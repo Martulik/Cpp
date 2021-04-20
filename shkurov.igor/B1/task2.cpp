@@ -8,7 +8,7 @@
 
 namespace lab = shkurov;
 
-void lab::taskTwo(char* filename)
+void lab::taskTwo(const char* filename)
 {
   std::ifstream file;
   try

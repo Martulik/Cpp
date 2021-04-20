@@ -8,6 +8,8 @@ namespace lab = shkurov;
 
 int main(int argc, char* argv[])
 {
+  srand(time(NULL));
+
   if ((argc == 3) && atoi(argv[1]) == 1)
   {
     lab::taskOne(argv[2]);
@@ -22,6 +24,7 @@ int main(int argc, char* argv[])
   }
   else if ((argc == 4) && atoi(argv[1]) == 4)
   {
+    lab::taskFour(argv[2], atoi(argv[3]));
   }
   else
   {

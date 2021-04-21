@@ -38,7 +38,7 @@ int lysenko::task2(const char* fileName)
     }
     std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition);
 
-    lysenko::print< lysenko::strategyForAtSort, std::vector< char > >(myVector, 0);
+    lysenko::print< lysenko::strategyForAt, std::vector< char > >(myVector, 0);
     
     return 0;
   }

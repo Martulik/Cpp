@@ -2,6 +2,7 @@
 #define PRINT_HPP
 
 #include <iostream>
+#include "strategies.hpp"
 
 namespace lysenko
 {

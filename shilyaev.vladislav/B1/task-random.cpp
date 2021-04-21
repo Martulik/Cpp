@@ -1,7 +1,7 @@
 #include "task-random.hpp"
 #include <iostream>
+#include <random>
 #include <memory>
-#include "random-tools.hpp"
 #include "sort.hpp"
 #include "iterator-print.hpp"
 #include "compare-function.hpp"
@@ -9,6 +9,16 @@
 #include "string-convert.hpp"
 
 namespace shilyaev {
+
+  void fillRandom(double *array, int size)
+  {
+    std::uniform_real_distribution< double > distribution(-1.0, 1.0);
+    std::random_device randomDevice;
+    for (int i = 0; i < size; i++) {
+      array[i] = distribution(randomDevice);
+    }
+  }
+
   int taskRandom(int argc, char *argv[])
   {
     if (argc != 4) {
@@ -31,4 +41,5 @@ namespace shilyaev {
     print(vector.cbegin(), vector.cend());
     return 0;
   }
+
 }

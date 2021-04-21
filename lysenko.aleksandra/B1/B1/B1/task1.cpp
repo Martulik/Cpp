@@ -23,7 +23,7 @@ int lysenko::task1(const char* order)
     }
 
     bool (*comparator)(const int&, const int&) = getComparator< int >(order);
-    
+
     std::forward_list< int > myList(myVect.begin(), myVect.end());
     std::vector< int > myVectCopy(myVect.begin(), myVect.end());
 

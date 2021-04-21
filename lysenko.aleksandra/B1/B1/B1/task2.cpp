@@ -18,9 +18,8 @@ int lysenko::task2(const char* fileName)
     {
       currCapacity *= 2;
       std::unique_ptr< char []> tempArray = std::make_unique< char [] >(currCapacity);
-     /* myFile.seekg(currPosition);*/
       myFile.read(tempArray.get() + currPosition, currCapacity - currPosition);
-    
+
       if (currPosition == 0)
       {
         std::cerr <<  "File can not be empty";
@@ -39,7 +38,7 @@ int lysenko::task2(const char* fileName)
     std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition);
 
     lysenko::print< lysenko::strategyForAt, std::vector< char > >(myVector, 0);
-    
+
     return 0;
   }
   else
@@ -47,4 +46,4 @@ int lysenko::task2(const char* fileName)
     std::cerr << "Fail to open the file";
     return 1;
   }
-} 
+}

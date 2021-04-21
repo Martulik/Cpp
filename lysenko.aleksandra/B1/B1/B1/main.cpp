@@ -19,7 +19,10 @@ int main(int argc, char* argv[])
   {
     if (argc == 2)
     {
-      ///вызов 3 задания
+      if (lysenko::accurateTaskNumber(argv[1], "3"))
+      {
+        lysenko::conditionCode = lysenko::task3();
+      }
     }
     else if (argc == 3)
     {

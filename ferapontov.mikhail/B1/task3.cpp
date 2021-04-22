@@ -27,7 +27,6 @@ void ferapontov::task3()
     std::exit(-1);
   }
 
-  print(vec);
   std::vector< int >::iterator it = vec.begin();
   int lastElem = vec.back();
 

@@ -148,13 +148,13 @@ Accepted Labs
 | Borisova Ekaterina    | ✓  | ✓  |    |    |    |    |
 | Diurdeva Dasha        | ✓  | ✓  |    |    |    |    |
 | Doroshin Danil        | ✓  | ✓  |    |    |    |    |
-| Dushechkina Viktoria  | ✓  |    |    |    |    |    |
-| Ezerinia Marta        | ✓  | ✓  |    |    |    |    |
-| Ferapontov Mikhail    | ✓  |    |    |    |    |    |
+| Dushechkina Viktoria  | ✓  | ✓  |    |    |    |    |
+| Ezerinia Marta        | ✓  | ✓  | ✓  |    |    |    |
+| Ferapontov Mikhail    | ✓  | ✓  |    |    |    |    |
 | Ivanova Maria         | ✓  | ✓  |    |    |    |    |
 | Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
-| Lysenko Aleksandra    | ✓  |    |    |    |    |    |
+| Lysenko Aleksandra    | ✓  | ✓  |    |    |    |    |
 | Murzakanov Islam      | ✓  | ✓  |    |    |    |    |
 | Pochernin Vladislav   | ✓  | ✓  |    |    |    |    |
 | Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
@@ -162,6 +162,6 @@ Accepted Labs
 | Razukrantov Vladislav | ✓  |    |    |    |    |    |
 | Savchuk Aleksei       | ✓  | ✓  |    |    |    |    |
 | Shilyaev Vladislav    | ✓  | ✓  |    |    |    |    |
-| Shkurov Igor          | ✓  |    |    |    |    |    |
+| Shkurov Igor          | ✓  | ✓  |    |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  10|   0|   0|   0|   0|
+| __Total__             |  20|  14|   1|   0|   0|   0|

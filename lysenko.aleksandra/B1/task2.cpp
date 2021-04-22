@@ -35,12 +35,14 @@ int lysenko::task2(const char* fileName)
 
       currPosition += myFile.gcount();
     }
+
     std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition);
 
     lysenko::print< lysenko::strategyForAt, std::vector< char > >(myVector, 0);
 
     return 0;
   }
+
   else
   {
     std::cerr << "Fail to open the file";

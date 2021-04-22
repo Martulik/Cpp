@@ -17,16 +17,16 @@ int main(int argc, char* argv[])
 {
   if (lysenko::correctNumberOfArgs(argc))
   {
-    if (argc == 2)
+    if (lysenko::correctData(argv[1]))
     {
-      if (lysenko::accurateTaskNumber(argv[1], "3"))
+      if (argc == 2)
       {
-        lysenko::conditionCode = lysenko::task3();
+        if (lysenko::accurateTaskNumber(argv[1], "3"))
+        {
+          lysenko::conditionCode = lysenko::task3();
+        }
       }
-    }
-    else if (argc == 3)
-    {
-      if (lysenko::correctData(argv[1]))
+      else if (argc == 3)
       {
         if (lysenko::isTypeOfSort(argv[2]))
         {
@@ -46,17 +46,17 @@ int main(int argc, char* argv[])
           }
         }
       }
-    }
-    else
-    {
-      if (lysenko::correctData(argv[2]))
+      else
       {
-        if (lysenko::accurateTaskNumber(argv[1], "4"))
+        if ((lysenko::correctData(argv[2]))&& (lysenko::correctData(argv[3])))
         {
-          lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
+          if (lysenko::accurateTaskNumber(argv[1], "4"))
+          {
+            lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
+          }
         }
       }
-    }
+    }    
   }
 
   return lysenko::conditionCode;

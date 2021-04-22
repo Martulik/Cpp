@@ -35,10 +35,12 @@ int lysenko::task1(const char* order)
     lysenko::print< lysenko::strategyForAt, std::vector< int > >(myVectCopy, 1);
     lysenko::print< lysenko::strategyForIterator, std::forward_list< int > >(myList, 1);
   }
+
   catch (std::invalid_argument &err)
   {
     std::cerr << err.what();
     return 1;
   }
+
   return 0;
 }

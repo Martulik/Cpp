@@ -41,6 +41,7 @@ int lysenko::task4(const char* order, const char* numberOfArguments)
 
   lysenko::sortBubble< lysenko::strategyForAt, std::vector< double > >(myVect, comparator);
   lysenko::print< lysenko::strategyForIndex, std::vector< double > >(myVect, 1);
+
   return 0;
 }
 

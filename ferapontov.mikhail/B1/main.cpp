@@ -43,6 +43,11 @@ int main(int argc, char *argv[])
     std::string mode = readArg< std::string >(argv[2]);
     fer::task1(mode);
   }
+  else if(TaskNumber == 2)
+  {
+    std::string file = readArg< std::string >(argv[2]);
+    fer::task2(file);
+  }
   else if(TaskNumber == 3)
   {
     fer::task3();

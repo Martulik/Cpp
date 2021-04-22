@@ -25,6 +25,12 @@ int lysenko::task3()
     }
   }
 
+  if (std::cin.fail())
+  {
+    std::cerr << "Failed cin";
+    return 1;
+  }
+
   myVect.pop_back();
   numberOfMuplipleOfThree -= 1;
 

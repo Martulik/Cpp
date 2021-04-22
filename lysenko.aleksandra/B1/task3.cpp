@@ -3,6 +3,8 @@
 int lysenko::task3()
 {
   bool firstOne = 1;
+  size_t numberOfMuplipleOfTwo = 0;
+  size_t numberOfMuplipleOfThree = 0;
   int currOne = 1;
 
   std::vector< int > myVect;
@@ -22,6 +24,17 @@ int lysenko::task3()
     {
       firstOne = 0;
     }
+
+    if (currOne % 2 == 0)
+    {
+      numberOfMuplipleOfTwo += 1;
+    }
+
+    if (currOne % 3 == 0)
+    {
+      numberOfMuplipleOfThree += 1;
+    }
+
     std::cin >> currOne;
   }
 
@@ -41,22 +54,28 @@ int lysenko::task3()
       {
         myVect.erase(iterator);
       }
-      iterator += 1;
+      else
+      {
+        iterator += 1;
+      }
     }
   }
   else if (myVect.back() == 2)
   {
-    while (iterator < myVect.end())
+    std::vector<int>::iterator iterator = myVect.begin();
+    myVect.reserve(myVect.size() + numberOfMuplipleOfThree * 3);
+    iterator =myVect.begin();
+    while (iterator != myVect.end())
     {
-      if (*iterator % 3 == 0)
+      if ((*iterator) % 3 == 0)
       {
-        for (int i = 1; i < 3; ++i)
-        {
-          myVect.insert(iterator+i, 1);
-        }
+        iterator = myVect.insert(++iterator, 3, 1);
         iterator += 3;
       }
-      iterator += 1;
+      else
+      {
+        ++iterator;
+      }
     }
   }
 

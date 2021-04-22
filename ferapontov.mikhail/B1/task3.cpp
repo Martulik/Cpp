@@ -19,18 +19,18 @@ void ferapontov::task3()
   if (std::cin.fail() && !(std::cin.eof()))
   {
     std::cerr << "Read error";
-    std::exit(-1);
+    std::exit(2);
   }
   if (number != 0)
   {
     std::cerr << "Invalid end of user insert";
-    std::exit(-1);
+    std::exit(2);
   }
 
   if (vec.empty())
   {
     std::cerr << "Empty input";
-    std::exit(-1);
+    std::exit(2);
   }
 
   std::vector< int >::iterator it = vec.begin();

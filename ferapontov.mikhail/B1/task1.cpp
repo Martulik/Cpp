@@ -18,7 +18,7 @@ void fer::task1(const std::string& mode)
   if (std::cin.fail() && !(std::cin.eof()))
   {
     std::cerr << "Read Error\n";
-    std::exit(-1);
+    std::exit(2);
   }
 
   std::vector< int > second_vec(vec);

@@ -15,6 +15,8 @@ void ferapontov::task4(const std::string& mode, int size)
     std::uniform_real_distribution< double > dist(-1.0, 1.0);
     vec.push_back(dist(rd));
   }
+
+  print(vec);
   ferapontov::sort< double, ferapontov::at_access< double > >(vec, cmp);
   print(vec);
 }

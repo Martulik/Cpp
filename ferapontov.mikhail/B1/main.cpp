@@ -13,7 +13,7 @@ T readArg(std::string arg)
   if (!(in >> res))
   {
     std::cerr << "Invalid Argument";
-    std::exit(-1);
+    std::exit(1);
   }
   return res;
 }
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
   if (argc < 2)
   {
     std::cerr << "Invalid Arguments";
-    std::exit(-1);
+    std::exit(1);
   }
 
   int TaskNumber = readArg< int >(argv[1]);
@@ -31,14 +31,14 @@ int main(int argc, char *argv[])
   if (TaskNumber > 4 || TaskNumber < 1)
   {
     std::cerr << "Invalid number of the Task";
-    std::exit(-1);
+    std::exit(1);
   }
   else if (TaskNumber == 1)
   {
     if (argc < 3)
     {
       std::cerr << "Invalid Arguments";
-      std::exit(-1);
+      std::exit(1);
     }
     std::string mode = readArg< std::string >(argv[2]);
     fer::task1(mode);
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     if (argc < 3)
     {
       std::cerr << "Invalid Arguments";
-      std::exit(-1);
+      std::exit(1);
     }
     std::string file = readArg< std::string >(argv[2]);
     fer::task2(file);
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     if (argc < 4)
     {
       std::cerr << "Invalid Arguments";
-      std::exit(-1);
+      std::exit(1);
     }
     std::string mode = readArg< std::string >(argv[2]);
     int size = readArg< int >(argv[3]);

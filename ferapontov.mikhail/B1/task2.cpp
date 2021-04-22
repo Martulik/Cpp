@@ -12,7 +12,7 @@ void ferapontov::task2(const std::string& file)
   if (!(in.is_open()))
   {
     std::cerr << "Can't open the file";
-    std::exit(-1);
+    std::exit(2);
   }
 
   size_t capacity = 1024;
@@ -38,7 +38,7 @@ void ferapontov::task2(const std::string& file)
   {
     std::cerr << "Read error";
     in.close();
-    std::exit(-1);
+    std::exit(2);
   }
 
   in.close();

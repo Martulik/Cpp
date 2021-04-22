@@ -10,7 +10,7 @@ std::function< bool(T, T) > getSortMode(const std::string& mode)
   if (mode != "ascending" && mode != "descending")
   {
     std::cerr << "Invalid sorting mode";
-    std::exit(-1);
+    std::exit(1);
   }
 
   if (mode == "ascending")

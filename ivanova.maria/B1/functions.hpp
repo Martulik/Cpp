@@ -6,12 +6,13 @@
 #include <forward_list>
 #include <cstring>
 #include <fstream>
+#include <functional>
 
 namespace ivanova
 {
   void fillRandom(double* array, int size);
   bool checkIsNumber(const std::string& str);
-  bool checkForSpaces(const std::string& str);
+  int charToInt(char* string);
 
   template< typename T > struct strategyBrackets
   {
@@ -73,61 +74,59 @@ namespace ivanova
     }
   };
 
-template< typename T>
-void sort(typename T::cont &cont, typename T::iter begin, typename T::iter end, const char *method)
-{
-  if (strcmp(method, "ascending") && strcmp(method, "descending"))
+  template< typename T, typename S>
+  void sort(typename T::cont &cont, const S sortMode)
   {
-    std::cerr << "Incorrect sort order!";
-    exit(1);
-  }
-  if (method == nullptr)
-  {
-    std::cerr << "Missing sort order";
-    exit(1);
-  }
-  bool ascending = false;
-  if (!strcmp(method, "ascending"))
-  {
-    ascending = true;
-  }
-  using iter = typename T::iter;
-  for (iter it1 = begin; it1 != end; ++it1)
-  {
-    iter it2 = it1;
-    for (it2++; it2 != end; ++it2)
+    if (sortMode == nullptr)
     {
-      if (ascending)
+      std::cerr << "Wrong sort mode";
+      exit(1);
+    }
+    using iter = typename T::iter;
+    for (iter it1 = T::begin(cont); it1 != T::end(cont); ++it1)
+    {
+      iter it2 = it1;
+      for (it2++; it2 != T::end(cont); ++it2)
       {
-        if (T::get(cont, it2) < T::get(cont, it1))
+        if (sortMode(T::get(cont, it2), T::get(cont, it1)))
         {
           std::swap(T::get(cont, it2), T::get(cont, it1));
         }
       }
-      else if (T::get(cont, it2) > T::get(cont, it1))
-      {
-        std::swap(T::get(cont, it2), T::get(cont, it1));
-      }
     }
   }
-}
 
-template< typename T > void print(const T &src, std::ostream &out)
-{
-  typedef typename T::const_iterator Iter;
-  Iter it = src.begin();
-  while (it != src.end())
+  template< typename T > void print(const T &src, std::ostream &out)
   {
-    out << *it << " ";
-    it++;
+    using iter = typename T::const_iterator;
+    iter it = src.begin();
+    iter end = src.end();
+    while (it != end)
+    {
+      out << *it << " ";
+      it++;
+    }
+    out << "\n";
   }
-  out << "\n";
-}
 
-template< typename T > void sortAndPrint(typename T::cont &cont, const char *method)
-{
-  sort< T >(cont, T::begin(cont), T::end(cont), method);
-  print(cont, std::cout);
-}
+  template< typename T, typename S > void sortAndPrint(typename T::cont &cont, S sortMode)
+  {
+    sort< T, S >(cont, sortMode);
+    print(cont, std::cout);
+  }
+
+  template< typename T >
+  std::function< bool(T, T) > getSortMode(const char *method)
+  {
+    if (!strcmp(method, "ascending"))
+    {
+      return std::less< T >();
+    }
+    else if (!strcmp(method, "descending"))
+    {
+      return std::greater< T >();
+    }
+    return nullptr;
+  }
 }
 #endif

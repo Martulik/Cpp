@@ -2,6 +2,7 @@
 
 int lysenko::task3()
 {
+  bool firstOne = 1;
   int currOne = 1;
 
   std::vector< int > myVect;
@@ -9,20 +10,22 @@ int lysenko::task3()
   while (currOne != 0)
   {
     std::cin >> currOne;
-    if (currOne == 0)
+    if ((currOne == 0)&&(firstOne))
     {
       std::cerr << "Input can not be empty";
       return 1;
     }
     myVect.push_back(currOne);
+    firstOne = 0;
   }
+
+  std::vector< int >::iterator iterator = myVect.begin();
 
   if (myVect.back() == 1)
   {
-    std::vector< int >::iterator iterator = myVect.begin();
     while (iterator < myVect.end())
     {
-      if (*iterator % 2 != 0)
+      if (*iterator % 2 == 0)
       {
         myVect.erase(iterator);
       }
@@ -31,7 +34,6 @@ int lysenko::task3()
   }
   else if (myVect.back() == 2)
   {
-    std::vector<int>::iterator iterator = myVect.begin();
     while (iterator < myVect.end())
     {
       if (*iterator % 3 == 0)

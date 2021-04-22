@@ -24,17 +24,17 @@ int lysenko::task4(const char* order, const char* numberOfArguments)
 
   catch (const std::out_of_range& ex)
   {
-    std::cerr << "Task number is too much\n";
+    std::cerr << "Task number is too much";
     return 1;
   }
-
-  std::vector < double > myVect;
 
   if (size <= 0)
   {
     std::cerr << "Invalid size of array";
     return 1;
   }
+
+  std::vector < double > myVect;
 
   fillRandom(myVect, size);
   lysenko::print< lysenko::strategyForIndex, std::vector< double > >(myVect, 1);

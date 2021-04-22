@@ -11,11 +11,11 @@ void fer::task1(const std::string& mode)
 
   int number = 0;
   std::vector< int > vec;
-  while(std::cin >> number)
+  while (std::cin >> number)
   {
     vec.push_back(number);
   }
-  if(std::cin.fail() && !(std::cin.eof()))
+  if (std::cin.fail() && !(std::cin.eof()))
   {
     std::cerr << "Read Error\n";
     std::exit(-1);

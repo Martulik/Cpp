@@ -9,7 +9,7 @@ void ferapontov::task2(const std::string& file)
 {
   std::ifstream in(file);
 
-  if(!(in.is_open()))
+  if (!(in.is_open()))
   {
     std::cerr << "Can't open the file";
     std::exit(-1);
@@ -19,22 +19,22 @@ void ferapontov::task2(const std::string& file)
   size_t size = 0;
   std::unique_ptr< char[] > arr = std::make_unique< char[] >(capacity);
 
-  while(!in.eof())
+  while (!in.eof())
   {
     in.read(arr.get() + size, capacity - size);
     size += in.gcount();
-    if(size == capacity)
+    if (size == capacity)
     {
       capacity *= 2;
       std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
-      for(size_t i = 0; i < size; i++)
+      for (size_t i = 0; i < size; i++)
       {
         temp[i] = arr[i];
       }
       std::swap(arr, temp);
     }
   }
-  if(in.bad())
+  if (in.bad())
   {
     std::cerr << "Read error";
     in.close();
@@ -44,7 +44,7 @@ void ferapontov::task2(const std::string& file)
   in.close();
 
   std::vector< char > vec(arr.get(), arr.get() + size);
-  for(size_t i = 0; i < vec.size(); i++)
+  for (size_t i = 0; i < vec.size(); i++)
   {
     std::cout << vec[i];
   }

@@ -28,7 +28,21 @@ bool iva::checkIsNumber(const std::string& str)
   return true;
 }
 
-bool iva::checkForSpaces(const std::string& str)
+int iva::charToInt(char* string)
 {
-  return (str.find(' ') != std::string::npos);
+  std::string str = string;
+  int result = 0;
+  if (str.empty())
+  {
+    return {};
+  }
+  for (std::string::const_iterator i = str.cbegin(); i < str.cend(); i++)
+  {
+    if (*i < '0' || *i > '9')
+    {
+      return {};
+    }
+    result += *i - '0';
+  }
+  return result;
 }

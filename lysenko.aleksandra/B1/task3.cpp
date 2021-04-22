@@ -3,7 +3,6 @@
 int lysenko::task3()
 {
   bool firstOne = 1;
-  size_t numberOfMuplipleOfTwo = 0;
   size_t numberOfMuplipleOfThree = 0;
   int currOne = 1;
 
@@ -11,32 +10,24 @@ int lysenko::task3()
 
   while (currOne != 0)
   {
+    std::cin >> currOne;
+
     if (std::cin.eof())
     {
       std::cerr << "Input can not be empty or not contain 0";
       return 1;
     }
-    if (!firstOne)
-    {
-      myVect.push_back(currOne);
-    }
-    else
-    {
-      firstOne = 0;
-    }
 
-    if (currOne % 2 == 0)
-    {
-      numberOfMuplipleOfTwo += 1;
-    }
-
+    myVect.push_back(currOne);
+    
     if (currOne % 3 == 0)
     {
       numberOfMuplipleOfThree += 1;
     }
-
-    std::cin >> currOne;
   }
+
+  myVect.pop_back();
+  numberOfMuplipleOfThree -= 1;
 
   if (myVect.empty())
   {

@@ -52,19 +52,14 @@ int lysenko::task3()
       {
         for (int i = 1; i < 3; ++i)
         {
-          iterator += 1;
-          myVect.insert(iterator, 1);
+          myVect.insert(iterator+i, 1);
         }
+        iterator += 3;
       }
       iterator += 1;
     }
   }
-  else
-  {
-    std::cerr << "Invalid last item";
-    return 1;
-  }
-
+  
   lysenko::print< lysenko::strategyForIndex, std::vector< int > >(myVect, 1);
 
   return 0;

@@ -41,20 +41,10 @@ int main(int argc, char* argv[])
           {
             if (lysenko::accurateTaskNumber(argv[1], "2"))
             {
-              lysenko::conditionCode = lysenko::task2(argv[1]);
+              lysenko::conditionCode = lysenko::task2(argv[2]);
             }
           }
-          else
-          {
-            std::cerr << "Invalid second argument";
-            lysenko::conditionCode = 1;
-          }
         }
-      }
-      else
-      {
-        std::cerr << "Format of task's number is not correct";
-        lysenko::conditionCode = 1;
       }
     }
     else
@@ -68,11 +58,7 @@ int main(int argc, char* argv[])
       }
     }
   }
-  else
-  {
-    std::cerr << "Invalid number of arguments";
-    lysenko::conditionCode = 1;
-  }
+
   return lysenko::conditionCode;
 }
 
@@ -82,6 +68,9 @@ bool lysenko::correctNumberOfArgs(int argc)
   {
     return 1;
   }
+
+  std::cerr << "Invalid number of arguments";
+  lysenko::conditionCode = 1;
   return 0;
 }
 
@@ -92,6 +81,8 @@ bool lysenko::correctData(char* argv)
   {
     if (argv[i] == ' ')
     {
+      std::cerr << "Invalid second argument";
+      lysenko::conditionCode = 1;
       return 0;
     }
     i += 1;
@@ -118,10 +109,8 @@ bool lysenko::accurateTaskNumber(char* argv, const char* reference)
   {
      return 1;
   }
-  else
-  {
-    std::cerr << "Illegal task's number for these arguments";
-    lysenko::conditionCode = 1;
-    return 0;
-  }
+
+  std::cerr << "Illegal task's number for these arguments";
+  lysenko::conditionCode = 1;
+  return 0;
 }

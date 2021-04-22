@@ -2,30 +2,24 @@
 
 int lysenko::task3()
 {
-  unsigned int numberOfMultipleOfThree = 0;
-  bool firstSymbol = 1;
   int currOne = 1;
 
   std::vector< int > myVect;
 
-  while ((firstSymbol) || (currOne != 0))
+  while (currOne != 0)
   {
     std::cin >> currOne;
-    if ((firstSymbol) && (currOne == 0))
+    if (currOne == 0)
     {
       std::cerr << "Input can not be empty";
       return 1;
     }
-    if (currOne % 3 == 0)
-    {
-      numberOfMultipleOfThree += 1;
-    }
     myVect.push_back(currOne);
-
   }
+
   if (myVect.back() == 1)
   {
-    std::vector<int>::iterator iterator = myVect.begin();
+    std::vector< int >::iterator iterator = myVect.begin();
     while (iterator < myVect.end())
     {
       if (*iterator % 2 != 0)
@@ -48,6 +42,7 @@ int lysenko::task3()
           myVect.insert(iterator, 1);
         }
       }
+      iterator += 1;
     }
   }
   else
@@ -55,5 +50,8 @@ int lysenko::task3()
     std::cerr << "Invalid last item";
     return 1;
   }
+
+  lysenko::print< lysenko::strategyForIndex, std::vector< int > >(myVect, 1);
+
   return 0;
 }

@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      if (lysenko::isTypeOfSort(argv[2]))
+      if (lysenko::correctData(argv[2]))
       {
         if (lysenko::accurateTaskNumber(argv[1], "4"))
         {

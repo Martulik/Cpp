@@ -75,13 +75,8 @@ namespace ivanova
   };
 
   template< typename T, typename S>
-  void sort(typename T::cont &cont, const S sortMode)
+  void sort(typename T::cont &cont, S sortMode)
   {
-    if (sortMode == nullptr)
-    {
-      std::cerr << "Wrong sort mode";
-      exit(1);
-    }
     using iter = typename T::iter;
     for (iter it1 = T::begin(cont); it1 != T::end(cont); ++it1)
     {

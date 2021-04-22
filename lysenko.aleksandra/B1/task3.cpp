@@ -7,6 +7,12 @@ int lysenko::task3()
 
   std::vector< int > myVect;
 
+  if (std::cin.eof())
+  {
+    std::cerr << "Input can not be empty";
+    return 1;
+  }
+
   while (currOne != 0)
   {
     std::cin >> currOne;

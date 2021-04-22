@@ -7,6 +7,11 @@ int lysenko::task1(const char* order)
     std::vector< int > myVect;
     int member = 0;
 
+    if (std::cin.eof())
+    {
+      throw std::invalid_argument("Empty input");
+    }
+
     while ((std::cin.good()) && (std::cin >> member))
     {
       myVect.push_back(member);

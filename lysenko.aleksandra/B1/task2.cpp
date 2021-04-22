@@ -14,17 +14,17 @@ int lysenko::task2(const char* fileName)
     size_t currPosition = 0;
     std::unique_ptr< char [] > resultArray = std::make_unique< char [] >(currCapacity);
 
+    if (myFile.eof())
+    {
+      std::cerr << "File can not be empty";
+      return 1;
+    }
+
     while (!myFile.eof())
     {
       currCapacity *= 2;
       std::unique_ptr< char []> tempArray = std::make_unique< char [] >(currCapacity);
       myFile.read(tempArray.get() + currPosition, currCapacity - currPosition);
-
-      if (currPosition == 0)
-      {
-        std::cerr <<  "File can not be empty";
-        return 1;
-      }
 
       for (size_t i = 0; i < currPosition; ++i)
       {

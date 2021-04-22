@@ -2,7 +2,7 @@
 
 namespace lysenko
 {
-  void fillRandom(std::vector < double > myVect, int size);
+  void fillRandom(double * myVectPointer, int size);
 }
 
 int lysenko::task4(const char* order, const char* numberOfArguments)
@@ -36,7 +36,7 @@ int lysenko::task4(const char* order, const char* numberOfArguments)
 
   std::vector < double > myVect;
 
-  fillRandom(myVect, size);
+  fillRandom(myVect.data(), size);
   lysenko::print< lysenko::strategyForIndex, std::vector< double > >(myVect, 1);
 
   lysenko::sortBubble< lysenko::strategyForAt, std::vector< double > >(myVect, comparator);
@@ -45,11 +45,11 @@ int lysenko::task4(const char* order, const char* numberOfArguments)
   return 0;
 }
 
-void lysenko::fillRandom(std::vector < double > myVect, int size)
+void lysenko::fillRandom(double* myVectPointer, int size)
 {
   for (int i = 0; i < size; ++i)
   {
     double randomOne = -1.0 + 0.01 * (rand() % 201);
-    myVect.push_back(randomOne);
+    myVectPointer[i] = randomOne;
   }
 }

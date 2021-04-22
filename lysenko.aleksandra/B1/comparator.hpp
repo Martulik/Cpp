@@ -23,7 +23,7 @@ bool (*getComparator(const char* order))(const T&, const T&)
   {
     comparator = cmpAscending<T>;
   }
-  else if (strcmp(order, "ascending") == 0)
+  else if (strcmp(order, "descending") == 0)
   {
     comparator = cmpDescending<T>;
   }

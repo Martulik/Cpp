@@ -73,4 +73,4 @@ namespace ferapontov
   };
 }
 
-#endif 
+#endif

@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
   }
 
   int TaskNumber = readArg< int >(argv[1]);
-  
+
   if(TaskNumber > 4 || TaskNumber < 1)
   {
     std::cerr << "Invalid number of the Task";

@@ -2,6 +2,27 @@
 #define FUNCTIONS_HPP
 
 #include <iostream>
+#include <functional>
+
+template< typename T >
+std::function< bool(T, T) > getSortMode(const std::string& mode)
+{
+  if(mode != "ascending" && mode != "descending")
+  {
+    std::cerr << "Invalid sorting mode";
+    std::exit(-1);
+  }
+
+  if(mode == "ascending")
+  {
+    return std::greater< T >();
+  }
+  if(mode == "descending")
+  {
+    return std::less< T >();
+  }
+  return nullptr;
+}
 
 template< typename T>
 void print(const T& arr)

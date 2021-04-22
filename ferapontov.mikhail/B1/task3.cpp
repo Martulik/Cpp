@@ -2,9 +2,7 @@
 #include <iostream>
 #include "functions.hpp"
 
-namespace fer = ferapontov;
-
-void fer::task3()
+void ferapontov::task3()
 {
   int number = 0;
   std::vector< int > vec;
@@ -54,12 +52,9 @@ void fer::task3()
       if(*it % 3 == 0)
       {
         it = vec.insert(++it, 3, 1);
-        it += 2;
+        it += 1;
       }
-      else
-      {
         it++;
-      }
     }
   }
   print(vec);

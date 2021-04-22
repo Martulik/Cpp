@@ -42,5 +42,11 @@ int main(int argc, char *argv[])
   {
     fer::task3();
   }
+  else if(TaskNumber == 4)
+  {
+    std::string mode = readArg< std::string >(argv[2]);
+    int size = readArg< int >(argv[3]);
+    fer::task4(mode, size);
+  }
   return 0;
 }

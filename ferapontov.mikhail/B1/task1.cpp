@@ -5,27 +5,9 @@
 
 namespace fer = ferapontov;
 
-template< typename T >
-std::function< bool(T, T) > getSortMode(const std::string& mode)
-{
-  if(mode == "ascending")
-  {
-    return std::greater< T >();
-  }
-  if(mode == "descending")
-  {
-    return std::less< T >();
-  }
-  return nullptr;
-}
-
 void fer::task1(const std::string& mode)
 {
-  if(mode != "ascending" && mode != "descending")
-  {
-    std::cerr << "Invalid sorting mode";
-    std::exit(-1);
-  }
+  std::function< bool(int, int) > cmp = getSortMode< int >(mode);
 
   int number = 0;
   std::vector< int > vec;
@@ -38,7 +20,7 @@ void fer::task1(const std::string& mode)
     std::cerr << "Read Error\n";
     std::exit(-1);
   }
-  std::function< bool(int, int) > cmp = getSortMode< int >(mode);
+
   std::vector< int > second_vec(vec);
   std::forward_list< int > list(vec.begin(), vec.end());
   fer::sort< int, fer::index_access< int > >(vec, cmp);

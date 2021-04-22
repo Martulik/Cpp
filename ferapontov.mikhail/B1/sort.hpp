@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <iostream>
+
 namespace ferapontov
 {
   template< typename T, typename Strat>

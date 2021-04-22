@@ -10,7 +10,7 @@ namespace ferapontov
   struct index_access
   {
     using iterator_t = size_t;
-    using container_t = std::vector<T>;
+    using container_t = std::vector< T >;
 
     static iterator_t begin(const container_t&)
     {
@@ -32,7 +32,7 @@ namespace ferapontov
   struct at_access
   {
     using iterator_t = size_t;
-    using container_t = std::vector<T>;
+    using container_t = std::vector< T >;
 
     static iterator_t begin(const container_t&)
     {

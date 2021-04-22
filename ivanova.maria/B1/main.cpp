@@ -12,20 +12,20 @@ int main(int argc, char* argv[])
   if ((argc < 2) || (argc > 4))
   {
     std::cerr << ("Function must have more arguments");
-    exitCode = 1;
+    return 1;
   }
-  if (argv[1][1] != '\0')
+  else if (argv[1][1] != '\0')
   {
     std::cerr << "Incorrect task number!";
-    exitCode = 1;
+    return 1;
   }
   const int number = iva::charToInt(argv[1]);
   if (!number)
   {
     std::cerr << "Task number must be integer";
-    exitCode = 1;
+    return 1;
   }
-  if (number == 1 && argc == 3)
+  else if (number == 1 && argc == 3)
   {
     const std::function< bool(int, int) > &sort = iva::getSortMode< int >(argv[2]);
     exitCode = iva::task1(iva::getSortMode< int >(argv[2]));
@@ -47,13 +47,13 @@ int main(int argc, char* argv[])
     else
     {
       std::cerr << " Number Count With Space";
-      exitCode = 1;
+      return 1;
     }
   }
   else
   {
     std::cerr << ("Wrong arguments number");
-    exitCode = 1;
+    return 1;
   }
   return exitCode;
 }

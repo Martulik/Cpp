@@ -121,7 +121,11 @@ namespace ivanova
     {
       return std::greater< T >();
     }
-    return nullptr;
+    else
+    {
+      std::cerr << "Wrong sort mode";
+      exit(1);
+    }
   }
 }
 #endif

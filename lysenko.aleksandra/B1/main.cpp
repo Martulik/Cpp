@@ -8,7 +8,7 @@ namespace lysenko
 {
   int conditionCode = 0;
   bool correctNumberOfArgs(int argc);
-  bool correctData(char* argv);
+  bool correctData(int argc, char* argv[]);
   bool isTypeOfSort(char* argv);
   bool accurateTaskNumber(char* argv, const char* reference);
 }
@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 {
   if (lysenko::correctNumberOfArgs(argc))
   {
-    if (lysenko::correctData(argv[1]))
+    if (lysenko::correctData(argc, argv))
     {
       if (argc == 2)
       {
@@ -37,23 +37,17 @@ int main(int argc, char* argv[])
         }
         else
         {
-          if (lysenko::correctData(argv[2]))
+          if (lysenko::accurateTaskNumber(argv[1], "2"))
           {
-            if (lysenko::accurateTaskNumber(argv[1], "2"))
-            {
-              lysenko::conditionCode = lysenko::task2(argv[2]);
-            }
+            lysenko::conditionCode = lysenko::task2(argv[2]);
           }
         }
       }
       else
       {
-        if ((lysenko::correctData(argv[2]))&& (lysenko::correctData(argv[3])))
+        if (lysenko::accurateTaskNumber(argv[1], "4"))
         {
-          if (lysenko::accurateTaskNumber(argv[1], "4"))
-          {
-            lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
-          }
+          lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
         }
       }
     }
@@ -74,18 +68,21 @@ bool lysenko::correctNumberOfArgs(int argc)
   return 0;
 }
 
-bool lysenko::correctData(char* argv)
+bool lysenko::correctData(int argc, char* argv[])
 {
-  size_t i = 0;
-  while (argv[i] != '\0')
+  for (int i = 1; i < argc; ++i)
   {
-    if (argv[i] == ' ')
+    int j = 0;
+    while (argv[i][j] != '\0')
     {
-      std::cerr << "Invalid second argument";
-      lysenko::conditionCode = 1;
-      return 0;
+      if (argv[i][j] == ' ')
+      {
+        std::cerr << "Invalid second argument";
+        lysenko::conditionCode = 1;
+        return 0;
+      }
+      j += 1;
     }
-    i += 1;
   }
   return 1;
 }

@@ -2,7 +2,6 @@
 
 int lysenko::task3()
 {
-  bool firstOne = 1;
   size_t numberOfMuplipleOfThree = 0;
   int currOne = 1;
 

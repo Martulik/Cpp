@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
   {
     if (iva::checkIsNumber(argv[3]))
     {
-      exitCode = iva::task4(iva::getSortMode< int >(argv[2]), atoi(argv[3]));
+      exitCode = iva::task4(iva::getSortMode< double >(argv[2]), atoi(argv[3]));
     }
     else
     {

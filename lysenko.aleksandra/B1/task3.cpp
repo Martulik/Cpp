@@ -18,7 +18,7 @@ int lysenko::task3()
     }
 
     myVect.push_back(currOne);
-    
+
     if (currOne % 3 == 0)
     {
       numberOfMuplipleOfThree += 1;

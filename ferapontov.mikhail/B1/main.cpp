@@ -45,6 +45,11 @@ int main(int argc, char *argv[])
   }
   else if(TaskNumber == 2)
   {
+    if(argc < 3)
+    {
+      std::cerr << "Invalid Arguments";
+      std::exit(-1);
+    }
     std::string file = readArg< std::string >(argv[2]);
     fer::task2(file);
   }

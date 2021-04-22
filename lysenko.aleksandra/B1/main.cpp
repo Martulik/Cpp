@@ -7,9 +7,9 @@
 namespace lysenko
 {
   int conditionCode = 0;
-  bool correctNumberOfArgs(int argc);///проверяем что argc в диапазоне от 2 до 4, если нет выбрасываем исключение
-  bool correctData(char* argv);///проверяем не содержит ли строка в себе пробелов
-  bool isTypeOfSort(char* argv);///проверяем на ascending/descending и возвращаем 1 в случае совпадения, в противном случае возвращаем 0
+  bool correctNumberOfArgs(int argc);
+  bool correctData(char* argv);
+  bool isTypeOfSort(char* argv);
   bool accurateTaskNumber(char* argv, const char* reference);
 }
 
@@ -59,9 +59,12 @@ int main(int argc, char* argv[])
     }
     else
     {
-      if (lysenko::accurateTaskNumber(argv[1], "4"))
+      if (lysenko::isTypeOfSort(argv[2]))
       {
-        lysenko::conditionCode = lysenko::task4(argv [2], argv[3]);
+        if (lysenko::accurateTaskNumber(argv[1], "4"))
+        {
+          lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
+        }
       }
     }
   }

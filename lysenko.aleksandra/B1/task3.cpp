@@ -9,22 +9,26 @@ int lysenko::task3()
 
   while (currOne != 0)
   {
-    std::cin >> currOne;
-
     if (std::cin.eof())
     {
       std::cerr << "Input can not be empty or not contain 0";
       return 1;
     }
-
-    if ((currOne == 0)&&(firstOne))
+    if (!firstOne)
     {
-      std::cerr << "Input can not be empty";
-      return 1;
+      myVect.push_back(currOne);
     }
+    else
+    {
+      firstOne = 0;
+    }
+    std::cin >> currOne;
+  }
 
-    myVect.push_back(currOne);
-    firstOne = 0;
+  if (myVect.empty())
+  {
+    std::cerr << "Input can not contain only 0";
+    return 1;
   }
 
   std::vector< int >::iterator iterator = myVect.begin();

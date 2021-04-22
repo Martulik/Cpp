@@ -59,7 +59,7 @@ int lysenko::task3()
       iterator += 1;
     }
   }
-  
+
   lysenko::print< lysenko::strategyForIndex, std::vector< int > >(myVect, 1);
 
   return 0;

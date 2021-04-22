@@ -54,7 +54,7 @@ int lysenko::task3()
   {
     std::vector<int>::iterator iterator = myVect.begin();
     myVect.reserve(myVect.size() + numberOfMuplipleOfThree * 3);
-    iterator =myVect.begin();
+    iterator = myVect.begin();
     while (iterator != myVect.end())
     {
       if ((*iterator) % 3 == 0)

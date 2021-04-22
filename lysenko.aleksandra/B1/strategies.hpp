@@ -1,6 +1,8 @@
 #ifndef STRATEGIES_HPP
 #define STRATEGIES_HPP
 
+#include <cstddef>
+
 namespace lysenko
 {
   template<typename Container>

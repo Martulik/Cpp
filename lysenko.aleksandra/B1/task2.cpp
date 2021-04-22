@@ -11,7 +11,7 @@ int lysenko::task2(const char* fileName)
   if (myFile.is_open())
   {
     size_t currCapacity = 1;
-    std::streamsize currPosition = 0;
+    size_t currPosition = 0;
     std::unique_ptr< char [] > resultArray = std::make_unique< char [] >(currCapacity);
 
     while (!myFile.eof())

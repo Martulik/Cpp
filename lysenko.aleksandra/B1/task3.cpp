@@ -3,10 +3,8 @@
 int lysenko::task3()
 {
   unsigned int numberOfMultipleOfThree = 0;
-  unsigned int currNumber = 0;
   bool firstSymbol = 1;
   int currOne = 1;
-  size_t currCapacity = 1;
 
   std::vector< int > myVect;
 

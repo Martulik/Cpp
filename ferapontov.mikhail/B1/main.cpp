@@ -35,6 +35,11 @@ int main(int argc, char *argv[])
   }
   else if(TaskNumber == 1)
   {
+    if(argc < 3)
+    {
+      std::cerr << "Invalid Arguments";
+      std::exit(-1);
+    }
     std::string mode = readArg< std::string >(argv[2]);
     fer::task1(mode);
   }
@@ -44,6 +49,11 @@ int main(int argc, char *argv[])
   }
   else if(TaskNumber == 4)
   {
+    if(argc < 4)
+    {
+      std::cerr << "Invalid Arguments";
+      std::exit(-1);
+    }
     std::string mode = readArg< std::string >(argv[2]);
     int size = readArg< int >(argv[3]);
     fer::task4(mode, size);

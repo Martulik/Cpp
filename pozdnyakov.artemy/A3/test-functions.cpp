@@ -35,19 +35,19 @@ void testMove(poz::UniqueShape shape)
   BOOST_CHECK_CLOSE(shape->getFrameRect().pos.y - dy, prevY, delta);
 }
 
-poz::UniqueShape makeRect()
+poz::UniqueShape makeRect(double width, double height, poz::point_t pos)
 {
-  const double width = 99.3;
-  const double height = 7;
-  const poz::point_t pos{13, 12};
+  //const double width = 99.3;
+  //const double height = 7;
+  //const poz::point_t pos{13, 12};
   poz::UniqueShape shape = std::make_unique< poz::Rectangle >(width, height, pos);
   return shape;
 }
 
-poz::UniqueShape makeCircle()
+poz::UniqueShape makeCircle(double rad, poz::point_t pos)
 {
-  const double rad = 88;
-  const poz::point_t pos{77, 13};
+  //const double rad = 88;
+  //const poz::point_t pos{77, 13};
   poz::UniqueShape shape = std::make_unique< poz::Circle >(rad, pos);
   return shape;
 }
@@ -55,8 +55,8 @@ poz::UniqueShape makeCircle()
 poz::UniqueShape makeCompositeShape()
 {
   poz::UniqueShapes shapes = std::make_unique< poz::UniqueShape[] >(2);
-  shapes[0] = makeCircle();
-  shapes[1] = makeRect();
+  shapes[0] = makeCircle(88, poz::point_t{77, 13});
+  shapes[1] = makeRect(99.3, 7, poz::point_t{13, 12});
   poz::UniqueShape cshape = std::make_unique< poz::CompositeShape >(std::move(shapes), 2);
   return cshape;
 }

@@ -7,11 +7,11 @@ BOOST_AUTO_TEST_SUITE(test_Circle)
 
   BOOST_AUTO_TEST_CASE(test_scale)
   {
-    testScale(makeCircle());
+    testScale(makeCircle(88, poz::point_t{77, 13}));
   }
   BOOST_AUTO_TEST_CASE(test_move)
   {
-    testMove(makeCircle());
+    testMove(makeCircle(88, poz::point_t{77, 13}));
   }
   BOOST_AUTO_TEST_CASE(test_shape_arg_exception)
   {

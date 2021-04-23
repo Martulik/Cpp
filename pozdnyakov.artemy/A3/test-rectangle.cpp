@@ -7,11 +7,11 @@ BOOST_AUTO_TEST_SUITE(test_Rectangle)
 
   BOOST_AUTO_TEST_CASE(test_scale)
   {
-    testScale(makeRect());
+    testScale(makeRect(99.3, 7, poz::point_t{13, 12}));
   }
   BOOST_AUTO_TEST_CASE(test_move)
   {
-    testMove(makeRect());
+    testMove(makeRect(99.3, 7, poz::point_t{13, 12}));
   }
   BOOST_AUTO_TEST_CASE(test_shape_arg_exception)
   {

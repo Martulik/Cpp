@@ -4,6 +4,7 @@
 #include "sort.hpp"
 #include "strategy.hpp"
 #include <random>
+#include <iomanip>
 
 void ferapontov::task4(const std::string& mode, int size)
 {
@@ -16,6 +17,7 @@ void ferapontov::task4(const std::string& mode, int size)
     vec.push_back(dist(rd));
   }
 
+  std::cout << std::setprecision(2);
   print(vec);
   ferapontov::sort< double, ferapontov::at_access< double > >(vec, cmp);
   print(vec);

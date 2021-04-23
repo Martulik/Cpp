@@ -1,21 +1,23 @@
 #include "base-types.hpp"
 
-double pozdnyakov::rectangle_t::getMinX()
+namespace poz = pozdnyakov;
+
+double poz::getMinX(poz::rectangle_t rect)
 {
-  return pos.x - width / 2;
+  return rect.pos.x - rect.width / 2;
 }
 
-double pozdnyakov::rectangle_t::getMaxX()
+double poz::getMaxX(poz::rectangle_t rect)
 {
-  return pos.x + width / 2;
+  return rect.pos.x + rect.width / 2;
 }
 
-double pozdnyakov::rectangle_t::getMinY()
+double poz::getMinY(poz::rectangle_t rect)
 {
-  return pos.y - height / 2;
+  return rect.pos.y - rect.height / 2;
 }
 
-double pozdnyakov::rectangle_t::getMaxY()
+double poz::getMaxY(poz::rectangle_t rect)
 {
-  return pos.y + height / 2;
+  return rect.pos.y + rect.height / 2;
 }

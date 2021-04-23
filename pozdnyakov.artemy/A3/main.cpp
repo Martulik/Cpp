@@ -14,9 +14,9 @@ int main()
     double rad = 10;
     double width = 20;
     double height = 10;
-    UniqueShape circle = std::make_unique< poz::Circle >(rad, o);
-    UniqueShape rect = std::make_unique< poz::Rectangle >(width, height, o);
-    UniqueShapes shapes = std::make_unique< UniqueShape[] >(2);
+    poz::UniqueShape circle = std::make_unique< poz::Circle >(rad, o);
+    poz::UniqueShape rect = std::make_unique< poz::Rectangle >(width, height, o);
+    poz::UniqueShapes shapes = std::make_unique< poz::UniqueShape[] >(2);
     shapes[0] = std::move(circle);
     shapes[1] = std::move(rect);
     std::cout << shapes[0]->getArea() << '\n';

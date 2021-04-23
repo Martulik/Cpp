@@ -28,10 +28,10 @@ poz::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   area_ = 0;
   for (int i = 0; i < shapesLen; i++)
   {
-    minX = std::max(minX, shapes_[i]->getFrameRect().getMinX());
-    maxY = std::max(maxY, shapes_[i]->getFrameRect().getMaxY());
-    minY = std::max(minY, shapes_[i]->getFrameRect().getMinY());
-    maxX = std::max(maxX, shapes_[i]->getFrameRect().getMaxX());
+    minX = std::max(minX, getMinX(shapes_[i]->getFrameRect()));
+    maxY = std::max(maxY, getMaxY(shapes_[i]->getFrameRect()));
+    minY = std::max(minY, getMinY(shapes_[i]->getFrameRect()));
+    maxX = std::max(maxX, getMaxX(shapes_[i]->getFrameRect()));
     area_ += shapes_[i]->getArea();
   }
   double width = (maxX - minX) / 2;
@@ -51,8 +51,8 @@ poz::rectangle_t poz::CompositeShape::getFrameRect() const
 
 void poz::CompositeShape::move(poz::point_t point)
 {
-  double dx = point.x - frame_.pos.x;
-  double dy = point.y - frame_.pos.y;
+  double dx = point.x - frame_.getFrameRect().pos.x;
+  double dy = point.y - frame_.getFrameRect().pos.y;
   frame_.move(point);
   for (int i = 0; i < shapesLen_; i++)
   {

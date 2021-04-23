@@ -39,22 +39,3 @@ void poz::Rectangle::safeScale(double coef)
   rec_.height *= coef;
 }
 
-double poz::rectangle_t::getMinX()
-{
-  return pos.x - width / 2;
-}
-
-double poz::rectangle_t::getMaxX()
-{
-  return pos.x + width / 2;
-}
-
-double poz::rectangle_t::getMinY()
-{
-  return pos.y - height / 2;
-}
-
-double poz::rectangle_t::getMaxY()
-{
-  return pos.y + height / 2;
-}

@@ -15,6 +15,11 @@ namespace pozdnyakov
     double width;
     double height;
   };
+
+  double getMinX(rectangle_t rect);
+  double getMaxX(rectangle_t rect);
+  double getMinY(rectangle_t rect);
+  double getMaxY(rectangle_t rect);
 }
 
 #endif

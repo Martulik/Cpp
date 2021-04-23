@@ -3,7 +3,7 @@
 
 namespace poz = pozdnyakov;
 
-void poz::Shape::safeScale(double coef)
+void poz::Shape::scale(double coef)
 {
   if (coef <= 0)
   {

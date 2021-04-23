@@ -3,27 +3,28 @@
 
 #include <memory>
 #include "shape.hpp"
-
-using UniqueShapes = std::unique_ptr< std::unique_ptr< pozdnyakov::Shape >[] >;
-using UniqueShape = std::unique_ptr< pozdnyakov::Shape >;
+#include "rectangle.hpp"
 
 namespace pozdnyakov
 {
-  class CompositeShape: public pozdnyakov::Shape
+  using UniqueShapes = std::unique_ptr< std::unique_ptr< Shape >[] >;
+  using UniqueShape = std::unique_ptr< Shape >;
+
+  class CompositeShape: public Shape
   {
   public:
     CompositeShape(UniqueShapes shapes, int shapesLen);
     ~CompositeShape() override = default;
     double getArea() const override;
-    pozdnyakov::rectangle_t getFrameRect() const override;
-    void move(pozdnyakov::point_t point) override;
+    rectangle_t getFrameRect() const override;
+    void move(point_t point) override;
     void move(double dx, double dy) override;
 
   private:
     UniqueShapes shapes_;
     int shapesLen_;
     int area_;
-    pozdnyakov::rectangle_t frame_;
+    Rectangle frame_;
     void safeScale(double coef) override;
   };
 }

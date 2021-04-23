@@ -18,6 +18,10 @@ namespace pozdnyakov
   private:
     rectangle_t rec_;
     void safeScale(double coef) override;
+    double getMinX();
+    double getMaxX();
+    double getMinY();
+    double getMaxY();
   };
 }
 

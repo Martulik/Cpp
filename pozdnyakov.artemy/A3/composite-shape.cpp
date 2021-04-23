@@ -1,25 +1,28 @@
 #include "composite-shape.hpp"
-#include "exceptions.hpp"
 #include <limits>
+#include <stdexcept>
 #include <algorithm>
 
-pozdnyakov::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
+namespace poz = pozdnyakov;
+
+poz::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   shapes_(std::move(shapes)),
-  shapesLen_(shapesLen)
+  shapesLen_(shapesLen),
+  frame_(0, 0, poz::point_t{0, 0})
 {
   if (shapes_ == nullptr)
   {
-    throw ShapeArgException();
+    throw std::invalid_argument("Invalid argument");
   }
   for (int i = 0; i < shapesLen; i++)
   {
     if (shapes_[i] == nullptr)
     {
-      throw ShapeArgException();
+      throw std::invalid_argument("Invalid argument");
     }
   }
-  double minX = std::numeric_limits<double>::min();
-  double maxY = std::numeric_limits<double>::max();
+  double minX = std::numeric_limits< double >::min();
+  double maxY = std::numeric_limits< double >::max();
   double minY = minX;
   double maxX = maxY;
   area_ = 0;
@@ -33,48 +36,47 @@ pozdnyakov::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   }
   double width = (maxX - minX) / 2;
   double height = (maxY - minY) / 2;
-  frame_ = pozdnyakov::rectangle_t{pozdnyakov::point_t{minX + width, minY + height}, width, height};
+  frame_ = poz::Rectangle(width, height, poz::point_t{minX + width, minY + height});
 }
 
-double pozdnyakov::CompositeShape::getArea() const
+double poz::CompositeShape::getArea() const
 {
   return area_;
 }
 
-pozdnyakov::rectangle_t pozdnyakov::CompositeShape::getFrameRect() const
+poz::rectangle_t poz::CompositeShape::getFrameRect() const
 {
-  return frame_;
+  return frame_.getFrameRect();
 }
 
-void pozdnyakov::CompositeShape::move(pozdnyakov::point_t point)
+void poz::CompositeShape::move(poz::point_t point)
 {
   double dx = point.x - frame_.pos.x;
   double dy = point.y - frame_.pos.y;
-  frame_.pos.x += dx;
-  frame_.pos.y += dy;
+  frame_.move(point);
   for (int i = 0; i < shapesLen_; i++)
   {
     shapes_[i]->move(dx, dy);
   }
 }
 
-void pozdnyakov::CompositeShape::move(double dx, double dy)
+void poz::CompositeShape::move(double dx, double dy)
 {
-  frame_.pos.x += dx;
-  frame_.pos.y += dy;
+  frame_.move(dx, dy);
   for (int i = 0; i < shapesLen_; i++)
   {
     shapes_[i]->move(dx, dy);
   }
 }
 
-void pozdnyakov::CompositeShape::safeScale(double coef)
+void poz::CompositeShape::safeScale(double coef)
 {
   area_ *= coef * coef;
-  pozdnyakov::point_t newPoint;
+  frame_.scale(coef);
+  poz::point_t newPoint;
   for (int i = 0; i < shapesLen_; i++)
   {
-    newPoint = pozdnyakov::point_t{shapes_[i]->getFrameRect().pos.x * coef, shapes_[i]->getFrameRect().pos.y * coef};
+    newPoint = poz::point_t{shapes_[i]->getFrameRect().pos.x * coef, shapes_[i]->getFrameRect().pos.y * coef};
     shapes_[i]->move(newPoint);
     shapes_[i]->scale(coef);
   }

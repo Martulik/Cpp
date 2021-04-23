@@ -2,6 +2,8 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
+namespace poz = pozdnyakov;
+
 void testScale(UniqueShape shape)
 {
   double area = shape->getArea();
@@ -25,7 +27,7 @@ void testMove(UniqueShape shape)
   BOOST_CHECK_CLOSE(shape->getFrameRect().pos.y - dy, prevY, delta);
   prevX = shape->getFrameRect().pos.x;
   prevY = shape->getFrameRect().pos.y;
-  pozdnyakov::point_t point{431, -11};
+  poz::point_t point{431, -11};
   dx = point.x - shape->getFrameRect().pos.x;
   dy = point.y - shape->getFrameRect().pos.y;
   shape->move(point);
@@ -37,16 +39,16 @@ UniqueShape makeRect()
 {
   const double width = 99.3;
   const double height = 7;
-  const pozdnyakov::point_t pos{13, 12};
-  UniqueShape shape = std::make_unique< pozdnyakov::Rectangle >(width, height, pos);
+  const poz::point_t pos{13, 12};
+  UniqueShape shape = std::make_unique< poz::Rectangle >(width, height, pos);
   return shape;
 }
 
 UniqueShape makeCircle()
 {
   const double rad = 88;
-  const pozdnyakov::point_t pos{77, 13};
-  UniqueShape shape = std::make_unique< pozdnyakov::Circle >(rad, pos);
+  const poz::point_t pos{77, 13};
+  UniqueShape shape = std::make_unique< poz::Circle >(rad, pos);
   return shape;
 }
 
@@ -55,6 +57,6 @@ UniqueShape makeCompositeShape()
   UniqueShapes shapes = std::make_unique< UniqueShape[] >(2);
   shapes[0] = makeCircle();
   shapes[1] = makeRect();
-  UniqueShape cshape = std::make_unique< pozdnyakov::CompositeShape >(std::move(shapes), 2);
+  UniqueShape cshape = std::make_unique< poz::CompositeShape >(std::move(shapes), 2);
   return cshape;
 }

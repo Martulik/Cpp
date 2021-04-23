@@ -1,11 +1,13 @@
 #include "shape.hpp"
-#include "exceptions.hpp"
+#include <stdexcept>
 
-void pozdnyakov::Shape::scale(double coef)
+namespace poz = pozdnyakov;
+
+void poz::Shape::scale(double coef)
 {
   if (coef <= 0)
   {
-    throw ScaleException();
+    throw std::invalid_argument("Invalid scale argument");
   }
   safeScale(coef);
 }

@@ -8,7 +8,7 @@ namespace poz = pozdnyakov;
 poz::CompositeShape::CompositeShape(UniqueShapes shapes, int shapesLen):
   shapes_(std::move(shapes)),
   shapesLen_(shapesLen),
-  frame_(0, 0, poz::point_t{0, 0})
+  frame_(1, 1, poz::point_t{0, 0})
 {
   if (shapes_ == nullptr)
   {
@@ -69,15 +69,15 @@ void poz::CompositeShape::move(double dx, double dy)
   }
 }
 
-void poz::CompositeShape::safeScale(double coef)
+void poz::CompositeShape::unsafeScale(double coef)
 {
   area_ *= coef * coef;
-  frame_.scale(coef);
+  frame_.unsafeScale(coef);
   poz::point_t newPoint;
   for (int i = 0; i < shapesLen_; i++)
   {
     newPoint = poz::point_t{shapes_[i]->getFrameRect().pos.x * coef, shapes_[i]->getFrameRect().pos.y * coef};
     shapes_[i]->move(newPoint);
-    shapes_[i]->scale(coef);
+    shapes_[i]->unsafeScale(coef);
   }
 }

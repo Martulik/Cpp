@@ -36,7 +36,7 @@ void poz::Circle::move(const double dx, const double dy)
   center_.y += dy;
 }
 
-void poz::Circle::safeScale(double coef)
+void poz::Circle::unsafeScale(double coef)
 {
   rad_ *= coef;
 }

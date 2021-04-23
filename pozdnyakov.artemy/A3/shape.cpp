@@ -3,11 +3,11 @@
 
 namespace poz = pozdnyakov;
 
-void poz::Shape::scale(double coef)
+void poz::Shape::safeScale(double coef)
 {
   if (coef <= 0)
   {
-    throw std::invalid_argument("Invalid scale argument");
+    throw std::invalid_argument("Invalid shape argument");
   }
-  safeScale(coef);
+  unsafeScale(coef);
 }

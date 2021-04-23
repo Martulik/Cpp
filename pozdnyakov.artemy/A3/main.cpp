@@ -22,7 +22,7 @@ int main()
     std::cout << shapes[0]->getArea() << '\n';
     poz::CompositeShape cshape(std::move(shapes), 2);
     std::cout << "The area of composite shape is " << cshape.getArea() << '\n';
-    cshape.scale(2);
+    cshape.safeScale(2);
     std::cout << "The area of composite shape is " << cshape.getArea() << '\n';
   }
   catch(...)

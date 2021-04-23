@@ -33,7 +33,7 @@ void poz::Rectangle::move(const double dx, const double dy)
   rec_.pos.y += dy;
 }
 
-void poz::Rectangle::safeScale(double coef)
+void poz::Rectangle::unsafeScale(double coef)
 {
   rec_.width *= coef;
   rec_.height *= coef;

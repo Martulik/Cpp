@@ -19,13 +19,13 @@ namespace pozdnyakov
     rectangle_t getFrameRect() const override;
     void move(point_t point) override;
     void move(double dx, double dy) override;
+    void unsafeScale(double coef) override;
 
   private:
     UniqueShapes shapes_;
     int shapesLen_;
     int area_;
     Rectangle frame_;
-    void safeScale(double coef) override;
   };
 }
 

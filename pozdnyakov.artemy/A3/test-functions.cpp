@@ -8,11 +8,11 @@ void testScale(poz::UniqueShape shape)
 {
   double area = shape->getArea();
   double k1 = 0.2;
-  shape->scale(k1);
+  shape->safeScale(k1);
   BOOST_CHECK_CLOSE(shape->getArea(), area * k1 * k1, delta);
   area = shape->getArea();
   double k2 = 10;
-  shape->scale(k2);
+  shape->safeScale(k2);
   BOOST_CHECK_CLOSE(shape->getArea(), area * k2 * k2, delta);
 }
 

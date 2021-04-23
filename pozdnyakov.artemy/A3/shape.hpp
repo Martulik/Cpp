@@ -13,10 +13,10 @@ namespace pozdnyakov
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(point_t point) = 0;
     virtual void move(double dx, double dy) = 0;
-    void scale(double coef);
+    void safeScale(double coef);
+    virtual void unsafeScale(double coef) = 0;
 
   private:
-    virtual void safeScale(double coef) = 0;
   };
 }
 

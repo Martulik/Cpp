@@ -1,8 +1,8 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include "shape.hpp"
 #include <memory>
+#include "shape.hpp"
 
 using UniqueShapes = std::unique_ptr< std::unique_ptr< pozdnyakov::Shape >[] >;
 using UniqueShape = std::unique_ptr< pozdnyakov::Shape >;

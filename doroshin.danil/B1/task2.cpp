@@ -2,19 +2,18 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <limits>
 #include <memory>
 #include <stdexcept>
 
 std::pair< std::unique_ptr< char[] >, size_t > read(std::ifstream& in)
 {
-  const size_t chunk_len = 1024;
+  constexpr size_t chunk_len = 1024;
   size_t capacity = chunk_len;
   size_t size = 0;
   auto buffer = std::make_unique< char[] >(capacity);
 
   while(in.good()) {
-    in.read(&buffer[size], chunk_len);
+    in.read(buffer.get() + size, chunk_len);
     auto temp = std::make_unique< char[] >(capacity + chunk_len);
     std::move(buffer.get(), buffer.get() + capacity, temp.get());
     std::swap(buffer, temp);
@@ -30,7 +29,7 @@ void doroshin::task2(std::string filename)
   if(!in.is_open()) {
     throw std::runtime_error("Could not open file");
   }
-  auto arr_len = read(in);
+  std::pair< std::unique_ptr< char[] >, size_t > arr_len = read(in);
   std::unique_ptr< char[] > arr = std::move(arr_len.first);
   size_t len = arr_len.second;
   std::vector< char > v_buf(arr.get(), arr.get() + len);

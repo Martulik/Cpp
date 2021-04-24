@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     std::cerr << "Task not specified";
     return 1;
   }
-  boost::optional< unsigned long > taskNumber = shilyaev::toNatural(argv[1]);
+  boost::optional< int > taskNumber = shilyaev::toNatural(argv[1]);
   if (!taskNumber) {
     std::cerr << "Task must be an integer";
     return 1;

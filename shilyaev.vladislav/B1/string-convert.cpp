@@ -1,17 +1,14 @@
 #include "string-convert.hpp"
 
-boost::optional< unsigned long > shilyaev::toNatural(const std::string &string)
+boost::optional< int > shilyaev::toNatural(const char *string)
 {
-  if (string.empty()) {
+  if (string[0] == '\0') {
     return {};
   }
-  unsigned long result = 0;
-  for (std::string::const_iterator i = string.cbegin(); i < string.cend(); i++) {
-    result *= 10;
-    if (!isdigit(*i)) {
+  for (size_t i = 0; string[i] != '\0'; i++) {
+    if (!isdigit(string[i])) {
       return {};
     }
-    result += *i - '0';
   }
-  return {result};
+  return {std::atoi(string)};
 }

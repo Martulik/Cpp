@@ -18,8 +18,8 @@ namespace shilyaev {
     using Item = double;
     using Compare = std::function< bool(Item, Item) >;
     boost::optional< Compare > compare = getCompareFunction< Item >(argv[2]);
-    boost::optional< unsigned long > size = toNatural(argv[3]);
-    if (!size || !compare || *size == 0) {
+    boost::optional< int > size = toNatural(argv[3]);
+    if (!size || !compare || *size <= 0) {
       std::cerr << "Invalid arguments";
       return 1;
     }

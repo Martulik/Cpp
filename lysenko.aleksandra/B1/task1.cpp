@@ -15,6 +15,12 @@ int lysenko::task1(const char* order)
     myVect.push_back(member);
   }
 
+  if (!(std::cin.eof()))
+  {
+    std::cerr << "Invalid input for task 1";
+    return 1;
+  }
+
   bool (*comparator)(const int&, const int&) = getComparator< int >(order);
 
   std::forward_list< int > myList(myVect.begin(), myVect.end());

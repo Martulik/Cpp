@@ -7,12 +7,6 @@ int lysenko::task3()
 
   std::vector< int > myVect;
 
-  if (std::cin.bad())
-  {
-    std::cerr << "Input error";
-    return 1;
-  }
-
   while (currOne != 0)
   {
     std::cin >> currOne;
@@ -42,8 +36,7 @@ int lysenko::task3()
 
   if (myVect.empty())
   {
-    std::cerr << "Input can not contain only 0";
-    return 1;
+    return 0;
   }
 
   std::vector< int >::iterator iterator = myVect.begin();

@@ -22,7 +22,7 @@ int lysenko::task3()
     {
       return 0;
     }
-     
+
     myVect.push_back(currOne);
 
     if (currOne % 3 == 0)

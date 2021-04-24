@@ -20,6 +20,11 @@ int lysenko::task2(const char* fileName)
     size_t currPosition = 0;
     std::unique_ptr< char[] > resultArray = std::make_unique< char[] >(currCapacity);
 
+    if (myFile.eof())
+    {
+      return 0;
+    }
+
     while (!myFile.eof())
     {
       currCapacity *= 2;
@@ -42,7 +47,7 @@ int lysenko::task2(const char* fileName)
       currPosition += myFile.gcount();
     }
 
-    std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition);
+    std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition + 1);
 
     lysenko::print< lysenko::strategyForAt, std::vector< char > >(myVector, 0);
   }

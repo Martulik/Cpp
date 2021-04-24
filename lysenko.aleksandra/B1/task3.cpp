@@ -11,15 +11,9 @@ int lysenko::task3()
   {
     std::cin >> currOne;
 
-    if (std::cin.fail() || std::cin.bad())
+    if (std::cin.fail() && (!std::cin.eof()))
     {
       std::cerr << "Input error";
-      return 1;
-    }
-
-    if (std::cin.eof())
-    {
-      std::cerr << "Input can not be empty or not contain 0";
       return 1;
     }
 

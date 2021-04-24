@@ -15,6 +15,12 @@ T readArg(std::string arg)
     std::cerr << "Invalid Argument";
     std::exit(1);
   }
+
+  in.get();
+  if(!in.eof()) {
+    std::cerr << "Extra symbols";
+    std::exit(-1);
+  }
   return res;
 }
 

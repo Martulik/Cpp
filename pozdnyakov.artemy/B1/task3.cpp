@@ -10,11 +10,13 @@ void poz::task3()
 {
   std::vector< int > vector;
   int n;
-  std::cin >> n;
-  while (n != 0)
+  while (std::cin >> n && n != 0)
   {
+    if (std::cin.fail() && !std::cin.eof())
+    {
+      throw std::runtime_error("Invalid input");
+    }
     vector.push_back(n);
-    std::cin >> n;
   }
   if (*std::prev(vector.end()) == 1)
   {

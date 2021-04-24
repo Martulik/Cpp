@@ -8,7 +8,7 @@ int lysenko::task1(const char* order)
     return 1;
   }
 
-  std::vector< int > myVect;
+  std::vector< int > myVect(1);
   int member = 0;
 
   while ((std::cin.good()) && (std::cin >> member))

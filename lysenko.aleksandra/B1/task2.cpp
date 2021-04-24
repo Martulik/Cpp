@@ -9,12 +9,6 @@ int lysenko::task2(const char* fileName)
 
   myFile.open(fileName);
 
-  if (myFile.bad())
-  {
-    std::cerr << "Input error";
-    return 1;
-  }
-
   if (myFile.is_open())
   {
     size_t currCapacity = 1;

@@ -27,11 +27,12 @@ void ferapontov::task3()
     std::exit(2);
   }
 
-  std::vector< int >::iterator it = vec.begin();
-  int lastElem = vec.back();
 
   if(!(vec.empty()))
   {
+    std::vector< int >::iterator it = vec.begin();
+    int lastElem = vec.back();
+
     if (lastElem == 1)
     {
       while (it != vec.end())

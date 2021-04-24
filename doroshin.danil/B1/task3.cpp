@@ -47,7 +47,7 @@ void put1after3(std::vector< int >& vec)
   }
 }
 
-void dan::filterInput()
+void dan::task3()
 {
   std::vector< int > values = input_int_vec();
   if(values.empty()) {

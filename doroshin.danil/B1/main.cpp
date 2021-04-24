@@ -73,19 +73,19 @@ int main(int argc, char* argv[])
       const std::vector< int > values = readUntilEof< int >();
       const std::forward_list< int > l_values(values.begin(), values.end());
 
-      dan::doSort< dan::VectorIndexStrat< int > >(values, cmp);
-      dan::doSort< dan::VectorAtStrat< int > >(values, cmp);
-      dan::doSort< dan::ListIterStrat< int > >(l_values, cmp);
+      dan::task1< dan::VectorIndexStrat< int > >(values, cmp);
+      dan::task1< dan::VectorAtStrat< int > >(values, cmp);
+      dan::task1< dan::ListIterStrat< int > >(l_values, cmp);
     }
     else if(task_num == 2) {
       if(argc < 3) {
         throw std::runtime_error("No filename");
       }
       std::string filename = argv[2];
-      dan::readFile(filename);
+      dan::task2(filename);
     }
     else if(task_num == 3) {
-      dan::filterInput();
+      dan::task3();
     }
     else if(task_num == 4) {
       if(argc < 3) {
@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
       }
       const size_t size = readArg< size_t >(argv[3]);
       std::function< bool(double, double) > cmp = getOrder< double >(argv[2]);
-      dan::testRandom(size, cmp);
+      dan::task4(size, cmp);
     }
     else {
       throw std::runtime_error("Unknown task");

@@ -12,7 +12,7 @@ namespace doroshin
   void fillRandom(double* array, size_t size);
 
   template< typename Cmp >
-  void testRandom(const size_t size, Cmp cmp)
+  void task4(const size_t size, Cmp cmp)
   {
     std::vector< double > array(size);
     fillRandom(array.data(), array.size());

@@ -8,7 +8,7 @@
 
 namespace diurdeva {
   void fillRandom(double *array, size_t size);
-  bool checkIsNumber(const std::string &str);
+  bool checkIsNumber(const char* string);
 
   template< typename T >
   void print(const T &collection)

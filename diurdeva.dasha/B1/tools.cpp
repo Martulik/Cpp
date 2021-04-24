@@ -9,10 +9,12 @@ void diurdeva::fillRandom(double *array, size_t size)
   }
 }
 
-bool diurdeva::checkIsNumber(const std::string &str)
+bool diurdeva::checkIsNumber(const char* string)
 {
-  for (int i = 0; i < int(str.length()); i++) {
-    if (str[i] < '0' || str[i] > '9') {
+  for (size_t i = 0; i < strlen(string); i++)
+  {
+    if ((string[i] < '0') || (string[i] > '9'))
+    {
       return false;
     }
   }

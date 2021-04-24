@@ -13,13 +13,13 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  char *ptr = nullptr;
-  int taskNumber = std::strtol(argv[1], &ptr, 10);
-  if (*ptr != 0x00) {
-    std::cerr << "Incorrect argument.\n";
+  if (!lab::checkIsNumber(argv[1]))
+  {
+    std::cerr << "Incorrect first argument (task number)";
     return 1;
   }
 
+  int taskNumber = atoi(argv[1]);
   std::string error = "Null";
   int code = 0;
 

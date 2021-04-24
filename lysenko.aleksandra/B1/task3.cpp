@@ -3,6 +3,7 @@
 int lysenko::task3()
 {
   size_t numberOfMuplipleOfThree = 0;
+  int numberOfOperation = 1;
   int currOne = 1;
 
   std::vector< int > myVect;
@@ -11,18 +12,25 @@ int lysenko::task3()
   {
     std::cin >> currOne;
 
-    if (std::cin.fail() && (!std::cin.eof()))
+    if (std::cin.fail() && (numberOfOperation != 1))
     {
       std::cerr << "Input error";
       return 1;
     }
 
+    if (std::cin.fail() && (numberOfOperation == 1))
+    {
+      return 0;
+    }
+     
     myVect.push_back(currOne);
 
     if (currOne % 3 == 0)
     {
       numberOfMuplipleOfThree += 1;
     }
+
+    numberOfOperation += 1;
   }
 
   myVect.pop_back();

@@ -13,14 +13,14 @@ void poz::task1(char* argv[])
 {
   std::string asc = "ascending";
   std::string desc = "descending";
-  bool isAscending;
+  std::function< bool(double, double) > compare;
   if (!strcmp(argv[0], asc.c_str()))
   {
-    isAscending = true;
+    compare = std::greater< double >();
   }
   else if (!strcmp(argv[0], desc.c_str()))
   {
-    isAscending = false;
+    compare = std::less< double >();
   }
   else
   {
@@ -39,9 +39,9 @@ void poz::task1(char* argv[])
   std::vector< int > indexVector(vector);
   std::vector< int > atVector(vector);
   std::list< int > list(vector.begin(), vector.end());
-  poz::sort< poz::IndexStrategy< int > >(indexVector, isAscending);
-  poz::sort< poz::VectorAtStrategy< int > >(atVector, isAscending);
-  poz::sort< poz::ListStrategy< int > >(list, isAscending);
+  poz::sort< poz::IndexStrategy< int > >(indexVector, compare);
+  poz::sort< poz::VectorAtStrategy< int > >(atVector, compare);
+  poz::sort< poz::ListStrategy< int > >(list, compare);
   poz::print(indexVector, std::cout);
   poz::print(atVector, std::cout);
   poz::print(list, std::cout);

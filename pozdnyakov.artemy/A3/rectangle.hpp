@@ -14,11 +14,12 @@ namespace pozdnyakov
     rectangle_t getFrameRect() const override;
     void move(point_t point) override;
     void move(double dx, double dy) override;
-    void scale(double coef) override;
+    void unsafeScale(double coef) override;
 
   private:
     rectangle_t rec_;
   };
+
 }
 
 #endif

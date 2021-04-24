@@ -3,12 +3,14 @@
 
 #include <memory>
 #include "shape.hpp"
+#include "rectangle.hpp"
 
 namespace pozdnyakov
 {
-  using UniqueShapes = std::unique_ptr<std::unique_ptr<Shape>[]>;
-  using UniqueShape = std::unique_ptr<Shape>;
-  class CompositeShape: public pozdnyakov::Shape
+  using UniqueShapes = std::unique_ptr< std::unique_ptr< Shape >[] >;
+  using UniqueShape = std::unique_ptr< Shape >;
+
+  class CompositeShape: public Shape
   {
   public:
     CompositeShape(UniqueShapes shapes, int shapesLen);
@@ -17,14 +19,13 @@ namespace pozdnyakov
     rectangle_t getFrameRect() const override;
     void move(point_t point) override;
     void move(double dx, double dy) override;
-    void scale(double coef) override;
-    std::unique_ptr<Shape> at(int i);
+    void unsafeScale(double coef) override;
 
   private:
     UniqueShapes shapes_;
     int shapesLen_;
     int area_;
-    rectangle_t frame_;
+    Rectangle frame_;
   };
 }
 

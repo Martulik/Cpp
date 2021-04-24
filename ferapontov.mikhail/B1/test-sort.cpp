@@ -6,8 +6,6 @@ BOOST_AUTO_TEST_SUITE(testSort)
 
 BOOST_AUTO_TEST_CASE(sort)
 {
-  ferapontov::testSort(std::less< int >(), 5);
-  ferapontov::testSort(std::less< int >(), 10);
   ferapontov::testSort(std::greater< int >(), 5);
   ferapontov::testSort(std::greater< int >(), 10);
 }

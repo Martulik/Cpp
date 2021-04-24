@@ -33,11 +33,11 @@ void poz::task4(char* argv[])
   poz::print(vector, std::cout);
   if (asc.compare(argAsc) == 0)
   {
-    poz::sort< poz::VectorAtStrategy< double > >(vector, std::greater< double >());
+    poz::sort< poz::VectorAtStrategy< double > >(vector, std::less< double >());
   }
   else if (desc.compare(argAsc) == 0)
   {
-    poz::sort< poz::VectorAtStrategy< double > >(vector, std::less< double >());
+    poz::sort< poz::VectorAtStrategy< double > >(vector, std::greater< double >());
   }
   else
   {

@@ -16,11 +16,11 @@ void poz::task1(char* argv[])
   std::function< bool(double, double) > compare;
   if (!strcmp(argv[0], asc.c_str()))
   {
-    compare = std::greater< double >();
+    compare = std::less< double >();
   }
   else if (!strcmp(argv[0], desc.c_str()))
   {
-    compare = std::less< double >();
+    compare = std::greater< double >();
   }
   else
   {

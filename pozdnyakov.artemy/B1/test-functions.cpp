@@ -4,20 +4,23 @@
 
 namespace poz = pozdnyakov;
 
-bool poz::testSort(std::vector< double > vector, std::list< double > list, poz::CompareFunc compare)
+bool poz::testVectorSort(std::vector< double > vector, poz::CompareFunc compare)
 {
-  using Viterator = typename std::vector< double >::iterator;
-  using Literator = typename std::list< double >::iterator;
-  std::vector< double > vectorIndex(vector);
-  std::vector< double > vectorAt(vector);
+  bool result = true;
+  std::vector< double > vIndex(vector);
+  std::vector< double > vAt(vector);
+  std::sort< poz::Viterator, CompareFunc >(vector.begin(), vector.end(), compare);
+  sort< poz::IndexStrategy< double > >(vIndex, compare);
+  sort< poz::VectorAtStrategy< double > >(vAt, compare);
+  result &= poz::compareContainers< poz::Viterator >(vector.begin(), vector.end(), vIndex.begin(), vIndex.end());
+  result &= poz::compareContainers< poz::Viterator >(vector.begin(), vector.end(), vAt.begin(), vAt.end());
+  return result;
+}
+
+bool poz::testListSort(std::list< double > list, poz::CompareFunc compare)
+{
   std::list< double > listStrat(list);
-  std::sort< Viterator, CompareFunc >(vector.begin(), vector.end(), compare);
-  sort< poz::IndexStrategy< double > >(vectorIndex, compare);
-  sort< poz::VectorAtStrategy< double > >(vectorAt, compare);
-  list.sort< CompareFunc >(compare);
+  list.sort< poz::CompareFunc >(compare);
   sort< poz::ListStrategy< double > >(listStrat, compare);
-  poz::compareContainers< Viterator >(vector.begin(), vector.end(), vectorIndex.begin(), vectorIndex.end());
-  poz::compareContainers< Viterator >(vector.begin(), vector.end(), vectorAt.begin(), vectorAt.end());
-  poz::compareContainers< Literator >(list.begin(), list.end(), listStrat.begin(), listStrat.end());
-  return true;
+  return poz::compareContainers< poz::Literator >(list.begin(), list.end(), listStrat.begin(), listStrat.end());
 }

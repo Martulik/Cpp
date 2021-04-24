@@ -13,7 +13,8 @@ int lysenko::task3()
 
     if (std::cin.fail() || std::cin.bad())
     {
-      throw std::invalid_argument("Input error");
+      std::cerr << "Input error";
+      return 1;
     }
 
     if (std::cin.eof())

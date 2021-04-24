@@ -28,7 +28,8 @@ int lysenko::task2(const char* fileName)
 
       if (myFile.fail() || myFile.bad())
       {
-        throw std::invalid_argument("Input error");
+        std::cerr <<"Input error";
+        return 1;
       }
 
       for (size_t i = 0; i < currPosition; ++i)

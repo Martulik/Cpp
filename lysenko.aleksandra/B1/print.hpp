@@ -20,7 +20,10 @@ namespace lysenko
         std::cout << " ";
       }
     }
-    std::cout << "\n";
+    if (withSeparator)
+    {
+      std::cout << "\n";
+    }
   }
 }
 

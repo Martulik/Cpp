@@ -31,7 +31,7 @@ int lysenko::task2(const char* fileName)
       std::unique_ptr< char[] > tempArray = std::make_unique< char[] >(currCapacity);
       myFile.read(tempArray.get() + currPosition, currCapacity - currPosition);
 
-      if (myFile.fail() || myFile.bad())
+      if (myFile.fail() && (!myFile.eof()))
       {
         std::cerr << "Input error";
         return 1;
@@ -50,6 +50,12 @@ int lysenko::task2(const char* fileName)
     std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition + 1);
 
     lysenko::print< lysenko::strategyForAt, std::vector< char > >(myVector, 0);
+
+    return 0;
   }
-  return 0;
+  else
+  {
+    std::cerr << "Unable to open the file";
+    return 1;
+  }
 }

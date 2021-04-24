@@ -12,13 +12,13 @@ int lysenko::task3()
   {
     std::cin >> currOne;
 
-    if (std::cin.fail() && (numberOfOperation != 1))
+    if (std::cin.fail())
     {
       std::cerr << "Input error";
       return 1;
     }
 
-    if (std::cin.fail() && (numberOfOperation == 1))
+    if ((std::cin.bad())&& (numberOfOperation==1))
     {
       return 0;
     }

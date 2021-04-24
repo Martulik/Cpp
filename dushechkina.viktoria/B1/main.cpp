@@ -23,13 +23,16 @@ int main(int argc, char* argv[])
     std::cerr << "Incorrect input of task number";
     return 1;
   }
-  switch (taskNum) {
+  switch (taskNum)
+  {
   case 1:
-    if (argc != 3) {
+    if (argc != 3)
+    {
       std::cerr << "Incorrect number of arguments";
       return 1;
     }
-    try {
+    try
+    {
       std::function<bool(const int&, const int&)> comparator = dushechkina::getSortingOrder<int>(argv[2]);
       task1(comparator);
     }
@@ -42,8 +45,29 @@ int main(int argc, char* argv[])
       return 1;
     }
     break;
-  
-  default: {
+  case 2:
+    if (argc != 3)
+    {
+      std::cerr << "Incorrect number of arguments";
+      return 1;
+    }
+    try
+    {
+      task2(argv[2]);
+    }
+    catch (const std::runtime_error& error)
+    {
+      std::cerr << error.what() << "\n";
+      return 1;
+    }
+    catch (const std::invalid_argument& error)
+    {
+      std::cerr << error.what() << "\n";
+      return 1;
+    }
+    break;
+  default:
+  {
     std::cerr << "Incorrect task number";
     return 1;
   }

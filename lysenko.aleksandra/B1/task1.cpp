@@ -1,7 +1,7 @@
 #include "tasks.hpp"
 
 int lysenko::task1(const char* order)
-{ 
+{
   if (std::cin.bad())
   {
     std::cerr << "Input error";

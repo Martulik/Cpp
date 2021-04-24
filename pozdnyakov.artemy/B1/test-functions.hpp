@@ -4,7 +4,10 @@
 #include <vector>
 #include <list>
 
-std::vector< double > makeVector();
-std::list< double > makeList();
+namespace pozdnyakov
+{
+  std::vector< double > makeVector();
+  std::list< double > makeList();
+}
 
 #endif

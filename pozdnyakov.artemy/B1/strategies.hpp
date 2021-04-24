@@ -4,7 +4,7 @@
 #include <vector>
 #include <list>
 
-namespace poz
+namespace pozdnyakov
 {
   template <typename T>
   class IndexStrategy

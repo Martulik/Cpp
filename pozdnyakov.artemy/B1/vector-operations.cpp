@@ -1,35 +1,34 @@
 #include "vector-operations.hpp"
 
-namespace poz
+namespace poz = pozdnyakov;
+
+void poz::eraseEven(std::vector< int >& vector)
 {
-  void eraseEven(std::vector< int >& vector)
+  for (std::vector< int >::iterator i = vector.begin(); i != vector.end();)
   {
-    for (std::vector< int >::iterator i = vector.begin(); i != vector.end();)
+    if (*i % 2 == 0)
     {
-      if (*i % 2 == 0)
-      {
-        i = vector.erase(i);
-      }
-      else
-      {
-        i++;
-      }
+      i = vector.erase(i);
+    }
+    else
+    {
+      i++;
     }
   }
+}
 
-  void addOnes(std::vector< int >& vector)
+void poz::addOnes(std::vector< int >& vector)
+{
+  for (std::vector< int >::iterator i = vector.begin(); i != vector.end();)
   {
-    for (std::vector< int >::iterator i = vector.begin(); i != vector.end();)
+    if (*i % 3 == 0)
     {
-      if (*i % 3 == 0)
-      {
-        i = vector.insert(std::next(i), 3, 1);
-        i += 3;
-      }
-      else
-      {
-        i++;
-      }
+      i = vector.insert(std::next(i), 3, 1);
+      i += 3;
+    }
+    else
+    {
+      i++;
     }
   }
 }

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "tasks.hpp"
 
+namespace poz = pozdnyakov;
+
 int main(int argc, char* argv[])
 {
   try
@@ -11,7 +13,7 @@ int main(int argc, char* argv[])
     {
       throw std::invalid_argument("Not enough arguments");
     }
-    int task = std::atoi(argv[1][0]);
+    int task = std::atoi(std::addressof(argv[1][0]));
     if (task == 1 && argc == 3)
     {
       poz::task1(argv + 2);

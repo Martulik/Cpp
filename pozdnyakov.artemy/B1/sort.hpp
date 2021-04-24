@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-namespace poz
+namespace pozdnyakov
 {
   template <typename S>
   void sort(typename S::ContType& cont, bool isAscending)

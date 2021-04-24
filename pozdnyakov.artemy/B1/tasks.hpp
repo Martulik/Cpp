@@ -1,7 +1,7 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
 
-namespace poz
+namespace pozdnyakov
 {
   void task1(char* argv[]);
   void task2(char* argv[]);

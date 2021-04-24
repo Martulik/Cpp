@@ -3,7 +3,7 @@
 
 #include <vector>
 
-namespace poz
+namespace pozdnyakov
 {
   void eraseEven(std::vector< int >& vector);
   void addOnes(std::vector< int >& vector);

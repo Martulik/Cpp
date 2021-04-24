@@ -1,7 +1,10 @@
+#ifndef PRINT_HPP
+#define PRINT_HPP
+
 #include <iostream>
 #include <vector>
 
-namespace poz
+namespace pozdnyakov
 {
   template <typename T>
   void print(T& cont, std::ostream& out)
@@ -13,3 +16,5 @@ namespace poz
     out << '\n';
   }
 }
+
+#endif

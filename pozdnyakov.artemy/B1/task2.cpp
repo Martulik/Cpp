@@ -1,33 +1,32 @@
 #include "tasks.hpp"
 #include <string>
 #include <fstream>
-#include "functions.hpp"
+#include "print.hpp"
 
-namespace poz
+namespace poz = pozdnyakov;
+
+void poz::task2(char* argv[])
 {
-  void task2(char* argv[])
+  std::string fileName(argv[0]);
+  std::ifstream fs;
+  fs.open(fileName, std::ifstream::in);
+  if (fs)
   {
-    std::string fileName(argv[0]);
-    std::ifstream fs;
-    fs.open(fileName, std::ifstream::in);
-    if (fs)
+    fs.seekg(0, fs.end);
+    size_t length = fs.tellg();
+    fs.seekg(0, fs.beg);
+    char* buf = new char[length]; //make unique
+    size_t read = 0;
+    char c;
+    while (read != length)
     {
-      fs.seekg(0, fs.end);
-      size_t length = fs.tellg();
-      fs.seekg(0, fs.beg);
-      char* buf = new char[length]; //make unique
-      size_t read = 0;
-      char c;
-      while (read != length)
-      {
-        fs.get(c);
-        buf[read] = c;
-        read += fs.gcount();
-      }
-      std::vector<char> vector(&buf[0], &buf[length]);
-      print(vector, std::cout);
+      fs.get(c);
+      buf[read] = c;
+      read += fs.gcount();
     }
-
-    fs.close();
+    std::vector<char> vector(&buf[0], &buf[length]);
+    poz::print(vector, std::cout);
   }
+
+  fs.close();
 }

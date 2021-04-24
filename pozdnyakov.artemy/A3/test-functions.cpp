@@ -37,17 +37,12 @@ void testMove(poz::UniqueShape shape)
 
 poz::UniqueShape makeRect(double width, double height, poz::point_t pos)
 {
-  //const double width = 99.3;
-  //const double height = 7;
-  //const poz::point_t pos{13, 12};
   poz::UniqueShape shape = std::make_unique< poz::Rectangle >(width, height, pos);
   return shape;
 }
 
 poz::UniqueShape makeCircle(double rad, poz::point_t pos)
 {
-  //const double rad = 88;
-  //const poz::point_t pos{77, 13};
   poz::UniqueShape shape = std::make_unique< poz::Circle >(rad, pos);
   return shape;
 }

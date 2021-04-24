@@ -11,6 +11,11 @@ int lysenko::task3()
   {
     std::cin >> currOne;
 
+    if (std::cin.fail() || std::cin.bad())
+    {
+      throw std::invalid_argument("Input error");
+    }
+
     if (std::cin.eof())
     {
       std::cerr << "Input can not be empty or not contain 0";
@@ -23,12 +28,6 @@ int lysenko::task3()
     {
       numberOfMuplipleOfThree += 1;
     }
-  }
-
-  if (std::cin.fail())
-  {
-    std::cerr << "Failed cin";
-    return 1;
   }
 
   myVect.pop_back();

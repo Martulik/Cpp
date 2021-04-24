@@ -23,8 +23,13 @@ int lysenko::task2(const char* fileName)
     while (!myFile.eof())
     {
       currCapacity *= 2;
-      std::unique_ptr< char []> tempArray = std::make_unique< char [] >(currCapacity);
+      std::unique_ptr< char [] > tempArray = std::make_unique< char [] >(currCapacity);
       myFile.read(tempArray.get() + currPosition, currCapacity - currPosition);
+
+      if (myFile.fail() || myFile.bad())
+      {
+        throw std::invalid_argument("Input error");
+      }
 
       for (size_t i = 0; i < currPosition; ++i)
       {

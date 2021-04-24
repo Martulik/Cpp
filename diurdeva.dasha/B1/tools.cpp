@@ -5,7 +5,7 @@
 
 void diurdeva::fillRandom(double *array, size_t size)
 {
-  for (int i = 0; i < size; ++i) {
+  for (size_t i = 0; i < size; ++i) {
     array[i] = (rand() % 21) / 10.0 - 1;
   }
 }

@@ -40,4 +40,5 @@ int main(int argc, char* argv[])
     std::cerr << exc.what() << '\n';
     return -1;
   }
+  return 0;
 }

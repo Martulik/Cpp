@@ -18,7 +18,7 @@ void poz::task2(char* argv[])
     char* buf = new char[length]; //make unique
     size_t read = 0;
     char c;
-    while (read != length)
+    while (!fs.eof())
     {
       fs.get(c);
       buf[read] = c;
@@ -27,6 +27,5 @@ void poz::task2(char* argv[])
     std::vector<char> vector(&buf[0], &buf[length]);
     poz::print(vector, std::cout);
   }
-
   fs.close();
 }

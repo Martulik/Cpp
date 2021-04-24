@@ -2,11 +2,6 @@
 
 int lysenko::task1(const char* order)
 {
-  if (std::cin.eof())
-  {
-    return 0;
-  }
-
   std::vector< int > myVect;
   int member = 0;
 
@@ -18,18 +13,6 @@ int lysenko::task1(const char* order)
       return 1;
     }
     myVect.push_back(member);
-  }
-
-  if (!(std::cin.eof()))
-  {
-    std::cerr << "Invalid input for task 1";
-    return 1;
-  }
-
-  if (myVect.empty())
-  {
-    std::cerr << "Input sequence of integers can not be empty";
-    return 1;
   }
 
   bool (*comparator)(const int&, const int&) = getComparator< int >(order);

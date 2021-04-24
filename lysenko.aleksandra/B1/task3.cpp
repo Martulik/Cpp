@@ -2,16 +2,16 @@
 
 int lysenko::task3()
 {
+  size_t numberOfMuplipleOfThree = 0;
+  int currOne = 1;
+
+  std::vector< int > myVect;
+
   if (std::cin.bad())
   {
     std::cerr << "Input error";
     return 1;
   }
-
-  size_t numberOfMuplipleOfThree = 0;
-  int currOne = 1;
-
-  std::vector< int > myVect(1);
 
   while (currOne != 0)
   {

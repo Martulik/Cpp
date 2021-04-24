@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "tasks.hpp"
 #include "compare-function.hpp"
 #include "tools.hpp"
@@ -8,12 +9,14 @@ namespace lab = diurdeva;
 
 int main(int argc, char *argv[])
 {
+  srand(time(NULL));
+
   if ((argc < 2) || (argc > 4)) {
     std::cerr << "Incorrect number of arguments.\n";
     return 1;
   }
 
-  if (!lab::checkIsNumber(argv[1]))
+  if (!lab::isDigit(argv[1]))
   {
     std::cerr << "Incorrect first argument (task number)";
     return 1;
@@ -33,7 +36,7 @@ int main(int argc, char *argv[])
     code = lab::task3();
   } else if (taskNumber == 4 && argc == 4) {
     const std::function< bool(double, double) > &compare = lab::getCompare< double >(argv[2]);
-    error = compare && lab::checkIsNumber(argv[3]) ? "Null" : "Incorrect direction";
+    error = compare && lab::isDigit(argv[3]) ? "Null" : "Incorrect direction";
     code = (error == "Null") ? lab::task4(compare, atoi(argv[3])) : 1;
   } else {
     error = "Incorrect number of arguments.\n";

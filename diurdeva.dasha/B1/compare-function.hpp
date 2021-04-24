@@ -1,7 +1,7 @@
 #ifndef COMPARE_FUNCTION_HPP
 #define COMPARE_FUNCTION_HPP
 
-#include<functional>
+#include <functional>
 #include <cstring>
 
 namespace diurdeva {

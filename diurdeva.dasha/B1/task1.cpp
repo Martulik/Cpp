@@ -19,8 +19,8 @@ int diurdeva::task1(const std::function< bool(int, int) > compare)
   std::vector< int > vectorAt = vectorBr;
   std::forward_list< int > listIt(vectorBr.begin(), vectorBr.end());
 
-  printAndSorted< indexAccess< int > >(vectorBr, compare);
-  printAndSorted< atAccess< int > >(vectorAt, compare);
-  printAndSorted< iteratorAccess< int > >(listIt, compare);
+  printAndSort< indexAccess< int > >(vectorBr, compare);
+  printAndSort< atAccess< int > >(vectorAt, compare);
+  printAndSort< iteratorAccess< int > >(listIt, compare);
   return 0;
 }

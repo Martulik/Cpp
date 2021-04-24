@@ -5,7 +5,7 @@
 
 namespace diurdeva {
   template< typename Strategy >
-  void sorting(typename Strategy::container_type &collection,
+  void sort(typename Strategy::container_type &collection,
                const std::function< bool(typename Strategy::type, typename Strategy::type) > compare)
   {
     using iter = typename Strategy::iterator;

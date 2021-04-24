@@ -29,22 +29,28 @@ int diurdeva::task3()
     return 0;
   }
 
-  switch (vector.back()) {
-  case 1:
-    for (auto i = vector.begin(); i != vector.end();) {
-      i = ((*i % 2) == 0) ? vector.erase(i) : ++i;
+  std::vector< int >::iterator it = vector.begin();
+  if (vector.back() == 1) {
+    while (it != vector.end()) {
+      if (*it % 2 == 0) {
+        it = vector.erase(it);
+      }
+      else {
+        it++;
+      }
     }
-    break;
-
-  case 2:
-    for (auto i = vector.begin(); i != vector.end();) {
-      i = ((*i % 3) == 0) ? (vector.insert(++i, 3, 1) + 3) : ++i;
-    }
-    break;
-
-  default:
-    break;
   }
+  if (vector.back() == 2) {
+    while (it != vector.end()) {
+      if (*it % 3 == 0) {
+        it = vector.insert(it + 1, 3, 1) + 2;
+      }
+      else {
+        it++;
+      }
+    }
+  }
+
   print(vector);
   return 0;
 }

@@ -8,7 +8,7 @@
 
 namespace diurdeva {
   void fillRandom(double *array, size_t size);
-  bool checkIsNumber(const char* string);
+  bool isDigit(const char* str);
 
   template< typename T >
   void print(const T &collection)
@@ -17,7 +17,7 @@ namespace diurdeva {
       return;
     }
 
-    for (const auto &i : collection) {
+    for (auto &&i : collection) {
       std::cout << i << " ";
     }
 
@@ -25,10 +25,10 @@ namespace diurdeva {
   }
 
   template< typename Strategy >
-  void printAndSorted(typename Strategy::container_type collection,
+  void printAndSort(typename Strategy::container_type collection,
                       const std::function< bool(typename Strategy::type, typename Strategy::type) > compare)
   {
-    diurdeva::sorting< Strategy >(collection, compare);
+    diurdeva::sort< Strategy >(collection, compare);
     diurdeva::print(collection);
   }
 }

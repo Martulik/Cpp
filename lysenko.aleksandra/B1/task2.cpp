@@ -6,7 +6,14 @@
 int lysenko::task2(const char* fileName)
 {
   std::ifstream myFile;
+
   myFile.open(fileName);
+
+  if (myFile.bad())
+  {
+    std::cerr << "Input error";
+    return 1;
+  }
 
   if (myFile.is_open())
   {

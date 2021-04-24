@@ -2,6 +2,12 @@
 
 int lysenko::task3()
 {
+  if (std::cin.bad())
+  {
+    std::cerr << "Input error";
+    return 1;
+  }
+
   size_t numberOfMuplipleOfThree = 0;
   int currOne = 1;
 

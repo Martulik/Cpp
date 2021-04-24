@@ -8,7 +8,7 @@ boost::optional< unsigned long > shilyaev::toNatural(const std::string &string)
   unsigned long result = 0;
   for (std::string::const_iterator i = string.cbegin(); i < string.cend(); i++) {
     result *= 10;
-    if (*i < '0' || *i > '9') {
+    if (!isdigit(*i)) {
       return {};
     }
     result += *i - '0';

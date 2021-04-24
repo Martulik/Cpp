@@ -9,13 +9,13 @@ int lysenko::task2(const char* fileName)
 
   myFile.open(fileName);
 
-  if (myFile.peek() == EOF)
-  {
-    return 0;
-  }
-
   if (myFile.is_open())
   {
+    if (myFile.peek() == EOF)
+    {
+      return 0;
+    }
+
     size_t currCapacity = 1;
     size_t currPosition = 0;
     std::unique_ptr< char[] > resultArray = std::make_unique< char[] >(currCapacity);
@@ -47,7 +47,7 @@ int lysenko::task2(const char* fileName)
       currPosition += myFile.gcount();
     }
 
-    std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition + 1);
+    std::vector< char > myVector(resultArray.get(), resultArray.get() + currCapacity);
 
     lysenko::print< lysenko::strategyForAt, std::vector< char > >(myVector, 0);
 

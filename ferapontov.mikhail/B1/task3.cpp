@@ -27,40 +27,37 @@ void ferapontov::task3()
     std::exit(2);
   }
 
-  if (vec.empty())
-  {
-    std::cerr << "Empty input";
-    std::exit(2);
-  }
-
   std::vector< int >::iterator it = vec.begin();
   int lastElem = vec.back();
 
-  if (lastElem == 1)
+  if(!(vec.empty()))
   {
-    while (it != vec.end())
+    if (lastElem == 1)
     {
-      if (*it % 2 == 0)
+      while (it != vec.end())
       {
-        it = vec.erase(it);
-      }
-      else
-      {
-        it++;
+        if (*it % 2 == 0)
+        {
+          it = vec.erase(it);
+        }
+        else
+        {
+          it++;
+        }
       }
     }
-  }
-  if (!vec.empty() && lastElem == 2)
-  {
-    while (it != vec.end())
+    if (lastElem == 2)
     {
-      if (*it % 3 == 0)
+      while (it != vec.end())
       {
-        it = vec.insert(++it, 3, 1);
-        it += 1;
+        if (*it % 3 == 0)
+        {
+          it = vec.insert(++it, 3, 1);
+          it += 1;
+        }
+          it++;
       }
-        it++;
     }
+    print(vec);
   }
-  print(vec);
 }

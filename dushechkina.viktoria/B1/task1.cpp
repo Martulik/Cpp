@@ -2,7 +2,6 @@
 #include <fstream>
 #include <functional>
 #include <iostream>
-
 #include <vector>
 
 #include "tasks.hpp"
@@ -27,9 +26,9 @@ void task1(std::function<bool(const int&, const int&)> comparator)
   }
   std::vector<int> vector1 = vector;
   std::forward_list<int> list(vector.begin(), vector.end());
-  sort<Brackets>(vector, comparator);
-  sort<Iterator>(list, comparator);
-  sort<At>(vector1, comparator);
+  dushechkina::sort<Brackets>(vector, comparator);
+  dushechkina::sort<Iterator>(list, comparator);
+  dushechkina::sort<At>(vector1, comparator);
   print(vector, " ");
   std::cout << std::endl;
   print(vector1, " ");

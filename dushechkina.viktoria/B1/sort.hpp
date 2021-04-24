@@ -3,28 +3,30 @@
 
 #include <functional>
 #include <string>
-
 #include "strategy.hpp"
 
-template<template<class> class Strategy, class T>
-void sort(T& container, std::function<bool(const typename T::value_type, const typename T::value_type)> comparator)
+namespace dushechkina
 {
-  typename Strategy<T>::iterator i = Strategy<T>::begin(container);
-  typename Strategy<T>::iterator j = Strategy<T>::begin(container);
-  typename Strategy<T>::iterator end = Strategy<T>::end(container);
-  while (i != end)
+  template<template<class> class Strategy, class T>
+  void sort(T& container, std::function<bool(const typename T::value_type, const typename T::value_type)> comparator)
   {
-    j = i;
-    while (++j != end)
+    typename Strategy<T>::iterator i = Strategy<T>::begin(container);
+    typename Strategy<T>::iterator j = Strategy<T>::begin(container);
+    typename Strategy<T>::iterator end = Strategy<T>::end(container);
+    while (i != end)
     {
-      typename T::value_type& temp = Strategy<T>::get(container, j);
-      typename T::value_type& temp1 = Strategy<T>::get(container, i);
-      if (comparator(temp, temp1))
+      j = i;
+      while (++j != end)
       {
-        std::swap(temp, temp1);
+        typename T::value_type& temp = Strategy<T>::get(container, j);
+        typename T::value_type& temp1 = Strategy<T>::get(container, i);
+        if (comparator(temp, temp1))
+        {
+          std::swap(temp, temp1);
+        }
       }
+      i++;
     }
-    i++;
   }
 }
 #endif

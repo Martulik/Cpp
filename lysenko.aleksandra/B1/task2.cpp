@@ -9,7 +9,7 @@ int lysenko::task2(const char* fileName)
 
   myFile.open(fileName);
 
-  if (myFile.peek() == EOF) 
+  if (myFile.peek() == EOF)
   {
     return 1;
   }

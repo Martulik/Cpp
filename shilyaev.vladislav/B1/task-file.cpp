@@ -39,9 +39,9 @@ namespace shilyaev {
       std::cerr << "File not open";
       return 1;
     }
-    std::unique_ptr< char[] > fileContent;
-    size_t size;
-    std::tie(fileContent, size) = read(ifstream);
+    std::tuple< std::unique_ptr< char[] >, size_t > readResult = read(ifstream);
+    std::unique_ptr< char[] > fileContent = std::move(std::get<0>(readResult));
+    size_t size = std::get<1>(readResult);
     ifstream.close();
     std::vector< char > vector(fileContent.get(), fileContent.get() + size);
     print(vector.cbegin(), vector.cend(), "", "");

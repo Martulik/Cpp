@@ -1,16 +1,17 @@
 #ifndef ITERATOR_PRINT_HPP
 #define ITERATOR_PRINT_HPP
 
-#include <iostream>
+#include <ios>
 
 namespace shilyaev {
   template < typename Iterator >
-  void print(Iterator begin, const Iterator &end, const std::string &sep = " ", const std::string &ending = "\n")
+  void print(Iterator begin, const Iterator &end, std::ostream &ostream,
+      const std::string &sep = " ", const std::string &ending = "\n")
   {
     for (; begin != end; begin++) {
-      std::cout << *begin << sep;
+      ostream << *begin << sep;
     }
-    std::cout << ending;
+    ostream << ending;
   }
 }
 

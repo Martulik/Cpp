@@ -21,7 +21,7 @@ namespace shilyaev {
   void printSorted(typename AccessStrategy::Collection collection, const std::function< bool(int, int) > &compare)
   {
     bubbleSort< AccessStrategy >(collection, compare);
-    print(collection.cbegin(), collection.cend());
+    print(collection.cbegin(), collection.cend(), std::cout);
   }
 
   int doTask(const std::function< bool(int, int) > &compare)

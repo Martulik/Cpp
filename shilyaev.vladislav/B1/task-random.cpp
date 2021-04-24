@@ -26,9 +26,9 @@ namespace shilyaev {
     std::unique_ptr< Item[] > array = std::make_unique< Item[] >(*size);
     fillRandom(array.get(), *size);
     std::vector< Item > vector(array.get(), array.get() + *size);
-    print(vector.cbegin(), vector.cend());
+    print(vector.cbegin(), vector.cend(), std::cout);
     bubbleSort< VectorBracketsStrategy< Item > >(vector, *compare);
-    print(vector.cbegin(), vector.cend());
+    print(vector.cbegin(), vector.cend(), std::cout);
     return 0;
   }
 }

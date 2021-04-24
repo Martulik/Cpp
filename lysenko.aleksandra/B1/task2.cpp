@@ -40,13 +40,12 @@ int lysenko::task2(const char* fileName)
       {
         currCapacity *= 2;
         std::unique_ptr< char[] > tempArray = std::make_unique< char[] >(currCapacity);
-        for (int i = 0; i < currPosition; ++i)
+        for (size_t i = 0; i < currPosition; ++i)
         {
           tempArray[i] = std::move(resultArray[i]);
         }
         resultArray.swap(tempArray);
       }
-
     }
 
     std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition);

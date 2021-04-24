@@ -30,11 +30,11 @@ void poz::task1(char* argv[])
   int n;
   while (std::cin >> n)
   {
+    if (std::cin.fail() && !std::cin.eof())
+    {
+      throw std::runtime_error("Invalid file content");
+    }
     vector.push_back(n);
-  }
-  if (std::cin.fail() && !std::cin.eof())
-  {
-    throw std::runtime_error("Invalid file content");
   }
   std::vector< int > indexVector(vector);
   std::vector< int > atVector(vector);

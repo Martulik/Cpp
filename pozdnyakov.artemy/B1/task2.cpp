@@ -13,7 +13,7 @@ void poz::task2(char* argv[])
   fs.open(fileName, std::ifstream::in);
   if (!fs.is_open())
   {
-    throw std::invalid_argument("Incorrect file");
+    throw std::runtime_error("Incorrect file");
   }
   fs.seekg(0, fs.end);
   size_t length = fs.tellg();

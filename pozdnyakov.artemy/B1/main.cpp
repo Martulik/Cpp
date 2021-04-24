@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     {
       poz::task2(argv + 2);
     }
-    else if (task == 3 and argc == 2)
+    else if (task == 3 && argc == 2)
     {
       poz::task3();
     }

@@ -2,13 +2,12 @@
 #include <algorithm>
 #include <functional>
 #include <random>
+#include "lab-random.hpp"
 
 void doroshin::fillRandom(double* array, size_t size)
 {
-  std::random_device rd;
-  std::default_random_engine gen(rd());
   std::uniform_real_distribution< double > dist(-1.0, 1.0);
-  auto random = std::bind(dist, gen);
+  auto random = std::bind(dist, random::engine);
 
   std::generate_n(array, size, random);
 }

@@ -15,7 +15,7 @@ namespace doroshin {
   template< typename T >
   struct VectorIndexStrat
   {
-    using container_t = std::vector<T>;
+    using container_t = std::vector< T >;
     using iterator_t = size_t;
     using output_iterator_t = std::back_insert_iterator< container_t >;
 
@@ -38,7 +38,7 @@ namespace doroshin {
   template< typename T >
   struct VectorAtStrat
   {
-    using container_t = std::vector<T>;
+    using container_t = std::vector< T >;
     using iterator_t = size_t;
     using output_iterator_t = std::back_insert_iterator< container_t >;
 
@@ -61,8 +61,8 @@ namespace doroshin {
   template< typename T >
   struct ListIterStrat
   {
-    using container_t = std::forward_list<T>;
-    using iterator_t = typename std::forward_list<T>::iterator;
+    using container_t = std::forward_list< T >;
+    using iterator_t = typename std::forward_list< T >::iterator;
     using output_iterator_t = std::front_insert_iterator< container_t >;
 
     static inline iterator_t begin(container_t& list)

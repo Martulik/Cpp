@@ -1,5 +1,6 @@
 #include "tools.hpp"
 #include <ctime>
+#include <cstring>
 
 void diurdeva::fillRandom(double *array, size_t size)
 {

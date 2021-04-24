@@ -27,9 +27,8 @@ int lysenko::task2(const char* fileName)
 
     while (!myFile.eof())
     {
-      currCapacity *= 2;
-      std::unique_ptr< char[] > tempArray = std::make_unique< char[] >(currCapacity);
-      myFile.read(tempArray.get() + currPosition, currCapacity - currPosition);
+      myFile.read(resultArray.get() + currPosition, currCapacity - currPosition);
+      currPosition += myFile.gcount();
 
       if (myFile.fail() && (!myFile.eof()))
       {
@@ -37,14 +36,17 @@ int lysenko::task2(const char* fileName)
         return 1;
       }
 
-      for (size_t i = 0; i < currPosition; ++i)
+      if (currPosition == currCapacity)
       {
-        tempArray[i] = std::move(resultArray[i]);
+        currCapacity *= 2;
+        std::unique_ptr< char[] > tempArray = std::make_unique< char[] >(currCapacity);
+        for (int i = 0; i < currPosition; ++i)
+        {
+          tempArray[i] = std::move(resultArray[i]);
+        }
+        resultArray.swap(tempArray);
       }
 
-      std::swap(tempArray, resultArray);
-
-      currPosition += myFile.gcount();
     }
 
     std::vector< char > myVector(resultArray.get(), resultArray.get() + currPosition);

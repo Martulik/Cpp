@@ -2,13 +2,12 @@
 
 int lysenko::task1(const char* order)
 {
-  if (std::cin.bad())
+  if (std::cin.eof())
   {
-    std::cerr << "Input error";
-    return 1;
+    return 0;
   }
 
-  std::vector< int > myVect(1);
+  std::vector< int > myVect;
   int member = 0;
 
   while ((std::cin.good()) && (std::cin >> member))

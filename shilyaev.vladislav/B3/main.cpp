@@ -1,4 +1,5 @@
 #include <iostream>
+#include "task-factorial.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
   if (task == "1") {
     return 2;
   } else if (task == "2") {
-    return 3;
+    shilyaev::taskFactorial();
   } else {
     std::cerr << "Invalid task number";
     return 1;

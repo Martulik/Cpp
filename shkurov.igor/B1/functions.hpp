@@ -56,7 +56,10 @@ namespace shkurov
       {
         std::cout << *it << separator;
       }
-      std::cout << *it;
+      else
+      {
+        std::cout << *it;
+      }
     }
     std::cout << '\n';
   }

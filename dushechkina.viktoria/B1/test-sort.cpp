@@ -62,4 +62,3 @@ BOOST_FIXTURE_TEST_CASE(sortIteratorType, fixture)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

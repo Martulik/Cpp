@@ -9,25 +9,24 @@ namespace lab = shkurov;
 void lab::taskTwo(const char* filename)
 {
   std::ifstream file;
-  try
+  file.open(filename);
+  if (!file.is_open())
   {
-    file.open(filename);
-    if (!file.is_open())
-    {
-      throw std::invalid_argument("No file found with such name.\n");
-    }
-  }
-  catch(const std::exception& ex)
-  {
-    std::cerr << ex.what() << '\n';
+    throw std::invalid_argument("No file found with such name.\n");
   }
 
-  size_t length = 0;
+
+  int length = 0;
   file.seekg(0, file.end);
   length = file.tellg();
   file.seekg(0, file.beg);
 
-  std::unique_ptr< char[] > str(std::make_unique< char[] >(length));
+  if (length == 0)
+  {
+    throw std::length_error("File is empty");
+  }
+
+  std::unique_ptr< char[] > str(std::make_unique< char[] >(static_cast< size_t >(length)));
   file.read(str.get(), length);
 
   std::vector< char > vec(str.get(), str.get() + length);

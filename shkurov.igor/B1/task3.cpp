@@ -14,7 +14,7 @@ void lab::taskThree()
     vec.push_back(x);
   }
 
-  if (std::cin.fail())
+  if (std::cin.fail() && !std::cin.eof())
   {
     throw std::invalid_argument("Incorrect input.");
   }

@@ -14,10 +14,10 @@ void task4(std::function<bool(const double&, const double&)> compar, int size)
   {
     throw std::invalid_argument("Incorrect size provided");
   }
-  std::vector<double> vector(size);
+  std::vector< double > vector(size);
   dushechkina::fillRandom(vector.data(), size);
   dushechkina::print(vector, " ");
   std::cout << std::endl;
-  dushechkina::sort<dushechkina::At>(vector, compar);
+  dushechkina::sort< dushechkina::At >(vector, compar);
   dushechkina::print(vector, " ");
 }

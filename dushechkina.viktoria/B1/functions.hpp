@@ -11,7 +11,7 @@ namespace dushechkina
 {
   void fillRandom(double* array, int size);
 
-  template<class T>
+  template< class T >
   void print(T& container, const char* separator)
   {
     for (auto i = container.begin(); i != container.end(); i++)

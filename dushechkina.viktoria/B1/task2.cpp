@@ -18,7 +18,7 @@ void task2(const char* filename)
   }
   size_t capacity = 1;
   size_t size = 0;
-  std::unique_ptr<char[]> data = std::make_unique<char[]>(capacity);
+  std::unique_ptr< char[] > data = std::make_unique< char[] >(capacity);
   while (stream)
   {
     stream.read(data.get() + size, capacity - size);
@@ -26,7 +26,7 @@ void task2(const char* filename)
     if (size == capacity)
     {
       capacity *= 2;
-      std::unique_ptr<char[]> temp = std::make_unique<char[]>(capacity);
+      std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
       for (size_t i = 0; i < size; i++)
       {
         temp[i] = std::move(data[i]);
@@ -34,6 +34,6 @@ void task2(const char* filename)
       data = std::move(temp);
     }
   }
-  std::vector<char> vector(data.get(), data.get() + size);
+  std::vector< char > vector(data.get(), data.get() + size);
   dushechkina::print(vector, "");
 }

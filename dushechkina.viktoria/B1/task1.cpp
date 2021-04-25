@@ -8,9 +8,9 @@
 #include "functions.hpp"
 #include "sort.hpp"
 
-void task1(std::function<bool(const int&, const int&)> comparator)
+void task1(std::function< bool(const int&, const int&) > comparator)
 {
-  std::vector<int> vector;
+  std::vector< int > vector;
   int element = 0;
   while (std::cin >> element)
   {
@@ -24,11 +24,11 @@ void task1(std::function<bool(const int&, const int&)> comparator)
   {
     return;
   }
-  std::vector<int> vector1 = vector;
-  std::forward_list<int> list(vector.begin(), vector.end());
-  dushechkina::sort<dushechkina::Brackets>(vector, comparator);
-  dushechkina::sort<dushechkina::At>(vector1, comparator);
-  dushechkina::sort<dushechkina::Iterator>(list, comparator);
+  std::vector< int > vector1 = vector;
+  std::forward_list< int > list(vector.begin(), vector.end());
+  dushechkina::sort< dushechkina::Brackets >(vector, comparator);
+  dushechkina::sort< dushechkina::At >(vector1, comparator);
+  dushechkina::sort< dushechkina::Iterator >(list, comparator);
   dushechkina::print(vector, " ");
   std::cout << std::endl;
   dushechkina::print(vector1, " ");

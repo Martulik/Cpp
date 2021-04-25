@@ -8,7 +8,7 @@
 
 void task3()
 {
-  std::vector<int> vector;
+  std::vector< int > vector;
   int element = 0;
   while (std::cin >> element)
   {

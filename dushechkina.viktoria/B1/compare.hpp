@@ -8,8 +8,8 @@
 
 namespace dushechkina
 {
-  template<class T>
-  std::function<bool(const T, const T)> getSortingOrder(const char* order)
+  template< class T >
+  std::function< bool(const T, const T) > getSortingOrder(const char* order)
   {
     const std::string ascending = "ascending";
     const std::string descending = "descending";
@@ -19,11 +19,11 @@ namespace dushechkina
     }
     if (order == ascending)
     {
-      return std::less<const T>();
+      return std::less< const T >();
     }
     if (order == descending)
     {
-      return std::greater<const T>();
+      return std::greater< const T >();
     }
     else
     {

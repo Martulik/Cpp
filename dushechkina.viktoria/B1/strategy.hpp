@@ -3,7 +3,7 @@
 
 namespace dushechkina
 {
-  template<class T>
+  template< class T >
   struct Brackets
   {
     using iterator = typename T::size_type;
@@ -22,7 +22,7 @@ namespace dushechkina
     }
   };
 
-  template<class T>
+  template< class T >
   struct At
   {
     using iterator = typename T::size_type;
@@ -41,7 +41,7 @@ namespace dushechkina
     }
   };
 
-  template<class T>
+  template< class T >
   struct Iterator
   {
     using iterator = typename T::iterator;

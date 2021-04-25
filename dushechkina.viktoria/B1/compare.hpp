@@ -11,17 +11,15 @@ namespace dushechkina
   template< class T >
   std::function< bool(const T, const T) > getSortingOrder(const char* order)
   {
-    const std::string ascending = "ascending";
-    const std::string descending = "descending";
     if (order == nullptr)
     {
       throw std::invalid_argument("Sorting order is undefined");
     }
-    if (order == ascending)
+    if (!strcmp(order, "ascending"))
     {
       return std::less< const T >();
     }
-    if (order == descending)
+    if (!strcmp(order, "descending"))
     {
       return std::greater< const T >();
     }

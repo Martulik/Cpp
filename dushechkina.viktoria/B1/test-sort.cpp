@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <vector>
 #include <list>
+
 #include "strategy.hpp"
 #include "functions.hpp"
 #include "sort.hpp"
@@ -20,19 +21,19 @@ struct fixture
   std::vector< int > sortedDescendingVector;
   std::list< int > sortedDescendingList;
 
-    fixture():
-	    vector({ 4, 8, 2, 7, -13 }),
-	    list({ 4, 8, 2, 7, -13 }),
-	    sortedAscendingVector(vector),
-	    sortedAscendingList(list)
-    {
-	    std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
-	    sortedDescendingVector = sortedAscendingVector;
-	    std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
-	    sortedAscendingList.sort();
-	    sortedDescendingList = sortedAscendingList;
-	    sortedDescendingList.reverse();
-    }
+  fixture():
+	  vector({ 4, 8, 2, 7, -13 }),
+	  list({ 4, 8, 2, 7, -13 }),
+	  sortedAscendingVector(vector),
+	  sortedAscendingList(list)
+  {
+	std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
+	sortedDescendingVector = sortedAscendingVector;
+	std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
+	sortedAscendingList.sort();
+	sortedDescendingList = sortedAscendingList;
+  sortedDescendingList.reverse();
+  }
 };
 
 BOOST_AUTO_TEST_SUITE(testSort)

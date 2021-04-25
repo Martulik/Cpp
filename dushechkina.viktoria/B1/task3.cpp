@@ -1,4 +1,3 @@
-#include <forward_list>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -6,7 +5,6 @@
 
 #include "tasks.hpp"
 #include "functions.hpp"
-#include "sort.hpp"
 
 void task3()
 {

@@ -83,6 +83,30 @@ int main(int argc, char* argv[])
       return 1;
     }
     break;
+  case 4:
+    if (argc != 4)
+    {
+      std::cerr << "Incorrect number of arguments";
+      return 1;
+    }
+    try
+    {
+      std::function<bool(double, double)> comparator = dushechkina::getSortingOrder<double>(argv[2]);
+      int size = 0;
+      std::stringstream stream(argv[3]);
+      stream >> size;
+      if (!stream.eof())
+      {
+        std::cerr << "Incorrect input of size";
+        return 1;
+      }
+      task4(comparator, size);
+    }
+    catch (const std::invalid_argument& error) {
+      std::cerr << error.what() << "\n";
+      return 1;
+    }
+    break;
   default:
   {
     std::cerr << "Incorrect task number";

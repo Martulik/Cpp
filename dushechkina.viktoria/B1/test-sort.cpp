@@ -10,13 +10,13 @@
 
 BOOST_AUTO_TEST_SUITE(testSort)
 
-const auto lessComparator = dushechkina::getSortingOrder<int>("ascending");
-const auto greaterComparator = dushechkina::getSortingOrder<int>("descending");
+const auto lessComparator = dushechkina::getSortingOrder< int >("ascending");
+const auto greaterComparator = dushechkina::getSortingOrder< int >("descending");
 
 struct fixture
 {
-	fixture():
-		vector({ 4, 8, 2, 7, -13 }),
+  fixture():
+	  vector({ 4, 8, 2, 7, -13 }),
 		list({ 4, 8, 2, 7, -13 }),
 		sortedAscendingVector(vector),
 		sortedAscendingList(list)
@@ -27,37 +27,36 @@ struct fixture
 		sortedAscendingList.sort();
 		sortedDescendingList = sortedAscendingList;
 		sortedDescendingList.reverse();
-
 	}
-	std::vector<int> vector;
-	std::list<int> list;
-	std::vector<int> sortedAscendingVector;
-	std::list<int> sortedAscendingList;
-	std::vector<int> sortedDescendingVector;
-	std::list<int> sortedDescendingList;
+	std::vector< int > vector;
+	std::list< int > list;
+	std::vector< int > sortedAscendingVector;
+	std::list< int > sortedAscendingList;
+	std::vector< int > sortedDescendingVector;
+	std::list< int > sortedDescendingList;
 };
 
 BOOST_FIXTURE_TEST_CASE(sortBracketsType, fixture)
 {
-	dushechkina::sort<dushechkina::Brackets>(vector, lessComparator);
+  dushechkina::sort< dushechkina::Brackets >(vector, lessComparator);
 	BOOST_CHECK(vector == sortedAscendingVector);
-	dushechkina::sort<dushechkina::Brackets>(vector, greaterComparator);
+	dushechkina::sort< dushechkina::Brackets >(vector, greaterComparator);
 	BOOST_CHECK(vector == sortedDescendingVector);
 }
 
 BOOST_FIXTURE_TEST_CASE(sortAtType, fixture)
 {
-	dushechkina::sort<dushechkina::At>(vector, lessComparator);
+	dushechkina::sort< dushechkina::At >(vector, lessComparator);
 	BOOST_CHECK(vector == sortedAscendingVector);
-	dushechkina::sort<dushechkina::At>(vector, greaterComparator);
+	dushechkina::sort< dushechkina::At >(vector, greaterComparator);
 	BOOST_CHECK(vector == sortedDescendingVector);
 }
 
 BOOST_FIXTURE_TEST_CASE(sortIteratorType, fixture)
 {
-	dushechkina::sort<dushechkina::Iterator>(list, lessComparator);
+	dushechkina::sort< dushechkina::Iterator >(list, lessComparator);
 	BOOST_CHECK(list == sortedAscendingList);
-	dushechkina::sort<dushechkina::Iterator>(list, greaterComparator);
+	dushechkina::sort< dushechkina::Iterator >(list, greaterComparator);
 	BOOST_CHECK(list == sortedDescendingList);
 }
 

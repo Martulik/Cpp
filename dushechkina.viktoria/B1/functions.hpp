@@ -19,6 +19,7 @@ namespace dushechkina
       std::cout << *i << separator;
     }
   }
+  
 }
 
 #endif

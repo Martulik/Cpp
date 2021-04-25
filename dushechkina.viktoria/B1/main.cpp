@@ -66,6 +66,23 @@ int main(int argc, char* argv[])
       return 1;
     }
     break;
+  case 3:
+    if (argc != 2) {
+      std::cerr << "Incorrect number of arguments";
+      return 1;
+    }
+    try {
+      task3();
+    }
+    catch (const std::runtime_error& error) {
+      std::cerr << error.what() << "\n";
+      return 1;
+    }
+    catch (const std::logic_error& error) {
+      std::cerr << error.what() << "\n";
+      return 1;
+    }
+    break;
   default:
   {
     std::cerr << "Incorrect task number";

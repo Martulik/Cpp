@@ -18,6 +18,6 @@ void task4(std::function<bool(const double&, const double&)> compar, int size)
   dushechkina::fillRandom(vector.data(), size);
   dushechkina::print(vector, " ");
   std::cout << std::endl;
-  dushechkina::sort<At>(vector, compar);
+  dushechkina::sort<dushechkina::At>(vector, compar);
   dushechkina::print(vector, " ");
 }

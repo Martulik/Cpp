@@ -16,7 +16,7 @@ void lab::taskTwo(const char* filename)
   }
 
 
-  int length = 0;
+  size_t length = 0;
   file.seekg(0, file.end);
   length = file.tellg();
   file.seekg(0, file.beg);
@@ -26,7 +26,7 @@ void lab::taskTwo(const char* filename)
     throw std::length_error("File is empty");
   }
 
-  std::unique_ptr< char[] > str(std::make_unique< char[] >(static_cast< size_t >(length)));
+  std::unique_ptr< char[] > str(std::make_unique< char[] >(length));
   file.read(str.get(), length);
 
   std::vector< char > vec(str.get(), str.get() + length);

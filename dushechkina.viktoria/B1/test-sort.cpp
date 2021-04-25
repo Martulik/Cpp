@@ -27,12 +27,12 @@ struct fixture
 	  sortedAscendingVector(vector),
 	  sortedAscendingList(list)
   {
-	std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
-	sortedDescendingVector = sortedAscendingVector;
-	std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
-	sortedAscendingList.sort();
-	sortedDescendingList = sortedAscendingList;
-  sortedDescendingList.reverse();
+	  std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
+	  sortedDescendingVector = sortedAscendingVector;
+	  std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
+	  sortedAscendingList.sort();
+	  sortedDescendingList = sortedAscendingList;
+    sortedDescendingList.reverse();
   }
 };
 

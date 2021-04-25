@@ -15,26 +15,26 @@ const auto greaterComparator = dushechkina::getSortingOrder< int >("descending")
 
 struct fixture
 {
-	std::vector< int > vector;
-	std::list< int > list;
-	std::vector< int > sortedAscendingVector;
-  std::list< int > sortedAscendingList;
-	std::vector< int > sortedDescendingVector;
-	std::list< int > sortedDescendingList;
+ std::vector< int > vector;
+ std::list< int > list;
+ std::vector< int > sortedAscendingVector;
+ std::list< int > sortedAscendingList;
+ std::vector< int > sortedDescendingVector;
+ std::list< int > sortedDescendingList;
 
-  fixture():
-	  vector({ 4, 8, 2, 7, -13 }),
-		list({ 4, 8, 2, 7, -13 }),
-		sortedAscendingVector(vector),
-		sortedAscendingList(list)
-	{
-		std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
-		sortedDescendingVector = sortedAscendingVector;
-		std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
-	  sortedAscendingList.sort();
-		sortedDescendingList = sortedAscendingList;
-		sortedDescendingList.reverse();
-	}
+ fixture():
+	 vector({ 4, 8, 2, 7, -13 }),
+	 list({ 4, 8, 2, 7, -13 }),
+	 sortedAscendingVector(vector),
+	 sortedAscendingList(list)
+ {
+	 std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
+	 sortedDescendingVector = sortedAscendingVector;
+	 std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
+	 sortedAscendingList.sort();
+	 sortedDescendingList = sortedAscendingList;
+	 sortedDescendingList.reverse();
+ }
 };
 
 BOOST_FIXTURE_TEST_CASE(sortBracketsType, fixture)

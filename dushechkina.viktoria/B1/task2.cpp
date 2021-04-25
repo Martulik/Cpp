@@ -38,5 +38,5 @@ void task2(const char* filename)
     }
   }
   std::vector<char> vector(data.get(), data.get() + size);
-  print(vector, "");
+  dushechkina::print(vector, "");
 }

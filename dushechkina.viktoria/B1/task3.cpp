@@ -58,5 +58,5 @@ void task3()
   default:
     break;
   }
-  print(vector, " ");
+  dushechkina::print(vector, " ");
 }

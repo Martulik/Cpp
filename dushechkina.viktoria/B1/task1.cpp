@@ -29,9 +29,9 @@ void task1(std::function<bool(const int&, const int&)> comparator)
   dushechkina::sort<Brackets>(vector, comparator);
   dushechkina::sort<At>(vector1, comparator);
   dushechkina::sort<Iterator>(list, comparator);
-  print(vector, " ");
+  dushechkina::print(vector, " ");
   std::cout << std::endl;
-  print(vector1, " ");
+  dushechkina::print(vector1, " ");
   std::cout << std::endl;
-  print(list, " ");
+  dushechkina::print(list, " ");
 }

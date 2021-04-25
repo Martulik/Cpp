@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <ctime>
 #include <functional>
 #include <sstream>
 #include <stdexcept>

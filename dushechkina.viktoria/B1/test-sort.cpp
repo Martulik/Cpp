@@ -8,15 +8,16 @@
 #include "sort.hpp"
 #include "compare.hpp"
 
+namespace vika = dushechkina;
+
 BOOST_AUTO_TEST_SUITE(testSort)
 
-namespace vika = dushechkina;
 const auto lessComparator = vika::getSortingOrder< int >("ascending");
 const auto greaterComparator = vika::getSortingOrder< int >("descending");
 
 struct fixture
 {
-  fixture() :
+  fixture():
     vector({ 4, 8, 2, 7, -13 }),
     list({ 4, 8, 2, 7, -13 }),
     sortedAscendingVector(vector),
@@ -28,7 +29,6 @@ struct fixture
     sortedAscendingList.sort();
     sortedDescendingList = sortedAscendingList;
     sortedDescendingList.reverse();
-
   }
   std::vector< int > vector;
   std::list< int > list;
@@ -40,25 +40,25 @@ struct fixture
 
 BOOST_FIXTURE_TEST_CASE(sortBracketsType, fixture)
 {
-	vika::sort< vika::Brackets >(vector, lessComparator);
-	BOOST_CHECK(vector == sortedAscendingVector);
-	vika::sort< vika::Brackets >(vector, greaterComparator);
-	BOOST_CHECK(vector == sortedDescendingVector);
+  vika::sort<vika::Brackets>(vector, lessComparator);
+  BOOST_CHECK(vector == sortedAscendingVector);
+  vika::sort<vika::Brackets>(vector, greaterComparator);
+  BOOST_CHECK(vector == sortedDescendingVector);
 }
 
 BOOST_FIXTURE_TEST_CASE(sortAtType, fixture)
 {
-	vika::sort< vika::At >(vector, lessComparator);
-	BOOST_CHECK(vector == sortedAscendingVector);
-	vika::sort< vika::At >(vector, greaterComparator);
-	BOOST_CHECK(vector == sortedDescendingVector);
+  vika::sort<vika::At>(vector, lessComparator);
+  BOOST_CHECK(vector == sortedAscendingVector);
+  vika::sort<vika::At>(vector, greaterComparator);
+  BOOST_CHECK(vector == sortedDescendingVector);
 }
 
 BOOST_FIXTURE_TEST_CASE(sortIteratorType, fixture)
 {
-	vika::sort< vika::Iterator >(list, lessComparator);
+  vika::sort<vika::Iterator>(list, lessComparator);
   BOOST_CHECK(list == sortedAscendingList);
-	vika::sort< vika::Iterator >(list, greaterComparator);
+  vika::sort<vika::Iterator>(list, greaterComparator);
   BOOST_CHECK(list == sortedDescendingList);
 }
 

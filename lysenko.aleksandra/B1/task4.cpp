@@ -1,10 +1,5 @@
 #include "tasks.hpp"
 
-namespace lysenko
-{
-  void fillRandom(double * myVectPointer, int size);
-}
-
 int lysenko::task4(const char* order, const char* numberOfArguments)
 {
   bool (*comparator)(const double&, const double&) = getComparator< double >(order);

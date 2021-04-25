@@ -2,6 +2,7 @@
 #include <functional>
 #include <sstream>
 #include <stdexcept>
+
 #include "compare.hpp"
 #include "tasks.hpp"
 #include "functions.hpp"
@@ -36,11 +37,13 @@ int main(int argc, char* argv[])
       std::function<bool(const int&, const int&)> comparator = dushechkina::getSortingOrder<int>(argv[2]);
       task1(comparator);
     }
-    catch (const std::invalid_argument& error) {
+    catch (const std::invalid_argument& error)
+    {
       std::cerr << error.what() << "\n";
       return 1;
     }
-    catch (const std::runtime_error& error) {
+    catch (const std::runtime_error& error)
+    {
       std::cerr << error.what() << "\n";
       return 1;
     }
@@ -67,18 +70,22 @@ int main(int argc, char* argv[])
     }
     break;
   case 3:
-    if (argc != 2) {
+    if (argc != 2)
+    {
       std::cerr << "Incorrect number of arguments";
       return 1;
     }
-    try {
+    try
+    {
       task3();
     }
-    catch (const std::runtime_error& error) {
+    catch (const std::runtime_error& error)
+    {
       std::cerr << error.what() << "\n";
       return 1;
     }
-    catch (const std::logic_error& error) {
+    catch (const std::logic_error& error)
+    {
       std::cerr << error.what() << "\n";
       return 1;
     }
@@ -102,7 +109,8 @@ int main(int argc, char* argv[])
       }
       task4(comparator, size);
     }
-    catch (const std::invalid_argument& error) {
+    catch (const std::invalid_argument& error)
+    {
       std::cerr << error.what() << "\n";
       return 1;
     }

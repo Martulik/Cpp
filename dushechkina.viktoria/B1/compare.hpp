@@ -4,6 +4,7 @@
 #include <functional>
 #include <stdexcept>
 #include <string>
+#include <cstring>
 #include "strategy.hpp"
 
 namespace dushechkina

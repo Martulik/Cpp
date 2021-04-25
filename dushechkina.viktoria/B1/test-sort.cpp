@@ -10,8 +10,8 @@
 
 BOOST_AUTO_TEST_SUITE(testSort)
 
-const auto lessComparator = dushechkina::getSortingOrder< int >("ascending");
-const auto greaterComparator = dushechkina::getSortingOrder< int >("descending");
+  const auto lessComparator = dushechkina::getSortingOrder< int >("ascending");
+  const auto greaterComparator = dushechkina::getSortingOrder< int >("descending");
 
   struct fixture
   {

@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <vector>
 #include <list>
-
 #include "strategy.hpp"
 #include "functions.hpp"
 #include "sort.hpp"
@@ -14,30 +13,6 @@ BOOST_AUTO_TEST_SUITE(testSort)
 namespace vika = dushechkina;
 const auto lessComparator = vika::getSortingOrder< int >("ascending");
 const auto greaterComparator = vika::getSortingOrder< int >("descending");
-
-struct fixture
-{
-  fixture():
-    vector({ 4, 8, 2, 7, -13 }),
-    list({ 4, 8, 2, 7, -13 }),
-    sortedAscendingVector(vector),
-    sortedAscendingList(list)
-  {
-    std::sort(sortedAscendingVector.begin(), sortedAscendingVector.end());
-    sortedDescendingVector = sortedAscendingVector;
-    std::reverse(sortedDescendingVector.begin(), sortedDescendingVector.end());
-    sortedAscendingList.sort();
-    sortedDescendingList = sortedAscendingList;
-    sortedDescendingList.reverse();
-
-  }
-  std::vector< int > vector;
-  std::list< int > list;
-  std::vector< int > sortedAscendingVector;
-  std::list< int > sortedAscendingList;
-  std::vector< int > sortedDescendingVector;
-  std::list< int > sortedDescendingList;
-};
 
 BOOST_FIXTURE_TEST_CASE(sortBracketsType, fixture)
 {

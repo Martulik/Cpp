@@ -4,11 +4,11 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-using shapePtr = std::shared_ptr< razukrantov::Shape >;
 namespace raz = razukrantov;
 
 namespace razukrantov
 {
+  using shapePtr = std::shared_ptr< Shape >;
   const double width = 5.0;
   const double height = 10.0;
   const double negativeValue = -1.0;

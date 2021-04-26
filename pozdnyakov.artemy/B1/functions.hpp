@@ -18,7 +18,6 @@ namespace pozdnyakov
     {
       out << *i << separator;
     }
-    out << '\n';
   }
 }
 

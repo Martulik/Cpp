@@ -2,7 +2,7 @@
 #include <vector>
 #include "tools.hpp"
 
-int diurdeva::task3()
+int diurdeva::task3(Error &err)
 {
   std::vector< int > vector;
   int num = 0;
@@ -10,7 +10,7 @@ int diurdeva::task3()
   while (std::cin && !(std::cin >> num).eof()) {
 
     if (std::cin.fail() || std::cin.bad()) {
-      std::cerr << "Read error\n";
+      err.set("Error reading file\n");
       return 1;
     }
 
@@ -21,7 +21,7 @@ int diurdeva::task3()
   }
 
   if (num != 0) {
-    std::cerr << "Wrong input\n";
+    err.set("No end of line\n");
     return 1;
   }
 

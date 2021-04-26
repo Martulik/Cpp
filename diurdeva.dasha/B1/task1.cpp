@@ -4,13 +4,13 @@
 #include <iostream>
 #include "tools.hpp"
 
-int diurdeva::task1(const std::function< bool(int, int) > compare)
+int diurdeva::task1(const std::function< bool(int, int) > compare, Error &error_obj)
 {
   std::vector< int > vectorBr;
   int num = 0;
   while (std::cin && !(std::cin >> num).eof()) {
     if (std::cin.fail() || std::cin.bad()) {
-      std::cerr << "Read error\n";
+      error_obj.set("Error reading file\n");
       return 1;
     }
     vectorBr.push_back(num);

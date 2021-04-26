@@ -4,11 +4,11 @@
 #include <memory>
 #include "tools.hpp"
 
-int diurdeva::task2(const char *fileName)
+int diurdeva::task2(const char *fileName, Error &err)
 {
   std::ifstream inputStream(fileName);
   if (!inputStream) {
-    std::cerr << "This file doesn't exist";
+    err.set("Error reading file\n");
     return 1;
   }
 
@@ -25,7 +25,7 @@ int diurdeva::task2(const char *fileName)
     count += inputStream.gcount();
     std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
     for (size_t i = 0; i < count; i++) {
-      temp[i] = std::move(arr[i]);
+      temp[i] = arr[i];
     }
     std::swap(arr, temp);
   }

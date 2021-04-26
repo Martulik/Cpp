@@ -10,41 +10,42 @@ namespace lab = diurdeva;
 int main(int argc, char *argv[])
 {
   srand(time(NULL));
+  lab::Error err;
 
   if ((argc < 2) || (argc > 4)) {
-    std::cerr << "Incorrect number of arguments.\n";
-    return 1;
+    err.set("Wrong number of arguments\n");
   }
 
-  if (!lab::isDigit(argv[1]))
-  {
-    std::cerr << "Incorrect first argument (task number)";
-    return 1;
+  if (!lab::isDigit(argv[1]) || !err.isError() || atoi(argv[1]) < 1 || atoi(argv[1]) > 4) {
+    err.set("Incorrect number for task\n");
   }
-
-  int taskNumber = atoi(argv[1]);
-  std::string error = "Null";
-  int code = 0;
-
+  int taskNumber = (err.isError()) ? atoi(argv[1]) : 0;
+ 
   if (taskNumber == 1 && argc == 3) {
     const std::function< bool(int, int) > &compare = lab::getCompare< int >(argv[2]);
-    error = compare ? "Null" : "Incorrect direction";
-    code = (error == "Null") ? lab::task1(compare) : 1;
+    if (compare) {
+      lab::task1(compare, err);
+    }
+    else {
+      err.set("Incorrect direction\n");
+    }
   } else if (taskNumber == 2 && argc == 3) {
-    code = lab::task2(argv[2]);
+    lab::task2(argv[2],err);
   } else if (taskNumber == 3 && argc == 2) {
-    code = lab::task3();
+    lab::task3(err);
   } else if (taskNumber == 4 && argc == 4) {
     const std::function< bool(double, double) > &compare = lab::getCompare< double >(argv[2]);
-    error = compare && lab::isDigit(argv[3]) ? "Null" : "Incorrect direction";
-    code = (error == "Null") ? lab::task4(compare, atoi(argv[3])) : 1;
+    if (compare && lab::isDigit(argv[3])) {
+      lab::task4(compare, atoi(argv[3]));
+    }
+    else {
+      err.set("Incorrect argument\n");
+    }
   } else {
-    error = "Incorrect number of arguments.\n";
-    code = 1;
+    err.set("Incorrect number for task\n");
   }
 
-  if (error != "Null") {
-    std::cerr << error;
+  if (!err.isError()) {
+    std::cerr << err.getError();
   }
-  return code;
 }

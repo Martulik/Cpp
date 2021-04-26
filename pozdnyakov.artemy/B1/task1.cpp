@@ -42,6 +42,11 @@ void poz::task1(char* argv[])
   poz::sort< poz::IndexStrategy< int > >(indexVector, compare);
   poz::sort< poz::VectorAtStrategy< int > >(atVector, compare);
   poz::sort< poz::ListStrategy< int > >(list, compare);
+  if (indexVector.size() == 0)
+  {
+    std::cout << "Omitted due to size." << '\n';
+    return;
+  }
   poz::print(indexVector, std::cout);
   poz::print(atVector, std::cout);
   poz::print(list, std::cout);

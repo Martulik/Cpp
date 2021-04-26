@@ -21,10 +21,6 @@ void lab::taskTwo(const char* filename)
   length = file.tellg();
   file.seekg(0, file.beg);
 
-  if (static_cast< int >(length) < 0)
-  {
-    throw std::invalid_argument("This file is unavailable.\n");
-  }
 
   // if (length == 0)
   // {

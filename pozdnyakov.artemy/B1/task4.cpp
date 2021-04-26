@@ -11,7 +11,7 @@
 
 namespace poz = pozdnyakov;
 
-void fillRandom(std::shared_ptr< double[] > array, int len)
+void fillRandom(double* array, int len)
 {
   std::uniform_real_distribution< double > dis(-1.0, 1.0);
   std::random_device device;
@@ -27,8 +27,8 @@ void poz::task4(char* argv[])
   std::string asc = "ascending";
   std::string desc = "descending";
   int len = std::stoi(std::string(argv[1]));
-  std::shared_ptr< double[] > array = std::make_shared< double[] >(len);
-  fillRandom(array, len);
+  std::unique_ptr< double[] > array = std::make_unique< double[] >(len);
+  fillRandom(array.get(), len);
   std::vector< double > vector(array.get(), array.get() + len);
   poz::print(vector, std::cout);
   if (asc.compare(argAsc) == 0)

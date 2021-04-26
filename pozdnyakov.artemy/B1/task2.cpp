@@ -27,6 +27,6 @@ void poz::task2(char* argv[])
     read += fs.gcount();
   }
   fs.close();
-  std::vector<char> vector(buf.get(), buf.get() + read);
+  std::vector< char > vector(buf.get(), buf.get() + read);
   poz::print(vector, std::cout);
 }

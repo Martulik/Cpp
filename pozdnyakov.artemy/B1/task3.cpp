@@ -12,19 +12,22 @@ void poz::task3()
   int n;
   while (std::cin >> n && n != 0)
   {
-    if (std::cin.fail() && !std::cin.eof())
-    {
-      throw std::runtime_error("Invalid input");
-    }
     vector.push_back(n);
   }
-  if (*std::prev(vector.end()) == 1)
+  if (!std::cin.good() || n != 0)
   {
-    poz::eraseEven(vector);
+    throw std::runtime_error("Invalid input");
   }
-  else if (*std::prev(vector.end()) == 2)
+  if (vector.size() != 0)
   {
-    poz::addOnes(vector);
+    if (*std::prev(vector.end()) == 1)
+    {
+      poz::eraseEven(vector);
+    }
+    else if (*std::prev(vector.end()) == 2)
+    {
+      poz::addOnes(vector);
+    }
   }
   poz::print(vector, std::cout);
 }

@@ -46,7 +46,7 @@ namespace shkurov
   }
 
   template < typename T >
-  void printContainer(const T& cont, char separator)
+  void printContainer(const T& cont, const std::string& separator)
   {
     using iterator_t = typename T::const_iterator;
 

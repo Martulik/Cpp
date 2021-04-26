@@ -13,7 +13,7 @@ void diurdeva::fillRandom(double *array, size_t size)
 bool diurdeva::isDigit(const char* str)
 {
   for (size_t i = 0; i < strlen(str); i++) {
-    if (!isdigit(str[i])) {
+    if (srr[i] == ' ' || !isdigit(str[i])) {
       return false;
     }
   }

@@ -36,5 +36,5 @@ void lab::taskTwo(const char* filename)
   }
 
   std::vector< char > strVec(str.get(), str.get() + sizeOfRead);
-  printContainer(strVec, static_cast< char >(0));
+  printContainer(strVec, "");
 }

@@ -43,5 +43,5 @@ void lab::taskThree()
     }
   }
 
-  printContainer(vec, ' ');
+  printContainer(vec, " ");
 }

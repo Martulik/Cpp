@@ -27,7 +27,7 @@ void lab::taskOne(const char* cmp)
   selectionSort< strategyAt< int > >(vecTwo, comparsionMethod< int >(cmp));
   selectionSort< strategyIterator< int > >(list, comparsionMethod< int >(cmp));
 
-  printContainer(vecOne, ' ');
-  printContainer(vecTwo, ' ');
-  printContainer(list, ' ');
+  printContainer(vecOne, " ");
+  printContainer(vecTwo, " ");
+  printContainer(list, " ");
 }

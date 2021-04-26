@@ -29,5 +29,6 @@ void poz::task2(char* argv[])
   }
   std::vector<char> vector(&buf[0], &buf[length]);
   poz::print(vector, std::cout);
+  delete[] buf;
   fs.close();
 }

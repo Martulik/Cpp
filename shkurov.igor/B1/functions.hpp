@@ -61,7 +61,7 @@ namespace shkurov
         std::cout << *it;
       }
     }
-    // std::cout << '\n';
+    std::cout << '\n';
   }
 
   template < typename T >

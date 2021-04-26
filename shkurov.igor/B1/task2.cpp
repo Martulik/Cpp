@@ -32,4 +32,6 @@ void lab::taskTwo(const char* filename)
   std::cout << str;
   std::vector< char > vec(str, str + length);
   printContainer(vec, static_cast< char >(0));
+
+  delete str;
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <stdexcept>
+#include <memory>
 #include "print.hpp"
 
 namespace poz = pozdnyakov;
@@ -18,7 +19,7 @@ void poz::task2(char* argv[])
   fs.seekg(0, fs.end);
   size_t length = fs.tellg();
   fs.seekg(0, fs.beg);
-  char* buf = new char[length]; //make unique
+  std::unique_ptr< char > buf = std::make_unique< char >(length);
   size_t read = 0;
   char c;
   while (!fs.eof())
@@ -29,6 +30,5 @@ void poz::task2(char* argv[])
   }
   std::vector<char> vector(&buf[0], &buf[length]);
   poz::print(vector, std::cout);
-  delete[] buf;
   fs.close();
 }

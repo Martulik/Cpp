@@ -9,6 +9,7 @@ namespace poz = pozdnyakov;
 
 void poz::task2(char* argv[])
 {
+  const int LENGTH = 1000;
   std::string fileName(argv[0]);
   std::ifstream fs;
   fs.open(fileName, std::ifstream::in);
@@ -16,19 +17,20 @@ void poz::task2(char* argv[])
   {
     throw std::runtime_error("Incorrect file");
   }
-  fs.seekg(0, fs.end);
-  size_t length = fs.tellg();
-  fs.seekg(0, fs.beg);
-  std::unique_ptr< char[] > buf = std::make_unique< char[] >(length);
+  std::unique_ptr< char[] > buf = std::make_unique< char[] >(LENGTH);
   size_t read = 0;
   char c;
-  while (!fs.eof())
+  while (!fs.eof() || read == LENGTH)
   {
     fs.get(c);
     buf[read] = c;
     read += fs.gcount();
   }
-  std::vector<char> vector(buf.get(), buf.get() + length);
+  if (read == 0)
+  {
+    throw std::runtime_error("Empty file");
+  }
+  std::vector<char> vector(buf.get(), buf.get() + read);
   poz::print(vector, std::cout);
   fs.close();
 }

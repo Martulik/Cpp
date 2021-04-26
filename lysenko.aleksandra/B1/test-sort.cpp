@@ -1,5 +1,4 @@
 #include <boost/test/unit_test.hpp>
-#include <boost/mpl/list.hpp>
 
 #include <vector>
 #include <forward_list>

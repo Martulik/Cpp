@@ -19,7 +19,6 @@ namespace lysenko
   int task3();
   int task4(const char* order, const char* numberOfArguments);
 
-
   void fillRandom(double* myVectPointer, int size);
 }
 

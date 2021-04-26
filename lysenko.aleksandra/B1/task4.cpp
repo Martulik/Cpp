@@ -29,7 +29,7 @@ int lysenko::task4(const char* order, const char* numberOfArguments)
     return 1;
   }
 
-  std::vector < double > myVect(size);
+  std::vector< double > myVect(size);
 
   fillRandom(myVect.data(), size);
   lysenko::print< lysenko::strategyForIndex, std::vector< double > >(myVect, 1);

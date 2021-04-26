@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include "strategies.hpp"
+#include "comparator.hpp"
 
 namespace lysenko
 {
@@ -30,4 +31,5 @@ namespace lysenko
     }
   }
 }
+
 #endif

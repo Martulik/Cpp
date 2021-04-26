@@ -5,7 +5,7 @@
 
 namespace lysenko
 {
-  template<typename Container>
+  template< typename Container >
   struct strategyForIndex
   {
     typedef typename Container::value_type type;
@@ -27,7 +27,7 @@ namespace lysenko
     }
   };
 
-  template<typename Container>
+  template< typename Container >
   struct strategyForAt
   {
     typedef typename Container::value_type type;
@@ -49,7 +49,7 @@ namespace lysenko
     }
   };
 
-  template<typename Container>
+  template< typename Container >
   struct strategyForIterator
   {
     typedef typename Container::value_type type;

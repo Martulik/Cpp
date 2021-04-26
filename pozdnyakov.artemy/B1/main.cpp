@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+#include <string.h>
 #include "tasks.hpp"
 
 namespace poz = pozdnyakov;
@@ -13,7 +14,11 @@ int main(int argc, char* argv[])
     {
       throw std::invalid_argument("Not enough arguments");
     }
-    int task = std::atoi(std::addressof(argv[1][0]));
+    if (strlen(argv[1]) > 1)
+    {
+      throw std::invalid_argument("Invalid argument");
+    }
+    int task = atoi(std::addressof(argv[1][0]));
     if (task == 1 && argc == 3)
     {
       poz::task1(argv + 2);

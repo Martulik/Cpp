@@ -5,7 +5,7 @@
 #include <iostream>
 #include "sort.hpp"
 #include "strategies.hpp"
-#include "print.hpp"
+#include "functions.hpp"
 
 namespace poz = pozdnyakov;
 

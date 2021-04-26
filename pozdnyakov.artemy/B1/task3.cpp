@@ -1,7 +1,7 @@
 #include "tasks.hpp"
 #include <vector>
 #include <iostream>
-#include "print.hpp"
+#include "functions.hpp"
 #include "vector-operations.hpp"
 
 namespace poz = pozdnyakov;

@@ -36,10 +36,10 @@ namespace lysenko
   template< template< typename > typename sortBy, typename container_type >
   void sortWithStategy(int size)
   {
-    container_type emptyOne(size);
-    lysenko::doSort< sortBy, container_type >(emptyOne, "ascending");
+    container_type myContainer(size);
+    lysenko::doSort< sortBy, container_type >(myContainer, "ascending");
 
-    lysenko::doSort< sortBy, container_type >(emptyOne, "descending");
+    lysenko::doSort< sortBy, container_type >(myContainer, "descending");
   }
 }
 

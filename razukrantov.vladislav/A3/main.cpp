@@ -4,12 +4,9 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-void printFrameRect(const std::shared_ptr< razukrantov::Shape > shape, std::ostream& out)
+namespace razukrantov
 {
-  out << "width is: " << razukrantov::getWidth(*shape) << "\n";
-  out << "height is: " << razukrantov::getHeight(*shape) << "\n";
-  out << "center is: " << razukrantov::getX(*shape) << "; "
-      << razukrantov::getY(*shape) << "\n";
+  void printFrameRect(const std::shared_ptr< razukrantov::Shape > shape, std::ostream& out);
 }
 
 int main()
@@ -33,4 +30,12 @@ int main()
     compositeShape.at(i)->scale(coef);
     printFrameRect(compositeShape.at(i), std::cout);
   }
+}
+
+void razukrantov::printFrameRect(const std::shared_ptr< razukrantov::Shape > shape, std::ostream& out)
+{
+  out << "width is: " << razukrantov::getWidth(*shape) << "\n";
+  out << "height is: " << razukrantov::getHeight(*shape) << "\n";
+  out << "center is: " << razukrantov::getX(*shape) << "; "
+      << razukrantov::getY(*shape) << "\n";
 }

@@ -1,6 +1,6 @@
-﻿#include <iostream>
-#include "rectangle.hpp"
+﻿#include "rectangle.hpp"
 #include "circle.hpp"
+#include <iostream>
 
 void ShapeInfo(const Shape* figure)
 {

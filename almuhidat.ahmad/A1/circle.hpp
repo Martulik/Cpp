@@ -2,7 +2,7 @@
 #define CIRCLE_HPP
 #include "shape.hpp"
 
-class Circle: public Shape
+class Circle : public Shape
 {
 private:
   double radius_;

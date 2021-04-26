@@ -26,11 +26,11 @@ void poz::task2(char* argv[])
     buf[read] = c;
     read += fs.gcount();
   }
+  fs.close();
   if (read == 0)
   {
     throw std::runtime_error("Empty file");
   }
   std::vector<char> vector(buf.get(), buf.get() + read);
   poz::print(vector, std::cout);
-  fs.close();
 }

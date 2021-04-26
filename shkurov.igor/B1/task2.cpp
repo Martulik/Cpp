@@ -26,12 +26,12 @@ void lab::taskTwo(const char* filename)
   // {
   //   throw std::length_error("File is empty.\n");
   // }
-
+  std::cout << length;
   char* str = new char[length];
-  file.read(str, length);
-  std::cout << str;
+  file.getline(str, length + 1);
+  std::cout << file.gcount();
   std::vector< char > vec(str, str + length);
   printContainer(vec, static_cast< char >(0));
 
-  delete str;
+  delete[] str;
 }

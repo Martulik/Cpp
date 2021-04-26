@@ -25,7 +25,7 @@ namespace ferapontov
 
   void testSort(std::string& mode, size_t size)
   {
-    
+
     std::vector< int > v(size);
     fillVector(v.begin(), v.end());
 

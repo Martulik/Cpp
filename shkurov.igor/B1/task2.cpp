@@ -21,16 +21,13 @@ void lab::taskTwo(const char* filename)
   length = file.tellg();
   file.seekg(0, file.beg);
 
-
   // if (length == 0)
   // {
   //   throw std::length_error("File is empty.\n");
   // }
-  std::cout << length;
-  char* str = new char[length + 1];
-  file.getline(str, length + 1);
-  std::vector< char > vec(str, str + length);
-  printContainer(vec, static_cast< char >(0));
 
-  delete[] str;
+  std::unique_ptr< char[] > str(std::make_unique< char[] >(length));
+  file.read(str.get(), length);
+  std::vector< char > vec(str.get(), str.get() + length);
+  printContainer(vec, static_cast< char >(0));
 }

@@ -20,25 +20,23 @@ int main(int argc, char *argv[])
     err.set("Incorrect number for task\n");
   }
   int taskNumber = (err.isError()) ? atoi(argv[1]) : 0;
- 
+
   if (taskNumber == 1 && argc == 3) {
-    const std::function< bool(int, int) > &compare = lab::getCompare< int >(argv[2]);
+    const std::function< bool(int, int) > &compare = lab::getCompare<int>(argv[2]);
     if (compare) {
       lab::task1(compare, err);
-    }
-    else {
+    } else {
       err.set("Incorrect direction\n");
     }
   } else if (taskNumber == 2 && argc == 3) {
-    lab::task2(argv[2],err);
+    lab::task2(argv[2], err);
   } else if (taskNumber == 3 && argc == 2) {
     lab::task3(err);
   } else if (taskNumber == 4 && argc == 4) {
-    const std::function< bool(double, double) > &compare = lab::getCompare< double >(argv[2]);
+    const std::function< bool(double, double) > &compare = lab::getCompare<double>(argv[2]);
     if (compare && lab::isDigit(argv[3])) {
       lab::task4(compare, atoi(argv[3]));
-    }
-    else {
+    } else {
       err.set("Incorrect argument\n");
     }
   } else {

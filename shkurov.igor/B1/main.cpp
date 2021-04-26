@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      throw std::invalid_argument("Mismatched arguments. ");
+      throw std::invalid_argument("Mismatched arguments.");
     }
   }
   catch (const std::exception& ex)

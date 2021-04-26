@@ -31,8 +31,9 @@ void lab::taskTwo(const char* filename)
   //   throw std::length_error("File is empty.\n");
   // }
 
-  std::unique_ptr< char > str(std::make_unique< char >(length));
-  file.read(str.get(), length);
-  std::vector< char > vec(str.get(), str.get() + length);
+  char* str = new char(length);
+  file.read(str, length);
+  std::cout << str;
+  std::vector< char > vec(str, str + length);
   printContainer(vec, static_cast< char >(0));
 }

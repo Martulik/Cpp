@@ -2,6 +2,7 @@
 #define COMPARATOR_HPP
 
 #include <cstring>
+
 namespace lysenko
 {
   template<typename T>

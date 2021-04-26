@@ -52,14 +52,8 @@ namespace shkurov
 
     for (iterator_t it = cont.begin(); it != cont.end(); it++)
     {
-      if (separator != static_cast< char >(0))
-      {
-        std::cout << *it << separator;
-      }
-      else
-      {
-        std::cout << *it;
-      }
+      std::cout << *it << separator;
+
     }
     std::cout << '\n';
   }

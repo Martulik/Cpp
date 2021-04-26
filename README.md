@@ -157,11 +157,11 @@ Accepted Labs
 | Lysenko Aleksandra    | ✓  | ✓  |    |    |    |    |
 | Murzakanov Islam      | ✓  | ✓  |    |    |    |    |
 | Pochernin Vladislav   | ✓  | ✓  |    |    |    |    |
-| Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
+| Pozdnyakov Artemy     | ✓  | ✓  |    |    |    |    |
 | Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  |    |    |    |    |    |
 | Savchuk Aleksei       | ✓  | ✓  |    |    |    |    |
 | Shilyaev Vladislav    | ✓  | ✓  |    |    |    |    |
 | Shkurov Igor          | ✓  | ✓  |    |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  14|   1|   0|   0|   0|
+| __Total__             |  20|  15|   1|   0|   0|   0|

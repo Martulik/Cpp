@@ -27,7 +27,7 @@ void lab::taskTwo(const char* filename)
   //   throw std::length_error("File is empty.\n");
   // }
 
-  char* str = new char(length);
+  char* str = new char[length];
   file.read(str, length);
   std::cout << str;
   std::vector< char > vec(str, str + length);

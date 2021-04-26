@@ -28,5 +28,5 @@ void poz::task2(char* argv[])
   }
   fs.close();
   std::vector< char > vector(buf.get(), buf.get() + read);
-  poz::print(vector, std::cout);
+  poz::print(vector, std::cout, "");
 }

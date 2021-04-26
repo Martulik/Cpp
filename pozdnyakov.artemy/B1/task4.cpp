@@ -7,7 +7,7 @@
 #include <functional>
 #include "sort.hpp"
 #include "strategies.hpp"
-#include "print.hpp"
+#include "functions.hpp"
 
 namespace poz = pozdnyakov;
 
@@ -30,7 +30,6 @@ void poz::task4(char* argv[])
   std::unique_ptr< double[] > array = std::make_unique< double[] >(len);
   fillRandom(array.get(), len);
   std::vector< double > vector(array.get(), array.get() + len);
-  poz::print(vector, std::cout);
   if (asc.compare(argAsc) == 0)
   {
     poz::sort< poz::VectorAtStrategy< double > >(vector, std::less< double >());

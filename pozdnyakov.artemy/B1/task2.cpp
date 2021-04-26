@@ -19,7 +19,7 @@ void poz::task2(char* argv[])
   fs.seekg(0, fs.end);
   size_t length = fs.tellg();
   fs.seekg(0, fs.beg);
-  std::unique_ptr< char > buf = std::make_unique< char >(length);
+  std::unique_ptr< char[] > buf = std::make_unique< char[] >(length);
   size_t read = 0;
   char c;
   while (!fs.eof())
@@ -28,7 +28,7 @@ void poz::task2(char* argv[])
     buf[read] = c;
     read += fs.gcount();
   }
-  std::vector<char> vector(&buf[0], &buf[length]);
+  std::vector<char> vector(buf.get(), buf.get() + length);
   poz::print(vector, std::cout);
   fs.close();
 }

@@ -23,19 +23,29 @@ namespace ferapontov
     }
   }
 
-  void testSort(std::function< bool(int, int) > cmp, size_t size)
+  void testSort(std::string& mode, size_t size)
   {
+    
     std::vector< int > v(size);
     fillVector(v.begin(), v.end());
+
+    std::function< bool(int, int) > cmp = std::greater< >();
+    std::function< bool(int, int) > sort_cmp = std::less< >();
+
+    if(mode == "descending")
+    {
+      std::function< bool(int, int) > cmp = std::less< >();
+      std::function< bool(int, int) > sort_cmp = std::greater< >();
+    }
 
     std::vector< int > v2(v);
     std::forward_list< int > fl(v.begin(), v.end());
     sort< int, index_access< int > >(v, cmp);
     sort< int, at_access< int > >(v2, cmp);
     sort< int, iterator_access< int > >(fl, cmp);
-    BOOST_CHECK(std::is_sorted(v.begin(), v.end()));
-    BOOST_CHECK(std::is_sorted(v2.begin(), v2.end()));
-    BOOST_CHECK(std::is_sorted(fl.begin(), fl.end()));
+    BOOST_CHECK(std::is_sorted(v.begin(), v.end(), sort_cmp));
+    BOOST_CHECK(std::is_sorted(v2.begin(), v2.end(), sort_cmp));
+    BOOST_CHECK(std::is_sorted(fl.begin(), fl.end(), sort_cmp));
   }
 }
 

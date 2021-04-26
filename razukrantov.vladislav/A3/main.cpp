@@ -36,6 +36,5 @@ void razukrantov::printFrameRect(const std::shared_ptr< razukrantov::Shape > sha
 {
   out << "width is: " << razukrantov::getWidth(*shape) << "\n";
   out << "height is: " << razukrantov::getHeight(*shape) << "\n";
-  out << "center is: " << razukrantov::getX(*shape) << "; "
-      << razukrantov::getY(*shape) << "\n";
+  out << "center is: " << razukrantov::getX(*shape) << "; " << razukrantov::getY(*shape) << "\n";
 }

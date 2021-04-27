@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
   try
   {
     srand(time(NULL));
+
     for (int i = 1; i < argc; i++)
     {
       if (lab::containsSpaces(std::string(argv[i])))
@@ -20,7 +21,7 @@ int main(int argc, char* argv[])
       }
     }
 
-    if (!lab::isNumber(argv[1]))
+    if ((argc > 1) && (!lab::isNumber(argv[1])))
     {
       throw std::invalid_argument("First argument is always numeric representing task number.");
     }

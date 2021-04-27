@@ -18,10 +18,6 @@ void lab::taskThree()
   {
     throw std::invalid_argument("Incorrect input.");
   }
-  if (vec.empty())
-  {
-    throw std::length_error("Vector can not be empty.");
-  }
 
   std::vector< int >::iterator it;
   int flag = vec.back();

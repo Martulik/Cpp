@@ -28,6 +28,8 @@ void lab::taskOne(const char* cmp)
   selectionSort< strategyIterator< int > >(list, comparsionMethod< int >(cmp));
 
   printContainer(vecOne, " ");
+  std::cout << '\n';
   printContainer(vecTwo, " ");
+  std::cout << '\n';
   printContainer(list, " ");
 }

@@ -16,6 +16,7 @@ void lab::taskFour(const char* cmp, int size)
   }
 
   printContainer(vec, " ");
+  std::cout << '\n';
   selectionSort< strategyAt< double >, double >(vec, comparsionMethod< double >(cmp));
   printContainer(vec, " ");
 }

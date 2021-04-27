@@ -55,7 +55,6 @@ namespace shkurov
       std::cout << *it << separator;
 
     }
-    std::cout << '\n';
   }
 
   template < typename T >

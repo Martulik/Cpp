@@ -21,7 +21,7 @@ void lab::taskTwo(const char* filename)
 
   while (file.good())
   {
-    file.read(str.get(), strCapacity - sizeOfRead);
+    file.read(str.get() + sizeOfRead, strCapacity - sizeOfRead);
     sizeOfRead = file.gcount();
     strCapacity *= 2;
 

@@ -27,7 +27,7 @@ int murzakanov::task2(std::string& fileName)
     std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);
     for (int i = 0; i < size; i++)
     {
-      temp[i] = std::move(arr[i]);
+      temp[i] = arr[i];
     }
     arr = std::move(temp);
   }

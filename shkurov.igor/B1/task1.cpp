@@ -32,4 +32,5 @@ void lab::taskOne(const char* cmp)
   printContainer(vecTwo, " ");
   std::cout << '\n';
   printContainer(list, " ");
+  std::cout << '\n';
 }

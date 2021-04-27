@@ -8,7 +8,7 @@ void lab::taskThree()
 {
   std::vector< int > vec;
 
-  int x;
+  int x = 0;
   while (std::cin >> x && x != 0)
   {
     vec.push_back(x);
@@ -17,6 +17,11 @@ void lab::taskThree()
   if (std::cin.fail() || x != 0)
   {
     throw std::invalid_argument("Incorrect input.");
+  }
+
+  if (vec.empty())
+  {
+    return;
   }
 
   std::vector< int >::iterator it;

@@ -13,14 +13,11 @@ void lab::fillRandom(double *array, int size)
   }
 }
 
-bool lab::containsSpaces(size_t argsCount, char* argv[])
+bool lab::containsSpaces(const std::string& str)
 {
-  for (size_t i = 1; i < argsCount; i++)
+  if (str.find(' ') != std::string::npos)
   {
-    if (std::string(argv[i]).find(' ') != std::string::npos)
-    {
-      return true;
-    }
+    return true;
   }
 
   return false;

@@ -12,10 +12,12 @@ int main(int argc, char* argv[])
   try
   {
     srand(time(NULL));
-
-    if (lab::containsSpaces(argc, argv))
+    for (int i = 1; i < argc; i++)
     {
-      throw std::invalid_argument("No spaces allowed in arguments.");
+      if (lab::containsSpaces(std::string(argv[i])))
+      {
+        throw std::invalid_argument("No spaces allowed in arguments.");
+      }
     }
 
     if (!lab::isNumber(argv[1]))

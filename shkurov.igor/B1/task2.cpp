@@ -15,24 +15,27 @@ void lab::taskTwo(const char* filename)
     throw std::invalid_argument("No file found with such name.\n");
   }
 
-  size_t sizeOfRead = 0;
   size_t strCapacity = 1024;
+  size_t sizeOfRead = 0;
   std::unique_ptr< char[] > str(std::make_unique< char[] >(strCapacity));
 
-  while (file.good())
+  while (!file.eof())
   {
     file.read(str.get() + sizeOfRead, strCapacity - sizeOfRead);
     sizeOfRead += file.gcount();
-    strCapacity *= 2;
 
-    std::unique_ptr< char[] > temp(std::make_unique< char[] >(strCapacity));
-
-    for (size_t i = 0; i < sizeOfRead; i++)
+    if (sizeOfRead == strCapacity)
     {
-      temp[i] = str[i];
-    }
+      strCapacity *= 2;
+      std::unique_ptr< char[] > temp(std::make_unique< char[] >(strCapacity));
 
-    str = std::move(temp);
+      for (size_t i = 0; i < sizeOfRead; i++)
+      {
+        temp[i] = str[i];
+      }
+
+      str.swap(temp);
+    }
   }
 
   file.close();

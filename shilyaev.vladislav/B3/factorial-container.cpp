@@ -5,10 +5,11 @@ namespace shilyaev {
   {
     return (n <= 1) ? 1 : (n * factorial(n - 1));
   }
+
+  constexpr unsigned int beginLastMultiplier = 1;
+  constexpr unsigned int beginValue = factorial(beginLastMultiplier);
   constexpr unsigned int endLastMultiplier = 11;
   constexpr unsigned int endValue = factorial(endLastMultiplier);
-  constexpr unsigned int startLastMultiplier = 1;
-  constexpr unsigned int startValue = factorial(startLastMultiplier);
 
   FactorialContainer::Iterator::Iterator(unsigned int value, unsigned int lastMultiplier):
     value_(value),
@@ -59,12 +60,11 @@ namespace shilyaev {
 
   FactorialContainer::Iterator FactorialContainer::begin() const
   {
-    return {startValue, startLastMultiplier};
+    return {beginValue, beginLastMultiplier};
   }
 
   FactorialContainer::Iterator FactorialContainer::end() const
   {
     return {endValue, endLastMultiplier};
   }
-
 }

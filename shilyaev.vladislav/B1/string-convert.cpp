@@ -6,7 +6,7 @@ boost::optional< int > shilyaev::toNatural(const char *string)
     return {};
   }
   for (size_t i = 0; string[i] != '\0'; i++) {
-    if (!isdigit(string[i])) {
+    if (!std::isdigit(string[i])) {
       return {};
     }
   }

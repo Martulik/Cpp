@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     err.set("Wrong number of arguments\n");
   }
 
-  if ((!lab::isDigit(argv[1])) || (!err.isError()) || (atoi(argv[1]) <= 0) || (atoi(argv[1]) >= 5)) {
+  if (!err.isError() || !lab::isNumber(argv[1]) || atoi(argv[1]) <= 0 || atoi(argv[1]) >= 5) {
     err.set("Incorrect number for task\n");
   }
   int taskNumber = err.isError() ? atoi(argv[1]) : 0;
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     lab::task3(err);
   } else if (taskNumber == 4 && argc == 4) {
     const std::function< bool(double, double) > &compare = lab::getCompare<double>(argv[2]);
-    if (compare && lab::isDigit(argv[3])) {
+    if (compare && lab::isNumber(argv[3])) {
       lab::task4(compare, atoi(argv[3]));
     } else {
       err.set("Incorrect argument\n");

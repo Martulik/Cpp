@@ -40,5 +40,11 @@ void lab::taskTwo(const char* filename)
 
   file.close();
   std::vector< char > strVec(str.get(), str.get() + sizeOfRead);
-  printContainer(strVec, "");
+  // printContainer(strVec, "");
+  std::vector< char >::const_iterator it = strVec.cend();
+  while (it != strVec.end())
+  {
+    std::cout << *it;
+    ++it;
+  }
 }

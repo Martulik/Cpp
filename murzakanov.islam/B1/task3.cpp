@@ -13,7 +13,6 @@ int murzakanov::task3()
     vec.push_back(x);
   }
 
-
   if (std::cin.fail() && !std::cin.eof())
   {
     std::cerr << "Read error\n";

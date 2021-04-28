@@ -44,5 +44,7 @@ int main(int argc, char *argv[])
 
   if (!err.isError()) {
     std::cerr << err.getError();
+    return 1;
   }
+  return 0;
 }

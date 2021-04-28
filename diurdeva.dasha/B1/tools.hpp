@@ -17,7 +17,7 @@ namespace diurdeva {
       return;
     }
 
-    for (auto &&i : collection) {
+    for (auto &&i: collection) {
       std::cout << i << " ";
     }
 
@@ -26,7 +26,7 @@ namespace diurdeva {
 
   template< typename Strategy >
   void printAndSort(typename Strategy::container_type collection,
-                      const std::function< bool(typename Strategy::type, typename Strategy::type) > compare)
+                    const std::function< bool(typename Strategy::type, typename Strategy::type) > compare)
   {
     diurdeva::sort< Strategy >(collection, compare);
     diurdeva::print(collection);

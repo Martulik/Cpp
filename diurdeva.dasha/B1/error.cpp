@@ -11,15 +11,10 @@ void diurdeva::Error::set(const std::string& err)
 
 bool diurdeva::Error::isError() const
 {
-  if (error_message_ == "Success") {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return error_message_ == "Success";
 }
 
-std::string diurdeva::Error::getError() const
+std::string diurdeva::Error::getError() const 
 {
   return error_message_;
 }

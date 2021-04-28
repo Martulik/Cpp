@@ -7,7 +7,7 @@
 
 #include "tools.hpp"
 
-int murzakanov::task2(std::string& fileName)
+int murzakanov::task2(const char* fileName)
 {
   std::ifstream input;
   input.open(fileName);

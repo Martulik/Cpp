@@ -8,9 +8,9 @@
 #include "strategy.hpp"
 #include "tools.hpp"
 
-int murzakanov::task4(std::string& order, int size)
+int murzakanov::task4(const char* order, int size)
 {
-  if (order != "ascending" && order != "descending")
+  if (strcmp(order, "ascending") && strcmp(order, "descending"))
   {
     std::cerr << "Wrong order\n";
     return 1;

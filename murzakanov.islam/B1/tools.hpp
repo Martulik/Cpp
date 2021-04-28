@@ -4,14 +4,15 @@
 #include <functional>
 #include <string>
 #include <iostream>
+#include <cstring>
 #include "sorting.hpp"
 #include "strategy.hpp"
 
 namespace murzakanov
 {
   void fillRandom(double* array, int size);
-  bool checkIsNumber(const std::string& str);
-  bool checkForSpaces(const std::string& str);
+  bool checkIsNumber(const char* str);
+  bool checkForSpaces(const char* str);
 
   template< typename T >
   void print(const T& store, std::ostream& out)
@@ -28,13 +29,13 @@ namespace murzakanov
   }
 
   template < typename T >
-  std::function< bool(T, T) > getSortMode(const std::string& order)
+  std::function< bool(T, T) > getSortMode(const char* order)
   {
-    if (order == "ascending")
+    if (!strcmp(order, "ascending"))
     {
       return std::greater< T >();
     }
-    if (order == "descending")
+    if (!strcmp(order, "descending"))
     {
       return std::less< T >();
     }

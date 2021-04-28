@@ -10,9 +10,9 @@
 #include "sorting.hpp"
 #include "tools.hpp"
 
-int murzakanov::task1(const std::string& order)
+int murzakanov::task1(const char* order)
 {
-  if (order != "ascending" && order != "descending")
+  if (strcmp(order, "ascending") && strcmp(order, "descending"))
   {
     std::cerr << "Wrong order\n";
     return 1;

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <functional>
-#include "Sort.hpp"
+#include "sort.hpp"
 #include "strategy.hpp"
 
 namespace diurdeva {

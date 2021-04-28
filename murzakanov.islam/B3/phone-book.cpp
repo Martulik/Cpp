@@ -1,17 +1,56 @@
 #include "phone-book.hpp"
 
+using namespace murzakanov;
 
-void murzakanov::insertAfter(iterator it, const note_t& note)
+PhoneBook::iterator PhoneBook::begin()
 {
-
+  book_.begin();
+}
+PhoneBook::iterator PhoneBook::end()
+{
+  book_.end();
+}
+void PhoneBook::insertAfter(iterator it, const note_t& note)
+{
+  it++;
+  note_t temp{note.name, note.number};
+  book_.insert(it, temp);
 }
 
-void murzakanov::insertBefore(iterator it, const note_t& note)
+void PhoneBook::insertBefore(iterator it, const note_t& note)
 {
-
+  note_t temp{note.name, note.number};
+  book_.insert(it, temp);
 }
 
-void murzakanov::add(const note_t& note)
+void PhoneBook::deleteNote(iterator it)
 {
+  book_.erase(it);
+}
 
+void PhoneBook::add(const note_t& note)
+{
+  note_t temp{note.name, note.number};
+  book_.push_back(temp);
+}
+
+void PhoneBook::replace(iterator it, const note_t& note)
+{
+  it->name = note.name;
+  it->number = note.number;
+}
+
+void PhoneBook::show(std::ostream& out, iterator it)
+{
+  out << it->number << " " << it->name << "\n";
+}
+
+size_t PhoneBook::size() const
+{
+  return book_.size();
+}
+
+bool PhoneBook::isEmpty() const
+{
+  return book_.empty();
 }

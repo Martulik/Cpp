@@ -2,7 +2,6 @@
 #define SORTING_HPP
 
 #include <functional>
-#include <string>
 
 namespace murzakanov
 {

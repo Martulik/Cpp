@@ -5,7 +5,6 @@
 #include <functional>
 #include <vector>
 #include <random>
-#include <string>
 #include <algorithm>
 #include <forward_list>
 #include <list>
@@ -23,7 +22,7 @@ int randFunctional()
 
 void doTestSortOneElement()
 {
-  std::string order = "ascending";
+  const char order[] = "ascending";
   std::function< bool(int, int) > cmp = mur::getSortMode< int >(order);
   std::function< int() > rand = randFunctional;
   for (int containerSize = 0; containerSize < 4; containerSize++)

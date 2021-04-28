@@ -2,7 +2,6 @@
 #define TOOLS_HPP
 
 #include <functional>
-#include <string>
 #include <iostream>
 #include <cstring>
 #include "sorting.hpp"

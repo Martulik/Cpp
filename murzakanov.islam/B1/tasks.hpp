@@ -1,8 +1,6 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
 
-#include <string>
-
 namespace murzakanov
 {
   int task1(const char* order);

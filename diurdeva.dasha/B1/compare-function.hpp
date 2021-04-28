@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <cstring>
+#include "error.hpp"
 
 namespace diurdeva {
   template< typename T >

@@ -1,8 +1,8 @@
 #include <boost/test/unit_test.hpp>
 #include <algorithm>
 #include <ctime>
+#include "sort.hpp"
 #include "strategy.hpp"
-#include "tools.hpp"
 
 namespace diurdeva {
 

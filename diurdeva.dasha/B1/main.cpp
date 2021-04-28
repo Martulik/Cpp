@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     err.set("Incorrect number for task\n");
   }
   int taskNumber = (err.isError()) ? atoi(argv[1]) : 0;
- 
+
   if (taskNumber == 1 && argc == 3) {
     const std::function< bool(int, int) > compare = lab::getCompare< int >(argv[2], err);
     if (err.isError()) {

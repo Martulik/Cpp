@@ -1,6 +1,6 @@
 #include "error.hpp"
 
-diurdeva::Error::Error() :
+diurdeva::Error::Error():
   error_message_("Success")
 {}
 
@@ -14,7 +14,7 @@ bool diurdeva::Error::isError() const
   return error_message_ == "Success";
 }
 
-std::string diurdeva::Error::getError() const 
+std::string diurdeva::Error::getError() const
 {
   return error_message_;
 }

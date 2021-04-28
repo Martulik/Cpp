@@ -11,11 +11,17 @@ namespace diurdeva {
     return rand() % 100;
   }
 
+  template< typename Iterator >
+  void fillCont(Iterator begin, const Iterator& end)
+  {
+    std::generate(begin, end, randomNumber);
+  }
+
   template< typename Strategy >
   bool testSort(const std::function< bool(int, int) > compare, const int size)
   {
     typename Strategy::container_type container(size);
-    std::generate(container.begin, container.end, randomNumber);
+    fillCont(container.begin(), container.end());
     diurdeva::sort< Strategy >(container, compare);
     return std::is_sorted(container.cbegin(), container.cend(), compare);
   }

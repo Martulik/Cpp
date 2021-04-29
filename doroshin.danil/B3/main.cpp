@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <string>
 #include "phone-book.hpp"
@@ -93,7 +94,8 @@ dan::PhoneBook book;
         std::string mark;
         line >> mark;
         dan::PhoneBook::Entry entry = book.show(mark);
-        std::cout << entry.first << ' ' << entry.second << '\n';
+        std::cout << std::setfill('0') << std::setw(10) << entry.first << ' ' << entry.second << '\n';
+        std::cout.fill(' ');
       }
       else if(command == "move") {
         std::string mark, steps;

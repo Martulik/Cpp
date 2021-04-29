@@ -51,7 +51,7 @@ void dan::task3()
 {
   std::vector< int > values = input_int_vec();
   if(values.empty()) {
-    throw std::logic_error("No values given");
+    return;
   }
   if(values.back() != 0) {
     throw std::runtime_error("Output should end with a 0");

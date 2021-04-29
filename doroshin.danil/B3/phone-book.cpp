@@ -14,7 +14,9 @@ dan::PhoneBook::PhoneBook():
 void dan::PhoneBook::add(Entry entry)
 {
   entries_.emplace_back(std::move(entry));
-  bookmarks_.at("current") = --entries_.end();
+  if(bookmarks_.at("current") == entries_.end()) {
+    bookmarks_.at("current") = --entries_.end();
+  }
 }
 
 void dan::PhoneBook::store(const Name& from, const Name& to)
@@ -30,7 +32,7 @@ void dan::PhoneBook::store(const Name& from, const Name& to)
 void dan::PhoneBook::insert_before(const Name& mark, Entry entry)
 {
   try {
-    bookmarks_.at("current") = entries_.emplace(bookmarks_.at(mark), std::move(entry));
+    entries_.emplace(bookmarks_.at(mark), std::move(entry));
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();
@@ -41,7 +43,7 @@ void dan::PhoneBook::insert_after(const Name& mark, Entry entry)
 {
   try {
     Iter i = bookmarks_.at(mark);
-    bookmarks_.at("current") = entries_.emplace(++i, std::move(entry));
+    entries_.emplace(++i, std::move(entry));
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();

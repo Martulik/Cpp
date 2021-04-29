@@ -9,16 +9,6 @@
 
 namespace doroshin
 {
-  /* # About the 'current' bookmark
-    The current bookmark is added on initialisation and provides access to
-    the entries for immediate use.
-
-    Upon initialisation it does not point to a valid entry (since there are none)
-    and referencing it is illegal
-
-    After any command that creates a new entry (add, insert before, insert after)
-    it points to the newly created entry
-  */
   class PhoneBook
   {
   public:

@@ -2,16 +2,16 @@
 #include <vector>
 #include "tools.hpp"
 
-int diurdeva::task3(Error &err)
+void diurdeva::task3(Error &err)
 {
   std::vector< int > vector;
   int num = 0;
 
-  while (std::cin && !(std::cin >> num).eof()) {
+  while (err.isError() && std::cin && !(std::cin >> num).eof()) {
 
     if (std::cin.fail() || std::cin.bad()) {
       err.set("Error reading file\n");
-      return 1;
+      break;
     }
 
     if (num == 0) {
@@ -20,37 +20,35 @@ int diurdeva::task3(Error &err)
     vector.push_back(num);
   }
 
-  if (num != 0) {
-    err.set("No end of line\n");
-    return 1;
-  }
-
-  if (vector.empty()) {
-    return 0;
-  }
-
-  std::vector< int >::iterator it = vector.begin();
-  if (vector.back() == 1) {
-    while (it != vector.end()) {
-      if (*it % 2 == 0) {
-        it = vector.erase(it);
-      }
-      else {
-        it++;
-      }
+  if (err.isError()) {
+    if (num != 0) {
+      err.set("No end of line\n");
     }
   }
-  if (vector.back() == 2) {
-    while (it != vector.end()) {
-      if (*it % 3 == 0) {
-        it = vector.insert(it + 1, 3, 1) + 2;
+
+  if (err.isError()) {
+    std::vector< int >::iterator it = vector.begin();
+    if (vector.back() == 1) {
+      while (it != vector.end()) {
+        if (*it % 2 == 0) {
+          it = vector.erase(it);
+        }
+        else {
+          it++;
+        }
       }
-      else {
-        it++;
+    }
+    if (vector.back() == 2) {
+      while (it != vector.end()) {
+        if (*it % 3 == 0) {
+          it = vector.insert(it + 1, 3, 1) + 2;
+        }
+        else {
+          it++;
+        }
       }
     }
   }
 
   print(vector);
-  return 0;
 }

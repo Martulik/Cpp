@@ -4,16 +4,17 @@
 #include <iostream>
 #include "tools.hpp"
 
-int diurdeva::task1(const std::function< bool(int, int) > compare, Error &error_obj)
+void diurdeva::task1(const std::function< bool(int, int) > compare, Error &error_obj)
 {
   std::vector< int > vectorBr;
   int num = 0;
-  while (std::cin && !(std::cin >> num).eof()) {
-    if (std::cin.fail() || std::cin.bad()) {
-      error_obj.set("Error reading file\n");
-      return 1;
+  while (error_obj.isError() && std::cin && !(std::cin >> num).eof()) {
+    if (!std::cin.fail() && !std::cin.bad()) {
+      vectorBr.push_back(num);
     }
-    vectorBr.push_back(num);
+    else {
+      error_obj.set("Error reading file\n");
+    }
   }
 
   std::vector< int > vectorAt = vectorBr;
@@ -22,5 +23,4 @@ int diurdeva::task1(const std::function< bool(int, int) > compare, Error &error_
   printAndSort< indexAccess< int > >(vectorBr, compare);
   printAndSort< atAccess< int > >(vectorAt, compare);
   printAndSort< iteratorAccess< int > >(listIt, compare);
-  return 0;
 }

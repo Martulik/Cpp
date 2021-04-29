@@ -2,7 +2,7 @@
 #include <vector>
 #include "tools.hpp"
 
-int diurdeva::task4(const std::function< bool(double, double) > compare, const int size)
+void diurdeva::task4(const std::function< bool(double, double) > compare, const int size)
 {
   std::vector< double > vec(size);
   fillRandom(vec.data(), size);

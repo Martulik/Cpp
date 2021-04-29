@@ -43,7 +43,10 @@ void dan::PhoneBook::insert_after(const Name& mark, Entry entry)
 {
   try {
     Iter i = bookmarks_.at(mark);
-    entries_.emplace(++i, std::move(entry));
+    if(i != entries_.end()) {
+      i++;
+    }
+    entries_.emplace(i, std::move(entry));
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();
@@ -57,6 +60,9 @@ void dan::PhoneBook::delete_contents(const Name& mark)
     for(auto& bookmark: bookmarks_) {
       if(bookmark.second == del) {
         bookmark.second++;
+        if(bookmark.second == entries_.end()) {
+          bookmark.second = entries_.begin();
+        }
       }
     }
     entries_.erase(del);
@@ -68,12 +74,17 @@ void dan::PhoneBook::delete_contents(const Name& mark)
 
 dan::PhoneBook::Entry dan::PhoneBook::show(const Name& mark) const
 {
+  Iter res;
   try {
-    return *bookmarks_.at(mark);
+    res = bookmarks_.at(mark);
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();
   }
+  if(res == entries_.end()) {
+    throw std::out_of_range("<EMPTY>");
+  }
+  return *res;
 }
 
 void dan::PhoneBook::move_front(const Name& mark)
@@ -89,7 +100,9 @@ void dan::PhoneBook::move_front(const Name& mark)
 void dan::PhoneBook::move_back(const Name& mark)
 {
   try {
-    bookmarks_.at(mark) = --entries_.end();
+    if(!entries_.empty()) {
+      bookmarks_.at(mark) = --entries_.end();
+    }
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();

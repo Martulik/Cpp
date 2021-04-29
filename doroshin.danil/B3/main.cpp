@@ -15,7 +15,7 @@ std::istream& quotedString(std::istream& in, std::string& res)
       return in;
     }
   }
-  while(true) {
+  while(!in.eof()) {
     char next = in.get();
     if(in.good()) {
       if(next == '\\') {
@@ -93,9 +93,14 @@ dan::PhoneBook book;
       else if(command == "show") {
         std::string mark;
         line >> mark;
-        dan::PhoneBook::Entry entry = book.show(mark);
-        std::cout << std::setfill('0') << std::setw(10) << entry.first << ' ' << entry.second << '\n';
-        std::cout.fill(' ');
+        try {
+          dan::PhoneBook::Entry entry = book.show(mark);
+          std::cout << std::setfill('0') << std::setw(10) << entry.first << ' ' << entry.second << '\n';
+          std::cout.fill(' ');
+        }
+        catch(const std::out_of_range& e) {
+          std::cerr << e.what() << '\n';
+        }
       }
       else if(command == "move") {
         std::string mark, steps;

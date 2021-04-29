@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     lab::task3(err);
   } else if (taskNumber == 4 && argc == 4) {
     const std::function< bool(double, double) > compare = lab::getCompare< double >(argv[2], err);
-    if (err.isError) {
+    if (err.isError()) {
       if (lab::isNumber(argv[3])) {
         lab::task4(compare, atoi(argv[3]));
       }

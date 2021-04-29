@@ -1,8 +1,8 @@
 #ifndef PHONE_BOOK_HPP
 #define PHONE_BOOK_HPP
 
-#include <iosfwd>
 #include <utility>
+#include <exception>
 #include <string>
 #include <list>
 #include <map>
@@ -43,6 +43,12 @@ namespace doroshin
     using Iter = typename std::list< Entry >::iterator;
     std::list< Entry > entries_;
     std::map< Name, Iter > bookmarks_;
+  };
+
+  class InvalidBookmarkException: public std::exception
+  {
+  public:
+    const char* what() const noexcept override;
   };
 }
 

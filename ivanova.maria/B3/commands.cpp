@@ -6,30 +6,29 @@ namespace iva = ivanova;
 
 int iva::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::stringstream &input)
 {
-  int (*fncPtr1)(iva::Bookmarks &bookmarks, std::stringstream &input);
-  int (*fncPtr2)(iva::Bookmarks &bookmarks, std::stringstream &input);
-  int (*fncPtr3)(iva::Bookmarks &bookmarks, std::stringstream &input);
-  int (*fncPtr4)(iva::Bookmarks &bookmarks, std::stringstream &input);
-  int (*fncPtr5)(iva::Bookmarks &bookmarks, std::stringstream &input);
-  int (*fncPtr6)(iva::Bookmarks &bookmarks, std::stringstream &input);
+  int (*add)(iva::Bookmarks &bookmarks, std::stringstream &input) = doAdd;
+  int (*store)(iva::Bookmarks &bookmarks, std::stringstream &input) = doStore;
+  int (*insert)(iva::Bookmarks &bookmarks, std::stringstream &input) = doInsert;
+  int (*deleteBM)(iva::Bookmarks &bookmarks, std::stringstream &input) = doDelete;
+  int (*show)(iva::Bookmarks &bookmarks, std::stringstream &input) = doShow;
+  int (*move)(iva::Bookmarks &bookmarks, std::stringstream &input) = doMove;
   const std::map< std::string, int (*)(iva::Bookmarks &, std::stringstream &) > commands
   {
-    std::make_pair("add", fncPtr1 = doAdd),
-    std::make_pair("store", fncPtr2 = doStore),
-    std::make_pair("insert", fncPtr3 = doInsert),
-    std::make_pair("delete", fncPtr4 = doDelete),
-    std::make_pair("show", fncPtr5 = doShow),
-    std::make_pair("move", fncPtr6 = doMove)
+    std::make_pair("add", add),
+    std::make_pair("store", store),
+    std::make_pair("insert", insert),
+    std::make_pair("delete", deleteBM),
+    std::make_pair("show", show),
+    std::make_pair("move", move)
   };
   auto iter = commands.find(command);
-  std::cout << "\ncommand is " << iter->first << std::endl;
   if (iter != commands.end())
   {
     return (*iter->second)(bookmarks, input);
   }
   else
   {
-    std::cout << "<1INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
 }
@@ -47,7 +46,7 @@ int iva::doAdd(iva::Bookmarks &bookmarks, std::stringstream &input)
   name = iva::getName(name);
   if (name.empty() || !iva::checkNumber(number))
   {
-    std::cout << "<2INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
   pair info = {number, name};
@@ -67,7 +66,7 @@ int iva::doStore(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   if (!iva::checkMark(nameOfMark) || !iva::checkMark(newNameOfMark))
   {
-    std::cerr << "<3INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return {};
   }
   bookmarks.store({nameOfMark, newNameOfMark});
@@ -87,7 +86,7 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
   name = iva::getName(name);
   if (!iva::checkMark(mark) || !iva::checkNumber(number) || name.empty())
   {
-    std::cerr << "<4INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return {};
   }
   if (name.back() == '\r')
@@ -111,7 +110,7 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
     }
     else
     {
-      std::cerr << "<5INVALID COMMAND>\n";
+      std::cout << "<INVALID COMMAND>\n";
       return 1;
     }
   }
@@ -128,7 +127,7 @@ int iva::doDelete(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   if (!iva::checkMark(mark))
   {
-    std::cerr << "<6INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
   else
@@ -148,7 +147,7 @@ int iva::doShow(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   if (!iva::checkMark(mark))
   {
-    std::cerr << "<7INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
   else
@@ -170,7 +169,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   if (!iva::checkMark(nameOfMark))
   {
-    std::cerr <<"<8INVALID COMMAND>\n";
+    std::cout <<"<INVALID COMMAND>\n";
     return 1;
   }
   else if (steps == "first")
@@ -187,7 +186,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
     tempStr = steps.substr(1, steps.length() - 1);
     if (!iva::checkNumber(tempStr))
     {
-      std::cerr << "<9INVALID STEP>\n";
+      std::cout << "<INVALID STEP>\n";
       return 1;
     }
     bookmarks.move(nameOfMark, std::stoi(steps));
@@ -196,14 +195,14 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   {
     if (!iva::checkNumber(steps))
     {
-      std::cerr << "<10INVALID STEP>\n";
+      std::cout << "<INVALID STEP>\n";
       return 1;
     }
     bookmarks.move(nameOfMark, std::stoi(steps));
   }
   if (steps.empty())
   {
-    std::cerr << "<11INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
   return 0;

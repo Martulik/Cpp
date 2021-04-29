@@ -6,7 +6,7 @@ namespace iva = ivanova;
 
 int main(int argc, char *argv[])
 {
-  int exitCode = 1;
+  int exitCode = 2;
   if (argc != 2)
   {
     std::cerr << "Incorrect number of parameters!";

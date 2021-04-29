@@ -33,8 +33,7 @@ namespace shilyaev {
       std::cerr << "Filename not specified";
       return 1;
     }
-    std::string filename = argv[2];
-    std::ifstream ifstream(filename);
+    std::ifstream ifstream(argv[2]);
     if (!ifstream) {
       std::cerr << "File not open";
       return 1;

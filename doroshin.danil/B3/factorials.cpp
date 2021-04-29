@@ -64,5 +64,5 @@ dan::Factorials::iterator dan::Factorials::begin()
 
 dan::Factorials::iterator dan::Factorials::end()
 {
-  return iterator(end_);
+  return iterator(end_ + 1);
 }

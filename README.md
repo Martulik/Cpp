@@ -149,7 +149,7 @@ Accepted Labs
 | Diurdeva Dasha        | ✓  | ✓  |    |    |    |    |
 | Doroshin Danil        | ✓  | ✓  |    |    |    |    |
 | Dushechkina Viktoria  | ✓  | ✓  |    |    |    |    |
-| Ezerinia Marta        | ✓  | ✓  |    |    |    |    |
+| Ezerinia Marta        | ✓  | ✓  | ✓  |    |    |    |
 | Ferapontov Mikhail    | ✓  | ✓  |    |    |    |    |
 | Ivanova Maria         | ✓  | ✓  |    |    |    |    |
 | Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
@@ -157,11 +157,11 @@ Accepted Labs
 | Lysenko Aleksandra    | ✓  | ✓  |    |    |    |    |
 | Murzakanov Islam      | ✓  | ✓  |    |    |    |    |
 | Pochernin Vladislav   | ✓  | ✓  |    |    |    |    |
-| Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
+| Pozdnyakov Artemy     | ✓  | ✓  |    |    |    |    |
 | Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  |    |    |    |    |    |
 | Savchuk Aleksei       | ✓  | ✓  |    |    |    |    |
 | Shilyaev Vladislav    | ✓  | ✓  |    |    |    |    |
-| Shkurov Igor          | ✓  |    |    |    |    |    |
+| Shkurov Igor          | ✓  | ✓  |    |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  13|   0|   0|   0|   0|
+| __Total__             |  20|  15|   1|   0|   0|   0|

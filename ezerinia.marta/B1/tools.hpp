@@ -98,10 +98,10 @@ namespace ezerinia {
   }
 
   template< typename T, typename C >
-  void sortAndPrint(typename T::container_t &cont, C cmp)
+  void sortAndPrint(typename T::container_t &cont, C cmp, std::ostream &out)
   {
     sort< T, C >(cont, T::begin(cont), T::end(cont), cmp);
-    print(cont, std::cout);
+    print(cont, out);
   }
 
 }

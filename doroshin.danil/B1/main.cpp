@@ -14,13 +14,15 @@ std::vector< T > readUntilEof()
 {
   std::vector< T > values;
   while(true) {
-    if(std::cin.eof())
+    if(std::cin.eof()) {
       break;
+    }
 
     T next;
     std::cin >> next;
-    if(std::cin.eof())
+    if(std::cin.eof()) {
       break;
+    }
     if(std::cin.fail()) {
       throw std::runtime_error("Incorrect input");
     }

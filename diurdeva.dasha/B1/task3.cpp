@@ -26,7 +26,7 @@ void diurdeva::task3(Error &err)
     }
   }
 
-  if (err.isError()) {
+  if (err.isError() && !vector.empty()) {
     std::vector< int >::iterator it = vector.begin();
     if (vector.back() == 1) {
       while (it != vector.end()) {

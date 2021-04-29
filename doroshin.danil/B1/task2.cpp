@@ -23,7 +23,7 @@ std::pair< std::unique_ptr< char[] >, size_t > read(std::ifstream& in)
   return { std::move(buffer), size };
 }
 
-void doroshin::task2(std::string filename)
+void doroshin::task2(const char* filename)
 {
   std::ifstream in(filename);
   if(!in.is_open()) {

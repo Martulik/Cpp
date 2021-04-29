@@ -5,7 +5,7 @@
 
 namespace doroshin
 {
-  void task2(std::string filename);
+  void task2(const char*);
 }
 
 #endif //TASK2_HPP

@@ -6,39 +6,46 @@ namespace dan = doroshin;
 
 BOOST_AUTO_TEST_SUITE(insert_sort)
 
-BOOST_AUTO_TEST_CASE(vector_ix_empty)
+BOOST_AUTO_TEST_CASE(empty)
 {
   std::vector< int > empty;
   dan::insert_sort< int, dan::VectorIndexStrat >(empty);
   BOOST_CHECK(empty == std::vector< int >{});
 }
 
+BOOST_AUTO_TEST_CASE(single)
+{
+  std::vector< int > single { 3 };
+  dan::insert_sort< int, dan::VectorIndexStrat >(single);
+  BOOST_CHECK(single == std::vector< int >{ 3 });
+}
+
 BOOST_AUTO_TEST_CASE(vector_ix_asc)
 {
-  std::vector< int > vec { 5, 7, 6, 1, 4, 3, 2 };
+  std::vector< int > vec { 6, 1, 2 };
   dan::insert_sort< int, dan::VectorIndexStrat >(vec);
-  BOOST_CHECK(vec == (std::vector< int >{ 1, 2, 3, 4, 5, 6, 7 }));
+  BOOST_CHECK(vec == (std::vector< int >{ 1, 2, 6 }));
 }
 
 BOOST_AUTO_TEST_CASE(vector_ix_desc)
 {
-  std::vector< int > vec { 5, 7, 6, 1, 4, 3, 2 };
+  std::vector< int > vec { 6, 1, 2 };
   dan::insert_sort< int, dan::VectorIndexStrat >(vec, std::greater<>());
-  BOOST_CHECK(vec == (std::vector< int >{ 7, 6, 5, 4, 3, 2, 1 }));
+  BOOST_CHECK(vec == (std::vector< int >{ 6, 2, 1 }));
 }
 
 BOOST_AUTO_TEST_CASE(vector_at_asc)
 {
-  std::vector< int > vec { 5, 7, 6, 1, 4, 3, 2 };
+  std::vector< int > vec { 6, 1, 2 };
   dan::insert_sort< int, dan::VectorAtStrat >(vec);
-  BOOST_CHECK(vec == (std::vector< int >{ 1, 2, 3, 4, 5, 6, 7 }));
+  BOOST_CHECK(vec == (std::vector< int >{ 1, 2, 6 }));
 }
 
-BOOST_AUTO_TEST_CASE(list_it_asc)
+BOOST_AUTO_TEST_CASE(list_it_desc)
 {
-  std::forward_list< int > vec { 5, 7, 6, 1, 4, 3, 2 };
-  dan::insert_sort< int, dan::ListIterStrat >(vec);
-  BOOST_CHECK(vec == (std::forward_list< int >{ 1, 2, 3, 4, 5, 6, 7 }));
+  std::forward_list< int > vec { 6, 1, 2 };
+  dan::insert_sort< int, dan::ListIterStrat >(vec, std::greater<>());
+  BOOST_CHECK(vec == (std::forward_list< int >{ 6, 2, 1 }));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -145,6 +145,7 @@ int main(int argc, char* argv[])
     std::copy(fact.begin(), fact.end(), out);
     std::cout << '\n';
     std::copy(std::make_reverse_iterator(fact.end()), std::make_reverse_iterator(fact.begin()), out);
+    std::cout << '\n';
   }
   else {
     std::cerr << "Unknown task\n";

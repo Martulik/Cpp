@@ -20,8 +20,8 @@ void diurdeva::task3(Error &err)
     vector.push_back(num);
   }
 
-  if (err.isError()) {
-    if (num != 0) {
+  if (num != 0) {
+    if (err.isError()) {
       err.set("No end of line\n");
     }
   }

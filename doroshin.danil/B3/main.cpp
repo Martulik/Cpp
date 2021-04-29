@@ -39,7 +39,7 @@ int task1()
 {
 dan::PhoneBook book;
   std::string line_;
-  while(std::getline(std::cin, line_).good()) {
+  while(std::getline(std::cin, line_).good() && !line_.empty()) {
     std::istringstream line(line_);
 
     std::string command;
@@ -50,15 +50,19 @@ dan::PhoneBook book;
         std::string name;
         line >> number;
         if(!line) {
-          std::cerr << "Invalid phone number\n";
-          return 2;
+          std::cout << "<INVALID COMMAND>\n";
+          continue;
+        }
+        if(line.peek() != ' ') {
+          std::cout << "<INVALID COMMAND>\n";
+          continue;
         }
         if(quotedString(line, name)) {
           book.add({ number, std::move(name) });
         }
         else {
-          std::cerr << "Invalid name\n";
-          return 2;
+          std::cout << "<INVALID COMMAND>\n";
+          continue;
         }
       }
       else if(command == "store") {
@@ -70,9 +74,17 @@ dan::PhoneBook book;
         std::string where, mark, name;
         dan::PhoneBook::Number number;
         line >> where >> mark >> number;
+        if(!line) {
+          std::cout << "<INVALID COMMAND>\n";
+          continue;
+        }
+        if(line.peek() != ' ') {
+          std::cout << "<INVALID COMMAND>\n";
+          continue;
+        }
         if(!quotedString(line, name)) {
-          std::cerr << "Invalid name\n";
-          return 2;
+          std::cout << "<INVALID COMMAND>\n";
+          continue;
         }
         if(where == "before") {
           book.insert_before(mark, { number, std::move(name) });
@@ -95,11 +107,11 @@ dan::PhoneBook book;
         line >> mark;
         try {
           dan::PhoneBook::Entry entry = book.show(mark);
-          std::cout << std::setfill('0') << std::setw(10) << entry.first << ' ' << entry.second << '\n';
+          std::cout << std::setfill('0') << std::setw(12) << entry.first << ' ' << entry.second << '\n';
           std::cout.fill(' ');
         }
         catch(const std::out_of_range& e) {
-          std::cerr << e.what() << '\n';
+          std::cout << e.what() << '\n';
         }
       }
       else if(command == "move") {

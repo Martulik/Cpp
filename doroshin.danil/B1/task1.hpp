@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "insert-sort.hpp"
-#include "sort-strategies.hpp"
 
 namespace doroshin
 {

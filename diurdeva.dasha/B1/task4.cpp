@@ -8,5 +8,4 @@ void diurdeva::task4(const std::function< bool(double, double) > compare, const 
   fillRandom(vec.data(), size);
   print(vec);
   printAndSort< atAccess< double > >(vec, compare);
-  return 0;
 }

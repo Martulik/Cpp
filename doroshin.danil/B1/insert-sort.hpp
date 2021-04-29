@@ -5,33 +5,33 @@
 #include <functional>
 
 namespace doroshin {
-  template< typename T, typename S, typename Cmp = std::less< T > >
+  template< typename T, template< typename > typename S, typename Cmp = std::less< T > >
   void insert_sort(
-      typename S::container_t& cont,
-      typename S::iterator_t begin,
-      typename S::iterator_t end,
+      typename S< T >::container_t& cont,
+      typename S< T >::iterator_t begin,
+      typename S< T >::iterator_t end,
       Cmp cmp = std::less< T >()
   )
   {
     using std::swap; // lookup for both std::swap and doroshin::swap
-    using It = typename S::iterator_t;
+    using It = typename S< T >::iterator_t;
     for(It i = begin; i != end; ++i) {
-      T& i_val = S::get(cont, i);
+      T& i_val = S< T >::get(cont, i);
       It j = begin;
-      while(cmp(S::get(cont, j), i_val)) {
+      while(cmp(S< T >::get(cont, j), i_val)) {
         j++;
       }
       while(j != i) {
-        swap(S::get(cont, j), i_val);
+        swap(S< T >::get(cont, j), i_val);
         j++;
       }
     }
   }
 
-  template< typename T, typename S, typename Cmp = std::less< T > >
-  void insert_sort(typename S::container_t& cont, Cmp cmp = std::less< T >())
+  template< typename T, template< typename > typename  S, typename Cmp = std::less< T > >
+  void insert_sort(typename S< T >::container_t& cont, Cmp cmp = std::less< T >())
   {
-    insert_sort< T, S >(cont, S::begin(cont), S::end(cont), cmp);
+    insert_sort< T, S >(cont, S< T >::begin(cont), S< T >::end(cont), cmp);
   }
 }
 

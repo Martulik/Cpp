@@ -50,14 +50,14 @@ int main(int argc, char* argv[])
       const std::forward_list< int > l_values(values.begin(), values.end());
 
       if(!std::strcmp(argv[2], "ascending")) {
-        dan::task1< dan::VectorIndexStrat< int > >(values, std::less<>());
-        dan::task1< dan::VectorAtStrat< int > >(values, std::less<>());
-        dan::task1< dan::ListIterStrat< int > >(l_values, std::less<>());
+        dan::task1< dan::VectorIndexStrat >(values, std::less<>());
+        dan::task1< dan::VectorAtStrat >(values, std::less<>());
+        dan::task1< dan::ListIterStrat >(l_values, std::less<>());
       }
       else if(!std::strcmp(argv[2], "descending")) {
-        dan::task1< dan::VectorIndexStrat< int > >(values, std::greater<>());
-        dan::task1< dan::VectorAtStrat< int > >(values, std::greater<>());
-        dan::task1< dan::ListIterStrat< int > >(l_values, std::greater<>());
+        dan::task1< dan::VectorIndexStrat >(values, std::greater<>());
+        dan::task1< dan::VectorAtStrat >(values, std::greater<>());
+        dan::task1< dan::ListIterStrat >(l_values, std::greater<>());
       }
       else {
         throw std::runtime_error("Invalid sorting order");

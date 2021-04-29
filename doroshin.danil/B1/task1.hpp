@@ -7,8 +7,8 @@
 
 namespace doroshin
 {
-  template< typename Strat, typename Cmp >
-  void task1(typename Strat::container_t values, Cmp cmp)
+  template< template< typename > typename Strat, typename Cmp >
+  void task1(typename Strat< int >::container_t values, Cmp cmp)
   {
     insert_sort< int, Strat >(values, cmp);
     for(int num: values) {

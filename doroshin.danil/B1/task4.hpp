@@ -21,7 +21,7 @@ namespace doroshin
       std::cout << val << ' ';
     }
     std::cout << '\n';
-    insert_sort< double, VectorIndexStrat< double > >(array, cmp);
+    insert_sort< double, VectorIndexStrat >(array, cmp);
     for(double val: array) {
       std::cout << val << ' ';
     }

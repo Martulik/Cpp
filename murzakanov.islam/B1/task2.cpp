@@ -18,13 +18,13 @@ int murzakanov::task2(const char* fileName)
   }
   int capacity = 512;
   int size = 0;
-  std::unique_ptr< char[] > arr = std::make_unique< char [] >(capacity);
+  std::unique_ptr< char[] > arr = std::make_unique< char[] >(capacity);
   while (!input.eof())
   {
     input.read(arr.get() + size, capacity - size);
     size += input.gcount();
     capacity *= 2;
-    std::unique_ptr< char[] > temp = std::make_unique< char [] >(capacity);
+    std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
     for (int i = 0; i < size; i++)
     {
       temp[i] = arr[i];

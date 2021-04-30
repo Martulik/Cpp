@@ -12,7 +12,7 @@ namespace pozdnyakov
   {
     if (cont.begin() == cont.end())
     {
-      std::cout << "Ommited due to size." << '\n';
+      std::cout << '\n';
       return;
     }
     for (typename T::iterator i = cont.begin(); i != cont.end(); i++)

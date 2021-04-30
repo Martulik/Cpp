@@ -88,7 +88,7 @@ void iva::Bookmarks::show(const std::string &markName)
   }
   if (phoneBook_.isEmpty())
   {
-    std::cout << "<EMPTY>";
+    std::cerr << "<EMPTY>\n";
     return;
   }
   std::cout << iter->second << '\n';

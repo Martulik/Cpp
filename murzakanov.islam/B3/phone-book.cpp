@@ -12,9 +12,14 @@ PhoneBook::iterator PhoneBook::end()
 }
 void PhoneBook::insertAfter(iterator it, const note_t& note)
 {
-  it++;
+  iterator tempIt(it + 1);
   note_t temp{note.name, note.number};
-  book_.insert(it, temp);
+  if (tempIt == book_.end())
+  {
+    book_.push_back(temp);
+    return;
+  }
+  book_.insert(tempIt, temp);
 }
 
 void PhoneBook::insertBefore(iterator it, const note_t& note)
@@ -28,7 +33,7 @@ void PhoneBook::deleteNote(iterator it)
   book_.erase(it);
 }
 
-void PhoneBook::add(const note_t& note)
+void PhoneBook::push_back(const note_t& note)
 {
   note_t temp{note.name, note.number};
   book_.push_back(temp);

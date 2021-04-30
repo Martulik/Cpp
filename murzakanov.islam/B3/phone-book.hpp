@@ -21,7 +21,7 @@ namespace murzakanov
     void insertAfter(iterator it, const note_t& note);
     void insertBefore(iterator it, const note_t& note);
     void deleteNote(iterator it);
-    void add(const note_t& note);
+    void push_back(const note_t& note);
     void replace(iterator it, const note_t& note);
     void show(std::ostream& out, iterator it) const;
     size_t size() const;

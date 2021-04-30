@@ -21,7 +21,7 @@ void poz::task2(char* argv[])
   std::unique_ptr< char[] > arr = std::make_unique< char[] >(len);
   size_t read = 0;
   char c;
-  while (!fs.eof() && read != len)
+  while (!fs.eof())
   {
     if (read == len)
     {

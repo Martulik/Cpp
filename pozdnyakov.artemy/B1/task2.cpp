@@ -27,7 +27,7 @@ void poz::task2(char* argv[])
     {
       std::unique_ptr< char[] > buf = std::move(arr);
       arr = std::make_unique< char[] >(len * 2);
-      for (size_t i = 0; i < len / 2; i++)
+      for (size_t i = 0; i < len; i++)
       {
         arr[i] = buf[i];
       }

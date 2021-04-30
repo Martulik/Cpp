@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     }
     {
       bool result = true;
-      for (int i = 0; i < argc - 1; i++)
+      for (int i = 1; i < argc; i++)
       {
         result &= !poz::findSpaces(argv[i]);
       }

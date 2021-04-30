@@ -36,6 +36,11 @@ void poz::task1(char* argv[])
   {
     throw std::runtime_error("Invalid input");
   }
+  if (vector.size() == 0)
+  {
+    print(vector, std::cout);
+    return;
+  }
   std::vector< int > indexVector(vector);
   std::vector< int > atVector(vector);
   std::list< int > list(vector.begin(), vector.end());

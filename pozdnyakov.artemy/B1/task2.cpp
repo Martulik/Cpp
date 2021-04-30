@@ -40,7 +40,7 @@ void poz::task2(char* argv[])
   fs.close();
   if (read == 0)
   {
-    throw std::runtime_error("Empty file");
+    return;
   }
   std::vector< char > vector(arr.get(), arr.get() + read);
   poz::print(vector, std::cout, "");

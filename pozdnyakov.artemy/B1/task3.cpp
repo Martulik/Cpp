@@ -29,5 +29,9 @@ void poz::task3()
       poz::addOnes(vector);
     }
   }
+  else
+  {
+    return;
+  }
   poz::print(vector, std::cout);
 }

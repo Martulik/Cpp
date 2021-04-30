@@ -2,6 +2,6 @@
 
 void murzakanov::task1()
 {
-  Book
+  //Book
 
 }

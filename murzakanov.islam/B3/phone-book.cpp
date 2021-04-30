@@ -1,18 +1,20 @@
 #include "phone-book.hpp"
+#include <iostream>
 
 using namespace murzakanov;
 
 PhoneBook::iterator PhoneBook::begin()
 {
-  book_.begin();
+  return book_.begin();
 }
 PhoneBook::iterator PhoneBook::end()
 {
-  book_.end();
+  return book_.end();
 }
 void PhoneBook::insertAfter(iterator it, const note_t& note)
 {
-  iterator tempIt(it + 1);
+  iterator tempIt(it);
+  tempIt++;
   note_t temp{note.name, note.number};
   if (tempIt == book_.end())
   {
@@ -45,7 +47,7 @@ void PhoneBook::replace(iterator it, const note_t& note)
   it->number = note.number;
 }
 
-void PhoneBook::show(std::ostream& out, iterator it)
+void PhoneBook::show(std::ostream& out, iterator it) const
 {
   out << it->number << " " << it->name << "\n";
 }

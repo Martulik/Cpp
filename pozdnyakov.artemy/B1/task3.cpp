@@ -29,10 +29,5 @@ void poz::task3()
       poz::addOnes(vector);
     }
   }
-  else
-  {
-    std::cout << "Omitted due to size." << '\n';
-    return;
-  }
   poz::print(vector, std::cout);
 }

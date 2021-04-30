@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "tasks.hpp"
+#include "functions.hpp"
 
 namespace poz = pozdnyakov;
 
@@ -17,6 +18,17 @@ int main(int argc, char* argv[])
     if (strlen(argv[1]) > 1)
     {
       throw std::invalid_argument("Invalid argument");
+    }
+    {
+      bool result = true;
+      for (int i = 0; i < argc - 1; i++)
+      {
+        result &= !poz::findSpaces(argv[i]);
+      }
+      if (!result)
+      {
+        throw std::invalid_argument("Spaces in arguments");
+      }
     }
     int task = atoi(std::addressof(argv[1][0]));
     if (task == 1 && argc == 3)

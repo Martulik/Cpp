@@ -86,7 +86,7 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
   name = iva::getName(name);
   if (!iva::checkMark(mark) || !iva::checkNumber(number) || name.empty())
   {
-    std::cerr << "<INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return {};
   }
   if (name.back() == '\r')
@@ -169,7 +169,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   if (!iva::checkMark(nameOfMark))
   {
-    std::cout <<"<INVALID COMMAND>\n";
+    std::cerr <<"<INVALID COMMAND>\n";
     return 1;
   }
   else if (steps == "first")

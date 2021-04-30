@@ -8,7 +8,7 @@ void murzakanov::fillRandom(double* array, int size)
 {
   for (int i = 0; i < size; i++)
   {
-    array[i] = static_cast< double >(rand()) / RAND_MAX * 2 - 1;
+    array[i] = rand() / (RAND_MAX * 1.0) * 2 - 1;
   }
 }
 

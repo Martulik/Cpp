@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
   int exNum = 0;
   if (!code)
   {
-    exNum = static_cast< int >(argv[1][0] - '0');
+    exNum = (argv[1][0] - '0');
     if (mur::checkForSpaces(argv[1]))
     {
       code = 1;

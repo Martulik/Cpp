@@ -26,12 +26,12 @@ void poz::task2(char* argv[])
     if (read == len)
     {
       std::unique_ptr< char[] > buf = std::move(arr);
-      len *= 2;
-      std::unique_ptr< char[] > arr = std::make_unique< char[] >(len);
+      arr = std::make_unique< char[] >(len * 2);
       for (size_t i = 0; i < len / 2; i++)
       {
         arr[i] = buf[i];
       }
+      len *= 2;
     }
     fs.get(c);
     arr[read] = c;

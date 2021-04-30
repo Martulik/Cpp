@@ -28,7 +28,7 @@ int iva::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::strings
   }
   else
   {
-    std::cerr << "<INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
 }
@@ -46,7 +46,7 @@ int iva::doAdd(iva::Bookmarks &bookmarks, std::stringstream &input)
   name = iva::getName(name);
   if (name.empty() || !iva::checkNumber(number))
   {
-    std::cerr << "<INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
   pair info = {number, name};
@@ -141,19 +141,19 @@ int iva::doShow(iva::Bookmarks &bookmarks, std::stringstream &input)
 {
   std::string mark;
   std::getline(input >> std::ws, mark);
-  if (!mark.empty() && mark.back() == '\r')
+  if (iva::checkMark(mark))
   {
-    mark.pop_back();
-  }
-  if (!iva::checkMark(mark))
-  {
-    std::cerr << "<INVALID COMMAND>\n";
-    return 1;
+    if (mark.back() == '\r')
+    {
+      mark.pop_back();
+    }
+    bookmarks.show(mark);
+    return 0;
   }
   else
   {
-    bookmarks.show(mark);
-    return 0;
+    std::cout << "<INVALID COMMAND>\n";
+    return 1;
   }
 }
 
@@ -169,7 +169,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   if (!iva::checkMark(nameOfMark))
   {
-    std::cerr <<"<INVALID COMMAND>\n";
+    std::cout <<"<INVALID COMMAND>\n";
     return 1;
   }
   else if (steps == "first")
@@ -186,7 +186,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
     tempStr = steps.substr(1, steps.length() - 1);
     if (!iva::checkNumber(tempStr))
     {
-      std::cerr << "<INVALID STEP>\n";
+      std::cout << "<INVALID STEP>\n";
       return 1;
     }
     bookmarks.move(nameOfMark, std::stoi(steps));
@@ -195,14 +195,14 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   {
     if (!iva::checkNumber(steps))
     {
-      std::cerr << "<INVALID STEP>\n";
+      std::cout << "<INVALID STEP>\n";
       return 1;
     }
     bookmarks.move(nameOfMark, std::stoi(steps));
   }
   if (steps.empty())
   {
-    std::cerr << "<INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
   return 0;

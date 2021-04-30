@@ -10,7 +10,7 @@ namespace poz = pozdnyakov;
 
 void poz::task2(char* argv[])
 {
-  int len = 1000;
+  size_t len = 1000;
   std::string fileName(argv[0]);
   std::ifstream fs;
   fs.open(fileName, std::ifstream::in);
@@ -21,14 +21,14 @@ void poz::task2(char* argv[])
   std::unique_ptr< char[] > arr = std::make_unique< char[] >(len);
   size_t read = 0;
   char c;
-  while (!fs.eof() && read != LENGTH)
+  while (!fs.eof() && read != len)
   {
     if (read == len)
     {
       std::unique_ptr< char[] > buf = std::move(arr);
       len *= 2;
       std::unique_ptr< char[] > arr = std::make_unique< char[] >(len);
-      for (int i = 0; i < len / 2; i++)
+      for (size_t i = 0; i < len / 2; i++)
       {
         arr[i] = buf[i];
       }

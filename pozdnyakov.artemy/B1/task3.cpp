@@ -14,7 +14,7 @@ void poz::task3()
   {
     vector.push_back(n);
   }
-  if (!std::cin.good() || n != 0)
+  if ((std::cin.fail() && !std::cin.eof()) || n != 0)
   {
     throw std::runtime_error("Invalid input");
   }

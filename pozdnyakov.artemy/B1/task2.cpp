@@ -43,5 +43,8 @@ void poz::task2(char* argv[])
     return;
   }
   std::vector< char > vector(arr.get(), arr.get() + read);
-  poz::print(vector, std::cout, "");
+  for (size_t i = 0; i < vector.size(); i++)
+  {
+    std::cout << vector[i];
+  }
 }

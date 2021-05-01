@@ -14,6 +14,8 @@ namespace pozdnyakov
   using Literator = typename std::forward_list< double >::iterator;
   bool testVectorSort(std::vector< double > vector, CompareFunc compare);
   bool testListSort(std::forward_list< double > vector, CompareFunc compare);
+  bool testAddOnes(std::vector< int > vector);
+  bool testEraseEven(std::vector< int > vector);
 }
 
 #endif

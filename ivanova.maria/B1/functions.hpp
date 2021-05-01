@@ -28,7 +28,7 @@ namespace ivanova
       return vector.size();
     }
 
-    static T &get(cont &vector,iter i)
+    static T &get(cont &vector, iter i)
     {
       return vector[i];
     }
@@ -74,7 +74,7 @@ namespace ivanova
     }
   };
 
-  template< typename T, typename S>
+  template< typename T, typename S >
   void sort(typename T::cont &cont, S sortMode)
   {
     using iter = typename T::iter;

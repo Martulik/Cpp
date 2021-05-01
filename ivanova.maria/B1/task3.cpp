@@ -2,10 +2,10 @@
 #define B1_TASK3_CPP
 
 #include "task3.hpp"
+#include "functions.hpp"
 
 #include <vector>
 #include <istream>
-#include "functions.hpp"
 
 namespace iva = ivanova;
 int iva::task3()

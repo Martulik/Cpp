@@ -18,7 +18,7 @@ void iva::fillRandom(double* array, int size)
 
 bool iva::checkIsNumber(const char* str)
 {
-  for (int i = 0; i < int(strlen(str)); i++)
+  for (int i = 0; i < (strlen(str)); i++)
   {
     if ((str[i] == '\n') ||(!isdigit(str[i])))
     {

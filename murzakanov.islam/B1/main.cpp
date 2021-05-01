@@ -19,7 +19,8 @@ int main(int argc, char* argv[])
   namespace mur = murzakanov;
   srand(time(0));
 
-  if (argc < 2) {
+  if (argc < 2)
+  {
     code = 1;
   }
 
@@ -33,16 +34,20 @@ int main(int argc, char* argv[])
     }
   }
 
-  if (!code && exNum == 1 && argc == 3) {
+  if (!code && exNum == 1 && argc == 3)
+  {
     code = mur::task1(argv[2]);
   }
-  else if (!code && exNum == 2 && argc == 3) {
+  else if (!code && exNum == 2 && argc == 3)
+  {
     code = mur::task2(argv[2]);
   }
-  else if (!code && exNum == 3 && argc == 2) {
+  else if (!code && exNum == 3 && argc == 2)
+  {
     code = mur::task3();
   }
-  else if (!code && exNum == 4 && argc == 4) {
+  else if (!code && exNum == 4 && argc == 4)
+  {
     if (mur::checkIsNumber(argv[3]))
     {
       int size = std::atoi(argv[3]);
@@ -54,7 +59,8 @@ int main(int argc, char* argv[])
       std::cerr << error;
     }
   }
-  else {
+  else
+  {
     setError("Invalid arguments\n");
     std::cerr << error;
   }

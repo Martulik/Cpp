@@ -169,4 +169,4 @@ void murzakanov::BookInterface::move(const std::string& bookmark, KeyWord keyWor
   {
     out << "<INVALID BOOKMARK>\n";
   }
-}  
+}

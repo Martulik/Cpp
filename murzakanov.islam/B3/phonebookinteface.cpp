@@ -24,6 +24,15 @@ void murzakanov::BookInterface::add(const note_t& note)
 
 void murzakanov::BookInterface::store(const std::string& bookmark, const std::string& newBookmark, std::ostream& out)
 {
+  iteratorType it = bookmarks_.find(bookmark);
+  if (it != bookmarks_.end())
+  {
+    bookmarks_.insert(std::make_pair(newBookmark, it->second));
+  }
+  else
+  {
+    out << "<INVALID BOOKMARK>\n";
+  }
 }
 
 void murzakanov::BookInterface::insertBefore(const std::string& bookmark, const note_t& note, std::ostream& out)

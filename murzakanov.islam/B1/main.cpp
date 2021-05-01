@@ -5,19 +5,11 @@
 #include "tasks.hpp"
 #include "tools.hpp"
 
-std::string error = "Null";
-int code = 0;
-
-void setError(std::string err)
-{
-  error = err;
-  code = 1;
-}
-
 int main(int argc, char* argv[])
 {
   namespace mur = murzakanov;
   srand(time(0));
+  int code = 0;
 
   if (argc < 2)
   {
@@ -55,14 +47,14 @@ int main(int argc, char* argv[])
     }
     else
     {
-      setError("Invalid arguments\n");
-      std::cerr << error;
+      code = 1;
+      std::cerr << "Invalid arguments\n";
     }
   }
   else
   {
-    setError("Invalid arguments\n");
-    std::cerr << error;
+    code = 1;
+    std::cerr << "Invalid arguments\n";
   }
   return code;
 }

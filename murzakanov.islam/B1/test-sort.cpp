@@ -21,6 +21,7 @@ int randFunctional()
 
 void doTestSortOneElement()
 {
+  srand(time(0));
   const char order[] = "ascending";
   std::function< bool(int, int) > cmp = mur::getSortMode< int >(order);
   std::function< int() > rand = randFunctional;

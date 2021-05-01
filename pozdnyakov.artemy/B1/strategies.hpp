@@ -24,10 +24,6 @@ namespace pozdnyakov
     {
       return cont[iter];
     }
-    static size_t getIterPrev(const size_t iter)
-    {
-      return iter - 1;
-    }
   };
 
   template < typename T >
@@ -48,10 +44,6 @@ namespace pozdnyakov
     {
       return cont.at(iter);
     }
-    static size_t getIterPrev(const size_t iter)
-    {
-      return iter - 1;
-    }
   };
 
   template < typename T >
@@ -71,10 +63,6 @@ namespace pozdnyakov
     static T& getElem(const std::forward_list< T >&, const typename std::forward_list< T >::iterator iter)
     {
       return *iter;
-    }
-    static typename std::forward_list< T >::iterator getIterPrev(typename std::forward_list< T >::iterator& iter)
-    {
-      return std::prev(iter);
     }
   };
 }

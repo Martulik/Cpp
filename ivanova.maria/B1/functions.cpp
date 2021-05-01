@@ -30,19 +30,14 @@ bool iva::checkIsNumber(const std::string& str)
 
 int iva::charToInt(char* string)
 {
-  std::string str = string;
   int result = 0;
-  if (str.empty())
+  for (size_t i = 0; i < strlen(string); i++)
   {
-    return {};
-  }
-  for (std::string::const_iterator i = str.cbegin(); i < str.cend(); i++)
-  {
-    if (*i < '0' || *i > '9')
+    if ((string[i] == '\n') || (!isdigit(string[i])))
     {
       return {};
     }
-    result += *i - '0';
   }
+  result = std::atoi(string);
   return result;
 }

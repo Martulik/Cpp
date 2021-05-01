@@ -237,8 +237,8 @@ namespace ivanova
       return "";
     }
     name.erase(name.begin());
-    size_t i = 0;
-    for (i; (i < name.size()) && (name[i] != '\"'); i++)
+    size_t i;
+    for (i = 0; (i < name.size()) && (name[i] != '\"'); i++)
     {
       if (name[i] == '\\')
       {

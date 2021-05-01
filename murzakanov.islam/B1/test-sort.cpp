@@ -9,7 +9,6 @@
 #include <forward_list>
 #include <list>
 
-
 #include "sorting.hpp"
 #include "strategy.hpp"
 

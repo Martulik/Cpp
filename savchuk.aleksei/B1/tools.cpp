@@ -1,4 +1,5 @@
 #include "tools.hpp"
+#include "random-engine.h"
 
 #include <cstddef>
 #include <stdexcept>
@@ -22,11 +23,10 @@ size_t lab::convertToNumber(const char* str)
 }
 void lab::fillRandom(double* array, size_t size)
 {
-  std::random_device rd;
   std::uniform_int_distribution<> dist(-10, 10);
   for (size_t i = 0; i < size; ++i)
   {
-    array[i] = dist(rd) / 10.0;
+    array[i] = dist(getRandomEngine()) / 10.0;
   }
 }
 void lab::removeEvenNumbers(std::vector< int >& vec)

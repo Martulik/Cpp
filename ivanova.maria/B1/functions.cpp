@@ -16,11 +16,11 @@ void iva::fillRandom(double* array, int size)
   }
 }
 
-bool iva::checkIsNumber(const std::string& str)
+bool iva::checkIsNumber(const char* str)
 {
-  for (int i = 0; i < int(str.length()); i++)
+  for (int i = 0; i < int(strlen(str)); i++)
   {
-    if (str[i] < '0' || str[i] > '9')
+    if (!isdigit(str[i]))
     {
       return false;
     }

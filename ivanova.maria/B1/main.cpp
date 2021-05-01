@@ -4,7 +4,6 @@
 #include "task2.hpp"
 #include "task3.hpp"
 #include "task4.hpp"
-#include "functions.hpp"
 namespace iva = ivanova;
 
 int main(int argc, char* argv[])

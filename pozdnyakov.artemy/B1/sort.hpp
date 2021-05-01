@@ -9,22 +9,18 @@ namespace pozdnyakov
   template <typename S>
   void sort(typename S::ContType& cont, std::function< bool(double, double) > compare)
   {
-    if (cont.size() == 0)
-    {
-      return;
-    }
     using IterType = typename S::IterType;
-    IterType max;
-    IterType searchRangeEnd = S::end(cont);
+    IterType min;
+    IterType searchRangeBegin = S::begin(cont);
     for (IterType i = S::begin(cont); i != S::end(cont); i++)
     {
-      max = S::begin(cont);
-      for (IterType j = S::begin(cont); j != searchRangeEnd; j++)
+      min = S::begin(cont);
+      for (IterType j = searchRangeBegin; j != S::end(cont); j++)
       {
-        max = (compare(S::getElem(cont, max), S::getElem(cont, j))) ? j : max;
+        min = (compare(S::getElem(cont, j), S::getElem(cont, min))) ? j : min;
       }
-      std::swap(S::getElem(cont, max), S::getElem(cont, S::getIterPrev(searchRangeEnd)));
-      searchRangeEnd--;
+      std::swap(S::getElem(cont, min), S::getElem(cont, searchRangeBegin));
+      searchRangeBegin++;
     }
   }
 }

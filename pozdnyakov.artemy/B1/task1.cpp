@@ -43,7 +43,7 @@ void poz::task1(char* argv[])
   }
   std::vector< int > indexVector(vector);
   std::vector< int > atVector(vector);
-  std::list< int > list(vector.begin(), vector.end());
+  std::forward_list< int > list(vector.begin(), vector.end());
   poz::sort< poz::IndexStrategy< int > >(indexVector, compare);
   poz::sort< poz::VectorAtStrategy< int > >(atVector, compare);
   poz::sort< poz::ListStrategy< int > >(list, compare);

@@ -3,6 +3,6 @@
 
 namespace ivanova
 {
-  task3();
+  int task3();
 }
 #endif //TASK1_HPP_TASK3_HPP

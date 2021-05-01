@@ -1,4 +1,9 @@
-//
-// Created by Мария on 29.04.2021.
-//
+#include <iostream>
+#include "task1.hpp"
 
+int main()
+{
+  std::vector vector;
+
+
+}

@@ -12,15 +12,15 @@ bool poz::testVectorSort(std::vector< double > vector, poz::CompareFunc compare)
   std::sort< poz::Viterator, CompareFunc >(vector.begin(), vector.end(), compare);
   sort< poz::IndexStrategy< double > >(vIndex, compare);
   sort< poz::VectorAtStrategy< double > >(vAt, compare);
-  result &= poz::compareContainers< poz::Viterator >(vector.begin(), vector.end(), vIndex.begin(), vIndex.end());
-  result &= poz::compareContainers< poz::Viterator >(vector.begin(), vector.end(), vAt.begin(), vAt.end());
+  result &= vector == vIndex;
+  result &= vector == vAt;
   return result;
 }
 
-bool poz::testListSort(std::list< double > list, poz::CompareFunc compare)
+bool poz::testListSort(std::forward_list< double > list, poz::CompareFunc compare)
 {
-  std::list< double > listStrat(list);
+  std::forward_list< double > listStrat(list);
   list.sort< poz::CompareFunc >(compare);
   sort< poz::ListStrategy< double > >(listStrat, compare);
-  return poz::compareContainers< poz::Literator >(list.begin(), list.end(), listStrat.begin(), listStrat.end());
+  return list == listStrat;
 }

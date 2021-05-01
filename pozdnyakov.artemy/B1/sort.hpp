@@ -14,7 +14,7 @@ namespace pozdnyakov
     IterType searchRangeBegin = S::begin(cont);
     for (IterType i = S::begin(cont); i != S::end(cont); i++)
     {
-      min = S::begin(cont);
+      min = searchRangeBegin;
       for (IterType j = searchRangeBegin; j != S::end(cont); j++)
       {
         min = (compare(S::getElem(cont, j), S::getElem(cont, min))) ? j : min;

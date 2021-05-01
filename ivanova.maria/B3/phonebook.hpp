@@ -12,7 +12,6 @@ namespace ivanova
   public:
     using Record = std::pair< std::string, std::string >;
     using iter = std::list< Record >::iterator;
-    using constIter = std::list< Record >::const_iterator;
 
     iter begin();
     iter end();

@@ -14,7 +14,6 @@ namespace ivanova
   std::string getName(std::string &name);
   bool checkNumber(const std::string &number);
   bool checkMark(const std::string &mark);
-  //using void = std::function< void(Bookmarks &bookmark, pair &data) >;
   int doCommand(std::string &command, Bookmarks &bookmarks, std::stringstream &input);
   int doAdd(Bookmarks &bookmarks, std::stringstream &input);
   int doStore(Bookmarks &bookmarks, std::stringstream &input);

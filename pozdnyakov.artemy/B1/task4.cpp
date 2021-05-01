@@ -26,6 +26,13 @@ void poz::task4(char* argv[])
   const char* ASC = "ascending";
   const char* DESC = "descending";
   int len = atoi(argv[1]);
+  for (size_t i = 0; i < strlen(argv[1]); i++)
+  {
+    if (!std::isdigit(argv[1][i]))
+    {
+      throw std::invalid_argument("Invalid size");
+    }
+  }
   std::unique_ptr< double[] > array = std::make_unique< double[] >(len);
   fillRandom(array.get(), len);
   std::vector< double > vector(array.get(), array.get() + len);

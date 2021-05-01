@@ -20,7 +20,7 @@ bool iva::checkIsNumber(const char* str)
 {
   for (int i = 0; i < int(strlen(str)); i++)
   {
-    if (!isdigit(str[i]))
+    if ((str[i] == '\n') ||(!isdigit(str[i])))
     {
       return false;
     }
@@ -31,13 +31,13 @@ bool iva::checkIsNumber(const char* str)
 int iva::charToInt(char* string)
 {
   int result = 0;
-  for (size_t i = 0; i < strlen(string); i++)
+  if (checkIsNumber(string))
   {
-    if ((string[i] == '\n') || (!isdigit(string[i])))
-    {
-      return {};
-    }
+    result = std::atoi(string);
+    return result;
   }
-  result = std::atoi(string);
-  return result;
+  else
+  {
+    return {};
+  }
 }

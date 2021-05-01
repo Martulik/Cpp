@@ -6,12 +6,12 @@
 namespace iva = ivanova;
 
 const int maxSize = 3;
-template< typename T > void fillContainer(T it, const T &end)
+
+namespace ivanova
 {
-  srand(time(NULL));
-  while (it != end) {
-    *it = rand();
-    it++;
+  int random()
+  {
+    return rand() % 100;
   }
 }
 
@@ -19,12 +19,12 @@ template< typename T, typename S >
 void testSort(S sort, const int size)
 {
   typename T::cont cont(size);
-  fillContainer(cont.begin(), cont.end());
-  iva::sortAndPrint< T >(cont, sort);
+  std::generate(cont.begin(), cont.end(), iva::random);
+  iva::sort< T >(cont, sort);
   BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), sort));
 }
 
-template< typename T, typename S>
+template< typename T, typename S >
 void doTestSort()
 {
   for (int i = 0; i < maxSize; i++)

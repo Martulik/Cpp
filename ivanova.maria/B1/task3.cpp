@@ -1,7 +1,7 @@
 #ifndef B1_TASK3_CPP
 #define B1_TASK3_CPP
 
-#include "tasks.hpp"
+#include "task3.hpp"
 
 #include <vector>
 #include <istream>

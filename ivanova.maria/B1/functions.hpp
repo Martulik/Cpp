@@ -11,7 +11,7 @@
 namespace ivanova
 {
   void fillRandom(double* array, int size);
-  bool checkIsNumber(const std::string& str);
+  bool checkIsNumber(const char* str);
   int charToInt(char* string);
 
   template< typename T > struct strategyBrackets

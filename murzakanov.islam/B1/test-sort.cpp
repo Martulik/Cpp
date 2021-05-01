@@ -14,17 +14,11 @@
 
 namespace mur = murzakanov;
 
-int randFunctional()
-{
-  return rand();
-}
-
 void doTestSortOneElement()
 {
   srand(time(0));
   const char order[] = "ascending";
   std::function< bool(int, int) > cmp = mur::getSortMode< int >(order);
-  std::function< int() > rand = randFunctional;
   for (int containerSize = 0; containerSize < 4; containerSize++)
   {
     std::vector< int > vecBrackets(containerSize);

@@ -6,7 +6,7 @@
 
 namespace pozdnyakov
 {
-  template <typename S>
+  template < typename S >
   void sort(typename S::ContType& cont, std::function< bool(double, double) > compare)
   {
     using IterType = typename S::IterType;

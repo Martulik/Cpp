@@ -7,7 +7,7 @@
 namespace pozdnyakov
 {
   bool findSpaces(const char* const str);
-  template <typename T>
+  template < typename T >
   void print(T& cont, std::ostream& out, std::string separator = " ")
   {
     if (cont.begin() == cont.end())

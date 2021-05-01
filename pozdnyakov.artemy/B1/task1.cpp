@@ -11,14 +11,14 @@ namespace poz = pozdnyakov;
 
 void poz::task1(char* argv[])
 {
-  std::string asc = "ascending";
-  std::string desc = "descending";
+  const char* ASC = "ascending";
+  const char* DESC = "descending";
   std::function< bool(double, double) > compare;
-  if (!strcmp(argv[0], asc.c_str()))
+  if (!strcmp(argv[0], ASC))
   {
     compare = std::less< double >();
   }
-  else if (!strcmp(argv[0], desc.c_str()))
+  else if (!strcmp(argv[0], DESC))
   {
     compare = std::greater< double >();
   }

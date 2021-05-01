@@ -23,19 +23,18 @@ void fillRandom(double* array, int len)
 
 void poz::task4(char* argv[])
 {
-  std::string argAsc(argv[0]);
-  std::string asc = "ascending";
-  std::string desc = "descending";
-  int len = std::stoi(std::string(argv[1]));
+  const char* ASC = "ascending";
+  const char* DESC = "descending";
+  int len = atoi(argv[1]);
   std::unique_ptr< double[] > array = std::make_unique< double[] >(len);
   fillRandom(array.get(), len);
   std::vector< double > vector(array.get(), array.get() + len);
   poz::print(vector, std::cout);
-  if (asc.compare(argAsc) == 0)
+  if (!strcmp(ASC, argv[0]))
   {
     poz::sort< poz::VectorAtStrategy< double > >(vector, std::less< double >());
   }
-  else if (desc.compare(argAsc) == 0)
+  else if (!strcmp(DESC, argv[0]))
   {
     poz::sort< poz::VectorAtStrategy< double > >(vector, std::greater< double >());
   }

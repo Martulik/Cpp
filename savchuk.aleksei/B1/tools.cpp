@@ -8,23 +8,17 @@
 
 namespace lab = savchuk;
 
-size_t lab::convertToNumber(const std::string& str)
+size_t lab::convertToNumber(const char* str)
 {
-  size_t len = str.size();
-  int num = 0;
+  size_t len = strlen(str);
   for (size_t i = 0; i < len; ++i)
   {
-    if (isdigit(str[i]))
-    {
-      num *= 10;
-      num += str[i] - '0';
-    }
-    else
+    if (!isdigit(str[i]))
     {
       throw std::runtime_error("invalid number format");
     }
   }
-  return num;
+  return std::atoi(str);
 }
 void lab::fillRandom(double* array, size_t size)
 {

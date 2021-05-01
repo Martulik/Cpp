@@ -1,26 +1,26 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
-#include <string>
+#include <cstring>
 #include <functional>
 #include <iostream>
 #include <vector>
 
 namespace savchuk
 {
-  size_t convertToNumber(const std::string& order);
+  size_t convertToNumber(const char* order);
   void fillRandom(double* array, size_t size);
   void removeEvenNumbers(std::vector< int >& vec);
   void addExtraNumbers(std::vector< int >& vec);
 
   template< typename T >
-  std::function< bool(const T&, const T&) > getCompare(const std::string& order)
+  std::function< bool(const T&, const T&) > getCompare(const char* order)
   {
-    if (order == "ascending")
+    if (!std::strcmp(order, "ascending"))
     {
       return std::less< T >();
     }
-    if (order == "descending")
+    if (!std::strcmp(order, "descending"))
     {
       return std::greater< T >();
     }

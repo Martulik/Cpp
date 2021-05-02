@@ -23,7 +23,7 @@ namespace ferapontov
     }
   }
 
-  void testSort(std::string& mode, size_t size)
+  void testSort(const char* mode, size_t size)
   {
 
     std::vector< int > v(size);
@@ -32,7 +32,7 @@ namespace ferapontov
     std::function< bool(int, int) > cmp = std::greater< >();
     std::function< bool(int, int) > sort_cmp = std::less< >();
 
-    if(mode == "descending")
+    if(strcmp(mode, "descending"))
     {
       std::function< bool(int, int) > cmp = std::less< >();
       std::function< bool(int, int) > sort_cmp = std::greater< >();

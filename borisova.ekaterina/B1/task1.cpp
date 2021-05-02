@@ -24,35 +24,35 @@ int borisova::doTask1(const int argc, char* argv[])
     collection.push_back(number);
   }
   std::vector< int > indVec(collection);
-  int exitCode1 = sort< bracketStrategy< int > >(indVec, sortMode<int>(mode));
-  if (!exitCode1)
+  int exitCode = sort< bracketStrategy< int > >(indVec, sortMode< int >(mode));
+  if (!exitCode)
   {
     print(indVec, std::cout);
   }
   else
   {
-    return exitCode1;
+    return exitCode;
   }
 
   std::vector< int > atVec(collection);
-  int exitCode2 = sort< atStrategy< int > >(atVec, sortMode<int>(mode));
-  if (!exitCode2)
+  exitCode = sort< atStrategy< int > >(atVec, sortMode< int >(mode));
+  if (!exitCode)
   {
     print(atVec, std::cout);
   }
   else
   {
-    return exitCode2;
+    return exitCode;
   }
   std::forward_list< int > iterList(collection.begin(), collection.end());
-  int exitCode3 = sort< listStrategy< int > >(iterList, sortMode<int>(mode));
-  if (!exitCode3)
+  exitCode = sort< listStrategy< int > >(iterList, sortMode< int >(mode));
+  if (!exitCode)
   {
     print(iterList, std::cout);
   }
   else
   {
-    return exitCode3;
+    return exitCode;
   }
   return 0;
 }

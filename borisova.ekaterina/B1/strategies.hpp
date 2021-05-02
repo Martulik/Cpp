@@ -1,7 +1,6 @@
 #ifndef STRATEGIES_HPP
 #define STRATEGIES_HPP
 
-#include <iostream>
 #include <vector>
 #include <forward_list>
 
@@ -56,7 +55,6 @@ namespace borisova
   {
     using container = std::forward_list< T >;
     using iterator = typename std::forward_list< T >::iterator;
-
 
     static iterator begin(container& list)
     {

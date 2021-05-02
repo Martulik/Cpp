@@ -17,7 +17,7 @@ int borisova::doTask2(const int argc, char* argv[])
   file.open(name);
   if (!file.is_open())
   {
-    std::cerr << "File mustn't be open";
+    std::cerr << "File can't be open";
     return 1;
   }
   size_t step = 2;

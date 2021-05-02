@@ -6,24 +6,6 @@
 
 namespace fer = ferapontov;
 
-/*template< typename T >
-T readArg(const char* arg)
-{
-  T res;
-  std::stringstream in(arg);
-  if (!(in >> res))
-  {
-    std::cerr << "Invalid Argument";
-    std::exit(1);
-  }
-
-  in.get();
-  if(!in.eof()) {
-    std::cerr << "Extra symbols";
-    std::exit(1);
-  }
-  return res;
-}*/
 int main(int argc, char *argv[])
 {
   if (argc < 2)
@@ -48,7 +30,6 @@ int main(int argc, char *argv[])
     }
     fer::checkSpaces(argv[2]);
     const char* mode = argv[2];
-    std::cout << mode;
     fer::task1(mode);
   }
   else if (TaskNumber == 2)

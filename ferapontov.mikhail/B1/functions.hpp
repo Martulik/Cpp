@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstring>
 #include <functional>
+#include <random>
 
 namespace ferapontov
 {
@@ -17,11 +18,11 @@ namespace ferapontov
     }
     if (!strcmp(mode, "ascending"))
     {
-      return std::greater< T >();
+      return std::less< T >();
     }
     else
     {
-      return std::less< T >();
+      return std::greater< T >();
     }
   }
 
@@ -39,6 +40,15 @@ namespace ferapontov
     std::cout << '\n';
   }
 
+  template< typename T>
+  void fillRandom(T& src, std::random_device& rd)
+  {
+    std::uniform_int_distribution< > dist(-10, 10);
+    for (size_t i = 0; i < src.size(); i++)
+    {
+      src[i] = dist(rd) / 10.0;
+    }
+  }
   void checkSpaces(const char* str);
   void checkNumber(const char* str);
 }

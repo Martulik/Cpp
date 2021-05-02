@@ -8,6 +8,7 @@ namespace fer = ferapontov;
 
 int main(int argc, char *argv[])
 {
+  std::random_device rd;
   if (argc < 2)
   {
     std::cerr << "Invalid Arguments";
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
     const char* mode = argv[2];
     fer::checkNumber(argv[3]);
     int size = std::atoi(argv[3]);
-    fer::task4(mode, size);
+    fer::task4(mode, size, rd);
   }
   return 0;
 }

@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
           conditionCode = lysenko::task2(argv[2]);
         }
       }
-      else if (lysenko::accurateTaskNumber(argv[1], "4"))
+      else if ((lysenko::isTypeOfSort(argv[2]) && (lysenko::accurateTaskNumber(argv[1], "4"))
       {
         conditionCode = lysenko::task4(argv[2], argv[3]);
       }
@@ -64,7 +64,7 @@ bool lysenko::correctData(int argc, char* argv[])
     {
       if (argv[i][j] == ' ')
       {
-        std::cerr << "Invalid second argument";
+        std::cerr << "Invalid  argument";
         return 0;
       }
       j += 1;

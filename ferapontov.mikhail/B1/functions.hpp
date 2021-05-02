@@ -29,25 +29,14 @@ namespace ferapontov
   template< typename T>
   void print(const T& arr)
   {
-    typedef typename T::const_iterator iter;
-    iter it = arr.begin();
-    iter end = arr.end();
-    for (iter it = arr.begin(), it < arr.end(), it++)
+    for (auto it = arr.begin(); it != arr.end(); ++it)
     {
       std::cout << *it << ' ';
     }
     std::cout << '\n';
   }
 
-  template< typename T>
-  void fillRandom(T& src, std::random_device& rd)
-  {
-    std::uniform_int_distribution< > dist(-10, 10);
-    for (size_t i = 0; i < src.size(); i++)
-    {
-      src[i] = dist(rd) / 10.0;
-    }
-  }
+  void fillRandom(double* array, int size);
   void checkSpaces(const char* str);
   void checkNumber(const char* str);
 }

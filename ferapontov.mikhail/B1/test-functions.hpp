@@ -9,23 +9,18 @@
 #include "functions.hpp"
 #include "sort.hpp"
 #include "strategy.hpp"
+
 namespace ferapontov
 {
   template <typename iter>
   void fillVector(iter begin, iter end)
   {
-    std::random_device rd;
-    std::uniform_int_distribution< int > dist(-100, 100);
-    while(begin != end)
-    {
-      *begin = dist(rd);
-      ++begin;
-    }
+    std::generate(begin, end, rand);
   }
 
   void testSort(const char* mode, size_t size)
   {
-
+    srand(time(0));
     std::vector< int > v(size);
     fillVector(v.begin(), v.end());
 

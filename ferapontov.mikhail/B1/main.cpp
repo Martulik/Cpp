@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     const char* mode = argv[2];
     fer::checkNumber(argv[3]);
     int size = std::atoi(argv[3]);
-    fer::task4(mode, size, rd);
+    fer::task4(mode, size);
   }
   return 0;
 }

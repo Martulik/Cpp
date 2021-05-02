@@ -11,7 +11,13 @@ int main(int argc, char* argv[])
     std::cerr << "Arguments aren't find";
     return exitCode;
   }
-  int numberTask = borisova::toInt(argv[1]);
+  int numberTask = -1;
+  
+  if (borisova::checkNumber(argv[1]))
+  {
+    numberTask = std::atoi(argv[1]);
+  }
+
   if (numberTask == -1)
   {
     return exitCode;
@@ -36,5 +42,6 @@ int main(int argc, char* argv[])
     return exitCode;
     break;
   }
+
   return 0;
 }

@@ -8,22 +8,45 @@
 namespace borisova
 {
   void fillRandom(double* array, int size);
-  bool checkNumber(const std::string& number);
-  int toInt(const std::string& number);
+  bool checkNumber(const char* number);
 
   template< typename T >
-  std::function< bool(T, T) > sortMode(const std::string& mode)
+  std::function< bool(T, T) > sortMode(const char* mode)
   {
-    const std::string ascending = "ascending";
-    const std::string descending = "descending";
-    if (mode == ascending)
+    const char* ascending = "ascending";
+    const char* descending = "descending";
+    int i = 0;
+
+    if (strlen(ascending) == strlen(mode))
     {
-      return std::greater< T >();
+      while (i< strlen(mode) && i < strlen(ascending))
+      {
+        if (mode[i] == ascending[i])
+        {
+          i++;
+        }
+      }
+      if (mode[i] == '\0')
+      {
+        return std::greater< T >();
+      }
     }
-    else if (mode == descending)
+    else if (strlen(ascending) == strlen(mode))
     {
-      return std::less< T >();
+      i = 0;
+      while (i < strlen(mode) && i < strlen(descending))
+      {
+        if (mode[i] == descending[i])
+        {
+          i++;
+        }
+      }
+      if (mode[i] == '\0')
+      {
+        return std::less< T >();
+      }
     }
+
     return nullptr;
   }
 

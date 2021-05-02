@@ -10,15 +10,20 @@ int borisova::doTask4(const int argc, char* argv[])
     std::cerr << "Incorrect number of arguments";
     return 2;
   }
-  int size = toInt(argv[3]);
-  if (size < 0)
+  int size = 0;
+  if (checkNumber(argv[3]))
+  {
+    size = std::atoi(argv[3]);
+  }
+
+  if (size <= 0)
   {
     std::cerr << "Incorrect size\n";
     return 1;
   }
-  std::string mode = argv[2];
+  char* mode = argv[2];
   std::vector< double >arr(size);
-  fillRandom(std::addressof(arr[0]), size);
+  fillRandom(arr.data(), size);
   print(arr, std::cout);
   std::vector< double > indVec(arr);
   int exitCode = sort< bracketStrategy< double > >(indVec, sortMode< double >(mode));

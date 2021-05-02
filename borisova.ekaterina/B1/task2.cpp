@@ -12,7 +12,7 @@ int borisova::doTask2(const int argc, char* argv[])
     std::cerr << "Incorrect number of arguments";
     return 2;
   }
-  std::string name = argv[2];
+  char* name = argv[2];
   std::ifstream file;
   file.open(name);
   if (!file.is_open())

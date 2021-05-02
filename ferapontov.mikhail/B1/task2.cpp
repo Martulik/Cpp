@@ -5,7 +5,7 @@
 #include <memory>
 #include "functions.hpp"
 
-void ferapontov::task2(const std::string& file)
+void ferapontov::task2(const char* file)
 {
   std::ifstream in(file);
 

@@ -32,7 +32,7 @@ namespace ferapontov
     std::function< bool(int, int) > cmp = std::greater< >();
     std::function< bool(int, int) > sort_cmp = std::less< >();
 
-    if(strcmp(mode, "descending"))
+    if (strcmp(mode, "descending"))
     {
       std::function< bool(int, int) > cmp = std::less< >();
       std::function< bool(int, int) > sort_cmp = std::greater< >();

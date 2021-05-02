@@ -21,7 +21,7 @@ int lysenko::task1(const char* order)
     return 1;
   }
 
-  bool (*comparator)(const int&, const int&) = getComparator< int >(order);
+  std::function < bool(const double&, const double&) > comparator = getComparator< double >(order);
 
   std::forward_list< int > myList(myVect.begin(), myVect.end());
   std::vector< int > myVectCopy(myVect.begin(), myVect.end());

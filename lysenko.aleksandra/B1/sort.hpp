@@ -9,7 +9,7 @@ namespace lysenko
 {
   template< template< typename > typename sortBy, typename container_type >
   void sortBubble(container_type& container,
-    bool (*cmp)(const typename container_type::value_type& a, const typename container_type::value_type& b))
+    std::function < bool(const typename container_type::value_type& a, const typename container_type::value_type& b) > cmp)
   {
     if (cmp == nullptr)
     {

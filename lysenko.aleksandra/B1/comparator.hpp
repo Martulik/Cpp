@@ -2,32 +2,21 @@
 #define COMPARATOR_HPP
 
 #include <cstring>
+#include <functional>
 
 namespace lysenko
 {
   template<typename T>
-  bool cmpAscending(const T& a, const T& b)
+  std::function < bool(const T&, const T&) > getComparator (const char* order)
   {
-    return a < b;
-  }
-
-  template<typename T>
-  bool cmpDescending(const T& a, const T& b)
-  {
-    return a > b;
-  }
-
-  template<typename T>
-  bool (*getComparator(const char* order))(const T&, const T&)
-  {
-    bool (*comparator)(const T&, const T&) = nullptr;
+    std::function < bool(const T&, const T&) > comparator = nullptr;
     if (strcmp(order, "ascending") == 0)
     {
-      comparator = cmpAscending<T>;
+      comparator = std::less<T>();
     }
     else if (strcmp(order, "descending") == 0)
     {
-      comparator = cmpDescending<T>;
+      comparator = std::greater<T>();
     }
     return comparator;
   }

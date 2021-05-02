@@ -2,7 +2,7 @@
 
 int lysenko::task4(const char* order, const char* numberOfArguments)
 {
-  bool (*comparator)(const double&, const double&) = getComparator< double >(order);
+  std::function < bool(const double&, const double&) > comparator  = getComparator< double >(order);
 
   if (comparator == nullptr)
   {

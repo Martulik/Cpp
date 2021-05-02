@@ -23,7 +23,7 @@ namespace lysenko
   template< template< typename > typename sortBy, typename container_type >
   void doSort(container_type& container, const char* order)
   {
-    bool (*comparator)(const int&, const int&) = getComparator< int >(order);
+    std::function < bool(const double&, const double&) > comparator = getComparator< int >(order);
 
     lysenko::sortBubble <sortBy, container_type>(container, comparator);
     BOOST_CHECK(std::is_sorted(container.begin(), container.end(), lysenko::getComparator< int >(order)));

@@ -5,23 +5,29 @@ namespace dan = doroshin;
 
 std::istream& dan::operator>>(std::istream& in, DataStruct& data)
 {
-  const auto require_comma = [&](std::istream& is) -> std::istream& {
-    if(is.get() != ',') {
-      is.setstate(std::ios::failbit);
-      in.setstate(std::ios::failbit);
-    }
-    return is;
+  const auto fail = [&]() {
+    in.setstate(in.rdstate() | std::ios::failbit);
   };
 
   std::string line_;
   if(std::getline(in, line_)) {
     std::istringstream line(line_);
     line >> data.key1;
-    if(!require_comma(line)) {
+    if(data.key1 < -5 || data.key1 > 5) {
+      fail();
+      return in;
+    }
+    if(line.get() != ',') {
+      fail();
       return in;
     }
     line >> data.key2;
-    if(!require_comma(line)) {
+    if(data.key2 < -5 || data.key2 > 5) {
+      fail();
+      return in;
+    }
+    if(line.get() != ',') {
+      fail();
       return in;
     }
     std::getline(line, data.str);

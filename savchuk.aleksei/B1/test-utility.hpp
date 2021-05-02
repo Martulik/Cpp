@@ -1,8 +1,6 @@
 #ifndef TEST_UTILITY_HPP
 #define TEST_UTILITY_HPP
 
-#include <random>
-#include <limits>
 #include <algorithm>
 #include <functional>
 #include <forward_list>
@@ -13,22 +11,15 @@
 
 #include "access-policies.hpp"
 #include "sort.hpp"
+#include "tools.hpp"
+#include "random-engine.h"
 
 namespace savchuk
 {
   template< typename Iterator >
   void fillContainer(Iterator first, Iterator last)
   {
-    using T = typename Iterator::value_type;
-    const T MIN_INT = std::numeric_limits< int >::min();
-    const T MAX_INT = std::numeric_limits< int >::max();
-    std::random_device rd;
-    std::uniform_int_distribution< T > dist(MIN_INT, MAX_INT);
-    while (first != last)
-    {
-      *first = dist(rd);
-      ++first;
-    }
+    std::generate(first, last, getRandomEngine());
   }
   template< typename Container >
   Container getTestContainer(size_t size)

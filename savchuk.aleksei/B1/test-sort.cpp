@@ -1,10 +1,9 @@
 #include <boost/test/unit_test.hpp>
 
+#include <functional>
 #include <vector>
-#include <algorithm>
+#include <cstddef>
 
-#include "access-policies.hpp"
-#include "sort.hpp"
 #include "test-utility.hpp"
 
 namespace lab = savchuk;
@@ -19,16 +18,12 @@ BOOST_AUTO_TEST_CASE(empty)
 
 BOOST_AUTO_TEST_CASE(not_empty)
 {
-  lab::testSort(1, std::less< int >());
-  lab::testSort(1, std::greater< int >());
-  lab::testSort(5, std::less< int >());
-  lab::testSort(5, std::greater< int >());
-  lab::testSort(10, std::less< int >());
-  lab::testSort(10, std::greater< int >());
-  lab::testSort(100, std::less< int >());
-  lab::testSort(100, std::greater< int >());
-  lab::testSort(1000, std::less< int >());
-  lab::testSort(1000, std::greater< int >());
+  std::vector< size_t > sizes = { 1, 2, 3, 5, 10, 100, 1000 };
+  for (size_t& size: sizes)
+  {
+    lab::testSort(size, std::less< int >());
+    lab::testSort(size, std::greater< int >());
+  }
 }
 
 BOOST_AUTO_TEST_SUITE_END();

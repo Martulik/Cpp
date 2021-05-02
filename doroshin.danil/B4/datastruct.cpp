@@ -35,6 +35,12 @@ std::istream& dan::operator>>(std::istream& in, DataStruct& data)
   return in;
 }
 
+std::ostream& dan::operator<<(std::ostream& out, const DataStruct& data)
+{
+  out << data.key1 << ',' << data.key2 << ',' << data.str;
+  return out;
+}
+
 bool dan::sort_order(const DataStruct& lhs, const DataStruct& rhs)
 {
   if(lhs.key1 != rhs.key1) {

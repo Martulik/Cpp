@@ -12,16 +12,14 @@ std::function< bool(T, T) > getSortMode(const std::string& mode)
     std::cerr << "Invalid sorting mode";
     std::exit(1);
   }
-
   if (mode == "ascending")
   {
     return std::greater< T >();
   }
-  if (mode == "descending")
+  else
   {
     return std::less< T >();
   }
-  return nullptr;
 }
 
 template< typename T>

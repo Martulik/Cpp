@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(equality_ascending)
 
 BOOST_AUTO_TEST_CASE(equality_descending)
 {
-  int n = end_ - 1;
+  int n = end_;
   auto begin = std::make_reverse_iterator(fact_.end());
   auto end = std::make_reverse_iterator(fact_.begin());
   for(auto i = begin; i != end; ++i) {

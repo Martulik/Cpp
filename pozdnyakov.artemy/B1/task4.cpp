@@ -11,13 +11,11 @@
 
 namespace poz = pozdnyakov;
 
-void fillRandom(double* array, int len)
+void fillRandom(double* array, int len, std::function< double() > generator)
 {
-  std::uniform_real_distribution< double > dis(-1.0, 1.0);
-  std::random_device device;
   for (int i = 0; i < len; i++)
   {
-    array[i] = dis(device);
+    array[i] = generator();
   }
 }
 
@@ -34,7 +32,15 @@ void poz::task4(char* argv[])
   }
   int len = atoi(argv[1]);
   std::unique_ptr< double[] > array = std::make_unique< double[] >(len);
-  fillRandom(array.get(), len);
+  {
+    std::uniform_real_distribution< double > dis(-1.0, 1.0);
+    std::random_device device;
+    std::function< double() > generator = [&dis, &device]()
+    {
+      return dis(device);
+    };
+    fillRandom(array.get(), len, generator);
+  }
   std::vector< double > vector(array.get(), array.get() + len);
   poz::print(vector, std::cout);
   if (!strcmp(ASC, argv[0]))

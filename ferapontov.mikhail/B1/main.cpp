@@ -19,7 +19,7 @@ T readArg(std::string arg)
   in.get();
   if(!in.eof()) {
     std::cerr << "Extra symbols";
-    std::exit(-1);
+    std::exit(1);
   }
   return res;
 }
@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
       std::exit(1);
     }
     std::string mode = readArg< std::string >(argv[2]);
+    std::cout << mode;
     fer::task1(mode);
   }
   else if (TaskNumber == 2)

@@ -27,7 +27,6 @@ void ferapontov::task3()
     std::exit(2);
   }
 
-
   if(!(vec.empty()))
   {
     std::vector< int >::iterator it = vec.begin();
@@ -56,7 +55,7 @@ void ferapontov::task3()
           it = vec.insert(++it, 3, 1);
           it += 1;
         }
-          it++;
+        it++;
       }
     }
     print(vec);

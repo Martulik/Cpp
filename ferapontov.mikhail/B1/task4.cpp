@@ -1,10 +1,10 @@
 #include "tasks.hpp"
 
+#include <random>
+#include <iomanip>
 #include "functions.hpp"
 #include "sort.hpp"
 #include "strategy.hpp"
-#include <random>
-#include <iomanip>
 
 void ferapontov::task4(const std::string& mode, int size)
 {

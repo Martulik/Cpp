@@ -2,7 +2,6 @@
 #define SORT_HPP
 
 #include <functional>
-#include <iostream>
 
 namespace ferapontov
 {

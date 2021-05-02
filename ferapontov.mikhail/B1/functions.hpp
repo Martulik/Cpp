@@ -32,10 +32,9 @@ namespace ferapontov
     typedef typename T::const_iterator iter;
     iter it = arr.begin();
     iter end = arr.end();
-    while(it != end)
+    for (iter it = arr.begin(), it < arr.end(), it++)
     {
       std::cout << *it << ' ';
-      it++;
     }
     std::cout << '\n';
   }

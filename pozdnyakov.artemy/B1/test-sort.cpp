@@ -1,11 +1,11 @@
-#include <boost/test/unit_test.hpp>
 #include <random>
 #include <limits>
 #include <memory>
 #include <algorithm>
+#include <boost/test/unit_test.hpp>
+#include "test-functions.hpp"
 #include "sort.hpp"
 #include "strategies.hpp"
-#include "test-functions.hpp"
 
 namespace poz = pozdnyakov;
 

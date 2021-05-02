@@ -116,7 +116,7 @@ void murzakanov::BookInterface::show(const std::string& bookmark, std::ostream& 
 
     if (it->second != book_->end())
     {
-      out << it->second->number << " " << it->second->name << "\n";
+      book_->show(out, it->second);
     }
   }
   else

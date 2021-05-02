@@ -11,8 +11,8 @@ namespace murzakanov
   public:
     struct note_t
     {
-      std::string name;
       std::string number;
+      std::string name;
     };
 
     using iterator = std::list< note_t >::iterator;

@@ -29,12 +29,12 @@ int main(int argc, char* argv[])
         {
           conditionCode = lysenko::task1(argv[2]);
         }
-        else if (lysenko::accurateTaskNumber(argv[1], "2"))
+        else if (!(lysenko::isTypeOfSort(argv[2])) &&(lysenko::accurateTaskNumber(argv[1], "2")))
         {
           conditionCode = lysenko::task2(argv[2]);
         }
       }
-      else if ((lysenko::isTypeOfSort(argv[2]) && (lysenko::accurateTaskNumber(argv[1], "4"))))
+      else if ((argc == 4) && (lysenko::isTypeOfSort(argv[2]) && (lysenko::accurateTaskNumber(argv[1], "4"))))
       {
         conditionCode = lysenko::task4(argv[2], argv[3]);
       }

@@ -89,7 +89,7 @@ dan::PhoneBook book;
         if(where == "before") {
           book.insert_before(mark, { number, std::move(name) });
         }
-        if(where == "after") {
+        else if(where == "after") {
           book.insert_after(mark, { number, std::move(name) });
         }
         else {

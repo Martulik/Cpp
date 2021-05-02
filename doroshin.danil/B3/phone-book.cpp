@@ -33,6 +33,9 @@ void dan::PhoneBook::insert_before(const Name& mark, Entry entry)
 {
   try {
     entries_.emplace(bookmarks_.at(mark), std::move(entry));
+    if(bookmarks_.at("current") == entries_.end()) {
+      bookmarks_.at("current") = --entries_.end();
+    }
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();
@@ -47,6 +50,9 @@ void dan::PhoneBook::insert_after(const Name& mark, Entry entry)
       i++;
     }
     entries_.emplace(i, std::move(entry));
+    if(bookmarks_.at("current") == entries_.end()) {
+      bookmarks_.at("current") = --entries_.end();
+    }
   }
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();

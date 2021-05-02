@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include "tasks.hpp"
 #include "functions.hpp"
 

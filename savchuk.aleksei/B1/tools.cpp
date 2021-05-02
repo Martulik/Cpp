@@ -1,5 +1,5 @@
 #include "tools.hpp"
-#include "random-engine.h"
+#include "random-engine.hpp"
 
 #include <cstddef>
 #include <stdexcept>

@@ -12,7 +12,7 @@
 #include "access-policies.hpp"
 #include "sort.hpp"
 #include "tools.hpp"
-#include "random-engine.h"
+#include "random-engine.hpp"
 
 namespace savchuk
 {

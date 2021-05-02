@@ -1,5 +1,5 @@
-#ifndef RANDOM_ENGINE_H
-#define RANDOM_ENGINE_H
+#ifndef RANDOM_ENGINE_HPP
+#define RANDOM_ENGINE_HPP
 
 #include <random>
 

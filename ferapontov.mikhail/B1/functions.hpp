@@ -15,7 +15,7 @@ namespace ferapontov
       std::cerr << "Invalid sorting mode";
       std::exit(1);
     }
-    if (strcmp(mode, "ascending"))
+    if (!strcmp(mode, "ascending"))
     {
       return std::greater< T >();
     }

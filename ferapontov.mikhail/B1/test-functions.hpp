@@ -12,17 +12,11 @@
 
 namespace ferapontov
 {
-  template <typename iter>
-  void fillVector(iter begin, iter end)
-  {
-    std::generate(begin, end, rand);
-  }
-
   void testSort(const char* mode, size_t size)
   {
     srand(time(0));
     std::vector< int > v(size);
-    fillVector(v.begin(), v.end());
+    std::generate(v.begin(), v.end(), rand);
 
     std::function< bool(int, int) > cmp = std::greater< >();
 

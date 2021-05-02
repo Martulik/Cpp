@@ -12,6 +12,10 @@ namespace lab = savchuk;
 size_t lab::convertToNumber(const char* str)
 {
   size_t len = strlen(str);
+  if (len == 0)
+  {
+    throw std::runtime_error("invalid number format");
+  }
   for (size_t i = 0; i < len; ++i)
   {
     if (!isdigit(str[i]))

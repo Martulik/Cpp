@@ -10,6 +10,10 @@ int main(int argc, char** argv)
 {
   try
   {
+    if (argc == 1)
+    {
+      throw std::invalid_argument("Invalid command line arguments");
+    }
     int task = lab::convertToNumber(argv[1]);
     if (task == 1 && argc == 3)
     {

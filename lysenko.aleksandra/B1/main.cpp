@@ -19,36 +19,24 @@ int main(int argc, char* argv[])
   {
     if (lysenko::correctData(argc, argv))
     {
-      if (argc == 2)
+      if ((argc == 2) && (lysenko::accurateTaskNumber(argv[1], "3")))
       {
-        if (lysenko::accurateTaskNumber(argv[1], "3"))
-        {
-          lysenko::conditionCode = lysenko::task3();
-        }
+        lysenko::conditionCode = lysenko::task3();
       }
       else if (argc == 3)
       {
-        if (lysenko::isTypeOfSort(argv[2]))
+        if ((lysenko::isTypeOfSort(argv[2])) && (lysenko::accurateTaskNumber(argv[1], "1")))
         {
-          if (lysenko::accurateTaskNumber(argv[1], "1"))
-          {
-            lysenko::conditionCode = lysenko::task1(argv[2]);
-          }
+          lysenko::conditionCode = lysenko::task1(argv[2]);
         }
-        else
+        else if (lysenko::accurateTaskNumber(argv[1], "2"))
         {
-          if (lysenko::accurateTaskNumber(argv[1], "2"))
-          {
-            lysenko::conditionCode = lysenko::task2(argv[2]);
-          }
+          lysenko::conditionCode = lysenko::task2(argv[2]);
         }
       }
-      else
+      else if (lysenko::accurateTaskNumber(argv[1], "4"))
       {
-        if (lysenko::accurateTaskNumber(argv[1], "4"))
-        {
-          lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
-        }
+        lysenko::conditionCode = lysenko::task4(argv[2], argv[3]);
       }
     }
   }
@@ -104,7 +92,7 @@ bool lysenko::accurateTaskNumber(char* argv, const char* reference)
 {
   if (strcmp(argv, reference) == 0)
   {
-     return 1;
+    return 1;
   }
 
   std::cerr << "Illegal task's number for these arguments";

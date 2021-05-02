@@ -8,13 +8,9 @@
 
 namespace lysenko
 {
-  template < typename T> void fillContainerWithRandomNumb(T* container, int size)
+  int myRand()
   {
-    for (int i = 0; i < size; ++i)
-    {
-      T randomOne = rand();
-      container[i] = randomOne;
-    }
+    return rand() % 333;
   }
 }
 
@@ -36,6 +32,9 @@ namespace lysenko
   void sortWithStategy(int size)
   {
     container_type myContainer(size);
+
+    std::generate(myContainer.begin(), myContainer.end(), myRand);
+
     lysenko::doSort< sortBy, container_type >(myContainer, "ascending");
 
     lysenko::doSort< sortBy, container_type >(myContainer, "descending");

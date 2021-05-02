@@ -1,5 +1,6 @@
 #include <iostream>
 #include "task-factorial.hpp"
+#include "task-phone-book.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
   }
   std::string task = argv[1];
   if (task == "1") {
-    return 2;
+    return shilyaev::taskPhoneBook();
   } else if (task == "2") {
     shilyaev::taskFactorial();
   } else {

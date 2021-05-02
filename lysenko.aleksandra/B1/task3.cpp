@@ -1,5 +1,12 @@
 #include "tasks.hpp"
 
+#include <vector>
+
+#include "comparator.hpp"
+#include "strategies.hpp"
+#include "sort.hpp"
+#include "print.hpp"
+
 int lysenko::task3()
 {
   size_t numberOfMuplipleOfThree = 0;

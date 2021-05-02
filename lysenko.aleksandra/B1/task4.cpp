@@ -1,5 +1,12 @@
 #include "tasks.hpp"
 
+#include <vector>
+
+#include "comparator.hpp"
+#include "strategies.hpp"
+#include "sort.hpp"
+#include "print.hpp"
+
 int lysenko::task4(const char* order, const char* numberOfArguments)
 {
   std::function < bool(const double&, const double&) > comparator  = getComparator< double >(order);

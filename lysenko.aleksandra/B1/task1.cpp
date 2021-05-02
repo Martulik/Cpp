@@ -1,5 +1,13 @@
 #include "tasks.hpp"
 
+#include <vector>
+#include <forward_list>
+
+#include "comparator.hpp"
+#include "strategies.hpp"
+#include "sort.hpp"
+#include "print.hpp"
+
 int lysenko::task1(const char* order)
 {
   std::vector< int > myVect;

@@ -3,6 +3,13 @@
 #include <memory>
 #include <fstream>
 
+#include <vector>
+
+#include "comparator.hpp"
+#include "strategies.hpp"
+#include "sort.hpp"
+#include "print.hpp"
+
 int lysenko::task2(const char* fileName)
 {
   std::ifstream myFile;

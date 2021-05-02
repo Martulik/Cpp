@@ -66,7 +66,7 @@ void dan::PhoneBook::delete_contents(const Name& mark)
     for(auto& bookmark: bookmarks_) {
       if(bookmark.second == del) {
         bookmark.second++;
-        if(bookmark.second == entries_.end()) {
+        if(bookmark.second == entries_.end() && entries_.size() > 1) {
           bookmark.second = entries_.begin();
         }
       }

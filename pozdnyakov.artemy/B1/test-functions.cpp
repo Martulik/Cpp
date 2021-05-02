@@ -1,4 +1,5 @@
 #include "test-functions.hpp"
+#include <algorithm>
 #include "sort.hpp"
 #include "strategies.hpp"
 #include "vector-operations.hpp"
@@ -47,5 +48,18 @@ bool poz::testAddOnes(std::vector< int > vector)
 
 bool poz::testEraseEven(std::vector< int > vector)
 {
-  return true;
+  std::vector< int > vectorMod(vector);
+  poz::eraseEven(vectorMod);
+  bool result = true;
+  for (size_t i; i < vector.size(); i++)
+  {
+    if (i < vectorMod.size())
+    {
+      if (vector[i] % 2 == 0)
+      {
+        result &= std::find(vectorMod.begin(), vectorMod.end(), vector[i]) == vectorMod.end();
+      }
+    }
+  }
+  return result;
 }

@@ -10,7 +10,7 @@ namespace ferapontov
   template< typename T >
   std::function< bool(T, T) > getSortMode(const char* mode)
   {
-    if (!strcmp(mode, "ascending") && !strcmp(mode, "descending"))
+    if (strcmp(mode, "ascending") && strcmp(mode, "descending"))
     {
       std::cerr << "Invalid sorting mode";
       std::exit(1);

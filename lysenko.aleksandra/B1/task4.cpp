@@ -51,7 +51,6 @@ void lysenko::fillRandom(double* myVectPointer, int size)
 {
   for (int i = 0; i < size; ++i)
   {
-    double randomOne = -1.0 + 0.01 * (rand() % 201);
-    myVectPointer[i] = randomOne;
+    myVectPointer[i] = -1.0 + 0.01 * (rand() % 201);
   }
 }

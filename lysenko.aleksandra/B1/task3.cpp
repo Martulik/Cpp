@@ -19,7 +19,7 @@ int lysenko::task3()
   {
     std::cin >> currOne;
 
-    if ((currPosition == 1)&&(std::cin.eof()))
+    if ((currPosition == 1) && (std::cin.eof()))
     {
       return 0;
     }
@@ -66,7 +66,7 @@ int lysenko::task3()
   }
   else if (myVect.back() == 2)
   {
-    std::vector<int>::iterator iterator = myVect.begin();
+    std::vector< int >::iterator iterator = myVect.begin();
     myVect.reserve(myVect.size() + numberOfMuplipleOfThree * 3);
     iterator = myVect.begin();
     while (iterator != myVect.end())

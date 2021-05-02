@@ -23,7 +23,7 @@ int lysenko::task2(const char* fileName)
       return 0;
     }
 
-    size_t currCapacity = 1;
+    size_t currCapacity = 2;
     size_t currPosition = 0;
     std::unique_ptr< char[] > resultArray = std::make_unique< char[] >(currCapacity);
 

@@ -128,29 +128,32 @@ void murzakanov::BookInterface::show(const std::string& bookmark, std::ostream& 
 void murzakanov::BookInterface::move(const std::string& bookmark, int steps, std::ostream& out)
 {
   iteratorType it = bookmarks_.find(bookmark);
-  if (it != bookmarks_.end())
+  if (it == bookmarks_.end())
   {
-    if (steps > 0)
+    out << "<INVALID BOOKMARK>\n";
+    return;
+
+  }
+  int distance = 0;
+  if (steps > 0)
+  {
+    distance = std::distance(it->second, book_->end());
+    if (steps >= distance)
     {
-      while (steps != 0 && it->second != book_->end())
-      {
-        it->second = std::next(it->second);
-        steps--;
-      }
-    }
-    else
-    {
-      while (steps != 0 && it->second != book_->begin())
-      {
-        it->second = std::prev(it->second);
-        steps++;
-      }
+      it->second = std::prev(book_->end());
+      return;
     }
   }
   else
   {
-    out << "<INVALID BOOKMARK>\n";
+    distance = std::distance(book_->begin(), it->second);
+    if (std::abs(steps) >= distance)
+    {
+      it->second = book_->begin();
+      return;
+    }
   }
+  std::advance(it->second, steps);
 }
 
 void murzakanov::BookInterface::move(const std::string& bookmark, KeyWord keyWord, std::ostream& out)

@@ -22,22 +22,22 @@ std::istream& murzakanov::readName(std::istream& in, std::string& name)
       return in;
     }
   }
-    while (!in.eof())
+  while (!in.eof())
+  {
+    char next = in.get();
+    if (next == '\\')
     {
-      char next = in.get();
-      if (next == '\\')
-      {
-        name += in.get();
-      }
-      else if (next != '"')
-      {
-        name += next;
-      }
-      else
-      {
-        break;
-      }
+      name += in.get();
     }
+    else if (next != '"')
+    {
+      name += next;
+    }
+    else
+    {
+      break;
+    }
+  }
   //else
   //{
   //  in.setstate(std::ios_base::failbit);

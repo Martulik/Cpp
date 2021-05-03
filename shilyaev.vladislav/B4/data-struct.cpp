@@ -1,5 +1,6 @@
 #include "data-struct.hpp"
 #include <iostream>
+#include <sstream>
 
 namespace shilyaev {
   std::ostream &operator<<(std::ostream &ostream, const DataStruct &dataStruct)
@@ -7,17 +8,33 @@ namespace shilyaev {
     return ostream << dataStruct.key1 << ", " << dataStruct.key2 << ", " << dataStruct.str;
   }
 
+  int readKey(std::istream &istream)
+  {
+    std::string str;
+    std::getline(istream, str, ',');
+    try {
+      int key = std::stoi(str);
+      if (key < -5 || key > 5) {
+        istream.setstate(std::ios::failbit);
+      }
+      return key;
+    } catch (const std::invalid_argument &) {
+      istream.setstate(std::ios::failbit);
+      return 0;
+    }
+  }
+
   std::istream &operator>>(std::istream &istream, DataStruct &dataStruct)
   {
-    istream >> dataStruct.key1;
-    istream.ignore();
-    istream >> dataStruct.key2;
-    if (dataStruct.key1 < -5 || dataStruct.key1 > 5 || dataStruct.key2 < -5 || dataStruct.key2 > 5) {
+    std::string line;
+    std::getline(istream, line);
+    std::istringstream iStringStream(line);
+    dataStruct.key1 = readKey(iStringStream);
+    dataStruct.key2 = readKey(iStringStream);
+    std::getline(iStringStream, dataStruct.str);
+    if (iStringStream.fail()) {
       istream.setstate(std::ios::failbit);
-      return istream;
     }
-    istream.ignore(2);
-    std::getline(istream, dataStruct.str);
     return istream;
   }
 

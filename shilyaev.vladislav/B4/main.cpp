@@ -10,6 +10,7 @@ int main()
   std::istream_iterator< shilyaev::DataStruct > lastIstreamIterator;
   std::vector< shilyaev::DataStruct > structs(istreamIterator, lastIstreamIterator);
   if (!std::cin && !std::cin.eof()) {
+    std::cerr << "Input error";
     return 1;
   }
   std::sort(structs.begin(), structs.end(), shilyaev::compare);

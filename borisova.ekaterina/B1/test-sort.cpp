@@ -15,7 +15,7 @@ namespace borisova
   template < typename T >
   void fillRandomCont(typename T::iterator itr, const typename T::iterator& end)
   {
-    std::generate(itr, end, randomNumber() * 1000);
+    std::generate(itr, end, randomNumber);
   }
 }
 

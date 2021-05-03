@@ -5,14 +5,13 @@ void borisova::fillRandom(double* array, const int size)
 {
   for (int i = 0; i < size; i++)
   {
-    array[i] = randomNumber();
+    array[i] = randomNumber() * 0.001;
   }
 }
 
-double borisova::randomNumber()
+int borisova::randomNumber()
 {
-  int temp = (rand() % 2001) - 1000;
-  return temp * 0.001;
+  return(rand() % 2001) - 1000;
 }
 
 bool borisova::checkNumber(const char* number)

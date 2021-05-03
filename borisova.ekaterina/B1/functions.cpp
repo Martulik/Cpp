@@ -1,15 +1,18 @@
 #include "functions.hpp"
-#include <ctime>
 #include <cstring>
 
 void borisova::fillRandom(double* array, const int size)
 {
-  srand(time(0));
   for (int i = 0; i < size; i++)
   {
-    int temp = (rand() % 201) - 100;
-    array[i] = temp * 0.01;
+    array[i] = randomNumber();
   }
+}
+
+double borisova::randomNumber()
+{
+  int temp = (rand() % 2001) - 1000;
+  return temp * 0.001;
 }
 
 bool borisova::checkNumber(const char* number)

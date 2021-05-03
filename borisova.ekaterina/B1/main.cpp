@@ -1,10 +1,12 @@
 ﻿#include <iostream>
+#include <ctime>
 #include "functions.hpp"
 #include "tasks.hpp"
 #include "strategies.hpp"
 
 int main(int argc, char* argv[])
 {
+  srand(time(0));
   int exitCode = 1;
   if (argc < 2)
   {

@@ -9,6 +9,7 @@
 namespace borisova
 {
   void fillRandom(double* array, int size);
+  double randomNumber();
   bool checkNumber(const char* number);
 
   template< typename T >

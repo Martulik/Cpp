@@ -11,15 +11,11 @@ namespace borisova
   void testBracket();
   void testAt();
   void testList();
+
   template < typename T >
   void fillRandomCont(typename T::iterator itr, const typename T::iterator& end)
   {
-    srand(time(0));
-    while (itr != end)
-    {
-      *itr = rand()%501 - 1001;
-      itr++;
-    }
+    std::generate(itr, end, randomNumber() * 1000);
   }
 }
 

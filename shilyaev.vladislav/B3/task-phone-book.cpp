@@ -33,15 +33,20 @@ namespace shilyaev {
     bookmarks[newBookmarkName] = bookmarks.at(bookmarkName);
   }
 
-  void insert(const std::vector< std::string > &arguments, PhoneBook &book, const BookmarkMap &bookmarks)
+  void insert(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
     const std::string &where = arguments[1];
     const std::string &bookmarkName = arguments[2];
     const std::string &number = arguments[3];
     const std::string &name = arguments[4];
     PhoneBook::Entry entry{number, name};
-    PhoneBook::Iterator iterator = bookmarks.at(bookmarkName);
-    if (where == "before") {
+    Iterator iterator = bookmarks.at(bookmarkName);
+    if (book.empty()) {
+      Iterator newIterator = book.pushBack(entry);
+      for (auto &&bookmark : bookmarks) {
+        bookmark.second = newIterator;
+      }
+    } else if (where == "before") {
       book.insertBefore(iterator, entry);
     } else if (where == "after") {
       book.insertAfter(iterator, entry);

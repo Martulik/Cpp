@@ -1,8 +1,6 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
 
-#include <iostream>
-
 namespace borisova
 {
   int doTask1(const int argc, char* argv[]);

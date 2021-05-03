@@ -11,12 +11,6 @@ namespace borisova
   void testBracket();
   void testAt();
   void testList();
-
-  template < typename T >
-  void fillRandomCont(typename T::iterator itr, const typename T::iterator& end)
-  {
-    std::generate(itr, end, randomNumber);
-  }
 }
 
 namespace lab = borisova;
@@ -24,7 +18,7 @@ namespace lab = borisova;
 void lab::testBracket()
 {
   std::vector< int > vecBrackets(3);
-  lab::fillRandomCont< std::vector< int > >(vecBrackets.begin(), vecBrackets.end());
+  std::generate(vecBrackets.begin(), vecBrackets.end(), randomNumber);
   lab::sort< lab::bracketStrategy< int > >(vecBrackets, sortMode< int >(mode));
   BOOST_CHECK(std::is_sorted(vecBrackets.begin(), vecBrackets.end()));
 }
@@ -32,7 +26,7 @@ void lab::testBracket()
 void lab::testAt()
 {
   std::vector< int > vecInd(4);
-  lab::fillRandomCont< std::vector< int > >(vecInd.begin(), vecInd.end());
+  std::generate(vecInd.begin(), vecInd.end(), randomNumber);
   lab::sort< lab::atStrategy< int > >(vecInd, sortMode< int >(mode));
   BOOST_CHECK(std::is_sorted(vecInd.begin(), vecInd.end()));
 }
@@ -40,7 +34,7 @@ void lab::testAt()
 void lab::testList()
 {
   std::forward_list< int > listIt(5);
-  lab::fillRandomCont< std::forward_list< int > >(listIt.begin(), listIt.end());
+  std::generate(listIt.begin(), listIt.end(), randomNumber);
   lab::sort< lab::listStrategy< int > >(listIt, sortMode< int >(mode));
   BOOST_CHECK(std::is_sorted(listIt.begin(), listIt.end()));
 }
@@ -49,16 +43,19 @@ BOOST_AUTO_TEST_SUITE(testSort)
 
 BOOST_AUTO_TEST_CASE(bracketStrategy)
 {
+  srand(time(0));
   lab::testBracket();
 }
 
 BOOST_AUTO_TEST_CASE(atStrategy)
 {
+  srand(time(0));
   lab::testAt();
 }
 
 BOOST_AUTO_TEST_CASE(listStrategy)
 {
+  srand(time(0));
   lab::testList();
 }
 

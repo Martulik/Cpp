@@ -22,13 +22,13 @@ int borisova::doTask4(const int argc, char* argv[])
     return 1;
   }
   char* mode = argv[2];
-  std::vector< double >arr(size);
+  std::vector< double > arr(size);
   fillRandom(arr.data(), size);
-  print(arr, std::cout);
   std::vector< double > indVec(arr);
   int exitCode = sort< bracketStrategy< double > >(indVec, sortMode< double >(mode));
   if (!exitCode)
   {
+    print(arr, std::cout);
     print(indVec, std::cout);
   }
   return exitCode;

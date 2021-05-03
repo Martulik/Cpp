@@ -14,7 +14,7 @@ void borisova::fillRandom(double* array, const int size)
 
 bool borisova::checkNumber(const char* number)
 {
-  int i = 0;
+  size_t i = 0;
   while (i < strlen(number))
   {
     if (!isdigit(number[i]))

@@ -16,7 +16,7 @@ namespace borisova
   {
     const char* ascending = "ascending";
     const char* descending = "descending";
-    int i = 0;
+    size_t i = 0;
 
     if (strlen(ascending) == strlen(mode))
     {

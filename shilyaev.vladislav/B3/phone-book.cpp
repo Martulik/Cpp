@@ -1,39 +1,90 @@
 #include "phone-book.hpp"
+#include "iterator-advance.hpp"
 
 namespace shilyaev {
-  PhoneBook::Iterator PhoneBook::insert(PhoneBook::Iterator iterator, const PhoneBook::Entry& entry)
+  void PhoneBook::insertBefore(const std::string &bookmarkName, const PhoneBook::Entry &entry)
   {
-    return entries_.insert(iterator, entry);
+    Iterator iterator = bookmarks_.at(bookmarkName);
+    if (entries_.empty()) {
+      pushBack(entry);
+    }
+    entries_.insert(iterator, entry);
   }
 
-  PhoneBook::Iterator PhoneBook::pushBack(const PhoneBook::Entry& entry)
+  void PhoneBook::insertAfter(const std::string &bookmarkName, const PhoneBook::Entry &entry)
+  {
+    Iterator iterator = bookmarks_.at(bookmarkName);
+    if (entries_.empty()) {
+      pushBack(entry);
+    }
+    entries_.insert(++iterator, entry);
+  }
+
+  void PhoneBook::pushBack(const PhoneBook::Entry &entry)
   {
     entries_.push_back(entry);
-    return --entries_.end();
+    if (entries_.size() == 1) {
+      for (auto &&bookmark: bookmarks_) {
+        bookmark.second = std::prev(entries_.end());
+      }
+    }
   }
 
-  size_t PhoneBook::size() const
+  void PhoneBook::erase(const std::string &bookmarkName)
   {
-    return entries_.size();
+    Iterator iteratorToErase = bookmarks_.at(bookmarkName);
+    Iterator newIterator = entries_.erase(iteratorToErase);
+    if (newIterator == entries_.end()) {
+      --newIterator;
+    }
+    for (auto &&bookmark: bookmarks_) {
+      if (bookmark.second == iteratorToErase) {
+        bookmark.second = newIterator;
+      }
+    }
   }
 
-  PhoneBook::Iterator PhoneBook::erase(PhoneBook::Iterator iterator)
+  void PhoneBook::store(const std::string &bookmarkName, const std::string &newBookmarkName)
   {
-    return entries_.erase(iterator);
+    bookmarks_[newBookmarkName] = bookmarks_.at(bookmarkName);
   }
 
-  bool PhoneBook::empty() const
+  PhoneBook::PhoneBook()
   {
-    return entries_.empty();
+    bookmarks_["current"];
   }
 
-  PhoneBook::Iterator PhoneBook::begin()
+  boost::optional< PhoneBook::Entry > PhoneBook::getEntry(const std::string &bookmarkName) const
   {
-    return entries_.begin();
+    Iterator bookmark = bookmarks_.at(bookmarkName);
+    if (entries_.empty()) {
+      return {};
+    }
+    return *bookmark;
   }
 
-  PhoneBook::Iterator PhoneBook::end()
+  void PhoneBook::move(const std::string &bookmarkName, int n)
   {
-    return entries_.end();
+    if (entries_.empty()) {
+      return;
+    }
+    Iterator &bookmark = bookmarks_.at(bookmarkName);
+    bookmark = safeAdvance(bookmark, n, entries_.begin(), entries_.end());
+  }
+
+  void PhoneBook::moveFirst(const std::string &bookmarkName)
+  {
+    if (entries_.empty()) {
+      return;
+    }
+    bookmarks_.at(bookmarkName) = entries_.begin();
+  }
+
+  void PhoneBook::moveLast(const std::string &bookmarkName)
+  {
+    if (entries_.empty()) {
+      return;
+    }
+    bookmarks_.at(bookmarkName) = std::prev(entries_.end());
   }
 }

@@ -21,7 +21,7 @@ void pochernin::task1(const char* sortingDirection)
     throw(std::runtime_error("Incorrect input in task1\n"));
   }
 
-  if (bracketsVector.size() == 0)
+  if (bracketsVector.empty())
   {
     return;
   }

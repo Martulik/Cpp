@@ -14,8 +14,7 @@ namespace shilyaev {
     using Iterator = std::list< Entry >::iterator;
     size_t size() const;
     bool empty() const;
-    Iterator insertAfter(Iterator iterator, const Entry& entry);
-    Iterator insertBefore(Iterator iterator, const Entry& entry);
+    Iterator insert(Iterator iterator, const Entry& entry);
     Iterator pushBack(const Entry& entry);
     Iterator erase(Iterator iterator);
     Iterator begin();

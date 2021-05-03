@@ -1,12 +1,7 @@
 #include "phone-book.hpp"
 
 namespace shilyaev {
-  PhoneBook::Iterator PhoneBook::insertAfter(PhoneBook::Iterator iterator, const PhoneBook::Entry& entry)
-  {
-    return entries_.insert(++iterator, entry);
-  }
-
-  PhoneBook::Iterator PhoneBook::insertBefore(PhoneBook::Iterator iterator, const PhoneBook::Entry& entry)
+  PhoneBook::Iterator PhoneBook::insert(PhoneBook::Iterator iterator, const PhoneBook::Entry& entry)
   {
     return entries_.insert(iterator, entry);
   }

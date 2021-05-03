@@ -39,20 +39,22 @@ namespace shilyaev {
     const std::string &bookmarkName = arguments[2];
     const std::string &number = arguments[3];
     const std::string &name = arguments[4];
-    PhoneBook::Entry entry{number, name};
+    int iteratorDelta = 0;
+    if (where == "after") {
+      iteratorDelta = 1;
+    } else if (where != "before") {
+      std::cout << INVALID_COMMAND_ERROR << '\n';
+      return;
+    }
     Iterator iterator = bookmarks.at(bookmarkName);
+    PhoneBook::Entry entry{number, name};
     if (book.empty()) {
       Iterator newIterator = book.pushBack(entry);
       for (auto &&bookmark : bookmarks) {
         bookmark.second = newIterator;
       }
-    } else if (where == "before") {
-      book.insertBefore(iterator, entry);
-    } else if (where == "after") {
-      book.insertAfter(iterator, entry);
     } else {
-      std::cout << INVALID_COMMAND_ERROR << '\n';
-      return;
+      book.insert(std::next(iterator, iteratorDelta), entry);
     }
   }
 

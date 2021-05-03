@@ -43,7 +43,7 @@ void murzakanov::BookInterface::insertBefore(const std::string& bookmark, const 
     return;
   }
 
-  std::map< std::string, murzakanov::PhoneBook::iterator >::iterator it = bookmarks_.find(bookmark);
+  iteratorType it = bookmarks_.find(bookmark);
   if (it != bookmarks_.end())
   {
     book_->insertBefore(it->second, note);

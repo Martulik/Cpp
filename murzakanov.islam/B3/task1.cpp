@@ -103,7 +103,7 @@ void murzakanov::task1()
         }
         else if (steps == "last")
         {
-          bookInterface.move(mark, BookInterface::KeyWord::FIRST, std::cout);
+          bookInterface.move(mark, BookInterface::KeyWord::LAST, std::cout);
         }
         else
         {

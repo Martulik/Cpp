@@ -33,9 +33,9 @@ void lab::taskThree()
     return;
   }
 
-  std::vector< int >::iterator it;
+  using iterator_t = std::vector< int >::iterator;
   int flag = vec.back();
-  for (it = vec.begin(); it != vec.end(); it++)
+  for (iterator_t it = vec.begin(); it != vec.end(); it++)
   {
     if (flag == 1)
     {

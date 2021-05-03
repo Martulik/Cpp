@@ -1,5 +1,6 @@
 #include "functions.hpp"
 #include <ctime>
+#include <cstring>
 
 void borisova::fillRandom(double* array, const int size)
 {

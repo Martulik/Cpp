@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <functional>
+#include <cstring>
 #include "strategies.hpp"
 
 namespace borisova

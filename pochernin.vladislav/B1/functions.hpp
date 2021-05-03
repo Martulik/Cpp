@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <functional>
 
 namespace pochernin
 {
@@ -19,25 +20,38 @@ namespace pochernin
     std::cout << "\n";
   }
 
-  template < typename Access >
-  void sort(typename Access::Container& container, bool isAscending)
+  template < typename ItemType >
+  std::function< bool(ItemType, ItemType) > comparisonType(bool isAscending)
+  {
+    if (isAscending)
+    {
+      return std::less< ItemType >();
+    }
+    else
+    {
+      return std::greater< ItemType >();
+    }
+  }
+
+  template < typename Access, typename ItemType >
+  void sort(typename Access::Container& container, std::function< bool(ItemType, ItemType) > cmp)
   {
     typename Access::Iterator begin = Access::begin(container);
     typename Access::Iterator end = Access::end(container);
     for (typename Access::Iterator i = begin; i != end; i++)
     {
-      typename Access::ItemType critical = Access::get(container, i);
-      typename Access::Iterator criticalIterator = i;
+      typename Access::ItemType extremum = Access::get(container, i);
+      typename Access::Iterator extremumIterator = i;
       for (typename Access::Iterator j = i; j != end; j++)
       {
         typename Access::ItemType x = Access::get(container, j);
-        if ((isAscending && (x < critical)) || (!isAscending && (x > critical)))
+        if (cmp(x, extremum))
         {
-          critical = x;
-          criticalIterator = j;
+          extremum = x;
+          extremumIterator = j;
         }
       }
-      std::swap(Access::get(container, i), Access::get(container, criticalIterator));
+      std::swap(Access::get(container, i), Access::get(container, extremumIterator));
     }
   }
 

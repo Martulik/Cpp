@@ -12,6 +12,7 @@ void pochernin::task4(const char* sortingDirection, size_t size)
   pochernin::fillRandom(vec.data(), size);
 
   pochernin::print(vec, " ");
-  pochernin::sort< atAccess< double > >(vec, isAscending);
+  std::function< bool(double, double) > cmp = pochernin::comparisonType< double >(isAscending);
+  pochernin::sort< atAccess< double >, double >(vec, cmp);
   pochernin::print(vec, " ");
 }

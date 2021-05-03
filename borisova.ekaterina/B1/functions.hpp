@@ -26,8 +26,12 @@ namespace borisova
         {
           i++;
         }
+        else
+        {
+          break;
+        }
       }
-      if (mode[i] == '\0')
+      if (i == strlen(mode))
       {
         return std::greater< T >();
       }
@@ -41,8 +45,12 @@ namespace borisova
         {
           i++;
         }
+        else
+        {
+          break;
+        }
       }
-      if (mode[i] == '\0')
+      if (i == strlen(mode))
       {
         return std::less< T >();
       }

@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
       }
       if (!pochernin::isNumber(argv[3]))
       {
-        throw(std::invalid_argument("Incorrect third argument (vector size in task 3)"));
+        throw(std::invalid_argument("Incorrect third argument (vector size in task 4)"));
       }
       if (atoi(argv[3]) <= 0)
       {

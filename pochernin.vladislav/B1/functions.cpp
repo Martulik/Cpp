@@ -38,7 +38,7 @@ bool pochernin::isNumber(const char* string)
 {
   for (size_t i = 0; i < strlen(string); i++)
   {
-    if ((string[i] < '0') || (string[i] > '9'))
+    if (!std::isdigit(string[i]))
     {
       return false;
     }

@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
   int code = 0;
   if (argc != 2)
   {
-    std::cerr << "";
+    std::cerr << "Invalid arguments";
     code = 1;
   }
 
@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    std::cerr << "";
+    std::cerr << "Invalid arguments";
     code = 1;
   }
   return code;

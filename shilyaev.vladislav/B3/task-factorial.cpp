@@ -10,4 +10,5 @@ void shilyaev::taskFactorial()
   std::copy(container.begin(), container.end(), ostreamIterator);
   std::cout << '\n';
   std::reverse_copy(container.begin(), container.end(), ostreamIterator);
+  std::cout << '\n';
 }

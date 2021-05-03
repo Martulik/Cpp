@@ -61,7 +61,6 @@ void murzakanov::BookInterface::insertAfter(const std::string& bookmark, const n
     add(note);
     return;
   }
-
   iteratorType it = bookmarks_.find(bookmark);
   if (it != bookmarks_.end())
   {

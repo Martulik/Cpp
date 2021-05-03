@@ -12,7 +12,6 @@ namespace shilyaev {
   const std::string EMPTY_ERROR = "<EMPTY>";
 
   using BookmarkMap = std::map< std::string, PhoneBook::Iterator >;
-  using Tokenizer = boost::tokenizer< boost::escaped_list_separator< char > >;
   using Iterator = PhoneBook::Iterator;
 
   void add(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
@@ -113,7 +112,7 @@ namespace shilyaev {
   void execute(const std::string &command, PhoneBook &phoneBook, BookmarkMap &bookmarks)
   {
     const boost::escaped_list_separator< char > separator('\\', ' ', '\"');
-    const Tokenizer tokenizer(command, separator);
+    const boost::tokenizer< boost::escaped_list_separator< char > > tokenizer(command, separator);
     std::vector< std::string > arguments;
     std::copy(tokenizer.begin(), tokenizer.end(), std::back_inserter(arguments));
     if (arguments.empty()) {

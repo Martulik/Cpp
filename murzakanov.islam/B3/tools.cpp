@@ -60,3 +60,8 @@ bool murzakanov::checkIsNum(const std::string& number)
   }
   return true;
 }
+
+bool murzakanov::checkIsSpace(const std::string& arg)
+{
+  return (arg.find(' ') != std::string::npos);
+}

@@ -7,8 +7,9 @@ namespace shilyaev {
     Iterator iterator = bookmarks_.at(bookmarkName);
     if (entries_.empty()) {
       pushBack(entry);
+    } else {
+      entries_.insert(iterator, entry);
     }
-    entries_.insert(iterator, entry);
   }
 
   void PhoneBook::insertAfter(const std::string &bookmarkName, const PhoneBook::Entry &entry)
@@ -16,8 +17,9 @@ namespace shilyaev {
     Iterator iterator = bookmarks_.at(bookmarkName);
     if (entries_.empty()) {
       pushBack(entry);
+    } else {
+      entries_.insert(++iterator, entry);
     }
-    entries_.insert(++iterator, entry);
   }
 
   void PhoneBook::pushBack(const PhoneBook::Entry &entry)

@@ -73,8 +73,8 @@ namespace shkurov
   }
 
   void fillRandom(double *array, int size);
-  bool containsSpaces(const std::string& str);
-  bool isNumber(const std::string& str);
+  bool containsSpaces(const char* str);
+  bool isNumber(const char* str);
 }
 
 #endif

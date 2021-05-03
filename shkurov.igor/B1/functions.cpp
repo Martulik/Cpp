@@ -13,9 +13,9 @@ void lab::fillRandom(double *array, int size)
   }
 }
 
-bool lab::containsSpaces(const std::string& str)
+bool lab::containsSpaces(const char* str)
 {
-  if (str.find(' ') != std::string::npos)
+  if (strchr(str, ' '))
   {
     return true;
   }
@@ -23,9 +23,9 @@ bool lab::containsSpaces(const std::string& str)
   return false;
 }
 
-bool lab::isNumber(const std::string& str)
+bool lab::isNumber(const char* str)
 {
-  for (size_t i = 0; i < str.size(); i++)
+  for (size_t i = 0; str[i] != '\0'; i++)
   {
     if (!std::isdigit(str[i]))
     {

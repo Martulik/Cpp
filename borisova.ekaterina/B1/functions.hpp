@@ -36,7 +36,7 @@ namespace borisova
         return std::greater< T >();
       }
     }
-    else if (strlen(ascending) == strlen(mode))
+    else if (strlen(descending) == strlen(mode))
     {
       i = 0;
       while (i < strlen(mode) && i < strlen(descending))

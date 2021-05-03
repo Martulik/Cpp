@@ -1,7 +1,7 @@
 #include "task-phone-book.hpp"
 #include <iostream>
 #include <iterator>
-#include <boost/tokenizer.hpp>
+#include "tokenizer.hpp"
 #include "phone-book.hpp"
 
 namespace shilyaev {
@@ -10,11 +10,20 @@ namespace shilyaev {
   const std::string INVALID_STEP_ERROR = "<INVALID STEP>";
   const std::string EMPTY_ERROR = "<EMPTY>";
 
+  bool isNameValid(const std::string &name)
+  {
+    return name[0] == '"' && name.back() == '"';
+  }
+
   void add(const std::vector< std::string > &arguments, PhoneBook &book)
   {
     const std::string &number = arguments[1];
     const std::string &name = arguments[2];
-    book.pushBack({number, name});
+    if (!isNameValid(name)) {
+      std::cout << INVALID_COMMAND_ERROR << '\n';
+      return;
+    }
+    book.pushBack({number, name.substr(1, name.length() - 2)});
   }
 
   void store(const std::vector< std::string > &arguments, PhoneBook &book)
@@ -30,7 +39,11 @@ namespace shilyaev {
     const std::string &bookmarkName = arguments[2];
     const std::string &number = arguments[3];
     const std::string &name = arguments[4];
-    const PhoneBook::Entry entry{number, name};
+    if (!isNameValid(name)) {
+      std::cout << INVALID_COMMAND_ERROR << '\n';
+      return;
+    }
+    const PhoneBook::Entry entry{number, name.substr(1, name.length() - 2)};
     if (where == "before") {
       book.insertBefore(bookmarkName, entry);
     } else if (where == "after") {
@@ -77,13 +90,7 @@ namespace shilyaev {
 
   void execute(const std::string &command, PhoneBook &phoneBook)
   {
-    const boost::escaped_list_separator< char > separator('\\', ' ', '\"');
-    const boost::tokenizer< boost::escaped_list_separator< char > > tokenizer(command, separator);
-    std::vector< std::string > arguments;
-    std::copy(tokenizer.begin(), tokenizer.end(), std::back_inserter(arguments));
-    if (arguments.empty()) {
-      return;
-    }
+    std::vector< std::string > arguments = tokenize(command);
     const std::string &commandName = arguments[0];
     try {
       if (commandName == "add" && arguments.size() == 3) {

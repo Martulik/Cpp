@@ -78,11 +78,11 @@ void murzakanov::BookInterface::deleteNote(const std::string& bookmark, std::ost
   iteratorType it = bookmarks_.find(bookmark);
   if (it != bookmarks_.end())
   {
-    iteratorType tempIt = it;
+    auto tempIt = it->second;
     iteratorType current = bookmarks_.begin();
     while (current != bookmarks_.end())
     {
-      if (current->second == tempIt->second)
+      if (current->second == tempIt)
       {
         if (std::next(current->second) == book_->end())
         {
@@ -90,12 +90,12 @@ void murzakanov::BookInterface::deleteNote(const std::string& bookmark, std::ost
         }
         else
         {
-          current->second = std::next(tempIt->second);
+          ++current->second;
         }
       }
       current++;
     }
-    book_->deleteNote(tempIt->second);
+    book_->deleteNote(tempIt);
   }
   else
   {

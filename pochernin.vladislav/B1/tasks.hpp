@@ -1,7 +1,7 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
 
-#include <stddef.h>
+#include <cstddef>
 
 namespace pochernin
 {

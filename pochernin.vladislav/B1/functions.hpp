@@ -2,7 +2,7 @@
 #define FUNCTIONS_HPP
 
 #include <iostream>
-#include <string.h>
+#include <string>
 
 namespace pochernin
 {

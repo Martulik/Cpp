@@ -4,20 +4,25 @@
 
 int main(int argc, char* argv[])
 {
+  int code = 0;
   if (argc != 2)
   {
     std::cerr << "";
-    return 1;
+    code = 1;
   }
 
   if (atoi(argv[1]) == 1)
   {
     murzakanov::task1();
   }
-
-  if (atoi(argv[1]) == 2)
+  else if (atoi(argv[1]) == 2)
   {
-    murzakanov::task2();
+  murzakanov::task2();
   }
-  return 0;
+  else
+  {
+    std::cerr << "";
+    code = 1;
+  }
+  return code;
 }

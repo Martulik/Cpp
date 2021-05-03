@@ -173,7 +173,7 @@ void murzakanov::BookInterface::move(const std::string& bookmark, KeyWord keyWor
       }
       else
       {
-        std::prev(book_->end());
+        it->second = std::prev(book_->end());
       }
     }
   }

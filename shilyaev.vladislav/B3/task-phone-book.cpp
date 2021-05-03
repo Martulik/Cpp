@@ -74,11 +74,12 @@ namespace shilyaev {
   void show(const std::vector< std::string > &arguments, const PhoneBook &book, const BookmarkMap &bookmarks)
   {
     const std::string &bookmarkName = arguments[1];
+    const Iterator bookmark = bookmarks.at(bookmarkName);
     if (book.empty()) {
       std::cout << EMPTY_ERROR << '\n';
       return;
     }
-    const PhoneBook::Entry entry = *bookmarks.at(bookmarkName);
+    const PhoneBook::Entry entry = *bookmark;
     std::cout << entry.number << ' ' << entry.name << '\n';
   }
 

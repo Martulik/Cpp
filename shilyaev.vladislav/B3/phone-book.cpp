@@ -11,17 +11,6 @@ namespace shilyaev {
     return entries_.insert(iterator, entry);
   }
 
-  PhoneBook::Iterator PhoneBook::move(PhoneBook::Iterator iterator, int n)
-  {
-    for (int i = 0; i < n; ++i) {
-      ++iterator;
-    }
-    for (int i = 0; i > n; --i) {
-      --iterator;
-    }
-    return iterator;
-  }
-
   PhoneBook::Iterator PhoneBook::pushBack(const PhoneBook::Entry& entry)
   {
     entries_.push_back(entry);

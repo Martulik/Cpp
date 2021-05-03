@@ -1,6 +1,7 @@
 #include "task-phone-book.hpp"
 #include <map>
 #include <iostream>
+#include <iterator>
 #include <boost/tokenizer.hpp>
 #include "phone-book.hpp"
 
@@ -12,6 +13,7 @@ namespace shilyaev {
 
   using BookmarkMap = std::map< std::string, PhoneBook::Iterator >;
   using Tokenizer = boost::tokenizer< boost::escaped_list_separator< char > >;
+  using Iterator = PhoneBook::Iterator;
 
   void add(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
@@ -75,18 +77,32 @@ namespace shilyaev {
     std::cout << entry.number << ' ' << entry.name << '\n';
   }
 
+  Iterator safeAdvance(Iterator iterator, int n, const Iterator &begin, const Iterator &end)
+  {
+    while (n > 0 && std::next(iterator) != end) {
+      n--;
+      iterator++;
+    }
+    while (n < 0 && iterator != begin) {
+      n++;
+      iterator--;
+    }
+    return iterator;
+  }
+
   void move(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
     const std::string bookmarkName = arguments[1];
     const std::string step = arguments[2];
+    PhoneBook::Iterator &bookmark = bookmarks.at(bookmarkName);
     if (step == "first") {
-      bookmarks.at(bookmarkName) = book.begin();
+      bookmark = book.begin();
     } else if (step == "last") {
-      bookmarks.at(bookmarkName) = --book.end();
+      bookmark = std::prev(book.end());
     } else {
       try {
         const int stepInt = std::stoi(step);
-        bookmarks.at(bookmarkName) = book.move(bookmarks.at(bookmarkName), stepInt);
+        bookmark = safeAdvance(bookmark, stepInt, book.begin(), book.end());
       } catch (const std::invalid_argument &) {
         std::cout << INVALID_STEP_ERROR << '\n';
       }

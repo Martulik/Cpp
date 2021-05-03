@@ -16,7 +16,6 @@ namespace shilyaev {
     bool empty() const;
     Iterator insertAfter(Iterator iterator, const Entry& entry);
     Iterator insertBefore(Iterator iterator, const Entry& entry);
-    Iterator move(Iterator iterator, int n);
     Iterator pushBack(const Entry& entry);
     Iterator erase(Iterator iterator);
     Iterator begin();

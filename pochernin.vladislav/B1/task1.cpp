@@ -10,7 +10,7 @@
 void pochernin::task1(const char* sortingDirection)
 {
   bool isAscending = pochernin::isAscending(sortingDirection);
-  std::vector<int> bracketsVector;
+  std::vector< int > bracketsVector;
   int n = 0;
   while (std::cin >> n)
   {
@@ -26,8 +26,8 @@ void pochernin::task1(const char* sortingDirection)
     return;
   }
 
-  std::vector<int> atVector(bracketsVector);
-  std::forward_list<int> iteratorForwardList(bracketsVector.begin(), bracketsVector.end());
+  std::vector< int > atVector(bracketsVector);
+  std::forward_list< int > iteratorForwardList(bracketsVector.begin(), bracketsVector.end());
 
   pochernin::sort< bracketsAccess< int > >(bracketsVector, isAscending);
   pochernin::print(bracketsVector, " ");

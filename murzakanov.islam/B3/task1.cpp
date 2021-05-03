@@ -51,15 +51,15 @@ void murzakanov::task1()
       in >> place >> mark >> number;
       if (!mur::checkIsNum(number))
       {
-        std::cout << "<INVALID BOOKMARK>\n";
+        std::cout << "<INVALID COMMAND>\n";
         continue;
       }
-      mur::readName(in, name, std::cout);
       if (place != "before" && place != "after")
       {
         std::cout << "<INVALID COMMAND>\n";
         continue;
       }
+      mur::readName(in, name, std::cout);
       if (place == "before")
       {
         bookInterface.insertBefore(mark, {number, name}, std::cout);

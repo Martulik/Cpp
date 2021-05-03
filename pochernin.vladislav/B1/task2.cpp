@@ -33,7 +33,7 @@ void pochernin::task2(const char* fileName)
       std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
       for (size_t i = 0; i < size; i++)
       {
-        temp[i] = std::move(data[i]);
+        temp[i] = data[i];
       }
       data = std::move(temp);
     }

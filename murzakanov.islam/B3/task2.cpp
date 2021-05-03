@@ -6,7 +6,6 @@
 
 #include "factorial-container.hpp"
 
-
 void murzakanov::task2()
 {
   murzakanov::FactorialContainer factorial;

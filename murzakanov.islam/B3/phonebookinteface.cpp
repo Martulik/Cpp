@@ -7,7 +7,7 @@
 
 #include "phone-book.hpp"
 
-murzakanov::BookInterface::BookInterface(PhoneBook& book) :
+murzakanov::BookInterface::BookInterface(PhoneBook& book):
   book_(std::make_unique< PhoneBook >(book))
 {
   bookmarks_.insert(std::make_pair("current", book_->begin()));
@@ -42,7 +42,6 @@ void murzakanov::BookInterface::insertBefore(const std::string& bookmark, const 
     add(note);
     return;
   }
-
   iteratorType it = bookmarks_.find(bookmark);
   if (it != bookmarks_.end())
   {
@@ -131,7 +130,6 @@ void murzakanov::BookInterface::move(const std::string& bookmark, int steps, std
   {
     out << "<INVALID BOOKMARK>\n";
     return;
-
   }
   int distance = 0;
   if (steps > 0)

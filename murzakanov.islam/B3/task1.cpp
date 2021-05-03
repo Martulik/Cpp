@@ -63,12 +63,10 @@ void murzakanov::task1()
       if (place == "before")
       {
         bookInterface.insertBefore(mark, {number, name}, std::cout);
-        continue;
       }
-      if (place == "after")
+      else if (place == "after")
       {
         bookInterface.insertAfter(mark, {number, name}, std::cout);
-        continue;
       }
     }
     else if (command == "delete")

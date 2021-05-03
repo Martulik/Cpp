@@ -33,4 +33,5 @@ namespace murzakanov
     std::list< note_t > book_;
   };
 }
+
 #endif

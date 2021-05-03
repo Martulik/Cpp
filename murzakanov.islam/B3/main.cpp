@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
   }
   else if (!code && atoi(argv[1]) == 2)
   {
-  murzakanov::task2();
+    murzakanov::task2();
   }
   else
   {

@@ -8,7 +8,6 @@
 namespace mur = murzakanov;
 const size_t MAX_INDEX = 11;
 
-
 mur::FactorialContainer::Iterator::Iterator():
   num_(1),
   value_(1)
@@ -25,7 +24,7 @@ mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator +
 {
   if (num_ == (MAX_INDEX))
   {
-    std::cerr << "ASD";
+    std::cerr << "Out of range\n";
     std::exit(2);
   }
   num_++;
@@ -44,7 +43,7 @@ mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator -
 {
   if (num_ == 1)
   {
-    std::cerr << "ASD";
+    std::cerr << "Out of range\n";
     std::exit(2);
   }
   value_ /= num_;

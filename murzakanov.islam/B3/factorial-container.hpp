@@ -27,7 +27,7 @@ namespace murzakanov
 
     private:
       size_t num_;
-      size_t  value_;
+      size_t value_;
     };
 
     FactorialContainer() = default;
@@ -35,4 +35,5 @@ namespace murzakanov
     Iterator end();
   };
 }
+
 #endif

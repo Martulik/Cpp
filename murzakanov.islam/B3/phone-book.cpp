@@ -7,10 +7,12 @@ PhoneBook::iterator PhoneBook::begin()
 {
   return book_.begin();
 }
+
 PhoneBook::iterator PhoneBook::end()
 {
   return book_.end();
 }
+
 void PhoneBook::insertAfter(iterator it, const note_t& note)
 {
   iterator tempIt(it);

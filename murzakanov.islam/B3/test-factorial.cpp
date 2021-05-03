@@ -1,10 +1,8 @@
 #include <boost/test/unit_test.hpp>
-
 #include "factorial-container.hpp"
-
 #include <algorithm>
 
-size_t getFactorial(int n)
+size_t getFactorial(const int n)
 {
   if (n == 0)
   {

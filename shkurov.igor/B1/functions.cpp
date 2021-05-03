@@ -1,7 +1,7 @@
 #include "functions.hpp"
 
 #include <cmath>
-#include <ctype.h>
+#include <cctype>
 
 namespace lab = shkurov;
 

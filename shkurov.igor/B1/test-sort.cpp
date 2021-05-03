@@ -1,7 +1,5 @@
 #include <boost/test/unit_test.hpp>
 
-#include <limits>
-
 #include "functions.hpp"
 
 namespace lab = shkurov;

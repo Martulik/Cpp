@@ -16,16 +16,11 @@
 
 namespace savchuk
 {
-  template< typename Iterator >
-  void fillContainer(Iterator first, Iterator last)
-  {
-    std::generate(first, last, getRandomEngine());
-  }
   template< typename Container >
   Container getTestContainer(size_t size)
   {
     Container cnt(size);
-    fillContainer(cnt.begin(), cnt.end());
+    std::generate(cnt.begin(), cnt.end(), getRandomEngine());
     return cnt;
   }
   template< typename Compare >

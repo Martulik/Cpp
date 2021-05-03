@@ -16,7 +16,7 @@ void PhoneBook::insertAfter(iterator it, const note_t& note)
   iterator tempIt(it);
   ++tempIt;
   note_t tempNote{note.number, note.name};
-  if (tempIt == std::prev(book_.end()))
+  if (tempIt == book_.end())
   {
     book_.push_back(tempNote);
     return;

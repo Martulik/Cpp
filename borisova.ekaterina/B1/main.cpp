@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     return exitCode;
   }
   int numberTask = -1;
-  
+
   if (borisova::checkNumber(argv[1]))
   {
     numberTask = std::atoi(argv[1]);
@@ -42,5 +42,6 @@ int main(int argc, char* argv[])
     return exitCode;
     break;
   }
+
   return 0;
 }

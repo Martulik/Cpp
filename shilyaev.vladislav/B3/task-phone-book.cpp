@@ -17,8 +17,8 @@ namespace shilyaev {
 
   void add(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
-    const std::string number = arguments[1];
-    const std::string name = arguments[2];
+    const std::string &number = arguments[1];
+    const std::string &name = arguments[2];
     PhoneBook::Iterator iterator = book.pushBack({number, name});
     if (book.size() == 1) {
       for (auto &&bookmark : bookmarks) {
@@ -29,17 +29,17 @@ namespace shilyaev {
 
   void store(const std::vector< std::string > &arguments, BookmarkMap &bookmarks)
   {
-    const std::string bookmarkName = arguments[1];
-    const std::string newBookmarkName = arguments[2];
+    const std::string &bookmarkName = arguments[1];
+    const std::string &newBookmarkName = arguments[2];
     bookmarks[newBookmarkName] = bookmarks.at(bookmarkName);
   }
 
   void insert(const std::vector< std::string > &arguments, PhoneBook &book, const BookmarkMap &bookmarks)
   {
-    const std::string where = arguments[1];
-    const std::string bookmarkName = arguments[2];
-    const std::string number = arguments[3];
-    const std::string name = arguments[4];
+    const std::string &where = arguments[1];
+    const std::string &bookmarkName = arguments[2];
+    const std::string &number = arguments[3];
+    const std::string &name = arguments[4];
     PhoneBook::Entry entry{number, name};
     PhoneBook::Iterator iterator = bookmarks.at(bookmarkName);
     if (where == "before") {
@@ -54,7 +54,8 @@ namespace shilyaev {
 
   void erase(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
-    PhoneBook::Iterator iteratorToErase = bookmarks.at(arguments[1]);
+    const std::string &bookmarkName = arguments[1];
+    PhoneBook::Iterator iteratorToErase = bookmarks.at(bookmarkName);
     PhoneBook::Iterator newIterator = book.erase(iteratorToErase);
     if (newIterator == book.end()) {
       --newIterator;
@@ -68,7 +69,7 @@ namespace shilyaev {
 
   void show(const std::vector< std::string > &arguments, const PhoneBook &book, const BookmarkMap &bookmarks)
   {
-    const std::string bookmarkName = arguments[1];
+    const std::string &bookmarkName = arguments[1];
     if (book.empty()) {
       std::cout << EMPTY_ERROR << '\n';
       return;
@@ -92,8 +93,8 @@ namespace shilyaev {
 
   void move(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
-    const std::string bookmarkName = arguments[1];
-    const std::string step = arguments[2];
+    const std::string &bookmarkName = arguments[1];
+    const std::string &step = arguments[2];
     PhoneBook::Iterator &bookmark = bookmarks.at(bookmarkName);
     if (step == "first") {
       bookmark = book.begin();

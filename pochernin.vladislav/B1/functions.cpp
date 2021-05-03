@@ -4,7 +4,7 @@
 
 bool pochernin::isAscending(const char* sortingDirection)
 {
-  if (sortingDirection == nullptr)
+  if (!sortingDirection)
   {
     throw(std::invalid_argument("Incorrect sorting direction"));
   }

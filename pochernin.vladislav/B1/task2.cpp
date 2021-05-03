@@ -9,7 +9,7 @@
 
 void pochernin::task2(const char* fileName)
 {
-  if (fileName == nullptr)
+  if (!fileName)
   {
     throw (std::invalid_argument("Incorrect file name"));
   }

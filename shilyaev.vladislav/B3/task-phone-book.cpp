@@ -11,14 +11,14 @@ namespace shilyaev {
   const std::string INVALID_STEP_ERROR = "<INVALID STEP>";
   const std::string EMPTY_ERROR = "<EMPTY>";
 
-  using BookmarkMap = std::map< std::string, PhoneBook::Iterator >;
   using Iterator = PhoneBook::Iterator;
+  using BookmarkMap = std::map< std::string, Iterator >;
 
   void add(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
     const std::string &number = arguments[1];
     const std::string &name = arguments[2];
-    PhoneBook::Iterator iterator = book.pushBack({number, name});
+    Iterator iterator = book.pushBack({number, name});
     if (book.size() == 1) {
       for (auto &&bookmark : bookmarks) {
         bookmark.second = iterator;
@@ -59,8 +59,8 @@ namespace shilyaev {
   void erase(const std::vector< std::string > &arguments, PhoneBook &book, BookmarkMap &bookmarks)
   {
     const std::string &bookmarkName = arguments[1];
-    PhoneBook::Iterator iteratorToErase = bookmarks.at(bookmarkName);
-    PhoneBook::Iterator newIterator = book.erase(iteratorToErase);
+    Iterator iteratorToErase = bookmarks.at(bookmarkName);
+    Iterator newIterator = book.erase(iteratorToErase);
     if (newIterator == book.end()) {
       --newIterator;
     }
@@ -99,7 +99,7 @@ namespace shilyaev {
   {
     const std::string &bookmarkName = arguments[1];
     const std::string &step = arguments[2];
-    PhoneBook::Iterator &bookmark = bookmarks.at(bookmarkName);
+    Iterator &bookmark = bookmarks.at(bookmarkName);
     if (step == "first") {
       bookmark = book.begin();
     } else if (step == "last") {

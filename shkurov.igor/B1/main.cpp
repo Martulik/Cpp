@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 
     for (int i = 1; i < argc; i++)
     {
-      if (lab::containsSpaces(std::string(argv[i])))
+      if (lab::containsSpaces(argv[i]))
       {
         throw std::invalid_argument("No spaces allowed in arguments.");
       }

@@ -4,7 +4,7 @@
 namespace shilyaev {
   void PhoneBook::insertBefore(const std::string &bookmarkName, const PhoneBook::Entry &entry)
   {
-    Iterator iterator = bookmarks_.at(bookmarkName);
+    const Iterator iterator = bookmarks_.at(bookmarkName);
     if (entries_.empty()) {
       pushBack(entry);
     } else {
@@ -14,11 +14,11 @@ namespace shilyaev {
 
   void PhoneBook::insertAfter(const std::string &bookmarkName, const PhoneBook::Entry &entry)
   {
-    Iterator iterator = bookmarks_.at(bookmarkName);
+    const Iterator iterator = bookmarks_.at(bookmarkName);
     if (entries_.empty()) {
       pushBack(entry);
     } else {
-      entries_.insert(++iterator, entry);
+      entries_.insert(std::next(iterator), entry);
     }
   }
 
@@ -34,7 +34,7 @@ namespace shilyaev {
 
   void PhoneBook::erase(const std::string &bookmarkName)
   {
-    Iterator iteratorToErase = bookmarks_.at(bookmarkName);
+    const Iterator iteratorToErase = bookmarks_.at(bookmarkName);
     Iterator newIterator = entries_.erase(iteratorToErase);
     if (newIterator == entries_.end()) {
       --newIterator;
@@ -58,7 +58,7 @@ namespace shilyaev {
 
   boost::optional< PhoneBook::Entry > PhoneBook::getEntry(const std::string &bookmarkName) const
   {
-    Iterator bookmark = bookmarks_.at(bookmarkName);
+    const Iterator bookmark = bookmarks_.at(bookmarkName);
     if (entries_.empty()) {
       return {};
     }

@@ -30,7 +30,7 @@ namespace shilyaev {
     const std::string &bookmarkName = arguments[2];
     const std::string &number = arguments[3];
     const std::string &name = arguments[4];
-    PhoneBook::Entry entry{number, name};
+    const PhoneBook::Entry entry{number, name};
     if (where == "before") {
       book.insertBefore(bookmarkName, entry);
     } else if (where == "after") {
@@ -49,7 +49,7 @@ namespace shilyaev {
   void show(const std::vector< std::string > &arguments, const PhoneBook &book)
   {
     const std::string &bookmarkName = arguments[1];
-    boost::optional< PhoneBook::Entry > entry = book.getEntry(bookmarkName);
+    const boost::optional< PhoneBook::Entry > entry = book.getEntry(bookmarkName);
     if (!entry) {
       std::cout << EMPTY_ERROR << '\n';
       return;

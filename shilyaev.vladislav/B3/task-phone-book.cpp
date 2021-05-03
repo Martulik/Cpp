@@ -79,8 +79,7 @@ namespace shilyaev {
       std::cout << EMPTY_ERROR << '\n';
       return;
     }
-    const PhoneBook::Entry entry = *bookmark;
-    std::cout << entry.number << ' ' << entry.name << '\n';
+    std::cout << bookmark->number << ' ' << bookmark->name << '\n';
   }
 
   Iterator safeAdvance(Iterator iterator, int n, const Iterator &begin, const Iterator &end)

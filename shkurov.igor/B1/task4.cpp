@@ -9,11 +9,7 @@ void lab::taskFour(const char* cmp, int size)
   std::unique_ptr< double[] > arr(std::make_unique< double[] >(size));
   fillRandom(arr.get(), size);
 
-  std::vector< double > vec;
-  for (int i = size - 1; i >= 0; i--)
-  {
-    vec.push_back(arr.get()[i]);
-  }
+  std::vector< double > vec(arr.get(), arr.get() + size);
 
   printContainer(vec, " ");
   std::cout << '\n';

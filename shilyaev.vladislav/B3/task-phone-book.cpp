@@ -119,7 +119,7 @@ namespace shilyaev {
       std::cout << INVALID_COMMAND_ERROR << '\n';
       return;
     }
-    std::string commandName = arguments[0];
+    const std::string &commandName = arguments[0];
     try {
       if (commandName == "add" && arguments.size() == 3) {
         add(arguments, phoneBook, bookmarks);

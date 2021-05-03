@@ -26,7 +26,7 @@ namespace shkurov
     {
       iterator_t swapId = i;
 
-      for (iterator_t j = i++; j != end; j++)
+      for (iterator_t j = i; j != end; j++)
       {
         if (cmp(Strategy::get(cont, j), Strategy::get(cont, swapId)))
         {

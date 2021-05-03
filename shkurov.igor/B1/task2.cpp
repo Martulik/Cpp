@@ -12,7 +12,7 @@ void lab::taskTwo(const char* filename)
   file.open(filename);
   if (!file.is_open())
   {
-    throw std::invalid_argument("No file found with such name.\n");
+    throw std::invalid_argument("File with such name is not available.\n");
   }
 
   size_t strCapacity = 1024;

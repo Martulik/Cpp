@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
   {
     code = 1;
   }
-  if (murzakanov::checkIsSpace(argv[1]))
+  if (!code && murzakanov::checkIsSpace(argv[1]))
   {
     code = 1;
   }

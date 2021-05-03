@@ -29,8 +29,11 @@ void murzakanov::task1()
         continue;
       }
       std::string name;
-      mur::readName(in, name);
-      bookInterface.add({number, name});
+      mur::readName(in, name, std::cout);
+      if (in)
+      {
+        bookInterface.add({number, name});
+      }
     }
     else if (command == "store")
     {
@@ -51,7 +54,7 @@ void murzakanov::task1()
         std::cout << "<INVALID BOOKMARK>\n";
         continue;
       }
-      mur::readName(in, name);
+      mur::readName(in, name, std::cout);
       if (place != "before" && place != "after")
       {
         std::cout << "<INVALID COMMAND>\n";
@@ -78,11 +81,6 @@ void murzakanov::task1()
     {
       std::string mark;
       in >> mark;
-     /* if (in.peek() != '\n')
-      {
-        std::cout << "<INVALID COMMAND>\n";
-        continue;
-      }*/
       bookInterface.show(mark, std::cout);
     }
     else if (command == "move")

@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <string>
+#include <iostream>
 
 size_t murzakanov::getValue(const size_t num)
 {
@@ -12,36 +13,39 @@ size_t murzakanov::getValue(const size_t num)
   return num * getValue(num - 1);
 }
 
-std::istream& murzakanov::readName(std::istream& in, std::string& name)
+std::istream& murzakanov::readName(std::istream& in, std::string& name, std::ostream& out)
 {
   name.clear();
-  while (in.get() != '"')
+  in >> std::ws;
+  if (in.get() != '"')
   {
-    if (!in)
-    {
-      return in;
-    }
+    out << "<INVALID COMMAND>\n";
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   while (!in.eof())
   {
     char next = in.get();
-    if (next == '\\')
+    if (in.good())
     {
-      name += in.get();
-    }
-    else if (next != '"')
-    {
-      name += next;
+      if (next == '\\')
+      {
+        name += in.get();
+      }
+      else if (next != '"')
+      {
+        name += next;
+      }
+      else
+      {
+        break;
+      }
     }
     else
     {
-      break;
+      in.setstate(std::ios_base::failbit);
     }
   }
-  //else
-  //{
-  //  in.setstate(std::ios_base::failbit);
-  //}
   return in;
 }
 

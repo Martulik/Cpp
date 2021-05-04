@@ -2,10 +2,14 @@
 
 #include "tasks.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {
-  int task = 0;
-  std::cin >> task;
+  if (argc != 2)
+  {
+    std::cerr << "\n";
+    return 1;
+  }
+  int task = argv[1][0] - '0';
   if (task == 1)
   {
     murzakanov::task1(std::cin, std::cout);

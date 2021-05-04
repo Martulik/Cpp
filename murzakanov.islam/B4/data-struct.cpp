@@ -2,7 +2,7 @@
 #include <iomanip>
 #include "tools.hpp"
 
-std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)
+std::istream& murzakanov::operator >>(std::istream& in, DataStruct& data)
 {
   int key1;
   int key2;
@@ -34,13 +34,13 @@ std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)
   }
   else
   {
-    std::cerr << "Something goes wrong\n";
+    std::cerr << "Keys out of range\n";
     std::exit(1);
   }
   return in;
 }
 
-std::ostream& murzakanov::operator<<(std::ostream& out, const DataStruct& data)
+std::ostream& murzakanov::operator <<(std::ostream& out, const DataStruct& data)
 {
   out << std::left << data.key1 << ", " << data.key2
       << ", " << data.str << "\n";

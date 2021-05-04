@@ -9,11 +9,11 @@
 namespace shilyaev {
   class PhoneBook {
   public:
-    PhoneBook();
     struct Entry {
       std::string number;
       std::string name;
     };
+    PhoneBook();
     boost::optional< Entry > getEntry(const std::string &bookmarkName) const;
     void insertBefore(const std::string &bookmarkName, const Entry& entry);
     void insertAfter(const std::string &bookmarkName, const Entry& entry);

@@ -28,7 +28,7 @@ void pochernin::task3()
   }
 
   std::vector< int >::iterator i = vec.begin();
-  if (*(vec.end() - 1)  == 1)
+  if (vec.back() == 1)
   {
     while (i != vec.end())
     {
@@ -42,7 +42,7 @@ void pochernin::task3()
       }
     }
   }
-  else if (*(vec.end() - 1) == 2)
+  else if (vec.back() == 2)
   {
     while (i != vec.end())
     {

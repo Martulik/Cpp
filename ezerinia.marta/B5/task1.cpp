@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <set>
+#include <iterator>
 
 namespace lab = ezerinia;
 

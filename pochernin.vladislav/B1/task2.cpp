@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <algorithm>
 
 #include "functions.hpp"
 
@@ -31,10 +32,7 @@ void pochernin::task2(const char* fileName)
     {
       capacity *= 2;
       std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
-      for (size_t i = 0; i < size; i++)
-      {
-        temp[i] = data[i];
-      }
+      std::move(data.get(), data.get() + size, temp.get());
       data = std::move(temp);
     }
   }

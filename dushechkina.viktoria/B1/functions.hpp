@@ -4,8 +4,6 @@
 #include <functional>
 #include <iostream>
 #include <stdexcept>
-#include <string>
-#include <random>
 
 #include "strategy.hpp"
 namespace dushechkina

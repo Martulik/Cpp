@@ -1,3 +1,4 @@
+#include <random>
 #include "functions.hpp"
 
 void dushechkina::fillRandom(double* array, int size)

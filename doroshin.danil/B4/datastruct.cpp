@@ -13,6 +13,10 @@ std::istream& dan::operator>>(std::istream& in, DataStruct& data)
   if(std::getline(in, line_)) {
     std::istringstream line(line_);
     line >> data.key1;
+    if(!line) {
+      fail();
+      return in;
+    }
     if(data.key1 < -5 || data.key1 > 5) {
       fail();
       return in;
@@ -22,6 +26,10 @@ std::istream& dan::operator>>(std::istream& in, DataStruct& data)
       return in;
     }
     line >> data.key2;
+    if(!line) {
+      fail();
+      return in;
+    }
     if(data.key2 < -5 || data.key2 > 5) {
       fail();
       return in;

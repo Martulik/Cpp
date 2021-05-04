@@ -1,5 +1,11 @@
 #include "rectangle.hpp"
-#include <iostream>
+
+Rectangle::Rectangle(double valueHeight, double valueWidth, point_t valuePos):
+  height_(valueHeight),
+  width_(valueWidth),
+  pos_(valuePos)
+  {
+  }
 
 double Rectangle::getArea() const
 {

@@ -108,7 +108,7 @@ void diurdeva::move(PhonebookManager &phoneBook, std::stringstream &input)
     phoneBook.move(bookmark, PhonebookManager::MovePosition::LAST);
   } else {
     if (steps.empty()) {
-      std::cout << "INVALID STEP\n";
+      std::cout << "<INVALID STEP>\n";
       return;
     }
 
@@ -122,7 +122,7 @@ void diurdeva::move(PhonebookManager &phoneBook, std::stringstream &input)
     }
 
     if (!isNumberValid(steps)) {
-      std::cout << "INVALID STEP\n";
+      std::cout << "<INVALID STEP>\n";
     } else {
       phoneBook.move(bookmark, stoi(steps) * sign);
     }

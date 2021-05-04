@@ -113,10 +113,7 @@ bool lab::correctName(Note& src)
   {
     return false;
   }
-  /*if ((src.name_[0] != '\"') || (src.name_[src.name_.length()-1] != '\"'))
-  {
-    return false;
-  }*/
+
   src.name_.erase(src.name_.begin());
   for (size_t i = 0; i < src.name_.length(); i++)
   {

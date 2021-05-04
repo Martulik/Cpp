@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <exception>
 #include "tools.hpp"
 
 namespace lab = ezerinia;
@@ -13,6 +13,5 @@ int main()
     std::cerr << ex.what() << "\n";
     return 1;
   }
-  std::cout<<"\nok\n";
   return 0;
 }

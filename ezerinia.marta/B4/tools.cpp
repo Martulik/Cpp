@@ -27,7 +27,6 @@ bool lab::compare(DataStruct &lhs, DataStruct &rhs)
 
 void lab::print(std::vector< DataStruct > &vector, std::ostream &out)
 {
-  //for (auto it = vector.begin(); it != vector.end(); it++) {
   for (auto &&it: vector) {
     out << it.key1 << ", " << it.key2 << ", " << it.str << "\n";
   }
@@ -35,26 +34,17 @@ void lab::print(std::vector< DataStruct > &vector, std::ostream &out)
 
 void lab::read(std::vector< lab::DataStruct > &vector)
 {
-  std::cout<<"start read\n";
-  std::string line;
-  std::string str;
-  char comma1;
-  char comma2;
+  std::string line, str;
+  char comma1, comma2;
   while (std::getline(std::cin, line)) {
     lab::DataStruct data;
     std::stringstream input(line);
     input >> data.key1 >> comma1 >> data.key2 >> comma2;
     checkInput(data, comma1, comma2);
-    if (input >> data.str)
-    {
+    if (input >> data.str) {
       vector.push_back(data);
     }
-//    while (!input.eof()) {
-//      input >> data.str;
-//    }
-//    vector.push_back(data);
   }
-  std::cout<<"end read\n";
 }
 
 void lab::task()

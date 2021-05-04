@@ -95,11 +95,11 @@ void murzakanov::task1()
       {
         if (steps == "first")
         {
-          bookInterface.move(mark, BookInterface::KeyWord::FIRST, std::cout);
+          bookInterface.move(mark, steps, std::cout);
         }
         else if (steps == "last")
         {
-          bookInterface.move(mark, BookInterface::KeyWord::LAST, std::cout);
+          bookInterface.move(mark, steps, std::cout);
         }
         else
         {

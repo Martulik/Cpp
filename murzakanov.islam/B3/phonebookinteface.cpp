@@ -153,16 +153,16 @@ void murzakanov::BookInterface::move(const std::string& bookmark, int steps, std
   std::advance(it->second, steps);
 }
 
-void murzakanov::BookInterface::move(const std::string& bookmark, KeyWord keyWord, std::ostream& out)
+void murzakanov::BookInterface::move(const std::string& bookmark, const std::string& keyWord, std::ostream& out)
 {
   iteratorType it = bookmarks_.find(bookmark);
   if (it != bookmarks_.end())
   {
-    if (keyWord == KeyWord::FIRST)
+    if (keyWord == "first")
     {
       it->second = book_->begin();
     }
-    else if (keyWord == KeyWord::LAST)
+    else if (keyWord == "last")
     {
       if (book_->isEmpty())
       {

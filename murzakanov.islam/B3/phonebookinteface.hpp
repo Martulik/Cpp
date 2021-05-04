@@ -11,11 +11,6 @@ namespace murzakanov
   class BookInterface
   {
   public:
-    enum class KeyWord
-    {
-      FIRST,
-      LAST
-    };
     using note_t = murzakanov::PhoneBook::note_t;
     using iteratorType = std::map< std::string, murzakanov::PhoneBook::iterator >::iterator;
     BookInterface(PhoneBook& book);
@@ -26,7 +21,7 @@ namespace murzakanov
     void deleteNote(const std::string& bookmark, std::ostream& out);
     void show(const std::string& bookmark, std::ostream& out);
     void move(const std::string& bookmark, int steps, std::ostream& out);
-    void move(const std::string& bookmark, KeyWord keyWord, std::ostream& out);
+    void move(const std::string& bookmark, const std::string& keyWord, std::ostream& out);
   private:
     std::unique_ptr< murzakanov::PhoneBook > book_;
     std::map< std::string, murzakanov::PhoneBook::iterator > bookmarks_;

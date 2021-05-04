@@ -50,23 +50,8 @@ void lab::read(std::vector< lab::DataStruct > &vector)
       }
     }
     checkInput(data, comma, input);
-//    if (input.fail() || abs(data.key1) > 5) {
-//      throw std::invalid_argument("Invalid input\n");
-//    }
-//    input >> comma;
-//    if (input.fail() || comma != ',') {
-//      throw std::invalid_argument("Invalid input\n");
-//    }
-//    input >> data.key2;
-//    if (input.fail() || abs(data.key2) > 5) {
-//      throw std::invalid_argument("Invalid input\n");
-//    }
-//    input >> comma;
-//    if (input.fail() || comma != ',') {
-//      throw std::invalid_argument("Invalid input\n");
-//    }
     if (!input.eof()) {
-      input >> data.str;
+      std::getline(input, data.str);
     }
     vector.push_back(data);
   }

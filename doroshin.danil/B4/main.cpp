@@ -11,6 +11,10 @@ int main()
   std::ostream_iterator< DataStruct > output(std::cout, "\n");
   std::vector< DataStruct > values;
   std::move(input, std::istream_iterator< DataStruct >(), std::back_inserter(values));
+  if(std::cin.fail() && !std::cin.eof()) {
+    std::cerr << "Invalid input\n";
+    return 1;
+  }
   std::sort(values.begin(), values.end(), sort_order);
   std::copy(values.begin(), values.end(), output);
   return 0;

@@ -18,6 +18,7 @@ namespace borisova
     void deleteMark(std::string& bookMark);
     void show(std::string& bookMark);
     void move(std::string& bookmark, int n);
+    void move(std::string& bookmark, std::string step);
 
   private:
     std::map<std::string, Book::iterator> notes_;

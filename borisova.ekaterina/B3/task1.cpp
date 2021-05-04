@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 namespace lab = borisova;
 
 void lab::doTask1()
@@ -20,11 +21,12 @@ void lab::doTask1()
     std::string markName1;
     std::string markName2;
     std::string type;
-    int step;
+    std::string step;
+    int n = 0;
 
     if (command == "add")
     {
-      std::cin >> temp.number_ >> temp.name_;
+      in >> temp.number_ >> temp.name_;
       if (correctName(temp) && correctNumder(temp))
       {
         value.add(temp);
@@ -36,12 +38,12 @@ void lab::doTask1()
     }
     else if (command == "store")
     {
-      std::cin >> markName1 >> markName1;
+      in >> markName1 >> markName1;
       value.store(markName1, markName2);
     }
     else if (command == "insert")
     {
-      std::cin >> type >> markName1 >> temp.number_ >> temp.name_;
+      in >> type >> markName1 >> temp.number_ >> temp.name_;
       if (correctName(temp) && correctNumder(temp))
       {
         if (type == "before")
@@ -60,18 +62,43 @@ void lab::doTask1()
     }
     else if (command == "delete")
     {
-      std::cin >> markName1;
+      in >> markName1;
       value.deleteMark(markName1);
     }
     else if (command == "show")
     {
-      std::cin >> markName1;
+      in >> markName1;
       value.show(markName1);
     }
     else if (command == "move")
     {
-      std::cin >> markName1 >> step;
-      value.move(markName1, step);
+      in >> markName1 >> step;
+      if (step == "first" || step == "last")
+      {
+        value.move(markName1, step);
+      }
+      else
+      {
+         size_t k = 0;
+        for (int i = 0; i < step.length(); i++)
+        {
+          if (!isdigit(step[i]))
+          {
+            std::cout << lab::invalidCommand;
+          }
+          else
+          {
+            n *= 10;
+            n += step[i] - '0';
+            k++;
+          }
+        }
+        if (k == step.length())
+        {
+          value.move(markName1, n);
+        }
+      }
+
     }
     else
     {
@@ -86,10 +113,10 @@ bool lab::correctName(Note& src)
   {
     return false;
   }
-  if ((src.name_[0] != '\"') || (src.name_[0] != '\"'))
+  /*if ((src.name_[0] != '\"') || (src.name_[src.name_.length()-1] != '\"'))
   {
     return false;
-  }
+  }*/
   src.name_.erase(src.name_.begin());
   for (size_t i = 0; i < src.name_.length(); i++)
   {
@@ -132,5 +159,3 @@ bool lab::correctNumder(Note& src)
   }
   return true;
 }
-
-

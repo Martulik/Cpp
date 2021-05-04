@@ -106,3 +106,23 @@ void lab::Interface::move(std::string& bookmark, int n)
     iter->second = phoneNotes_.cross(iter->second, n);
   }
 }
+
+void lab::Interface::move(std::string& bookmark, std::string step)
+{
+  itr iter = notes_.find(bookmark);
+  if (iter == notes_.end())
+  {
+    std::cout << lab::invalidBookMark;
+  }
+  else
+  {
+    if (step == "first")
+    {
+      iter->second = phoneNotes_.begin();
+    }
+    else if (step == "last")
+    {
+      iter->second = phoneNotes_.end();
+    }
+  }
+}

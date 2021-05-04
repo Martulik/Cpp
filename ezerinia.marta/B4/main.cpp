@@ -1,20 +1,18 @@
 #include <iostream>
-#include <vector>
-#include "dataStruct.hpp"
+
+#include "tools.hpp"
 
 namespace lab = ezerinia;
 
 int main()
 {
   try {
-    std::vector< lab::DataStruct > vector;
-    std::string line;
-    while(std::getline(std::cin,line))
-    {
-
-    }
+    lab::task();
   }
   catch (const std::exception &ex) {
     std::cerr << ex.what() << "\n";
+    return 1;
   }
+  std::cout<<"\nok\n";
+  return 0;
 }

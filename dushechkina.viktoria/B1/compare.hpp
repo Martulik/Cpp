@@ -24,7 +24,7 @@ namespace dushechkina
     {
       return std::greater< const T >();
     }
-      throw std::invalid_argument("Sorting order is incorrect");
+    throw std::invalid_argument("Sorting order is incorrect");
   }
 }
 #endif

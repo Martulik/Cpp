@@ -41,9 +41,10 @@ void lab::read(std::vector< lab::DataStruct > &vector)
     std::stringstream input(line);
     input >> data.key1 >> comma1 >> data.key2 >> comma2;
     checkInput(data, comma1, comma2);
-    if (input >> data.str) {
-      vector.push_back(data);
+    if (!input.eof()) {
+      input >> data.str;
     }
+    vector.push_back(data);
   }
 }
 
@@ -52,6 +53,5 @@ void lab::task()
   std::vector< lab::DataStruct > vector;
   read(vector);
   std::sort(vector.begin(), vector.end(), compare);
-  std::cout << vector.data();
   print(vector, std::cout);
 }

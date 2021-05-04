@@ -2,7 +2,7 @@
 #define TASK1_HPP
 
 namespace ezerinia {
-  void task1(const char * input);
+  void task1();
 }
 
 #endif

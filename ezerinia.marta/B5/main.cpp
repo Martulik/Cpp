@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
       throw std::runtime_error("Invalid arguments or number of them");
     }
     if (std::atoi(argv[1]) == 1) {
-      lab::task1(argv[2]);
+      lab::task1();
     } else {
       lab::task2();
     }

@@ -2,6 +2,7 @@
 #define SHAPE_HPP
 
 #include <iostream>
+#include <vector>
 
 namespace murzakanov
 {
@@ -10,7 +11,7 @@ namespace murzakanov
     int x, y;
   };
   using Shape = std::vector< Point >;
-  std::istream& operator >>(std::istream& in, Shape shp);
+  std::istream& operator >>(std::istream& in, Shape& shp);
 }
 
 #endif

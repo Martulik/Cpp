@@ -9,5 +9,12 @@
 
 void murzakanov::task2(std::istream& in, std::ostream& out)
 {
-  std::vector< murzakanov::Shape > shapes(std::istream_iterator< murzakanov::Shape >(in), std::istream_iterator< murzakanov::Shape >());
+  std::vector< murzakanov::Shape > shapes;
+  while (!in.eof())
+  {
+    murzakanov::Shape temp;
+    in >> temp;
+    shapes.push_back(temp);
+  }
+  out << "1";
 }

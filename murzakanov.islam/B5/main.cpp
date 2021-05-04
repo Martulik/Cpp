@@ -14,5 +14,9 @@ int main(int argc, char* argv[])
   {
     murzakanov::task1(std::cin, std::cout);
   }
+  else if (task == 2)
+  {
+    murzakanov::task2(std::cin, std::cout);
+  }
   return 0;
 }

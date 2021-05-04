@@ -3,7 +3,7 @@
 
 void diurdeva::Phonebook::view(iterator iter) const
 {
-  std::cout << iter->name << " " << iter->phone << std::endl;
+  std::cout << iter->phone << " " << iter->name << std::endl;
 }
 
 void diurdeva::Phonebook::pushBack(const Phonebook::record_t& rec)

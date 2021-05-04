@@ -2,27 +2,18 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <fstream>
+#include <iterator>
 
 #include "data-struct.hpp"
-#include "tools.hpp"
 
 int main()
 {
   std::vector< murzakanov::DataStruct > vec;
   murzakanov::DataStruct temp;
-
   while (std::cin >> temp)
   {
     vec.push_back(temp);
   }
   std::sort(vec.begin(), vec.end());
-  auto it = vec.begin();
-  auto end = vec.end();
-
-  while (it != end)
-  {
-    std::cout << *it;
-    ++it;
-  }
+  std::copy(vec.begin(), vec.end(), std::ostream_iterator< murzakanov::DataStruct >(std::cout));
 }

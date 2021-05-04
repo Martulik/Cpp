@@ -21,7 +21,7 @@ bool lab::compare(DataStruct &lhs, DataStruct &rhs)
   } else if (lhs.key2 != rhs.key2) {
     return lhs.key2 < rhs.key2;
   } else {
-    return lhs.str < rhs.str;
+    return lhs.str > rhs.str;
   }
 }
 

@@ -1,7 +1,6 @@
 #ifndef B1_FUNCTIONS_HPP
 #define B1_FUNCTIONS_HPP
 
-#include <functional>
 #include <iostream>
 #include <stdexcept>
 

@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     }
     try
     {
-      std::function<bool(const int&, const int&)> comparator = dushechkina::getSortingOrder<int>(argv[2]);
+      std::function< bool(const int&, const int&) > comparator = dushechkina::getSortingOrder< int >(argv[2]);
       task1(comparator);
     }
     catch (const std::invalid_argument& error)
@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
     }
     try
     {
-      std::function<bool(double, double)> comparator = dushechkina::getSortingOrder<double>(argv[2]);
+      std::function< bool(double, double) > comparator = dushechkina::getSortingOrder< double >(argv[2]);
       int size = 0;
       std::stringstream stream(argv[3]);
       stream >> size;

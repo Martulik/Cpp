@@ -1,7 +1,5 @@
 #include "data-struct.hpp"
-
 #include <iomanip>
-
 #include "tools.hpp"
 
 std::istream& murzakanov::operator>>(std::istream& in, DataStruct& data)

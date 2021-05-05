@@ -1,9 +1,12 @@
-#include <iostream>
-#include "task1.hpp"
+#include <vector>
+#include "struct.hpp"
+#include "task.hpp"
+
+namespace iva = ivanova;
 
 int main()
 {
-  std::vector vector;
-
-
+  std::vector < iva::DataStruct > vector;
+  iva::task(vector);
+  return 0;
 }

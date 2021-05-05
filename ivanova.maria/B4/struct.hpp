@@ -1,11 +1,18 @@
 #ifndef B4_STRUCT_HPP
 #define B4_STRUCT_HPP
 
-struct DataStruct
-{
-  int key1;
-  int key2;
-  str::string str;
-};
+#include <string>
+#include <iostream>
 
-#endif //B4_STRUCT_HPP
+namespace ivanova
+{
+  struct DataStruct
+  {
+    int key1;
+    int key2;
+    std::string str;
+
+    bool operator >(const DataStruct &data) const;
+  };
+}
+#endif

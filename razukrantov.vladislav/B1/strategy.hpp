@@ -1,6 +1,9 @@
 #ifndef STRATEGY_HPP
 #define STRATEGY_HPP
 
+#include <vector>
+#include<forward_list>
+
 namespace razukrantov
 {
   template< typename T >

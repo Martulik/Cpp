@@ -126,12 +126,14 @@ void lab::doTask1()
 
 bool lab::correctName(Note& src)
 {
-  if (src.name_.length() < 1)
+  if (src.name_.empty() || src.name_.front() != '\"' || src.name_.back() != '\"')
   {
     return false;
   }
 
   src.name_.erase(src.name_.begin());
+  src.name_.erase(--src.name_.end());
+
   for (size_t i = 0; i < src.name_.length(); i++)
   {
     if (src.name_[i] == '\\')
@@ -151,6 +153,10 @@ bool lab::correctName(Note& src)
     return false;
   }
   src.name_.erase(src.name_.length()-1);
+  if (src.name_.empty())
+  {
+    return false;
+  }
   if (src.name_.empty())
   {
     return false;

@@ -67,29 +67,50 @@ void lab::Interface::insertAfter(std::string& bookMark, Note& src)
 void lab::Interface::deleteMark(std::string& bookMark)
 {
   itr iter = notes_.find(bookMark);
-  if (iter == notes_.end())
+  if (iter != notes_.end())
   {
-    std::cout << lab::invalidBookMark;
-    return;
+    Book::iterator delIter = iter->second;
+    for (itr i = notes_.begin(); i != notes_.end(); ++i)
+    {
+      if (i->second == delIter)
+      {
+        if (std::next(i->second) == phoneNotes_.end())
+        {
+          i->second = std::prev(delIter);
+        }
+        else
+        {
+          i->second = std::next(delIter);
+        }
+      }
+    }
+
+    if (iter->second == phoneNotes_.end())
+    {
+      std::cout << lab::empty;
+    }
+    phoneNotes_.deleteNote(delIter);
   }
-  if (iter->second == phoneNotes_.end())
-  {
-    std::cout << lab::empty;
-  }
-  phoneNotes_.deleteNote(iter->second);
-  notes_.erase(iter);
+
 }
 
 void lab::Interface::show(std::string& bookMark)
 {
   if (phoneNotes_.empty())
   {
-    std::cout << lab::invalidBookMark;
+    std::cout << lab::empty;
   }
   else
   {
     itr iteratr = notes_.find(bookMark);
-    phoneNotes_.viewCurrent(iteratr->second);
+    if (iteratr == notes_.end())
+    {
+      std::cout << lab::empty;
+    }
+    else
+    {
+      phoneNotes_.viewCurrent(iteratr->second);
+    }
   }
 
 }

@@ -10,24 +10,23 @@ void lab::doTask1()
   Interface value;
   std::string command;
   std::string line;
-
+  Note temp;
+  std::string markName1;
+  std::string markName2;
+  std::string type;
+  std::string step;
   while (std::getline(std::cin, line) && !line.empty())
   {
     std::istringstream in(line);
-    std::string command;
     in >> command;
-
-    Note temp;
-    std::string markName1;
-    std::string markName2;
-    std::string type;
-    std::string step;
     int n = 0;
     int flag = 1;
 
     if (command == "add")
     {
-      in >> temp.number_ >> temp.name_;
+      in >> std::ws >> temp.number_;
+      std::getline(in >> std::ws, temp.name_);
+
       if (correctName(temp) && correctNumder(temp))
       {
         value.add(temp);
@@ -39,12 +38,18 @@ void lab::doTask1()
     }
     else if (command == "store")
     {
-      in >> markName1 >> markName1;
+      in >> std::ws >> markName1;
+      in >> std::ws >> markName2;
+
       value.store(markName1, markName2);
     }
     else if (command == "insert")
     {
-      in >> type >> markName1 >> temp.number_ >> temp.name_;
+      in >> std::ws >> type;
+      in >> std::ws >> markName1;
+      in >> std::ws >> temp.number_;
+      getline(in >> std::ws, temp.name_);
+
       if (correctName(temp) && correctNumder(temp))
       {
         if (type == "before")
@@ -63,17 +68,18 @@ void lab::doTask1()
     }
     else if (command == "delete")
     {
-      in >> markName1;
+      in >> std::ws >> markName1;
       value.deleteMark(markName1);
     }
     else if (command == "show")
     {
-      in >> markName1;
+      in >> std::ws >> markName1;
       value.show(markName1);
     }
     else if (command == "move")
     {
-      in >> markName1 >> step;
+      in >> std::ws >> markName1;
+      in >> std::ws >> step;
       if (step == "first" || step == "last")
       {
         value.move(markName1, step);
@@ -126,11 +132,18 @@ void lab::doTask1()
 
 bool lab::correctName(Note& src)
 {
-  if (src.name_.empty() || src.name_.front() != '\"' || src.name_.back() != '\"')
+  if (src.name_.empty())
   {
     return false;
   }
-
+  if (src.name_.front() != '\"')
+  {
+    return false;
+  }
+  if (src.name_.back() != '\"')
+  {
+    return false;
+  }
   src.name_.erase(src.name_.begin());
   src.name_.erase(--src.name_.end());
 
@@ -147,15 +160,6 @@ bool lab::correctName(Note& src)
         return false;
       }
     }
-  }
-  if (src.name_.length() == 0)
-  {
-    return false;
-  }
-  src.name_.erase(src.name_.length()-1);
-  if (src.name_.empty())
-  {
-    return false;
   }
   if (src.name_.empty())
   {

@@ -23,6 +23,7 @@ void lab::doTask1()
     std::string type;
     std::string step;
     int n = 0;
+    int flag = 1;
 
     if (command == "add")
     {
@@ -79,30 +80,46 @@ void lab::doTask1()
       }
       else
       {
-         size_t k = 0;
-        for (size_t i = 0; i < step.length(); i++)
+        size_t k = 0;
+        if (!isdigit(step[0]) && (step[0] != '-') && (step[0] != '+'))
         {
-          if (!isdigit(step[i]))
+          std::cout << lab::invalidStep;
+        }
+        else
+        {
+          if (isdigit(step[0]))
           {
-            std::cout << lab::invalidCommand;
+            n += step[0] - '0';
           }
-          else
+          else if (step[0] == '-')
           {
-            n *= 10;
-            n += step[i] - '0';
-            k++;
+            flag = -1;
+          }
+          for (size_t i = 1; i < step.length(); i++)
+          {
+            if (!isdigit(step[i]))
+            {
+              std::cout << lab::invalidStep;
+              break;
+            }
+            else
+            {
+              n *= 10;
+              n += step[i] - '0';
+              k++;
+            }
           }
         }
-        if (k == step.length())
+        if (k == step.length()-1)
         {
-          value.move(markName1, n);
+          value.move(markName1, n * flag);
         }
       }
 
     }
     else
     {
-      std::cout << lab::invalidCommand;
+      std::cout << lab::invalidStep;
     }
   }
 }

@@ -9,7 +9,7 @@ void lab::Book::viewCurrent(iterator iter)
 {
   if (iter != end())
   {
-    std::cout << iter->name_ << ": "<< iter->number_ << "\n";
+    std::cout << iter->number_ << " "<< iter->name_ << "\n";
   }
   else
   {

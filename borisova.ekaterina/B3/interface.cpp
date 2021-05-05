@@ -84,7 +84,7 @@ void lab::Interface::show(std::string& bookMark)
 {
   if (phoneNotes_.empty())
   {
-    std::cout << lab::empty;
+    std::cout << lab::invalidBookMark;
   }
   else
   {
@@ -122,7 +122,7 @@ void lab::Interface::move(std::string& bookmark, std::string step)
     }
     else if (step == "last")
     {
-      iter->second = phoneNotes_.end();
+      iter->second = --phoneNotes_.end();
     }
   }
 }

@@ -27,6 +27,7 @@ namespace borisova
 
   const std::string invalidCommand = "<INVALID COMMAND>\n";
   const std::string invalidBookMark = "<INVALID BOOKMARK>\n";
+  const std::string invalidStep = "<INVALID STEP>\n";
   const std::string empty = "<EMPTY>\n";
 }
 

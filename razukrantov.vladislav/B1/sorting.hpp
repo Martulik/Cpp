@@ -11,14 +11,14 @@ namespace razukrantov
   template < typename Strategy, typename T >
   void sort(typename Strategy::container& container, const std::function< bool(T, T) > compare)
   {
-    typename Strategy::iterator i = Strategy::begin(container);
+    typename Strategy::iterator begin = Strategy::begin(container);
     typename Strategy::iterator size = Strategy::end(container);
-    for (i; i != size; i++)
+    for (typename Strategy::iterator i = begin; i != size; i++)
     {
       typename Strategy::iterator j = i;
-      for (j++, j != size, j++)
+      for (j++; j != size; j++)
       {
-        if (compare(Strategy::get(container, i), Strategy::get(container, j)
+        if (compare(Strategy::get(container, i), Strategy::get(container, j)))
         {
           std::swap(Strategy::get(container, i), Strategy::get(container, j));
         }

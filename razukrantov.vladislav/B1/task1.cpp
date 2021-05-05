@@ -14,7 +14,7 @@ std::function < bool(T, T) > getSortOrder(const char* order)
   std::string descending = "descending";
   if (order == nullptr)
   {
-    throw std::invalid_argument("Incorrect order")
+    throw std::invalid_argument("Incorrect order");
   }
   if (order == ascending)
   {
@@ -35,8 +35,7 @@ void print(const T& container)
 {
   using iterator = typename T::const_iterator;
   iterator size = container.end();
-  iterator cur = container.begin();
-  for (cur; cur != size; cur++)
+  for (iterator cur = container.begin(); cur != size; cur++)
   {
     std::cout << *cur << " ";
   }

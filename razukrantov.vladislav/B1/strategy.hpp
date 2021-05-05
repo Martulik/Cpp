@@ -4,7 +4,7 @@
 namespace razukrantov
 {
   template< typename T >
-  struct bracketsAcess
+  struct bracketsAccess
   {
     using iterator = size_t;
     using container = std::vector<T>;

@@ -10,7 +10,7 @@ namespace ivanova
     DataStruct data;
     std::string key;
     input >> std::ws >> key;
-    if (abs(std::stol(key) > 5))
+    if (abs(std::stoi(key) > 5))
     {
       std::cerr << "key1 must be in range of -5 to 5\n";
     }

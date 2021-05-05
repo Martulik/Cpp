@@ -20,6 +20,10 @@ namespace ivanova
       {
         std::cerr << "Read fail";
       }
+      else if (str.empty())
+      {
+        return 0;
+      }
       else
       {
         std::stringstream input(str);

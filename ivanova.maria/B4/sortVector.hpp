@@ -12,7 +12,7 @@ namespace ivanova
   {
     for (size_t k = 0; k < vector.size(); k++)
     {
-      for (size_t i = k + 1; i < vector.size() - 1; i++)
+      for (size_t i = 1; i < vector.size() - 1; i++)
       {
         if (vector.at(k) > vector.at(i))
         {

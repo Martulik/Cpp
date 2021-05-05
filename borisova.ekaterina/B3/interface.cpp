@@ -98,7 +98,7 @@ void lab::Interface::show(std::string& bookMark)
 {
   if (phoneNotes_.empty())
   {
-    std::cout << lab::empty;
+    std::cout << lab::invalidBookMark;
   }
   else
   {

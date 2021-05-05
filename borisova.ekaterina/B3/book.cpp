@@ -11,10 +11,6 @@ void lab::Book::viewCurrent(iterator iter)
   {
     std::cout << iter->number_ << " "<< iter->name_ << "\n";
   }
-  else
-  {
-    std::cout << "Current note is empty";
-  }
 }
 
 iterator lab::Book::nextNote(iterator iter)

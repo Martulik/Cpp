@@ -156,12 +156,12 @@ Accepted Labs
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
 | Lysenko Aleksandra    | ✓  | ✓  | ✓  |    |    |    |
 | Murzakanov Islam      | ✓  | ✓  | ✓  |    |    |    |
-| Pochernin Vladislav   | ✓  | ✓  |    |    |    |    |
+| Pochernin Vladislav   | ✓  | ✓  | ✓  |    |    |    |
 | Pozdnyakov Artemy     | ✓  | ✓  | ✓  |    |    |    |
 | Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  | ✓  |    |    |    |    |
 | Savchuk Aleksei       | ✓  | ✓  | ✓  |    |    |    |
 | Shilyaev Vladislav    | ✓  | ✓  | ✓  |    |    |    |
-| Shkurov Igor          | ✓  | ✓  |    |    |    |    |
+| Shkurov Igor          | ✓  | ✓  | ✓  |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  16|  11|   0|   0|   0|
+| __Total__             |  20|  16|  13|   0|   0|   0|

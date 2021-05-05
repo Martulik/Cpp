@@ -25,11 +25,13 @@ void lab::doTask1()
     if (command == "add")
     {
       in >> std::ws >> temp.number_;
-      std::getline(in >> std::ws, temp.name_);
-
-      if (correctName(temp) && correctNumder(temp))
+      if (correctNumder(temp))
       {
-        value.add(temp);
+        std::getline(in >> std::ws, temp.name_);
+        if (correctName(temp))
+        {
+          value.add(temp);
+        }
       }
       else
       {

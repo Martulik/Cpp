@@ -7,10 +7,7 @@ using iterator = std::list< lab::Note >::iterator;
 
 void lab::Book::viewCurrent(iterator iter)
 {
-  if (iter != end())
-  {
-    std::cout << iter->number_ << " "<< iter->name_ << "\n";
-  }
+  std::cout << iter->number_ << " "<< iter->name_ << "\n";
 }
 
 iterator lab::Book::nextNote(iterator iter)

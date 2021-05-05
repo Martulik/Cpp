@@ -1,15 +1,15 @@
 #include "shape.hpp"
 #include <iostream>
+#include <iterator>
+#include <algorithm>
 #include <cmath>
 
-namespace lab = ezerinia;
-
-double lab::getSideLength(const Point &p1, const Point &p2)
+double getSideLength(const Point &p1, const Point &p2)
 {
   return sqrt((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y));
 }
 
-bool lab::isSidesEqual(const Shape &shape)
+bool isSidesEqual(const Shape &shape)
 {
   double side = getSideLength(shape[0], shape[shape.size()]);
   for (unsigned int i = 0; i < shape.size() - 1; i++) {
@@ -20,7 +20,7 @@ bool lab::isSidesEqual(const Shape &shape)
   return true;
 }
 
-std::istream &operator>>(std::istream &in, lab::Point &point)
+std::istream &operator>>(std::istream &in, Point &point)
 {
   in.ignore(256, '(');
   in >> point.x;
@@ -30,31 +30,28 @@ std::istream &operator>>(std::istream &in, lab::Point &point)
   return in;
 }
 
-std::istream &operator>>(std::istream &in, lab::Shape &shape)
+std::istream &operator>>(std::istream &in, Shape &shape)
 {
   std::string str;
   int nVertices = 0;
   in >> nVertices;
   for (int i = 0; i < nVertices; i++) {
-    lab::Point point;
+    Point point{};
     in >> point;
     shape.push_back(point);
   }
   return in;
 }
 
-std::ostream &operator<<(std::ostream &out, const lab::Point &point)
+std::ostream &operator<<(std::ostream &out, const Point &point)
 {
   out << " (" << point.x << ";" << point.y << ")";
   return out;
 }
 
-std::ostream &operator<<(std::ostream &out, const lab::Shape &shape)
+std::ostream &operator<<(std::ostream &out, const Shape &shape)
 {
   out << shape.size() << " ";
-  //std::copy(shape.begin(), shape.end(), std::ostream_iterator< lab::Point >(out, " "));
-  for (unsigned int i = 0; i < shape.size(); i++) {
-    out << shape[i] << " ";
-  }
+  std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
   return out;
 }

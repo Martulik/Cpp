@@ -1,29 +1,25 @@
 #include "task2.hpp"
 #include <iostream>
 #include <vector>
+#include <iterator>
+
+#include <algorithm>
 
 #include "shape.hpp"
 
-namespace lab = ezerinia;
-
-void lab::task2()
+void ezerinia::task2()
 {
   int vertices = 0;
   if (!std::cin) {
     throw std::runtime_error("Read fail");
   }
-  std::vector< lab::Shape > shapes;
-  //{std::istream_iterator< lab::Shape >{std::cin}, std::istream_iterator< lab::Shape >{}};
-  while (std::cin) {
-    lab::Shape shape;
-    std::cin >> shape;
-    shapes.push_back(shape);
-  }
+  std::vector< Shape > shapes((std::istream_iterator< Shape >(std::cin)), std::istream_iterator< Shape >());
+
   int triangles = 0;
   int squares = 0;
   int rectangles = 0;
 
-  std::vector< lab::Point > points(shapes.size());
+  std::vector< Point > points(shapes.size());
 
   for (unsigned int i = 0; i < shapes.size(); i++) {
     points.push_back(shapes[i].front());
@@ -48,8 +44,6 @@ void lab::task2()
   std::cout << "Points: " << points << "\n";
 
   std::cout << "Shapes:\n";
-  //std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< lab::Shape >(std::cout, "\n"));
-  for (unsigned int i = 0; i < shapes.size(); i++) {
-    std::cout << shapes[i] << "\n";
-  }
+  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(std::cout, "\n"));
+
 }

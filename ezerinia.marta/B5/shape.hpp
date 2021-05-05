@@ -4,19 +4,21 @@
 #include <vector>
 #include <iostream>
 
-namespace ezerinia {
-  struct Point {
-    int x, y;
-  };
-  using Shape = std::vector< Point >;
+struct Point {
+  int x, y;
+};
+using Shape = std::vector< Point >;
 
-  double getSideLength(const Point &p1, const Point &p2);
-  bool isSidesEqual(const Shape &shape);
-}
+double getSideLength(const Point &p1, const Point &p2);
 
-std::istream &operator>>(std::istream &in, ezerinia::Point &point);
-std::istream &operator>>(std::istream &in, ezerinia::Shape &shape);
-std::ostream &operator<<(std::ostream &out, const ezerinia::Point &point);
-std::ostream &operator<<(std::ostream &out, const ezerinia::Shape &shape);
+bool isSidesEqual(const Shape &shape);
+
+std::istream &operator>>(std::istream &in, Point &point);
+
+std::istream &operator>>(std::istream &in, Shape &shape);
+
+std::ostream &operator<<(std::ostream &out, const Point &point);
+
+std::ostream &operator<<(std::ostream &out, const Shape &shape);
 
 #endif

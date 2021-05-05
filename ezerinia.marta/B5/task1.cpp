@@ -1,5 +1,4 @@
 #include "task1.hpp"
-#include <fstream>
 #include <iostream>
 #include <set>
 #include <iterator>

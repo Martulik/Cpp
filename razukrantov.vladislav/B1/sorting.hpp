@@ -2,11 +2,14 @@
 #define SORTING_HPP
 
 #include <iostream>
+#include <functional>
+
+#include "strategy.hpp"
 
 namespace razukrantov
 {
-  template < typename Strategy >
-  void sort(typename Strategy::container& container, const std::function< bool(typename Strategy::type, typename Strategy::type) > compare)
+  template < typename Strategy, typename T >
+  void sort(typename Strategy::container& container, const std::function< bool(T, T) > compare)
   {
     typename Strategy::iterator i = Strategy::begin(container);
     typename Strategy::iterator size = Strategy::end(container);

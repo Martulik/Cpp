@@ -1,9 +1,7 @@
 #include "task2.hpp"
 #include <iostream>
-#include <istream>
 #include <vector>
-//#include <iterator>
-#include <functional>
+
 #include "shape.hpp"
 
 namespace lab = ezerinia;
@@ -47,7 +45,6 @@ void lab::task2()
   std::cout << "Triangles: " << triangles << "\n";
   std::cout << "Squares: " << squares << "\n";
   std::cout << "Rectangles: " << rectangles << "\n";
-
   std::cout << "Points: " << points << "\n";
 
   std::cout << "Shapes:\n";

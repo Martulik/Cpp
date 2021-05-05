@@ -1,19 +1,18 @@
 #include "shape.hpp"
 #include <iostream>
 #include <iterator>
-#include <algorithm>
 
 namespace lab = ezerinia;
 
 double lab::getSideLength(const Point &p1, const Point &p2)
 {
-  return sqrt((p1.x - p2.x) ^ 2 - (p1.y - p2.y) ^ 2);
+  return sqrt((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y));
 }
 
 bool lab::isSidesEqual(const Shape &shape)
 {
   double side = getSideLength(shape[0], shape[shape.size()]);
-  for (int i = 0; i < shape.size() - 1; i++) {
+  for (unsigned int i = 0; i < shape.size() - 1; i++) {
     if (getSideLength(shape[i], shape[i + 1]) != side) {
       return false;
     }
@@ -54,7 +53,7 @@ std::ostream &operator<<(std::ostream &out, const lab::Shape &shape)
 {
   out << shape.size() << " ";
   //std::copy(shape.begin(), shape.end(), std::ostream_iterator< lab::Point >(out, " "));
-  for (int i = 0; i < shape.size(); i++) {
+  for (unsigned int i = 0; i < shape.size(); i++) {
     out << shape[i] << " ";
   }
   return out;

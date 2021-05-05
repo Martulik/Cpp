@@ -2,6 +2,7 @@
 #define SHAPE_HPP
 
 #include <vector>
+#include <iostream>
 
 namespace ezerinia {
   struct Point {

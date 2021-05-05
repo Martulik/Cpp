@@ -27,7 +27,7 @@ void lab::task2()
 
   std::vector< lab::Point > points(shapes.size());
 
-  for (int i = 0; i < shapes.size(); i++) {
+  for (unsigned int i = 0; i < shapes.size(); i++) {
     points.push_back(shapes[i].front());
     vertices += shapes[i].size();
     if (shapes[i].size() == 3) {
@@ -52,7 +52,7 @@ void lab::task2()
 
   std::cout << "Shapes:\n";
   //std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< lab::Shape >(std::cout, "\n"));
-  for (int i = 0; i < shapes.size(); i++) {
+  for (unsigned int i = 0; i < shapes.size(); i++) {
     std::cout << shapes[i] << "\n";
   }
 }

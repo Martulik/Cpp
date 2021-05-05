@@ -86,11 +86,6 @@ namespace shilyaev {
     return shape.size() == 3;
   }
 
-  unsigned int countTriangles(const std::vector< Shape > &shapes)
-  {
-    return std::count_if(shapes.begin(), shapes.end(), isTriangle);
-  }
-
   int calculateDistanceSquared(const Point &a, const Point &b)
   {
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
@@ -117,11 +112,6 @@ namespace shilyaev {
            isExactSquare(d02, d13, d13, d30, d23, d01);
   }
 
-  unsigned int countSquares(const std::vector< Shape > &shapes)
-  {
-    return std::count_if(shapes.begin(), shapes.end(), isSquare);
-  }
-
   bool isExactRectangle(int ab, int bc, int cd, int da, int bd, int ac)
   {
     return ab == cd && bc == da && bd == ac;
@@ -141,11 +131,6 @@ namespace shilyaev {
     return isExactRectangle(d01, d12, d23, d30, d13, d02) ||
            isExactRectangle(d01, d13, d23, d02, d12, d30) ||
            isExactRectangle(d02, d13, d13, d30, d23, d01);
-  }
-
-  unsigned int countRectangles(const std::vector< Shape > &shapes)
-  {
-    return std::count_if(shapes.begin(), shapes.end(), isRectangle);
   }
 
   void removePentagons(std::vector< Shape > &shapes)
@@ -200,9 +185,9 @@ namespace shilyaev {
       return 1;
     }
     const unsigned int verticesCount = countVertices(*shapes);
-    const unsigned int trianglesCount = countTriangles(*shapes);
-    const unsigned int squaresCount = countSquares(*shapes);
-    const unsigned int rectanglesCount = countRectangles(*shapes);
+    const unsigned int trianglesCount = std::count_if(shapes->begin(), shapes->end(), isTriangle);
+    const unsigned int squaresCount = std::count_if(shapes->begin(), shapes->end(), isSquare);
+    const unsigned int rectanglesCount = std::count_if(shapes->begin(), shapes->end(), isRectangle);
     removePentagons(*shapes);
     const std::vector< Point > points = createPointsVector(*shapes);
     transformShapes(*shapes);

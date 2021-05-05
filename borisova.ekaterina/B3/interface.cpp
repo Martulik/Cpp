@@ -84,11 +84,6 @@ void lab::Interface::deleteMark(std::string& bookMark)
         }
       }
     }
-
-    if (iter->second == phoneNotes_.end())
-    {
-      std::cout << lab::empty;
-    }
     phoneNotes_.deleteNote(delIter);
   }
 
@@ -107,6 +102,10 @@ void lab::Interface::show(std::string& bookMark)
     {
       phoneNotes_.viewCurrent(iteratr->second);
     }
+  }
+  else
+  {
+    std::cout << lab::invalidBookMark;
   }
 }
 

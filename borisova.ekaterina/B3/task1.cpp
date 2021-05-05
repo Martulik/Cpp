@@ -32,6 +32,10 @@ void lab::doTask1()
         {
           value.add(temp);
         }
+        else
+        {
+          std::cout << lab::invalidCommand;
+        }
       }
       else
       {

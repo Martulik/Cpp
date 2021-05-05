@@ -64,8 +64,10 @@ void razukrantov::task1(const char* order)
   std::forward_list<int> forwardList(vector.begin(), vector.end());
   std::function< bool(int, int) > compare = getSortOrder< int >(order);
 
-  razukrantov::sort<bracketsAccess< int >, int >(vector, compare);
+  razukrantov::sort< bracketsAccess< int >, int >(vector, compare);
   print(vector);
-  razukrantov::sort<atAccess< int >, int>(atVector, compare);
+  razukrantov::sort< atAccess< int >, int >(atVector, compare);
   print(atVector);
+  razukrantov::sort< iteratorAccess< int >, int >(forwardList, compare);
+  print(forwardList);
 }

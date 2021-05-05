@@ -45,6 +45,26 @@ namespace razukrantov
       return container.at(iterator);
     }
   };
+
+  template < typename T >
+  struct iteratorAccess
+  {
+    using container = std::forward_list< T >;
+    using iterator = typename container::iterator;
+
+    static iterator begin(container& container)
+    {
+      return container.begin();
+    }
+    static iterator end(container& container)
+    {
+      return container.end();
+    }
+    static T& get(container&, iterator& iterator)
+    {
+      return *iterator;
+    }
+  };
 }
 
 #endif

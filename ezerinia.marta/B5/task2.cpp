@@ -19,10 +19,9 @@ void ezerinia::task2()
   int squares = 0;
   int rectangles = 0;
 
-  std::vector< Point > points(shapes.size());
+  std::vector< Point > points;
 
   for (unsigned int i = 0; i < shapes.size(); i++) {
-    points.push_back(shapes[i].front());
     vertices += shapes[i].size();
     if (shapes[i].size() == 3) {
       triangles++;
@@ -35,14 +34,15 @@ void ezerinia::task2()
     } else if (shapes[i].size() == 5) {
       shapes.erase(shapes.begin() + i);
     }
+    points.push_back(shapes[i].front());
   }
 
   std::cout << "Vertices: " << vertices << "\n";
   std::cout << "Triangles: " << triangles << "\n";
   std::cout << "Squares: " << squares << "\n";
   std::cout << "Rectangles: " << rectangles << "\n";
-  std::cout << "Points: " << points << "\n";
-
+  std::cout << "Points: ";
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, "\n"));
   std::cout << "Shapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(std::cout, "\n"));
 

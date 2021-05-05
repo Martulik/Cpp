@@ -3,6 +3,7 @@
 #include <iterator>
 #include <algorithm>
 #include <cmath>
+#include <stdexcept>
 
 double getSideLength(const Point &p1, const Point &p2)
 {
@@ -32,11 +33,14 @@ std::istream &operator>>(std::istream &in, Point &point)
 
 std::istream &operator>>(std::istream &in, Shape &shape)
 {
-  std::string str;
   int nVertices = 0;
   in >> nVertices;
+  if(in.peek() == '\n'){
+    throw std::runtime_error("Read shape fail");
+  }
+  //std::string str;
   for (int i = 0; i < nVertices; i++) {
-    Point point{};
+    Point point;
     in >> point;
     shape.push_back(point);
   }

@@ -6,6 +6,7 @@
 
 #include "strategy.hpp"
 #include "sorting.hpp"
+#include "functions.hpp"
 
 template <typename T >
 std::function < bool(T, T) > getSortOrder(const char* order)
@@ -28,18 +29,6 @@ std::function < bool(T, T) > getSortOrder(const char* order)
   {
     throw std::invalid_argument("Incorrect order");
   }
-}
-
-template < typename T >
-void print(const T& container)
-{
-  using iterator = typename T::const_iterator;
-  iterator size = container.end();
-  for (iterator cur = container.begin(); cur != size; cur++)
-  {
-    std::cout << *cur << " ";
-  }
-  std::cout << "\n";
 }
 
 void razukrantov::task1(const char* order)

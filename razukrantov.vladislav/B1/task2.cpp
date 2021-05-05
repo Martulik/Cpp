@@ -1,5 +1,5 @@
 #include "tasks.hpp"
-#include "task1.cpp"
+#include "functions.hpp"
 
 #include <iostream>
 #include <fstream>

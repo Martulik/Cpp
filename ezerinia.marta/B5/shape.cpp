@@ -3,7 +3,10 @@
 #include <iterator>
 #include <algorithm>
 #include <cmath>
+#include <iosfwd>
+
 #include <stdexcept>
+#include <sstream>
 
 double getSideLength(const Point &p1, const Point &p2)
 {
@@ -23,27 +26,45 @@ bool isSidesEqual(const Shape &shape)
 
 std::istream &operator>>(std::istream &in, Point &point)
 {
-  in.ignore(256, '(');
-  in >> point.x;
-  in.ignore(256, ';');
-  in >> point.y;
-  in.ignore(256, ')');
+  std::string str;
+  char trash = 0;
+  std::getline(in, str, ')');
+  if (str.empty() || in.eof()) {
+    return in;
+  }
+  std::istringstream iss(str);
+  iss >> trash;
+  if (trash != '(') {
+    throw std::runtime_error("Read point.x fail");
+  }
+  iss >> point.x >> trash >> point.y;
+  if (trash != ';') {
+    throw std::runtime_error("Read point.y fail");
+  }
   return in;
 }
 
 std::istream &operator>>(std::istream &in, Shape &shape)
 {
   int nVertices = 0;
-  in >> nVertices;
-  if(in.peek() == '\n'){
+  char trash;
+  in >> nVertices >> std::noskipws >> trash;
+  if (trash == '\n') {
     throw std::runtime_error("Read shape fail");
   }
-  //std::string str;
-  for (int i = 0; i < nVertices; i++) {
-    Point point;
-    in >> point;
-    shape.push_back(point);
+  std::string str;
+  in >> std::skipws;
+  std::getline(in, str);
+  if (str.empty()) {
+    return in;
   }
+  std::istringstream iss(str);
+  Shape shape_temp((std::istream_iterator< Point >(iss)), std::istream_iterator< Point >());
+  shape_temp.pop_back();
+  if (nVertices != shape_temp.size()) {
+    throw std::runtime_error("Wrong number of vertices");
+  }
+  shape.swap(shape_temp);
   return in;
 }
 

@@ -46,7 +46,7 @@ std::istream &operator>>(std::istream &in, Point &point)
 
 std::istream &operator>>(std::istream &in, Shape &shape)
 {
-  int nVertices = 0;
+  unsigned int nVertices = 0;
   char trash;
   in >> nVertices >> std::noskipws >> trash;
   if (trash == '\n') {

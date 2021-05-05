@@ -80,7 +80,7 @@ void lab::doTask1()
       else
       {
          size_t k = 0;
-        for (int i = 0; i < step.length(); i++)
+        for (size_t i = 0; i < step.length(); i++)
         {
           if (!isdigit(step[i]))
           {

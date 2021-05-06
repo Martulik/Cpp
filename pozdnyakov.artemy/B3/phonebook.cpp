@@ -3,43 +3,61 @@
 
 namespace poz = pozdnyakov;
 
-poz::Phonebook::Phonebook():
-  currEntry(entries.begin())
+typedef poz::Phonebook::iterator poz::Phonebook::begin()
 {
+  return this->book_->begin();
 }
 
-void poz::Phonebook::showCurrent(std::ostream& out)
+typedef poz::Phonebook::iterator poz::Phonebook::end()
 {
-  out << *currEntry[0] << ' ' << *currEntry[1] << '\n';
+  return this->book_->end();
 }
 
-void poz::Phonebook::nextEntry()
+typedef poz::Phonebook::const_iterator poz::Phonebook::cbegin()
 {
-  if (currEntry == std::prev(entries.end()))
+  return this->book_->cbegin();
+}
+
+typedef poz::Phonebook::const_iterator poz::Phonebook::cend()
+{
+  return this->book_->cend();
+}
+
+void poz::Phonebook::pushBack(value_type& val)
+{
+  return this->book_->push_back(val);
+}
+
+typedef poz::Phonebook::iterator poz::Phonebook::insertBefore(const_iterator position, const value_type& val)
+{
+  return this->book_->insert(position, val);
+}
+
+typedef poz::Phonebook::iterator poz::Phonebook::insertAfter(const_iterator position, const value_type& val)
+{
+  if (position == this->end())
   {
-    throw std::runtime_error("Out of range");
+    throw std::invalid_argument("Iterator out of range");
   }
-  currEntry++;
+  return this->book_->insert(position + 1, val);
 }
 
-void poz::Phonebook::prevEntry()
+typedef poz::Phonebook::iterator poz::Phonebook::erase(poz::Phonebook::iterator it)
 {
-  if (currEntry == entries.begin())
+  return this->book_->erase(it);
+}
+
+void poz::Phonebook::replace(poz::Phonebook::iterator it, poz::Phonebook::value_type& val)
+{
+  *it = val;
+}
+
+void poz::Phonebook::move(typedef Phonebook::iterator it, int n)
+{
+  if (n < this->end() - it)
   {
-    throw std::runtime_error("Out of range");
+    return;
   }
-  currEntry--;
-}
-
-void poz::Phonebook::insertEntry(std::pair< std::string, std::string > entry)
-{
-
-}
-
-void poz::Phonebook::pushBackEntry(std::pair< std::string, std::string > entry)
-{
-}
-
-void poz::Phonebook::move(int n)
-{
+  it = this->insert(it + n; *it);
+  this->erase(it);
 }

@@ -3,7 +3,9 @@
 
 #include <utility>
 #include <list>
+#include <iostream>
 #include <string>
+#include <memory>
 #include "phonebook.hpp"
 
 namespace pozdnyakov
@@ -11,19 +13,15 @@ namespace pozdnyakov
   class Interface
   {
   public:
-    Interface() = delete;
-    static void doCommand(char* argv[]);
+    using argsType = std::vector< std::string >;
+    Interface(std::unique_ptr< Phonebook > book, std::ostream& out);
+    void doCommand(argsType args);
 
   private:
-    static void doAdd(char* argv[]);
-    static void doStore(char* argv[]);
-    static void doInsert(char* argv[]);
-    static void doDelete(char* argv[]);
-    static void doShow(char* argv[]);
-    static void doMove(char* argv[]);
-    static std::map< char*, int > bookmarks;
-    // store only keys, because of iterator invalidation
-    static std::map< char*, void(*command)(char**) > commands
+    std::unique_ptr< poz::Phonebook > book_;
+    std::map< std::string, int > bookmarks_;
+    std::ostream& out_;
+    const std::map< std::string, void(*command)(argsType) > commands_
     {
       {"add", doShow},
       {"store", doShow},
@@ -32,6 +30,12 @@ namespace pozdnyakov
       {"show", doShow},
       {"move", doMove},
     };
+    void doAdd(argsType args);
+    void doStore(asrgsType args);
+    void doInsert(argsType args);
+    void doDelete(argsType args);
+    void doShow(argsType args);
+    void doMove(argsType args);
   }
 }
 

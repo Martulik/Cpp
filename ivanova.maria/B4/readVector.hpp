@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <iostream>
-#include <sstream>
 #include <string>
 
 #include "struct.hpp"
@@ -26,8 +25,7 @@ namespace ivanova
       }
       else
       {
-        std::stringstream input(str);
-        getVector(input, vector);
+        getVector(str, vector);
       }
     }
     if (!std::cin.eof())

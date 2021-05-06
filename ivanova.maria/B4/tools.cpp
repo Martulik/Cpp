@@ -1,17 +1,14 @@
 #include "struct.hpp"
-#include <sstream>
 #include <iostream>
 #include <string>
 #include <vector>
 namespace ivanova
 {
-  template < typename T > void getVector(std::stringstream &input, std::vector < T > &vec)
+  template < typename T > void getVector(std::string &str, std::vector < T > &vec)
   {
     DataStruct data;
-    std::string str;
     std::string key;
     size_t i = 0;
-    input >> str;
     while (str.at(i) != ',')
     {
       key += str.at(i);
@@ -41,12 +38,11 @@ namespace ivanova
     {
       data.key2 = std::move(std::stoi(key));
       key.clear();
-      while (i < str.length())
+      while (i < str.size())
       {
-        key += str.at(i);
+        data.str += str.at(i);
         i++;
       }
-      data.str = std::move(key);
       vec.push_back(data);
     }
   }

@@ -12,7 +12,7 @@ namespace ivanova
     for (size_t i = 0; i < vector.size(); i++)
     {
       DataStruct data = vector.at(i);
-      std::cout << data.key1 << " " << data.key2 << " " << data.str << std::endl;
+      std::cout << data.key1 << "," << data.key2 << "," << data.str << std::endl;
     }
   }
 }

@@ -1,4 +1,5 @@
 #include "Container.hpp"
+#include <cassert>
 
 namespace lab = ezerinia;
 
@@ -42,12 +43,14 @@ lab::Container::value_type *lab::Container::Iterator::operator->()
 
 lab::Container::Iterator &lab::Container::Iterator::operator++()
 {
+  assert(index_ != 11);
   value_ *= ++index_;
   return *this;
 }
 
 lab::Container::Iterator &lab::Container::Iterator::operator--()
 {
+  assert(index_ != 1);
   value_ /= index_--;
   return *this;
 }
@@ -55,13 +58,13 @@ lab::Container::Iterator &lab::Container::Iterator::operator--()
 lab::Container::Iterator lab::Container::Iterator::operator++(int)
 {
   Iterator temp = *this;
-  value_ *= ++index_;
+  ++(*this);
   return temp;
 }
 
 lab::Container::Iterator lab::Container::Iterator::operator--(int)
 {
   Iterator temp = *this;
-  value_ /= index_--;
+  --(*this);
   return temp;
 }

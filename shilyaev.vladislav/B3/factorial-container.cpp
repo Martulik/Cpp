@@ -1,4 +1,5 @@
 #include "factorial-container.hpp"
+#include <cassert>
 
 namespace shilyaev {
   constexpr unsigned int factorial(unsigned int n)
@@ -24,6 +25,7 @@ namespace shilyaev {
 
   FactorialContainer::Iterator &FactorialContainer::Iterator::operator++()
   {
+    assert(lastMultiplier_ < endLastMultiplier);
     value_ *= ++lastMultiplier_;
     return *this;
   }
@@ -37,6 +39,7 @@ namespace shilyaev {
 
   FactorialContainer::Iterator &FactorialContainer::Iterator::operator--()
   {
+    assert(lastMultiplier_ > beginLastMultiplier);
     value_ /= lastMultiplier_--;
     return *this;
   }

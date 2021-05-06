@@ -10,7 +10,7 @@ public:
   rectangle_t getFrameRect() const override;
   void move(point_t newPos) override;
   void move(double abscissa, double ordinate) override;
-  
+
 private:
   double height_;
   double width_;

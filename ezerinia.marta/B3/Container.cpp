@@ -42,9 +42,8 @@ lab::Container::value_type *lab::Container::Iterator::operator->()
 
 lab::Container::Iterator &lab::Container::Iterator::operator++()
 {
-  Iterator temp = *this;
   value_ *= ++index_;
-  return temp;
+  return *this;
 }
 
 lab::Container::Iterator &lab::Container::Iterator::operator--()

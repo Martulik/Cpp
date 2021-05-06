@@ -6,26 +6,27 @@
 namespace ezerinia {
   class Container {
   public:
+    using value_type = unsigned int;
     class Iterator;
     Container() = default;
     Iterator begin();
     Iterator end();
   };
-  class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned int > {
+
+  class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, value_type > {
   public:
-    Iterator(size_t index);
+    Iterator();
     Iterator &operator++();
     Iterator &operator--();
     Iterator operator++(int);
     Iterator operator--(int);
     bool operator==(const Iterator &src) const;
     bool operator!=(const Iterator &src) const;
-    unsigned int &operator*();
-    unsigned int *operator->();
+    value_type &operator*();
+    value_type *operator->();
   private:
     size_t index_;
-    unsigned int value_;
-    unsigned int getFactorial(size_t index) const;
+    value_type value_;
   };
 }
 #endif

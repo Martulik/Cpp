@@ -10,8 +10,7 @@
 
 namespace ivanova
 {
-  template < typename T >
-  bool readVector(std::vector < T > &vector)
+  bool readVector(std::vector < DataStruct > &vector)
   {
     std::string str;
     while (std::getline(std::cin, str))

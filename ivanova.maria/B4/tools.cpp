@@ -31,20 +31,34 @@ iva::DataStruct iva::getVector(std::string &str)
   iva::DataStruct data;
   std::string key;
   size_t i = 0;
+  if (str.at(0) == '-' || str.at(0) == '+')
+  {
+    key += str.at(0);
+    i++;
+  }
   while (isdigit(str.at(i)))
   {
     key += str.at(i);
     i++;
   }
   iva::checkSymbol(str.at(i));
-  data.key1 = std::move(std::stoi(key));
+  i++;
+  data.key1 = std::stoi(key);
+  key.clear();
+  if (str.at(i) == '-' || str.at(i) == '+')
+  {
+    key += str.at(i);
+    i++;
+  }
   while (isdigit(str.at(i)))
   {
     key += str.at(i);
     i++;
   }
   iva::checkSymbol(str.at(i));
-  data.key2 = std::move(std::stoi(key));
+  i++;
+  data.key2 = std::stoi(key);
+  key.clear();
   while (i < str.size())
   {
     key += str.at(i);

@@ -91,30 +91,18 @@ namespace shilyaev {
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
   }
 
-  bool isExactSquare(int ab, int bc, int cd, int da, int bd, int ac)
-  {
-    return ab == bc && ab == cd && ab == da && bd == ac;
-  }
-
   bool isSquare(const Shape &shape)
   {
     if (shape.size() != 4) {
       return false;
     }
-    int d01 = calculateDistanceSquared(shape[0], shape[1]);
-    int d12 = calculateDistanceSquared(shape[1], shape[2]);
-    int d23 = calculateDistanceSquared(shape[2], shape[3]);
-    int d30 = calculateDistanceSquared(shape[3], shape[0]);
-    int d13 = calculateDistanceSquared(shape[1], shape[3]);
-    int d02 = calculateDistanceSquared(shape[0], shape[2]);
-    return isExactSquare(d01, d12, d23, d30, d13, d02) ||
-           isExactSquare(d01, d13, d23, d02, d12, d30) ||
-           isExactSquare(d02, d13, d13, d30, d23, d01);
-  }
-
-  bool isExactRectangle(int ab, int bc, int cd, int da, int bd, int ac)
-  {
-    return ab == cd && bc == da && bd == ac;
+    int ab = calculateDistanceSquared(shape[0], shape[1]);
+    int bc = calculateDistanceSquared(shape[1], shape[2]);
+    int cd = calculateDistanceSquared(shape[2], shape[3]);
+    int da = calculateDistanceSquared(shape[3], shape[0]);
+    int bd = calculateDistanceSquared(shape[1], shape[3]);
+    int ac = calculateDistanceSquared(shape[0], shape[2]);
+    return ab == bc && ab == cd && ab == da && bd == ac;
   }
 
   bool isRectangle(const Shape &shape)
@@ -122,15 +110,13 @@ namespace shilyaev {
     if (shape.size() != 4) {
       return false;
     }
-    int d01 = calculateDistanceSquared(shape[0], shape[1]);
-    int d12 = calculateDistanceSquared(shape[1], shape[2]);
-    int d23 = calculateDistanceSquared(shape[2], shape[3]);
-    int d30 = calculateDistanceSquared(shape[3], shape[0]);
-    int d13 = calculateDistanceSquared(shape[1], shape[3]);
-    int d02 = calculateDistanceSquared(shape[0], shape[2]);
-    return isExactRectangle(d01, d12, d23, d30, d13, d02) ||
-           isExactRectangle(d01, d13, d23, d02, d12, d30) ||
-           isExactRectangle(d02, d13, d13, d30, d23, d01);
+    int ab = calculateDistanceSquared(shape[0], shape[1]);
+    int bc = calculateDistanceSquared(shape[1], shape[2]);
+    int cd = calculateDistanceSquared(shape[2], shape[3]);
+    int da = calculateDistanceSquared(shape[3], shape[0]);
+    int bd = calculateDistanceSquared(shape[1], shape[3]);
+    int ac = calculateDistanceSquared(shape[0], shape[2]);
+    return ab == cd && bc == da && bd == ac;
   }
 
   void removePentagons(std::vector< Shape > &shapes)

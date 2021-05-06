@@ -1,5 +1,5 @@
 #include "circle.hpp"
-#include <cassert>
+#include <stdexcept>
 
 const double PI = 3.1415926535;
 
@@ -7,7 +7,10 @@ pyatizbyantsev::Circle::Circle(const double valueRadius, const point_t& valuePos
   radius_(valueRadius),
   pos_(valuePos)
 {
-  assert(valueRadius > 0);
+  if (radius_ <= 0)
+  {
+    throw (std::invalid_argument("Parametrs cannot be negative or equal to zero"));
+  }
 }
 
 double pyatizbyantsev::Circle::getArea() const
@@ -31,7 +34,12 @@ void pyatizbyantsev::Circle::move(const double abscissa, const double ordinate)
   pos_.y += ordinate;
 }
 
-void pyatizbyantsev::Circle::scale(const double scaleCoefficient)
+void pyatizbyantsev::Circle::doScale(const double scaleCoefficient)
 {
   radius_ *= scaleCoefficient;
+}
+
+std::string pyatizbyantsev::Circle::getName() const
+{
+  return "Circle";
 }

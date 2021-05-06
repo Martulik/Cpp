@@ -1,12 +1,15 @@
 #include "rectangle.hpp"
-#include <cassert>
+#include <stdexcept>
 
 pyatizbyantsev::Rectangle::Rectangle(const double valueHeight, const double valueWidth, const point_t& valuePos):
   height_(valueHeight),
   width_(valueWidth),
   pos_(valuePos)
 {
-  assert(valueHeight > 0 && valueWidth > 0);
+  if ((width_ <= 0) || (height_ <= 0))
+  {
+    throw (std::invalid_argument("Parametrs cannot be negative or equal to zero"));
+  }
 }
 
 double pyatizbyantsev::Rectangle::getArea() const
@@ -30,8 +33,13 @@ void pyatizbyantsev::Rectangle::move(const double abscissa, const double ordinat
   pos_.y += ordinate;
 }
 
-void pyatizbyantsev::Rectangle::scale(double scaleCoefficient)
+void pyatizbyantsev::Rectangle::doScale(const double scaleCoefficient)
 {
   width_ *= scaleCoefficient;
   height_ *= scaleCoefficient;
+}
+
+std::string pyatizbyantsev::Rectangle::getName() const
+{
+  return "Rectangle";
 }

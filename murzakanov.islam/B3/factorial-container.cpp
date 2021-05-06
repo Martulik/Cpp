@@ -9,7 +9,7 @@ namespace mur = murzakanov;
 const size_t MAX_INDEX = 11;
 
 mur::FactorialContainer::Iterator::Iterator():
-  num_(1),
+  num_(0),
   value_(1)
 {
 }
@@ -80,7 +80,7 @@ bool murzakanov::FactorialContainer::Iterator::operator !=(const Iterator& rhs) 
 
 mur::FactorialContainer::Iterator mur::FactorialContainer::begin()
 {
-  return Iterator();
+  return Iterator(1);
 }
 
 mur::FactorialContainer::Iterator mur::FactorialContainer::end()

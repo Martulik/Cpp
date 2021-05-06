@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "task1.hpp"
 #include "task2.hpp"
+
 namespace iva = ivanova;
 
 int main(int argc, char *argv[])
@@ -12,9 +13,8 @@ int main(int argc, char *argv[])
     std::cerr << "Incorrect number of parameters!";
     return exitCode;
   }
-  char *endline = nullptr;
-  const int taskNum = strtol(argv[1], &endline, 0);
-  if (*endline || (taskNum != 1 && taskNum != 2))
+  const int taskNum = std::atoi(argv[1]);
+  if ((taskNum != 1 && taskNum != 2))
   {
     std::cerr << "Incorrect task number";
     return exitCode;

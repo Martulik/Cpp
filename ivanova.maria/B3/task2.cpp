@@ -1,7 +1,7 @@
-#include <algorithm>
 #include <iostream>
-#include "container.hpp"
+#include <algorithm>
 #include "task2.hpp"
+#include "container.hpp"
 
 namespace iva = ivanova;
 

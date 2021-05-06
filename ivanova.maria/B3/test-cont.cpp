@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include <string>
-#include <stdio.h>
+#include <cstdio>
 
 #include "container.hpp"
 

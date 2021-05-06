@@ -1,7 +1,7 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <list>
 
@@ -10,7 +10,13 @@ namespace ivanova
   class PhoneBook
   {
   public:
-    using Record = std::pair< std::string, std::string >;
+    struct Record
+    {
+      std::pair< std::string, std::string > value;
+    };
+//    std::ostream &operator <<(std::ostream &out, const Phonebook); //TODO: оператор вывода сделать
+
+//    using Record = std::pair< std::string, std::string >;
     using iter = std::list< Record >::iterator;
 
     iter begin();

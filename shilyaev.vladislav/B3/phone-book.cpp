@@ -24,10 +24,11 @@ namespace shilyaev {
 
   void PhoneBook::pushBack(const PhoneBook::Entry &entry)
   {
+    bool areBookmarksInvalid = entries_.empty();
     entries_.push_back(entry);
-    if (entries_.size() == 1) {
+    if (areBookmarksInvalid) {
       for (auto &&bookmark: bookmarks_) {
-        bookmark.second = std::prev(entries_.end());
+        bookmark.second = entries_.begin();
       }
     }
   }

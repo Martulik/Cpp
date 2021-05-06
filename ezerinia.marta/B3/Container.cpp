@@ -55,7 +55,7 @@ lab::Container::Iterator &lab::Container::Iterator::operator--()
 lab::Container::Iterator lab::Container::Iterator::operator++(int)
 {
   Iterator temp = *this;
-  value_ /= ++index_;
+  value_ *= ++index_;
   return temp;
 }
 

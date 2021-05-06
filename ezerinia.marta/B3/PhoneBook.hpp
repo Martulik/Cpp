@@ -1,27 +1,30 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include <string>
 #include <list>
+#include "record_t.hpp"
 
 namespace ezerinia {
   class PhoneBook {
   public:
-    using data = std::pair< std::string, std::string >;
-    using iterator = std::list< data >::iterator;
+    using iterator = std::list< record_t >::iterator;
     bool empty();
     iterator begin();
     iterator end();
-    iterator add(iterator iter, data &src);
+    iterator add(iterator iter, record_t &src);
     iterator move(iterator iter, int step);
-    iterator moveNext(iterator iter);
-    iterator movePrev(iterator iter);
+
+    //iterator moveNext(iterator iter);
+    //iterator movePrev(iterator iter);
+
     iterator remove(iterator iter);
-    iterator replace(iterator iter, data &src);
-    void show(iterator iter);
-    void pushBack(data &src);
+    iterator replace(iterator iter, record_t &src);
+
+    //void show(iterator iter);
+
+    void pushBack(record_t &src);
   private:
-    std::list< data > list_;
+    std::list< record_t > list_;
   };
 }
 #endif

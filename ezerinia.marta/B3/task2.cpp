@@ -7,9 +7,10 @@ namespace lab = ezerinia;
 
 void lab::task2()
 {
+  std::ostream_iterator< unsigned int > out(std::cout, " ");
   Container container;
-  std::copy(container.begin(), container.end(), std::ostream_iterator< int >(std::cout, " "));
+  std::copy(container.begin(), container.end(), out);
   std::cout << "\n";
-  std::reverse_copy(container.begin(), container.end(), std::ostream_iterator< int >(std::cout, " "));
+  std::reverse_copy(container.begin(), container.end(), out);
   std::cout << "\n";
 }

@@ -1,9 +1,6 @@
 #include "UserInterface.hpp"
 #include <iostream>
-
-const std::string invalidCommand = "<INVALID COMMAND>\n";
-const std::string invalidBookmark = "<INVALID BOOKMARK>\n";
-const std::string empty = "<EMPTY>\n";
+#include "tools.hpp"
 
 namespace lab = ezerinia;
 
@@ -12,7 +9,7 @@ lab::UserInterface::UserInterface()
   bookmarks_["current"] = phoneBook_.begin();
 }
 
-void lab::UserInterface::add(PhoneBook::data &record)
+void lab::UserInterface::add(record_t &record)
 {
   phoneBook_.pushBack(record);
   if (std::next(phoneBook_.begin()) == phoneBook_.end()) {
@@ -24,25 +21,25 @@ void lab::UserInterface::store(std::string &oldMarkName, std::string &newMarkNam
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(oldMarkName);
   if (iter == bookmarks_.end()) {
-    std::cout << invalidCommand;
+    invalidCommand(std::cout);
   } else {
     bookmarks_[newMarkName] = iter->second;
   }
 }
 
-void lab::UserInterface::insert(const std::string &position, std::string &markName, PhoneBook::data &record)
+void lab::UserInterface::insert(posOfInsert position, std::string &markName, record_t &record)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
-    std::cout << invalidBookmark;
+    invalidBookmark(std::cout);
     return;
   }
   if (iter->second == phoneBook_.end()) {
     add(record);
   }
-  if (position == "before") {
+  if (position == posOfInsert::before) {
     phoneBook_.add(iter->second, record);
-  } else {
+  } else if (position == posOfInsert::after) {
     phoneBook_.add(std::next(iter->second), record);
   }
 }
@@ -51,15 +48,17 @@ void lab::UserInterface::deleteRecord(std::string &markName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
-    std::cout << invalidCommand;
+    invalidCommand(std::cout);
   } else {
     auto deleteIter = iter->second;
-    for (std::map< std::string, PhoneBook::iterator >::iterator i = bookmarks_.begin(); i != bookmarks_.end(); i++) {
+    for (auto i = bookmarks_.begin(); i != bookmarks_.end(); i++) {
       if (i->second == deleteIter) {
         if (std::next(i->second) == phoneBook_.end()) {
-          i->second = phoneBook_.movePrev(deleteIter);
+          i->second = std::prev(deleteIter);
+          //i->second = phoneBook_.movePrev(deleteIter);
         } else {
-          i->second = phoneBook_.moveNext(deleteIter);
+          i->second = std::next(deleteIter);
+          //i->second = phoneBook_.moveNext(deleteIter);
         }
       }
     }
@@ -71,11 +70,12 @@ void lab::UserInterface::show(std::string &markName)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
-    std::cout << invalidBookmark;
+    invalidBookmark(std::cout);
   } else if (phoneBook_.empty()) {
-    std::cout << empty;
+    empty(std::cout);
   } else {
-    phoneBook_.show(iter->second);
+    std::cout << &iter->second;
+    //phoneBook_.show(iter->second);
   }
 }
 
@@ -83,20 +83,21 @@ void lab::UserInterface::move(std::string &markName, int steps)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
-    std::cout << invalidBookmark;
+    invalidBookmark(std::cout);
   } else {
     iter->second = phoneBook_.move(iter->second, steps);
   }
 }
 
-void lab::UserInterface::move(std::string &markName, const std::string &position)
+void lab::UserInterface::move(std::string &markName, posOfMove position)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end()) {
-    std::cout << invalidBookmark;
-  } else if (position == "first") {
+    invalidBookmark(std::cout);
+  } else if (position == posOfMove::first) {
     iter->second = phoneBook_.begin();
-  } else {
-    iter->second = phoneBook_.movePrev(phoneBook_.end());
+  } else if (position == posOfMove::last) {
+    iter->second = std::prev(phoneBook_.end());
+    //iter->second = phoneBook_.movePrev(phoneBook_.end());
   }
 }

@@ -56,10 +56,8 @@ void lab::UserInterface::deleteRecord(std::string &markName)
       if (i->second == deleteIter) {
         if (std::next(i->second) == phoneBook_.end()) {
           i->second = std::prev(deleteIter);
-          //i->second = phoneBook_.movePrev(deleteIter);
         } else {
           i->second = std::next(deleteIter);
-          //i->second = phoneBook_.moveNext(deleteIter);
         }
       }
     }

@@ -31,42 +31,48 @@ iva::DataStruct iva::getVector(std::string &str)
   iva::DataStruct data;
   std::string key;
   size_t i = 0;
-  while (str.at(i) != ',')
+  while (isdigit(str.at(i)))
   {
     key += str.at(i);
     i++;
   }
-  i++;
-  if (abs(std::stoi(key)) > 5)
-  {
-    std::cerr << "key1 must be in range of -5 to 5\n";
-    exit(1);
-  }
-  else
-  {
-    data.key1 = std::move(std::stoi(key));
-  }
-  key.clear();
-  while (str.at(i) != ',')
+  iva::checkSymbol(str.at(i));
+  data.key1 = std::move(std::stoi(key));
+  while (isdigit(str.at(i)))
   {
     key += str.at(i);
     i++;
   }
-  i++;
-  if (abs(std::stoi(key)) > 5)
+  iva::checkSymbol(str.at(i));
+  data.key2 = std::move(std::stoi(key));
+  while (i < str.size())
   {
-    std::cerr << "key2 must be in range of -5 tp 5\n";
-    exit(1);
+    key += str.at(i);
+    i++;
+  }
+  if (!key.empty())
+  {
+    data.str = std::move(key);
+    return data;
   }
   else
   {
-    data.key2 = std::move(std::stoi(key));
-    key.clear();
-    while (i < str.size())
-    {
-      data.str += str.at(i);
-      i++;
-    }
+    std::cerr << " Missing String";
+    exit(1);
   }
-  return data;
+}
+
+
+void ivanova::checkSymbol(char &s)
+{
+  if (s != ',')
+  {
+    std::cerr << "Invalid Separator";
+    exit(1);
+  }
+  else if (abs(std::atoi(&s)) > 5)
+  {
+    std::cerr << "key must be in range of -5 to 5\n";
+    exit(1);
+  }
 }

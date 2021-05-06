@@ -27,7 +27,7 @@ bool isSidesEqual(const Shape &shape)
 std::istream &operator>>(std::istream &in, Point &point)
 {
   std::string str;
-  char trash = 0;
+  char trash = '\0';
   std::getline(in, str, ')');
   if (str.empty() || in.eof()) {
     return in;
@@ -47,7 +47,7 @@ std::istream &operator>>(std::istream &in, Point &point)
 std::istream &operator>>(std::istream &in, Shape &shape)
 {
   unsigned int nVertices = 0;
-  char trash;
+  char trash = '\0';
   in >> nVertices >> std::noskipws >> trash;
   if (trash == '\n') {
     throw std::runtime_error("Read shape fail");

@@ -60,7 +60,7 @@ namespace shilyaev {
   {
     const Iterator bookmark = bookmarks_.at(bookmarkName);
     if (entries_.empty()) {
-      return {};
+      return boost::none;
     }
     return *bookmark;
   }

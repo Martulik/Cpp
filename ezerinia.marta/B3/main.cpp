@@ -1,8 +1,14 @@
 #include <iostream>
+#include <cstring>
 #include "task1.hpp"
 #include "task2.hpp"
 
 namespace lab = ezerinia;
+
+bool isTaskNumber(const char *src)
+{
+  return (std::strlen(src) == 1) && std::isdigit(src[0]) && (std::atoi(src) == 1 || std::atoi(src) == 2);
+}
 
 int main(int argc, char *argv[])
 {
@@ -10,10 +16,9 @@ int main(int argc, char *argv[])
     if (argc != 2) {
       throw std::runtime_error("Invalid arguments");
     }
-    const int taskNumber = std::atoi(argv[1]);
-    if (taskNumber != 1 && taskNumber != 2) {
+    if (!isTaskNumber(argv[1])) {
       throw std::runtime_error("Invalid task number");
-    } else if (taskNumber == 1) {
+    } else if (std::atoi(argv[1])  == 1) {
       lab::task1();
     } else {
       lab::task2();

@@ -1,6 +1,7 @@
 #include "UserInterface.hpp"
 #include <iostream>
 #include "tools.hpp"
+#include "record_t.hpp"
 
 namespace lab = ezerinia;
 
@@ -74,7 +75,7 @@ void lab::UserInterface::show(std::string &markName)
   } else if (phoneBook_.empty()) {
     empty(std::cout);
   } else {
-    std::cout << &iter->second;
+    std::cout << *iter->second;
     //phoneBook_.show(iter->second);
   }
 }

@@ -10,15 +10,16 @@ namespace shilyaev {
     public:
       using ValueType = unsigned int;
       Iterator() = default;
-      Iterator(ValueType value, ValueType lastMultiplier);
       const ValueType &operator*() const;
       Iterator &operator++();
       Iterator operator++(int);
       Iterator &operator--();
       Iterator operator--(int);
     private:
+      friend class FactorialContainer;
       ValueType value_;
       ValueType lastMultiplier_;
+      Iterator(ValueType value, ValueType lastMultiplier);
     };
 
     Iterator begin() const;

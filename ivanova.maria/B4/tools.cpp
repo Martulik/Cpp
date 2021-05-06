@@ -1,6 +1,7 @@
 #include "tools.hpp"
 
-bool ivanova::compare(DataStruct &data1, DataStruct &data2)
+namespace iva = ivanova;
+bool iva::compare(DataStruct &data1, DataStruct &data2)
 {
   if (data1.key1 > data2.key1)
   {
@@ -25,10 +26,9 @@ bool ivanova::compare(DataStruct &data1, DataStruct &data2)
   else return false;
 }
 
-template< typename T >
-bool ivanova::getVector(std::string &str, std::vector< T > &vec)
+iva::DataStruct iva::getVector(std::string &str)
 {
-  DataStruct data;
+  iva::DataStruct data;
   std::string key;
   size_t i = 0;
   while (str.at(i) != ',')
@@ -37,10 +37,10 @@ bool ivanova::getVector(std::string &str, std::vector< T > &vec)
     i++;
   }
   i++;
-  if (abs(std::stoi(key) > 5))
+  if (abs(std::stoi(key)) > 5)
   {
     std::cerr << "key1 must be in range of -5 to 5\n";
-    return false;
+    exit(1);
   }
   else
   {
@@ -56,7 +56,7 @@ bool ivanova::getVector(std::string &str, std::vector< T > &vec)
   if (abs(std::stoi(key)) > 5)
   {
     std::cerr << "key2 must be in range of -5 tp 5\n";
-    return false;
+    exit(1);
   }
   else
   {
@@ -67,7 +67,6 @@ bool ivanova::getVector(std::string &str, std::vector< T > &vec)
       data.str += str.at(i);
       i++;
     }
-    vec.push_back(data);
   }
-  return true;
+  return data;
 }

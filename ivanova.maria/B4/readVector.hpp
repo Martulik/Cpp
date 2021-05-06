@@ -29,48 +29,7 @@ namespace ivanova
         }
         else
         {
-          DataStruct data;
-          std::string key;
-          size_t i = 0;
-          while (str.at(i) != ',')
-          {
-            key += str.at(i);
-            i++;
-          }
-          i++;
-          if (abs(std::stoi(key) > 5))
-          {
-            std::cerr << "key1 must be in range of -5 to 5\n";
-            return false;
-          }
-          else
-          {
-            data.key1 = std::move(std::stoi(key));
-          }
-          key.clear();
-          while (str.at(i) != ',')
-          {
-            key += str.at(i);
-            i++;
-          }
-          i++;
-          if (abs(std::stoi(key)) > 5)
-          {
-            std::cerr << "key2 must be in range of -5 tp 5\n";
-            return false;
-          }
-          else
-          {
-            data.key2 = std::move(std::stoi(key));
-            key.clear();
-            while (i < str.size())
-            {
-              data.str += str.at(i);
-              i++;
-            }
-            vector.push_back(data);
-          }
-//          return getVector(str, vector);
+          vector.push_back(getVector(str));
         }
       }
     }

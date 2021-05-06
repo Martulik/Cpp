@@ -5,7 +5,7 @@
 
 namespace ivanova
 {
-  template < typename T > bool getVector(std::string &str, std::vector < T > &vec);
+  DataStruct getVector(std::string &str);
   bool compare(DataStruct &data1, DataStruct &data2);
 }
 

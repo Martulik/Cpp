@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     }
     if (!isTaskNumber(argv[1])) {
       throw std::runtime_error("Invalid task number");
-    } else if (std::atoi(argv[1])  == 1) {
+    } else if (std::atoi(argv[1]) == 1) {
       lab::task1();
     } else {
       lab::task2();

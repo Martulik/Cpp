@@ -9,7 +9,6 @@ void lab::task1()
 {
   lab::UserInterface phoneBook;
   std::string string;
-
   while (std::getline(std::cin, string)) {
     if (std::cin.fail()) {
       throw std::runtime_error("Read fail");

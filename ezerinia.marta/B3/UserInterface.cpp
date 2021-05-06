@@ -76,7 +76,6 @@ void lab::UserInterface::show(std::string &markName)
     empty(std::cout);
   } else {
     std::cout << *iter->second;
-    //phoneBook_.show(iter->second);
   }
 }
 
@@ -99,6 +98,5 @@ void lab::UserInterface::move(std::string &markName, posOfMove position)
     iter->second = phoneBook_.begin();
   } else if (position == posOfMove::last) {
     iter->second = std::prev(phoneBook_.end());
-    //iter->second = phoneBook_.movePrev(phoneBook_.end());
   }
 }

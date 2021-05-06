@@ -3,9 +3,17 @@
 
 namespace lab = ezerinia;
 
+constexpr size_t maxIndex = 11;
+
 lab::Container::Iterator::Iterator():
   index_(1),
   value_(1)
+{
+}
+
+lab::Container::Iterator::Iterator(size_t index):
+  index_(index),
+  value_(getFactorial(index))
 {
 }
 
@@ -16,9 +24,7 @@ lab::Container::Iterator lab::Container::begin()
 
 lab::Container::Iterator lab::Container::end()
 {
-  Iterator temp{};
-  std::advance(temp, 10);
-  return temp;
+  return {11};
 }
 
 bool lab::Container::Iterator::operator==(const Container::Iterator &src) const
@@ -43,7 +49,7 @@ lab::Container::value_type *lab::Container::Iterator::operator->()
 
 lab::Container::Iterator &lab::Container::Iterator::operator++()
 {
-  assert(index_ != 11);
+  assert(index_ != maxIndex);
   value_ *= ++index_;
   return *this;
 }
@@ -67,4 +73,9 @@ lab::Container::Iterator lab::Container::Iterator::operator--(int)
   Iterator temp = *this;
   --(*this);
   return temp;
+}
+
+constexpr lab::Container::value_type lab::Container::Iterator::getFactorial(size_t index)
+{
+  return index == 1 ? 1 : getFactorial(index - 1) * index;
 }

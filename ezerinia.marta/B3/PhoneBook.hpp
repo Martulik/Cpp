@@ -13,15 +13,8 @@ namespace ezerinia {
     iterator end();
     iterator add(iterator iter, record_t &src);
     iterator move(iterator iter, int step);
-
-    //iterator moveNext(iterator iter);
-    //iterator movePrev(iterator iter);
-
     iterator remove(iterator iter);
     iterator replace(iterator iter, record_t &src);
-
-    //void show(iterator iter);
-
     void pushBack(record_t &src);
   private:
     std::list< record_t > list_;

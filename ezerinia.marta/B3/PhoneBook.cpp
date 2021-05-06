@@ -40,25 +40,10 @@ lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
   return iter;
 }
 
-//lab::PhoneBook::iterator lab::PhoneBook::moveNext(iterator iter)
-//{
-//  return ++iter;
-//}
-//
-//lab::PhoneBook::iterator lab::PhoneBook::movePrev(iterator iter)
-//{
-//  return --iter;
-//}
-//
 lab::PhoneBook::iterator lab::PhoneBook::remove(iterator iter)
 {
   return list_.erase(iter);
 }
-
-//void lab::PhoneBook::show(iterator iter)
-//{
-//  //std::cout << (*iter).first << " " << (*iter).second << "\n";
-//}
 
 lab::PhoneBook::iterator lab::PhoneBook::replace(iterator iter, record_t &src)
 {
@@ -70,4 +55,3 @@ void lab::PhoneBook::pushBack(record_t &src)
 {
   return list_.push_back(src);
 }
-

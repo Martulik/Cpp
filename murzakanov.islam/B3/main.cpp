@@ -14,6 +14,10 @@ int main(int argc, char* argv[])
   {
     code = 1;
   }
+  if (!code && !murzakanov::checkIsNum(argv[1]))
+  {
+    code = 1;
+  }
   if (!code && atoi(argv[1]) == 1)
   {
     murzakanov::task1();

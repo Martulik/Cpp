@@ -11,8 +11,6 @@ namespace ivanova
     int key1;
     int key2;
     std::string str;
-
-    bool operator >(const DataStruct &data) const;
   };
 }
 #endif

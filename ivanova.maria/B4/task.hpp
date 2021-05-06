@@ -10,10 +10,16 @@ namespace ivanova
 {
   template < typename T > int task(std::vector < T > &vector)
   {
-    readVector(vector);
-    sortVector(vector);
-    printVector(vector);
-    return 0;
+    if (readVector(vector))
+    {
+      sortVector(vector);
+      printVector(vector);
+      return 0;
+    }
+    else
+    {
+      return 1;
+    }
   }
 }
 

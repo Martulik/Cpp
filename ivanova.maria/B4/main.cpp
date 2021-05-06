@@ -7,6 +7,5 @@ namespace iva = ivanova;
 int main()
 {
   std::vector < iva::DataStruct > vector;
-  iva::task(vector);
-  return 0;
+  return iva::task(vector);
 }

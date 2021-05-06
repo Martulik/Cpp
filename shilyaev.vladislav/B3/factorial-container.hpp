@@ -15,8 +15,6 @@ namespace shilyaev {
       Iterator operator++(int);
       Iterator &operator--();
       Iterator operator--(int);
-      friend bool operator==(const Iterator &a, const Iterator &b);
-      friend bool operator!=(const Iterator &a, const Iterator &b);
     private:
       ValueType value_;
       ValueType lastMultiplier_;
@@ -25,6 +23,9 @@ namespace shilyaev {
     Iterator begin() const;
     Iterator end() const;
   };
+
+  bool operator==(const FactorialContainer::Iterator &a, const FactorialContainer::Iterator &b);
+  bool operator!=(const FactorialContainer::Iterator &a, const FactorialContainer::Iterator &b);
 }
 
 #endif

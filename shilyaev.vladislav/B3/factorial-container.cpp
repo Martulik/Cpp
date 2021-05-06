@@ -50,7 +50,7 @@ namespace shilyaev {
 
   bool operator==(const FactorialContainer::Iterator &a, const FactorialContainer::Iterator &b)
   {
-    return a.value_ == b.value_;
+    return *a == *b;
   }
 
   bool operator!=(const FactorialContainer::Iterator &a, const FactorialContainer::Iterator &b)

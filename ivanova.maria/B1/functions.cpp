@@ -16,11 +16,11 @@ void iva::fillRandom(double* array, int size)
   }
 }
 
-bool iva::checkIsNumber(const std::string& str)
+bool iva::checkIsNumber(const char* str)
 {
-  for (int i = 0; i < int(str.length()); i++)
+  for (size_t i = 0; i < (strlen(str)); i++)
   {
-    if (str[i] < '0' || str[i] > '9')
+    if ((str[i] == '\n') ||(!isdigit(str[i])))
     {
       return false;
     }
@@ -30,19 +30,14 @@ bool iva::checkIsNumber(const std::string& str)
 
 int iva::charToInt(char* string)
 {
-  std::string str = string;
   int result = 0;
-  if (str.empty())
+  if (checkIsNumber(string))
+  {
+    result = std::atoi(string);
+    return result;
+  }
+  else
   {
     return {};
   }
-  for (std::string::const_iterator i = str.cbegin(); i < str.cend(); i++)
-  {
-    if (*i < '0' || *i > '9')
-    {
-      return {};
-    }
-    result += *i - '0';
-  }
-  return result;
 }

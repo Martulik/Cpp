@@ -5,6 +5,8 @@
 
 namespace iva = ivanova;
 
+const int maxSize = 3;
+
 namespace ivanova
 {
   int random()

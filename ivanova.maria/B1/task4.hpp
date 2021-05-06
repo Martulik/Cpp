@@ -2,7 +2,6 @@
 #define TASK4_HPP
 
 #include <iostream>
-#include "task4.hpp"
 #include "functions.hpp"
 
 namespace ivanova

@@ -1,10 +1,8 @@
 #include "task2.hpp"
-
+#include "functions.hpp"
 #include <iostream>
 #include <vector>
 #include <memory>
-
-#include "functions.hpp"
 
 namespace iva = ivanova;
 
@@ -47,4 +45,3 @@ int iva::task2(const char *fileName)
   }
   return 0;
 }
-

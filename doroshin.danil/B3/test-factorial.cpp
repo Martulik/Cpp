@@ -1,5 +1,4 @@
 #include <boost/test/unit_test.hpp>
-#include <iostream>
 #include "factorials.hpp"
 
 namespace dan = doroshin;

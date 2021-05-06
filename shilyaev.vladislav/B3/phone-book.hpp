@@ -24,8 +24,9 @@ namespace shilyaev {
     void moveFirst(const std::string &bookmarkName);
     void moveLast(const std::string &bookmarkName);
   private:
-    using Iterator = std::list< Entry >::iterator;
-    std::list< Entry > entries_;
+    using EntriesContainer = std::list< Entry >;
+    using Iterator = EntriesContainer::iterator;
+    EntriesContainer entries_;
     std::map< std::string, Iterator > bookmarks_;
   };
 }

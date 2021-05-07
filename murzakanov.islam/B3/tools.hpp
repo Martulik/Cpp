@@ -1,10 +1,7 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
-#include <cstddef>
-#include <sstream>
-#include <string>
-#include <iostream>
+#include <iosfwd>
 
 namespace murzakanov
 {

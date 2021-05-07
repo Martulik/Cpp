@@ -9,20 +9,20 @@ iva::Bookmarks::Bookmarks()
   bookmarks_["current"] = phoneBook_.begin();
 }
 
-void iva::Bookmarks::add(const PhoneBook::Record &record)
+void iva::Bookmarks::add(const ivanova::Record &record)
 {
-  phoneBook_.add(record);
-  if (phoneBook_.size() == 1)
+  if (!isEmpty())
   {
-    std::for_each(bookmarks_.begin(), bookmarks_.end(), [&](auto &iter)
-    {
-        iter.second = phoneBook_.begin();
-    }
-    );
+    phoneBook_.add(record);
+  }
+  else
+  {
+    phoneBook_.add(record);
+    bookmarks_["current"] = phoneBook_.begin();
   }
 }
 
-void iva::Bookmarks::store(const PhoneBook::Record &data)
+void iva::Bookmarks::store(const std::pair < std::string, std::string > &data)
 {
   iterator iter = bookmarks_.find(data.first);
   if (iter != bookmarks_.end())
@@ -31,7 +31,7 @@ void iva::Bookmarks::store(const PhoneBook::Record &data)
   }
 }
 
-void iva::Bookmarks::insert(Bookmarks::InsertType dir, const std::string &markName, const PhoneBook::Record &rec)
+void iva::Bookmarks::insert(Bookmarks::InsertType dir, const std::string &markName, const iva::Record &rec)
 {
   iterator iter = bookmarks_.find(markName);
   if (iter != bookmarks_.end())
@@ -47,7 +47,7 @@ void iva::Bookmarks::insert(Bookmarks::InsertType dir, const std::string &markNa
     if (dir == InsertType::AFTER)
     {
       phoneBook_.insert(std::next(iter->second), rec);
-      bookmarks_.emplace(rec.first, std::next(iter->second));
+      bookmarks_.emplace(rec.data.first, std::next(iter->second));
     }
   }
 }
@@ -91,17 +91,21 @@ void iva::Bookmarks::show(const std::string &markName)
     std::cout << "<EMPTY>\n";
     return;
   }
-  std::cout << iter->second << '\n';
+  std::cout << *iter->second;
 }
 
 void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove position)
 {
   iterator it = bookmarks_.find(markName);
-  if (position == positionMove::FIRST)
+  if (it == bookmarks_.end())
+  {
+    std::cerr << "<INVALID COMMAND>\n";
+  }
+  else if (position == positionMove::FIRST)
   {
     it->second = phoneBook_.begin();
   }
-  if (position == positionMove::LAST)
+  else if (position == positionMove::LAST)
   {
     it->second = --phoneBook_.end();
   }
@@ -110,7 +114,14 @@ void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove p
 void iva::Bookmarks::move(const std::string &markName, int step)
 {
   iterator iter = bookmarks_.find(markName);
-  iter->second = phoneBook_.moveOnStep(iter->second, step);
+  if (iter == bookmarks_.end())
+  {
+    std::cerr << "<INVALID COMMAND>\n";
+  }
+  else
+  {
+    iter->second = phoneBook_.moveOnStep(iter->second, step);
+  }
 }
 
 bool iva::Bookmarks::isEmpty()

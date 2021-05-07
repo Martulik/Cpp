@@ -5,25 +5,11 @@ namespace iva = ivanova;
 
 namespace ivanova
 {
-  int doAdd(Bookmarks &bookmarks, std::stringstream &input);
-  int doStore(Bookmarks &bookmarks, std::stringstream &input);
-  int doInsert(Bookmarks &bookmarks, std::stringstream &input);
-  int doDelete(Bookmarks &bookmarks, std::stringstream &input);
-  int doShow(Bookmarks &bookmarks, std::stringstream &input);
-  int doMove(Bookmarks &bookmarks, std::stringstream &input);
+
 }
 
-int iva::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::stringstream &input)
+int iva::Commands::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::stringstream &input)
 {
-  const std::map< std::string, int (*)(iva::Bookmarks &, std::stringstream &) > commands
-  {
-    std::make_pair("add", doAdd),
-    std::make_pair("store", doStore),
-    std::make_pair("insert", doInsert),
-    std::make_pair("delete", doDelete),
-    std::make_pair("show", doShow),
-    std::make_pair("move", doMove)
-  };
   auto iter = commands.find(command);
   if (iter != commands.end())
   {
@@ -94,7 +80,7 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
     }
     else if (position == "after")
     {
-      bookmarks.insert(iva::Bookmarks::AFTER, mark,info);
+      bookmarks.insert(iva::Bookmarks::AFTER, mark, info);
     }
     else
     {

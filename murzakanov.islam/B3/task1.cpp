@@ -34,6 +34,10 @@ void murzakanov::task1()
       {
         bookInterface.add({number, name});
       }
+      else
+      {
+        std::cout << "<INVALID COMMAND>\n";
+      }
     }
     else if (command == "store")
     {

@@ -2,7 +2,6 @@
 #include "bookmarks.hpp"
 #include "commands.hpp"
 #include <iostream>
-#include <sstream>
 
 namespace iva = ivanova;
 

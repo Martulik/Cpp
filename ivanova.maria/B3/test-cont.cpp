@@ -4,8 +4,6 @@
 
 #include "container.hpp"
 
-class Iterator;
-
 namespace iva = ivanova;
 
 BOOST_AUTO_TEST_SUITE(testOfContainerFactorial)

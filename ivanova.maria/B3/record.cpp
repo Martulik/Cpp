@@ -43,7 +43,7 @@ bool iva::checkNumber(const std::string &number)
   }
   for (char i: number)
   {
-    if (!isdigit(i))
+    if (!std::isdigit(i))
     {
       return false;
     }
@@ -51,7 +51,7 @@ bool iva::checkNumber(const std::string &number)
   return true;
 }
 
-std::string iva::getName(std::string &name)
+std::string iva::getName(const std::string &name)
 {
   if (name.empty())
   {
@@ -61,15 +61,16 @@ std::string iva::getName(std::string &name)
   {
     return "";
   }
-  name.erase(name.begin());
+  std::string str = name;
+  str.erase(name.begin());
   size_t i;
-  for (i = 0; (i < name.size()) && (name[i] != '\"'); i++)
+  for (i = 0; (i < str.size()) && (str[i] != '\"'); i++)
   {
-    if (name[i] == '\\')
+    if (str[i] == '\\')
     {
-      if ((name[i + 1] == '\"') && (i + 2 < name.size()))
+      if ((str[i + 1] == '\"') && (i + 2 < str.size()))
       {
-        name.erase(i, 1);
+        str.erase(i, 1);
       }
       else
       {
@@ -77,16 +78,16 @@ std::string iva::getName(std::string &name)
       }
     }
   }
-  if (i == name.size())
+  if (i == str.size())
   {
     return "";
   }
-  name.erase(i);
-  if (name.empty())
+  str.erase(i);
+  if (str.empty())
   {
     return "";
   }
-  return name;
+  return str;
 }
 
 bool iva::checkMark(const std::string &mark)
@@ -97,7 +98,7 @@ bool iva::checkMark(const std::string &mark)
   }
   for (char i: mark)
   {
-    if ((!isalnum(i)) && (i != '-'))
+    if ((!std::isalnum(i)) && (i != '-'))
     {
       return false;
     }

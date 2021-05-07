@@ -13,7 +13,7 @@ namespace ivanova
   std::istream &operator >>(std::istream &in, Record &info);
   std::ostream &operator <<(std::ostream &out, Record &info);
 
-  std::string getName(std::string &name);
+  std::string getName(const std::string &name);
   bool checkNumber(const std::string &number);
   bool checkMark(const std::string &mark);
 }

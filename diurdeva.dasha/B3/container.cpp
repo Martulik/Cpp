@@ -3,7 +3,7 @@
 constexpr int MAX_POS = 11;
 constexpr int MIN_POS = 1;
 
-diurdeva::Container::IteratorFact::Iterator():
+diurdeva::Container::IteratorFact::IteratorFact():
   pos_(1),
   value_(1)
 {}

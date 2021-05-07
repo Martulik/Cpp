@@ -84,8 +84,8 @@ BOOST_AUTO_TEST_CASE(correct)
   dan::Entry ent;
   in >> ent;
   BOOST_CHECK(!in.fail());
-  BOOST_CHECK_EQUAL(ent.name.name_, "abc");
-  BOOST_CHECK_EQUAL(ent.number, 123);
+  BOOST_CHECK_EQUAL(ent.name_.name_, "abc");
+  BOOST_CHECK_EQUAL(ent.number_, 123);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

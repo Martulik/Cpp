@@ -10,8 +10,8 @@ namespace doroshin
   struct Entry
   {
     using number_t = unsigned long long;
-    number_t number;
-    Name name;
+    number_t number_;
+    Name name_;
   };
 
   std::istream& operator>>(std::istream&, Entry&);

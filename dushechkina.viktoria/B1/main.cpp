@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     return 1;
   }
   int taskNum = 0;
- 
+
   if (dushechkina::checkIsNumber(argv[1]))
   {
     taskNum = std::atoi(argv[1]);

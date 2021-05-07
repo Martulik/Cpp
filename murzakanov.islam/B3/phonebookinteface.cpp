@@ -101,9 +101,9 @@ void murzakanov::BookInterface::deleteNote(const std::string& bookmark, std::ost
   }
 }
 
-void murzakanov::BookInterface::show(const std::string& bookmark, std::ostream& out)
+void murzakanov::BookInterface::show(const std::string& bookmark, std::ostream& out) const
 {
-  iteratorType it = bookmarks_.find(bookmark);
+  constIteratorType  it = bookmarks_.find(bookmark);
   if (it != bookmarks_.end())
   {
     if (book_->isEmpty())

@@ -16,6 +16,10 @@ namespace murzakanov
   std::istream& readName(std::istream& in, std::string& name);
   bool checkIsNum(const std::string& number);
   bool checkIsSpace(const std::string& arg);
+  void invalidBookmark(std::ostream& out);
+  void empty(std::ostream& out);
+  void invalidCommand(std::ostream& out);
+  void invalidStep(std::ostream& out);
 }
 
 #endif

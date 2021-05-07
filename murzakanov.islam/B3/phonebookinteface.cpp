@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "phone-book.hpp"
+#include "tools.hpp"
 
 murzakanov::BookInterface::BookInterface(PhoneBook& book):
   book_(std::make_unique< PhoneBook >(book))
@@ -31,7 +32,7 @@ void murzakanov::BookInterface::store(const std::string& bookmark, const std::st
   }
   else
   {
-    out << "<INVALID BOOKMARK>\n";
+    murzakanov::invalidBookmark(out);
   }
 }
 
@@ -49,7 +50,7 @@ void murzakanov::BookInterface::insertBefore(const std::string& bookmark, const 
   }
   else
   {
-    out << "<INVALID COMMAND>\n";
+    murzakanov::invalidCommand(out);
   }
 }
 
@@ -67,7 +68,7 @@ void murzakanov::BookInterface::insertAfter(const std::string& bookmark, const n
   }
   else
   {
-    out << "<INVALID COMMAND>\n";
+    murzakanov::invalidCommand(out);
   }
 }
 
@@ -97,7 +98,7 @@ void murzakanov::BookInterface::deleteNote(const std::string& bookmark, std::ost
   }
   else
   {
-    out << "<INVALID BOOKMARK>\n";
+    murzakanov::invalidBookmark(out);
   }
 }
 
@@ -119,7 +120,7 @@ void murzakanov::BookInterface::show(const std::string& bookmark, std::ostream& 
   }
   else
   {
-    out << "<INVALID BOOKMARK>\n";
+    murzakanov::invalidBookmark(out);
   }
 }
 
@@ -128,7 +129,7 @@ void murzakanov::BookInterface::move(const std::string& bookmark, int steps, std
   iteratorType it = bookmarks_.find(bookmark);
   if (it == bookmarks_.end())
   {
-    out << "<INVALID BOOKMARK>\n";
+    murzakanov::invalidBookmark(out);
     return;
   }
   int distance = 0;
@@ -176,6 +177,6 @@ void murzakanov::BookInterface::move(const std::string& bookmark, const std::str
   }
   else
   {
-    out << "<INVALID BOOKMARK>\n";
+    murzakanov::invalidBookmark(out);
   }
 }

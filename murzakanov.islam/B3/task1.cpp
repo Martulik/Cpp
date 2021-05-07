@@ -25,7 +25,7 @@ void murzakanov::task1()
       in >> number;
       if (!mur::checkIsNum(number))
       {
-        std::cout << "<INVALID COMMAND>\n";
+        murzakanov::invalidCommand(std::cout);
         continue;
       }
       std::string name;
@@ -36,7 +36,7 @@ void murzakanov::task1()
       }
       else
       {
-        std::cout << "<INVALID COMMAND>\n";
+        murzakanov::invalidCommand(std::cout);
       }
     }
     else if (command == "store")
@@ -55,12 +55,12 @@ void murzakanov::task1()
       in >> place >> mark >> number;
       if (!mur::checkIsNum(number))
       {
-        std::cout << "<INVALID COMMAND>\n";
+        murzakanov::invalidCommand(std::cout);
         continue;
       }
       if (place != "before" && place != "after")
       {
-        std::cout << "<INVALID COMMAND>\n";
+        murzakanov::invalidCommand(std::cout);
         continue;
       }
       mur::readName(in, name);
@@ -107,13 +107,13 @@ void murzakanov::task1()
         }
         else
         {
-          std::cout << "<INVALID STEP>\n";
+          murzakanov::invalidStep(std::cout);
         }
       }
     }
     else
     {
-      std::cout << "<INVALID COMMAND>\n";
+      murzakanov::invalidCommand(std::cout);
     }
   }
 }

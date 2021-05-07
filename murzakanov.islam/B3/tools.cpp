@@ -55,3 +55,23 @@ bool murzakanov::checkIsSpace(const std::string& arg)
 {
   return (arg.find(' ') != std::string::npos);
 }
+
+void murzakanov::invalidBookmark(std::ostream& out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void murzakanov::empty(std::ostream& out)
+{
+  out << "<EMPTY>\n";
+}
+
+void murzakanov::invalidCommand(std::ostream& out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void murzakanov::invalidStep(std::ostream& out)
+{
+  out << "<INVALID STEP>\n";
+}

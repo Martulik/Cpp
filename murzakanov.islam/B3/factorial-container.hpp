@@ -15,10 +15,10 @@ namespace murzakanov
       Iterator();
       Iterator(size_t num);
 
-      Iterator& operator ++();
-      Iterator operator ++(int);
-      Iterator& operator --();
-      Iterator operator --(int);
+      Iterator& operator++();
+      Iterator operator++(int);
+      Iterator& operator--();
+      Iterator operator--(int);
 
       size_t& operator*();
       size_t* operator->();

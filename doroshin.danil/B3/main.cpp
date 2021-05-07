@@ -144,7 +144,7 @@ int main(int argc, char* argv[])
     return task1();
   }
   else if(task == 2) {
-    dan::Factorials fact(1, 10);
+    constexpr dan::Factorials fact(1, 10);
     std::ostream_iterator< dan::Factorials::value_t > out(std::cout, " ");
     std::copy(fact.begin(), fact.end(), out);
     std::cout << '\n';

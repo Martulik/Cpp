@@ -12,10 +12,10 @@ namespace doroshin
 
     class iterator;
 
-    Factorials(value_t begin, value_t end);
+    constexpr Factorials(value_t begin, value_t end);
 
-    iterator begin();
-    iterator end();
+    iterator begin() const;
+    iterator end() const;
   private:
     value_t begin_;
     value_t end_;
@@ -27,9 +27,7 @@ namespace doroshin
   public:
     using reference = value_type;
 
-    iterator(value_type);
-
-    friend bool operator==(const iterator&, const iterator&);
+    constexpr iterator(value_type);
 
     reference operator*() const;
 
@@ -43,8 +41,27 @@ namespace doroshin
     value_type value_;
   };
 
+  constexpr Factorials::value_t factorial(unsigned int n)
+  {
+    Factorials::value_t res = 1;
+    for(; n > 1; --n) {
+      res *= n;
+    }
+    return res;
+  }
+
   bool operator==(const Factorials::iterator&, const Factorials::iterator&);
   bool operator!=(const Factorials::iterator&, const Factorials::iterator&);
 }
+
+constexpr doroshin::Factorials::Factorials(value_t begin, value_t end):
+  begin_(begin),
+  end_(end)
+{}
+
+constexpr doroshin::Factorials::iterator::iterator(value_type n):
+  arg_(n),
+  value_(factorial(n))
+{}
 
 #endif //FACTORIALS_HPP

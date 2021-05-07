@@ -29,7 +29,7 @@ void murzakanov::task1()
         continue;
       }
       std::string name;
-      mur::readName(in, name, std::cout);
+      mur::readName(in, name);
       if (in)
       {
         bookInterface.add({number, name});
@@ -63,7 +63,7 @@ void murzakanov::task1()
         std::cout << "<INVALID COMMAND>\n";
         continue;
       }
-      mur::readName(in, name, std::cout);
+      mur::readName(in, name);
       if (place == "before")
       {
         bookInterface.insertBefore(mark, {number, name}, std::cout);

@@ -4,13 +4,12 @@
 #include <string>
 #include <iostream>
 
-std::istream& murzakanov::readName(std::istream& in, std::string& name, std::ostream& out)
+std::istream& murzakanov::readName(std::istream& in, std::string& name)
 {
   name.clear();
   in >> std::ws;
   if (in.get() != '"')
   {
-    out << "<INVALID COMMAND>\n";
     in.setstate(std::ios_base::failbit);
     return in;
   }

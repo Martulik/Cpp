@@ -83,7 +83,7 @@ void iva::Bookmarks::show(const std::string &markName)
   iterator iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end())
   {
-    std::cerr << "<INVALID BOOKMARK>\n";
+    std::cout << "<INVALID BOOKMARK>\n";
     return;
   }
   if (phoneBook_.isEmpty())
@@ -99,7 +99,7 @@ void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove p
   iterator it = bookmarks_.find(markName);
   if (it == bookmarks_.end())
   {
-    std::cerr << "<INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
   }
   else if (position == positionMove::FIRST)
   {
@@ -116,7 +116,7 @@ void iva::Bookmarks::move(const std::string &markName, int step)
   iterator iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end())
   {
-    std::cerr << "<INVALID COMMAND>\n";
+    std::cout << "<INVALID COMMAND>\n";
   }
   else
   {

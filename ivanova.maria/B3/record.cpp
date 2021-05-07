@@ -1,5 +1,5 @@
 #include "record.hpp"
-
+#include <sstream>
 namespace iva = ivanova;
 
 std::istream &iva::operator >>(std::istream &in, ivanova::Record &info)
@@ -16,6 +16,35 @@ std::istream &iva::operator >>(std::istream &in, ivanova::Record &info)
   }
   std::string name;
   std::getline(in >> std::ws, name);
+  if (name.empty() || name.front() != '\"')
+  {
+    return in;
+  }
+  name.erase(name.begin());
+  size_t i;
+  for (i = 0; (i < name.size()) && (name[i] != '\"'); i++)
+  {
+    if (name[i] == '\\')
+    {
+      if ((name[i + 1] == '\"') && (i + 2 < name.size()))
+      {
+        name.erase(i, 1);
+      }
+      else
+      {
+        return in;
+      }
+    }
+  }
+  if (i == name.size())
+  {
+    return in;
+  }
+  name.erase(i);
+  if (name.empty())
+  {
+    return in;
+  }
   if (name.empty())
   {
     return in;
@@ -24,7 +53,6 @@ std::istream &iva::operator >>(std::istream &in, ivanova::Record &info)
   {
     name.pop_back();
   }
-  name = ivanova::getName(name);
   info.data.second = name;
   return in;
 }
@@ -49,45 +77,6 @@ bool iva::checkNumber(const std::string &number)
     }
   }
   return true;
-}
-
-std::string iva::getName(const std::string &name)
-{
-  if (name.empty())
-  {
-    return "";
-  }
-  if (name.front() != '\"')
-  {
-    return "";
-  }
-  std::string str = name;
-  str.erase(name.begin());
-  size_t i;
-  for (i = 0; (i < str.size()) && (str[i] != '\"'); i++)
-  {
-    if (str[i] == '\\')
-    {
-      if ((str[i + 1] == '\"') && (i + 2 < str.size()))
-      {
-        str.erase(i, 1);
-      }
-      else
-      {
-        return "";
-      }
-    }
-  }
-  if (i == str.size())
-  {
-    return "";
-  }
-  str.erase(i);
-  if (str.empty())
-  {
-    return "";
-  }
-  return str;
 }
 
 bool iva::checkMark(const std::string &mark)

@@ -64,13 +64,20 @@ void murzakanov::task1()
         continue;
       }
       mur::readName(in, name);
-      if (place == "before")
+      if (in)
       {
-        bookInterface.insertBefore(mark, {number, name}, std::cout);
+        if (place == "before")
+        {
+          bookInterface.insertBefore(mark, {number, name}, std::cout);
+        }
+        else if (place == "after")
+        {
+          bookInterface.insertAfter(mark, {number, name}, std::cout);
+        }
       }
-      else if (place == "after")
+      else
       {
-        bookInterface.insertAfter(mark, {number, name}, std::cout);
+        murzakanov::invalidCommand(std::cout);
       }
     }
     else if (command == "delete")

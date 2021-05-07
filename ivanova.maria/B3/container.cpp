@@ -58,12 +58,11 @@ bool iva::Container::Iterator::operator !=(const Iterator &other) const
   return !(*this == other);
 }
 
-size_t iva::Container::Iterator::factorial(const size_t number)
+constexpr int iva::Container::Iterator::factorial(const size_t number)
 {
-  size_t temp = 1;
-  for (size_t i = 1; i <= number; i++)
+  if (number == 1)
   {
-    temp *= i;
+    return 1;
   }
-  return temp;
+  return number * factorial(number - 1);
 }

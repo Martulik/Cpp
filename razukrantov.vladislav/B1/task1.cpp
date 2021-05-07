@@ -8,29 +8,6 @@
 #include "sorting.hpp"
 #include "functions.hpp"
 
-template <typename T >
-std::function < bool(T, T) > getSortOrder(const char* order)
-{
-  std::string ascending = "ascending";
-  std::string descending = "descending";
-  if (order == nullptr)
-  {
-    throw std::invalid_argument("Incorrect order");
-  }
-  if (order == ascending)
-  {
-    return std::greater< T >();
-  }
-  if (order == descending)
-  {
-    return std::less< T >();
-  }
-  else
-  {
-    throw std::invalid_argument("Incorrect order");
-  }
-}
-
 void razukrantov::task1(const char* order)
 {
   std::vector<int> vector;

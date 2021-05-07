@@ -71,12 +71,12 @@ bool murzakanov::FactorialContainer::Iterator::operator!=(const Iterator& rhs) c
   return !(value_ == rhs.value_);
 }
 
-mur::FactorialContainer::Iterator mur::FactorialContainer::begin()
+mur::FactorialContainer::Iterator mur::FactorialContainer::begin() const
 {
   return Iterator(1);
 }
 
-mur::FactorialContainer::Iterator mur::FactorialContainer::end()
+mur::FactorialContainer::Iterator mur::FactorialContainer::end() const
 {
   return Iterator(MAX_INDEX);
 }

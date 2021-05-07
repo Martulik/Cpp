@@ -1,25 +1,28 @@
-#include <cctype>
 #include <iostream>
 #include "commands.hpp"
 
 namespace iva = ivanova;
 
+namespace ivanova
+{
+  int doAdd(Bookmarks &bookmarks, std::stringstream &input);
+  int doStore(Bookmarks &bookmarks, std::stringstream &input);
+  int doInsert(Bookmarks &bookmarks, std::stringstream &input);
+  int doDelete(Bookmarks &bookmarks, std::stringstream &input);
+  int doShow(Bookmarks &bookmarks, std::stringstream &input);
+  int doMove(Bookmarks &bookmarks, std::stringstream &input);
+}
+
 int iva::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::stringstream &input)
 {
-  int (*add)(iva::Bookmarks &bookmarks, std::stringstream &input) = doAdd;
-  int (*store)(iva::Bookmarks &bookmarks, std::stringstream &input) = doStore;
-  int (*insert)(iva::Bookmarks &bookmarks, std::stringstream &input) = doInsert;
-  int (*deleteBM)(iva::Bookmarks &bookmarks, std::stringstream &input) = doDelete;
-  int (*show)(iva::Bookmarks &bookmarks, std::stringstream &input) = doShow;
-  int (*move)(iva::Bookmarks &bookmarks, std::stringstream &input) = doMove;
   const std::map< std::string, int (*)(iva::Bookmarks &, std::stringstream &) > commands
   {
-    std::make_pair("add", add),
-    std::make_pair("store", store),
-    std::make_pair("insert", insert),
-    std::make_pair("delete", deleteBM),
-    std::make_pair("show", show),
-    std::make_pair("move", move)
+    std::make_pair("add", doAdd),
+    std::make_pair("store", doStore),
+    std::make_pair("insert", doInsert),
+    std::make_pair("delete", doDelete),
+    std::make_pair("show", doShow),
+    std::make_pair("move", doMove)
   };
   auto iter = commands.find(command);
   if (iter != commands.end())
@@ -35,21 +38,13 @@ int iva::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::strings
 
 int iva::doAdd(iva::Bookmarks &bookmarks, std::stringstream &input)
 {
-  std::string number;
-  input >> std::ws >> number;
-  std::string name;
-  std::getline(input >> std::ws, name);
-  if ((!name.empty()) && (name.back() == '\r'))
-  {
-    name.pop_back();
-  }
-  name = iva::getName(name);
-  if (name.empty() || !iva::checkNumber(number))
+  Record info;
+  input >> info;
+  if (info.data.second.empty() || !iva::checkNumber(info.data.first))
   {
     std::cout << "<INVALID COMMAND>\n";
     return 1;
   }
-  pair info = {number, name};
   bookmarks.add(info);
   return 1;
 }
@@ -69,7 +64,8 @@ int iva::doStore(iva::Bookmarks &bookmarks, std::stringstream &input)
     std::cerr << "<INVALID COMMAND>\n";
     return {};
   }
-  bookmarks.store({nameOfMark, newNameOfMark});
+  pair data= {nameOfMark, newNameOfMark};
+  bookmarks.store(data);
   return 0;
 }
 
@@ -79,21 +75,13 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
   input >> std::ws >> position;
   std::string mark;
   input >> std::ws >> mark;
-  std::string number;
-  input >> std::ws >> number;
-  std::string name;
-  std::getline(input >> std::ws, name);
-  name = iva::getName(name);
-  if (!iva::checkMark(mark) || !iva::checkNumber(number) || name.empty())
+  Record info;
+  input >> info;
+  if (!iva::checkMark(mark) || !iva::checkNumber(info.data.first) || info.data.second.empty())
   {
     std::cout << "<INVALID COMMAND>\n";
     return {};
   }
-  if (name.back() == '\r')
-  {
-    name.pop_back();
-  }
-  pair info = {number, name};
   if (bookmarks.isEmpty())
   {
     bookmarks.add(info);
@@ -206,77 +194,4 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
     return 1;
   }
   return 0;
-}
-
-namespace ivanova
-{
-  bool checkNumber(const std::string &number)
-  {
-    if (number.empty())
-    {
-      return false;
-    }
-    for (char i: number)
-    {
-      if (!isdigit(i))
-      {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  std::string getName(std::string &name)
-  {
-    if (name.empty())
-    {
-      return "";
-    }
-    if (name.front() != '\"')
-    {
-      return "";
-    }
-    name.erase(name.begin());
-    size_t i;
-    for (i = 0; (i < name.size()) && (name[i] != '\"'); i++)
-    {
-      if (name[i] == '\\')
-      {
-        if ((name[i + 1] == '\"') && (i + 2 < name.size()))
-        {
-          name.erase(i, 1);
-        }
-        else
-        {
-          return "";
-        }
-      }
-    }
-    if (i == name.size())
-    {
-      return "";
-    }
-    name.erase(i);
-    if (name.empty())
-    {
-      return "";
-    }
-    return name;
-  }
-
-  bool checkMark(const std::string &mark)
-  {
-    if (mark.empty())
-    {
-      return false;
-    }
-    for (char i: mark)
-    {
-      if ((!isalnum(i)) && (i != '-'))
-      {
-        return false;
-      }
-    }
-    return true;
-  }
 }

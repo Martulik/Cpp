@@ -2,22 +2,15 @@
 #include "factorial-container.hpp"
 #include <algorithm>
 
-size_t getFactorial(const int n)
-{
-  if (n == 0)
-  {
-    return 1;
-  }
-  return getFactorial(n - 1) * n;
-}
-
 void doTestFactorials()
 {
   murzakanov::FactorialContainer container;
   auto it = container.begin();
+  size_t factorial = 1;
   for (int i = 1; i < 10; i++)
   {
-    BOOST_REQUIRE_EQUAL(getFactorial(i), *it);
+    factorial *= i;
+    BOOST_REQUIRE_EQUAL(factorial, *it);
     it++;
   }
 }

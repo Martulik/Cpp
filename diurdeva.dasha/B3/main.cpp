@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <cstring>
 #include <iostream>
 #include "task1.hpp"
 #include "task2.hpp"

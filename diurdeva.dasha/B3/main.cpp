@@ -3,6 +3,11 @@
 #include "task1.hpp"
 #include "task2.hpp"
 
+bool isTaskNumber(const char *src)
+{
+  return (std::strlen(src) == 1) && std::isdigit(src[0]) && (std::atoi(src) == 1 || std::atoi(src) == 2);
+}
+
 int main(int argc, char* argv[])
 {
   try
@@ -12,12 +17,11 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid arguments");
     }
 
-    char* ptr = nullptr;
-    int taskNumber = std::strtol(argv[1], &ptr, 0);
-    if (*ptr || (taskNumber != 1 && taskNumber != 2))
+    if (!isTaskNumber(argv[1]))
     {
-      throw std::invalid_argument("Invalid arguments");
+      throw std::invalid_argument("Invalid task number");
     }
+    int taskNumber = std::atoi(argv[1]);
 
     switch (taskNumber)
     {

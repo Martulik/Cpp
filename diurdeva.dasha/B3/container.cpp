@@ -1,6 +1,11 @@
 #include "container.hpp"
 
-diurdeva::Container::IteratorFact::IteratorFact(size_t pos) :
+diurdeva::Container::IteratorFact::Iterator():
+  pos_(1),
+  value_(1)
+{}
+
+diurdeva::Container::IteratorFact::IteratorFact(size_t pos):
   pos_(pos),
   value_(factor(pos))
 {}
@@ -54,7 +59,7 @@ bool diurdeva::Container::IteratorFact::operator!=(const Container::IteratorFact
   return !(*this == rhs);
 }
 
-inline size_t diurdeva::Container::IteratorFact::factor(size_t number)
+constexpr size_t diurdeva::Container::IteratorFact::factor(size_t number)
 {
   size_t result = 1;
   for (size_t i = 1; i <= number; ++i)

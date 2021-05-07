@@ -11,9 +11,10 @@ namespace diurdeva{
     class IteratorFact : public std::iterator<std::bidirectional_iterator_tag, size_t>
     {
     public:
-      static const int MAX_POS = 11;
-      static const int MIN_POS = 1;
+      constexpr int MAX_POS = 11;
+      constexpr int MIN_POS = 1;
 
+      IteratorFact();
       IteratorFact(size_t pos);
 
       const size_t& operator*() const;
@@ -27,7 +28,7 @@ namespace diurdeva{
     private:
       size_t pos_;
       size_t value_;
-      inline size_t factor(size_t number);
+      constexpr size_t factor(size_t number);
     };
 
     IteratorFact begin();

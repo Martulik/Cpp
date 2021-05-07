@@ -8,7 +8,7 @@
 namespace dushechkina
 {
   void fillRandom(double* array, int size);
-
+  bool checkIsNumber(const char* num);
   template< class T >
   void print(T& container, const char* separator)
   {

@@ -18,13 +18,25 @@ int main(int argc, char* argv[])
     return 1;
   }
   int taskNum = 0;
-  std::stringstream in(argv[1]);
-  in >> taskNum;
-  if (!in.eof())
+  //std::stringstream in(argv[1]);
+  //in >> taskNum;
+
+  //if (!in.eof())
+  //{
+  //  std::cerr << "Incorrect input of task number";
+  //  return 1;
+  //}
+  if (dushechkina::checkIsNumber(argv[1]))
+  {
+    taskNum = std::atoi(argv[1]);
+  }
+
+  if (taskNum == 0)
   {
     std::cerr << "Incorrect input of task number";
     return 1;
   }
+
   switch (taskNum)
   {
   case 1:

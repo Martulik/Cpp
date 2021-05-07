@@ -4,15 +4,6 @@
 #include <string>
 #include <iostream>
 
-size_t murzakanov::getValue(const size_t num)
-{
-  if (num == 1)
-  {
-    return 1;
-  }
-  return num * getValue(num - 1);
-}
-
 std::istream& murzakanov::readName(std::istream& in, std::string& name, std::ostream& out)
 {
   name.clear();

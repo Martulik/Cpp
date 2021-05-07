@@ -7,7 +7,7 @@
 #include "tools.hpp"
 
 namespace mur = murzakanov;
-const size_t MAX_INDEX = 11;
+constexpr size_t MAX_INDEX = 11;
 
 mur::FactorialContainer::Iterator::Iterator():
   num_(0),

@@ -20,7 +20,7 @@ void dan::PhoneBook::add(Entry entry)
   }
 }
 
-void dan::PhoneBook::store(const Name& from, const Name& to)
+void dan::PhoneBook::store(const std::string& from, const std::string& to)
 {
   try {
     bookmarks_.insert({to, bookmarks_.at(from)});
@@ -30,7 +30,7 @@ void dan::PhoneBook::store(const Name& from, const Name& to)
   }
 }
 
-void dan::PhoneBook::insert_before(const Name& mark, Entry entry)
+void dan::PhoneBook::insert_before(const std::string& mark, Entry entry)
 {
   try {
     entries_.emplace(bookmarks_.at(mark), std::move(entry));
@@ -43,7 +43,7 @@ void dan::PhoneBook::insert_before(const Name& mark, Entry entry)
   }
 }
 
-void dan::PhoneBook::insert_after(const Name& mark, Entry entry)
+void dan::PhoneBook::insert_after(const std::string& mark, Entry entry)
 {
   try {
     Iter i = bookmarks_.at(mark);
@@ -60,7 +60,7 @@ void dan::PhoneBook::insert_after(const Name& mark, Entry entry)
   }
 }
 
-void dan::PhoneBook::delete_contents(const Name& mark)
+void dan::PhoneBook::delete_contents(const std::string& mark)
 {
   try {
     Iter del = bookmarks_.at(mark);
@@ -79,7 +79,7 @@ void dan::PhoneBook::delete_contents(const Name& mark)
   }
 }
 
-dan::PhoneBook::Entry dan::PhoneBook::show(const Name& mark) const
+dan::Entry dan::PhoneBook::show(const std::string& mark) const
 {
   Iter res;
   try {
@@ -94,7 +94,7 @@ dan::PhoneBook::Entry dan::PhoneBook::show(const Name& mark) const
   return *res;
 }
 
-void dan::PhoneBook::move_front(const Name& mark)
+void dan::PhoneBook::move_front(const std::string& mark)
 {
   try {
     bookmarks_.at(mark) = entries_.begin();
@@ -104,7 +104,7 @@ void dan::PhoneBook::move_front(const Name& mark)
   }
 }
 
-void dan::PhoneBook::move_back(const Name& mark)
+void dan::PhoneBook::move_back(const std::string& mark)
 {
   try {
     if(!entries_.empty()) {
@@ -116,7 +116,7 @@ void dan::PhoneBook::move_back(const Name& mark)
   }
 }
 
-void dan::PhoneBook::move(const Name& mark, int steps)
+void dan::PhoneBook::move(const std::string& mark, int steps)
 {
   try {
     Iter& i = bookmarks_.at(mark);

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 #include <sstream>
 #include <string>
 #include "lab-exceptions.hpp"
@@ -7,34 +6,6 @@
 #include "factorials.hpp"
 
 namespace dan = doroshin;
-
-std::istream& quotedString(std::istream& in, std::string& res)
-{
-  res.clear();
-  while(in.get() != '"') {
-    if(!in) {
-      return in;
-    }
-  }
-  while(!in.eof()) {
-    char next = in.get();
-    if(in.good()) {
-      if(next == '\\') {
-        res += in.get();
-      }
-      else if(next != '"') {
-        res += next;
-      }
-      else {
-        break;
-      }
-    }
-    else {
-      in.setstate(std::ios::failbit);
-    }
-  }
-  return in;
-}
 
 int task1()
 {
@@ -47,14 +18,13 @@ int task1()
     line >> command;
     try {
       if(command == "add") {
-        dan::PhoneBook::Number number;
-        std::string name;
-        line >> number;
-        if(!line || line.peek() != ' ' || !quotedString(line, name)) {
+        dan::Entry entry;
+        line >> entry;
+        if(!line) {
           throw dan::InvalidCommandException();
         }
         else {
-          book.add({ number, std::move(name) });
+          book.add(std::move(entry));
         }
       }
       else if(command == "store") {
@@ -63,17 +33,17 @@ int task1()
         book.store(from, to);
       }
       else if(command == "insert") {
-        std::string where, mark, name;
-        dan::PhoneBook::Number number;
-        line >> where >> mark >> number;
-        if(!line || line.peek() != ' ' || !quotedString(line, name)) {
+        std::string where, mark;
+        dan::Entry entry;
+        line >> where >> mark >> entry;
+        if(!line) {
           throw dan::InvalidCommandException();
         }
         if(where == "before") {
-          book.insert_before(mark, { number, std::move(name) });
+          book.insert_before(mark, std::move(entry));
         }
         else if(where == "after") {
-          book.insert_after(mark, { number, std::move(name) });
+          book.insert_after(mark, std::move(entry));
         }
         else {
           throw dan::InvalidCommandException();
@@ -88,9 +58,8 @@ int task1()
         std::string mark;
         line >> mark;
         try {
-          dan::PhoneBook::Entry entry = book.show(mark);
-          std::cout << std::setfill('0') << std::setw(12) << entry.first << ' ' << entry.second << '\n';
-          std::cout.fill(' ');
+          dan::Entry entry = book.show(mark);
+          std::cout << entry << '\n';
         }
         catch(const std::out_of_range& e) {
           std::cout << e.what() << '\n';

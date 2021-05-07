@@ -1,38 +1,33 @@
 #ifndef PHONE_BOOK_HPP
 #define PHONE_BOOK_HPP
 
-#include <utility>
-#include <exception>
 #include <string>
 #include <list>
 #include <map>
+#include "entry.hpp"
 
 namespace doroshin
 {
   class PhoneBook
   {
   public:
-    using Number = unsigned long long;
-    using Name = std::string;
-    using Entry = std::pair< Number, Name >;
-
     explicit PhoneBook();
 
     void add(Entry);
-    void store(const Name& from, const Name& to);
-    void delete_contents(const Name& mark);
-    void insert_before(const Name& mark, Entry);
-    void insert_after(const Name& mark, Entry);
+    void store(const std::string& from, const std::string& to);
+    void delete_contents(const std::string& mark);
+    void insert_before(const std::string& mark, Entry);
+    void insert_after(const std::string& mark, Entry);
 
-    void move_front(const Name& mark);
-    void move_back(const Name& mark);
-    void move(const Name& mark, int steps);
+    void move_front(const std::string& mark);
+    void move_back(const std::string& mark);
+    void move(const std::string& mark, int steps);
 
-    Entry show(const Name& mark) const;
+    Entry show(const std::string& mark) const;
   private:
     using Iter = typename std::list< Entry >::iterator;
     std::list< Entry > entries_;
-    std::map< Name, Iter > bookmarks_;
+    std::map< std::string, Iter > bookmarks_;
   };
 }
 

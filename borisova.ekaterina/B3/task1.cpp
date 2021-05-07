@@ -102,7 +102,6 @@ void lab::doTask1(std::istream& input, std::ostream& output)
       }
       else
       {
-        size_t k = 0;
         if (!isdigit(step[0]) && (step[0] != '-') && (step[0] != '+'))
         {
           lab::invalidStep(output);

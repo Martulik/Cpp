@@ -13,19 +13,27 @@ int main(int argc, char *argv[])
     std::cerr << "Incorrect number of parameters!";
     return exitCode;
   }
-  const int taskNum = std::atoi(argv[1]);
-  if ((taskNum != 1 && taskNum != 2))
+  if (std::isdigit(argv[1][0]) && argv[1][1] == '\r')
   {
-    std::cerr << "Incorrect task number";
-    return exitCode;
-  }
-  else if (taskNum == 1)
-  {
-    exitCode = iva::task1();
+    const int taskNum = std::atoi(argv[1]);
+    if ((taskNum != 1 && taskNum != 2))
+    {
+      std::cerr << "Incorrect task number";
+      return exitCode;
+    }
+    else if (taskNum == 1)
+    {
+      exitCode = iva::task1();
+    }
+    else
+    {
+      exitCode = iva::task2();
+    }
   }
   else
   {
-    exitCode = iva::task2();
+    std::cerr << "Invalid task number";
+    return exitCode;
   }
   return exitCode;
 }

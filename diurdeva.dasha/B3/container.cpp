@@ -1,5 +1,8 @@
 #include "container.hpp"
 
+constexpr int MAX_POS = 11;
+constexpr int MIN_POS = 1;
+
 diurdeva::Container::IteratorFact::Iterator():
   pos_(1),
   value_(1)
@@ -71,10 +74,10 @@ constexpr size_t diurdeva::Container::IteratorFact::factor(size_t number)
 
 diurdeva::Container::IteratorFact diurdeva::Container::begin()
 {
-  return IteratorFact(IteratorFact::MIN_POS);
+  return IteratorFact(MIN_POS);
 }
 
 diurdeva::Container ::IteratorFact diurdeva::Container::end()
 {
-  return IteratorFact(IteratorFact::MAX_POS);
+  return IteratorFact(MAX_POS);
 }

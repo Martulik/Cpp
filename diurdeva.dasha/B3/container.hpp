@@ -11,9 +11,6 @@ namespace diurdeva{
     class IteratorFact : public std::iterator<std::bidirectional_iterator_tag, size_t>
     {
     public:
-      constexpr int MAX_POS = 11;
-      constexpr int MIN_POS = 1;
-
       IteratorFact();
       IteratorFact(size_t pos);
 

@@ -35,5 +35,10 @@ namespace ivanova
     PhoneBook phoneBook_;
     std::map< std::string, PhoneBook::iter > bookmarks_;
   };
+
+  void invalidCommand(std::ostream& out);
+  void empty(std::ostream &out);
+  void invalidBookmark(std::ostream &out);
+  void invalidStep(std::ostream &out);
 }
 #endif

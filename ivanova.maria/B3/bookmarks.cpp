@@ -83,12 +83,12 @@ void iva::Bookmarks::show(const std::string &markName)
   iterator iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end())
   {
-    std::cout << "<INVALID BOOKMARK>\n";
+    invalidBookmark(std::cout);
     return;
   }
   if (phoneBook_.isEmpty())
   {
-    std::cout << "<EMPTY>\n";
+    empty(std::cout);
     return;
   }
   std::cout << *iter->second;
@@ -99,7 +99,7 @@ void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove p
   iterator it = bookmarks_.find(markName);
   if (it == bookmarks_.end())
   {
-    std::cout << "<INVALID COMMAND>\n";
+    invalidCommand(std::cout);
   }
   else if (position == positionMove::FIRST)
   {
@@ -116,7 +116,7 @@ void iva::Bookmarks::move(const std::string &markName, int step)
   iterator iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end())
   {
-    std::cout << "<INVALID COMMAND>\n";
+    invalidCommand(std::cout);
   }
   else
   {
@@ -127,4 +127,24 @@ void iva::Bookmarks::move(const std::string &markName, int step)
 bool iva::Bookmarks::isEmpty()
 {
   return phoneBook_.isEmpty();
+}
+
+void ivanova::invalidCommand(std::ostream &out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void ivanova::empty(std::ostream &out)
+{
+  out << "<EMPTY>\n";
+}
+
+void ivanova::invalidBookmark(std::ostream &out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void ivanova::invalidStep(std::ostream &out)
+{
+  std::cout << "<INVALID STEP>\n";
 }

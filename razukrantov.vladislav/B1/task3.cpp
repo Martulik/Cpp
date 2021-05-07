@@ -30,7 +30,6 @@ void razukrantov::task3()
 	return;
   }
 
-  print(vector);
   std::vector< int >::iterator i = vector.begin();
   if (vector.back() == 1)
   {

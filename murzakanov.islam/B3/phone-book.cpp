@@ -1,19 +1,19 @@
 #include "phone-book.hpp"
 #include <iostream>
 
-using namespace murzakanov;
+namespace mur = murzakanov;
 
-PhoneBook::iterator PhoneBook::begin()
+mur::PhoneBook::iterator mur::PhoneBook::begin()
 {
   return book_.begin();
 }
 
-PhoneBook::iterator PhoneBook::end()
+mur::PhoneBook::iterator mur::PhoneBook::end()
 {
   return book_.end();
 }
 
-void PhoneBook::insertAfter(iterator it, const note_t& note)
+void mur::PhoneBook::insertAfter(mur::PhoneBook::iterator it, const mur::PhoneBook::note_t& note)
 {
   iterator tempIt(it);
   ++tempIt;
@@ -26,38 +26,38 @@ void PhoneBook::insertAfter(iterator it, const note_t& note)
   book_.insert(tempIt, tempNote);
 }
 
-void PhoneBook::insertBefore(iterator it, const note_t& note)
+void mur::PhoneBook::insertBefore(mur::PhoneBook::iterator it, const mur::PhoneBook::note_t& note)
 {
   book_.insert(it, note);
 }
 
-void PhoneBook::deleteNote(iterator it)
+void mur::PhoneBook::deleteNote(PhoneBook::iterator it)
 {
   book_.erase(it);
 }
 
-void PhoneBook::push_back(const note_t& note)
+void mur::PhoneBook::push_back(const mur::PhoneBook::note_t& note)
 {
   book_.push_back(note);
 }
 
-void PhoneBook::replace(iterator it, const note_t& note)
+void mur::PhoneBook::replace(mur::PhoneBook::iterator it, const mur::PhoneBook::note_t& note)
 {
   it->name = note.name;
   it->number = note.number;
 }
 
-void PhoneBook::show(std::ostream& out, iterator it) const
+void mur::PhoneBook::show(std::ostream& out, mur::PhoneBook::iterator it) const
 {
   out << it->number << " " << it->name << "\n";
 }
 
-size_t PhoneBook::size() const
+size_t mur::PhoneBook::size() const
 {
   return book_.size();
 }
 
-bool PhoneBook::isEmpty() const
+bool mur::PhoneBook::isEmpty() const
 {
   return book_.empty();
 }

@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include "lab-exceptions.hpp"
 #include "phone-book.hpp"
 #include "factorials.hpp"
 
@@ -50,19 +51,16 @@ dan::PhoneBook book;
         std::string name;
         line >> number;
         if(!line) {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
         if(line.peek() != ' ') {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
         if(quotedString(line, name)) {
           book.add({ number, std::move(name) });
         }
         else {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
       }
       else if(command == "store") {
@@ -75,16 +73,13 @@ dan::PhoneBook book;
         dan::PhoneBook::Number number;
         line >> where >> mark >> number;
         if(!line) {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
         if(line.peek() != ' ') {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
         if(!quotedString(line, name)) {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
         if(where == "before") {
           book.insert_before(mark, { number, std::move(name) });
@@ -93,8 +88,7 @@ dan::PhoneBook book;
           book.insert_after(mark, { number, std::move(name) });
         }
         else {
-          std::cout << "<INVALID COMMAND>\n";
-          continue;
+          throw dan::InvalidCommandException();
         }
       }
       else if(command == "delete") {
@@ -134,10 +128,13 @@ dan::PhoneBook book;
         }
       }
       else {
-        std::cout << "<INVALID COMMAND>\n";
+        throw dan::InvalidCommandException();
       }
     }
-    catch(const dan::InvalidBookmarkException& e) {
+    catch(const dan::PhoneBookException& e) {
+      std::cout << e.what() << '\n';
+    }
+    catch(const dan::InvalidCommandException& e) {
       std::cout << e.what() << '\n';
     }
   }

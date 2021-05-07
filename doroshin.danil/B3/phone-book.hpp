@@ -34,12 +34,6 @@ namespace doroshin
     std::list< Entry > entries_;
     std::map< Name, Iter > bookmarks_;
   };
-
-  class InvalidBookmarkException: public std::exception
-  {
-  public:
-    const char* what() const noexcept override;
-  };
 }
 
 #endif //PHONE_BOOK_HPP

@@ -1,6 +1,7 @@
 #include "phone-book.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "lab-exceptions.hpp"
 
 namespace dan = doroshin;
 
@@ -88,7 +89,7 @@ dan::PhoneBook::Entry dan::PhoneBook::show(const Name& mark) const
     throw InvalidBookmarkException();
   }
   if(res == entries_.end()) {
-    throw std::out_of_range("<EMPTY>");
+    throw EmptyPhoneBookException();
   }
   return *res;
 }
@@ -140,9 +141,4 @@ void dan::PhoneBook::move(const Name& mark, int steps)
   catch(const std::out_of_range&) {
     throw InvalidBookmarkException();
   }
-}
-
-const char* dan::InvalidBookmarkException::what() const noexcept
-{
-  return "<INVALID BOOKMARK>";
 }

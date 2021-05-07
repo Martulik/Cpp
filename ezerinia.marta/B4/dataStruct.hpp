@@ -13,7 +13,6 @@ namespace ezerinia {
 }
 
 std::ostream &operator<<(std::ostream &out, const ezerinia::DataStruct &data);
-
 std::istream &operator>>(std::istream &in, ezerinia::DataStruct &data);
 
 #endif

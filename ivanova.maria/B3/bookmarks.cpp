@@ -83,7 +83,7 @@ void iva::Bookmarks::show(const std::string &markName)
   iterator iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end())
   {
-    std::cout << "<INVALID BOOKMARK>\n";
+    std::cerr << "<INVALID BOOKMARK>\n";
     return;
   }
   if (phoneBook_.isEmpty())

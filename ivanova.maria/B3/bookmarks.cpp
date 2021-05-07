@@ -146,5 +146,5 @@ void ivanova::invalidBookmark(std::ostream &out)
 
 void ivanova::invalidStep(std::ostream &out)
 {
-  std::cout << "<INVALID STEP>\n";
+  out << "<INVALID STEP>\n";
 }

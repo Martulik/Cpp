@@ -10,14 +10,18 @@
 
 namespace vika = dushechkina;
 
-BOOST_AUTO_TEST_SUITE(testSort)
-
 const auto lessComparator = vika::getSortingOrder< int >("ascending");
 const auto greaterComparator = vika::getSortingOrder< int >("descending");
 
-struct fixture
+struct f
 {
-  fixture():
+  std::vector< int > vector;
+  std::list< int > list;
+  std::vector< int > sortedAscendingVector;
+  std::list< int > sortedAscendingList;
+  std::vector< int > sortedDescendingVector;
+  std::list< int > sortedDescendingList;
+  f():
     vector({ 4, 8, 2, 7, -13 }),
     list({ 4, 8, 2, 7, -13 }),
     sortedAscendingVector(vector),
@@ -30,36 +34,30 @@ struct fixture
     sortedDescendingList = sortedAscendingList;
     sortedDescendingList.reverse();
   }
-  std::vector< int > vector;
-  std::list< int > list;
-  std::vector< int > sortedAscendingVector;
-  std::list< int > sortedAscendingList;
-  std::vector< int > sortedDescendingVector;
-  std::list< int > sortedDescendingList;
 };
 
-BOOST_FIXTURE_TEST_CASE(sortBracketsType, fixture)
-{
-  vika::sort<vika::Brackets>(vector, lessComparator);
-  BOOST_CHECK(vector == sortedAscendingVector);
-  vika::sort<vika::Brackets>(vector, greaterComparator);
-  BOOST_CHECK(vector == sortedDescendingVector);
-}
+BOOST_FIXTURE_TEST_SUITE(testSort, f)
+  BOOST_AUTO_TEST_CASE(sortBracketsType)
+  {
+    vika::sort<vika::Brackets>(vector, lessComparator);
+    BOOST_CHECK(vector == sortedAscendingVector);
+    vika::sort<vika::Brackets>(vector, greaterComparator);
+    BOOST_CHECK(vector == sortedDescendingVector);
+  }
 
-BOOST_FIXTURE_TEST_CASE(sortAtType, fixture)
-{
-  vika::sort<vika::At>(vector, lessComparator);
-  BOOST_CHECK(vector == sortedAscendingVector);
-  vika::sort<vika::At>(vector, greaterComparator);
-  BOOST_CHECK(vector == sortedDescendingVector);
-}
+  BOOST_AUTO_TEST_CASE(sortAtType)
+  {
+    vika::sort<vika::At>(vector, lessComparator);
+    BOOST_CHECK(vector == sortedAscendingVector);
+    vika::sort<vika::At>(vector, greaterComparator);
+    BOOST_CHECK(vector == sortedDescendingVector);
+  }
 
-BOOST_FIXTURE_TEST_CASE(sortIteratorType, fixture)
-{
-  vika::sort<vika::Iterator>(list, lessComparator);
-  BOOST_CHECK(list == sortedAscendingList);
-  vika::sort<vika::Iterator>(list, greaterComparator);
-  BOOST_CHECK(list == sortedDescendingList);
-}
-
+  BOOST_AUTO_TEST_CASE(sortIteratorType)
+  {
+    vika::sort<vika::Iterator>(list, lessComparator);
+    BOOST_CHECK(list == sortedAscendingList);
+    vika::sort<vika::Iterator>(list, greaterComparator);
+   BOOST_CHECK(list == sortedDescendingList);
+  }
 BOOST_AUTO_TEST_SUITE_END()

@@ -7,11 +7,11 @@
 
 namespace dan = doroshin;
 
-int task1()
+int task1(std::istream& in, std::ostream& out)
 {
   dan::PhoneBook book;
   std::string line_;
-  while(std::getline(std::cin, line_).good() && !line_.empty()) {
+  while(std::getline(in, line_).good() && !line_.empty()) {
     std::istringstream line(line_);
 
     std::string command;
@@ -57,13 +57,8 @@ int task1()
       else if(command == "show") {
         std::string mark;
         line >> mark;
-        try {
-          dan::Entry entry = book.show(mark);
-          std::cout << entry << '\n';
-        }
-        catch(const std::out_of_range& e) {
-          std::cout << e.what() << '\n';
-        }
+        dan::Entry entry = book.show(mark);
+        out << entry << '\n';
       }
       else if(command == "move") {
         std::string mark, steps;
@@ -80,7 +75,7 @@ int task1()
             book.move_back(mark);
           }
           else {
-            std::cout << "<INVALID STEP>\n";
+            out << "<INVALID STEP>\n";
           }
         }
       }
@@ -89,10 +84,10 @@ int task1()
       }
     }
     catch(const dan::PhoneBookException& e) {
-      std::cout << e.what() << '\n';
+      out << e.what() << '\n';
     }
     catch(const dan::InvalidCommandException& e) {
-      std::cout << e.what() << '\n';
+      out << e.what() << '\n';
     }
   }
   return 0;
@@ -110,7 +105,7 @@ int main(int argc, char* argv[])
   }
   int task = argv[1][0] - '0';
   if(task == 1) {
-    return task1();
+    return task1(std::cin, std::cout);
   }
   else if(task == 2) {
     constexpr dan::Factorials fact(1, 10);

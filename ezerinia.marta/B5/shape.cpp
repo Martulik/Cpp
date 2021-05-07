@@ -13,7 +13,7 @@ double getSideLength(const Point &p1, const Point &p2)
   return sqrt((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y));
 }
 
-bool isSidesEqual(const Shape &shape)
+bool isSideEqual(const Shape &shape)
 {
   double side = getSideLength(shape[0], shape[shape.size()]);
   for (unsigned int i = 0; i < shape.size() - 1; i++) {

@@ -11,7 +11,7 @@ using Shape = std::vector< Point >;
 
 double getSideLength(const Point &p1, const Point &p2);
 
-bool isSidesEqual(const Shape &shape);
+bool isSideEqual(const Shape &shape);
 
 std::istream &operator>>(std::istream &in, Point &point);
 

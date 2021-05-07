@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
-#include "factorial-container.hpp"
 #include <algorithm>
+#include "factorial-container.hpp"
 
 void doTestFactorials()
 {

@@ -31,21 +31,61 @@ iva::DataStruct iva::getVector(std::string &str)
   iva::DataStruct data;
   std::string key;
   size_t i = 0;
-  if (str.at(0) == '-' || str.at(0) == '+')
-  {
-    key += str.at(0);
-    i++;
-  }
-  while (isdigit(str.at(i)))
+  while (str.at(i) != ',')
   {
     key += str.at(i);
     i++;
   }
-  iva::checkSymbol(str.at(i));
+  if (iva::checkInt(key))
+  {
+    data.key1 = std::stoi(key);
+    i++;
+    key.clear();
+  }
+  else
+  {
+    std::cerr << "Invalid input";
+    exit(1);
+  }
+  while (str.at(i) == ' ')
+  {
+    i++;
+  }
+  while (str.at(i) != ',')
+  {
+    key += str.at(i);
+    i++;
+  }
+  if (iva::checkInt(key))
+  {
+    data.key2 = std::stoi(key);
+    i++;
+  }
+  else
+  {
+    std::cerr << "Invalid input";
+    exit(1);
+  }
+  while (str.at(i) != '\0')
+  {
+    data.str += str.at(i);
+  }
+  return data;
+//  if (str.at(0) == '-' || str.at(0) == '+')
+//  {
+//    key += str.at(0);
+//    i++;
+//  }
+//  while (isdigit(str.at(i)))
+//  {
+//    key += str.at(i);
+//    i++;
+//  }
+//  iva::checkSymbol(str.at(i));
   i++;
   data.key1 = std::stoi(key);
   key.clear();
-  if (str.at(i) == '-' || str.at(i) == '+')
+  if (str.at(i) == '-' || str.at(i) == '+')//todo: сделать стандартный ввод через while (!=',')
   {
     key += str.at(i);
     i++;
@@ -89,4 +129,30 @@ void ivanova::checkSymbol(char &s)
     std::cerr << "key must be in range of -5 to 5\n";
     exit(1);
   }
+}
+
+bool ivanova::checkInt(std::string &str)
+{
+  size_t i = 0;
+  if (str.at(i) == '-' || str.at(i) == '+')
+  {
+    for (size_t i = i + 1; i < str.length(); i++)
+    {
+      if (!std::isdigit(str.at(i)))
+      {
+        return false;
+      }
+    }
+  }
+  else
+  {
+    for (i = 0; i < str.length(); i++)
+    {
+      if (!std::isdigit(str.at(i)))
+      {
+        return false;
+      }
+    }
+  }
+  return true;
 }

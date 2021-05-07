@@ -12,5 +12,7 @@ namespace ivanova
     int key2;
     std::string str;
   };
+  std::istream &operator >>(std::istream& in, DataStruct &data);
+  std::ostream &operator <<(std::ostream& out, DataStruct &data);
 }
 #endif

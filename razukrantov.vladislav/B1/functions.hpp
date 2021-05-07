@@ -4,7 +4,7 @@
 #include <iostream>
 #include <functional>
 #include <stdexcept>
-#include <string>
+#include <cstring>
 
 template <typename T >
 std::function < bool(T, T) > getSortOrder(const char* order)
@@ -41,7 +41,7 @@ void print(const T& container)
     std::cout << "\n";
 }
 
-void fillRandom(double* array, int size)
-
+void fillRandom(double* array, int size);
+bool isNumber(const char* str);
 
 #endif

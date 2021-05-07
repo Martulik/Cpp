@@ -14,3 +14,15 @@ void fillRandom(double* array, int size)
  	array[i] = (static_cast<double>(rand()) / RAND_MAX) * 2 - 1;
   }
 }
+
+bool isNumber(const char* str)
+{
+  for (size_t i = 0; i < strlen(str); i++)
+  {
+	if (!std::isdigit(str[i]))
+	{
+	  return false;
+	}
+  }
+  return true;
+}

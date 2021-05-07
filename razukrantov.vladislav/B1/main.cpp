@@ -2,6 +2,7 @@
 #include <stdexcept>
 
 #include "tasks.hpp"
+#include "functions.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -34,6 +35,20 @@ int main(int argc, char* argv[])
 	  }
 	  razukrantov::task3();
 	  break;
+	case 4:
+	  if (argc != 4)
+	  {
+		throw(std::invalid_argument("Incorrect arguments count"));
+	  }
+	  if (isNumber(argv[3]))
+	  {
+		razukrantov::task4(argv[2], atoi(argv[3]));
+		break;
+	  }
+	  else
+	  {
+		throw(std::invalid_argument("incorrect argument"));
+	  }
 	default:
 	  throw(std::invalid_argument("incorrect number of task"));
 	  break;

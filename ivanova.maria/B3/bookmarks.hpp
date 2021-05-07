@@ -22,9 +22,9 @@ namespace ivanova
       };
 
     Bookmarks();
-    void add(const PhoneBook::Record &iter);
-    void store(const PhoneBook::Record &data);
-    void insert(InsertType dir, const std::string &markName, const PhoneBook::Record &rec);
+    void add(const ivanova::Record &iter);
+    void store(const std::pair< std::string, std::string > &data);
+    void insert(InsertType dir, const std::string &markName, const ivanova::Record &rec);
     void deleteMark(const std::string &markName);
     void show(const std::string &markName);
     void move(const std::string &markName, int step);

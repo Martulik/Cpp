@@ -1,45 +1,28 @@
 #include "book.hpp"
 #include <iostream>
-#include "tools.hpp"
+#include "note.hpp"
 
 namespace lab = borisova;
-using iterator = std::list< lab::Note >::iterator;
 
-void lab::Book::viewCurrent(iterator iter)
+void lab::Book::viewCurrent(iterator iter, std::ostream& out) const
 {
-  std::cout << iter->number_ << " "<< iter->name_ << "\n";
+  out << *iter;
 }
 
-iterator lab::Book::nextNote(iterator iter)
-{
-  return ++iter;
-}
-
-iterator lab::Book::prevNote(iterator iter)
-{
-  return --iter;
-}
-
-iterator lab::Book::insertAfter(iterator iter, Note& src)
+lab::Book::iterator lab::Book::insertAfter(iterator iter, const Note& src)
 {
   iter++;
   phoneBook_.insert(iter, src);
   return iter;
 }
 
-iterator lab::Book::insertBefore(iterator iter, Note& src)
+lab::Book::iterator lab::Book::insertBefore(iterator iter, const Note& src)
 {
   phoneBook_.insert(iter, src);
   return iter;
 }
 
-iterator lab::Book::rewriteCurrent(iterator iter, Note& src)
-{
-  *iter = src;
-  return iter;
-}
-
-void lab::Book::insertBack(Note& src)
+void lab::Book::insertBack(const Note& src)
 {
   phoneBook_.push_back(src);
 }
@@ -49,23 +32,17 @@ void lab::Book::deleteNote(iterator iter)
   phoneBook_.erase(iter);
 }
 
-iterator lab::Book::cross(iterator iter, int n)
-{
-  advance(iter, n);
-  return iter;
-}
-
-bool lab::Book::empty()
+bool lab::Book::empty() const
 {
   return phoneBook_.empty();
 }
 
-iterator lab::Book::begin()
+lab::Book::iterator lab::Book::begin()
 {
   return phoneBook_.begin();
 }
 
-iterator lab::Book::end()
+lab::Book::iterator lab::Book::end()
 {
   return phoneBook_.end();
 }

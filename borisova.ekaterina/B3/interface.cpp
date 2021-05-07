@@ -2,10 +2,9 @@
 #include <iostream>
 #include <list>
 #include <map>
-#include "tools.hpp"
+#include "note.hpp"
 
 namespace lab = borisova;
-using itr = std::map<std::string, lab::Book::iterator>::iterator;
 
 lab::Interface::Interface()
 {
@@ -21,12 +20,12 @@ void lab::Interface::add(Note& src)
   }
 }
 
-void lab::Interface::store(std::string& oldMark, std::string& newMark)
+void lab::Interface::store(const std::string& oldMark, const std::string& newMark, std::ostream& out)
 {
   itr iter = notes_.find(oldMark);
   if (iter == notes_.end())
   {
-    std::cout << lab::invalidBookMark;
+    lab::invalidBookMark(out);
   }
   else
   {
@@ -34,12 +33,12 @@ void lab::Interface::store(std::string& oldMark, std::string& newMark)
   }
 }
 
-void lab::Interface::insertBefore(std::string& bookMark, Note& src)
+void lab::Interface::insertBefore(const std::string& bookMark, Note& src, std::ostream& out)
 {
   itr iter = notes_.find(bookMark);
   if (iter == notes_.end())
   {
-    std::cout << lab::invalidBookMark;
+    lab::invalidBookMark(out);
     return;
   }
   if (iter->second == phoneNotes_.end())
@@ -49,12 +48,12 @@ void lab::Interface::insertBefore(std::string& bookMark, Note& src)
   phoneNotes_.insertBefore(iter->second, src);
 }
 
-void lab::Interface::insertAfter(std::string& bookMark, Note& src)
+void lab::Interface::insertAfter(const std::string& bookMark, Note& src, std::ostream& out)
 {
   itr iter = notes_.find(bookMark);
   if (iter == notes_.end())
   {
-    std::cout << lab::invalidBookMark;
+    lab::invalidBookMark(out);
     return;
   }
   if (iter->second == phoneNotes_.end())
@@ -64,7 +63,7 @@ void lab::Interface::insertAfter(std::string& bookMark, Note& src)
   phoneNotes_.insertAfter(iter->second, src);
 }
 
-void lab::Interface::deleteMark(std::string& bookMark)
+void lab::Interface::deleteMark(const std::string& bookMark)
 {
   itr iter = notes_.find(bookMark);
   if (iter != notes_.end())
@@ -89,45 +88,45 @@ void lab::Interface::deleteMark(std::string& bookMark)
 
 }
 
-void lab::Interface::show(std::string& bookMark)
+void lab::Interface::show(const std::string& bookMark, std::ostream& out)
 {
   itr iteratr = notes_.find(bookMark);
   if (iteratr != notes_.end())
   {
     if (phoneNotes_.empty())
     {
-      std::cout << lab::empty;
+      lab::empty(out);
     }
     else
     {
-      phoneNotes_.viewCurrent(iteratr->second);
+      phoneNotes_.viewCurrent(iteratr->second, out);
     }
   }
   else
   {
-    std::cout << lab::invalidBookMark;
+    lab::invalidBookMark(out);
   }
 }
 
-void lab::Interface::move(std::string& bookmark, int n)
+void lab::Interface::move(const std::string& bookmark, const int n, std::ostream& out)
 {
   itr iter = notes_.find(bookmark);
   if (iter == notes_.end())
   {
-    std::cout << lab::invalidBookMark;
+    lab::invalidBookMark(out);
   }
   else
   {
-    iter->second = phoneNotes_.cross(iter->second, n);
+    std::advance(iter->second, n);
   }
 }
 
-void lab::Interface::move(std::string& bookmark, std::string step)
+void lab::Interface::move(const std::string& bookmark, std::string step, std::ostream& out)
 {
   itr iter = notes_.find(bookmark);
   if (iter == notes_.end())
   {
-    std::cout << lab::invalidBookMark;
+    lab::invalidBookMark(out);
   }
   else
   {
@@ -140,4 +139,24 @@ void lab::Interface::move(std::string& bookmark, std::string step)
       iter->second = --phoneNotes_.end();
     }
   }
+}
+
+void lab::invalidCommand(std::ostream& out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void lab::invalidBookMark(std::ostream& out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void lab::invalidStep(std::ostream& out)
+{
+  out << "<INVALID STEP>\n";
+}
+
+void lab::empty(std::ostream& out)
+{
+  out << "<EMPTY>\n";
 }

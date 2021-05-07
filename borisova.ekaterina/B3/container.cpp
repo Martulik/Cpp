@@ -1,36 +1,43 @@
 #include "container.hpp"
+#include <cassert>
+
+namespace borisova
+{
+  constexpr size_t minimum = 1;
+  constexpr size_t maximum = 11;
+}
 
 namespace lab = borisova;
 
+lab::Container::Iterator::Iterator():
+  index_(0),
+  value_(1)
+{
+}
+
 lab::Container::Iterator::Iterator(size_t index):
-index_(index),
-value_(1)
+  index_(index),
+  value_(factorial(index))
 {
-  size_t temp = 1;
-  while (temp != index)
-  {
-    temp++;
-    value_ *= temp;
-  }
 }
 
-lab::Container::Iterator lab::Container::begin()
+lab::Container::Iterator lab::Container::begin() const
 {
-  return Iterator(minimum);
+  Iterator iter;
+  return iter.getBegin();
 }
 
-lab::Container::Iterator lab::Container::end()
+lab::Container::Iterator lab::Container::end() const
 {
-  return Iterator(maximum);
+  Iterator iter;
+  return iter.getEnd();
 }
 
 lab::Container::Iterator& lab::Container::Iterator::operator++()
 {
-  if (index_ < maximum)
-  {
-    index_++;
-    value_ *= index_;
-  }
+  assert(index_ < maximum);
+  index_++;
+  value_ *= index_;
   return *this;
 }
 
@@ -43,11 +50,9 @@ lab::Container::Iterator lab::Container::Iterator::operator++(int)
 
 lab::Container::Iterator& lab::Container::Iterator::operator--()
 {
-  if (index_ > minimum)
-  {
-    value_ /= index_;
-    index_--;
-  }
+  assert(index_ > minimum);
+  value_ /= index_;
+  index_--;
   return *this;
 }
 
@@ -71,4 +76,28 @@ bool lab::Container::Iterator::operator!=(const Iterator& src) const
 size_t& lab::Container::Iterator::operator*()
 {
   return value_;
+}
+
+size_t* lab::Container::Iterator::operator->()
+{
+  return std::addressof(value_);
+}
+
+lab::Container::Iterator lab::Container::Iterator::getBegin() const
+{
+  return Iterator(minimum);
+}
+lab::Container::Iterator lab::Container::Iterator::getEnd() const
+{
+  return Iterator(maximum);
+}
+
+constexpr size_t lab::Container::Iterator::factorial(size_t index)
+{
+  size_t temp = 1;
+  for (size_t i = 1; i <= index; i++)
+  {
+    temp *= i;
+  }
+  return temp;
 }

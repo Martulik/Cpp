@@ -5,172 +5,130 @@
 
 namespace lab = borisova;
 
-void lab::doTask1()
+void lab::doTask1(std::istream& input, std::ostream& output)
 {
-  Interface value;
-  std::string command;
   std::string line;
-  Note temp;
-  std::string markName1;
-  std::string markName2;
-  std::string type;
-  std::string step;
-  while (std::getline(std::cin, line) && !line.empty())
+  while (std::getline(input, line) && !line.empty())
   {
     std::istringstream in(line);
+    std::string command;
     in >> command;
+
+    Note temp;
+    std::string mark;
+    Interface value;
     int n = 0;
-    int flag = 1;
+    int code = 1;
 
     if (command == "add")
     {
-      in >> std::ws >> temp.number_;
-      if (correctNumder(temp))
+      std::string number;
+      std::string name;
+      in >> std::ws >> number;
+      if (correctNumder(number))
       {
-        std::getline(in >> std::ws, temp.name_);
-        if (correctName(temp))
+        std::getline(in >> std::ws, name);
+        if (correctName(name))
         {
+          temp = {name, number};
           value.add(temp);
         }
         else
         {
-          std::cout << lab::invalidCommand;
+          lab::invalidCommand(output);
         }
       }
       else
       {
-        std::cout << lab::invalidCommand;
+        lab::invalidCommand(output);
       }
     }
     else if (command == "store")
     {
+      std::string markName1;
+      std::string markName2;
       in >> std::ws >> markName1;
       in >> std::ws >> markName2;
 
-      value.store(markName1, markName2);
+      value.store(markName1, markName2, output);
     }
     else if (command == "insert")
     {
+      std::string type;
+      std::string markName;
+      std::string number1;
+      std::string name1;
       in >> std::ws >> type;
-      in >> std::ws >> markName1;
-      in >> std::ws >> temp.number_;
-      getline(in >> std::ws, temp.name_);
+      in >> std::ws >> markName;
+      in >> std::ws >> number1;
+      getline(in >> std::ws, name1);
 
-      if (correctName(temp) && correctNumder(temp))
+      if (correctName(name1) && correctNumder(number1))
       {
+        temp = {name1, number1};
         if (type == "before")
         {
-          value.insertBefore(markName1, temp);
+          value.insertBefore(markName, temp, output);
         }
         else if (type == "after")
         {
-          value.insertAfter(markName1, temp);
+          value.insertAfter(markName, temp, output);
         }
       }
       else
       {
-        std::cout << lab::invalidCommand;
+        lab::invalidCommand(output);
       }
     }
     else if (command == "delete")
     {
-      in >> std::ws >> markName1;
-      value.deleteMark(markName1);
+
+      in >> std::ws >> mark;
+      value.deleteMark(mark);
     }
     else if (command == "show")
     {
-      in >> std::ws >> markName1;
-      value.show(markName1);
+      in >> std::ws >> mark;
+      value.show(mark, output);
     }
     else if (command == "move")
     {
-      in >> std::ws >> markName1;
+      std::string step;
+      in >> std::ws >> mark;
       in >> std::ws >> step;
       if (step == "first" || step == "last")
       {
-        value.move(markName1, step);
+        value.move(mark, step, output);
       }
       else
       {
         size_t k = 0;
         if (!isdigit(step[0]) && (step[0] != '-') && (step[0] != '+'))
         {
-          std::cout << lab::invalidStep;
+          lab::invalidStep(output);
         }
         else
         {
-          if (isdigit(step[0]))
-          {
-            n += step[0] - '0';
-          }
-          else if (step[0] == '-')
-          {
-            flag = -1;
-          }
           for (size_t i = 1; i < step.length(); i++)
           {
             if (!isdigit(step[i]))
             {
-              std::cout << lab::invalidStep;
+              lab::invalidStep(output);
+              code = 0;
               break;
             }
-            else
-            {
-              n *= 10;
-              n += step[i] - '0';
-              k++;
-            }
+          }
+          if (code)
+          {
+            n = std::stoi(step);
+            value.move(mark, n, output);
           }
         }
-        if (k == step.length()-1)
-        {
-          value.move(markName1, n * flag);
-        }
       }
-
     }
     else
     {
-      std::cout << lab::invalidStep;
+      lab::invalidStep(output);
     }
   }
-}
-
-bool lab::correctName(Note& src)
-{
-  if (src.name_.empty() || src.name_.front() != '\"' || src.name_.back() != '\"')
-  {
-    return false;
-  }
-  src.name_.erase(src.name_.begin());
-  src.name_.erase(--src.name_.end());
-
-  for (size_t i = 0; i < src.name_.length(); i++)
-  {
-    if (src.name_[i] == '\\')
-    {
-      src.name_.erase(i, 1);
-    }
-  }
-  if (src.name_.empty())
-  {
-    return false;
-  }
-  return true;
-}
-
-bool lab::correctNumder(Note& src)
-{
-  if (src.number_.length() < 1)
-  {
-    return false;
-  }
-  for (size_t i = 0; i < src.number_.length(); i++)
-  {
-    if (!isdigit(src.number_[i]))
-    {
-      return false;
-    }
-  }
-  return true;
 }

@@ -6,12 +6,13 @@
 
 namespace lab = borisova;
 
-void lab::doTask2()
+void lab::doTask2(std::ostream& output)
 {
   Container cont;
-  std::ostream_iterator< size_t > out(std::cout, " ");
+  output << *cont.end() << "\n";
+  std::ostream_iterator< size_t > out(output, " ");
   std::copy(cont.begin(), cont.end(), out);
-  std::cout << "\n";
+  output << "\n";
   std::reverse_copy(cont.begin(), cont.end(), out);
-  std::cout << "\n";
+  output << "\n";
 }

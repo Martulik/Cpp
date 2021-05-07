@@ -2,24 +2,21 @@
 #define BOOK_HPP
 
 #include <list>
-#include "tools.hpp"
+#include <iostream>
+#include "note.hpp"
+
 namespace borisova
 {
   class Book
   {
   public:
     using iterator = std::list< Note >::iterator;
-
-    void viewCurrent(iterator iter);
-    iterator nextNote(iterator iter);
-    iterator prevNote(iterator iter);
-    iterator insertAfter(iterator iter, Note &src);
-    iterator insertBefore(iterator iter, Note& src);
-    iterator rewriteCurrent(iterator iter, Note& src);
-    void insertBack(Note& src);
+    void viewCurrent(iterator iter, std::ostream& out) const;
+    iterator insertAfter(iterator iter, const Note &src);
+    iterator insertBefore(iterator iter, const Note& src);
+    void insertBack(const Note& src);
     void deleteNote(iterator iter);
-    iterator cross(iterator iter, int n);
-    bool empty();
+    bool empty() const;
     iterator begin();
     iterator end();
 

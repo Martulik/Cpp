@@ -12,23 +12,24 @@ namespace borisova
   public:
     Interface();
     void add(Note& src);
-    void store(std::string& oldMark, std::string& newMark);
-    void insertBefore(std::string& bookMark, Note& src);
-    void insertAfter(std::string& bookMark, Note& src);
-    void deleteMark(std::string& bookMark);
-    void show(std::string& bookMark);
-    void move(std::string& bookmark, int n);
-    void move(std::string& bookmark, std::string step);
+    void store(const std::string& oldMark, const std::string& newMark, std::ostream& out);
+    void insertBefore(const std::string& bookMark, Note& src, std::ostream& out);
+    void insertAfter(const std::string& bookMark, Note& src, std::ostream& out);
+    void deleteMark(const std::string& bookMark);
+    void show(const std::string& bookMark, std::ostream& out);
+    void move(const std::string& bookmark, int n, std::ostream& out);
+    void move(const std::string& bookmark, std::string step, std::ostream& out);
 
   private:
-    std::map<std::string, Book::iterator> notes_;
+    using itr = std::map< std::string, Book::iterator >::iterator;
+    std::map< std::string, Book::iterator > notes_;
     Book phoneNotes_;
   };
 
-  const std::string invalidCommand = "<INVALID COMMAND>\n";
-  const std::string invalidBookMark = "<INVALID BOOKMARK>\n";
-  const std::string invalidStep = "<INVALID STEP>\n";
-  const std::string empty = "<EMPTY>\n";
+  void invalidCommand(std::ostream& out);
+  void invalidBookMark(std::ostream& out);
+  void invalidStep(std::ostream& out);
+  void empty(std::ostream& out);
 }
 
 #endif

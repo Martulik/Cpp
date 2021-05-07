@@ -38,7 +38,7 @@ std::istream& quotedString(std::istream& in, std::string& res)
 
 int task1()
 {
-dan::PhoneBook book;
+  dan::PhoneBook book;
   std::string line_;
   while(std::getline(std::cin, line_).good() && !line_.empty()) {
     std::istringstream line(line_);
@@ -50,17 +50,11 @@ dan::PhoneBook book;
         dan::PhoneBook::Number number;
         std::string name;
         line >> number;
-        if(!line) {
+        if(!line || line.peek() != ' ' || !quotedString(line, name)) {
           throw dan::InvalidCommandException();
-        }
-        if(line.peek() != ' ') {
-          throw dan::InvalidCommandException();
-        }
-        if(quotedString(line, name)) {
-          book.add({ number, std::move(name) });
         }
         else {
-          throw dan::InvalidCommandException();
+          book.add({ number, std::move(name) });
         }
       }
       else if(command == "store") {
@@ -72,13 +66,7 @@ dan::PhoneBook book;
         std::string where, mark, name;
         dan::PhoneBook::Number number;
         line >> where >> mark >> number;
-        if(!line) {
-          throw dan::InvalidCommandException();
-        }
-        if(line.peek() != ' ') {
-          throw dan::InvalidCommandException();
-        }
-        if(!quotedString(line, name)) {
+        if(!line || line.peek() != ' ' || !quotedString(line, name)) {
           throw dan::InvalidCommandException();
         }
         if(where == "before") {

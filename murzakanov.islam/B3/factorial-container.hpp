@@ -9,7 +9,7 @@ namespace murzakanov
   class FactorialContainer
   {
   public:
-    class Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned >
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, size_t >
     {
     public:
       Iterator();

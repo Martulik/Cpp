@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include <cassert>
 
 #include "tools.hpp"
 
@@ -22,11 +23,7 @@ mur::FactorialContainer::Iterator::Iterator(const size_t num):
 
 mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator ++()
 {
-  if (num_ == (MAX_INDEX))
-  {
-    std::cerr << "Out of range\n";
-    std::exit(2);
-  }
+  assert(num_ < MAX_INDEX && "Out of range\n");
   num_++;
   value_ *= num_;
   return *this;
@@ -41,11 +38,7 @@ murzakanov::FactorialContainer::Iterator mur::FactorialContainer::Iterator::oper
 
 mur::FactorialContainer::Iterator& mur::FactorialContainer::Iterator::operator --()
 {
-  if (num_ == 1)
-  {
-    std::cerr << "Out of range\n";
-    std::exit(2);
-  }
+  assert (num_ != 1 && "Out of range\n");
   value_ /= num_;
   num_--;
   return *this;

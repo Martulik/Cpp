@@ -41,4 +41,7 @@ void print(const T& container)
     std::cout << "\n";
 }
 
+void fillRandom(double* array, int size)
+
+
 #endif

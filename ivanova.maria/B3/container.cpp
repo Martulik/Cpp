@@ -25,6 +25,7 @@ iva::Container::Iterator &iva::Container::Iterator::operator ++()
 
 iva::Container::Iterator iva::Container::Iterator::operator ++(int)
 {
+  assert(index_ < 11);
   Iterator iter = *this;
   ++(*this);
   return iter;
@@ -38,6 +39,7 @@ iva::Container::Iterator &iva::Container::Iterator::operator --()
 
 iva::Container::Iterator iva::Container::Iterator::operator --(int)
 {
+  assert(index_ != 1);
   Iterator iter = *this;
   --(*this);
   return iter;

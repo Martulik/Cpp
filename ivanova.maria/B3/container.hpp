@@ -2,7 +2,7 @@
 #define B3_CONTAINER_FACTORIAL_HPP
 
 #include <iterator>
-
+#include <cassert>
 namespace ivanova
 {
   using bidiriter = std::bidirectional_iterator_tag;

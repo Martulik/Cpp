@@ -17,7 +17,7 @@ mur::FactorialContainer::Iterator::Iterator():
 
 mur::FactorialContainer::Iterator::Iterator(const size_t num):
   num_(num),
-  value_(getValue(num))
+  value_(getFactorial(num))
 {
 }
 

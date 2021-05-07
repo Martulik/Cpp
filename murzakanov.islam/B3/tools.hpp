@@ -8,13 +8,13 @@
 
 namespace murzakanov
 {
-  constexpr size_t getValue(const size_t num)
+  constexpr size_t getFactorial(const size_t num)
   {
     if (num == 1)
     {
       return 1;
     }
-    return num * getValue(num - 1);
+    return num * getFactorial(num - 1);
   }
   std::istream& readName(std::istream& in, std::string& name, std::ostream& out);
   bool checkIsNum(const std::string& number);

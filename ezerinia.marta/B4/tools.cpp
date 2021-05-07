@@ -7,12 +7,12 @@
 
 namespace lab = ezerinia;
 
-void lab::checkInput(const DataStruct &data, char comma, std::stringstream &input)
-{
-  if (input.fail() || comma != ',' || abs(data.key1) > 5 || abs(data.key2) > 5) {
-    throw std::invalid_argument("Invalid input\n");
-  }
-}
+//void lab::checkInput(const DataStruct &data, char comma, std::stringstream &input)
+//{
+//  if (input.fail() || comma != ',' || abs(data.key1) > 5 || abs(data.key2) > 5) {
+//    throw std::invalid_argument("Invalid input\n");
+//  }
+//}
 
 bool lab::compare(DataStruct &lhs, DataStruct &rhs)
 {
@@ -21,38 +21,24 @@ bool lab::compare(DataStruct &lhs, DataStruct &rhs)
   } else if (lhs.key2 != rhs.key2) {
     return lhs.key2 < rhs.key2;
   } else {
-    return lhs.str.length() < rhs.str.length() ;
+    return lhs.str.length() < rhs.str.length();
   }
 }
 
 void lab::print(std::vector< DataStruct > &vector, std::ostream &out)
 {
   for (auto &&it: vector) {
-    out << it.key1 << "," << it.key2 << "," << it.str << "\n";
+    out << it;
   }
 }
 
 void lab::read(std::vector< lab::DataStruct > &vector)
 {
-  std::string line, str;
-  char comma;
+  std::string line;
   while (std::getline(std::cin, line)) {
     lab::DataStruct data;
     std::stringstream input(line);
-    input >> data.key1;
-    if (!input.fail()) {
-      input >> comma;
-      if (!input.fail() && comma == ',') {
-        input >> data.key2;
-        if (!input.fail()) {
-          input >> comma;
-        }
-      }
-    }
-    checkInput(data, comma, input);
-    if (!input.eof()) {
-      std::getline(input, data.str);
-    }
+    input >> data;
     vector.push_back(data);
   }
 }

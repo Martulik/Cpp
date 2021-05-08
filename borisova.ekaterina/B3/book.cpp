@@ -3,25 +3,25 @@
 #include "note.hpp"
 
 namespace lab = borisova;
-void lab::Book::viewCurrent(iterator iter, std::ostream& out)
+void lab::Book::viewCurrent(iterator iter, std::ostream& out) const
 {
   out << *iter;
 }
 
-lab::Book::iterator lab::Book::insertAfter(iterator iter, Note& src)
+lab::Book::iterator lab::Book::insertAfter(iterator iter, const Note& src)
 {
   iter++;
   phoneBook_.insert(iter, src);
   return iter;
 }
 
-lab::Book::iterator lab::Book::insertBefore(iterator iter, Note& src)
+lab::Book::iterator lab::Book::insertBefore(iterator iter, const Note& src)
 {
   phoneBook_.insert(iter, src);
   return iter;
 }
 
-void lab::Book::insertBack(Note& src)
+void lab::Book::insertBack(const Note& src)
 {
   phoneBook_.push_back(src);
 }

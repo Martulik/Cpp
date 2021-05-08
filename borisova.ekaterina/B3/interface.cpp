@@ -12,7 +12,7 @@ lab::Interface::Interface()
   notes_["current"] = phoneNotes_.begin();
 }
 
-void lab::Interface::add(Note& src)
+void lab::Interface::add(const Note& src)
 {
   phoneNotes_.insertBack(src);
   if (std::next(phoneNotes_.begin()) == phoneNotes_.end())
@@ -34,7 +34,7 @@ void lab::Interface::store(const std::string& oldMark, const std::string& newMar
   }
 }
 
-void lab::Interface::insertBefore(const std::string& bookMark, Note& src, std::ostream& out)
+void lab::Interface::insertBefore(const std::string& bookMark, const Note& src, std::ostream& out)
 {
   itr iter = notes_.find(bookMark);
   if (iter == notes_.end())
@@ -49,7 +49,7 @@ void lab::Interface::insertBefore(const std::string& bookMark, Note& src, std::o
   phoneNotes_.insertBefore(iter->second, src);
 }
 
-void lab::Interface::insertAfter(const std::string& bookMark, Note& src, std::ostream& out)
+void lab::Interface::insertAfter(const std::string& bookMark, const Note& src, std::ostream& out)
 {
   itr iter = notes_.find(bookMark);
   if (iter == notes_.end())
@@ -109,7 +109,7 @@ void lab::Interface::show(const std::string& bookMark, std::ostream& out)
   }
 }
 
-void lab::Interface::move(const std::string& bookmark, int n, std::ostream& out)
+void lab::Interface::move(const std::string& bookmark, const int n, std::ostream& out)
 {
   itr iter = notes_.find(bookmark);
   if (iter == notes_.end())
@@ -119,14 +119,10 @@ void lab::Interface::move(const std::string& bookmark, int n, std::ostream& out)
   else
   {
     std::advance(iter->second, n);
-    /*for (int i = 0; i < n; i++)
-    {
-      ((n > 0) ? iter->second++ : iter->second--);
-    }*/
   }
 }
 
-void lab::Interface::move(const std::string& bookmark, std::string step, std::ostream& out)
+void lab::Interface::move(const std::string& bookmark, const std::string step, std::ostream& out)
 {
   itr iter = notes_.find(bookmark);
   if (iter == notes_.end())

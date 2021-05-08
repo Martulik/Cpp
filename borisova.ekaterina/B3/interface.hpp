@@ -11,14 +11,14 @@ namespace borisova
   {
   public:
     Interface();
-    void add(Note& src);
+    void add(const Note& src);
     void store(const std::string& oldMark, const std::string& newMark, std::ostream& out);
-    void insertBefore(const std::string& bookMark, Note& src, std::ostream& out);
-    void insertAfter(const std::string& bookMark, Note& src, std::ostream& out);
+    void insertBefore(const std::string& bookMark, const Note& src, std::ostream& out);
+    void insertAfter(const std::string& bookMark, const Note& src, std::ostream& out);
     void deleteMark(const std::string& bookMark);
     void show(const std::string& bookMark, std::ostream& out);
-    void move(const std::string& bookmark, int n, std::ostream& out);
-    void move(const std::string& bookmark, std::string step, std::ostream& out);
+    void move(const std::string& bookmark, const int n, std::ostream& out);
+    void move(const std::string& bookmark, const std::string step, std::ostream& out);
 
   private:
     using itr = std::map< std::string, Book::iterator >::iterator;

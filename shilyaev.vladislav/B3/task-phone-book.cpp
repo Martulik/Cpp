@@ -101,7 +101,7 @@ namespace shilyaev {
 
   CommandFunction getCommandFunction(const std::string &commandName)
   {
-    static std::map< std::string, CommandFunction > functions {
+    const static std::map< std::string, CommandFunction > functions{
       std::make_pair("add", add),
       std::make_pair("store", store),
       std::make_pair("insert", insert),

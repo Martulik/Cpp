@@ -156,7 +156,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   else
   {
-    if (steps.empty() || steps != "last" && steps != "first")
+    if (steps.empty() || (steps != "last" && steps != "first"))
     {
       invalidCommand(std::cout);
       return 1;

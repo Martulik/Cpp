@@ -25,7 +25,7 @@ void razukrantov::task3()
   {
 	throw(std::runtime_error("Incorrect end of input"));
   }
-  if (vector.size() == 0)
+  if (vector.empty())
   {
 	return;
   }

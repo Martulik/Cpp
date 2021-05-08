@@ -20,7 +20,7 @@ void razukrantov::task1(const char* order)
   {
     throw std::runtime_error("Incorrect input");
   }
-  if (vector.size() == 0)
+  if (vector.empty())
   {
       return;
   }

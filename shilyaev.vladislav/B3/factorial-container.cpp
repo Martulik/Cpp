@@ -23,6 +23,11 @@ namespace shilyaev {
     return value_;
   }
 
+  const unsigned int *FactorialContainer::Iterator::operator->() const
+  {
+    return std::addressof(value_);
+  }
+
   FactorialContainer::Iterator &FactorialContainer::Iterator::operator++()
   {
     assert(lastMultiplier_ < endLastMultiplier);

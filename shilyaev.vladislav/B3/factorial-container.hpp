@@ -11,6 +11,7 @@ namespace shilyaev {
       using ValueType = unsigned int;
       Iterator() = default;
       const ValueType &operator*() const;
+      const ValueType *operator->() const;
       Iterator &operator++();
       Iterator operator++(int);
       Iterator &operator--();

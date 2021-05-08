@@ -9,12 +9,11 @@
 
 void ezerinia::task2()
 {
-  int vertices = 0;
   if (!std::cin) {
     throw std::runtime_error("Read fail");
   }
   std::vector< Shape > shapes((std::istream_iterator< Shape >(std::cin)), std::istream_iterator< Shape >());
-
+  int vertices = 0;
   int triangles = 0;
   int squares = 0;
   int rectangles = 0;

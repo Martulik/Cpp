@@ -60,17 +60,17 @@ std::istream &operator>>(std::istream &in, Shape &shape)
   }
   std::istringstream iss(str);
   Shape shape_temp((std::istream_iterator< Point >(iss)), std::istream_iterator< Point >());
-  shape_temp.pop_back();
-  if (nVertices != shape_temp.size()) {
+  shape.swap(shape_temp);
+  shape.pop_back();
+  if (nVertices != shape.size() || shape.size() < 3) {
     throw std::runtime_error("Wrong number of vertices");
   }
-  shape.swap(shape_temp);
   return in;
 }
 
 std::ostream &operator<<(std::ostream &out, const Point &point)
 {
-  out << " (" << point.x << ";" << point.y << ")";
+  out << " (" << point.x << "; " << point.y << ")";
   return out;
 }
 

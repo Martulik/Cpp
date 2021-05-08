@@ -8,7 +8,7 @@
 #include "functions.hpp"
 #include "sort.hpp"
 
-void task1(std::function< bool(const int&, const int&) > comparator)
+void dushechkina::task1(std::function< bool(const int&, const int&) > comparator)
 {
   std::vector< int > vector;
   int element = 0;

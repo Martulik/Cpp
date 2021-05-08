@@ -5,7 +5,7 @@
 #include "tasks.hpp"
 #include "functions.hpp"
 
-void task2(const char* filename)
+void dushechkina::task2(const char* filename)
 {
   if (filename == nullptr)
   {

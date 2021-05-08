@@ -8,7 +8,7 @@
 #include "functions.hpp"
 #include "sort.hpp"
 
-void task4(std::function<bool(const double&, const double&)> compar, int size)
+void dushechkina::task4(std::function<bool(const double&, const double&)> compar, int size)
 {
   if (size <= 0)
   {

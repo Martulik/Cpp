@@ -6,7 +6,7 @@
 #include "tasks.hpp"
 #include "functions.hpp"
 
-void task3()
+void dushechkina::task3()
 {
   std::vector< int > vector;
   int element = 0;

@@ -2,6 +2,11 @@
 
 #include <iostream>
 
+bool lysenko::Book::isEmpty()
+{
+  return content_.empty();
+}
+
 lysenko::Book::iterator lysenko::Book::getBegin()
 {
   return content_.begin();
@@ -49,8 +54,7 @@ lysenko::Book::iterator lysenko::Book::goTo(iterator curr, bool forward, int amo
 
 void lysenko::Book::showCurrNote(iterator curr)
 {
-  std::cout << "Name: " << curr->name << "\n"
-            << "Telephone's number" << curr->number << "\n";
+  std::cout << curr->name << " "<< curr->number;//мб некорректный вывод в соотв с условием
 }
 
 
@@ -65,6 +69,11 @@ void lysenko::Book::insert(iterator curr, const Note newNote, bool before)
     iterator nextOne = goToNextNote(curr);
     content_.insert(nextOne, newNote);
   }
+}
+
+void lysenko::Book::deleteNote(iterator& curr)
+{
+  curr = content_.erase(curr);
 }
 
 void lysenko::Book::pushBack(Note newNote)

@@ -19,6 +19,8 @@ namespace lysenko
 
     typedef std::list< Note >::iterator iterator;
 
+    bool isEmpty();
+
     iterator getBegin();
     iterator getEnd();
 
@@ -27,8 +29,10 @@ namespace lysenko
     iterator goTo(iterator curr,bool forward, int amount);
 
     void showCurrNote(iterator curr);
+
     void replaceNote(iterator curr, Note newNote);
     void insert(iterator curr, const Note newNote, bool before);
+    void deleteNote(iterator& curr);
     void pushBack(Note newNote);
 
   private:

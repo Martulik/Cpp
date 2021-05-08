@@ -8,7 +8,7 @@
 
 void razukrantov::task2(const char* file)
 {
-  if (file == nullptr)
+  if (!file)
   {
 	throw std::invalid_argument("Incorrect file");
   }

@@ -19,11 +19,11 @@ void razukrantov::task3()
   }
   if (!std::cin.eof() && std::cin.fail())
   {
-	throw(std::runtime_error("Incorrect input"));
+	throw(std::runtime_error("Incorrect input in task3\n"));
   }
   if (x != 0)
   {
-	throw(std::runtime_error("Incorrect end of input"));
+	throw(std::runtime_error("Incorrect end of input in task3\n"));
   }
   if (vector.empty())
   {

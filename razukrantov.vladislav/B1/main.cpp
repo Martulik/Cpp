@@ -11,35 +11,35 @@ int main(int argc, char* argv[])
   {
 	if ((argc < 2) || (argc > 4))
 	{
-	  throw(std::invalid_argument("Incorrect arguments"));
+	  throw(std::invalid_argument("Incorrect arguments count"));
 	}
 	switch (atoi(argv[1]))
 	{
 	case 1:
 	  if (argc != 3)
 	  {
-		throw(std::invalid_argument("Incorrect arguments count"));
+		throw(std::invalid_argument("Incorrect arguments count in task1"));
 	  }
 	  razukrantov::task1(argv[2]);
 	  break;
 	case 2:
 	  if (argc != 3)
 	  {
-		throw(std::invalid_argument("Incorrect arguments count"));
+		throw(std::invalid_argument("Incorrect arguments count in task2"));
 	  }
 	  razukrantov::task2(argv[2]);
 	  break;
 	case 3:
 	  if (argc != 2)
 	  {
-		throw(std::invalid_argument("Incorrect arguments count"));
+		throw(std::invalid_argument("Incorrect arguments count in task3"));
 	  }
 	  razukrantov::task3();
 	  break;
 	case 4:
 	  if (argc != 4)
 	  {
-		throw(std::invalid_argument("Incorrect arguments count"));
+		throw(std::invalid_argument("Incorrect arguments count in task4"));
 	  }
 	  if (isNumber(argv[3]))
 	  {
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 	  }
 	  else
 	  {
-		throw(std::invalid_argument("incorrect argument"));
+		throw(std::invalid_argument("Incorrect argument in task 4"));
 	  }
 	default:
 	  throw(std::invalid_argument("incorrect number of task"));

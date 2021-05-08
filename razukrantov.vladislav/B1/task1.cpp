@@ -18,7 +18,7 @@ void razukrantov::task1(const char* order)
   }
   if (!std::cin.eof())
   {
-    throw std::runtime_error("Incorrect input");
+    throw std::runtime_error("Incorrect input in task1\n");
   }
   if (vector.empty())
   {

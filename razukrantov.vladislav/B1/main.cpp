@@ -24,12 +24,20 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect arguments count in task1"));
       }
+      if (razukrantov::checkSpaces(argv[2]))
+      {
+        throw(std::invalid_argument("Argument with spaces"));
+      }
       razukrantov::task1(argv[2]);
       break;
     case 2:
       if (argc != 3)
       {
         throw(std::invalid_argument("Incorrect arguments count in task2"));
+      }
+      if (razukrantov::checkSpaces(argv[2]))
+      {
+        throw(std::invalid_argument("Argument with spaces"));
       }
       razukrantov::task2(argv[2]);
       break;
@@ -44,6 +52,10 @@ int main(int argc, char* argv[])
       if (argc != 4)
       {
         throw(std::invalid_argument("Incorrect arguments count in task4"));
+      }
+      if (razukrantov::checkSpaces(argv[2]))
+      {
+        throw(std::invalid_argument("Argument with spaces"));
       }
       if (!razukrantov::isNumber(argv[3]))
       {

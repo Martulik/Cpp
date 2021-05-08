@@ -17,11 +17,11 @@ namespace razukrantov
     }
     if (!strcmp(order, "ascending"))
     {
-      return std::less< T >();
+      return std::greater< T >();
     }
     if (!strcmp(order, "descending"))
     {
-      return std::greater< T >();
+      return std::less< T >();
     }
     throw std::invalid_argument("Incorrect order\n");
   }
@@ -40,6 +40,7 @@ namespace razukrantov
 
   void fillRandom(double* array, int size);
   bool isNumber(const char* str);
+  bool checkSpaces(const char* str);
 }
 
 #endif

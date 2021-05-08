@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
         throw(std::invalid_argument("Incorrect arguments count in task1"));
       }
       razukrantov::task1(argv[2]);
-	  break;
+      break;
     case 2:
       if (argc != 3)
       {

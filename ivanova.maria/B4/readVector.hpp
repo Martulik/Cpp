@@ -2,7 +2,7 @@
 #define B4_READVECTOR_HPP
 
 #include <vector>
-#include <iostream>
+#include <iosfwd>
 #include <string>
 
 #include "struct.hpp"

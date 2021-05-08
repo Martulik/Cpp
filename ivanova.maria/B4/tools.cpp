@@ -98,7 +98,7 @@ bool ivanova::checkInt(std::string &str)
   size_t i = 0;
   if (str.at(i) == '-' || str.at(i) == '+')
   {
-    for (size_t i = i + 1; i < str.length(); i++)
+    for (size_t i = 1; i < str.length(); i++)
     {
       if (!std::isdigit(str.at(i)))
       {

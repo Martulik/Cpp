@@ -2,7 +2,7 @@
 #define B4_PRINTVECTOR_HPP
 
 #include <vector>
-#include <iostream>
+#include <iosfwd>
 #include "struct.hpp"
 
 namespace ivanova

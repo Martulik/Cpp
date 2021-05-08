@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
   }
   std::string task = argv[1];
   if (task == "1") {
-    return shilyaev::taskPhoneBook();
+    return shilyaev::taskPhoneBook(std::cin, std::cout);
   } else if (task == "2") {
     shilyaev::taskFactorial();
   } else {

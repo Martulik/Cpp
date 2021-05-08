@@ -5,43 +5,52 @@
 #include "phone-book.hpp"
 
 namespace shilyaev {
+  using CommandFunction = std::function< void(std::ostream &, const std::vector< std::string > &, PhoneBook &) >;
   const std::string INVALID_BOOKMARK_ERROR = "<INVALID BOOKMARK>";
-  const std::string INVALID_COMMAND_ERROR = "<INVALID COMMAND>";
-  const std::string INVALID_STEP_ERROR = "<INVALID STEP>";
   const std::string EMPTY_ERROR = "<EMPTY>";
+
+  class InvalidCommandException: public std::exception {};
+  class InvalidStepException: public std::exception {};
 
   bool isNameValid(const std::string &name)
   {
     return name[0] == '"' && name.back() == '"';
   }
 
-  void add(const std::vector< std::string > &arguments, PhoneBook &book)
+  void add(std::ostream &, const std::vector< std::string > &arguments, PhoneBook &book)
   {
+    if (arguments.size() != 3) {
+      throw InvalidCommandException();
+    }
     const std::string &number = arguments[1];
     const std::string &name = arguments[2];
     if (!isNameValid(name)) {
-      std::cout << INVALID_COMMAND_ERROR << '\n';
-      return;
+      throw InvalidCommandException();
     }
     book.pushBack({number, name.substr(1, name.length() - 2)});
   }
 
-  void store(const std::vector< std::string > &arguments, PhoneBook &book)
+  void store(std::ostream &, const std::vector< std::string > &arguments, PhoneBook &book)
   {
+    if (arguments.size() != 3) {
+      throw InvalidCommandException();
+    }
     const std::string &bookmarkName = arguments[1];
     const std::string &newBookmarkName = arguments[2];
     book.store(bookmarkName, newBookmarkName);
   }
 
-  void insert(const std::vector< std::string > &arguments, PhoneBook &book)
+  void insert(std::ostream &, const std::vector< std::string > &arguments, PhoneBook &book)
   {
+    if (arguments.size() != 5) {
+      throw InvalidCommandException();
+    }
     const std::string &where = arguments[1];
     const std::string &bookmarkName = arguments[2];
     const std::string &number = arguments[3];
     const std::string &name = arguments[4];
     if (!isNameValid(name)) {
-      std::cout << INVALID_COMMAND_ERROR << '\n';
-      return;
+      throw InvalidCommandException();
     }
     const PhoneBook::Entry entry{number, name.substr(1, name.length() - 2)};
     if (where == "before") {
@@ -49,29 +58,38 @@ namespace shilyaev {
     } else if (where == "after") {
       book.insertAfter(bookmarkName, entry);
     } else {
-      std::cout << INVALID_COMMAND_ERROR << '\n';
+      throw InvalidCommandException();
     }
   }
 
-  void erase(const std::vector< std::string > &arguments, PhoneBook &book)
+  void erase(std::ostream &, const std::vector< std::string > &arguments, PhoneBook &book)
   {
+    if (arguments.size() != 2) {
+      throw InvalidCommandException();
+    }
     const std::string &bookmarkName = arguments[1];
     book.erase(bookmarkName);
   }
 
-  void show(const std::vector< std::string > &arguments, const PhoneBook &book)
+  void show(std::ostream &ostream, const std::vector< std::string > &arguments, const PhoneBook &book)
   {
+    if (arguments.size() != 2) {
+      throw InvalidCommandException();
+    }
     const std::string &bookmarkName = arguments[1];
     const boost::optional< PhoneBook::Entry > entry = book.getEntry(bookmarkName);
     if (!entry) {
-      std::cout << EMPTY_ERROR << '\n';
+      ostream << EMPTY_ERROR << '\n';
       return;
     }
-    std::cout << entry->number << ' ' << entry->name << '\n';
+    ostream << entry->number << ' ' << entry->name << '\n';
   }
 
-  void move(const std::vector< std::string > &arguments, PhoneBook &book)
+  void move(std::ostream &, const std::vector< std::string > &arguments, PhoneBook &book)
   {
+    if (arguments.size() != 3) {
+      throw InvalidCommandException();
+    }
     const std::string &bookmarkName = arguments[1];
     const std::string &step = arguments[2];
     if (step == "first") {
@@ -83,43 +101,42 @@ namespace shilyaev {
         const int stepInt = std::stoi(step);
         book.move(bookmarkName, stepInt);
       } catch (const std::invalid_argument &) {
-        std::cout << INVALID_STEP_ERROR << '\n';
+        throw InvalidStepException();
       }
     }
   }
 
-  void execute(const std::string &command, PhoneBook &phoneBook)
+  CommandFunction getCommandFunction(const std::string &commandName)
   {
-    std::vector< std::string > arguments = tokenize(command);
-    const std::string &commandName = arguments[0];
+    static std::map< std::string, CommandFunction > functions {
+      std::make_pair("add", add),
+      std::make_pair("store", store),
+      std::make_pair("insert", insert),
+      std::make_pair("delete", erase),
+      std::make_pair("show", show),
+      std::make_pair("move", move),
+    };
     try {
-      if (commandName == "add" && arguments.size() == 3) {
-        add(arguments, phoneBook);
-      } else if (commandName == "store" && arguments.size() == 3) {
-        store(arguments, phoneBook);
-      } else if (commandName == "insert" && arguments.size() == 5) {
-        insert(arguments, phoneBook);
-      } else if (commandName == "delete" && arguments.size() == 2) {
-        erase(arguments, phoneBook);
-      } else if (commandName == "show" && arguments.size() == 2) {
-        show(arguments, phoneBook);
-      } else if (commandName == "move" && arguments.size() == 3) {
-        move(arguments, phoneBook);
-      } else {
-        std::cout << INVALID_COMMAND_ERROR << '\n';
-      }
+      return functions.at(commandName);
     } catch (const std::out_of_range &) {
-      std::cout << INVALID_BOOKMARK_ERROR << '\n';
+      throw InvalidCommandException();
     }
   }
 
-  int taskPhoneBook()
+  int taskPhoneBook(std::istream &istream, std::ostream &ostream)
   {
     PhoneBook phoneBook;
     std::string command;
-    while (std::getline(std::cin, command)) {
-      execute(command, phoneBook);
+    while (std::getline(istream, command)) {
+      std::vector< std::string > arguments = tokenize(command);
+      try {
+        getCommandFunction(arguments.front())(ostream, arguments, phoneBook);
+      } catch (const InvalidCommandException &) {
+        ostream << "<INVALID COMMAND>\n";
+      } catch (const InvalidStepException &) {
+        ostream << "<INVALID STEP>\n";
+      }
     }
-    return std::cin.eof() ? 0 : 2;
+    return istream.eof() ? 0 : 2;
   }
 }

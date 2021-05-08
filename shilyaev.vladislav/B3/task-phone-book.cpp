@@ -1,14 +1,13 @@
 #include "task-phone-book.hpp"
 #include <iostream>
 #include <iterator>
+#include <functional>
 #include "tokenizer.hpp"
 #include "phone-book.hpp"
 #include "task-phone-book-exception.hpp"
 
 namespace shilyaev {
   using CommandFunction = std::function< void(std::ostream &, const std::vector< std::string > &, PhoneBook &) >;
-  const std::string INVALID_BOOKMARK_ERROR = "<INVALID BOOKMARK>";
-  const std::string EMPTY_ERROR = "<EMPTY>";
 
   bool isNameValid(const std::string &name)
   {
@@ -75,12 +74,8 @@ namespace shilyaev {
       throw InvalidCommandException();
     }
     const std::string &bookmarkName = arguments[1];
-    const boost::optional< PhoneBook::Entry > entry = book.getEntry(bookmarkName);
-    if (!entry) {
-      ostream << EMPTY_ERROR << '\n';
-      return;
-    }
-    ostream << entry->number << ' ' << entry->name << '\n';
+    const PhoneBook::Entry entry = book.getEntry(bookmarkName);
+    ostream << entry.number << ' ' << entry.name << '\n';
   }
 
   void move(std::ostream &, const std::vector< std::string > &arguments, PhoneBook &book)
@@ -133,6 +128,10 @@ namespace shilyaev {
         ostream << "<INVALID COMMAND>\n";
       } catch (const InvalidStepException &) {
         ostream << "<INVALID STEP>\n";
+      } catch (const EmptyException &) {
+        ostream << "<EMPTY>\n";
+      } catch (const NoBookmarkException &) {
+        ostream << "<INVALID BOOKMARK>\n";
       }
     }
     return istream.eof() ? 0 : 2;

@@ -4,7 +4,6 @@
 #include <list>
 #include <map>
 #include <string>
-#include <boost/optional/optional.hpp>
 
 namespace shilyaev {
   class PhoneBook {
@@ -14,7 +13,7 @@ namespace shilyaev {
       std::string name;
     };
     PhoneBook();
-    boost::optional< Entry > getEntry(const std::string &bookmarkName) const;
+    Entry getEntry(const std::string &bookmarkName) const;
     void insertBefore(const std::string &bookmarkName, const Entry& entry);
     void insertAfter(const std::string &bookmarkName, const Entry& entry);
     void pushBack(const Entry& entry);
@@ -28,6 +27,18 @@ namespace shilyaev {
     using Iterator = EntriesContainer::iterator;
     EntriesContainer entries_;
     std::map< std::string, Iterator > bookmarks_;
+    Iterator &getBookmark(const std::string &bookmarkName);
+    const Iterator &getBookmark(const std::string &bookmarkName) const;
+  };
+
+  class EmptyException: public std::exception {
+  public:
+    const char *what() const noexcept override;
+  };
+
+  class NoBookmarkException: public std::exception {
+  public:
+    const char *what() const noexcept override;
   };
 }
 

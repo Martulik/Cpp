@@ -5,10 +5,12 @@
 
 namespace shilyaev {
   class InvalidCommandException: public std::exception {
+  public:
     const char *what() const noexcept override;
   };
 
   class InvalidStepException: public std::exception {
+  public:
     const char *what() const noexcept override;
   };
 }

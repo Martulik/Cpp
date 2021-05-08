@@ -13,6 +13,12 @@ pyatizbyantsev::Circle::Circle(const double valueRadius, const point_t& valuePos
   }
 }
 
+pyatizbyantsev::Circle::Circle(const pyatizbyantsev::Circle & src):
+  radius_(src.radius_),
+  pos_({src.pos_.x, src.pos_.y})
+{
+}
+
 double pyatizbyantsev::Circle::getArea() const
 {
   return PI * radius_ * radius_;
@@ -42,4 +48,9 @@ void pyatizbyantsev::Circle::doScale(const double scaleCoefficient)
 std::string pyatizbyantsev::Circle::getName() const
 {
   return "Circle";
+}
+
+std::unique_ptr< pyatizbyantsev::Shape > pyatizbyantsev::Circle::clone() const
+{
+  return std::make_unique< pyatizbyantsev::Circle > (*this);
 }

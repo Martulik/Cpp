@@ -9,11 +9,13 @@ namespace pyatizbyantsev
   {
   public:
     Rectangle(double valueHeight, double valueWidth, const point_t& valuePos);
+    Rectangle(const Rectangle & src);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     std::string getName() const override;
     void move(const point_t& newPos) override;
     void move(double abscissa, double ordinate) override;
+    std::unique_ptr< Shape > clone() const override;
 
   private:
     void doScale(double scaleCoefficient) override;

@@ -13,32 +13,37 @@ void printCoordinatesFigure(const Shape* figure)
 
 int main()
 {
-  std::cout << "Rectangle test:\n";
-  point_t posRectangle = {2.2, 8};
+  std::unique_ptr< Shape > rect(std::make_unique< Rectangle >(Rectangle(1, 2, { 1,2 })));
 
-  Shape* figureRectangle = new Rectangle(6, 8, posRectangle);
-  printCoordinatesFigure(figureRectangle);
+  std::unique_ptr< Shape > figure(rect->clone());
+  std::cout << figure->getArea() << '\n' << rect.get() << '\n' << figure.get() << '\n';
 
-  figureRectangle->move(6, 9);
-  printCoordinatesFigure(figureRectangle);
+  // std::cout << "Rectangle test:\n";
+  // point_t posRectangle = {2.2, 8};
 
-  std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
+  // Shape* figureRectangle = new Rectangle(6, 8, posRectangle);
+  // printCoordinatesFigure(figureRectangle);
 
-  delete figureRectangle;
+  // figureRectangle->move(6, 9);
+  // printCoordinatesFigure(figureRectangle);
 
-  std::cout << "Circle test:\n";
-  point_t posCircle = {1.3, 3.7};
+  // std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
 
-  Shape* figureCircle = new Circle(3, posCircle);
-  printCoordinatesFigure(figureCircle);
+  // delete figureRectangle;
 
-  point_t newPosCircle = {55.55, 66.66};
-  figureCircle->move(newPosCircle);
-  printCoordinatesFigure(figureCircle);
+  // std::cout << "Circle test:\n";
+  // point_t posCircle = {1.3, 3.7};
 
-  std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
+  // Shape* figureCircle = new Circle(3, posCircle);
+  // printCoordinatesFigure(figureCircle);
 
-  delete figureCircle;
+  // point_t newPosCircle = {55.55, 66.66};
+  // figureCircle->move(newPosCircle);
+  // printCoordinatesFigure(figureCircle);
+
+  // std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
+
+  // delete figureCircle;
 
   return 0;
 }

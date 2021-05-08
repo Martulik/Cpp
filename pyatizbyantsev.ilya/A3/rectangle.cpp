@@ -12,6 +12,13 @@ pyatizbyantsev::Rectangle::Rectangle(const double valueHeight, const double valu
   }
 }
 
+pyatizbyantsev::Rectangle::Rectangle(const pyatizbyantsev::Rectangle & src):
+  height_(src.height_),
+  width_(src.width_),
+  pos_({src.pos_.x, src.pos_.y})
+{
+}
+
 double pyatizbyantsev::Rectangle::getArea() const
 {
   return width_ * height_;
@@ -42,4 +49,9 @@ void pyatizbyantsev::Rectangle::doScale(const double scaleCoefficient)
 std::string pyatizbyantsev::Rectangle::getName() const
 {
   return "Rectangle";
+}
+
+std::unique_ptr< pyatizbyantsev::Shape > pyatizbyantsev::Rectangle::clone() const
+{
+  return std::make_unique< pyatizbyantsev::Rectangle > (*this);
 }

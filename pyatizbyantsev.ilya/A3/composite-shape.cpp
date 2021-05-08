@@ -3,74 +3,24 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-pyatizbyantsev::CompositeShape::CompositeShape(const std::initializer_list < std::shared_ptr< pyatizbyantsev::Shape > > source):
-  size_(source.size()),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
-{
-  int count = 0;
-  if (size_ == 0)
-  {
-    throw (std::invalid_argument("Composite Shape mustn't be empty"));
-  }
-  for (int count = 0; count < size_; count++)
-  {
-      const std::shared_ptr< Shape > element = source[count];
-  }
-//думай утром
-  for (const std::shared_ptr< Shape > elem: source)
-  {
-    if (elem == nullptr)
-    {
-      throw (std::invalid_argument("Element of Composite Shape mustn't be nullptr"));
-    }
-    data_[count] = elem->clone();
-    count++;
-  }
-}
-
-pyatizbyantsev::CompositeShape::CompositeShape(const CompositeShape& src):
+pyatizbyantsev::CompositeShape::CompositeShape(const pyatizbyantsev::CompositeShape & src):
   size_(src.size_),
-  data_(std::make_unique< std::shared_ptr< Shape >[] >(size_))
+  data_(std::make_unique< std::unique_ptr< Shape >[] >(size_))
 {
-  for (size_t i = 0; i < size_; ++i)
+  for (size_t i = 0; i < size_; i++)
   {
     data_[i] = src.data_[i]->clone();
   }
 }
 
-std::shared_ptr< pyatizbyantsev::Shape > pyatizbyantsev::CompositeShape::at(size_t indx)
-{
-  if (indx >= size_)
-  {
-    throw std::out_of_range("Index out of bounds");
-  }
-  return data_[indx];
-}
-
-std::shared_ptr< const pyatizbyantsev::Shape > pyatizbyantsev::CompositeShape::at(const size_t indx) const
-{
-  if (indx >= size_)
-  {
-    throw std::out_of_range("Index out of bounds");
-  }
-  return data_[indx];
-}
-
-pyatizbyantsev::CompositeShape& pyatizbyantsev::CompositeShape::operator=(const CompositeShape& src)
-{
-  CompositeShape temp(src);
-  swap(temp);
-  return *this;
-}
-
 double pyatizbyantsev::CompositeShape::getArea() const
 {
-  double sum = 0;
+  double area = 0;
   for (size_t i = 0; i < size_; i++)
   {
-    sum += data_[i]->getArea();
+    area += data_[i]->getArea();
   }
-  return sum;
+  return area;
 }
 
 pyatizbyantsev::rectangle_t pyatizbyantsev::CompositeShape::getFrameRect() const
@@ -92,20 +42,25 @@ pyatizbyantsev::rectangle_t pyatizbyantsev::CompositeShape::getFrameRect() const
     top = std::max(top, topBorder);
     bottom = std::min(bottom, bottomBorder);
   }
-  return {right - left, top - bottom, {(right + left) / 2, (top + bottom) / 2}};
+
+  double width = right - left;
+  double height = top - bottom;
+  point_t pos = {right - width / 2, top - height / 2};
+
+  return { width, height, pos };
 }
 
-void pyatizbyantsev::CompositeShape::move(const double dx, const double dy)
+void pyatizbyantsev::CompositeShape::move(const double abscissa, const double ordinate)
 {
   for (size_t i = 0; i < size_; i++)
   {
-    data_[i]->move(dx, dy);
+    data_[i]->move(abscissa, ordinate);
   }
 }
 
-void pyatizbyantsev::CompositeShape::move(const pyatizbyantsev::point_t& dpos)
+void pyatizbyantsev::CompositeShape::move(const pyatizbyantsev::point_t& newPos)
 {
-  move(dpos.x, dpos.y);
+  move(newPos.x, newPos.y);
 }
 
 std::string pyatizbyantsev::CompositeShape::getName() const
@@ -113,30 +68,27 @@ std::string pyatizbyantsev::CompositeShape::getName() const
   return "Composite Shape";
 }
 
-void pyatizbyantsev::CompositeShape::swap(CompositeShape& src) noexcept
-{
-  std::swap(size_, src.size_);
-  std::swap(data_, src.data_);
-}
-
-// std::shared_ptr< pyatizbyantsev::Shape > pyatizbyantsev::CompositeShape::clone() const
-// {
-//   return std::make_shared< CompositeShape >(*this);
-// }
-
 size_t pyatizbyantsev::CompositeShape::getSize() const
 {
   return size_;
 }
 
-void pyatizbyantsev::CompositeShape::doScale(double k)
+void pyatizbyantsev::CompositeShape::doScale(double scaleCoefficient)
 {
-  pyatizbyantsev::point_t pos = getFrameRect().pos;
+  double x = getX(*this);
+  double y = getY(*this);
   for (size_t i = 0; i < size_; i++)
   {
-    double dx = getX(*data_[i]) - pos.x;
-    double dy = getY(*data_[i]) - pos.y;
-    data_[i]->move({ pos.x + dx * k, pos.y + dy * k });
-    data_[i]->scale(k);
+    double abscissa = getX(*data_[i]) - x;
+    double ordinate = getY(*data_[i]) - y;
+    double newX = x + abscissa * scaleCoefficient;
+    double newY = y + ordinate * scaleCoefficient;
+    data_[i]->move({ newX, newY });
+    data_[i]->scale(scaleCoefficient);
   }
+}
+
+std::unique_ptr< pyatizbyantsev::Shape > pyatizbyantsev::CompositeShape::clone() const
+{
+  return std::make_unique< pyatizbyantsev::CompositeShape >(*this);
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include "book.hpp"
 #include "note.hpp"
 
 namespace lab = borisova;
@@ -108,7 +109,7 @@ void lab::Interface::show(const std::string& bookMark, std::ostream& out)
   }
 }
 
-void lab::Interface::move(const std::string& bookmark, const int n, std::ostream& out)
+void lab::Interface::move(const std::string& bookmark, int n, std::ostream& out)
 {
   itr iter = notes_.find(bookmark);
   if (iter == notes_.end())
@@ -118,6 +119,10 @@ void lab::Interface::move(const std::string& bookmark, const int n, std::ostream
   else
   {
     std::advance(iter->second, n);
+    /*for (int i = 0; i < n; i++)
+    {
+      ((n > 0) ? iter->second++ : iter->second--);
+    }*/
   }
 }
 

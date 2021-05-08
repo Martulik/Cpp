@@ -7,16 +7,17 @@ namespace lab = borisova;
 
 void lab::doTask1(std::istream& input, std::ostream& output)
 {
+  Interface value;
   std::string line;
   while (std::getline(input, line) && !line.empty())
   {
     std::istringstream in(line);
     std::string command;
+
     in >> command;
 
     Note temp;
     std::string mark;
-    Interface value;
     int n = 0;
     int code = 1;
 
@@ -58,6 +59,7 @@ void lab::doTask1(std::istream& input, std::ostream& output)
       std::string markName;
       std::string number1;
       std::string name1;
+
       in >> std::ws >> type;
       in >> std::ws >> markName;
       in >> std::ws >> number1;
@@ -65,7 +67,7 @@ void lab::doTask1(std::istream& input, std::ostream& output)
 
       if (correctName(name1) && correctNumder(number1))
       {
-        temp = {name1, number1};
+        temp = { name1, number1 };
         if (type == "before")
         {
           value.insertBefore(markName, temp, output);

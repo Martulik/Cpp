@@ -8,7 +8,7 @@
 
 namespace borisova
 {
-  void doTask1(std::istream& in, std::ostream& out);
+  void doTask1(std::istream& input, std::ostream& output);
   void doTask2(std::ostream& output);
 }
 

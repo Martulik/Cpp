@@ -196,7 +196,7 @@ iva::Bookmarks::InsertType iva::getInsertType(std::string &str)
   }
   else
   {
-    invalidCommand(std::cout);
+    invalidStep(std::cout);
     return {};
   }
 }

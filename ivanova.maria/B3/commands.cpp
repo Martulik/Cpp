@@ -69,18 +69,15 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   else
   {
-    if (position == "before")
+    auto beforeOrAfter = getInsertType(position);
+    if (beforeOrAfter)
     {
-      bookmarks.insert(iva::Bookmarks::BEFORE, mark, info);
-    }
-    else if (position == "after")
-    {
-      bookmarks.insert(iva::Bookmarks::AFTER, mark, info);
+      bookmarks.insert(beforeOrAfter, mark, info);
     }
     else
     {
       invalidCommand(std::cout);
-      return 1;
+      return {};
     }
   }
   return 0;
@@ -141,14 +138,6 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
     invalidCommand(std::cout);
     return 1;
   }
-  else if (steps == "first")
-  {
-    bookmarks.move(nameOfMark, iva::Bookmarks::FIRST);
-  }
-  else if (steps == "last")
-  {
-    bookmarks.move(nameOfMark, iva::Bookmarks::LAST);
-  }
   else if (steps[0] == '-' || steps[0] == '+')
   {
     std::string tempStr;
@@ -160,19 +149,55 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
     }
     bookmarks.move(nameOfMark, std::stoi(steps));
   }
-  else
+  else if (iva::checkNumber(steps))
   {
-    if (!iva::checkNumber(steps))
-    {
-      invalidStep(std::cout);
-      return 1;
-    }
     bookmarks.move(nameOfMark, std::stoi(steps));
   }
-  if (steps.empty())
+  else
   {
-    invalidCommand(std::cout);
-    return 1;
+    auto firstOrLast = getPosition(steps);
+    if (!firstOrLast)
+    {
+      invalidCommand(std::cout);
+      return 1;
+    }
+    bookmarks.move(nameOfMark, firstOrLast);
   }
   return 0;
 }
+
+iva::Bookmarks::positionMove ivanova::getPosition(std::string &str)
+{
+  if (str == "first")
+  {
+    return iva::Bookmarks::FIRST;
+  }
+  else if (str == "last")
+  {
+    return iva::Bookmarks::LAST;
+  }
+  else
+  {
+    invalidStep(std::cout);
+    return {};
+  }
+}
+
+iva::Bookmarks::InsertType iva::getInsertType(std::string &str)
+{
+  if (str == "before")
+  {
+    return iva::Bookmarks::BEFORE;
+  }
+  else if (str == "after")
+  {
+    return iva::Bookmarks::AFTER;
+  }
+  else
+  {
+    invalidCommand(std::cout);
+    return {};
+  }
+}
+
+

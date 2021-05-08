@@ -17,7 +17,8 @@ namespace ivanova
   int doDelete(Bookmarks &bookmarks, std::stringstream &input);
   int doShow(Bookmarks &bookmarks, std::stringstream &input);
   int doMove(Bookmarks &bookmarks, std::stringstream &input);
-
+  Bookmarks::positionMove getPosition(std::string &str);
+  Bookmarks::InsertType getInsertType(std::string &str);
   class Commands
   {
   public:

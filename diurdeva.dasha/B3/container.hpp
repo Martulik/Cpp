@@ -8,12 +8,12 @@ namespace diurdeva{
   {
   public:
     Container() = default;
-    class IteratorFact : public std::iterator<std::bidirectional_iterator_tag, size_t>
+    class IteratorFact: public std::iterator< std::bidirectional_iterator_tag, size_t >
     {
     public:
-      IteratorFact();
-      IteratorFact(size_t pos);
+      IteratorFact() = default;
 
+      size_t* operator->();
       const size_t& operator*() const;
       IteratorFact& operator++();
       IteratorFact operator++(int);
@@ -23,13 +23,14 @@ namespace diurdeva{
       bool operator==(const IteratorFact& rhs) const;
       bool operator!=(const IteratorFact& rhs) const;
     private:
+      friend class Container;
       size_t pos_;
       size_t value_;
-      constexpr size_t factor(size_t number);
+      IteratorFact(size_t value, size_t pos);
     };
 
-    IteratorFact begin();
-    IteratorFact end();
+    const IteratorFact begin();
+    const IteratorFact end();
   };
 }
 

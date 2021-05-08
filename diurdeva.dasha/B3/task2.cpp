@@ -5,7 +5,7 @@
 
 void diurdeva::task2()
 {
-  std::ostream_iterator<int> out_iter(std::cout, " ");
+  std::ostream_iterator< int > out_iter(std::cout, " ");
   Container container;
   std::copy(container.begin(), container.end(), out_iter);
   std::cout << '\n';

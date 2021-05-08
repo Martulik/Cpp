@@ -1,12 +1,7 @@
 #include "phonebook.hpp"
 #include <iostream>
 
-void diurdeva::Phonebook::view(iterator iter) const
-{
-  std::cout << iter->phone << " " << iter->name << std::endl;
-}
-
-void diurdeva::Phonebook::pushBack(const Phonebook::record_t& rec)
+void diurdeva::Phonebook::pushBack(const record_t& rec)
 {
   return list_.push_back(rec);
 }
@@ -26,7 +21,7 @@ diurdeva::Phonebook::iterator diurdeva::Phonebook::end()
   return list_.end();
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::next(iterator iter)
+diurdeva::Phonebook::iterator diurdeva::Phonebook::next(iterator iter) const
 {
   if (std::next(iter) != list_.end())
   {
@@ -38,7 +33,7 @@ diurdeva::Phonebook::iterator diurdeva::Phonebook::next(iterator iter)
   }
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::prev(iterator iter)
+diurdeva::Phonebook::iterator diurdeva::Phonebook::prev(iterator iter) const
 {
   if (iter != list_.begin())
   {
@@ -50,7 +45,7 @@ diurdeva::Phonebook::iterator diurdeva::Phonebook::prev(iterator iter)
   }
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::insert(iterator iter, const Phonebook::record_t& rec)
+diurdeva::Phonebook::iterator diurdeva::Phonebook::insert(iterator iter, const record_t& rec)
 {
   return list_.insert(iter, rec);
 }
@@ -60,11 +55,10 @@ diurdeva::Phonebook::iterator diurdeva::Phonebook::remove(iterator iter)
   return list_.erase(iter);
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::replace(const std::string& name, const std::string& number, iterator iterator)
+diurdeva::Phonebook::iterator diurdeva::Phonebook::replace(iterator iter, record_t& src)
 {
-  iterator->name = name;
-  iterator->phone = number;
-  return iterator;
+  *iter = src;
+  return iter;
 }
 
 diurdeva::Phonebook::iterator diurdeva::Phonebook::move(iterator iter, int n)

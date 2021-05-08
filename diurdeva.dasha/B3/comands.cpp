@@ -3,97 +3,108 @@
 #include <sstream>
 #include "detail.hpp"
 
-void diurdeva::add(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::add(PhonebookManager& phoneBook, std::stringstream& input)
 {
-  std::string number;
-  input >> std::ws >> number;
+  record_t record;
+  input >> record;
 
-  std::string name;
-  std::getline(input >> std::ws, name);
-
-  if (!isNumberValid(number) || !refactorAndCheckName(name)) {
-    std::cout << "<INVALID COMMAND>\n";
-    return;
+  if (record.name.empty() || record.number.empty()) {
+    invalidCommand(std::cout);
   }
-  Phonebook::record_t mark = {name, number};
-  phoneBook.add(mark);
+  else {
+    phoneBook.add(record);
+  }
 }
 
-void diurdeva::store(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::store(PhonebookManager& phoneBook, std::stringstream& input)
 {
   std::string markName;
   input >> std::ws >> markName;
-
+ 
   std::string newMarkName;
   input >> std::ws >> newMarkName;
-
-  if (!input.eof() || !isBookmarkValid(markName) || !isBookmarkValid(newMarkName)) {
-    std::cout << "<INVALID COMMAND\n>";
-    return;
+ 
+  if (!input.eof() || !isBookmarkValid(markName) || !isBookmarkValid(newMarkName))
+  {
+    invalidCommand(std::cout);
   }
-  phoneBook.store(markName, newMarkName);
+  else if (!phoneBook.containsBookmark(markName)) {
+    invalidBookmark(std::cout);
+  }
+  else {
+    phoneBook.store(markName, newMarkName);
+  }
 }
 
-void diurdeva::insert(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::insert(PhonebookManager& phoneBook, std::stringstream& input)
 {
   std::string direction;
   std::string bookmark;
-  std::string number;
   input >> std::ws >> direction;
   input >> std::ws >> bookmark;
-  input >> std::ws >> number;
-  std::string name;
-  getline(input >> std::ws, name);
+  record_t record;
+  input >> record;
 
-  if (!isBookmarkValid(bookmark) || !isNumberValid(number) || !refactorAndCheckName(name)) {
-    std::cout << "<INVALID COMMAND>\n";
-    return;
+  if (!isBookmarkValid(bookmark) || record.number.empty() || record.name.empty()) {
+    invalidCommand(std::cout);
   }
-
-  Phonebook::record_t mark = {name, number};
-  PhonebookManager::InsertPosition dir;
-  if (direction == "before") {
-    dir = PhonebookManager::InsertPosition::BEFORE;
-  } else if (direction == "after") {
-    dir = PhonebookManager::InsertPosition::AFTER;
-  } else {
-    std::cout << "<INVALID COMMAND>\n";
-    return;
+  else if (!phoneBook.containsBookmark(bookmark)) {
+    invalidBookmark(std::cout);
   }
-  phoneBook.insert(dir, bookmark, mark);
+  else if (direction == "before") {
+    phoneBook.insert(PhonebookManager::InsertPosition::BEFORE, bookmark, record);
+  }
+  else if (direction == "after") {
+    phoneBook.insert(PhonebookManager::InsertPosition::AFTER, bookmark, record);
+  }
+  else {
+    invalidCommand(std::cout);
+  }
 }
 
-void diurdeva::deleteRecord(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::deleteRecord(PhonebookManager& phoneBook, std::stringstream& input)
 {
   std::string bookmark;
   input >> std::ws >> bookmark;
 
   if (!input.eof() || !isBookmarkValid(bookmark)) {
-    std::cout << "<INVALID COMMAND>\n";
-  } else {
+    invalidCommand(std::cout);
+  }
+  else if (!phoneBook.containsBookmark(bookmark)) {
+    invalidBookmark(std::cout);
+  }
+  else {
     phoneBook.deleteNote(bookmark);
   }
 }
 
-void diurdeva::show(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::show(PhonebookManager& phoneBook, std::stringstream& input)
 {
   std::string bookmark;
   input >> std::ws >> bookmark;
 
   if (!input.eof() || !isBookmarkValid(bookmark)) {
-    std::cout << "<INVALID COMMAND>\n";
-  } else {
+    invalidCommand(std::cout);
+  }
+  else if (!phoneBook.containsBookmark(bookmark)) {
+    invalidBookmark(std::cout);
+  }
+  else {
     phoneBook.show(bookmark);
   }
 }
 
-void diurdeva::move(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::move(PhonebookManager& phoneBook, std::stringstream& input)
 {
   std::string bookmark;
   input >> std::ws >> bookmark;
 
   if (!isBookmarkValid(bookmark)) {
-    std::cout << "<INVALID COMMAND>\n";
+    invalidCommand(std::cout);
+    return;
+  }
+  else if (!phoneBook.containsBookmark(bookmark)) {
+    invalidBookmark(std::cout);
     return;
   }
 
@@ -101,30 +112,41 @@ void diurdeva::move(PhonebookManager &phoneBook, std::stringstream &input)
   input >> std::ws >> steps;
 
   if (!input.eof()) {
-    std::cout << "<INVALID COMMAND>\n";
-  } else if (steps == "first") {
+    invalidCommand(std::cout);
+  }
+  else if (steps == "first") {
     phoneBook.move(bookmark, PhonebookManager::MovePosition::FIRST);
-  } else if (steps == "last") {
+  }
+  else if (steps == "last") {
     phoneBook.move(bookmark, PhonebookManager::MovePosition::LAST);
-  } else {
-    if (steps.empty()) {
-      std::cout << "<INVALID STEP>\n";
-      return;
+  }
+  else {
+    try {
+      const int stepInt = std::stoi(steps);
+      phoneBook.move(bookmark, stepInt);
     }
-
-    int sign = 1;
-
-    if (steps[0] == '-') {
-      sign = -1;
-      steps.erase(steps.begin());
-    } else if (steps[0] == '+') {
-      steps.erase(steps.begin());
-    }
-
-    if (!isNumberValid(steps)) {
-      std::cout << "<INVALID STEP>\n";
-    } else {
-      phoneBook.move(bookmark, stoi(steps) * sign);
+    catch (const std::invalid_argument&) {
+      invalidStep(std::cout);
     }
   }
+}
+
+void diurdeva::invalidCommand(std::ostream& out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void diurdeva::invalidBookmark(std::ostream& out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void diurdeva::empty(std::ostream& out)
+{
+  out << "<EMPTY>\n";
+}
+
+void diurdeva::invalidStep(std::ostream& out)
+{
+  out << "<INVALID STEP>\n";
 }

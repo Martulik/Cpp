@@ -1,17 +1,21 @@
 #include "container.hpp"
+#include "cassert"
 
 constexpr int MAX_POS = 11;
 constexpr int MIN_POS = 1;
 
-diurdeva::Container::IteratorFact::IteratorFact():
-  pos_(1),
-  value_(1)
-{}
+constexpr int factorial(size_t n)
+{
+  return (n <= 1) ? 1 : (n * factorial(n - 1));
+}
 
-diurdeva::Container::IteratorFact::IteratorFact(size_t pos):
-  pos_(pos),
-  value_(factor(pos))
-{}
+constexpr int MIN_VALUE = factorial(MIN_POS);
+constexpr int MAX_VALUE = factorial(MAX_POS);
+
+size_t* diurdeva::Container::IteratorFact::operator->()
+{
+  return &value_;
+}
 
 const size_t& diurdeva::Container::IteratorFact::operator*() const
 {
@@ -20,12 +24,10 @@ const size_t& diurdeva::Container::IteratorFact::operator*() const
 
 diurdeva::Container::IteratorFact& diurdeva::Container::IteratorFact::operator++()
 {
-  if (pos_ < MAX_POS)
-  {
-    ++pos_;
-    value_ *= pos_;
-  }
+  assert(pos_ < MAX_POS);
+  value_ *= ++pos_;
   return *this;
+
 }
 
 diurdeva::Container::IteratorFact diurdeva::Container::IteratorFact::operator++(int)
@@ -37,12 +39,10 @@ diurdeva::Container::IteratorFact diurdeva::Container::IteratorFact::operator++(
 
 diurdeva::Container::IteratorFact& diurdeva::Container::IteratorFact::operator--()
 {
-  if (pos_ > MIN_POS)
-  {
-    value_ /= pos_;
-    --pos_;
-  }
+  assert(pos_ > MIN_POS);
+  value_ /= pos_--;
   return *this;
+
 }
 
 diurdeva::Container ::IteratorFact diurdeva::Container::IteratorFact::operator--(int)
@@ -62,22 +62,18 @@ bool diurdeva::Container::IteratorFact::operator!=(const Container::IteratorFact
   return !(*this == rhs);
 }
 
-constexpr size_t diurdeva::Container::IteratorFact::factor(size_t number)
+
+const diurdeva::Container::IteratorFact diurdeva::Container::begin()
 {
-  size_t result = 1;
-  for (size_t i = 1; i <= number; ++i)
-  {
-    result *= i;
-  }
-  return result;
+  return {MIN_VALUE, MIN_POS};
 }
 
-diurdeva::Container::IteratorFact diurdeva::Container::begin()
+const diurdeva::Container ::IteratorFact diurdeva::Container::end()
 {
-  return IteratorFact(MIN_POS);
+  return {MAX_VALUE, MAX_POS};
 }
 
-diurdeva::Container ::IteratorFact diurdeva::Container::end()
-{
-  return IteratorFact(MAX_POS);
-}
+diurdeva::Container::IteratorFact::IteratorFact(size_t value, size_t pos) :
+  value_(value),
+  pos_(pos)
+{}

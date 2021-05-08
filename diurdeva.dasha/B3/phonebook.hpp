@@ -1,38 +1,31 @@
-#ifndef PHONEBOOKHPP
-#define PHONEBOOKHPP
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include <list>
 #include <string>
+#include "record_t.hpp"
 
 namespace diurdeva {
   class Phonebook
   {
   public:
-    struct record_t
-    {
-      std::string name;
-      std::string phone;
-    };
-
     using list = std::list<record_t>;
     using iterator = list::iterator;
 
-    void view(iterator) const;
     void pushBack(const record_t& rec);
-
     bool empty() const;
 
     iterator begin();
     iterator end();
-    iterator next(iterator);
-    iterator prev(iterator);
+    iterator next(iterator) const;
+    iterator prev(iterator) const;
     iterator insert(iterator, const record_t& rec);
     iterator remove(iterator);
-    iterator replace(const std::string& name, const std::string& number, iterator iterator);
+    iterator replace(iterator iter, record_t& src);
     iterator move(iterator, int);
   private:
     list list_;
   };
 }
 
-#endif
+#endif 

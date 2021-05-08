@@ -4,21 +4,31 @@
 std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
 {
   std::string str;
-  in >> str;
-  size_t i = 0;
-  std::string key1;
-  while (str.at(i) != ',')
+  std::getline(in, str);
   {
-    key1 += str.at(i);
-    i++;
+    if (!str.empty())
+    {
+      data = getVector(str);
+    }
+    else
+    {
+      in.setstate(in.eofbit);
+    }
   }
-
-  i++;
-
+  return in;
 }
 
-std::ostream &ivanova::operator<<(std::ostream &out, ivanova::DataStruct &data)
+std::ostream &ivanova::operator <<(std::ostream &out, ivanova::DataStruct &data)
 {
   out << data.key1 << "," << data.key2 << "," << data.str << std::endl;
   return out;
+}
+
+bool ivanova::empty(ivanova::DataStruct &data)
+{
+  if (data.str.empty())
+  {
+    return true;
+  }
+  return false;
 }

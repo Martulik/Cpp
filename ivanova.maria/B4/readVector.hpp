@@ -12,29 +12,17 @@ namespace ivanova
 {
   bool readVector(std::vector < DataStruct > &vector)
   {
-    std::string str;
-    while (std::getline(std::cin, str))
+    while (!std::cin.eof())
     {
-      if (std::cin.fail())
+      DataStruct data;
+      std::cin >> data;
+      if (!empty(data))
       {
-        std::cerr << "Read fail";
-        return false;
-      }
-      else
-      {
-        if (str.empty())
-        {
-          return true;
-        }
-        else
-        {
-          vector.push_back(getVector(str));
-        }
+        vector.push_back(data);
       }
     }
-    if (!std::cin.eof())
+    if (vector.empty())
     {
-      std::cerr << "Failed reading";
       return false;
     }
     return true;

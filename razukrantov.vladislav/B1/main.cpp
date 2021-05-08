@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
     }
     if (!razukrantov::isNumber(argv[1]))
     {
-      throw (std::invalid_argument("Incorrect task number"))
+      throw (std::invalid_argument("Incorrect task number"));
     }
     switch (atoi(argv[1]))
     {

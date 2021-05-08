@@ -10,10 +10,10 @@
 
 void razukrantov::task1(const char* order)
 {
-   if (strcmp(order, "ascending") && strcmp(order, "descending"))
-   {
-     throw (std::invalid_argument("Incorrect input un task1\n"));
-   }
+  if (strcmp(order, "ascending") && strcmp(order, "descending"))
+  {
+    throw (std::invalid_argument("Incorrect input un task1\n"));
+  }
   std::vector<int> vector;
   int x = 0;
   while (std::cin >> x)
@@ -26,7 +26,7 @@ void razukrantov::task1(const char* order)
   }
   if (vector.empty())
   {
-      return;
+    return;
   }
 
   std::vector<int> atVector(vector);

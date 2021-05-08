@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
   {
     if ((argc < 2) || (argc > 4))
     {
-    throw(std::invalid_argument("Incorrect arguments count"));
+      throw(std::invalid_argument("Incorrect arguments count"));
     }
     if (!razukrantov::isNumber(argv[1]))
     {

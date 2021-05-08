@@ -15,7 +15,7 @@ void testSort(const char* order, size_t size)
   std::function< bool(int, int) > compare = std::greater< >();
   if (strcmp(order, "descending"))
   {
-      std::function< bool(int, int) > cmp = std::less< >();
+    std::function< bool(int, int) > cmp = std::less< >();
   }
   std::vector< int > vector(size);
   std::vector< int > vector2(size);

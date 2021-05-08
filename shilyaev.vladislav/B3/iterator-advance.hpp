@@ -8,12 +8,12 @@ namespace shilyaev {
   Iterator safeAdvance(Iterator iterator, int n, const Iterator &begin, const Iterator &end)
   {
     while (n > 0 && std::next(iterator) != end) {
-      n--;
-      iterator++;
+      --n;
+      ++iterator;
     }
     while (n < 0 && iterator != begin) {
-      n++;
-      iterator--;
+      ++n;
+      --iterator;
     }
     return iterator;
   }

@@ -50,7 +50,7 @@ void mur::PhoneBook::replace(mur::PhoneBook::iterator it, const mur::note_t& not
 
 void mur::PhoneBook::show(std::ostream& out, mur::PhoneBook::iterator it) const
 {
-  out << it->number << " " << it->name << "\n";
+  out << *it;
 }
 
 size_t mur::PhoneBook::size() const

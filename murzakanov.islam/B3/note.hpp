@@ -2,6 +2,7 @@
 #define NOTE_HPP
 
 #include <string>
+#include <iostream>
 
 namespace murzakanov
 {
@@ -10,6 +11,7 @@ namespace murzakanov
     std::string number;
     std::string name;
   };
+  std::ostream& operator<<(std::ostream& out, const note_t& note);
 }
 
 #endif

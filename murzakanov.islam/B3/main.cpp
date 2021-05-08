@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 #include "tasks.hpp"
 #include "tools.hpp"
@@ -10,20 +11,20 @@ int main(int argc, char* argv[])
   {
     code = 1;
   }
-  int index = 0;
+  int taskNum = 0;
   try
   {
-    index = std::stoi(argv[1]);
+    taskNum = std::stoi(argv[1]);
   }
   catch(const std::exception& e)
   {
     code = 1;
   }
-  if (!code && index == 1)
+  if (!code && taskNum == 1)
   {
     murzakanov::task1();
   }
-  else if (!code && index == 2)
+  else if (!code && taskNum == 2)
   {
     murzakanov::task2();
   }

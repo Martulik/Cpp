@@ -69,9 +69,9 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   else
   {
-    auto beforeOrAfter = getInsertType(position);
-    if (beforeOrAfter)
+    if (!position.empty() && (position == "before" || position == "after"))
     {
+      auto beforeOrAfter = getInsertType(position);
       bookmarks.insert(beforeOrAfter, mark, info);
     }
     else
@@ -79,6 +79,7 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
       invalidCommand(std::cout);
       return {};
     }
+
   }
   return 0;
 }
@@ -155,12 +156,12 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   }
   else
   {
-    auto firstOrLast = getPosition(steps);
-    if (!firstOrLast)
+    if (steps.empty() || steps != "last" && steps != "first")
     {
       invalidCommand(std::cout);
       return 1;
     }
+    auto firstOrLast = getPosition(steps);
     bookmarks.move(nameOfMark, firstOrLast);
   }
   return 0;

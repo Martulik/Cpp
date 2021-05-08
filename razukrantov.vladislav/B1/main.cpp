@@ -13,6 +13,10 @@ int main(int argc, char* argv[])
     {
     throw(std::invalid_argument("Incorrect arguments count"));
     }
+    if (!razukrantov::isNumber(argv[1]))
+    {
+      throw (std::invalid_argument("Incorrect task number"))
+    }
     switch (atoi(argv[1]))
     {
     case 1:
@@ -41,15 +45,16 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect arguments count in task4"));
       }
-      if (razukrantov::isNumber(argv[3]))
-      {
-        razukrantov::task4(argv[2], atoi(argv[3]));
-        break;
-      }
-      else
+      if (!razukrantov::isNumber(argv[3]))
       {
         throw(std::invalid_argument("Incorrect argument in task 4"));
       }
+      if (atoi(argv[3]) <= 0)
+      {
+        throw(std::invalid_argument("Incorrect array size"));
+      }
+      razukrantov::task4(argv[2], atoi(argv[3]));
+      break;
     default:
       throw(std::invalid_argument("incorrect number of task"));
       break;

@@ -1,6 +1,7 @@
 #include "tools.hpp"
-
+#include <sstream>
 namespace iva = ivanova;
+
 bool iva::compare(DataStruct &data1, DataStruct &data2)
 {
   if (data1.key1 > data2.key1)
@@ -28,107 +29,68 @@ bool iva::compare(DataStruct &data1, DataStruct &data2)
 
 iva::DataStruct iva::getVector(std::string &str)
 {
-  iva::DataStruct data;
-  std::string key;
+  if (str.empty())
+  {
+    return {};
+  }
+  DataStruct data;
   size_t i = 0;
+  std::string key1;
   while (str.at(i) != ',')
   {
-    key += str.at(i);
+    key1 += str.at(i);
     i++;
   }
-  if (iva::checkInt(key))
+  if (checkInt(key1))
   {
-    data.key1 = std::stoi(key);
-    i++;
-    key.clear();
+    data.key1 = std::stoi(key1);
   }
   else
   {
-    std::cerr << "Invalid input";
+    std::cerr << "Ivalid input";
     exit(1);
   }
+  i++;
+  std::string key2;
   while (str.at(i) == ' ')
   {
     i++;
   }
   while (str.at(i) != ',')
   {
-    key += str.at(i);
+    key2 += str.at(i);
     i++;
   }
-  if (iva::checkInt(key))
+  if (checkInt(key2))
   {
-    data.key2 = std::stoi(key);
-    i++;
+    data.key2 = std::stoi(key2);
   }
   else
   {
-    std::cerr << "Invalid input";
+    std::cerr << "invalid input";
     exit(1);
   }
-  while (str.at(i) != '\0')
+  i++;
+  std::string string;
+  while (str.at(i) == ' ')
   {
-    data.str += str.at(i);
+    i++;
+  }
+  while (i != str.length())
+  {
+    string += str.at(i);
+    i++;
+  }
+  if (string.empty())
+  {
+    std::cerr << "missing string";
+    exit(1);
+  }
+  else
+  {
+    data.str = string;
   }
   return data;
-//  if (str.at(0) == '-' || str.at(0) == '+')
-//  {
-//    key += str.at(0);
-//    i++;
-//  }
-//  while (isdigit(str.at(i)))
-//  {
-//    key += str.at(i);
-//    i++;
-//  }
-//  iva::checkSymbol(str.at(i));
-  i++;
-  data.key1 = std::stoi(key);
-  key.clear();
-  if (str.at(i) == '-' || str.at(i) == '+')//todo: сделать стандартный ввод через while (!=',')
-  {
-    key += str.at(i);
-    i++;
-  }
-  while (isdigit(str.at(i)))
-  {
-    key += str.at(i);
-    i++;
-  }
-  iva::checkSymbol(str.at(i));
-  i++;
-  data.key2 = std::stoi(key);
-  key.clear();
-  while (i < str.size())
-  {
-    key += str.at(i);
-    i++;
-  }
-  if (!key.empty())
-  {
-    data.str = std::move(key);
-    return data;
-  }
-  else
-  {
-    std::cerr << " Missing String";
-    exit(1);
-  }
-}
-
-
-void ivanova::checkSymbol(char &s)
-{
-  if (s != ',')
-  {
-    std::cerr << "Invalid Separator";
-    exit(1);
-  }
-  else if (abs(std::atoi(&s)) > 5)
-  {
-    std::cerr << "key must be in range of -5 to 5\n";
-    exit(1);
-  }
 }
 
 bool ivanova::checkInt(std::string &str)
@@ -143,6 +105,10 @@ bool ivanova::checkInt(std::string &str)
         return false;
       }
     }
+    if (std::abs(std::stoi(str)) > 5)
+    {
+      return false;
+    }
   }
   else
   {
@@ -152,6 +118,10 @@ bool ivanova::checkInt(std::string &str)
       {
         return false;
       }
+    }
+    if (std::abs(std::stoi(str)) > 5)
+    {
+      return false;
     }
   }
   return true;

@@ -14,7 +14,12 @@ int main(int argc, char* argv[])
   int taskNum = 0;
   try
   {
-    taskNum = std::stoi(argv[1]);
+    std::string argument(argv[1]);
+    if (argument.length() != 1)
+    {
+      code = 1;
+    }
+    taskNum = std::stoi(argument);
   }
   catch(const std::exception& e)
   {

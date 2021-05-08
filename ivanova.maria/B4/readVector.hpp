@@ -21,8 +21,9 @@ namespace ivanova
         vector.push_back(data);
       }
     }
-    if (vector.empty())
+    if (!std::cin.eof())
     {
+      std::cerr << "failed reading";
       return false;
     }
     return true;

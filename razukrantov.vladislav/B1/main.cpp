@@ -6,6 +6,7 @@
 
 int main(int argc, char* argv[])
 {
+  srand(time(0));
   try
   {
 	if ((argc < 2) || (argc > 4))

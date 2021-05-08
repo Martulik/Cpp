@@ -12,6 +12,12 @@ namespace shilyaev {
   constexpr unsigned int endLastMultiplier = 11;
   constexpr unsigned int endValue = factorial(endLastMultiplier);
 
+  FactorialContainer::Iterator::Iterator():
+    value_(0),
+    lastMultiplier_(0)
+  {
+  }
+
   FactorialContainer::Iterator::Iterator(unsigned int value, unsigned int lastMultiplier):
     value_(value),
     lastMultiplier_(lastMultiplier)
@@ -20,11 +26,13 @@ namespace shilyaev {
 
   const unsigned int &FactorialContainer::Iterator::operator*() const
   {
+    assert(value_ != 0);
     return value_;
   }
 
   const unsigned int *FactorialContainer::Iterator::operator->() const
   {
+    assert(value_ != 0);
     return std::addressof(value_);
   }
 

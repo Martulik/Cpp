@@ -9,7 +9,7 @@ namespace shilyaev {
     class Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned int > {
     public:
       using ValueType = unsigned int;
-      Iterator() = default;
+      Iterator();
       const ValueType &operator*() const;
       const ValueType *operator->() const;
       Iterator &operator++();

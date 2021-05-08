@@ -5,13 +5,14 @@
 #include <map>
 #include <string>
 #include "phone-book.hpp"
+#include "note.hpp"
 
 namespace murzakanov
 {
   class BookInterface
   {
   public:
-    using note_t = murzakanov::PhoneBook::note_t;
+    using note_t = murzakanov::note_t;
     using iteratorType = std::map< std::string, murzakanov::PhoneBook::iterator >::iterator;
     using constIteratorType = std::map< std::string, murzakanov::PhoneBook::iterator >::const_iterator;
     explicit BookInterface(PhoneBook& book);

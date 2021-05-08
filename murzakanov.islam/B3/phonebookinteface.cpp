@@ -7,6 +7,7 @@
 
 #include "phone-book.hpp"
 #include "tools.hpp"
+#include "note.hpp"
 
 murzakanov::BookInterface::BookInterface(PhoneBook& book):
   book_(std::make_unique< PhoneBook >(book))

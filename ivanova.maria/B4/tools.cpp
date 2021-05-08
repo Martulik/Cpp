@@ -29,14 +29,15 @@ bool iva::compare(DataStruct &data1, DataStruct &data2)
 
 iva::DataStruct iva::getVector(std::string &str)
 {
-  if (str.empty())
+  if (str.empty() || str.length() < 5)
   {
-    return {};
+    std::cerr << "Invalid input";
+    exit(1);
   }
   DataStruct data;
   size_t i = 0;
   std::string key1;
-  while (str.at(i) != ',')
+  while (i < str.length() && str.at(i) != ',')
   {
     key1 += str.at(i);
     i++;
@@ -52,11 +53,11 @@ iva::DataStruct iva::getVector(std::string &str)
   }
   i++;
   std::string key2;
-  while (str.at(i) == ' ')
+  while (i < str.length() && str.at(i) == ' ')
   {
     i++;
   }
-  while (str.at(i) != ',')
+  while (i < str.length() && str.at(i) != ',')
   {
     key2 += str.at(i);
     i++;
@@ -72,11 +73,11 @@ iva::DataStruct iva::getVector(std::string &str)
   }
   i++;
   std::string string;
-  while (str.at(i) == ' ')
+  while (i < str.length() && str.at(i) == ' ')
   {
     i++;
   }
-  while (i != str.length())
+  while (i < str.length())
   {
     string += str.at(i);
     i++;
@@ -98,9 +99,9 @@ bool ivanova::checkInt(std::string &str)
   size_t i = 0;
   if (str.at(i) == '-' || str.at(i) == '+')
   {
-    for (size_t i = 1; i < str.length(); i++)
+    for (size_t k = i + 1; k < str.length(); k++)
     {
-      if (!std::isdigit(str.at(i)))
+      if (!std::isdigit(str.at(k)))
       {
         return false;
       }

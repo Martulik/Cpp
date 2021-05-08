@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
-
 #include <algorithm>
 
 #include "shape.hpp"
@@ -25,31 +24,28 @@ void ezerinia::task2()
     if (shapes[i].size() == 3) {
       triangles++;
     } else if (shapes[i].size() == 4) {
+      rectangles++;
       if (isSideEqual(shapes[i])) {
         squares++;
-      } else {
-        rectangles++;
       }
-    } else if (shapes[i].size() == 5) {
-      shapes.erase(shapes.begin() + i);
-      continue;
     }
-    points.push_back(shapes[i].front());
+    if (shapes[i].size() != 5) {
+      points.push_back(shapes[i].front());
+    }
   }
+  
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
+                              [](const Shape &shape) {
+                                return shape.size() == 5;
+                              }), shapes.end());
 
+  std::sort(shapes.begin(), shapes.end(), compare);
   std::cout << "Vertices: " << vertices << "\n";
   std::cout << "Triangles: " << triangles << "\n";
   std::cout << "Squares: " << squares << "\n";
   std::cout << "Rectangles: " << rectangles << "\n";
   std::cout << "Points: ";
-  if (points.empty()) {
-    std::cout << "\n";
-  } else {
-    std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, "\n"));
-  }
-  std::cout << "Shapes:\n";
-  if (!shapes.empty()) {
-    std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(std::cout, "\n"));
-  }
-
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, "\n"));
+  std::cout << "\nShapes:\n";
+  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(std::cout, "\n"));
 }

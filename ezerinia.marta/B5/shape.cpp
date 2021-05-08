@@ -10,12 +10,12 @@
 
 double getSideLength(const Point &p1, const Point &p2)
 {
-  return sqrt((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y));
+  return sqrt(abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y)));
 }
 
 bool isSideEqual(const Shape &shape)
 {
-  double side = getSideLength(shape[0], shape[shape.size()]);
+  double side = getSideLength(shape[0], shape[shape.size() - 1]);
   for (unsigned int i = 0; i < shape.size() - 1; i++) {
     if (getSideLength(shape[i], shape[i + 1]) != side) {
       return false;
@@ -23,6 +23,21 @@ bool isSideEqual(const Shape &shape)
   }
   return true;
 }
+
+bool compare(const Shape &lhs, const Shape &rhs)
+{
+  if (lhs.size() < rhs.size()) {
+    return true;
+  } else {
+    if ((lhs.size() == rhs.size()) && (rhs.size() == 4)) {
+      if (isSideEqual(lhs)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 
 std::istream &operator>>(std::istream &in, Point &point)
 {

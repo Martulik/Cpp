@@ -3,6 +3,11 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <algorithm>
+#include <cctype>
+#include <cstring>
+#include <locale>
+#include <functional>
 
 #include "phone-book.hpp"
 #include "phonebookinteface.hpp"
@@ -23,7 +28,7 @@ void murzakanov::task1()
     {
       std::string number;
       in >> number;
-      if (!mur::checkIsNum(number))
+      if (!std::all_of(number.begin(), number.end(), ::isdigit))
       {
         murzakanov::invalidCommand(std::cout);
         continue;
@@ -53,7 +58,7 @@ void murzakanov::task1()
       std::string number;
       std::string name;
       in >> place >> mark >> number;
-      if (!mur::checkIsNum(number))
+      if (!std::all_of(number.begin(), number.end(), ::isdigit))
       {
         murzakanov::invalidCommand(std::cout);
         continue;

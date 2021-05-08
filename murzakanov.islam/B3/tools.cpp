@@ -39,23 +39,6 @@ std::istream& murzakanov::readName(std::istream& in, std::string& name)
   return in;
 }
 
-bool murzakanov::checkIsNum(const std::string& number)
-{
-  for (size_t i = 0; i < number.length(); i++)
-  {
-    if (!std::isdigit(number[i]))
-    {
-      return false;
-    }
-  }
-  return true;
-}
-
-bool murzakanov::checkIsSpace(const std::string& arg)
-{
-  return (arg.find(' ') != std::string::npos);
-}
-
 void murzakanov::invalidBookmark(std::ostream& out)
 {
   out << "<INVALID BOOKMARK>\n";

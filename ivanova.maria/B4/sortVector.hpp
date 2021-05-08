@@ -10,7 +10,7 @@ namespace ivanova
 {
   void sortVector(std::vector< DataStruct > &vector)
   {
-    for (size_t k = 0; k < vector.size() - 1; k++)
+    for (size_t k = 0; k < vector.size(); k++)
     {
       for (size_t i = k + 1; i < vector.size(); i++)
       {

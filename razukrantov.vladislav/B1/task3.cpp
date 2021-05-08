@@ -61,5 +61,5 @@ void razukrantov::task3()
 	}
   }
 
-  print(vector);
+  razukrantov::print(vector);
 }

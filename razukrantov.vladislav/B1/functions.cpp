@@ -2,7 +2,7 @@
 
 #include <ctime>
 
-void fillRandom(double* array, int size)
+void razukrantov::fillRandom(double* array, int size)
 {
   if (size <= 0)
   {
@@ -14,7 +14,7 @@ void fillRandom(double* array, int size)
   }
 }
 
-bool isNumber(const char* str)
+bool razukrantov::isNumber(const char* str)
 {
   for (size_t i = 0; i < strlen(str); i++)
   {

@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 	  {
 		throw(std::invalid_argument("Incorrect arguments count in task4"));
 	  }
-	  if (isNumber(argv[3]))
+	  if (razukrantov::isNumber(argv[3]))
 	  {
 		razukrantov::task4(argv[2], atoi(argv[3]));
 		break;

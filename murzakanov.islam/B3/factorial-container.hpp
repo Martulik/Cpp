@@ -12,9 +12,6 @@ namespace murzakanov
     class Iterator: public std::iterator< std::bidirectional_iterator_tag, size_t >
     {
     public:
-      Iterator();
-      Iterator(size_t num);
-
       Iterator& operator++();
       Iterator operator++(int);
       Iterator& operator--();
@@ -26,8 +23,12 @@ namespace murzakanov
       bool operator!=(const Iterator&) const;
 
     private:
+      friend class FactorialContainer;
       size_t num_;
       size_t value_;
+
+      Iterator();
+      Iterator(size_t num, size_t value);
     };
 
     FactorialContainer() = default;

@@ -15,9 +15,9 @@ mur::FactorialContainer::Iterator::Iterator():
 {
 }
 
-mur::FactorialContainer::Iterator::Iterator(const size_t num):
+mur::FactorialContainer::Iterator::Iterator(const size_t num, const size_t value):
   num_(num),
-  value_(getFactorial(num))
+  value_(value)
 {
 }
 
@@ -73,10 +73,10 @@ bool murzakanov::FactorialContainer::Iterator::operator!=(const Iterator& rhs) c
 
 mur::FactorialContainer::Iterator mur::FactorialContainer::begin() const
 {
-  return Iterator(1);
+  return {1, getFactorial(1)};
 }
 
 mur::FactorialContainer::Iterator mur::FactorialContainer::end() const
 {
-  return Iterator(MAX_INDEX);
+  return {11, getFactorial(11)};
 }

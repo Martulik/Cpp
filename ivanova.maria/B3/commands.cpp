@@ -158,7 +158,7 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input)
   {
     if (steps.empty() || (steps != "last" && steps != "first"))
     {
-      invalidCommand(std::cout);
+      invalidStep(std::cout);
       return 1;
     }
     auto firstOrLast = getPosition(steps);

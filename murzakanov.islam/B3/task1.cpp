@@ -5,9 +5,6 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
-#include <cstring>
-#include <locale>
-#include <functional>
 
 #include "phone-book.hpp"
 #include "phonebookinteface.hpp"

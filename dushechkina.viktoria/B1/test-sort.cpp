@@ -39,25 +39,25 @@ struct f
 BOOST_FIXTURE_TEST_SUITE(testSort, f)
   BOOST_AUTO_TEST_CASE(sortBracketsType)
   {
-    vika::sort<vika::Brackets>(vector, lessComparator);
+    vika::sort< vika::Brackets >(vector, lessComparator);
     BOOST_CHECK(vector == sortedAscendingVector);
-    vika::sort<vika::Brackets>(vector, greaterComparator);
+    vika::sort< vika::Brackets >(vector, greaterComparator);
     BOOST_CHECK(vector == sortedDescendingVector);
   }
 
   BOOST_AUTO_TEST_CASE(sortAtType)
   {
-    vika::sort<vika::At>(vector, lessComparator);
+    vika::sort< vika::At >(vector, lessComparator);
     BOOST_CHECK(vector == sortedAscendingVector);
-    vika::sort<vika::At>(vector, greaterComparator);
+    vika::sort< vika::At >(vector, greaterComparator);
     BOOST_CHECK(vector == sortedDescendingVector);
   }
 
   BOOST_AUTO_TEST_CASE(sortIteratorType)
   {
-    vika::sort<vika::Iterator>(list, lessComparator);
+    vika::sort< vika::Iterator >(list, lessComparator);
     BOOST_CHECK(list == sortedAscendingList);
-    vika::sort<vika::Iterator>(list, greaterComparator);
+    vika::sort< vika::Iterator >(list, greaterComparator);
    BOOST_CHECK(list == sortedDescendingList);
   }
 BOOST_AUTO_TEST_SUITE_END()

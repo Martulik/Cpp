@@ -4,7 +4,9 @@
 #include <utility>
 #include <list>
 #include <iostream>
+#include <map>
 #include <string>
+#include <vector>
 #include <memory>
 #include "phonebook.hpp"
 
@@ -14,29 +16,34 @@ namespace pozdnyakov
   {
   public:
     using argsType = std::vector< std::string >;
+    using bmsType = std::map< std::string, int >;
+    using bookPtr = std::unique_ptr< Phonebook >;
     Interface(std::unique_ptr< Phonebook > book, std::ostream& out);
     void doCommand(argsType args);
 
   private:
-    std::unique_ptr< poz::Phonebook > book_;
-    std::map< std::string, int > bookmarks_;
+    bookPtr book_;
+    bmsType bookmarks_;
     std::ostream& out_;
-    const std::map< std::string, void(*command)(argsType) > commands_
+    const std::map< std::string, void(Interface::*)(argsType) > commands_
     {
-      {"add", doShow},
-      {"store", doShow},
-      {"insert", doInsert},
-      {"delete", doDelete},
-      {"show", doShow},
-      {"move", doMove},
+      {"add", &Interface::doAdd},
+      {"store", &Interface::doStore},
+      {"insert", &Interface::doInsert},
+      {"delete", &Interface::doDelete},
+      {"show", &Interface::doShow},
+      {"move", &Interface::doMove},
     };
     void doAdd(argsType args);
-    void doStore(asrgsType args);
+    void doStore(argsType args);
     void doInsert(argsType args);
     void doDelete(argsType args);
     void doShow(argsType args);
     void doMove(argsType args);
-  }
+  };
+  Phonebook::iterator getEntry(Interface::bookPtr& book, Interface::bmsType bms, std::string bmName);
+  bool compareEntry(std::pair< int, std::string > entry, int number);
+  bool checkBookmark(Interface::bmsType bms, std::string name, std::ostream& out);
 }
 
 #endif

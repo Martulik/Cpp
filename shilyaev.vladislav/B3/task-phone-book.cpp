@@ -3,14 +3,12 @@
 #include <iterator>
 #include "tokenizer.hpp"
 #include "phone-book.hpp"
+#include "task-phone-book-exception.hpp"
 
 namespace shilyaev {
   using CommandFunction = std::function< void(std::ostream &, const std::vector< std::string > &, PhoneBook &) >;
   const std::string INVALID_BOOKMARK_ERROR = "<INVALID BOOKMARK>";
   const std::string EMPTY_ERROR = "<EMPTY>";
-
-  class InvalidCommandException: public std::exception {};
-  class InvalidStepException: public std::exception {};
 
   bool isNameValid(const std::string &name)
   {

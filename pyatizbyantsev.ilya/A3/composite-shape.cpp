@@ -1,5 +1,4 @@
 #include "composite-shape.hpp"
-#include <stdexcept>
 
 pyatizbyantsev::CompositeShape::CompositeShape(const pyatizbyantsev::CompositeShape & src):
   size_(src.size_),

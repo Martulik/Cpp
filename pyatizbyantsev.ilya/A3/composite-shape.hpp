@@ -2,6 +2,7 @@
 #define COMPOSITE_SHAPE_HPP
 
 #include <memory>
+#include <stdexcept>
 #include "shape.hpp"
 
 namespace pyatizbyantsev

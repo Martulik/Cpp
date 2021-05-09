@@ -42,11 +42,7 @@ iva::DataStruct iva::getVector(std::string &str)
     key1 += str.at(i);
     i++;
   }
-  if (checkInt(key1))
-  {
-    data.key1 = std::stoi(key1);
-  }
-  else
+  if (!checkInt(key1))
   {
     std::cerr << "Ivalid input";
     exit(1);
@@ -62,11 +58,7 @@ iva::DataStruct iva::getVector(std::string &str)
     key2 += str.at(i);
     i++;
   }
-  if (checkInt(key2))
-  {
-    data.key2 = std::stoi(key2);
-  }
-  else
+  if (!checkInt(key2))
   {
     std::cerr << "invalid input";
     exit(1);
@@ -87,11 +79,7 @@ iva::DataStruct iva::getVector(std::string &str)
     std::cerr << "missing string";
     exit(1);
   }
-  else
-  {
-    data.str = string;
-  }
-  return data;
+  return {std::stoi(key1), std::stoi(key2), string};
 }
 
 bool ivanova::checkInt(std::string &str)
@@ -99,12 +87,13 @@ bool ivanova::checkInt(std::string &str)
   size_t i = 0;
   if (str.at(i) == '-' || str.at(i) == '+')
   {
-    for (size_t k = i + 1; k < str.length(); k++)
+    while (size_t k = i + 1 < str.length())
     {
       if (!std::isdigit(str.at(k)))
       {
         return false;
       }
+      k++;
     }
     if (std::abs(std::stoi(str)) > 5)
     {
@@ -113,12 +102,13 @@ bool ivanova::checkInt(std::string &str)
   }
   else
   {
-    for (i = 0; i < str.length(); i++)
+    while (i < str.length())
     {
       if (!std::isdigit(str.at(i)))
       {
         return false;
       }
+      i++;
     }
     if (std::abs(std::stoi(str)) > 5)
     {

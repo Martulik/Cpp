@@ -10,7 +10,7 @@
 
 namespace ivanova
 {
-  bool readVector(std::vector < DataStruct > &vector)
+  int readVector(std::vector < DataStruct > &vector)
   {
     while (!std::cin.eof())
     {
@@ -24,9 +24,9 @@ namespace ivanova
     if (!std::cin.eof())
     {
       std::cerr << "failed reading";
-      return false;
+      return 1;
     }
-    return true;
+    return 0;
   }
 }
 #endif

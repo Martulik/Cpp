@@ -19,12 +19,12 @@ lab::Container::Iterator::Iterator(size_t index):
 
 lab::Container::Iterator lab::Container::begin() const
 {
-  return Iterator();
+  return {};
 }
 
 lab::Container::Iterator lab::Container::end() const
 {
-  return {11};
+  return {maxIndex};
 }
 
 bool lab::Container::Iterator::operator==(const Container::Iterator &src) const

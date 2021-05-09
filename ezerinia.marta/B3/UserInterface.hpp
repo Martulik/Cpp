@@ -1,7 +1,6 @@
 #ifndef USERINTERFACE_HPP
 #define USERINTERFACE_HPP
 
-#include <string>
 #include <map>
 #include "PhoneBook.hpp"
 #include "record_t.hpp"

@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include <iostream>
+#include <sstream>
 #include "record_t.hpp"
 
 const std::string inputStr = "478290991632 \"duKZ,FZWdT\"";

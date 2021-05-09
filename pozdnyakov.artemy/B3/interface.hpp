@@ -16,7 +16,7 @@ namespace pozdnyakov
   {
   public:
     using argsType = std::vector< std::string >&;
-    using bmsType = std::map< std::string, int >;
+    using bmsType = std::map< std::string, std::string >;
     using bookPtr = std::unique_ptr< Phonebook >;
     Interface(std::unique_ptr< Phonebook > book, std::istream& in, std::ostream& out);
     void doCommand(argsType args);
@@ -44,7 +44,7 @@ namespace pozdnyakov
     void doMove(argsType args);
   };
   Phonebook::iterator getEntry(Interface::bookPtr& book, Interface::bmsType bms, std::string bmName);
-  bool compareEntry(std::pair< int, std::string > entry, int number);
+  bool compareEntry(std::pair< std::string, std::string > entry, std::string number);
   bool checkBookmark(Interface::bmsType bms, std::string name, std::ostream& out);
 }
 

@@ -51,7 +51,7 @@ namespace pozdnyakov
   public:
     Name() = default;
     ~Name() override = default;
-    bool isField(std::string) const override;
+    bool isField(std::string field) const override;
   };
 
   class String: public AbsField
@@ -68,6 +68,16 @@ namespace pozdnyakov
     Int() = default;
     ~Int() override = default;
     bool isField(std::string field) const override;
+  };
+
+  class MoveParam: public AbsField
+  {
+  public:
+    MoveParam() = default;
+    ~MoveParam() override = default;
+    bool isField(std::string field) const override;
+  private:
+    const std::vector< std::string > params_;
   };
 
   bool isNumber(char c);

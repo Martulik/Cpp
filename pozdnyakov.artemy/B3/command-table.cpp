@@ -35,5 +35,6 @@ poz::CommandTable::fhMapType poz::CommandTable::genMap()
   fhMap["Name"] = std::make_unique< poz::Name >();
   fhMap["Int"] = std::make_unique< poz::Int >();
   fhMap["String"] = std::make_unique< poz::String >();
+  fhMap["MoveParam"] = std::make_unique< poz::MoveParam >();
   return fhMap;
 };

@@ -13,7 +13,7 @@ poz::Interface::Interface(std::unique_ptr< poz::Phonebook > book, std::istream& 
   in_(in),
   out_(out)
 {
-  bookmarks_.insert({"current", -1});
+  bookmarks_.insert({"current", "-1"});
 }
 
 void poz::Interface::doCommand(poz::Interface::argsType args)
@@ -24,7 +24,8 @@ void poz::Interface::doCommand(poz::Interface::argsType args)
     {"Command", "String", "String"},
     {"Command", "CommandParam", "String", "PhoneNumber", "Name"},
     {"Command", "String"},
-    {"Command", "String", "Int"}
+    {"Command", "String", "Int"},
+    {"Command", "String", ""}
   }));
   if (!table.checkCommand(args))
   {
@@ -56,6 +57,9 @@ void poz::Interface::start()
 {
   std::vector< std::string > args;
   std::string buf;
+  std::string name;
+  size_t nameBegin;
+  size_t nameEnd;
   std::stringstream ssbuf;
   std::istream_iterator< std::string > eos;
   std::istream_iterator< std::string > begin;
@@ -66,6 +70,18 @@ void poz::Interface::start()
     begin = std::istream_iterator< std::string >(ssbuf);
     eos = std::istream_iterator< std::string >();
     args = std::vector< std::string >(begin, eos);
+    nameBegin = buf.find('\"');
+    nameEnd = buf.rfind('\"');
+    if (nameBegin != std::string::npos && nameEnd != std::string::npos && nameBegin != nameEnd)
+    {
+      name = buf.substr(nameBegin, nameEnd - nameBegin);
+      size_t spaceCount = std::count(name.begin(), name.end(), ' ');
+      if (spaceCount != 0)
+      {
+        args.erase(std::prev(args.end(), spaceCount), args.end());
+      }
+      args.back() = name;
+    }
     this->doCommand(args);
     ssbuf.clear();
   }
@@ -73,11 +89,11 @@ void poz::Interface::start()
 
 void poz::Interface::doAdd(poz::Interface::argsType args)
 {
-  std::pair< int, std::string > arg{std::stoi(args[0]), args[1]};
+  std::pair< std::string, std::string > arg{args[0], args[1]};
   book_->pushBack(arg);
   if (book_->size() == 1)
   {
-    int number = std::get<0>(*book_->begin());
+    std::string number = std::get<0>(*book_->begin());
     auto move = [number](poz::Interface::bmsType::value_type& pair)
     {
       std::get<1>(pair) = number;
@@ -88,12 +104,12 @@ void poz::Interface::doAdd(poz::Interface::argsType args)
 
 void poz::Interface::doStore(poz::Interface::argsType args)
 {
-  bookmarks_.insert({args[0], std::stoi(args[1])});
+  bookmarks_.insert({args[0], args[1]});
 }
 
 void poz::Interface::doInsert(poz::Interface::argsType args)
 {
-  std::pair< int, std::string > pair{std::stoi(args[2]), args[3]};
+  std::pair< std::string, std::string > pair{args[2], args[3]};
   poz::Phonebook::iterator it = poz::getEntry(book_, bookmarks_, args[1]);
   if (args[0] == std::string("before"))
   {
@@ -107,8 +123,8 @@ void poz::Interface::doInsert(poz::Interface::argsType args)
 
 void poz::Interface::doDelete(poz::Interface::argsType args)
 {
-  std::map< std::string, int >::iterator bookmarkIt = bookmarks_.find(args[0]);
-  int& numberRef = std::get<1>(*bookmarkIt);
+  std::map< std::string, std::string >::iterator bookmarkIt = bookmarks_.find(args[0]);
+  std::string& numberRef = std::get<1>(*bookmarkIt);
   auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, numberRef);
   poz::Phonebook::iterator it = std::find_if(book_->begin(), book_->end(), condPtr);
   if (it == book_->end())
@@ -135,32 +151,49 @@ void poz::Interface::doShow(poz::Interface::argsType args)
     return;
   }
   poz::Phonebook::iterator it = poz::getEntry(book_, bookmarks_, args[0]);
-  this->out_ << std::get<1>(*it) << ' ' << std::get<0>(*it) << '\n';
+  std::string name = std::get<1>(*it);
+  name.erase(name.begin());
+  name.pop_back();
+  this->out_ << name << ' ' << std::get<0>(*it) << '\n';
 }
 
 void poz::Interface::doMove(poz::Interface::argsType args)
 {
-  int& entryRef = std::get<1>(*bookmarks_.find(args[0]));
-  int n = std::stoi(args[1]);
-  auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, entryRef);
-  poz::Phonebook::iterator bookIt = std::find_if(book_->begin(), book_->end(), condPtr);
-  if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
+  std::string& entryRef = std::get<1>(*bookmarks_.find(args[0]));
+  poz::Phonebook::iterator newIt;
+  if (!args[1].compare("last"))
   {
-    out_ << "<INVALID STEP>" << '\n';
-    return;
+    newIt = --book_->end();
   }
-  entryRef = std::get<0>(*std::next(bookIt, n));
+  else if (!args[1].compare("first"))
+  {
+    newIt = book_->begin();
+  }
+  else
+  {
+    auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, entryRef);
+    poz::Phonebook::iterator bookIt = std::find_if(book_->begin(), book_->end(), condPtr);
+    int n = std::stoi(args[1]);
+    bookIt = std::find_if(book_->begin(), book_->end(), condPtr);
+    if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
+    {
+      out_ << "<INVALID STEP>" << '\n';
+      return;
+    }
+    newIt = std::next(bookIt, n);
+  }
+  entryRef = std::get<0>(*newIt);
 }
 
 poz::Phonebook::iterator poz::getEntry(poz::Interface::bookPtr& book, poz::Interface::bmsType bms, std::string bmName)
 {
-  int number = std::get<1>(*bms.find(bmName));
+  std::string number = std::get<1>(*bms.find(bmName));
   auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, number);
   poz::Phonebook::iterator it = std::find_if(book->begin(), book->end(), condPtr);
   return it;
 }
 
-bool poz::compareEntry(std::pair< int, std::string > entry, int number)
+bool poz::compareEntry(std::pair< std::string, std::string > entry, std::string number)
 {
   return std::get<0>(entry) == number;
 }

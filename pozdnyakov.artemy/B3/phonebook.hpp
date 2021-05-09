@@ -9,7 +9,7 @@ namespace pozdnyakov
   class Phonebook
   {
   public:
-    using value_type = std::pair< int, std::string >;
+    using value_type = std::pair< std::string, std::string >;
     using iterator = std::list< value_type >::iterator;
     using const_iterator = std::list< value_type >::const_iterator;
     Phonebook() = default;

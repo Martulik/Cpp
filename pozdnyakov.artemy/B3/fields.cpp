@@ -18,9 +18,13 @@ bool poz::PhoneNumber::isField(std::string field) const
   return std::all_of(field.begin(), field.end(), &isNumber); // temp
 }
 
-bool poz::Name::isField(std::string) const
+bool poz::Name::isField(std::string field) const
 {
-  return true; // to do
+  if (field[0] == '\"' && field[field.size()] == '\"')
+  {
+    return false;
+  }
+  return true;
 }
 
 bool poz::String::isField(std::string) const
@@ -31,6 +35,11 @@ bool poz::String::isField(std::string) const
 bool poz::Int::isField(std::string field) const
 {
   return std::all_of(field.begin(), field.end(), &isNumber);
+}
+
+bool poz::MoveParam::isField(std::string field) const
+{
+  return field.compare(params_[0]) == 0 || field.compare(params_[1]) == 0;
 }
 
 bool poz::isNumber(char c)

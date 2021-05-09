@@ -89,8 +89,10 @@ void lab::show(UserInterface &phoneBook, std::stringstream &input, std::ostream 
   std::string markName;
   input >> std::ws >> markName;
   markName = getMarkName(markName);
-  if (markName.empty() || !phoneBook.containsBookmark(markName)) {
+  if (markName.empty()) {
     invalidCommand(out);
+  } else if (!phoneBook.containsBookmark(markName)) {
+    invalidBookmark(out);
   } else if (phoneBook.empty()) {
     empty(out);
   } else {

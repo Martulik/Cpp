@@ -9,7 +9,7 @@ bool poz::CommandTable::checkCommand(std::vector< std::string > commandStr) cons
   {
     if (commandStr.size() != patterns_[i].size())
     {
-      break;
+      continue;
     }
     for (size_t j = 0; j < patterns_[i].size(); j++)
     {

@@ -73,7 +73,6 @@ void poz::Interface::start()
 
 void poz::Interface::doAdd(poz::Interface::argsType args)
 {
-  // check
   std::pair< int, std::string > arg{std::stoi(args[0]), args[1]};
   book_->pushBack(arg);
   if (book_->size() == 1)

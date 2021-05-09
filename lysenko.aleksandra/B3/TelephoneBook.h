@@ -17,7 +17,7 @@ namespace lysenko
       std::string number;
     };
 
-    typedef std::list< Note >::iterator iterator;
+    typedef std::list< lysenko::Book::Note >::iterator iterator;
 
     bool isEmpty();
 

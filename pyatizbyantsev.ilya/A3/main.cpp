@@ -4,44 +4,52 @@
 #include "circle.hpp"
 #include "composite-shape.hpp"
 
-using namespace pyatizbyantsev;
+namespace lab = pyatizbyantsev;
+using shapePtr = std::unique_ptr< lab::Shape >;
 
-void printCoordinatesFigure(const Shape* figure)
+void printCoordinatesFigure(const lab::Shape& figure)
 {
-    std::cout << "Now the figure is located (" << figure->getFrameRect().pos.x
-              << ", " << figure->getFrameRect().pos.y << ")\n";
+    std::cout << "Now " << figure.getName() << " is located (" << lab::getX(figure)
+              << ", " << lab::getY(figure) << ")\n";
 }
 
 int main()
 {
   std::cout << "Rectangle test:\n";
-  point_t posRectangle = {2.2, 8};
+  lab::point_t posRectangle = {2.2, 8};
 
-  Shape* figureRectangle = new Rectangle(6, 8, posRectangle);
-  printCoordinatesFigure(figureRectangle);
+  shapePtr figureRectangle(std::make_unique< lab::Rectangle >(lab::Rectangle(6, 8, posRectangle)));
+  printCoordinatesFigure(*figureRectangle);
 
   figureRectangle->move(6, 9);
-  printCoordinatesFigure(figureRectangle);
+  printCoordinatesFigure(*figureRectangle);
 
   std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
 
-  delete figureRectangle;
-
   std::cout << "Circle test:\n";
-  point_t posCircle = {1.3, 3.7};
+  lab::point_t posCircle = {1.3, 3.7};
 
-  Shape* figureCircle = new Circle(3, posCircle);
-  printCoordinatesFigure(figureCircle);
+  shapePtr figureCircle(std::make_unique< lab::Circle >(lab::Circle(3, posCircle)));
+  printCoordinatesFigure(*figureCircle);
 
-  point_t newPosCircle = {55.55, 66.66};
+  lab::point_t newPosCircle = {55.55, 66.66};
   figureCircle->move(newPosCircle);
-  printCoordinatesFigure(figureCircle);
+  printCoordinatesFigure(*figureCircle);
 
   std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
 
-  delete figureCircle;
+  std::cout << "Composite Shape test:" << '\n';
+  shapePtr composite1(std::make_unique< lab::CompositeShape >(lab::CompositeShape(std::move(figureRectangle), std::move(figureCircle))));
+  shapePtr composite2(std::make_unique< lab::CompositeShape >(composite1->clone()));
+  printCoordinatesFigure(*composite2);
 
-  std::unique_ptr< pyatizbyantsev::Shape > composite(std::make_unique< CompositeShape >(CompositeShape(std::move(figureRectangle), std::move(figureCircle))));
+  composite2->move(3, 0);
+  printCoordinatesFigure(*composite2);
+  std::cout << "Area of Composite Shape is: " << composite1->getArea() << "\n";
+
+  composite2->scale(3);
+  printCoordinatesFigure(*composite2);
+  std::cout << "Area of Composite Shape after scale is: " << composite2->getArea() << "\n";
 
   return 0;
 }

@@ -41,7 +41,6 @@ namespace pyatizbyantsev
     {
       throw std::invalid_argument("Parameter pack cannot be empty");
     }
-    //data_ = {std::move(shapes)...};
     std::unique_ptr< Shape > temp[] = { std::move(shapes)... };
     for (size_t i = 0; i < size_; i++)
     {

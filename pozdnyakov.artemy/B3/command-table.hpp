@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <map>
 #include "fields.hpp"
 
@@ -15,13 +16,17 @@ namespace pozdnyakov
     CommandTable(Patterns... patters);
     bool checkCommand(std::vector< std::string > commandStr) const;
   private:
+    using fhMapType = std::map< const std::string, std::unique_ptr< AbsField > >;
     std::vector< std::vector< std::string > > patterns_;
-    static const std::map< std::string, AbsField* > fieldHandlers_;
+    static fhMapType fieldHandlersMap_;
+    static fhMapType genMap();
   };
 }
 
+namespace poz = pozdnyakov;
+
 template < typename... Patterns >
-pozdnyakov::CommandTable::CommandTable(Patterns... patterns):
+poz::CommandTable::CommandTable(Patterns... patterns):
   patterns_(patterns...)
 {}
 

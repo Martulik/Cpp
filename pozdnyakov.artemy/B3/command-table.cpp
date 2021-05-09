@@ -13,7 +13,7 @@ bool poz::CommandTable::checkCommand(std::vector< std::string > commandStr) cons
     }
     for (size_t j = 0; j < patterns_[i].size(); j++)
     {
-      isCorrect &= fieldHandlers_.at(patterns_[i][j])->isField(commandStr[j]);
+      isCorrect &= fieldHandlersMap_.at(patterns_[i][j])->isField(commandStr[j]);
     }
     if (isCorrect)
     {
@@ -24,12 +24,16 @@ bool poz::CommandTable::checkCommand(std::vector< std::string > commandStr) cons
   return false;
 }
 
-const std::map< std::string, poz::AbsField* > poz::CommandTable::fieldHandlers_
+poz::CommandTable::fhMapType poz::CommandTable::fieldHandlersMap_ = genMap();
+
+poz::CommandTable::fhMapType poz::CommandTable::genMap()
 {
-  {"Command", new poz::Command()},
-  {"CommandParam", new poz::CommandParam()},
-  {"PhoneNumber", new poz::PhoneNumber()},
-  {"Name", new poz::Name()},
-  {"Int", new poz::Int()},
-  {"String", new poz::String()}
+  poz::CommandTable::fhMapType fhMap;
+  fhMap["Command"] = std::make_unique< poz::Command >();
+  fhMap["CommandParam"] = std::make_unique< poz::CommandParam >();
+  fhMap["PhoneNumber"] = std::make_unique< poz::PhoneNumber >();
+  fhMap["Name"] = std::make_unique< poz::Name >();
+  fhMap["Int"] = std::make_unique< poz::Int >();
+  fhMap["String"] = std::make_unique< poz::String >();
+  return fhMap;
 };

@@ -18,22 +18,22 @@ void ezerinia::task2()
   int rectangles = 0;
 
   std::vector< Point > points;
-
-  for (unsigned int i = 0; i < shapes.size(); i++) {
-    vertices += shapes[i].size();
-    if (shapes[i].size() == 3) {
+//  for (auto && shape : shapes) {
+  for (auto & shape : shapes) {
+    vertices += shape.size();
+    if (shape.size() == 3) {
       triangles++;
-    } else if (shapes[i].size() == 4) {
+    } else if (shape.size() == 4) {
       rectangles++;
-      if (isSideEqual(shapes[i])) {
+      if (isSideEqual(shape)) {
         squares++;
       }
     }
-    if (shapes[i].size() != 5) {
-      points.push_back(shapes[i].front());
+    if (shape.size() != 5) {
+      points.push_back(shape.front());
     }
   }
-  
+
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
                               [](const Shape &shape) {
                                 return shape.size() == 5;

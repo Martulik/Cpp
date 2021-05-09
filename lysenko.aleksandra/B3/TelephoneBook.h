@@ -1,8 +1,6 @@
 #ifndef TELEPHONE_BOOK_HPP
 #define TELEPHONE_BOOK_HPP
 
-#include <memory>
-
 #include <string>
 #include <list>
 

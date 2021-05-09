@@ -1,11 +1,10 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
-
-#include "exceptions.h"
-
-#include <iostream>
+ 
 #include <string>
 #include <map>
+
+#include "exceptions.h"
 #include "UsersInterface.h"
 
 namespace lysenko

@@ -1,6 +1,5 @@
 #include "commands.h"
 
-#include <iostream>
 #include <sstream>
 #include <string>
 
@@ -51,7 +50,7 @@ void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterfa
     std::string command;
 
     in >> command >> std::ws;
-    lysenko::iteratorInt iter = commandsMap.find(command);
+    iteratorInt iter = commandsMap.find(command);
 
     if (iter == commandsMap.end())
     {

@@ -1,7 +1,7 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
-#include <iostream>
+#include <iosfwd>
 #include "UserInterface.hpp"
 
 namespace ezerinia {
@@ -10,7 +10,7 @@ namespace ezerinia {
   void store(UserInterface &phoneBook, std::stringstream &input);
   void insert(UserInterface &phoneBook, std::stringstream &input);
   void deleteRecord(UserInterface &phoneBook, std::stringstream &input);
-  void show(UserInterface &phoneBook, std::stringstream &input);
+  void show(UserInterface &phoneBook, std::stringstream &input, std::ostream &out);
   void move(UserInterface &phoneBook, std::stringstream &input);
 
   void invalidCommand(std::ostream &out);

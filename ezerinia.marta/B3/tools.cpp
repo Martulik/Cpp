@@ -40,7 +40,7 @@ void lab::store(UserInterface &phoneBook, std::stringstream &input)
   input >> std::ws >> newMarkName;
   newMarkName = getMarkName(newMarkName);
 
-  if (oldMarkName.empty() || newMarkName.empty()) {
+  if (oldMarkName.empty() || newMarkName.empty() || !phoneBook.containsBookmark(oldMarkName)) {
     invalidCommand(std::cout);
   } else {
     phoneBook.store(oldMarkName, newMarkName);
@@ -59,7 +59,7 @@ void lab::insert(UserInterface &phoneBook, std::stringstream &input)
   record_t record;
   input >> record;
 
-  if (markName.empty() || record.number.empty() || record.name.empty()) {
+  if (markName.empty() || !phoneBook.containsBookmark(markName) || record.number.empty() || record.name.empty()) {
     invalidCommand(std::cout);
   } else {
     if (direction == "before") {
@@ -77,22 +77,24 @@ void lab::deleteRecord(UserInterface &phoneBook, std::stringstream &input)
   std::string markName;
   input >> std::ws >> markName;
   markName = getMarkName(markName);
-  if (markName.empty()) {
+  if (markName.empty() || !phoneBook.containsBookmark(markName)) {
     invalidCommand(std::cout);
   } else {
     phoneBook.deleteRecord(markName);
   }
 }
 
-void lab::show(UserInterface &phoneBook, std::stringstream &input)
+void lab::show(UserInterface &phoneBook, std::stringstream &input, std::ostream &out)
 {
   std::string markName;
   input >> std::ws >> markName;
   markName = getMarkName(markName);
-  if (markName.empty()) {
-    invalidCommand(std::cout);
+  if (markName.empty() || !phoneBook.containsBookmark(markName)) {
+    invalidCommand(out);
+  } else if (phoneBook.empty()) {
+    empty(out);
   } else {
-    phoneBook.show(markName);
+    phoneBook.show(markName, out);
   }
 }
 
@@ -101,7 +103,7 @@ void lab::move(UserInterface &phoneBook, std::stringstream &input)
   std::string markName;
   input >> std::ws >> markName;
   markName = getMarkName(markName);
-  if (markName.empty()) {
+  if (markName.empty() || !phoneBook.containsBookmark(markName)) {
     invalidCommand(std::cout);
     return;
   }
@@ -112,23 +114,12 @@ void lab::move(UserInterface &phoneBook, std::stringstream &input)
   } else if (num == "last") {
     phoneBook.move(markName, lab::UserInterface::posOfMove::last);
   } else {
-    int numberSign = 1;
-    if (num[0] == '-') {
-      numberSign = -1;
-      num.erase(num.begin());
-    } else if (num[0] == '+') {
-      num.erase(num.begin());
+    try {
+      int steps = std::stoi(num);
+      phoneBook.move(markName, steps);
     }
-    if (num.empty()) {
+    catch (const std::invalid_argument &) {
       invalidStep(std::cout);
-    } else {
-      for (size_t i = 0; i < num.size(); i++) {
-        if (!std::isdigit(num[i])) {
-          invalidStep(std::cout);
-          return;
-        }
-      }
-      phoneBook.move(markName, stoi(num) * numberSign);
     }
   }
 }

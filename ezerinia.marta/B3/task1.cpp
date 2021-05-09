@@ -1,6 +1,6 @@
 #include "task1.hpp"
 #include <string>
-#include <istream>
+#include <sstream>
 #include "tools.hpp"
 
 namespace lab = ezerinia;
@@ -25,7 +25,7 @@ void lab::task1()
     } else if (command == "delete") {
       deleteRecord(phoneBook, input);
     } else if (command == "show") {
-      show(phoneBook, input);
+      show(phoneBook, input, std::cout);
     } else if (command == "move") {
       move(phoneBook, input);
     } else {

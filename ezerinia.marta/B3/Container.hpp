@@ -9,8 +9,8 @@ namespace ezerinia {
     using value_type = unsigned int;
     class Iterator;
     Container() = default;
-    const Iterator begin();
-    const Iterator end();
+    Iterator begin() const;
+    Iterator end() const;
   };
 
   class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, value_type > {

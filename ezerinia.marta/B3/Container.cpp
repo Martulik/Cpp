@@ -17,12 +17,12 @@ lab::Container::Iterator::Iterator(size_t index):
 {
 }
 
-const lab::Container::Iterator lab::Container::begin()
+lab::Container::Iterator lab::Container::begin() const
 {
   return Iterator();
 }
 
-const lab::Container::Iterator lab::Container::end()
+lab::Container::Iterator lab::Container::end() const
 {
   return {11};
 }

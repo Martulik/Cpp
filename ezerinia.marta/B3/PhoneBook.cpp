@@ -3,7 +3,7 @@
 
 namespace lab = ezerinia;
 
-bool lab::PhoneBook::empty()
+bool lab::PhoneBook::empty() const
 {
   return list_.empty();
 }
@@ -18,12 +18,12 @@ lab::PhoneBook::iterator lab::PhoneBook::end()
   return list_.end();
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::add(iterator iter, record_t &src)
+lab::PhoneBook::iterator lab::PhoneBook::add(const iterator &iter, const record_t &src)
 {
   return list_.insert(iter, src);
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
+lab::PhoneBook::iterator lab::PhoneBook::move(iterator &iter, int step)
 {
   int counter = 0;
   if (step >= 0) {
@@ -40,18 +40,12 @@ lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
   return iter;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::remove(iterator iter)
+lab::PhoneBook::iterator lab::PhoneBook::remove(const iterator &iter)
 {
   return list_.erase(iter);
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::replace(iterator iter, record_t &src)
-{
-  *iter = src;
-  return iter;
-}
-
-void lab::PhoneBook::pushBack(record_t &src)
+void lab::PhoneBook::pushBack(const record_t &src)
 {
   return list_.push_back(src);
 }

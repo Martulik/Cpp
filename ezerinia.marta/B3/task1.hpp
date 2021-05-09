@@ -1,7 +1,6 @@
 #ifndef TASK1_HPP
 #define TASK1_HPP
 
-#include <sstream>
 #include "UserInterface.hpp"
 
 namespace ezerinia {

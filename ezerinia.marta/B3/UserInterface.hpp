@@ -26,8 +26,8 @@ namespace ezerinia {
     void show(const std::string &bookmark, std::ostream &out) const;
     void move(const std::string &bookmark, int steps);
     void move(const std::string &bookmark, posOfMove position);
-    bool containsBookmark(const std::string &bookmark);
-    bool empty();
+    bool containsBookmark(const std::string &bookmark) const;
+    bool empty() const;
   private:
     std::map< std::string, PhoneBook::iterator > bookmarks_;
     PhoneBook phoneBook_;

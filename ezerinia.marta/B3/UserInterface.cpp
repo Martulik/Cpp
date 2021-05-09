@@ -1,5 +1,5 @@
 #include "UserInterface.hpp"
-#include <iostream>
+#include <ostream>
 #include <cassert>
 #include "record_t.hpp"
 
@@ -82,16 +82,16 @@ void lab::UserInterface::move(const std::string &markName, posOfMove position)
   }
 }
 
-bool lab::UserInterface::containsBookmark(const std::string &bookmark)
+bool lab::UserInterface::containsBookmark(const std::string &bookmark) const
 {
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(bookmark);
+  const std::map< std::string, PhoneBook::iterator >::const_iterator &iter = bookmarks_.find(bookmark);
   if (iter == bookmarks_.end()) {
     return false;
   }
   return true;
 }
 
-bool lab::UserInterface::empty()
+bool lab::UserInterface::empty() const
 {
   return phoneBook_.empty();
 }

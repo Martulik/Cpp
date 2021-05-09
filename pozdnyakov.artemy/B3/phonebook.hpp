@@ -18,8 +18,7 @@ namespace pozdnyakov
     const_iterator cbegin();
     const_iterator cend();
     void pushBack(value_type& val);
-    iterator insertBefore(const_iterator position, const value_type& val);
-    iterator insertAfter(const_iterator position, const value_type& val);
+    iterator insert(const_iterator position, const value_type& val);
     iterator erase(iterator it);
     void replace(iterator it, value_type& val);
     size_t size();

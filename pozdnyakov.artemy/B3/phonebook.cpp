@@ -28,18 +28,9 @@ void poz::Phonebook::pushBack(value_type& val)
   return this->book_.push_back(val);
 }
 
-poz::Phonebook::iterator poz::Phonebook::insertBefore(const_iterator position, const value_type& val)
+poz::Phonebook::iterator poz::Phonebook::insert(const_iterator position, const value_type& val)
 {
   return this->book_.insert(position, val);
-}
-
-poz::Phonebook::iterator poz::Phonebook::insertAfter(const_iterator position, const value_type& val)
-{
-  if (position == this->end())
-  {
-    throw std::invalid_argument("Iterator out of range");
-  }
-  return this->book_.insert(std::next(position), val);
 }
 
 poz::Phonebook::iterator poz::Phonebook::erase(iterator it)

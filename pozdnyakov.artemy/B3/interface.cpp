@@ -97,11 +97,11 @@ void poz::Interface::doInsert(poz::Interface::argsType args)
   poz::Phonebook::iterator it = poz::getEntry(book_, bookmarks_, args[1]);
   if (args[0] == std::string("before"))
   {
-    book_->insertBefore(it, pair);
+    book_->insert(it, pair);
   }
   else if (args[0] == std::string("after"))
   {
-    book_->insertAfter(it, pair);
+    book_->insert(std::next(it), pair);
   }
 }
 
@@ -144,7 +144,7 @@ void poz::Interface::doMove(poz::Interface::argsType args)
   int n = std::stoi(args[1]);
   auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, entryRef);
   poz::Phonebook::iterator bookIt = std::find_if(book_->begin(), book_->end(), condPtr);
-  if (!((n >= 0 && n < std::distance(book_->end(), bookIt)) || (n < 0 && n < std::distance(book_->begin(), bookIt))))
+  if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
   {
     out_ << "<INVALID STEP>" << '\n';
     return;

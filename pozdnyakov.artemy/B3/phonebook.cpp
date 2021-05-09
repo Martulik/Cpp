@@ -57,12 +57,3 @@ size_t poz::Phonebook::size()
   return book_.size();
 }
 
-void poz::Phonebook::move(iterator it, int n)
-{
-  if (n < std::distance(this->end(), it))
-  {
-    throw std::invalid_argument("<INVALID STEP>");
-  }
-  it = book_.insert(std::next(it, n), *it);
-  book_.erase(it);
-}

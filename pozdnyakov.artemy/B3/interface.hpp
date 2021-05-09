@@ -15,15 +15,17 @@ namespace pozdnyakov
   class Interface
   {
   public:
-    using argsType = std::vector< std::string >;
+    using argsType = std::vector< std::string >&;
     using bmsType = std::map< std::string, int >;
     using bookPtr = std::unique_ptr< Phonebook >;
-    Interface(std::unique_ptr< Phonebook > book, std::ostream& out);
+    Interface(std::unique_ptr< Phonebook > book, std::istream& in, std::ostream& out);
     void doCommand(argsType args);
+    void start();
 
   private:
     bookPtr book_;
     bmsType bookmarks_;
+    std::istream& in_;
     std::ostream& out_;
     const std::map< std::string, void(Interface::*)(argsType) > commands_
     {

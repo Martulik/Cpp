@@ -22,7 +22,6 @@ namespace pozdnyakov
     iterator insertAfter(const_iterator position, const value_type& val);
     iterator erase(iterator it);
     void replace(iterator it, value_type& val);
-    void move(iterator it, int n);
     size_t size();
   private:
     std::list< value_type > book_;

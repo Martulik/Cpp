@@ -23,7 +23,6 @@ namespace pyatizbyantsev
   private:
     virtual void doScale(double scaleCoefficient) = 0;
   };
-
   double getX(const Shape & src);
   double getY(const Shape & src);
   double getWidth(const Shape & src);
@@ -33,7 +32,6 @@ namespace pyatizbyantsev
   double getRight(const Shape & src);
   double getTop(const Shape & src);
   double getBottom(const Shape & src);
-
 }
 
 #endif

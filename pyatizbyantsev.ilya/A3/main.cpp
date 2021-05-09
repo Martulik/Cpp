@@ -2,6 +2,7 @@
 
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include "composite-shape.hpp"
 
 using namespace pyatizbyantsev;
 
@@ -13,37 +14,34 @@ void printCoordinatesFigure(const Shape* figure)
 
 int main()
 {
-  std::unique_ptr< Shape > rect(std::make_unique< Rectangle >(Rectangle(1, 2, { 1,2 })));
+  std::cout << "Rectangle test:\n";
+  point_t posRectangle = {2.2, 8};
 
-  std::unique_ptr< Shape > figure(rect->clone());
-  std::cout << figure->getArea() << '\n' << rect.get() << '\n' << figure.get() << '\n';
+  Shape* figureRectangle = new Rectangle(6, 8, posRectangle);
+  printCoordinatesFigure(figureRectangle);
 
-  // std::cout << "Rectangle test:\n";
-  // point_t posRectangle = {2.2, 8};
+  figureRectangle->move(6, 9);
+  printCoordinatesFigure(figureRectangle);
 
-  // Shape* figureRectangle = new Rectangle(6, 8, posRectangle);
-  // printCoordinatesFigure(figureRectangle);
+  std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
 
-  // figureRectangle->move(6, 9);
-  // printCoordinatesFigure(figureRectangle);
+  delete figureRectangle;
 
-  // std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
+  std::cout << "Circle test:\n";
+  point_t posCircle = {1.3, 3.7};
 
-  // delete figureRectangle;
+  Shape* figureCircle = new Circle(3, posCircle);
+  printCoordinatesFigure(figureCircle);
 
-  // std::cout << "Circle test:\n";
-  // point_t posCircle = {1.3, 3.7};
+  point_t newPosCircle = {55.55, 66.66};
+  figureCircle->move(newPosCircle);
+  printCoordinatesFigure(figureCircle);
 
-  // Shape* figureCircle = new Circle(3, posCircle);
-  // printCoordinatesFigure(figureCircle);
+  std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
 
-  // point_t newPosCircle = {55.55, 66.66};
-  // figureCircle->move(newPosCircle);
-  // printCoordinatesFigure(figureCircle);
+  delete figureCircle;
 
-  // std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
-
-  // delete figureCircle;
+  std::unique_ptr< pyatizbyantsev::Shape > composite(std::make_unique< CompositeShape >(CompositeShape(std::move(figureRectangle), std::move(figureCircle))));
 
   return 0;
 }

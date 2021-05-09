@@ -1,7 +1,5 @@
 #include "composite-shape.hpp"
 #include <stdexcept>
-#include "circle.hpp"
-#include "rectangle.hpp"
 
 pyatizbyantsev::CompositeShape::CompositeShape(const pyatizbyantsev::CompositeShape & src):
   size_(src.size_),
@@ -47,7 +45,7 @@ pyatizbyantsev::rectangle_t pyatizbyantsev::CompositeShape::getFrameRect() const
   double height = top - bottom;
   point_t pos = {right - width / 2, top - height / 2};
 
-  return { width, height, pos };
+  return {width, height, pos};
 }
 
 void pyatizbyantsev::CompositeShape::move(const double abscissa, const double ordinate)

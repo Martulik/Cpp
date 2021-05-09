@@ -18,9 +18,10 @@ namespace pyatizbyantsev
     std::unique_ptr< Shape > clone() const override;
 
   private:
-    void doScale(double scaleCoefficient) override;
     double radius_;
     point_t pos_;
+
+    void doScale(double scaleCoefficient) override;
   };
 }
 

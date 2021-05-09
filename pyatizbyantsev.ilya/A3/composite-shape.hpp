@@ -9,7 +9,6 @@ namespace pyatizbyantsev
   class CompositeShape: public Shape
   {
   public:
-    virtual ~CompositeShape() = default;
 
     template< typename... Shapes >
     CompositeShape(Shapes... shapes);
@@ -27,11 +26,10 @@ namespace pyatizbyantsev
     std::unique_ptr< Shape > clone() const override;
 
   private:
-    void doScale(double scaleCoefficient) override;
-
     size_t size_;
     std::unique_ptr< std::unique_ptr< Shape >[] > data_;
 
+    void doScale(double scaleCoefficient) override;
   };
 
   template< typename... Shapes >
@@ -41,7 +39,7 @@ namespace pyatizbyantsev
   {
     if (size_ == 0)
     {
-      throw std::invalid_argument("Empty parameter pack");
+      throw std::invalid_argument("Parameter pack cannot be empty");
     }
     //data_ = {std::move(shapes)...};
     std::unique_ptr< Shape > temp[] = { std::move(shapes)... };
@@ -49,7 +47,7 @@ namespace pyatizbyantsev
     {
       if (temp[i] == nullptr)
       {
-        throw std::invalid_argument("Nullptr parameters");
+        throw std::invalid_argument("Parameters cannot be nullptr");
       }
       data_[i] = std::move(temp[i]);
     }

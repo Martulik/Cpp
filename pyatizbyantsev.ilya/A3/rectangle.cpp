@@ -26,7 +26,7 @@ double pyatizbyantsev::Rectangle::getArea() const
 
 pyatizbyantsev::rectangle_t pyatizbyantsev::Rectangle::getFrameRect() const
 {
-  return{width_, height_, pos_};
+  return{ width_, height_, pos_ };
 }
 
 void pyatizbyantsev::Rectangle::move(const point_t& newPos)

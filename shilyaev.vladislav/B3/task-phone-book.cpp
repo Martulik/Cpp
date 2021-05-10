@@ -102,12 +102,12 @@ namespace shilyaev {
   CommandFunction getCommandFunction(const std::string &commandName)
   {
     const static std::map< std::string, CommandFunction > functions{
-      std::make_pair("add", add),
-      std::make_pair("store", store),
-      std::make_pair("insert", insert),
-      std::make_pair("delete", erase),
-      std::make_pair("show", show),
-      std::make_pair("move", move),
+      {"add", add},
+      {"store", store},
+      {"insert", insert},
+      {"delete", erase},
+      {"show", show},
+      {"move", move},
     };
     try {
       return functions.at(commandName);

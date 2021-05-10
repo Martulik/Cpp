@@ -55,9 +55,10 @@ namespace shilyaev {
     bookmarks_[newBookmarkName] = getBookmark(bookmarkName);
   }
 
-  PhoneBook::PhoneBook()
+  PhoneBook::PhoneBook():
+    entries_(),
+    bookmarks_({{"current", Iterator()}})
   {
-    bookmarks_["current"];
   }
 
   PhoneBook::Entry PhoneBook::getEntry(const std::string &bookmarkName) const

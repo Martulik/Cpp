@@ -27,15 +27,15 @@ void lab::Book::store(const std::string &oldMarkName, const std::string &newMark
 
 void lab::Book::insert(const std::string &bookmark, record_t &record, posOfInsert position)
 {
-  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(markName);
+  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(bookmark);
   assert(iter != bookmarks_.end());
   if (iter->second == phoneBook_.end()) {
     add(record);
   }
   if (position == posOfInsert::before) {
-    phoneBook_.add(iter->second, record);
+    phoneBook_.add(record, iter->second);
   } else if (position == posOfInsert::after) {
-    phoneBook_.add(std::next(iter->second), record);
+    phoneBook_.add(record, std::next(iter->second));
   }
 }
 

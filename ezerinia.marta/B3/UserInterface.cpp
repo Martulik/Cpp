@@ -69,9 +69,9 @@ void lab::UserInterface::insert(std::stringstream &input)
     invalidCommand(stream_);
   } else {
     if (direction == "before") {
-      book_.insert(lab::Book::posOfInsert::before, markName, record);
+      book_.insert(markName, record, lab::Book::posOfInsert::before);
     } else if (direction == "after") {
-      book_.insert(lab::Book::posOfInsert::after, markName, record);
+      book_.insert(markName, record, lab::Book::posOfInsert::after);
     } else {
       invalidCommand(stream_);
     }

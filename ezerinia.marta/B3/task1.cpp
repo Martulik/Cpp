@@ -1,6 +1,5 @@
 #include "task1.hpp"
 #include <sstream>
-#include "tools.hpp"
 #include "UserInterface.hpp"
 
 namespace lab = ezerinia;

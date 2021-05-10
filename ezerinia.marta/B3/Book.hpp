@@ -1,5 +1,5 @@
-#ifndef USERINTERFACE_HPP
-#define USERINTERFACE_HPP
+#ifndef BOOK_HPP
+#define BOOK_HPP
 
 #include <map>
 #include "PhoneBook.hpp"

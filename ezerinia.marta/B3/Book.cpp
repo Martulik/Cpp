@@ -1,13 +1,13 @@
 #include "Book.hpp"
-#include <ostream>
 #include <cassert>
 #include "record_t.hpp"
 
 namespace lab = ezerinia;
 
-lab::Book::Book()
+lab::Book::Book():
+  phoneBook_(),
+  bookmarks_({{"current", PhoneBook::const_iterator()}})
 {
-  bookmarks_["current"] = phoneBook_.begin();
 }
 
 void lab::Book::add(const record_t &record)

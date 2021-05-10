@@ -4,7 +4,7 @@
 
 namespace lab = ezerinia;
 
-std::istream &operator>>(std::istream &in, lab::record_t &src)
+std::istream &lab::operator>>(std::istream &in, lab::record_t &src)
 {
   std::string number;
   in >> std::ws >> number;
@@ -55,7 +55,7 @@ std::istream &operator>>(std::istream &in, lab::record_t &src)
   return in;
 }
 
-std::ostream &operator<<(std::ostream &out, const lab::record_t &src)
+std::ostream &lab::operator<<(std::ostream &out, const lab::record_t &src)
 {
   out << src.number << " " << src.name << "\n";
   return out;

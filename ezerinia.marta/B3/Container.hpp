@@ -15,7 +15,6 @@ namespace ezerinia {
 
   class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, value_type > {
   public:
-    friend class Container;
     Iterator();
     Iterator &operator++();
     Iterator &operator--();
@@ -26,10 +25,11 @@ namespace ezerinia {
     value_type &operator*();
     value_type *operator->();
   private:
+    friend class Container;
     size_t index_;
     value_type value_;
     Iterator(size_t index);
-    constexpr value_type getFactorial(size_t index);
   };
+  constexpr Container::value_type getFactorial(size_t index);
 }
 #endif

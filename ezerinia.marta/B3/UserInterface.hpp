@@ -1,6 +1,7 @@
-#ifndef B3_USERINTERFACE_HPP
-#define B3_USERINTERFACE_HPP
+#ifndef USERINTERFACE_HPP
+#define USERINTERFACE_HPP
 
+#include <iosfwd>
 #include "Book.hpp"
 
 namespace ezerinia {

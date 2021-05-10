@@ -3,8 +3,13 @@
 
 namespace lab = ezerinia;
 
+constexpr lab::Container::value_type lab::getFactorial(size_t index)
+{
+  return index == 1 ? 1 : getFactorial(index - 1) * index;
+}
+
 constexpr size_t maxIndex = 11;
-//constexpr size_t maxFactorial = lab::Container::Iterator::getFactorial(maxIndex);
+constexpr lab::Container::value_type maxFactorial = lab::getFactorial(maxIndex);
 
 lab::Container::Iterator::Iterator():
   index_(1),
@@ -74,9 +79,4 @@ lab::Container::Iterator lab::Container::Iterator::operator--(int)
   Iterator temp = *this;
   --(*this);
   return temp;
-}
-
-constexpr lab::Container::value_type lab::Container::Iterator::getFactorial(size_t index)
-{
-  return index == 1 ? 1 : getFactorial(index - 1) * index;
 }

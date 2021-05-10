@@ -195,7 +195,7 @@ void poz::Interface::doMove(poz::Interface::argsType args)
     bookIt = std::find_if(book_->begin(), book_->end(), condPtr);
     if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
     {
-      out_ << "<INVALID STEP>" << '\n';
+      // out_ << "<INVALID STEP>" << '\n';
       return;
     }
     newIt = std::next(bookIt, n);

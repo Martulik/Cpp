@@ -9,6 +9,7 @@
 #include <vector>
 #include <memory>
 #include "phonebook.hpp"
+#include "command-table.hpp"
 
 namespace pozdnyakov
 {
@@ -46,6 +47,7 @@ namespace pozdnyakov
   Phonebook::iterator getEntry(Interface::bookPtr& book, Interface::bmsType bms, std::string bmName);
   bool compareEntry(std::pair< std::string, std::string > entry, std::string number);
   bool checkBookmark(Interface::bmsType bms, std::string name, std::ostream& out);
+  CommandTable getTable();
 }
 
 #endif

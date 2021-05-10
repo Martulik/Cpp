@@ -4,7 +4,7 @@
 #include <functional>
 #include <algorithm>
 #include <iterator>
-#include "command-table.hpp"
+#include "field-handlers.hpp"
 
 namespace poz = pozdnyakov;
 
@@ -18,15 +18,7 @@ poz::Interface::Interface(std::unique_ptr< poz::Phonebook > book, std::istream& 
 
 void poz::Interface::doCommand(poz::Interface::argsType args)
 {
-  const poz::CommandTable table(std::vector< std::vector< std::string > >(
-  {
-    {"Command", "PhoneNumber", "Name"},
-    {"Command", "String", "String"},
-    {"Command", "CommandParam", "String", "PhoneNumber", "Name"},
-    {"Command", "String"},
-    {"Command", "String", "Int"},
-    {"Command", "String", ""}
-  }));
+  const poz::CommandTable table = poz::getTable();
   if (!table.checkCommand(args))
   {
     out_ << "<INVALID COMMAND>" << '\n';
@@ -74,7 +66,7 @@ void poz::Interface::start()
     nameEnd = buf.rfind('\"');
     if (nameBegin != std::string::npos && nameEnd != std::string::npos && nameBegin != nameEnd)
     {
-      name = buf.substr(nameBegin, nameEnd - nameBegin);
+      name = buf.substr(nameBegin, nameEnd - nameBegin + 1);
       size_t spaceCount = std::count(name.begin(), name.end(), ' ');
       if (spaceCount != 0)
       {
@@ -207,4 +199,27 @@ bool poz::checkBookmark(poz::Interface::bmsType bms, std::string name, std::ostr
     return false;
   }
   return true;
+}
+
+poz::CommandTable poz::getTable()
+{
+  std::vector< std::vector< std::string > > patterns
+  {
+    {"AddCommand", "Int", "Name"},
+    {"Command", "String", "String"},
+    {"AddCommand", "InsertParam", "String", "Int", "Name"},
+    {"Command", "String"},
+    {"Command", "String", "MoveParam"}
+  };
+  std::map< std::string, std::function< bool(std::string) > > fieldHandlersMap
+  {
+    {"AddCommand", poz::add_command_t()},
+    {"Command", poz::command_t()},
+    {"InsertParam", poz::insert_param_t()},
+    {"MoveParam", poz::move_param_t()},
+    {"Name", poz::name_t()},
+    {"Int", poz::int_t()},
+    {"String", poz::string_t()},
+  };
+  return poz::CommandTable(patterns, fieldHandlersMap);
 }

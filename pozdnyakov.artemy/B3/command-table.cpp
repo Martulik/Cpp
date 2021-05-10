@@ -2,6 +2,11 @@
 
 namespace poz = pozdnyakov;
 
+poz::CommandTable::CommandTable(poz::CommandTable::patternsVector patterns, poz::CommandTable::handlersMap fhMap):
+  patterns_(patterns),
+  fieldHandlersMap_(fhMap)
+{}
+
 bool poz::CommandTable::checkCommand(std::vector< std::string > commandStr) const
 {
   bool isCorrect = true;
@@ -13,7 +18,7 @@ bool poz::CommandTable::checkCommand(std::vector< std::string > commandStr) cons
     }
     for (size_t j = 0; j < patterns_[i].size(); j++)
     {
-      isCorrect &= fieldHandlersMap_.at(patterns_[i][j])->isField(commandStr[j]);
+      isCorrect &= fieldHandlersMap_.at(patterns_[i][j])(commandStr[j]);
     }
     if (isCorrect)
     {
@@ -23,18 +28,3 @@ bool poz::CommandTable::checkCommand(std::vector< std::string > commandStr) cons
   }
   return false;
 }
-
-poz::CommandTable::fhMapType poz::CommandTable::fieldHandlersMap_ = genMap();
-
-poz::CommandTable::fhMapType poz::CommandTable::genMap()
-{
-  poz::CommandTable::fhMapType fhMap;
-  fhMap["Command"] = std::make_unique< poz::Command >();
-  fhMap["CommandParam"] = std::make_unique< poz::CommandParam >();
-  fhMap["PhoneNumber"] = std::make_unique< poz::PhoneNumber >();
-  fhMap["Name"] = std::make_unique< poz::Name >();
-  fhMap["Int"] = std::make_unique< poz::Int >();
-  fhMap["String"] = std::make_unique< poz::String >();
-  fhMap["MoveParam"] = std::make_unique< poz::MoveParam >();
-  return fhMap;
-};

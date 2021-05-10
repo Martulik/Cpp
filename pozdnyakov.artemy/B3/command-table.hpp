@@ -5,29 +5,23 @@
 #include <vector>
 #include <memory>
 #include <map>
-#include "fields.hpp"
+#include <functional>
 
 namespace pozdnyakov
 {
   class CommandTable
   {
   public:
-    template < typename... Patterns >
-    CommandTable(Patterns... patters);
+    using patternType = std::vector< std::string >;
+    using handlerType = std::function< bool(std::string) >;
+    using patternsVector = std::vector< patternType >;
+    using handlersMap = std::map< std::string, handlerType >;
+    CommandTable(patternsVector patterns, handlersMap fhMap);
     bool checkCommand(std::vector< std::string > commandStr) const;
   private:
-    using fhMapType = std::map< const std::string, std::unique_ptr< AbsField > >;
-    std::vector< std::vector< std::string > > patterns_;
-    static fhMapType fieldHandlersMap_;
-    static fhMapType genMap();
+    const patternsVector patterns_;
+    const handlersMap fieldHandlersMap_;
   };
 }
-
-namespace poz = pozdnyakov;
-
-template < typename... Patterns >
-poz::CommandTable::CommandTable(Patterns... patterns):
-  patterns_(patterns...)
-{}
 
 #endif

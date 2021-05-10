@@ -6,9 +6,9 @@
 namespace shilyaev {
   class FactorialContainer {
   public:
-    class Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned int > {
+    using ValueType = unsigned int;
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, ValueType > {
     public:
-      using ValueType = unsigned int;
       Iterator();
       const ValueType &operator*() const;
       const ValueType *operator->() const;

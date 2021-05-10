@@ -2,15 +2,17 @@
 #include <cassert>
 
 namespace shilyaev {
-  constexpr unsigned int factorial(unsigned int n)
+  using ValueType = FactorialContainer::ValueType;
+
+  constexpr ValueType factorial(ValueType n)
   {
     return (n <= 1) ? 1 : (n * factorial(n - 1));
   }
 
-  constexpr unsigned int beginLastMultiplier = 1;
-  constexpr unsigned int beginValue = factorial(beginLastMultiplier);
-  constexpr unsigned int endLastMultiplier = 11;
-  constexpr unsigned int endValue = factorial(endLastMultiplier);
+  constexpr ValueType beginLastMultiplier = 1;
+  constexpr ValueType beginValue = factorial(beginLastMultiplier);
+  constexpr ValueType endLastMultiplier = 11;
+  constexpr ValueType endValue = factorial(endLastMultiplier);
 
   FactorialContainer::Iterator::Iterator():
     value_(0),
@@ -18,19 +20,19 @@ namespace shilyaev {
   {
   }
 
-  FactorialContainer::Iterator::Iterator(unsigned int value, unsigned int lastMultiplier):
+  FactorialContainer::Iterator::Iterator(ValueType value, ValueType lastMultiplier):
     value_(value),
     lastMultiplier_(lastMultiplier)
   {
   }
 
-  const unsigned int &FactorialContainer::Iterator::operator*() const
+  const ValueType &FactorialContainer::Iterator::operator*() const
   {
     assert(value_ != 0);
     return value_;
   }
 
-  const unsigned int *FactorialContainer::Iterator::operator->() const
+  const ValueType *FactorialContainer::Iterator::operator->() const
   {
     assert(value_ != 0);
     return std::addressof(value_);

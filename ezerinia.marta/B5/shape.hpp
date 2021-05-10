@@ -2,7 +2,7 @@
 #define SHAPE_HPP
 
 #include <vector>
-#include <iostream>
+#include <iosfwd>
 
 struct Point {
   int x, y;

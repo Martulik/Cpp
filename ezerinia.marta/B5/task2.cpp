@@ -18,8 +18,7 @@ void ezerinia::task2()
   int rectangles = 0;
 
   std::vector< Point > points;
-//  for (auto && shape : shapes) {
-  for (auto & shape : shapes) {
+  for (auto &&shape : shapes) {
     vertices += shape.size();
     if (shape.size() == 3) {
       triangles++;

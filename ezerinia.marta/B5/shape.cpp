@@ -1,11 +1,7 @@
 #include "shape.hpp"
-#include <iostream>
 #include <iterator>
 #include <algorithm>
 #include <cmath>
-#include <iosfwd>
-
-#include <stdexcept>
 #include <sstream>
 
 double getSideLength(const Point &p1, const Point &p2)

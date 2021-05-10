@@ -145,7 +145,7 @@ void poz::Interface::doShow(poz::Interface::argsType args)
   std::string name = std::get<1>(*it);
   name.erase(name.begin());
   name.pop_back();
-  this->out_ << name << ' ' << std::get<0>(*it) << '\n';
+  this->out_ << std::get<0>(*it) << ' ' << name << '\n';
 }
 
 void poz::Interface::doMove(poz::Interface::argsType args)

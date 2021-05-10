@@ -1,7 +1,8 @@
 #ifndef RECORD_T_HPP
 #define RECORD_T_HPP
 
-#include <iostream>
+#include <iosfwd>
+#include <string>
 
 namespace ezerinia {
   struct record_t {

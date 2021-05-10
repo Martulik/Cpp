@@ -7,13 +7,13 @@
 namespace ezerinia {
   class PhoneBook {
   public:
-    using iterator = std::list< record_t >::iterator;
+    using const_iterator = std::list< record_t >::const_iterator;
     bool empty() const;
-    iterator begin();
-    iterator end();
-    iterator add(iterator iter, const record_t &src);
-    iterator move(iterator iter, int step);
-    iterator remove(iterator iter);
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator add(const_iterator iter, const record_t &src);
+    const_iterator move(const_iterator iter, int step);
+    const_iterator remove(const_iterator iter);
     void pushBack(const record_t &src);
   private:
     std::list< record_t > list_;

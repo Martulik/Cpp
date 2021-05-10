@@ -1,97 +1,153 @@
 #include "UserInterface.hpp"
-#include <ostream>
-#include <cassert>
+#include <iostream>
+#include <sstream>
 #include "record_t.hpp"
 
 namespace lab = ezerinia;
 
-lab::UserInterface::UserInterface()
+lab::UserInterface::UserInterface(std::ostream &stream):
+  book_(),
+  stream_(stream)
 {
-  bookmarks_["current"] = phoneBook_.begin();
 }
 
-void lab::UserInterface::add(const record_t &record)
+std::string lab::UserInterface::getMarkName(std::string markName)
 {
-  phoneBook_.pushBack(record);
-  if (std::next(phoneBook_.begin()) == phoneBook_.end()) {
-    bookmarks_["current"] = phoneBook_.begin();
+  if (markName.empty()) {
+    return "";
   }
-}
-
-void lab::UserInterface::store(const std::string &oldMarkName, const std::string &newMarkName)
-{
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(oldMarkName);
-  assert(iter != bookmarks_.end());
-  bookmarks_[newMarkName] = iter->second;
-}
-
-void lab::UserInterface::insert(const posOfInsert position, const std::string &markName, record_t &record)
-{
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
-  assert(iter != bookmarks_.end());
-  if (iter->second == phoneBook_.end()) {
-    add(record);
-  }
-  if (position == posOfInsert::before) {
-    phoneBook_.add(iter->second, record);
-  } else if (position == posOfInsert::after) {
-    phoneBook_.add(std::next(iter->second), record);
-  }
-}
-
-void lab::UserInterface::deleteRecord(const std::string &markName)
-{
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
-  assert(iter != bookmarks_.end());
-  auto deleteIter = iter->second;
-  for (auto &&bookmark : bookmarks_) {
-    if (bookmark.second == deleteIter) {
-      if (std::next(bookmark.second) == phoneBook_.end()) {
-        bookmark.second = std::prev(deleteIter);
-      } else {
-        bookmark.second = std::next(deleteIter);
-      }
+  for (char i: markName) {
+    if ((!isalnum(i)) && (i != '-')) {
+      return "";
     }
   }
-  phoneBook_.remove(deleteIter);
+  return markName;
 }
 
-void lab::UserInterface::show(const std::string &markName, std::ostream &out) const
+void lab::UserInterface::add(std::stringstream &input)
 {
-  const std::map< std::string, PhoneBook::iterator >::const_iterator &iter = bookmarks_.find(markName);
-  assert(iter != bookmarks_.end());
-  assert(!phoneBook_.empty());
-  out << *iter->second;
-}
+  record_t record;
+  input >> record;
 
-void lab::UserInterface::move(const std::string &markName, int steps)
-{
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
-  assert(iter != bookmarks_.end());
-  iter->second = phoneBook_.move(iter->second, steps);
-}
-
-void lab::UserInterface::move(const std::string &markName, const posOfMove position)
-{
-  const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
-  assert(iter != bookmarks_.end());
-  if (position == posOfMove::first) {
-    iter->second = phoneBook_.begin();
-  } else if (position == posOfMove::last) {
-    iter->second = std::prev(phoneBook_.end());
+  if (record.name.empty() || record.number.empty()) {
+    invalidCommand(stream_);
+  } else {
+    book_.add(record);
   }
 }
 
-bool lab::UserInterface::containsBookmark(const std::string &bookmark) const
+void lab::UserInterface::store(std::stringstream &input)
 {
-  const std::map< std::string, PhoneBook::iterator >::const_iterator &iter = bookmarks_.find(bookmark);
-  if (iter == bookmarks_.end()) {
-    return false;
+  std::string oldMarkName;
+  input >> std::ws >> oldMarkName;
+  oldMarkName = getMarkName(oldMarkName);
+
+  std::string newMarkName;
+  input >> std::ws >> newMarkName;
+  newMarkName = getMarkName(newMarkName);
+
+  if (oldMarkName.empty() || newMarkName.empty() || !book_.containsBookmark(oldMarkName)) {
+    invalidCommand(stream_);
+  } else {
+    book_.store(oldMarkName, newMarkName);
   }
-  return true;
 }
 
-bool lab::UserInterface::empty() const
+void lab::UserInterface::insert(std::stringstream &input)
 {
-  return phoneBook_.empty();
+  std::string direction;
+  input >> std::ws >> direction;
+
+  std::string markName;
+  input >> std::ws >> markName;
+  markName = getMarkName(markName);
+
+  record_t record;
+  input >> record;
+
+  if (markName.empty() || !book_.containsBookmark(markName) || record.number.empty() || record.name.empty()) {
+    invalidCommand(stream_);
+  } else {
+    if (direction == "before") {
+      book_.insert(lab::Book::posOfInsert::before, markName, record);
+    } else if (direction == "after") {
+      book_.insert(lab::Book::posOfInsert::after, markName, record);
+    } else {
+      invalidCommand(stream_);
+    }
+  }
+}
+
+void lab::UserInterface::deleteRecord(std::stringstream &input)
+{
+  std::string markName;
+  input >> std::ws >> markName;
+  markName = getMarkName(markName);
+  if (markName.empty() || !book_.containsBookmark(markName)) {
+    invalidCommand(stream_);
+  } else {
+    book_.deleteRecord(markName);
+  }
+}
+
+void lab::UserInterface::show(std::stringstream &input)
+{
+  std::string markName;
+  input >> std::ws >> markName;
+  markName = getMarkName(markName);
+  if (markName.empty()) {
+    invalidCommand(stream_);
+  } else if (!book_.containsBookmark(markName)) {
+    invalidBookmark(stream_);
+  } else if (book_.empty()) {
+    empty(stream_);
+  } else {
+    book_.show(markName, stream_);
+  }
+}
+
+void lab::UserInterface::move(std::stringstream &input)
+{
+  std::string markName;
+  input >> std::ws >> markName;
+  markName = getMarkName(markName);
+  if (markName.empty() || !book_.containsBookmark(markName)) {
+    invalidCommand(stream_);
+    return;
+  }
+  std::string num;
+  input >> std::ws >> num;
+  if (num == "first") {
+    book_.move(markName, lab::Book::posOfMove::first);
+  } else if (num == "last") {
+    book_.move(markName, lab::Book::posOfMove::last);
+  } else {
+    try {
+      int steps = std::stoi(num);
+      book_.move(markName, steps);
+    }
+    catch (const std::invalid_argument &) {
+      invalidStep(stream_);
+    }
+  }
+}
+
+void lab::invalidCommand(std::ostream &out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void lab::invalidBookmark(std::ostream &out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void lab::empty(std::ostream &out)
+{
+  out << "<EMPTY>\n";
+}
+
+void lab::invalidStep(std::ostream &out)
+{
+  out << "<INVALID STEP>\n";
 }

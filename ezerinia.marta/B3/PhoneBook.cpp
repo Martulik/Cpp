@@ -7,22 +7,22 @@ bool lab::PhoneBook::empty() const
   return list_.empty();
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::begin()
+lab::PhoneBook::const_iterator lab::PhoneBook::begin() const
 {
   return list_.begin();
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::end()
+lab::PhoneBook::const_iterator lab::PhoneBook::end() const
 {
   return list_.end();
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::add(const iterator iter, const record_t &src)
+lab::PhoneBook::const_iterator lab::PhoneBook::add(const_iterator iter, const record_t &src)
 {
   return list_.insert(iter, src);
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
+lab::PhoneBook::const_iterator lab::PhoneBook::move(const_iterator iter, const int step)
 {
   int counter = 0;
   if (step >= 0) {
@@ -39,7 +39,7 @@ lab::PhoneBook::iterator lab::PhoneBook::move(iterator iter, int step)
   return iter;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::remove(const iterator iter)
+lab::PhoneBook::const_iterator lab::PhoneBook::remove(const_iterator iter)
 {
   return list_.erase(iter);
 }

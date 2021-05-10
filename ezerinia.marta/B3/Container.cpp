@@ -4,6 +4,7 @@
 namespace lab = ezerinia;
 
 constexpr size_t maxIndex = 11;
+//constexpr size_t maxFactorial = lab::Container::Iterator::getFactorial(maxIndex);
 
 lab::Container::Iterator::Iterator():
   index_(1),
@@ -44,7 +45,7 @@ lab::Container::value_type &lab::Container::Iterator::operator*()
 
 lab::Container::value_type *lab::Container::Iterator::operator->()
 {
-  return &value_;
+  return std::addressof(value_);
 }
 
 lab::Container::Iterator &lab::Container::Iterator::operator++()

@@ -1,34 +1,35 @@
 #include "task1.hpp"
 #include <sstream>
 #include "tools.hpp"
+#include "UserInterface.hpp"
 
 namespace lab = ezerinia;
 
-void lab::task1()
+void lab::task1(std::istream &in, std::ostream &out)
 {
-  lab::UserInterface phoneBook;
+  lab::UserInterface interface(out);
   std::string string;
-  while (std::getline(std::cin, string)) {
-    if (std::cin.fail()) {
+  while (std::getline(in, string)) {
+    if (in.fail()) {
       throw std::runtime_error("Read fail");
     }
     std::stringstream input(string);
     std::string command;
     input >> command;
     if (command == "add") {
-      add(phoneBook, input);
+      interface.add(input);
     } else if (command == "store") {
-      store(phoneBook, input);
+      interface.store(input);
     } else if (command == "insert") {
-      insert(phoneBook, input);
+      interface.insert(input);
     } else if (command == "delete") {
-      deleteRecord(phoneBook, input);
+      interface.deleteRecord(input);
     } else if (command == "show") {
-      show(phoneBook, input, std::cout);
+      interface.show(input);
     } else if (command == "move") {
-      move(phoneBook, input);
+      interface.move(input);
     } else {
-      invalidCommand(std::cout);
+      invalidCommand(out);
     }
   }
 }

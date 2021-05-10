@@ -21,7 +21,14 @@ void poz::Interface::doCommand(poz::Interface::argsType args)
   const poz::CommandTable table = poz::getTable();
   if (!table.checkCommand(args))
   {
-    out_ << "<INVALID COMMAND>" << '\n';
+    if (!args[0].compare("move"))
+    {
+      out_ << "<INVALID STEP>" << '\n';
+    }
+    else
+    {
+      out_ << "<INVALID COMMAND>" << '\n';
+    }
     return;
   }
   bool isValidBm;
@@ -229,10 +236,10 @@ poz::CommandTable poz::getTable()
   std::vector< std::vector< std::string > > patterns
   {
     {"AddCommand", "Int", "Name"},
-    {"Command", "String", "String"},
+    {"MoveCommand", "String", "MoveParam"},
     {"AddCommand", "InsertParam", "String", "Int", "Name"},
     {"Command", "String"},
-    {"Command", "String", "MoveParam"}
+    {"Command", "String", "String"}
   };
   std::map< std::string, std::function< bool(std::string) > > fieldHandlersMap
   {
@@ -243,6 +250,7 @@ poz::CommandTable poz::getTable()
     {"Name", poz::name_t()},
     {"Int", poz::int_t()},
     {"String", poz::string_t()},
+    {"MoveCommand", poz::move_command_t()}
   };
   return poz::CommandTable(patterns, fieldHandlersMap);
 }

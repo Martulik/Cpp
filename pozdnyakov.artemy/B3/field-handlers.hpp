@@ -25,8 +25,7 @@ namespace pozdnyakov
     {
       "store",
       "delete",
-      "show",
-      "move"
+      "show"
     };
   };
 
@@ -65,6 +64,16 @@ namespace pozdnyakov
   struct string_t
   {
     bool operator()(std::string) const;
+  };
+
+  struct move_command_t
+  {
+    bool operator()(std::string field) const;
+  private:
+    std::vector< std::string > commands
+    {
+      "move"
+    };
   };
 }
 

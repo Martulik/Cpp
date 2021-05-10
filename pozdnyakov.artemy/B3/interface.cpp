@@ -103,6 +103,12 @@ void poz::Interface::doInsert(poz::Interface::argsType args)
 {
   std::pair< std::string, std::string > pair{args[2], args[3]};
   poz::Phonebook::iterator it = poz::getEntry(book_, bookmarks_, args[1]);
+  if (it == book_->end())
+  {
+    args.erase(args.begin(), std::next(args.begin(), 2));
+    this->doAdd(args);
+    return;
+  }
   if (args[0] == std::string("before"))
   {
     book_->insert(it, pair);
@@ -192,6 +198,10 @@ void poz::Interface::doMove(poz::Interface::argsType args)
 
 poz::Phonebook::iterator poz::getEntry(poz::Interface::bookPtr& book, poz::Interface::bmsType bms, std::string bmName)
 {
+  if (book->size() == 0)
+  {
+    return book->end();
+  }
   std::string number = std::get<1>(*bms.find(bmName));
   auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, number);
   poz::Phonebook::iterator it = std::find_if(book->begin(), book->end(), condPtr);

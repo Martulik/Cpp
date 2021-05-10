@@ -8,13 +8,13 @@ namespace ezerinia {
   class UserInterface {
   public:
     explicit UserInterface(std::ostream &stream);
-    std::string getMarkName(std::string markName);
     void add(std::stringstream &input);
     void store(std::stringstream &input);
     void insert(std::stringstream &input);
     void deleteRecord(std::stringstream &input);
     void show(std::stringstream &input);
     void move(std::stringstream &input);
+    std::string getMarkName(std::string markName);
   private:
     Book book_;
     std::ostream &stream_;

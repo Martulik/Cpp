@@ -19,7 +19,7 @@ namespace ezerinia {
     Book();
     void add(const record_t &record);
     void store(const std::string &oldMarkName, const std::string &newMarkName);
-    void insert(posOfInsert position, const std::string &bookmark, record_t &record);
+    void insert(const std::string &bookmark, record_t &record, posOfInsert position);
     void deleteRecord(const std::string &bookmark);
     void show(const std::string &bookmark, std::ostream &out) const;
     void move(const std::string &bookmark, int steps);

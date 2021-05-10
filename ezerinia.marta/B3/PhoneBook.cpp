@@ -17,7 +17,7 @@ lab::PhoneBook::const_iterator lab::PhoneBook::end() const
   return list_.end();
 }
 
-lab::PhoneBook::const_iterator lab::PhoneBook::add(const_iterator iter, const record_t &src)
+lab::PhoneBook::const_iterator lab::PhoneBook::add(const record_t &src, const_iterator iter)
 {
   return list_.insert(iter, src);
 }

@@ -25,7 +25,7 @@ void lab::Book::store(const std::string &oldMarkName, const std::string &newMark
   bookmarks_[newMarkName] = iter->second;
 }
 
-void lab::Book::insert(const posOfInsert position, const std::string &markName, record_t &record)
+void lab::Book::insert(const std::string &bookmark, record_t &record, posOfInsert position)
 {
   const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(markName);
   assert(iter != bookmarks_.end());

@@ -25,7 +25,7 @@ void lab::UserInterface::store(const std::string &oldMarkName, const std::string
   bookmarks_[newMarkName] = iter->second;
 }
 
-void lab::UserInterface::insert(posOfInsert position, const std::string &markName, record_t &record)
+void lab::UserInterface::insert(const posOfInsert position, const std::string &markName, record_t &record)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   assert(iter != bookmarks_.end());
@@ -71,7 +71,7 @@ void lab::UserInterface::move(const std::string &markName, int steps)
   iter->second = phoneBook_.move(iter->second, steps);
 }
 
-void lab::UserInterface::move(const std::string &markName, posOfMove position)
+void lab::UserInterface::move(const std::string &markName, const posOfMove position)
 {
   const std::map< std::string, PhoneBook::iterator >::iterator &iter = bookmarks_.find(markName);
   assert(iter != bookmarks_.end());

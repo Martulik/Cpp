@@ -25,8 +25,12 @@ bool poz::move_param_t::operator()(std::string field) const
   return isString || std::all_of(field.begin(), field.end(), ::isdigit);
 }
 
-bool poz::name_t::operator()(std::string) const
+bool poz::name_t::operator()(std::string field) const
 {
+  if (!(field[0] == '\"' && field[field.size() - 1] == '\"'))
+  {
+    return false;
+  }
   return true;
 }
 

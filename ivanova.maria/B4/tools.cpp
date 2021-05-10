@@ -4,27 +4,15 @@ namespace iva = ivanova;
 
 bool iva::compare(DataStruct &data1, DataStruct &data2)
 {
-  if (data1.key1 > data2.key1)
+  if (data1.key1 == data2.key2)
   {
-    return true;
-  }
-  else if (data1.key1 == data2.key1)
-  {
-    if (data1.key2 > data2.key2)
+    if (data1.key2 == data2.key2)
     {
-      return true;
+      return (data1.str > data2.str);
     }
-    else if (data1.key2 == data2.key2)
-    {
-      if (data1.str.length() > data2.str.length())
-      {
-        return true;
-      }
-      else return false;
-    }
-    else return false;
+    return data1.key2 > data2.key2;
   }
-  else return false;
+  return data1.key1 > data2.key2;
 }
 
 iva::DataStruct iva::getVector(std::string &str)

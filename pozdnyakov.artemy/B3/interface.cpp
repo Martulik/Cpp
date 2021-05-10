@@ -55,9 +55,8 @@ void poz::Interface::start()
   std::stringstream ssbuf;
   std::istream_iterator< std::string > eos;
   std::istream_iterator< std::string > begin;
-  while(!std::cin.eof())
+  while(!std::cin.eof() && std::getline(in_, buf) && !buf.empty())
   {
-    std::getline(in_, buf);
     ssbuf << buf;
     begin = std::istream_iterator< std::string >(ssbuf);
     eos = std::istream_iterator< std::string >();

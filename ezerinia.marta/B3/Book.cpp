@@ -4,9 +4,10 @@
 
 namespace lab = ezerinia;
 
-lab::Book::Book()
+lab::Book::Book():
+  phoneBook_(),
+  bookmarks_({{"current", phoneBook_.begin()}})
 {
-  bookmarks_["current"] = phoneBook_.begin();
 }
 
 void lab::Book::add(const record_t &record)

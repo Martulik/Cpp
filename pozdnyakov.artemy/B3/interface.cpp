@@ -95,7 +95,8 @@ void poz::Interface::doAdd(poz::Interface::argsType args)
 
 void poz::Interface::doStore(poz::Interface::argsType args)
 {
-  bookmarks_.insert({args[0], args[1]});
+  std::string number = bookmarks_.at(args[1]);
+  bookmarks_.insert({args[2], number});
 }
 
 void poz::Interface::doInsert(poz::Interface::argsType args)

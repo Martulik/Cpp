@@ -95,8 +95,8 @@ void poz::Interface::doAdd(poz::Interface::argsType args)
 
 void poz::Interface::doStore(poz::Interface::argsType args)
 {
-  std::string number = bookmarks_.at(args[1]);
-  bookmarks_.insert({args[2], number});
+  std::string number = bookmarks_.at(args[0]);
+  bookmarks_.insert({args[1], number});
 }
 
 void poz::Interface::doInsert(poz::Interface::argsType args)
@@ -116,21 +116,32 @@ void poz::Interface::doInsert(poz::Interface::argsType args)
 void poz::Interface::doDelete(poz::Interface::argsType args)
 {
   std::map< std::string, std::string >::iterator bookmarkIt = bookmarks_.find(args[0]);
-  std::string& numberRef = std::get<1>(*bookmarkIt);
-  auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, numberRef);
+  std::string number = std::get<1>(*bookmarkIt);
+  auto condPtr = std::bind(&poz::compareEntry, std::placeholders::_1, number);
   poz::Phonebook::iterator it = std::find_if(book_->begin(), book_->end(), condPtr);
   if (it == book_->end())
   {
     out_ << "<BOOK IS EMPTY>" << '\n';
     return;
   }
-  else if(it == std::prev(book_->end()))
+  for(bookmarkIt = bookmarks_.begin(); bookmarkIt != bookmarks_.end(); bookmarkIt++)
   {
-    numberRef = std::get<0>(*book_->begin());
-  }
-  else
-  {
-    std::get<1>(*bookmarkIt) = std::get<0>(*std::next(it));
+    std::string& numberRef = std::get<1>(*bookmarkIt);
+    if (numberRef == number)
+    {
+      if (book_->size() == 1)
+      {
+        numberRef = -1;
+      }
+      else if(it == std::prev(book_->end()))
+      {
+        numberRef = std::get<0>(*book_->begin());
+      }
+      else
+      {
+        numberRef = std::get<0>(*std::next(it));
+      }
+    }
   }
   book_->erase(it);
 }
@@ -144,8 +155,10 @@ void poz::Interface::doShow(poz::Interface::argsType args)
   }
   poz::Phonebook::iterator it = poz::getEntry(book_, bookmarks_, args[0]);
   std::string name = std::get<1>(*it);
-  name.erase(name.begin());
   name.pop_back();
+  name.erase(name.begin());
+  std::string::iterator last = std::remove(name.begin(), name.end(), '\\');
+  name = std::string(name.begin(), last);
   this->out_ << std::get<0>(*it) << ' ' << name << '\n';
 }
 

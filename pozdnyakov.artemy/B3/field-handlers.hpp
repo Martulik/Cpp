@@ -54,7 +54,7 @@ namespace pozdnyakov
 
   struct name_t
   {
-    bool operator()(std::string field) const;
+    bool operator()(std::string) const;
   };
 
   struct int_t

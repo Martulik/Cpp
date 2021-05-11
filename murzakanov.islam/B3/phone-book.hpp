@@ -17,7 +17,6 @@ namespace murzakanov
     void insertBefore(const_iterator it, const murzakanov::note_t& note);
     void deleteNote(const_iterator it);
     void push_back(const murzakanov::note_t& note);
-    void replace(iterator it, const murzakanov::note_t& note);
     size_t size() const;
     bool isEmpty() const;
 

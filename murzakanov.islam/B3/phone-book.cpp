@@ -41,12 +41,6 @@ void mur::PhoneBook::push_back(const mur::note_t& note)
   book_.push_back(note);
 }
 
-void mur::PhoneBook::replace(mur::PhoneBook::iterator it, const mur::note_t& note)
-{
-  it->name = note.name;
-  it->number = note.number;
-}
-
 size_t mur::PhoneBook::size() const
 {
   return book_.size();

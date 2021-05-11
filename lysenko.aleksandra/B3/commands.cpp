@@ -1,12 +1,23 @@
 #include "commands.h"
 
+#include <algorithm>
 #include <iostream>
 #include <sstream>
 #include <string>
 
+bool lysenko::isDigitsOnly(std::string& number)
+{
+  for (std::string::iterator i = number.begin(); i!=number.end();++i)
+  {
+    if ((*i < '0') || (*i > '9'))
+      return 0;
+  }
+
+  return 1;
+}
 bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
 {
-  if ((name.size() != 2) && (stoi(number)))
+  if ((name.size() != 2) && (isDigitsOnly(number)))
   {
     name = name.substr(1, name.size() - 2);
     return 1;

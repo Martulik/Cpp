@@ -62,5 +62,5 @@ void razukrantov::task3()
     }
   }
 
-  razukrantov::print< razukrantov::bracketsAccess< int >, int >(vector, std::cout);
+  razukrantov::print< razukrantov::bracketsAccess< int >, int >(vector, std::cout, " ");
 }

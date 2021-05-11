@@ -27,13 +27,13 @@ namespace razukrantov
   }
 
   template < typename Strategy, typename T >
-  void print(typename Strategy::container& container, std::ostream& out)
+  void print(typename Strategy::container& container, std::ostream& out, const char* delimiter)
   {
     typename Strategy::iterator begin = Strategy::begin(container);
     typename Strategy::iterator size = Strategy::end(container);
     for (typename Strategy::iterator i = begin; i != size; i++)
     {
-      out << Strategy::get(container, i) << " ";
+      out << Strategy::get(container, i) << delimiter;
     }
     out << "\n";
   }

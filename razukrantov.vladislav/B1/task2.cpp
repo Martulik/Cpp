@@ -41,5 +41,5 @@ void razukrantov::task2(const char* file)
 
   input.close();
   std::vector< char > vector(data.get(), data.get() + size);
-  razukrantov::print< razukrantov::bracketsAccess< char >, char >(vector, std::cout);
+  razukrantov::print< razukrantov::bracketsAccess< char >, char >(vector, std::cout, "");
 }

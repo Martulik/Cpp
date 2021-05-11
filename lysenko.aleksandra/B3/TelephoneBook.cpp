@@ -7,7 +7,7 @@ bool lysenko::Book::isEmpty() const
   return content_.empty();
 }
 
-lysenko::Book::iterator lysenko::Book::getBegin() 
+lysenko::Book::iterator lysenko::Book::getBegin()
 {
   return content_.begin();
 }
@@ -54,7 +54,7 @@ lysenko::Book::iterator lysenko::Book::goTo(iterator curr, bool forward, int amo
 
 void lysenko::Book::showCurrNote(iterator curr) const
 {
-  std::cout << curr->name << " " << curr->number;//мб некорректный вывод в соотв с условием
+  std::cout << curr->name << " " << curr->number;
 }
 
 void lysenko::Book::insert(iterator curr, const Note newNote, bool before)

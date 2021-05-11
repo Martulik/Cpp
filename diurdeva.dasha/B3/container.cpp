@@ -1,28 +1,35 @@
 #include "container.hpp"
 #include "cassert"
 
-constexpr int MAX_POS = 11;
-constexpr int MIN_POS = 1;
+using ValueType = diurdeva::Container::ValueType;
 
-constexpr int factorial(size_t n)
+constexpr ValueType MAX_POS = 11;
+constexpr ValueType MIN_POS = 1;
+
+constexpr ValueType factorial(ValueType n)
 {
   return (n <= 1) ? 1 : (n * factorial(n - 1));
 }
 
-constexpr int MIN_VALUE = factorial(MIN_POS);
-constexpr int MAX_VALUE = factorial(MAX_POS);
+constexpr ValueType MIN_VALUE = factorial(MIN_POS);
+constexpr ValueType MAX_VALUE = factorial(MAX_POS);
 
 diurdeva::Container::IteratorFact::IteratorFact() :
   value_(0),
   pos_(0)
 {}
 
-const size_t* diurdeva::Container::IteratorFact::operator->() const
+diurdeva::Container::IteratorFact::IteratorFact(ValueType value, ValueType pos) :
+  value_(value),
+  pos_(pos)
+{}
+
+const ValueType* diurdeva::Container::IteratorFact::operator->() const
 {
   return &value_;
 }
 
-const size_t& diurdeva::Container::IteratorFact::operator*() const
+const ValueType& diurdeva::Container::IteratorFact::operator*() const
 {
   return value_;
 }
@@ -50,7 +57,7 @@ diurdeva::Container::IteratorFact& diurdeva::Container::IteratorFact::operator--
 
 }
 
-diurdeva::Container ::IteratorFact diurdeva::Container::IteratorFact::operator--(int)
+diurdeva::Container::IteratorFact diurdeva::Container::IteratorFact::operator--(int)
 {
   IteratorFact temp = *this;
   --(*this);
@@ -68,17 +75,12 @@ bool diurdeva::Container::IteratorFact::operator!=(const Container::IteratorFact
 }
 
 
-const diurdeva::Container::IteratorFact diurdeva::Container::begin()
+diurdeva::Container::IteratorFact diurdeva::Container::begin() const
 {
-  return {MIN_VALUE, MIN_POS};
+  return { MIN_VALUE, MIN_POS };
 }
 
-const diurdeva::Container ::IteratorFact diurdeva::Container::end()
+diurdeva::Container::IteratorFact diurdeva::Container::end() const
 {
-  return {MAX_VALUE, MAX_POS};
+  return { MAX_VALUE, MAX_POS };
 }
-
-diurdeva::Container::IteratorFact::IteratorFact(size_t value, size_t pos) :
-  value_(value),
-  pos_(pos)
-{}

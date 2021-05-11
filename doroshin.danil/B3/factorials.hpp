@@ -13,10 +13,10 @@ namespace doroshin
 
     class iterator;
 
-    constexpr Factorials(value_t begin, value_t end);
+    constexpr Factorials(value_t begin, value_t end) noexcept;
 
-    iterator cbegin() const;
-    iterator cend() const;
+    iterator cbegin() const noexcept;
+    iterator cend() const noexcept;
   private:
     value_t begin_;
     value_t end_;
@@ -27,21 +27,21 @@ namespace doroshin
   public:
     using reference = value_type;
 
-    constexpr iterator(value_type);
+    constexpr iterator(value_type) noexcept;
 
-    reference operator*() const;
+    reference operator*() const noexcept;
 
-    iterator& operator++();
-    iterator operator++(int);
+    iterator& operator++() noexcept;
+    iterator operator++(int) noexcept;
 
-    iterator& operator--();
-    iterator operator--(int);
+    iterator& operator--() noexcept;
+    iterator operator--(int) noexcept;
   private:
     value_type arg_;
     value_type value_;
   };
 
-  constexpr Factorials::value_t factorial(unsigned int n)
+  constexpr Factorials::value_t factorial(unsigned int n) noexcept
   {
     Factorials::value_t res = 1;
     for(; n > 1; --n) {
@@ -50,18 +50,18 @@ namespace doroshin
     return res;
   }
 
-  bool operator==(const Factorials::iterator&, const Factorials::iterator&);
-  bool operator!=(const Factorials::iterator&, const Factorials::iterator&);
+  bool operator==(const Factorials::iterator&, const Factorials::iterator&) noexcept;
+  bool operator!=(const Factorials::iterator&, const Factorials::iterator&) noexcept;
 }
 
-constexpr doroshin::Factorials::Factorials(value_t begin, value_t end):
+constexpr doroshin::Factorials::Factorials(value_t begin, value_t end) noexcept:
   begin_(begin),
   end_(end)
 {
   assert(begin <= end);
 }
 
-constexpr doroshin::Factorials::iterator::iterator(value_type n):
+constexpr doroshin::Factorials::iterator::iterator(value_type n) noexcept:
   arg_(n),
   value_(factorial(n))
 {}

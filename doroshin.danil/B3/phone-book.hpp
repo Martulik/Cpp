@@ -25,9 +25,11 @@ namespace doroshin
 
     Entry show(const std::string& mark) const;
   private:
-    using Iter = typename std::list< Entry >::iterator;
+    using Iter = typename std::list< Entry >::const_iterator;
     std::list< Entry > entries_;
     std::map< std::string, Iter > bookmarks_;
+
+    void update_current();
   };
 }
 

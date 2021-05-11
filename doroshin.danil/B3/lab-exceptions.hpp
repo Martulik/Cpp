@@ -28,6 +28,12 @@ namespace doroshin
   public:
     const char* what() const noexcept override;
   };
+
+  class InvalidStepException: public InvalidCommandException
+  {
+  public:
+    const char* what() const noexcept override;
+  };
 }
 
 #endif //LAB_EXCEPTIONS_HPP

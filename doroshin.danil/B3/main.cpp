@@ -75,7 +75,7 @@ int task1(std::istream& in, std::ostream& out)
             book.move_back(mark);
           }
           else {
-            out << "<INVALID STEP>\n";
+            throw dan::InvalidStepException();
           }
         }
       }

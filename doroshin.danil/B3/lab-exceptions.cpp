@@ -16,3 +16,8 @@ const char* dan::InvalidCommandException::what() const noexcept
 {
   return "<INVALID COMMAND>";
 }
+
+const char* dan::InvalidStepException::what() const noexcept
+{
+  return "<INVALID STEP>";
+}

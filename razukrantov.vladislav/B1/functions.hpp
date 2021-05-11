@@ -8,7 +8,7 @@
 
 namespace razukrantov
 {
-  template <typename T >
+  template < typename T >
   std::function < bool(T, T) > getSortOrder(const char* order)
   {
     if (order == nullptr)

@@ -2,7 +2,7 @@
 #define STRATEGY_HPP
 
 #include <vector>
-#include<forward_list>
+#include <forward_list>
 
 namespace razukrantov
 {
@@ -32,7 +32,7 @@ namespace razukrantov
   struct atAccess
   {
     using iterator = size_t;
-    using container = std::vector<T>;
+    using container = std::vector< T >;
 
     static iterator begin(const container&)
     {

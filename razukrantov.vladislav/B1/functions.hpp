@@ -35,7 +35,6 @@ namespace razukrantov
     {
       out << Strategy::get(container, i) << delimiter;
     }
-    out << "\n";
   }
 
   void fillRandom(double* array, int size);

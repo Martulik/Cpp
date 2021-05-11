@@ -14,7 +14,7 @@ mur::FactorialContainer::Iterator::Iterator():
 {
 }
 
-mur::FactorialContainer::Iterator::Iterator(const size_t num, const size_t value):
+mur::FactorialContainer::Iterator::Iterator(const unsigned num, const unsigned value):
   num_(num),
   value_(value)
 {
@@ -50,12 +50,12 @@ mur::FactorialContainer::Iterator mur::FactorialContainer::Iterator::operator--(
   return tempIt;
 }
 
-size_t& murzakanov::FactorialContainer::Iterator::operator*()
+unsigned& murzakanov::FactorialContainer::Iterator::operator*()
 {
   return value_;
 }
 
-size_t* murzakanov::FactorialContainer::Iterator::operator->()
+unsigned* murzakanov::FactorialContainer::Iterator::operator->()
 {
   return std::addressof(value_);
 }

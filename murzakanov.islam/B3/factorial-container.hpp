@@ -9,7 +9,7 @@ namespace murzakanov
   class FactorialContainer
   {
   public:
-    class Iterator: public std::iterator< std::bidirectional_iterator_tag, size_t >
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned >
     {
     public:
       Iterator& operator++();
@@ -17,18 +17,18 @@ namespace murzakanov
       Iterator& operator--();
       Iterator operator--(int);
 
-      size_t& operator*();
-      size_t* operator->();
+      unsigned& operator*();
+      unsigned* operator->();
       bool operator==(const Iterator&) const;
       bool operator!=(const Iterator&) const;
 
     private:
       friend class FactorialContainer;
-      size_t num_;
-      size_t value_;
+      unsigned num_;
+      unsigned value_;
 
       Iterator();
-      Iterator(size_t num, size_t value);
+      Iterator(unsigned num, unsigned value);
     };
 
     FactorialContainer() = default;

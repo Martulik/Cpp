@@ -64,6 +64,11 @@ void poz::Interface::start()
   {
     std::vector< std::string > args;
     nameBegin = buf.find('\"');
+    if (nameBegin != std::string::npos && buf[nameBegin - 1] != ' ')
+    {
+      out_ << "<INVALID COMMAND>" << '\n';
+      continue;
+    }
     nameEnd = buf.rfind('\"');
     if (nameBegin != std::string::npos)
     {

@@ -16,7 +16,7 @@ diurdeva::Phonebook::const_iterator diurdeva::Phonebook::begin() const
   return list_.begin();
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::end() const
+diurdeva::Phonebook::const_iterator diurdeva::Phonebook::end() const
 {
   return list_.end();
 }

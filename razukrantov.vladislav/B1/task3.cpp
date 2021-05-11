@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "functions.hpp"
+#include "strategy.hpp"
 
 void razukrantov::task3()
 {
@@ -61,5 +62,5 @@ void razukrantov::task3()
     }
   }
 
-  razukrantov::print(vector, std::cout);
+  razukrantov::print< razukrantov::bracketsAccess< int >, int >(vector, std::cout);
 }

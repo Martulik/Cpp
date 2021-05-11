@@ -1,5 +1,6 @@
 #include "tasks.hpp"
 #include "functions.hpp"
+#include "strategy.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -40,5 +41,5 @@ void razukrantov::task2(const char* file)
 
   input.close();
   std::vector< char > vector(data.get(), data.get() + size);
-  razukrantov::print(vector, std::cout);
+  razukrantov::print< razukrantov::bracketsAccess< char >, char >(vector, std::cout);
 }

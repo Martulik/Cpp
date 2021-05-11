@@ -26,14 +26,14 @@ namespace razukrantov
     throw(std::invalid_argument("Incorrect order\n"));
   }
 
-  template < typename T >
-  void print(const T& container, std::ostream& out)
+  template < typename Strategy, typename T >
+  void print(typename Strategy::container& container, std::ostream& out)
   {
-    using iterator = typename T::const_iterator;
-    iterator size = container.end();
-    for (iterator cur = container.begin(); cur != size; cur++)
+    typename Strategy::iterator begin = Strategy::begin(container);
+    typename Strategy::iterator size = Strategy::end(container);
+    for (typename Strategy::iterator i = begin; i != size; i++)
     {
-      out << *cur << " ";
+      out << Strategy::get(container, i) << " ";
     }
     out << "\n";
   }

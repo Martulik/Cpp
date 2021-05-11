@@ -27,7 +27,12 @@ int main(int argc, char* argv[])
       throw(std::invalid_argument("Incorrect argument (task number)"));
     }
   }
-  catch (std::exception& error)
+  catch (std::invalid_argument& error)
+  {
+    std::cerr << error.what() << "\n";
+    return 1;
+  }
+  catch (std::runtime_error& error)
   {
     std::cerr << error.what() << "\n";
     return 2;

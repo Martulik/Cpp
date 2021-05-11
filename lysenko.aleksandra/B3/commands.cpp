@@ -87,7 +87,7 @@ void lysenko::executeAdd(std::istream& input, lysenko::UsersInterface& myInterfa
   std::string name;
   std::string number;
 
-  input >> name >> number;
+  input >> number >> name;
 
   if (checkCorrectNumberAndName(name, number))
   {

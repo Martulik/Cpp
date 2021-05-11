@@ -57,7 +57,6 @@ void lysenko::Book::showCurrNote(iterator curr) const
   std::cout << curr->name << " "<< curr->number;//мб некорректный вывод в соотв с условием
 }
 
-
 void lysenko::Book::insert(iterator curr, const Note newNote, bool before)
 {
   if (before)

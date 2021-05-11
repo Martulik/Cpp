@@ -5,7 +5,6 @@
 
 #include "container.h"
 
-
 int lysenko::task2()
 {
   lysenko::Container factorial;

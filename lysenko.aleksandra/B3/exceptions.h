@@ -3,13 +3,13 @@
 
 #include <exception>
 
-class InvalidBookmark: public std::exception
+class InvalidBookmark : public std::exception
 {
 public:
-	virtual const char* what() const noexcept
-	{
-		return  "<INVALID BOOKMARK>";
-	}
+  virtual const char* what() const noexcept
+  {
+    return  "<INVALID BOOKMARK>";
+  }
 };
 #endif
 
@@ -18,13 +18,13 @@ public:
 
 #include <exception>
 
-class InvalidStep: public std::exception
+class InvalidStep : public std::exception
 {
 public:
-	virtual const char* what() const noexcept
-	{
-		return  "<INVALID STEP>";
-	}
+  virtual const char* what() const noexcept
+  {
+    return  "<INVALID STEP>";
+  }
 };
 #endif
 
@@ -33,12 +33,12 @@ public:
 
 #include <exception>
 
-class InvalidCommand: public std::exception
+class InvalidCommand : public std::exception
 {
 public:
-	virtual const char* what() const noexcept
-	{
-		return  "<INVALID COMMAND>";
-	}
+  virtual const char* what() const noexcept
+  {
+    return  "<INVALID COMMAND>";
+  }
 };
 #endif

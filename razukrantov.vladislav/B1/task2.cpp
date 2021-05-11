@@ -10,12 +10,12 @@ void razukrantov::task2(const char* file)
 {
   if (!file)
   {
-    throw std::invalid_argument("Incorrect file");
+    throw(std::invalid_argument("Incorrect file"));
   }
   std::ifstream input(file);
   if (!input)
   {
-    throw (std::runtime_error("Open error"));
+    throw(std::runtime_error("Open error"));
   }
 
   size_t capacity = 1;

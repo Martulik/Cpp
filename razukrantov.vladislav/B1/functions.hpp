@@ -23,7 +23,7 @@ namespace razukrantov
     {
       return std::less< T >();
     }
-    throw std::invalid_argument("Incorrect order\n");
+    throw(std::invalid_argument("Incorrect order\n"));
   }
 
   template < typename T >

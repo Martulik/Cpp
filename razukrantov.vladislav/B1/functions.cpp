@@ -1,7 +1,5 @@
 #include "functions.hpp"
 
-#include <ctime>
-
 void razukrantov::fillRandom(double* array, int size)
 {
   if (size <= 0)

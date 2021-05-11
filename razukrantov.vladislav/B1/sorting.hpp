@@ -1,7 +1,6 @@
 #ifndef SORTING_HPP
 #define SORTING_HPP
 
-#include <iostream>
 #include <functional>
 
 #include "strategy.hpp"

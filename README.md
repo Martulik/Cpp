@@ -144,23 +144,24 @@ Accepted Labs
 
 | Name                  | A1 | A3 | B1 | B3 | B4 | B5 |
 |-----------------------|----|----|----|----|----|----|
-| Borisova Ekaterina    | ✓  |    |    |    |    |    |
-| Diurdeva Dasha        | ✓  |    |    |    |    |    |
-| Doroshin Danil        | ✓  |    |    |    |    |    |
-| Dushechkina Viktoria  | ✓  |    |    |    |    |    |
-| Ezerinia Marta        | ✓  |    |    |    |    |    |
-| Ferapontov Mikhail    | ✓  |    |    |    |    |    |
-| Ivanova Maria         | ✓  |    |    |    |    |    |
-| Lebedeva Ekaterina    | ✓  |    |    |    |    |    |
+| Arteev Danil          | ✓  |    |    |    |    |    |
+| Borisova Ekaterina    | ✓  | ✓  | ✓  |    |    |    |
+| Diurdeva Dasha        | ✓  | ✓  | ✓  |    |    |    |
+| Doroshin Danil        | ✓  | ✓  | ✓  |    |    |    |
+| Dushechkina Viktoria  | ✓  | ✓  | ✓  |    |    |    |
+| Ezerinia Marta        | ✓  | ✓  | ✓  |    |    |    |
+| Ferapontov Mikhail    | ✓  | ✓  | ✓  |    |    |    |
+| Ivanova Maria         | ✓  | ✓  | ✓  |    |    |    |
+| Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
-| Lysenko Aleksandra    | ✓  |    |    |    |    |    |
-| Murzakanov Islam      | ✓  |    |    |    |    |    |
-| Pochernin Vladislav   | ✓  |    |    |    |    |    |
-| Pozdnyakov Artemy     | ✓  |    |    |    |    |    |
+| Lysenko Aleksandra    | ✓  | ✓  | ✓  |    |    |    |
+| Murzakanov Islam      | ✓  | ✓  | ✓  |    |    |    |
+| Pochernin Vladislav   | ✓  | ✓  | ✓  |    |    |    |
+| Pozdnyakov Artemy     | ✓  | ✓  | ✓  |    |    |    |
 | Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
-| Razukrantov Vladislav | ✓  |    |    |    |    |    |
-| Savchuk Aleksei       | ✓  |    |    |    |    |    |
-| Shilyaev Vladislav    | ✓  |    |    |    |    |    |
-| Shkurov Igor          | ✓  |    |    |    |    |    |
+| Razukrantov Vladislav | ✓  | ✓  |    |    |    |    |
+| Savchuk Aleksei       | ✓  | ✓  | ✓  |    |    |    |
+| Shilyaev Vladislav    | ✓  | ✓  | ✓  |    |    |    |
+| Shkurov Igor          | ✓  | ✓  | ✓  |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  19|   0|   0|   0|   0|   0|
+| __Total__             |  20|  16|  14|   0|   0|   0|

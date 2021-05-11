@@ -22,7 +22,7 @@ namespace razukrantov
       return container.size();
     }
 
-    static T& get(container& container, iterator& iterator)
+    static T& get(container& container, iterator iterator)
     {
       return container[iterator];
     }
@@ -43,7 +43,7 @@ namespace razukrantov
     {
       return container.size();
     }
-    static T& get(container& container, iterator& iterator)
+    static T& get(container& container, iterator iterator)
     {
       return container.at(iterator);
     }
@@ -63,7 +63,7 @@ namespace razukrantov
     {
       return container.end();
     }
-    static T& get(container&, iterator& iterator)
+    static T& get(container&, iterator iterator)
     {
       return *iterator;
     }

@@ -34,9 +34,9 @@ void razukrantov::task1(const char* order)
   std::function< bool(int, int) > compare = razukrantov::getSortOrder< int >(order);
 
   razukrantov::sort< razukrantov::bracketsAccess< int >, int >(vector, compare);
-  razukrantov::print(vector);
+  razukrantov::print(vector, std::cout);
   razukrantov::sort< razukrantov::atAccess< int >, int >(atVector, compare);
-  razukrantov::print(atVector);
+  razukrantov::print(atVector, std::cout);
   razukrantov::sort< razukrantov::iteratorAccess< int >, int >(forwardList, compare);
-  razukrantov::print(forwardList);
+  razukrantov::print(forwardList, std::cout);
 }

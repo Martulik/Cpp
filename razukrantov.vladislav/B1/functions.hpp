@@ -1,7 +1,7 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 
-#include <iostream>
+#include <ostream>
 #include <functional>
 #include <stdexcept>
 #include <cstring>
@@ -27,15 +27,15 @@ namespace razukrantov
   }
 
   template < typename T >
-  void print(const T& container)
+  void print(const T& container, std::ostream& out)
   {
     using iterator = typename T::const_iterator;
     iterator size = container.end();
     for (iterator cur = container.begin(); cur != size; cur++)
     {
-      std::cout << *cur << " ";
+      out << *cur << " ";
     }
-    std::cout << "\n";
+    out << "\n";
   }
 
   void fillRandom(double* array, int size);

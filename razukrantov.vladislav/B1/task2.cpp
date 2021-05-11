@@ -40,5 +40,5 @@ void razukrantov::task2(const char* file)
 
   input.close();
   std::vector< char > vector(data.get(), data.get() + size);
-  razukrantov::print(vector);
+  razukrantov::print(vector, std::cout);
 }

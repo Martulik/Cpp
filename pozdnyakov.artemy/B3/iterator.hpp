@@ -9,18 +9,22 @@ namespace pozdnyakov
   {
   public:
     FactorialIterator& operator++();
+    FactorialIterator operator++(int);
     FactorialIterator& operator--();
+    FactorialIterator operator--(int);
     size_t& operator*();
     size_t* operator->();
     bool operator==(const FactorialIterator& it) const;
     bool operator!=(const FactorialIterator& it) const;
   private:
     friend class FactorialContainer;
+    static const size_t MAX_NUM = 10;
     size_t n_;
     size_t value_;
-    Iterator();
-    Iterator(size_t num, size_t value);
+    FactorialIterator() = default;
+    FactorialIterator(size_t n, size_t value);
   };
+  size_t getFactorial(size_t n);
 }
 
 #endif

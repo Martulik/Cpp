@@ -44,7 +44,14 @@ void murzakanov::task1(std::istream& in, std::ostream& out)
       std::string bookmark;
       std::string newBookmark;
       in >> bookmark >> newBookmark;
-      bookInterface.store(bookmark, newBookmark, out);
+      if (bookInterface.contains(bookmark))
+      {
+        bookInterface.store(bookmark, newBookmark);
+      }
+      else
+      {
+        murzakanov::invalidBookmark(out);
+      }
     }
     else if (command == "insert")
     {
@@ -64,15 +71,15 @@ void murzakanov::task1(std::istream& in, std::ostream& out)
         continue;
       }
       mur::readName(in, name);
-      if (in)
+      if (in && bookInterface.contains(mark))
       {
         if (place == "before")
         {
-          bookInterface.insertBefore(mark, {number, name}, out);
+          bookInterface.insertBefore(mark, {number, name});
         }
         else if (place == "after")
         {
-          bookInterface.insertAfter(mark, {number, name}, out);
+          bookInterface.insertAfter(mark, {number, name});
         }
       }
       else
@@ -84,39 +91,68 @@ void murzakanov::task1(std::istream& in, std::ostream& out)
     {
       std::string mark;
       in >> mark;
-      bookInterface.deleteNote(mark, out);
+      if (bookInterface.contains(mark))
+      {
+        bookInterface.deleteNote(mark);
+      }
+      else
+      {
+        murzakanov::invalidBookmark(out);
+      }
     }
     else if (command == "show")
     {
       std::string mark;
       in >> mark;
-      bookInterface.show(mark, out);
+      if (bookInterface.contains(mark))
+      {
+        if (!bookInterface.empty())
+        {
+          out << bookInterface.show(mark);
+        }
+        else
+        {
+          murzakanov::empty(out);
+        }
+      }
+      else
+      {
+        murzakanov::invalidBookmark(out);
+      }
     }
     else if (command == "move")
     {
       std::string mark;
       std::string steps;
       in >> mark >> steps;
-      try
+      if (bookInterface.contains(mark))
       {
-        int stepsNum = std::stoi(steps);
-        bookInterface.move(mark, stepsNum, out);
+        try
+        {
+          int stepsNum = std::stoi(steps);
+          bookInterface.move(mark, stepsNum);
+        }
+        catch(const std::invalid_argument&)
+        {
+          if (steps == "first")
+          {
+            bookInterface.move(mark, steps);
+          }
+          else if (steps == "last")
+          {
+            bookInterface.move(mark, steps);
+          }
+          else
+          {
+            murzakanov::invalidStep(out);
+          }
+        }
       }
-      catch(const std::invalid_argument&)
+      else
       {
-        if (steps == "first")
-        {
-          bookInterface.move(mark, steps, out);
-        }
-        else if (steps == "last")
-        {
-          bookInterface.move(mark, steps, out);
-        }
-        else
-        {
-          murzakanov::invalidStep(out);
-        }
+        mur::invalidBookmark(out);
       }
+
     }
     else
     {

@@ -5,7 +5,7 @@ namespace lab = ezerinia;
 
 constexpr lab::Container::value_type lab::getFactorial(size_t index)
 {
-  return index == 1 ? 1 : getFactorial(index - 1) * index;
+  return index <= 1 ? 1 : getFactorial(index - 1) * index;
 }
 
 constexpr size_t maxIndex = 11;
@@ -17,20 +17,20 @@ lab::Container::Iterator::Iterator():
 {
 }
 
-lab::Container::Iterator::Iterator(size_t index):
+lab::Container::Iterator::Iterator(size_t index, value_type value):
   index_(index),
-  value_(getFactorial(index))
+  value_(value)
 {
 }
 
-lab::Container::Iterator lab::Container::begin() const
+lab::Container::Iterator lab::Container::begin() const noexcept
 {
   return {};
 }
 
-lab::Container::Iterator lab::Container::end() const
+lab::Container::Iterator lab::Container::end() const noexcept
 {
-  return {maxIndex};
+  return {maxIndex, maxFactorial};
 }
 
 bool lab::Container::Iterator::operator==(const Container::Iterator &src) const
@@ -55,14 +55,14 @@ lab::Container::value_type *lab::Container::Iterator::operator->()
 
 lab::Container::Iterator &lab::Container::Iterator::operator++()
 {
-  assert(index_ != maxIndex);
+  assert(index_ <= maxIndex);
   value_ *= ++index_;
   return *this;
 }
 
 lab::Container::Iterator &lab::Container::Iterator::operator--()
 {
-  assert(index_ != 1);
+  assert(index_ >= 1);
   value_ /= index_--;
   return *this;
 }

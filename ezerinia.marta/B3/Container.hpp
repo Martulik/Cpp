@@ -9,8 +9,8 @@ namespace ezerinia {
     using value_type = unsigned int;
     class Iterator;
     Container() = default;
-    Iterator begin() const;
-    Iterator end() const;
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
   };
 
   class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, value_type > {
@@ -28,7 +28,7 @@ namespace ezerinia {
     friend class Container;
     size_t index_;
     value_type value_;
-    Iterator(size_t index);
+    Iterator(size_t index, value_type value);
   };
   constexpr Container::value_type getFactorial(size_t index);
 }

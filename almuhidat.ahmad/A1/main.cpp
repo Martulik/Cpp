@@ -5,10 +5,10 @@
 void ShapeInfo(const Shape* figure)
 {
   std::cout << "Height: "
-    << figure->getFrameRect().height << "\n" << "Width: "
-    << figure->getFrameRect().width <<  "\n" <<"Abscissa of the center: "
-    << figure->getFrameRect().pos.x << "\n" << "Ordinate of the center: "
-    << figure->getFrameRect().pos.y << "\n";
+  << figure->getFrameRect().height << "\n" << "Width: "
+  << figure->getFrameRect().width <<  "\n" <<"Abscissa of the center: "
+  << figure->getFrameRect().pos.x << "\n" << "Ordinate of the center: "
+  << figure->getFrameRect().pos.y << "\n";
   std::cout << "\n";
 }
 

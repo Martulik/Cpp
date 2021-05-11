@@ -1,16 +1,16 @@
 #include "circle.hpp"
+#include <cassert>
 
-const int PI  = 3.141592653589793;
+const int PI = 3.141592653589793;
 
-Circle::Circle(double valueRadius, point_t valuePos)
+Circle::Circle(double valueRadius, point_t valuePos):radius_(valueRadius), pos_(valuePos)
 {
-  radius_ = valueRadius;
-  pos_ = valuePos;
-}
+  assert (radius_ >= 0);
+}  
 
 double Circle::getArea() const
 {
-  return PI * radius_ * radius_;
+  return (PI * radius_ * radius_);
 }
 
 rectangle_t Circle::getFrameRect() const

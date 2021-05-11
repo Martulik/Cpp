@@ -1,11 +1,13 @@
 #include "rectangle.hpp"
+#include <cassert>
 
 Rectangle::Rectangle(double valueHeight, double valueWidth, point_t valuePos):
   height_(valueHeight),
   width_(valueWidth),
   pos_(valuePos)
-  {
-  }
+{
+  assert (valueWidth >= 0 && valueHeight >= 0);
+}
 
 double Rectangle::getArea() const
 {

@@ -15,23 +15,21 @@ namespace pochernin
     public:
       bool operator ==(const FactorialIterator& rhs) const;
       bool operator !=(const FactorialIterator& rhs) const;
-
-      ValueType& operator *() const;
-      ValueType* operator ->() const;
-
+      const ValueType& operator *() const;
+      const ValueType* operator ->() const;
       FactorialIterator& operator ++();
       FactorialIterator operator ++(int);
       FactorialIterator* operator --();
       FactorialIterator operator --(int);
 
-
     private:
       friend class FactorialContainer;
-      ValueType num_;
+
+      ValueType number_;
       ValueType factorial_;
 
       FactorialIterator() = delete;
-      FactorialIterator(ValueType num, ValueType factorial);
+      FactorialIterator(ValueType number, ValueType factorial);
     };
 
     FactorialContainer() = default;

@@ -1,17 +1,17 @@
 #include "tasks.hpp"
 
 #include <vector>
-#include <string>
 #include <iostream>
 #include <forward_list>
+#include <functional>
 
 #include "strategy.hpp"
 #include "sorting.hpp"
 #include "tools.hpp"
 
-int murzakanov::task1(const std::string& order)
+int murzakanov::task1(const char* order)
 {
-  if (order != "ascending" && order != "descending")
+  if (strcmp(order, "ascending") && strcmp(order, "descending"))
   {
     std::cerr << "Wrong order\n";
     return 1;
@@ -32,9 +32,11 @@ int murzakanov::task1(const std::string& order)
 
   std::vector< int > secondVector(firstVector);
   std::forward_list< int > list(firstVector.begin(), firstVector.end());
-  sort< StrategyBrackets< int > >(firstVector, order);
-  sort< StrategyAt< int > >(secondVector, order);
-  sort< StrategyIter< int > >(list, order);
+  std::function< bool(int, int) > cmp = murzakanov::getSortMode< int >(order);
+
+  sort< StrategyBrackets< int >, int >(firstVector, cmp);
+  sort< StrategyAt< int >, int >(secondVector, cmp);
+  sort< StrategyIter< int >, int >(list, cmp);
 
   print(firstVector, std::cout);
   print(secondVector, std::cout);

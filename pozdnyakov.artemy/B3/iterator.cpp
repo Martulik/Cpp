@@ -1,4 +1,5 @@
 #include "iterator.hpp"
+#include <cassert>
 
 namespace poz = pozdnyakov;
 
@@ -32,6 +33,7 @@ poz::FactorialIterator poz::FactorialIterator::operator--(int)
 
 size_t& poz::FactorialIterator::operator*()
 {
+  assert(n_ <= poz::FactorialIterator::MAX_NUM);
   return value_;
 }
 

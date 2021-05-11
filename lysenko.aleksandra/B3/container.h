@@ -13,15 +13,28 @@ namespace lysenko
       Iterator();
       Iterator(unsigned int index);
 
+      unsigned int& operator*();
+      Iterator& operator++();
+      Iterator& operator--();
+      Iterator operator++(int);
+      Iterator operator--(int);
+      bool operator ==(const Iterator& other);
+      bool operator != (const Iterator & other);
+
     private:
       unsigned int content_;
       unsigned index_;
     };
 
+    typedef std::reverse_iterator< Iterator > reverse_iterator;
+
     Container() = default;
 
-    Iterator begin();
-    Iterator end();
+    Iterator begin() const;
+    Iterator end() const;
+
+    reverse_iterator rbegin() const;
+    reverse_iterator rend() const;
 
     static const size_t MINIMUM_INDEX = 1;
     static const size_t MAXIMUM_INDEX = 10;

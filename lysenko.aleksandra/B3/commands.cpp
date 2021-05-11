@@ -38,7 +38,7 @@ bool lysenko::checkIfThisMarkNameContains(std::string& markName, lysenko::UsersI
   }
   catch (InvalidBookmark& err)
   {
-    std::cout << err.what();
+    std::cout << err.what() << "\n";
     return 0;
   }
 }
@@ -62,7 +62,7 @@ void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterfa
   }
   catch (InvalidCommand& err)
   {
-    std::cout << err.what();
+    std::cout << err.what() << "\n";
     return;
   };
 }
@@ -137,7 +137,7 @@ void lysenko::executeShow(std::istream& input, lysenko::UsersInterface& myInterf
 {
   if (myInterface.telephoneBookIsEmpty())
   {
-    std::cout << "<EMPTY>";
+    std::cout << "<EMPTY>" << "\n";
   }
   else
   {
@@ -193,7 +193,7 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
     }
     catch (InvalidStep& err)
     {
-      std::cout << err.what();
+      std::cout << err.what()<<"\n";
       return;
     };
   }

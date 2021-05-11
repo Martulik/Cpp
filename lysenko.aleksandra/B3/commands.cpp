@@ -178,29 +178,29 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
   {
     try
     {
-      if (((std::stoi(steps) || (steps == "first") || (steps == "last"))))
+      if (steps == "first")
       {
-        if (std::stoi(steps))
+        myInterface.removeThisBookMark(markName, 1, 0, 0, steps);
+      }
+
+      else if (steps == "last")
+      {
+        myInterface.removeThisBookMark(markName, 0, 1, 0, steps);
+      }
+
+      else if (std::stoi(steps))
+      {
+        int stepsInt = std::stoi(steps);
+        if (stepsInt > 0)
         {
-          int stepsInt = std::stoi(steps);
-          if (stepsInt > 0)
-          {
-            myInterface.removeThisBookMark(markName, 0, 0, 1, steps);
-          }
-          else
-          {
-            myInterface.removeThisBookMark(markName, 0, 0, 0, steps);
-          }
-        }
-        else if (steps == "first")
-        {
-          myInterface.removeThisBookMark(markName, 1, 0, 0, steps);
+          myInterface.removeThisBookMark(markName, 0, 0, 1, steps);
         }
         else
         {
-          myInterface.removeThisBookMark(markName, 0, 1, 0, steps);
+          myInterface.removeThisBookMark(markName, 0, 0, 0, steps);
         }
       }
+
       else
       {
         InvalidStep error;
@@ -208,7 +208,7 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
     }
     catch (InvalidStep& err)
     {
-      std::cout << err.what()<<"\n";
+      std::cout << err.what() << "\n";
       return;
     };
   }

@@ -30,6 +30,7 @@ namespace doroshin
     constexpr iterator(value_type) noexcept;
 
     reference operator*() const noexcept;
+    value_type* operator->() noexcept;
 
     iterator& operator++() noexcept;
     iterator operator++(int) noexcept;

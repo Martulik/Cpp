@@ -7,6 +7,11 @@ dan::Factorials::value_t dan::Factorials::iterator::operator*() const noexcept
   return value_;
 }
 
+dan::Factorials::iterator::value_type* dan::Factorials::iterator::operator->() noexcept
+{
+  return &value_;
+}
+
 dan::Factorials::iterator& dan::Factorials::iterator::operator++() noexcept
 {
   value_ *= ++arg_;

@@ -11,7 +11,7 @@ bool lysenko::isDigitsOnly(std::string& number)
   {
     return 0;
   }
-  for (int i = 0; i < number.length();++i)
+  for (long unsigned int i = 0; i < number.length();++i)
   {
     if ((number[i] < '0') || (number[i] > '9'))
       return 0;

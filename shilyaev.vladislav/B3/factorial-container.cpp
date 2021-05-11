@@ -76,12 +76,12 @@ namespace shilyaev {
     return !(a == b);
   }
 
-  FactorialContainer::Iterator FactorialContainer::begin() const
+  FactorialContainer::Iterator FactorialContainer::begin() const noexcept
   {
     return {beginValue, beginLastMultiplier};
   }
 
-  FactorialContainer::Iterator FactorialContainer::end() const
+  FactorialContainer::Iterator FactorialContainer::end() const noexcept
   {
     return {endValue, endLastMultiplier};
   }

@@ -23,8 +23,8 @@ namespace shilyaev {
       Iterator(ValueType value, ValueType lastMultiplier);
     };
 
-    Iterator begin() const;
-    Iterator end() const;
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
   };
 
   bool operator==(const FactorialContainer::Iterator &a, const FactorialContainer::Iterator &b);

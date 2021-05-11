@@ -27,7 +27,7 @@ lysenko::Container::Iterator& lysenko::Container::Iterator::operator++()
 {
   index_++;
   content_ *= index_;
-  assert(index_ > MAXIMUM_INDEX);
+  assert(index_ < MAXIMUM_INDEX);
 
   return *this;
 }
@@ -36,7 +36,7 @@ lysenko::Container::Iterator& lysenko::Container::Iterator::operator--()
 {
   content_ /= index_;
   index_--;
-  assert(index_ < MINIMUM_INDEX);
+  assert(index_ > MINIMUM_INDEX);
 
   return *this;
 }

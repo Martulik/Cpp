@@ -28,7 +28,7 @@ namespace shilyaev {
     entries_.push_back(entry);
     if (areBookmarksInvalid) {
       for (auto &&bookmark: bookmarks_) {
-        bookmark.second = entries_.begin();
+        bookmark.second = entries_.cbegin();
       }
     }
   }
@@ -40,7 +40,7 @@ namespace shilyaev {
     if (entries_.empty()) {
       return;
     }
-    if (newIterator == entries_.end()) {
+    if (newIterator == entries_.cend()) {
       --newIterator;
     }
     for (auto &&bookmark: bookmarks_) {
@@ -76,7 +76,7 @@ namespace shilyaev {
       return;
     }
     Iterator &bookmark = getBookmark(bookmarkName);
-    bookmark = safeAdvance(bookmark, n, entries_.begin(), entries_.end());
+    bookmark = safeAdvance(bookmark, n, entries_.cbegin(), entries_.cend());
   }
 
   void PhoneBook::moveFirst(const std::string &bookmarkName)
@@ -84,7 +84,7 @@ namespace shilyaev {
     if (entries_.empty()) {
       return;
     }
-    getBookmark(bookmarkName) = entries_.begin();
+    getBookmark(bookmarkName) = entries_.cbegin();
   }
 
   void PhoneBook::moveLast(const std::string &bookmarkName)
@@ -92,7 +92,7 @@ namespace shilyaev {
     if (entries_.empty()) {
       return;
     }
-    getBookmark(bookmarkName) = std::prev(entries_.end());
+    getBookmark(bookmarkName) = std::prev(entries_.cend());
   }
 
   PhoneBook::Iterator &PhoneBook::getBookmark(const std::string &bookmarkName)

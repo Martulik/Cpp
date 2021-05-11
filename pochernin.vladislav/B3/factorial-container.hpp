@@ -13,14 +13,14 @@ namespace pochernin
     class FactorialIterator: public std::iterator< std::bidirectional_iterator_tag, ValueType >
     {
     public:
-      bool operator ==(const FactorialIterator& rhs) const;
-      bool operator !=(const FactorialIterator& rhs) const;
-      const ValueType& operator *() const;
-      const ValueType* operator ->() const;
-      FactorialIterator& operator ++();
-      FactorialIterator operator ++(int);
-      FactorialIterator* operator --();
-      FactorialIterator operator --(int);
+      bool operator==(const FactorialIterator& rhs) const;
+      bool operator!=(const FactorialIterator& rhs) const;
+      const ValueType& operator*() const;
+      const ValueType* operator->() const;
+      FactorialIterator& operator++();
+      FactorialIterator operator++(int);
+      FactorialIterator* operator--();
+      FactorialIterator operator--(int);
 
     private:
       friend class FactorialContainer;

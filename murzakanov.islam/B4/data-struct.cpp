@@ -18,14 +18,16 @@ std::istream& murzakanov::operator >>(std::istream& in, DataStruct& data)
   if (comma != ',')
   {
     std::cerr << "Missing comma\n";
-    std::exit(1);
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   comma = '\0';
   lin >> key2 >> comma;
   if (comma != ',')
   {
     std::cerr << "Missing comma\n";
-    std::exit(1);
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   str = readString(lin);
   if (in && std::abs(key1) <= 5 && std::abs(key2) <= 5)
@@ -35,7 +37,8 @@ std::istream& murzakanov::operator >>(std::istream& in, DataStruct& data)
   else
   {
     std::cerr << "Keys out of range\n";
-    std::exit(1);
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   return in;
 }

@@ -14,6 +14,10 @@ int main()
   {
     vec.push_back(temp);
   }
+  if (std::cin.fail() && !std::cin.eof())
+  {
+    return 2;
+  }
   std::sort(vec.begin(), vec.end());
   std::copy(vec.begin(), vec.end(), std::ostream_iterator< murzakanov::DataStruct >(std::cout));
 }

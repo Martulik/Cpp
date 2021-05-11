@@ -7,9 +7,13 @@
 
 bool lysenko::isDigitsOnly(std::string& number)
 {
-  for (std::string::iterator i = number.begin(); i!=number.end();++i)
+  if (number == "")
   {
-    if ((*i < '0') || (*i > '9'))
+    return 0;
+  }
+  for (int i = 0; i < number.length();++i)
+  {
+    if ((number[i] < '0') || (number[i] > '9'))
       return 0;
   }
 

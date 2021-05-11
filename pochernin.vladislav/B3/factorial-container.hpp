@@ -7,7 +7,7 @@ namespace pochernin
 {
   class FactorialContainer
   {
-    public:
+  public:
     using ValueType = unsigned int;
 
     class FactorialIterator: public std::iterator< std::bidirectional_iterator_tag, ValueType >

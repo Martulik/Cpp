@@ -11,6 +11,7 @@ namespace lysenko
 {
   typedef std::map< std::string, void (*)(std::istream&, lysenko::UsersInterface&) >::const_iterator iteratorInt;
 
+  bool isDigitsOnly(std::string& number);
   bool checkCorrectNumberAndName(std::string& name, std::string& number);
   bool checkIfThisMarkNameContains(std::string& markName, UsersInterface& myInterface);
 

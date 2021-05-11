@@ -23,7 +23,6 @@ bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
 {
   if ((name.size() != 2) && (isDigitsOnly(number)))
   {
-    name = name.substr(1, name.size() - 2);
     return 1;
   }
 

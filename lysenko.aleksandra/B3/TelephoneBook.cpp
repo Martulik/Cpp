@@ -70,9 +70,9 @@ void lysenko::Book::insert(iterator &curr, const Note newNote, bool before)
   }
 }
 
-void lysenko::Book::deleteNote(iterator& curr)
+lysenko::Book::iterator lysenko::Book::deleteNote(iterator& curr)
 {
-  curr = content_.erase(curr);
+  return content_.erase(curr);
 }
 
 void lysenko::Book::pushBack(Note& newNote)

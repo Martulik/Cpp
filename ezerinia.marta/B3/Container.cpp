@@ -45,13 +45,13 @@ bool lab::Container::Iterator::operator!=(const Container::Iterator &src) const
   return !(*this == src);
 }
 
-lab::Container::value_type &lab::Container::Iterator::operator*()
+const lab::Container::value_type &lab::Container::Iterator::operator*() const
 {
   assert(value_ != 0);
   return value_;
 }
 
-lab::Container::value_type *lab::Container::Iterator::operator->()
+const lab::Container::value_type *lab::Container::Iterator::operator->() const
 {
   assert(value_ != 0);
   return std::addressof(value_);

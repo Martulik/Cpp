@@ -6,8 +6,8 @@
 #include "exceptions.h"
 
 lysenko::UsersInterface::UsersInterface():
-  telephoneBook_(),
-  bookMarks_()
+  bookMarks_(),
+  telephoneBook_()
 {
   bookMarks_.push_front({"current", telephoneBook_.getBegin()});
 };

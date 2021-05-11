@@ -32,7 +32,7 @@ bool lysenko::checkIfThisMarkNameContains(std::string& markName, lysenko::UsersI
     UsersInterface::iteratorMark newBookMark = myInterface.findThisMark(markName);
     if (newBookMark == myInterface.getEndOfBookMarks())
     {
-      InvalidBookmark;
+      InvalidBookmark error;
     }
     return 1;
   }
@@ -55,7 +55,7 @@ void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterfa
 
     if (iter == commandsMap.end())
     {
-      InvalidCommand;
+      InvalidCommand error;
     }
 
     iter->second(in, myInterface);
@@ -189,7 +189,7 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
       }
       else
       {
-        InvalidStep;
+        InvalidStep error;
       }
     }
     catch (InvalidStep& err)

@@ -40,8 +40,5 @@ void razukrantov::task2(const char* file)
 
   input.close();
   std::vector< char > vector(data.get(), data.get() + size);
-  for (size_t i = 0; i < size; i++)
-  {
-    std::cout << vector[i];
-  }
+  razukrantov::print(vector);
 }

@@ -25,7 +25,7 @@ int pochernin::getTaskNumber(const char* string)
 
 pochernin::ValueType pochernin::getFactorial(ValueType number)
 {
-  if (number > 11)
+  if (number > maxNumber)
   {
     throw(std::invalid_argument("Too big number to get factorial"));
   }

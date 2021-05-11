@@ -15,4 +15,6 @@ int lysenko::task2()
 
   std::reverse_copy(factorial.begin(), factorial.end(), std::ostream_iterator< size_t >(std::cout, " "));
   std::cout << '\n';
+
+  return 0;
 }

@@ -1,5 +1,6 @@
 #include "commands.h"
 
+#include <iostream>
 #include <sstream>
 #include <string>
 

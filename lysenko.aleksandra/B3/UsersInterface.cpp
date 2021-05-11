@@ -5,7 +5,7 @@
 
 #include "exceptions.h"
 
-lysenko::UsersInterface::UsersInterface() :
+lysenko::UsersInterface::UsersInterface():
   telephoneBook_(),
   bookMarks_()
 {

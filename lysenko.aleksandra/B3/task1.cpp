@@ -1,6 +1,7 @@
 #include "tasks.h"
 
 #include <iostream>
+#include <string>
 
 #include "UsersInterface.h"
 #include "commands.h"

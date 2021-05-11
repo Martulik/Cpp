@@ -7,23 +7,24 @@ namespace lysenko
 {
   class Container
   {
+  public:
     class Iterator: public std::iterator<std::bidirectional_iterator_tag, unsigned int>
     {
     public:
       Iterator();
       Iterator(unsigned int index);
 
-      unsigned int& operator*();
-      Iterator& operator++();
-      Iterator& operator--();
+      unsigned int &operator*();
+      Iterator &operator++();
+      Iterator &operator--();
       Iterator operator++(int);
       Iterator operator--(int);
-      bool operator ==(const Iterator& other);
-      bool operator != (const Iterator & other);
+      bool operator ==(const Iterator& other) const;
+      bool operator !=(const Iterator& other) const;
 
     private:
       unsigned int content_;
-      unsigned index_;
+      unsigned int index_;
     };
 
     typedef std::reverse_iterator< Iterator > reverse_iterator;

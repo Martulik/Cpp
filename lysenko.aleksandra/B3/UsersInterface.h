@@ -1,5 +1,5 @@
 #ifndef USERS_INTERFACE_HPP
-#define USERS_INTERFFACE_HPP
+#define USERS_INTERFACE_HPP
 
 #include "TelephoneBook.h"
 
@@ -11,7 +11,9 @@ namespace lysenko
   class UsersInterface
   {
   public:
-    typedef std::list< lysenko::Book::Note >::iterator iterator;
+    UsersInterface();
+
+    typedef std::list< Book::Note >::iterator iterator;
 
     struct bookMark
     {
@@ -20,8 +22,6 @@ namespace lysenko
     };
 
     typedef std::list< UsersInterface::bookMark >::iterator iteratorMark;
-
-    UsersInterface();
 
     iteratorMark getEndOfBookMarks();
     bool telephoneBookIsEmpty();

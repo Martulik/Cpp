@@ -1,6 +1,5 @@
 #include "container.h"
 
-#include <iostream>
 #include <cassert>
 
 lysenko::Container::Iterator::Iterator() :
@@ -17,16 +16,6 @@ lysenko::Container::Iterator::Iterator(unsigned int index) :
     content_ *= i;
   }
   assert((index >= MINIMUM_INDEX) && (index <= MAXIMUM_INDEX));
-}
-
-lysenko::Container::Iterator lysenko::Container::begin() const
-{
-  return Iterator(MINIMUM_INDEX);
-}
-
-lysenko::Container::Iterator lysenko::Container::end() const
-{
-  return Iterator(MAXIMUM_INDEX);
 }
 
 unsigned int& lysenko::Container::Iterator::operator*()
@@ -66,14 +55,14 @@ lysenko::Container::Iterator lysenko::Container::Iterator::operator--(int)
   return tmp;
 }
 
-bool lysenko::Container::Iterator::operator!=(const Iterator& other)
-{
-  return content_ != other.content_;
-}
-
-bool lysenko::Container::Iterator::operator==(const Iterator& other)
+bool lysenko::Container::Iterator::operator==(const lysenko::Container::Iterator& other) const
 {
   return content_ == other.content_;
+}
+
+bool lysenko::Container::Iterator::operator !=(const lysenko::Container::Iterator& other) const
+{
+  return !(content_ == other.content_);
 }
 
 lysenko::Container::Iterator lysenko::Container::begin() const

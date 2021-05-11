@@ -10,7 +10,7 @@ dan::Factorials::value_t dan::Factorials::iterator::operator*() const noexcept
 
 dan::Factorials::iterator::value_type* dan::Factorials::iterator::operator->() noexcept
 {
-  return &value_;
+  return std::addressof(value_);
 }
 
 dan::Factorials::iterator& dan::Factorials::iterator::operator++() noexcept

@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
+#include <stdexcept>
 
 int pochernin::getTaskNumber(const char* string)
 {
@@ -20,4 +21,16 @@ int pochernin::getTaskNumber(const char* string)
     return -1;
   }
   return argument;
+}
+
+pochernin::ValueType pochernin::getFactorial(ValueType number)
+{
+  if (number > 11)
+  {
+    throw(std::invalid_argument("Incorrect number for getting factorial"));
+  }
+  else
+  {
+    return ((number <= 1) ? 1 : getFactorial(number - 1));
+  }
 }

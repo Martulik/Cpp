@@ -3,7 +3,10 @@
 
 namespace pochernin
 {
+  using ValueType = unsigned int;
+
   int getTaskNumber(const char* string);
+  ValueType getFactorial(ValueType number);
 }
 
 #endif

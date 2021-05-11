@@ -9,7 +9,7 @@ namespace diurdeva {
   public:
     using ValueType = unsigned int;
     Container() = default;
-    class IteratorFact : public std::iterator< std::bidirectional_iterator_tag, ValueType >
+    class IteratorFact: public std::iterator< std::bidirectional_iterator_tag, ValueType >
     {
     public:
       IteratorFact();

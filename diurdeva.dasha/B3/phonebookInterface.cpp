@@ -57,7 +57,7 @@ void diurdeva::PhonebookManager::deleteNote(const std::string &bookmark)
 
 void diurdeva::PhonebookManager::show(const std::string &bookmark, std::ostream& out) const
 {
-  const std::map< std::string, Phonebook::const_iterator >::iterator &iter = bookmarks_.find(bookmark);
+  const std::map< std::string, Phonebook::const_iterator >::const_iterator &iter = bookmarks_.find(bookmark);
   assert(iter != bookmarks_.end());
   assert(!records_.empty());
   out << *iter->second;

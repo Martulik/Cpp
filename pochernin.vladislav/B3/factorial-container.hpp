@@ -19,7 +19,7 @@ namespace pochernin
       const ValueType* operator->() const;
       FactorialIterator& operator++();
       FactorialIterator operator++(int);
-      FactorialIterator* operator--();
+      FactorialIterator& operator--();
       FactorialIterator operator--(int);
 
     private:
@@ -29,7 +29,7 @@ namespace pochernin
       ValueType factorial_;
 
       FactorialIterator() = delete;
-      FactorialIterator(ValueType number, ValueType factorial);
+      explicit FactorialIterator(ValueType number);
     };
 
     FactorialContainer() = default;

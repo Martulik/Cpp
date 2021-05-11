@@ -37,5 +37,5 @@ namespace lysenko
     std::list< Note > content_;
   };
 }
- 
+
 #endif

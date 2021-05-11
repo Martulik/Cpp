@@ -11,7 +11,6 @@
 
 void testSort(const char* order, size_t size)
 {
-  srand(time(0));
   std::function< bool(int, int) > compare = std::greater< >();
   if (strcmp(order, "descending"))
   {
@@ -37,6 +36,7 @@ BOOST_AUTO_TEST_SUITE(sortTest)
 
 BOOST_AUTO_TEST_CASE(sort)
 {
+  srand(time(0));
   const char* order = "ascending";
   const char* order2 = "descending";
   testSort(order, 1);

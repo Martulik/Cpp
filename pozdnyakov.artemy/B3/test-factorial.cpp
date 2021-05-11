@@ -11,7 +11,7 @@ BOOST_AUTO_TEST_CASE(test_factorial)
   for (size_t i = 1; i < 11; i++)
   {
     factor *= i;
-    BOOST_CHECK(factor == *begin);
+    BOOST_CHECK_REQUIRE(factor == *begin);
     begin++;
   }
 }

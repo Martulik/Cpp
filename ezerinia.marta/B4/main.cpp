@@ -6,7 +6,7 @@ namespace lab = ezerinia;
 int main()
 {
   try {
-    lab::task();
+    lab::task(std::cin, std::cout);
   }
   catch (const std::invalid_argument &ex) {
     std::cerr << ex.what() << "\n";

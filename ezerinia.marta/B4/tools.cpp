@@ -1,5 +1,6 @@
 #include "tools.hpp"
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include "dataStruct.hpp"
@@ -17,10 +18,10 @@ bool lab::compare(DataStruct &lhs, DataStruct &rhs)
   }
 }
 
-void lab::read(std::vector< lab::DataStruct > &vector)
+void lab::read(std::vector< lab::DataStruct > &vector, std::istream &in)
 {
   std::string line;
-  while (std::getline(std::cin, line)) {
+  while (std::getline(in, line)) {
     lab::DataStruct data;
     std::stringstream input(line);
     input >> data;
@@ -28,12 +29,12 @@ void lab::read(std::vector< lab::DataStruct > &vector)
   }
 }
 
-void lab::task()
+void lab::task(std::istream &in, std::ostream &out)
 {
   std::vector< lab::DataStruct > vector;
-  read(vector);
+  read(vector, in);
   std::sort(vector.begin(), vector.end(), compare);
   for (auto &&it: vector) {
-    std::cout << it;
+    out << it;
   }
 }

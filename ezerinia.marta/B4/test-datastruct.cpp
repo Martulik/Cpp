@@ -4,9 +4,6 @@
 
 namespace lab = ezerinia;
 
-const std::string correct_input = "1,2,str";
-const std::string incorrect_input = "-10,2,str";
-
 BOOST_AUTO_TEST_SUITE(data_struct)
 
   BOOST_AUTO_TEST_CASE(correct_input_data)

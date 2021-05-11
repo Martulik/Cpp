@@ -77,6 +77,8 @@ void diurdeva::show(PhonebookManager &phoneBook, std::stringstream &input)
     invalidCommand(std::cout);
   } else if (!phoneBook.containsBookmark(bookmark)) {
     invalidBookmark(std::cout);
+  } else if (phoneBook.empty()) {
+    empty(std::cout);
   } else {
     phoneBook.show(bookmark);
   }
@@ -106,7 +108,7 @@ void diurdeva::move(PhonebookManager &phoneBook, std::stringstream &input)
     phoneBook.move(bookmark, PhonebookManager::MovePosition::LAST);
   } else {
     try {
-      const int stepInt = std::stoi(steps);
+      int stepInt = std::stoi(steps);
       phoneBook.move(bookmark, stepInt);
     }
     catch (const std::invalid_argument &) {

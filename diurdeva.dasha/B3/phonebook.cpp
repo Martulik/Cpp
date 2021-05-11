@@ -1,5 +1,5 @@
 #include "phonebook.hpp"
-#include <iostream>
+
 
 void diurdeva::Phonebook::pushBack(const record_t& rec)
 {
@@ -11,72 +11,43 @@ bool diurdeva::Phonebook::empty() const
   return list_.empty();
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::begin()
+diurdeva::Phonebook::const_iterator diurdeva::Phonebook::begin() const
 {
   return list_.begin();
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::end()
+diurdeva::Phonebook::iterator diurdeva::Phonebook::end() const
 {
   return list_.end();
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::next(iterator iter) const
-{
-  if (std::next(iter) != list_.end())
-  {
-    return ++iter;
-  }
-  else
-  {
-    return iter;
-  }
-}
-
-diurdeva::Phonebook::iterator diurdeva::Phonebook::prev(iterator iter) const
-{
-  if (iter != list_.begin())
-  {
-    return --iter;
-  }
-  else
-  {
-    return iter;
-  }
-}
-
-diurdeva::Phonebook::iterator diurdeva::Phonebook::insert(iterator iter, const record_t& rec)
+diurdeva::Phonebook::const_iterator diurdeva::Phonebook::insert(const_iterator iter, const record_t& rec)
 {
   return list_.insert(iter, rec);
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::remove(iterator iter)
+diurdeva::Phonebook::const_iterator diurdeva::Phonebook::remove(const_iterator iter)
 {
   return list_.erase(iter);
 }
 
-diurdeva::Phonebook::iterator diurdeva::Phonebook::replace(iterator iter, record_t& src)
+diurdeva::Phonebook::const_iterator diurdeva::Phonebook::move(const_iterator iter, const int n)
 {
-  *iter = src;
-  return iter;
-}
-
-diurdeva::Phonebook::iterator diurdeva::Phonebook::move(iterator iter, int n)
-{
+  int count = 0;
   if (n >= 0)
   {
-    while (std::next(iter) != list_.end() && (n > 0))
+    while (std::next(iter) != list_.end() && (count != n))
     {
-      iter = next(iter);
-      --n;
+      ++iter;
+      ++count;
     }
   }
   else
   {
-    while (iter != list_.begin() && (n < 0))
+    while (iter != list_.begin() && (count != n))
     {
-      iter = prev(iter);
-      ++n;
+      --iter;
+      --count;
     }
   }
   return iter;

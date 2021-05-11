@@ -6,7 +6,7 @@
 
 bool isTaskNumber(const char *src)
 {
-  return (std::strlen(src) == 1) && std::isdigit(src[0]) && (std::atoi(src) == 1 || std::atoi(src) == 2);
+  return (std::strlen(src) == 1) && std::isdigit(src[0]));
 }
 
 int main(int argc, char* argv[])
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid arguments");
     }
 
-    if (!isTaskNumber(argv[1]))
+    if (!isTaskNumber(argv[1]) && (std::atoi(argv[1]) == 1 || std::atoi(argv[1]) == 2)
     {
       throw std::invalid_argument("Invalid task number");
     }

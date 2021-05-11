@@ -9,19 +9,15 @@ namespace diurdeva {
   class Phonebook {
   public:
     using list = std::list<record_t>;
-    using iterator = list::iterator;
-
+    using const_iterator = std::list< record_t >::const_iterator;
     void pushBack(const record_t &rec);
     bool empty() const;
 
-    iterator begin();
-    iterator end();
-    iterator next(iterator) const;
-    iterator prev(iterator) const;
-    iterator insert(iterator, const record_t &rec);
-    iterator remove(iterator);
-    iterator replace(iterator iter, record_t &src);
-    iterator move(iterator, int);
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator insert(const_iterator, const record_t &rec);
+    const_iterator remove(const_iterator);
+    const_iterator move(const_iterator, const int);
 
   private:
     list list_;

@@ -26,7 +26,7 @@ diurdeva::Container::IteratorFact::IteratorFact(ValueType value, ValueType pos) 
 
 const ValueType* diurdeva::Container::IteratorFact::operator->() const
 {
-  return &value_;
+  return std::addressof(value_);
 }
 
 const ValueType& diurdeva::Container::IteratorFact::operator*() const

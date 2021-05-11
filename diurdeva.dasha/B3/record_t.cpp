@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-std::istream& operator>>(std::istream& in, diurdeva::record_t& src)
+std::istream& diurdeva::operator>>(std::istream& in, diurdeva::record_t& src)
 {
   std::string number;
   in >> std::ws >> number;
@@ -54,7 +54,7 @@ std::istream& operator>>(std::istream& in, diurdeva::record_t& src)
   return in;
 }
 
-std::ostream& operator<<(std::ostream& out, const diurdeva::record_t& src)
+std::ostream& diurdeva::operator<<(std::ostream& out, const diurdeva::record_t& src)
 {
   out << src.number << " " << src.name << "\n";
   return out;

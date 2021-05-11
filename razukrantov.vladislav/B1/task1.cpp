@@ -10,10 +10,7 @@
 
 void razukrantov::task1(const char* order)
 {
-  if (strcmp(order, "ascending") && strcmp(order, "descending"))
-  {
-    throw(std::invalid_argument("Incorrect input un task1\n"));
-  }
+  std::function< bool(int, int) > compare = razukrantov::getSortOrder< int >(order);
   std::vector<int> vector;
   int x = 0;
   while (std::cin >> x)
@@ -31,7 +28,6 @@ void razukrantov::task1(const char* order)
 
   std::vector<int> atVector(vector);
   std::forward_list<int> forwardList(vector.begin(), vector.end());
-  std::function< bool(int, int) > compare = razukrantov::getSortOrder< int >(order);
 
   razukrantov::sort< razukrantov::bracketsAccess< int >, int >(vector, compare);
   razukrantov::print(vector, std::cout);

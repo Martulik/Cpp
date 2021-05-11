@@ -11,9 +11,9 @@ namespace diurdeva{
     class IteratorFact: public std::iterator< std::bidirectional_iterator_tag, size_t >
     {
     public:
-      IteratorFact() = default;
+      IteratorFact();
 
-      size_t* operator->();
+      const size_t* operator->() const;
       const size_t& operator*() const;
       IteratorFact& operator++();
       IteratorFact operator++(int);
@@ -29,8 +29,8 @@ namespace diurdeva{
       IteratorFact(size_t value, size_t pos);
     };
 
-    const IteratorFact begin();
-    const IteratorFact end();
+    IteratorFact begin() const;
+    IteratorFact end() const;
   };
 }
 

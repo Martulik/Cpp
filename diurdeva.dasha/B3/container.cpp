@@ -12,7 +12,12 @@ constexpr int factorial(size_t n)
 constexpr int MIN_VALUE = factorial(MIN_POS);
 constexpr int MAX_VALUE = factorial(MAX_POS);
 
-size_t* diurdeva::Container::IteratorFact::operator->()
+diurdeva::Container::IteratorFact::IteratorFact() :
+  value_(0),
+  pos_(0)
+{}
+
+const size_t* diurdeva::Container::IteratorFact::operator->() const
 {
   return &value_;
 }

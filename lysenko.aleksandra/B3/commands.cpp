@@ -23,6 +23,10 @@ bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
 {
   if ((name.size() != 2) && (isDigitsOnly(number)))
   {
+    if (name.front() != '\"' || name.back() != '\"')
+    {
+      return false;
+    }
     name = name.substr(1, name.size() - 2);
     return 1;
   }
@@ -64,7 +68,7 @@ void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterfa
     std::istringstream in{ inputCommand };
     std::string command;
 
-    in >> command >> std::ws;
+    in >> std::ws >> command ;
     iteratorInt iter = commandsMap.find(command);
 
     if (iter == commandsMap.end())
@@ -86,7 +90,7 @@ void lysenko::executeAdd(std::istream& input, lysenko::UsersInterface& myInterfa
   std::string name;
   std::string number;
 
-  input >> number >> name;
+  input >> std::ws >> number >> std::ws >> name;
 
   if (checkCorrectNumberAndName(name, number))
   {
@@ -99,7 +103,7 @@ void lysenko::executeStore(std::istream& input, lysenko::UsersInterface& myInter
   std::string oldMarkName;
   std::string newMarkName;
 
-  input >> oldMarkName >> newMarkName;
+  input >> std::ws >> oldMarkName >> std::ws >> newMarkName;
 
   if (checkIfThisMarkNameContains(oldMarkName, myInterface))
   {
@@ -115,7 +119,7 @@ void lysenko::executeInsert(std::istream& input, lysenko::UsersInterface& myInte
   std::string number;
   std::string name;
 
-  input >> before >> markName >> number >> name;
+  input >> std::ws >> before >> std::ws >> markName >> std::ws >> number >> std::ws >> name;
 
   if ((checkIfThisMarkNameContains(markName, myInterface) && (checkCorrectNumberAndName(name, number))))
   {
@@ -139,7 +143,7 @@ void lysenko::executeDelete(std::istream& input, lysenko::UsersInterface& myInte
 {
   std::string markName;
 
-  input >> markName;
+  input >> std::ws >> markName;
 
   if (checkIfThisMarkNameContains(markName, myInterface))
   {
@@ -157,7 +161,7 @@ void lysenko::executeShow(std::istream& input, lysenko::UsersInterface& myInterf
   {
     std::string markName;
 
-    input >> markName;
+    input >> std::ws >> markName;
 
     if (checkIfThisMarkNameContains(markName, myInterface))
     {
@@ -171,7 +175,7 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
   std::string markName;
   std::string steps;
 
-  input >> markName >> steps;
+  input >> std::ws >> markName >> std::ws >> steps;
 
   if (checkIfThisMarkNameContains(markName, myInterface))
   {

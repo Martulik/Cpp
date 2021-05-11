@@ -70,12 +70,12 @@ bool murzakanov::FactorialContainer::Iterator::operator!=(const Iterator& rhs) c
   return !(value_ == rhs.value_);
 }
 
-mur::FactorialContainer::Iterator mur::FactorialContainer::begin() const
+mur::FactorialContainer::Iterator mur::FactorialContainer::begin() const noexcept
 {
   return {1, getFactorial(1)};
 }
 
-mur::FactorialContainer::Iterator mur::FactorialContainer::end() const
+mur::FactorialContainer::Iterator mur::FactorialContainer::end() const noexcept
 {
   return {11, getFactorial(11)};
 }

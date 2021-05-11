@@ -33,8 +33,8 @@ namespace murzakanov
     };
 
     FactorialContainer() = default;
-    Iterator begin() const;
-    Iterator end() const;
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
   };
 }
 

@@ -16,7 +16,7 @@ int pochernin::getTaskNumber(const char* string)
     return -1;
   }
   int argument = std::atoi(string);
-  if ((argument != 1) || (argument != 2))
+  if ((argument != 1) && (argument != 2))
   {
     return -1;
   }

@@ -63,8 +63,8 @@ FI& FI::operator--()
   }
   else
   {
-    number_--;
     factorial_ /= number_;
+    number_--;
     return *this;
   }
 }

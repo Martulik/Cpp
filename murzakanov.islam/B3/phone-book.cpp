@@ -1,5 +1,4 @@
 #include "phone-book.hpp"
-#include <iostream>
 #include "note.hpp"
 
 namespace mur = murzakanov;

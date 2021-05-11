@@ -17,7 +17,7 @@ namespace lysenko
 
     typedef std::list< lysenko::Book::Note >::iterator iterator;
 
-    bool isEmpty();
+    bool isEmpty() const;
 
     iterator getBegin();
     iterator getEnd();
@@ -26,7 +26,7 @@ namespace lysenko
     iterator goToPrevNote(iterator curr);
     iterator goTo(iterator curr,bool forward, int amount);
 
-    void showCurrNote(iterator curr);
+    void showCurrNote(iterator curr) const;
 
     void replaceNote(iterator curr, Note newNote);
     void insert(iterator curr, const Note newNote, bool before);

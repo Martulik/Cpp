@@ -30,7 +30,7 @@ void lysenko::UsersInterface::addNumber(std::string name, std::string number)
 lysenko::UsersInterface::iteratorMark lysenko::UsersInterface::findThisMark(std::string thisMark)
 {
   bool markIsFound = 0;
-  lysenko::UsersInterface::iteratorMark checkMark = bookMarks_.begin();
+  iteratorMark checkMark = bookMarks_.begin();
   while ((markIsFound == 0) && (checkMark != bookMarks_.end()))
   {
     if (checkMark->markName == thisMark)

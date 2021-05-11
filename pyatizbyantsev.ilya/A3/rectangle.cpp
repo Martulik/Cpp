@@ -53,5 +53,5 @@ std::string pyatizbyantsev::Rectangle::getName() const
 
 std::unique_ptr< pyatizbyantsev::Shape > pyatizbyantsev::Rectangle::clone() const
 {
-  return std::make_unique< pyatizbyantsev::Rectangle > (*this);
+  return std::make_unique< pyatizbyantsev::Rectangle >(*this);
 }

@@ -52,5 +52,5 @@ std::string pyatizbyantsev::Circle::getName() const
 
 std::unique_ptr< pyatizbyantsev::Shape > pyatizbyantsev::Circle::clone() const
 {
-  return std::make_unique< pyatizbyantsev::Circle > (*this);
+  return std::make_unique< pyatizbyantsev::Circle >(*this);
 }

@@ -110,9 +110,9 @@ int main(int argc, char* argv[])
   else if(task == 2) {
     constexpr dan::Factorials fact(1, 10);
     std::ostream_iterator< dan::Factorials::value_t > out(std::cout, " ");
-    std::copy(fact.begin(), fact.end(), out);
+    std::copy(fact.cbegin(), fact.cend(), out);
     std::cout << '\n';
-    std::copy(std::make_reverse_iterator(fact.end()), std::make_reverse_iterator(fact.begin()), out);
+    std::copy(std::make_reverse_iterator(fact.cend()), std::make_reverse_iterator(fact.cbegin()), out);
     std::cout << '\n';
   }
   else {

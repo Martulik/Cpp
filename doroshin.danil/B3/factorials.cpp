@@ -43,12 +43,12 @@ bool dan::operator!=(const dan::Factorials::iterator& lhs, const dan::Factorials
   return !(lhs == rhs);
 }
 
-dan::Factorials::iterator dan::Factorials::begin() const
+dan::Factorials::iterator dan::Factorials::cbegin() const
 {
   return iterator(begin_);
 }
 
-dan::Factorials::iterator dan::Factorials::end() const
+dan::Factorials::iterator dan::Factorials::cend() const
 {
   return iterator(end_ + 1);
 }

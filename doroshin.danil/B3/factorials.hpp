@@ -1,6 +1,7 @@
 #ifndef FACTORIALS_HPP
 #define FACTORIALS_HPP
 
+#include <cassert>
 #include <iterator>
 
 namespace doroshin
@@ -14,15 +15,14 @@ namespace doroshin
 
     constexpr Factorials(value_t begin, value_t end);
 
-    iterator begin() const;
-    iterator end() const;
+    iterator cbegin() const;
+    iterator cend() const;
   private:
     value_t begin_;
     value_t end_;
   };
 
-  class Factorials::iterator:
-      public std::iterator< std::bidirectional_iterator_tag, value_t >
+  class Factorials::iterator: public std::iterator< std::bidirectional_iterator_tag, value_t >
   {
   public:
     using reference = value_type;
@@ -57,7 +57,9 @@ namespace doroshin
 constexpr doroshin::Factorials::Factorials(value_t begin, value_t end):
   begin_(begin),
   end_(end)
-{}
+{
+  assert(begin <= end);
+}
 
 constexpr doroshin::Factorials::iterator::iterator(value_type n):
   arg_(n),

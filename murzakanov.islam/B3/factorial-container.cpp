@@ -77,5 +77,5 @@ mur::FactorialContainer::Iterator mur::FactorialContainer::begin() const noexcep
 
 mur::FactorialContainer::Iterator mur::FactorialContainer::end() const noexcept
 {
-  return {11, getFactorial(11)};
+  return {11, getFactorial(MAX_INDEX)};
 }

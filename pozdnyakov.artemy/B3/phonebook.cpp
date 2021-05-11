@@ -47,4 +47,3 @@ size_t poz::Phonebook::size()
 {
   return book_.size();
 }
-

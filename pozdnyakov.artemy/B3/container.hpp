@@ -16,4 +16,3 @@ namespace pozdnyakov
 }
 
 #endif
-

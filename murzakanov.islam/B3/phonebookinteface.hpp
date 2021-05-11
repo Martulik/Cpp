@@ -4,6 +4,7 @@
 #include <memory>
 #include <map>
 #include <string>
+#include <iosfwd>
 #include "phone-book.hpp"
 #include "note.hpp"
 

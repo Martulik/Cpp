@@ -1,7 +1,6 @@
 #include "factorial-container.hpp"
 
 #include <cstddef>
-#include <iostream>
 #include <cassert>
 
 #include "tools.hpp"

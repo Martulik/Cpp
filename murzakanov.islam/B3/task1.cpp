@@ -1,10 +1,8 @@
 #include "tasks.hpp"
 
 #include <iostream>
-#include <sstream>
-#include <string>
 #include <algorithm>
-#include <cctype>
+#include <sstream>
 
 #include "phone-book.hpp"
 #include "phonebookinteface.hpp"

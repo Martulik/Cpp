@@ -8,9 +8,10 @@
 
 void murzakanov::task2(std::ostream& out)
 {
+  using value_type = murzakanov::FactorialContainer::value_type;
   murzakanov::FactorialContainer factorial;
-  std::copy(factorial.begin(), factorial.end(), std::ostream_iterator< size_t >(out, " "));
+  std::copy(factorial.begin(), factorial.end(), std::ostream_iterator< value_type >(out, " "));
   out << "\n";
-  std::reverse_copy(factorial.begin(), factorial.end(), std::ostream_iterator< size_t >(out, " "));
+  std::reverse_copy(factorial.begin(), factorial.end(), std::ostream_iterator< value_type >(out, " "));
   out << "\n";
 }

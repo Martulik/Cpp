@@ -17,7 +17,7 @@ std::string lab::UserInterface::getMarkName(std::string markName)
     return "";
   }
   for (char i: markName) {
-    if ((!isalnum(i)) && (i != '-')) {
+    if ((!std::isalnum(i)) && (i != '-')) {
       return "";
     }
   }

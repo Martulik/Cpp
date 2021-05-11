@@ -54,34 +54,36 @@ void poz::Interface::doCommand(poz::Interface::argsType args)
 
 void poz::Interface::start()
 {
-  std::vector< std::string > args;
   std::string buf;
   std::string name;
+  std::string word;
+  size_t space;
   size_t nameBegin;
   size_t nameEnd;
-  std::stringstream ssbuf;
-  std::istream_iterator< std::string > eos;
-  std::istream_iterator< std::string > begin;
   while(!std::cin.eof() && std::getline(in_, buf) && !buf.empty())
   {
-    ssbuf << buf;
-    begin = std::istream_iterator< std::string >(ssbuf);
-    eos = std::istream_iterator< std::string >();
-    args = std::vector< std::string >(begin, eos);
+    std::vector< std::string > args;
     nameBegin = buf.find('\"');
     nameEnd = buf.rfind('\"');
-    if (nameBegin != std::string::npos && nameEnd != std::string::npos && nameBegin != nameEnd)
+    if (nameBegin != std::string::npos)
     {
       name = buf.substr(nameBegin, nameEnd - nameBegin + 1);
-      size_t spaceCount = std::count(name.begin(), name.end(), ' ');
-      if (spaceCount != 0)
-      {
-        args.erase(std::prev(args.end(), spaceCount), args.end());
-      }
-      args.back() = name;
+      buf = buf.substr(0, nameBegin - 1);
+    }
+    size_t spaces = std::count(buf.begin(), buf.end(), ' ');
+    for (size_t i = 0; i < spaces; i++)
+    {
+      space = buf.find(' ');
+      word = buf.substr(0, space);
+      args.push_back(word);
+      buf = buf.substr(space + 1, buf.length() - space + 1);
+    }
+    args.push_back(buf);
+    if (nameBegin != std::string::npos)
+    {
+      args.push_back(name);
     }
     this->doCommand(args);
-    ssbuf.clear();
   }
 }
 

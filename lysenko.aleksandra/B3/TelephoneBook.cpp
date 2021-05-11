@@ -57,7 +57,7 @@ void lysenko::Book::showCurrNote(iterator curr) const
   std::cout << curr->name << " " << curr->number;
 }
 
-void lysenko::Book::insert(iterator curr, const Note newNote, bool before)
+void lysenko::Book::insert(iterator &curr, const Note newNote, bool before)
 {
   if (before)
   {
@@ -75,7 +75,7 @@ void lysenko::Book::deleteNote(iterator& curr)
   curr = content_.erase(curr);
 }
 
-void lysenko::Book::pushBack(Note newNote)
+void lysenko::Book::pushBack(Note& newNote)
 {
   content_.push_back(newNote);
 }

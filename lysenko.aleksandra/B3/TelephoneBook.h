@@ -29,9 +29,9 @@ namespace lysenko
     void showCurrNote(iterator curr) const;
 
     void replaceNote(iterator curr, Note newNote);
-    void insert(iterator curr, const Note newNote, bool before);
+    void insert(iterator &curr, const Note newNote, bool before);
     void deleteNote(iterator& curr);
-    void pushBack(Note newNote);
+    void pushBack(Note &newNote);
 
   private:
     std::list< Note > content_;

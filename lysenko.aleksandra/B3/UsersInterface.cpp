@@ -24,7 +24,8 @@ bool lysenko::UsersInterface::telephoneBookIsEmpty()
 
 void lysenko::UsersInterface::addNumber(std::string name, std::string number)
 {
-  telephoneBook_.pushBack({name, number});
+  lysenko::Book::Note note{ name, number };
+  telephoneBook_.pushBack(note);
 }
 
 lysenko::UsersInterface::iteratorMark lysenko::UsersInterface::findThisMark(std::string thisMark)

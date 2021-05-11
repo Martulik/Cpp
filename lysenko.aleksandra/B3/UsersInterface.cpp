@@ -61,7 +61,18 @@ void lysenko::UsersInterface::insertNoteNextToBookMark(bool before, std::string 
 void lysenko::UsersInterface::deleteThisNote(std::string markName)
 {
   iteratorMark curr = findThisMark(markName);
-  telephoneBook_.deleteNote(curr->contact);
+  if (curr->contact != telephoneBook_.goToPrevNote(telephoneBook_.getEnd()))
+  {
+    const lysenko::Book::iterator newContact = telephoneBook_.goToNextNote(curr->contact);
+    telephoneBook_.deleteNote(curr->contact);
+    curr->contact = newContact;
+  }
+  else
+  {
+    const lysenko::Book::iterator newContact = telephoneBook_.goToPrevNote(curr->contact);
+    telephoneBook_.deleteNote(curr->contact);
+    curr->contact = newContact;
+  }
 }
 
 void lysenko::UsersInterface::showThisNote(std::string markName)
@@ -81,7 +92,7 @@ void lysenko::UsersInterface::removeThisBookMark(std::string markName,bool first
   }
   else if (last)
   {
-    note = telephoneBook_.getEnd();
+    note = telephoneBook_.goToPrevNote(telephoneBook_.getEnd());
   }
   else
   {

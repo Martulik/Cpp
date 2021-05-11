@@ -30,7 +30,7 @@ namespace lysenko
 
     void replaceNote(iterator curr, Note newNote);
     void insert(iterator &curr, const Note newNote, bool before);
-    iterator deleteNote(iterator& curr);
+    void deleteNote(iterator& curr);
     void pushBack(Note &newNote);
 
   private:

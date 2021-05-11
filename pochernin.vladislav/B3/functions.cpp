@@ -27,10 +27,10 @@ pochernin::ValueType pochernin::getFactorial(ValueType number)
 {
   if (number > 11)
   {
-    throw(std::invalid_argument("Incorrect number for getting factorial"));
+    throw(std::invalid_argument("Too big number to get factorial"));
   }
   else
   {
-    return ((number <= 1) ? 1 : getFactorial(number - 1));
+    return ((number <= 1) ? 1 : (number * getFactorial(number - 1)));
   }
 }

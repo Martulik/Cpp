@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include "container.hpp"
-
+#include <iostream>
 namespace poz = pozdnyakov;
 
 BOOST_AUTO_TEST_CASE(test_factorial)
@@ -11,7 +11,7 @@ BOOST_AUTO_TEST_CASE(test_factorial)
   for (size_t i = 1; i < 11; i++)
   {
     factor *= i;
-    BOOST_REQUIRE_EQUAL(factor, *begin);
+    BOOST_CHECK_EQUAL(factor, *begin);
     begin++;
   }
 }

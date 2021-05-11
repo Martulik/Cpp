@@ -1,14 +1,13 @@
 #include "dataStruct.hpp"
-
 #include <iostream>
 
-std::ostream &operator<<(std::ostream &out, const ezerinia::DataStruct &data)
+std::ostream &ezerinia::operator<<(std::ostream &out, const ezerinia::DataStruct &data)
 {
   out << data.key1 << "," << data.key2 << "," << data.str << "\n";
   return out;
 }
 
-std::istream &operator>>(std::istream &in, ezerinia::DataStruct &data)
+std::istream &ezerinia::operator>>(std::istream &in, ezerinia::DataStruct &data)
 {
   char comma = '\0';
   in >> data.key1;

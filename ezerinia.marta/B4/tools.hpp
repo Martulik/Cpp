@@ -2,7 +2,6 @@
 #define TOOLS_HPP
 
 #include <vector>
-#include <sstream>
 #include "dataStruct.hpp"
 
 namespace ezerinia {

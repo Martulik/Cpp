@@ -2,7 +2,7 @@
 #define DATASTRUCT_HPP
 
 #include <string>
-#include <iostream>
+#include <iosfwd>
 
 namespace ezerinia {
   struct DataStruct {
@@ -10,9 +10,8 @@ namespace ezerinia {
     int key2;
     std::string str;
   };
+  std::ostream &operator<<(std::ostream &out, const ezerinia::DataStruct &data);
+  std::istream &operator>>(std::istream &in, ezerinia::DataStruct &data);
 }
-
-std::ostream &operator<<(std::ostream &out, const ezerinia::DataStruct &data);
-std::istream &operator>>(std::istream &in, ezerinia::DataStruct &data);
 
 #endif

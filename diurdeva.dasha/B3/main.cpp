@@ -6,7 +6,7 @@
 
 bool isTaskNumber(const char *src)
 {
-  return std::strlen(src) == 1 && std::isdigit(src[0]);
+  return (std::strlen(src) == 1 && std::isdigit(src[0]));
 }
 
 int main(int argc, char* argv[])

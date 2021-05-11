@@ -86,7 +86,7 @@ void diurdeva::PhonebookManager::move(const std::string &bookmark, MovePosition 
 bool diurdeva::PhonebookManager::containsBookmark(const std::string &bookmark) const
 {
   const std::map< std::string, Phonebook::const_iterator >::const_iterator& iter = bookmarks_.find(bookmark);
-  return (iter != bookmarks_.end() ? 1 : 0);
+  return ((iter != bookmarks_.end()) ? 1 : 0);
 }
 
 bool diurdeva::PhonebookManager::empty() const

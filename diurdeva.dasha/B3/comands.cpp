@@ -80,7 +80,7 @@ void diurdeva::show(PhonebookManager &phoneBook, std::stringstream &input)
   } else if (phoneBook.empty()) {
     empty(std::cout);
   } else {
-    phoneBook.show(bookmark, input);
+    phoneBook.show(bookmark, std::cout);
   }
 }
 

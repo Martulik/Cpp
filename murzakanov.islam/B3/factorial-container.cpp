@@ -50,12 +50,12 @@ mur::FactorialContainer::Iterator mur::FactorialContainer::Iterator::operator--(
   return tempIt;
 }
 
-mur::FactorialContainer::value_type& murzakanov::FactorialContainer::Iterator::operator*()
+const mur::FactorialContainer::value_type& murzakanov::FactorialContainer::Iterator::operator*()
 {
   return value_;
 }
 
-mur::FactorialContainer::value_type* murzakanov::FactorialContainer::Iterator::operator->()
+const mur::FactorialContainer::value_type* murzakanov::FactorialContainer::Iterator::operator->()
 {
   return std::addressof(value_);
 }

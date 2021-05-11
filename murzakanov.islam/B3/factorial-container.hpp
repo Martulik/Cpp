@@ -18,8 +18,8 @@ namespace murzakanov
       Iterator& operator--();
       Iterator operator--(int);
 
-      value_type& operator*();
-      value_type* operator->();
+      const value_type& operator*();
+      const value_type* operator->();
       bool operator==(const Iterator&) const;
       bool operator!=(const Iterator&) const;
 

@@ -15,7 +15,7 @@ namespace ezerinia {
     std::vector< double > vec(size);
     fillRandom(vec.data(), size);
     print(vec, std::cout);
-    sortAndPrint< indexVec< double > >(vec, sort_mode);
+    sortAndPrint< indexVec< double > >(vec, sort_mode, std::cout);
     return error::success;
   }
 }

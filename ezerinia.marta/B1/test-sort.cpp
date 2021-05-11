@@ -20,7 +20,7 @@ void testSort(const C cmp, const int size)
 {
   typename S::container_t cont(size);
   fillCont(cont.begin(), cont.end());
-  lab::sortAndPrint< S >(cont, cmp);
+  lab::sortAndPrint< S >(cont, cmp, std::cout);
   BOOST_CHECK(std::is_sorted(cont.begin(), cont.end(), cmp));
 }
 

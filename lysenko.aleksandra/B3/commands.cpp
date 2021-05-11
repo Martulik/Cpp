@@ -161,7 +161,6 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
 
   if (checkIfThisMarkNameContains(markName, myInterface))
   {
-    lysenko::UsersInterface::iteratorMark newBookMark = myInterface.findThisMark(markName);
     try
     {
       if (((std::stoi(steps) || (steps == "first") || (steps == "last"))))

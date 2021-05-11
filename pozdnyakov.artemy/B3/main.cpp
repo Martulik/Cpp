@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if (strlen(argv[1]) != 1)
+    if (argv[1][1] != '\0')
     {
       return -2;
     }

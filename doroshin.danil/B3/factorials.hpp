@@ -15,8 +15,8 @@ namespace doroshin
 
     constexpr Factorials(value_t begin, value_t end) noexcept;
 
-    iterator cbegin() const noexcept;
-    iterator cend() const noexcept;
+    iterator begin() const noexcept;
+    iterator end() const noexcept;
   private:
     value_t begin_;
     value_t end_;

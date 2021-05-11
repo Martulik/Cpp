@@ -21,16 +21,16 @@ BOOST_FIXTURE_TEST_SUITE(Factorial, FactorialFixture)
 BOOST_AUTO_TEST_CASE(equality_ascending)
 {
   int n = begin_;
-  for(auto i = fact_.cbegin(); i != fact_.cend(); ++i) {
-    BOOST_CHECK_EQUAL(*i, dan::factorial(n++));
+  for(auto&& fact: fact_) {
+    BOOST_CHECK_EQUAL(fact, dan::factorial(n++));
   }
 }
 
 BOOST_AUTO_TEST_CASE(equality_descending)
 {
   int n = end_;
-  auto begin = std::make_reverse_iterator(fact_.cend());
-  auto end = std::make_reverse_iterator(fact_.cbegin());
+  auto begin = std::make_reverse_iterator(fact_.end());
+  auto end = std::make_reverse_iterator(fact_.begin());
   for(auto i = begin; i != end; ++i) {
     BOOST_CHECK_EQUAL(*i, dan::factorial(n--));
   }

@@ -27,11 +27,11 @@ int main(int argc, char* argv[])
   }
   if (!code && taskNum == 1)
   {
-    murzakanov::task1();
+    murzakanov::task1(std::cin, std::cout);
   }
   else if (!code && taskNum == 2)
   {
-    murzakanov::task2();
+    murzakanov::task2(std::cout);
   }
   else
   {

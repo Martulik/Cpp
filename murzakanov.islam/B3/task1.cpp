@@ -8,13 +8,13 @@
 #include "phonebookinteface.hpp"
 #include "tools.hpp"
 
-void murzakanov::task1()
+void murzakanov::task1(std::istream& in, std::ostream& out)
 {
   namespace mur = murzakanov;
   mur::PhoneBook book;
   mur::BookInterface bookInterface(book);
   std::string line;
-  while (std::getline(std::cin, line) && !line.empty())
+  while (std::getline(in, line) && !line.empty())
   {
     std::istringstream in(line);
     std::string command;
@@ -25,7 +25,7 @@ void murzakanov::task1()
       in >> number;
       if (!std::all_of(number.begin(), number.end(), ::isdigit))
       {
-        murzakanov::invalidCommand(std::cout);
+        murzakanov::invalidCommand(out);
         continue;
       }
       std::string name;
@@ -36,7 +36,7 @@ void murzakanov::task1()
       }
       else
       {
-        murzakanov::invalidCommand(std::cout);
+        murzakanov::invalidCommand(out);
       }
     }
     else if (command == "store")
@@ -44,7 +44,7 @@ void murzakanov::task1()
       std::string bookmark;
       std::string newBookmark;
       in >> bookmark >> newBookmark;
-      bookInterface.store(bookmark, newBookmark, std::cout);
+      bookInterface.store(bookmark, newBookmark, out);
     }
     else if (command == "insert")
     {
@@ -55,12 +55,12 @@ void murzakanov::task1()
       in >> place >> mark >> number;
       if (!std::all_of(number.begin(), number.end(), ::isdigit))
       {
-        murzakanov::invalidCommand(std::cout);
+        murzakanov::invalidCommand(out);
         continue;
       }
       if (place != "before" && place != "after")
       {
-        murzakanov::invalidCommand(std::cout);
+        murzakanov::invalidCommand(out);
         continue;
       }
       mur::readName(in, name);
@@ -68,29 +68,29 @@ void murzakanov::task1()
       {
         if (place == "before")
         {
-          bookInterface.insertBefore(mark, {number, name}, std::cout);
+          bookInterface.insertBefore(mark, {number, name}, out);
         }
         else if (place == "after")
         {
-          bookInterface.insertAfter(mark, {number, name}, std::cout);
+          bookInterface.insertAfter(mark, {number, name}, out);
         }
       }
       else
       {
-        murzakanov::invalidCommand(std::cout);
+        murzakanov::invalidCommand(out);
       }
     }
     else if (command == "delete")
     {
       std::string mark;
       in >> mark;
-      bookInterface.deleteNote(mark, std::cout);
+      bookInterface.deleteNote(mark, out);
     }
     else if (command == "show")
     {
       std::string mark;
       in >> mark;
-      bookInterface.show(mark, std::cout);
+      bookInterface.show(mark, out);
     }
     else if (command == "move")
     {
@@ -100,27 +100,27 @@ void murzakanov::task1()
       try
       {
         int stepsNum = std::stoi(steps);
-        bookInterface.move(mark, stepsNum, std::cout);
+        bookInterface.move(mark, stepsNum, out);
       }
       catch(const std::invalid_argument&)
       {
         if (steps == "first")
         {
-          bookInterface.move(mark, steps, std::cout);
+          bookInterface.move(mark, steps, out);
         }
         else if (steps == "last")
         {
-          bookInterface.move(mark, steps, std::cout);
+          bookInterface.move(mark, steps, out);
         }
         else
         {
-          murzakanov::invalidStep(std::cout);
+          murzakanov::invalidStep(out);
         }
       }
     }
     else
     {
-      murzakanov::invalidCommand(std::cout);
+      murzakanov::invalidCommand(out);
     }
   }
 }

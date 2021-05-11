@@ -3,19 +3,19 @@
 
 namespace mur = murzakanov;
 
-mur::PhoneBook::iterator mur::PhoneBook::begin()
+mur::PhoneBook::const_iterator mur::PhoneBook::begin()
 {
-  return book_.begin();
+  return book_.cbegin();
 }
 
-mur::PhoneBook::iterator mur::PhoneBook::end()
+mur::PhoneBook::const_iterator mur::PhoneBook::end()
 {
-  return book_.end();
+  return book_.cend();
 }
 
-void mur::PhoneBook::insertAfter(mur::PhoneBook::iterator it, const mur::note_t& note)
+void mur::PhoneBook::insertAfter(mur::PhoneBook::const_iterator it, const mur::note_t& note)
 {
-  iterator tempIt(it);
+  const_iterator tempIt(it);
   ++tempIt;
   mur::note_t tempNote{note.number, note.name};
   if (tempIt == book_.end())
@@ -26,12 +26,12 @@ void mur::PhoneBook::insertAfter(mur::PhoneBook::iterator it, const mur::note_t&
   book_.insert(tempIt, tempNote);
 }
 
-void mur::PhoneBook::insertBefore(mur::PhoneBook::iterator it, const mur::note_t& note)
+void mur::PhoneBook::insertBefore(mur::PhoneBook::const_iterator it, const mur::note_t& note)
 {
   book_.insert(it, note);
 }
 
-void mur::PhoneBook::deleteNote(PhoneBook::iterator it)
+void mur::PhoneBook::deleteNote(PhoneBook::const_iterator it)
 {
   book_.erase(it);
 }
@@ -45,11 +45,6 @@ void mur::PhoneBook::replace(mur::PhoneBook::iterator it, const mur::note_t& not
 {
   it->name = note.name;
   it->number = note.number;
-}
-
-void mur::PhoneBook::show(std::ostream& out, mur::PhoneBook::iterator it) const
-{
-  out << *it;
 }
 
 size_t mur::PhoneBook::size() const

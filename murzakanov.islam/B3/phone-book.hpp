@@ -13,17 +13,16 @@ namespace murzakanov
     using iterator = std::list< murzakanov::note_t >::iterator;
     using const_iterator = std::list< murzakanov::note_t >::const_iterator;
 
-    void insertAfter(iterator it, const murzakanov::note_t& note);
-    void insertBefore(iterator it, const murzakanov::note_t& note);
-    void deleteNote(iterator it);
+    void insertAfter(const_iterator it, const murzakanov::note_t& note);
+    void insertBefore(const_iterator it, const murzakanov::note_t& note);
+    void deleteNote(const_iterator it);
     void push_back(const murzakanov::note_t& note);
     void replace(iterator it, const murzakanov::note_t& note);
-    void show(std::ostream& out, iterator it) const;
     size_t size() const;
     bool isEmpty() const;
 
-    iterator begin();
-    iterator end();
+    const_iterator begin();
+    const_iterator end();
   private:
     std::list< murzakanov::note_t > book_;
   };

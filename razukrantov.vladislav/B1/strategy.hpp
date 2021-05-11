@@ -10,7 +10,7 @@ namespace razukrantov
   struct bracketsAccess
   {
     using iterator = size_t;
-    using container = std::vector<T>;
+    using container = std::vector< T >;
 
     static iterator begin(const container&)
     {

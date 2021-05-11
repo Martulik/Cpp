@@ -8,11 +8,12 @@
 namespace diurdeva {
   class Phonebook {
   public:
-    using list = std::list< record_t >;
+    using list = std::list<record_t>;
     using iterator = list::iterator;
 
     void pushBack(const record_t &rec);
     bool empty() const;
+
     iterator begin();
     iterator end();
     iterator next(iterator) const;

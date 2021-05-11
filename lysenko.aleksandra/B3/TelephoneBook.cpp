@@ -54,7 +54,7 @@ lysenko::Book::iterator lysenko::Book::goTo(iterator curr, bool forward, int amo
 
 void lysenko::Book::showCurrNote(iterator curr) const
 {
-  std::cout << curr->name << " " << curr->number;
+  std::cout << curr->number << " " << curr->name <<"\n";
 }
 
 void lysenko::Book::insert(iterator& curr, const Note newNote, bool before)

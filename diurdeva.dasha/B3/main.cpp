@@ -6,7 +6,7 @@
 
 bool isTaskNumber(const char *src)
 {
-  return (std::strlen(src) == 1) && std::isdigit(src[0]));
+  return std::strlen(src) == 1 && std::isdigit(src[0]);
 }
 
 int main(int argc, char* argv[])
@@ -18,21 +18,19 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid arguments");
     }
 
-    if (!isTaskNumber(argv[1]) && (std::atoi(argv[1]) == 1 || std::atoi(argv[1]) == 2)
+    if (!isTaskNumber(argv[1]))
     {
       throw std::invalid_argument("Invalid task number");
     }
     int taskNumber = std::atoi(argv[1]);
-
-    switch (taskNumber)
-    {
-    case 1:
+    if (taskNumber == 1) {
       diurdeva::task1();
-      break;
-
-    case 2:
+    }
+    else if (taskNumber == 2) {
       diurdeva::task2();
-      break;
+    }
+    else {
+      throw std::invalid_argument("Invalid task number");
     }
   }
   catch (const std::runtime_error& e)

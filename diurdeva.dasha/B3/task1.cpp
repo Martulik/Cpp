@@ -9,7 +9,7 @@ void diurdeva::task1()
 
   while (std::getline(std::cin, string))
   {
-    if (in.fail()) {
+    if (std::cin.fail()) {
       throw std::runtime_error("Read fail");
     }
     std::stringstream input(string);
@@ -17,27 +17,27 @@ void diurdeva::task1()
     input >> command;
     if (command == "add")
     {
-      add(phoneBook, input);
+      add(book, input);
     }
     else if (command == "store")
     {
-      store(phoneBook, input);
+      store(book, input);
     }
     else if (command == "insert")
     {
-      insert(phoneBook, input);
+      insert(book, input);
     }
     else if (command == "delete")
     {
-      deleteRecord(phoneBook, input);
+      deleteRecord(book, input);
     }
     else if (command == "show")
     {
-      show(phoneBook, input);
+      show(book, input);
     }
     else if (command == "move")
     {
-      move(phoneBook, input);
+      move(book, input);
     }
     else
     {

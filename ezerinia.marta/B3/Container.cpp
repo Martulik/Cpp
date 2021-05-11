@@ -8,12 +8,14 @@ constexpr lab::Container::value_type lab::getFactorial(size_t index)
   return index <= 1 ? 1 : getFactorial(index - 1) * index;
 }
 
+constexpr size_t minIndex = 1;
+constexpr lab::Container::value_type minFactorial = lab::getFactorial(minIndex);
 constexpr size_t maxIndex = 11;
 constexpr lab::Container::value_type maxFactorial = lab::getFactorial(maxIndex);
 
 lab::Container::Iterator::Iterator():
-  index_(1),
-  value_(1)
+  index_(0),
+  value_(0)
 {
 }
 
@@ -25,7 +27,7 @@ lab::Container::Iterator::Iterator(size_t index, value_type value):
 
 lab::Container::Iterator lab::Container::begin() const noexcept
 {
-  return {};
+  return {minIndex, minFactorial};
 }
 
 lab::Container::Iterator lab::Container::end() const noexcept
@@ -45,11 +47,13 @@ bool lab::Container::Iterator::operator!=(const Container::Iterator &src) const
 
 lab::Container::value_type &lab::Container::Iterator::operator*()
 {
+  assert(value_ != 0);
   return value_;
 }
 
 lab::Container::value_type *lab::Container::Iterator::operator->()
 {
+  assert(value_ != 0);
   return std::addressof(value_);
 }
 
@@ -62,7 +66,7 @@ lab::Container::Iterator &lab::Container::Iterator::operator++()
 
 lab::Container::Iterator &lab::Container::Iterator::operator--()
 {
-  assert(index_ >= 1);
+  assert(index_ >= minIndex);
   value_ /= index_--;
   return *this;
 }

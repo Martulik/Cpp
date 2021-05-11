@@ -20,14 +20,14 @@ void lab::Book::add(const record_t &record)
 
 void lab::Book::store(const std::string &oldMarkName, const std::string &newMarkName)
 {
-  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(oldMarkName);
+  const lab::Book::const_iterator &iter = bookmarks_.find(oldMarkName);
   assert(iter != bookmarks_.end());
   bookmarks_[newMarkName] = iter->second;
 }
 
 void lab::Book::insert(const std::string &bookmark, record_t &record, posOfInsert position)
 {
-  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(bookmark);
+  const lab::Book::const_iterator &iter = bookmarks_.find(bookmark);
   assert(iter != bookmarks_.end());
   if (iter->second == phoneBook_.end()) {
     add(record);
@@ -41,7 +41,7 @@ void lab::Book::insert(const std::string &bookmark, record_t &record, posOfInser
 
 void lab::Book::deleteRecord(const std::string &markName)
 {
-  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(markName);
+  const lab::Book::const_iterator &iter = bookmarks_.find(markName);
   assert(iter != bookmarks_.end());
   auto deleteIter = iter->second;
   for (auto &&bookmark: bookmarks_) {
@@ -56,24 +56,16 @@ void lab::Book::deleteRecord(const std::string &markName)
   phoneBook_.remove(deleteIter);
 }
 
-void lab::Book::show(const std::string &markName, std::ostream &out) const
-{
-  const std::map< std::string, PhoneBook::const_iterator >::const_iterator &iter = bookmarks_.find(markName);
-  assert(iter != bookmarks_.end());
-  assert(!phoneBook_.empty());
-  out << *iter->second;
-}
-
 void lab::Book::move(const std::string &markName, int steps)
 {
-  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(markName);
+  const lab::Book::iterator &iter = bookmarks_.find(markName);
   assert(iter != bookmarks_.end());
   iter->second = phoneBook_.move(iter->second, steps);
 }
 
 void lab::Book::move(const std::string &markName, const posOfMove position)
 {
-  const std::map< std::string, PhoneBook::const_iterator >::iterator &iter = bookmarks_.find(markName);
+  const lab::Book::iterator &iter = bookmarks_.find(markName);
   assert(iter != bookmarks_.end());
   if (position == posOfMove::first) {
     iter->second = phoneBook_.begin();
@@ -84,7 +76,7 @@ void lab::Book::move(const std::string &markName, const posOfMove position)
 
 bool lab::Book::containsBookmark(const std::string &bookmark) const
 {
-  const std::map< std::string, PhoneBook::const_iterator >::const_iterator &iter = bookmarks_.find(bookmark);
+  const lab::Book::const_iterator &iter = bookmarks_.find(bookmark);
   if (iter == bookmarks_.end()) {
     return false;
   }
@@ -94,4 +86,9 @@ bool lab::Book::containsBookmark(const std::string &bookmark) const
 bool lab::Book::empty() const
 {
   return phoneBook_.empty();
+}
+
+lab::Book::const_iterator lab::Book::findBookmark(const std::string &bookmark) const
+{
+  return bookmarks_.find(bookmark);
 }

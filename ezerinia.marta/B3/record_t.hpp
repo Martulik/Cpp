@@ -3,6 +3,7 @@
 
 #include <iosfwd>
 #include <string>
+#include <map>
 
 namespace ezerinia {
   struct record_t {

@@ -102,7 +102,8 @@ void lab::UserInterface::show(std::stringstream &input)
   } else if (book_.empty()) {
     empty(stream_);
   } else {
-    book_.show(markName, stream_);
+    const std::map< std::string, PhoneBook::const_iterator >::const_iterator &iter = book_.findBookmark(markName);
+    stream_ << *iter->second;
   }
 }
 

@@ -28,11 +28,11 @@ namespace shilyaev {
   {
     std::string line;
     std::getline(istream, line);
-    std::istringstream iStringStream(line);
-    dataStruct.key1 = readKey(iStringStream);
-    dataStruct.key2 = readKey(iStringStream);
-    std::getline(iStringStream, dataStruct.str);
-    if (iStringStream.fail()) {
+    std::istringstream istringstream(line);
+    dataStruct.key1 = readKey(istringstream);
+    dataStruct.key2 = readKey(istringstream);
+    std::getline(istringstream, dataStruct.str);
+    if (istringstream.fail()) {
       istream.setstate(std::ios::failbit);
     }
     return istream;

@@ -5,6 +5,10 @@
 #include <sstream>
 #include <string>
 
+#include"InvalidBookmark.h"
+#include"InvalidCommand.h"
+#include"InvalidStep.h"
+
 static bool readDelimiter(std::istream& in, char delimiter)
 {
   in >> std::ws;

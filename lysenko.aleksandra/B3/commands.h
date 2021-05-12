@@ -4,7 +4,6 @@
 #include <string>
 #include <map>
 
-#include "exceptions.h"
 #include "UsersInterface.h"
 
 namespace lysenko

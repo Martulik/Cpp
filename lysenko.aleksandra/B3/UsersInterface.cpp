@@ -3,8 +3,6 @@
 #include <iostream>
 #include <list>
 
-#include "exceptions.h"
-
 lysenko::UsersInterface::UsersInterface():
   bookMarks_(),
   telephoneBook_()

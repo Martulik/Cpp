@@ -4,10 +4,10 @@
 #include <cassert>
 #include "comands.hpp"
 
-diurdeva::PhonebookManager::PhonebookManager()
-{
-  bookmarks_["current"] = records_.begin();
-}
+diurdeva::PhonebookManager::PhonebookManager():
+  records_(),
+  bookmarks_({ {"current", records_.begin()} })
+{}
 
 void diurdeva::PhonebookManager::add(const record_t &rec)
 {
@@ -55,14 +55,6 @@ void diurdeva::PhonebookManager::deleteNote(const std::string &bookmark)
   records_.remove(eraseIter);
 }
 
-void diurdeva::PhonebookManager::show(const std::string &bookmark, std::ostream& out) const
-{
-  const std::map< std::string, Phonebook::const_iterator >::const_iterator &iter = bookmarks_.find(bookmark);
-  assert(iter != bookmarks_.end());
-  assert(!records_.empty());
-  out << *iter->second;
-}
-
 void diurdeva::PhonebookManager::move(const std::string &bookmark, int n)
 {
   const std::map< std::string, Phonebook::const_iterator >::iterator &iter = bookmarks_.find(bookmark);
@@ -92,4 +84,9 @@ bool diurdeva::PhonebookManager::containsBookmark(const std::string &bookmark) c
 bool diurdeva::PhonebookManager::empty() const
 {
   return records_.empty();
+}
+
+diurdeva::PhonebookManager::const_iterator diurdeva::PhonebookManager::findBookmark(const std::string& mark) const
+{
+  return bookmarks_.find(mark);
 }

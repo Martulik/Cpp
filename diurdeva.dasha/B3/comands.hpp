@@ -8,7 +8,7 @@ namespace diurdeva {
   void store(PhonebookManager& phoneBook, std::stringstream& input);
   void insert(PhonebookManager& phoneBook, std::stringstream& input);
   void deleteRecord(PhonebookManager& phoneBook, std::stringstream& input);
-  void show(PhonebookManager& phoneBook, std::stringstream& input);
+  void show(PhonebookManager& phoneBook, std::stringstream& input, std::ostream& output);
   void move(PhonebookManager& phoneBook, std::stringstream& input);
 
   void invalidCommand(std::ostream& out);

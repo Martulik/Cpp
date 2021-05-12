@@ -30,8 +30,8 @@ namespace diurdeva {
       IteratorFact(ValueType value, ValueType pos);
     };
 
-    IteratorFact begin() const;
-    IteratorFact end() const;
+    IteratorFact begin() const noexcept;
+    IteratorFact end() const noexcept;
   };
 }
 

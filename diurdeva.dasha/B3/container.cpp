@@ -1,5 +1,4 @@
 #include "container.hpp"
-#include "cassert"
 
 using ValueType = diurdeva::Container::ValueType;
 
@@ -75,12 +74,12 @@ bool diurdeva::Container::IteratorFact::operator!=(const Container::IteratorFact
 }
 
 
-diurdeva::Container::IteratorFact diurdeva::Container::begin() const
+diurdeva::Container::IteratorFact diurdeva::Container::begin() const noexcept
 {
   return { MIN_VALUE, MIN_POS };
 }
 
-diurdeva::Container::IteratorFact diurdeva::Container::end() const
+diurdeva::Container::IteratorFact diurdeva::Container::end() const noexcept
 {
   return { MAX_VALUE, MAX_POS };
 }

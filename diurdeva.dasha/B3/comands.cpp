@@ -68,7 +68,7 @@ void diurdeva::deleteRecord(PhonebookManager &phoneBook, std::stringstream &inpu
   }
 }
 
-void diurdeva::show(PhonebookManager &phoneBook, std::stringstream &input)
+void diurdeva::show(PhonebookManager &phoneBook, std::stringstream &input, std::ostream &output)
 {
   std::string bookmark;
   input >> std::ws >> bookmark;
@@ -80,7 +80,8 @@ void diurdeva::show(PhonebookManager &phoneBook, std::stringstream &input)
   } else if (phoneBook.empty()) {
     empty(std::cout);
   } else {
-    phoneBook.show(bookmark, std::cout);
+    const std::map< std::string, Phonebook::const_iterator >::const_iterator& iter = phoneBook.findBookmark(bookmark);
+    output << *iter->second;
   }
 }
 

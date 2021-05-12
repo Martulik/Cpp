@@ -33,7 +33,7 @@ void diurdeva::task1()
     }
     else if (command == "show")
     {
-      show(book, input);
+      show(book, input, std::cout);
     }
     else if (command == "move")
     {

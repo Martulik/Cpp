@@ -33,15 +33,10 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid task number");
     }
   }
-  catch (const std::runtime_error& e)
+  catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
     return 2;
-  }
-  catch (const std::invalid_argument& e)
-  {
-    std::cerr << e.what() << '\n';
-    return 1;
   }
   return 0;
 }

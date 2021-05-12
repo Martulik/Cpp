@@ -11,18 +11,29 @@ namespace razukrantov
   {
     using iterator = size_t;
     using container = std::vector< T >;
+    using constIterator = size_t;
 
-    static iterator begin(const container&)
+    static iterator begin(container&)
     {
       return 0;
     }
-
-    static iterator end(const container& container)
+    static constIterator begin(const container&)
+    {
+      return 0;
+    }
+    static iterator end(container& container)
     {
       return container.size();
     }
-
+    static constIterator end(const container& container)
+    {
+      return container.size();
+    }
     static T& get(container& container, iterator iterator)
+    {
+      return container[iterator];
+    }
+    static const T& get(const container& container, constIterator iterator)
     {
       return container[iterator];
     }
@@ -33,19 +44,31 @@ namespace razukrantov
   {
     using iterator = size_t;
     using container = std::vector< T >;
+    using constIterator = size_t;
 
-    static iterator begin(const container&)
+    static iterator begin(container&)
     {
       return 0;
     }
-
-    static iterator end(const container& container)
+    static constIterator begin(const container&)
+    {
+        return 0;
+    }
+    static iterator end(container& container)
     {
       return container.size();
+    }
+    static constIterator end(const container& container)
+    {
+        return container.size();
     }
     static T& get(container& container, iterator iterator)
     {
       return container.at(iterator);
+    }
+    static const T& get(const container& container, constIterator iterator)
+    {
+        return container.at(iterator);
     }
   };
 
@@ -54,18 +77,31 @@ namespace razukrantov
   {
     using container = std::forward_list< T >;
     using iterator = typename container::iterator;
+    using constIterator = typename container::const_iterator;
 
     static iterator begin(container& container)
     {
       return container.begin();
     }
+    static constIterator begin(const container& container)
+    {
+        return container.begin();
+    }
     static iterator end(container& container)
     {
       return container.end();
     }
+    static constIterator end(const container& container)
+    {
+        return container.end();
+    }
     static T& get(container&, iterator iterator)
     {
       return *iterator;
+    }
+    static const T& get(const container&, constIterator iterator)
+    {
+        return *iterator;
     }
   };
 }

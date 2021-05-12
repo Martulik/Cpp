@@ -24,28 +24,28 @@ int main()
   std::cout << "Rectangle test:\n";
   lab::point_t posRectangle = {2.2, 8};
 
-  shapePtr figureRectangle(std::make_unique< rectShape >(rectShape(6, 8, posRectangle)));
-  printCoordinatesFigure(*figureRectangle);
+  shapePtr rect(std::make_unique< rectShape >(rectShape(6, 8, posRectangle)));
+  printCoordinatesFigure(*rect);
 
-  figureRectangle->move(6, 9);
-  printCoordinatesFigure(*figureRectangle);
+  rect->move(6, 9);
+  printCoordinatesFigure(*rect);
 
-  std::cout << "Area of rectangle is: " << figureRectangle->getArea() << '\n';
+  std::cout << "Area of rectangle is: " << rect->getArea() << '\n';
 
   std::cout << "Circle test:\n";
   lab::point_t posCircle = {1.3, 3.7};
 
-  shapePtr figureCircle(std::make_unique< circShape >(circShape(3, posCircle)));
-  printCoordinatesFigure(*figureCircle);
+  shapePtr circ(std::make_unique< circShape >(circShape(3, posCircle)));
+  printCoordinatesFigure(*circ);
 
   lab::point_t newPosCircle = {55.55, 66.66};
-  figureCircle->move(newPosCircle);
-  printCoordinatesFigure(*figureCircle);
+  circ->move(newPosCircle);
+  printCoordinatesFigure(*circ);
 
-  std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
+  std::cout << "Area of circle is: " << circ->getArea() << '\n';
 
   std::cout << "Composite Shape test:" << '\n';
-  shapePtr composite1(std::make_unique< composShape >(composShape(std::move(figureRectangle), std::move(figureCircle))));
+  shapePtr composite1(std::make_unique< composShape >(composShape(std::move(rect), std::move(circ))));
   shapePtr composite2(std::make_unique< composShape >(composite1->clone()));
   printCoordinatesFigure(*composite2);
 

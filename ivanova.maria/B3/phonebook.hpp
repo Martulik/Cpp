@@ -12,7 +12,7 @@ namespace ivanova
   class PhoneBook
   {
   public:
-    using iter = std::list< Record >::iterator;
+    using iter = std::list< Record >::const_iterator;
     iter begin();
     iter end();
     void add(const Record &record);

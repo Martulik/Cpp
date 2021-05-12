@@ -38,7 +38,7 @@ namespace lysenko
     reverse_iterator rend() const;
 
     static const size_t MINIMUM_INDEX = 1;
-    static const size_t MAXIMUM_INDEX = 10;
+    static const size_t MAXIMUM_INDEX = 11;
   };
 }
 

@@ -174,20 +174,17 @@ void lysenko::executeDelete(std::istream& input, lysenko::UsersInterface& myInte
 
 void lysenko::executeShow(std::istream& input, lysenko::UsersInterface& myInterface)
 {
-  if (myInterface.telephoneBookIsEmpty())
-  {
-    std::cout << "<EMPTY>" << "\n";
-  }
-  else
-  {
-    std::string markName;
+  std::string markName;
 
-    input >> std::ws >> markName;
+  input >> std::ws >> markName;
 
-    if (checkIfThisMarkNameContains(markName, myInterface))
+  if (checkIfThisMarkNameContains(markName, myInterface))
+  {
+    if (myInterface.telephoneBookIsEmpty())
     {
-      myInterface.showThisNote(markName);
+      std::cout << "<EMPTY>" << "\n";
     }
+    myInterface.showThisNote(markName);
   }
 }
 
@@ -198,6 +195,8 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
 
   input >> std::ws >> markName;
   input >> std::ws >> steps;
+
+  std::string cuttedOne = steps.substr(1, steps.size() - 1);
 
   if (checkIfThisMarkNameContains(markName, myInterface))
   {
@@ -211,7 +210,7 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
       myInterface.removeThisBookMark(markName, 0, 1, 0, steps);
     }
 
-    else if (std::stoi(steps))
+    else if ((((steps[0] == '+') || (steps[0] == '-')) && (isDigitsOnly(cuttedOne))) || (isDigitsOnly(steps)))
     {
       int stepsInt = std::stoi(steps);
       if (stepsInt > 0)

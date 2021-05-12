@@ -57,7 +57,7 @@ std::istream &iva::operator >>(std::istream &in, ivanova::Record &info)
   return in;
 }
 
-std::ostream &ivanova::operator <<(std::ostream &out, ivanova::Record &info)
+std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Record &info)
 {
   out << info.data.first << " " << info.data.second << std::endl;
   return out;

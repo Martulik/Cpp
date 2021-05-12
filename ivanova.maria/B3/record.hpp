@@ -1,7 +1,8 @@
 #ifndef B3_RECORD_HPP
 #define B3_RECORD_HPP
 
-#include <iostream>
+#include <iosfwd>
+#include <string>
 
 namespace ivanova
 {
@@ -11,7 +12,7 @@ namespace ivanova
   };
 
   std::istream &operator >>(std::istream &in, Record &info);
-  std::ostream &operator <<(std::ostream &out, Record &info);
+  std::ostream &operator <<(std::ostream &out, const Record &info);
 
   bool checkNumber(const std::string &number);
   bool checkMark(const std::string &mark);

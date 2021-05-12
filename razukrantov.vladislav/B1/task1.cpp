@@ -11,7 +11,7 @@
 void razukrantov::task1(const char* order)
 {
   std::function< bool(int, int) > compare = razukrantov::getSortOrder< int >(order);
-  std::vector<int> vector;
+  std::vector< int > vector;
   int x = 0;
   while (std::cin >> x)
   {
@@ -26,8 +26,8 @@ void razukrantov::task1(const char* order)
     return;
   }
 
-  std::vector<int> atVector(vector);
-  std::forward_list<int> forwardList(vector.begin(), vector.end());
+  std::vector< int > atVector(vector);
+  std::forward_list< int > forwardList(vector.begin(), vector.end());
 
   razukrantov::sort< razukrantov::bracketsAccess< int >, int >(vector, compare);
   razukrantov::print< razukrantov::bracketsAccess< int >, int >(vector, std::cout, " ");

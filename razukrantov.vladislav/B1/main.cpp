@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <stdexcept>
+#include <cstring>
 
 #include "tasks.hpp"
 #include "functions.hpp"
@@ -24,7 +25,7 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect arguments count in task1"));
       }
-      if (razukrantov::checkSpaces(argv[2]))
+      if (strchr(argv[2], ' ') != nullptr)
       {
         throw(std::invalid_argument("Argument with spaces"));
       }
@@ -35,9 +36,9 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect arguments count in task2"));
       }
-      if (razukrantov::checkSpaces(argv[2]))
+      if (strchr(argv[2], ' ') != nullptr)
       {
-        throw(std::invalid_argument("Argument with spaces"));
+          throw(std::invalid_argument("Argument with spaces"));
       }
       razukrantov::task2(argv[2]);
       break;
@@ -53,9 +54,9 @@ int main(int argc, char* argv[])
       {
         throw(std::invalid_argument("Incorrect arguments count in task4"));
       }
-      if (razukrantov::checkSpaces(argv[2]))
+      if (strchr(argv[2], ' ') != nullptr)
       {
-        throw(std::invalid_argument("Argument with spaces"));
+          throw(std::invalid_argument("Argument with spaces"));
       }
       if (!razukrantov::isNumber(argv[3]))
       {

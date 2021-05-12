@@ -27,11 +27,11 @@ namespace razukrantov
   }
 
   template < typename Strategy, typename T >
-  void print(typename Strategy::container& container, std::ostream& out, const char* delimiter)
+  void print(const typename Strategy::container& container, std::ostream& out, const char* delimiter)
   {
-    typename Strategy::iterator begin = Strategy::begin(container);
-    typename Strategy::iterator size = Strategy::end(container);
-    for (typename Strategy::iterator i = begin; i != size; i++)
+    typename Strategy::constIterator begin = Strategy::begin(container);
+    typename Strategy::constIterator size = Strategy::end(container);
+    for (typename Strategy::constIterator i = begin; i != size; i++)
     {
       out << Strategy::get(container, i) << delimiter;
     }
@@ -39,7 +39,6 @@ namespace razukrantov
 
   void fillRandom(double* array, int size);
   bool isNumber(const char* str);
-  bool checkSpaces(const char* str);
 }
 
 #endif

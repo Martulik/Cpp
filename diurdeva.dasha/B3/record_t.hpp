@@ -1,7 +1,7 @@
 #ifndef RECORD_T_HPP
 #define RECORD_T_HPP
 
-#include <iostream>
+#include <iosfwd>
 
 namespace diurdeva {
   struct record_t {

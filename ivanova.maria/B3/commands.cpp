@@ -3,10 +3,22 @@
 
 namespace iva = ivanova;
 
+namespace ivanova
+{
+  int doAdd(Bookmarks &bookmarks, std::stringstream &input);
+  int doStore(Bookmarks &bookmarks, std::stringstream &input);
+  int doInsert(Bookmarks &bookmarks, std::stringstream &input);
+  int doDelete(Bookmarks &bookmarks, std::stringstream &input);
+  int doShow(Bookmarks &bookmarks, std::stringstream &input);
+  int doMove(Bookmarks &bookmarks, std::stringstream &input);
+  Bookmarks::positionMove getPosition(std::string &str);
+  Bookmarks::InsertType getInsertType(std::string &str);
+}
+
 int iva::Commands::doCommand(std::string &command, iva::Bookmarks &bookmarks, std::stringstream &input)
 {
-  auto iter = commands.find(command);
-  if (iter != commands.end())
+  auto iter = commands_.find(command);
+  if (iter != commands_.end())
   {
     return (*iter->second)(bookmarks, input);
   }
@@ -15,6 +27,21 @@ int iva::Commands::doCommand(std::string &command, iva::Bookmarks &bookmarks, st
     invalidCommand(std::cout);
     return 1;
   }
+}
+
+ivanova::Commands::Commands(std::ostream &out):
+  out_(out),
+  commands_(
+    {
+      std::make_pair("add", doAdd),
+      std::make_pair("store", doStore),
+      std::make_pair("insert", doInsert),
+      std::make_pair("delete", doDelete),
+      std::make_pair("show", doShow),
+      std::make_pair("move", doMove)
+    })
+{
+
 }
 
 int iva::doAdd(iva::Bookmarks &bookmarks, std::stringstream &input)
@@ -45,7 +72,7 @@ int iva::doStore(iva::Bookmarks &bookmarks, std::stringstream &input)
     invalidCommand(std::cout);
     return {};
   }
-  pair data= {nameOfMark, newNameOfMark};
+  Record data = {{nameOfMark, newNameOfMark}};
   bookmarks.store(data);
   return 0;
 }
@@ -72,7 +99,7 @@ int iva::doInsert(iva::Bookmarks &bookmarks, std::stringstream &input)
     if (!position.empty() && (position == "before" || position == "after"))
     {
       auto beforeOrAfter = getInsertType(position);
-      bookmarks.insert(beforeOrAfter, mark, info);
+      bookmarks.insert(info, beforeOrAfter, mark);
     }
     else
     {
@@ -114,8 +141,8 @@ int iva::doShow(iva::Bookmarks &bookmarks, std::stringstream &input)
     {
       mark.pop_back();
     }
-    bookmarks.show(mark);
-    return 0;
+    auto iter = bookmarks.findMark(mark);
+    std::cout << *iter->second;
   }
   else
   {
@@ -199,6 +226,26 @@ iva::Bookmarks::InsertType iva::getInsertType(std::string &str)
     invalidStep(std::cout);
     return {};
   }
+}
+
+void ivanova::invalidCommand(std::ostream &out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void ivanova::empty(std::ostream &out)
+{
+  out << "<EMPTY>\n";
+}
+
+void ivanova::invalidBookmark(std::ostream &out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void ivanova::invalidStep(std::ostream &out)
+{
+  out << "<INVALID STEP>\n";
 }
 
 

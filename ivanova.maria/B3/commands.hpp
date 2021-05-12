@@ -10,29 +10,19 @@
 
 namespace ivanova
 {
-  using pair = std::pair< std::string, std::string >;
-  int doAdd(Bookmarks &bookmarks, std::stringstream &input);
-  int doStore(Bookmarks &bookmarks, std::stringstream &input);
-  int doInsert(Bookmarks &bookmarks, std::stringstream &input);
-  int doDelete(Bookmarks &bookmarks, std::stringstream &input);
-  int doShow(Bookmarks &bookmarks, std::stringstream &input);
-  int doMove(Bookmarks &bookmarks, std::stringstream &input);
-  Bookmarks::positionMove getPosition(std::string &str);
-  Bookmarks::InsertType getInsertType(std::string &str);
   class Commands
   {
   public:
+    explicit Commands(std::ostream& out);
     int doCommand(std::string &command, Bookmarks &bookmarks, std::stringstream &input);
   private:
-    const std::map< std::string, int (*)(Bookmarks &, std::stringstream &) > commands
-    {
-      std::make_pair("add", doAdd),
-      std::make_pair("store", doStore),
-      std::make_pair("insert", doInsert),
-      std::make_pair("delete", doDelete),
-      std::make_pair("show", doShow),
-      std::make_pair("move", doMove)
-    };
+    std::ostream &out_;
+    const std::map< std::string, int (*)(Bookmarks &, std::stringstream &) > commands_;
   };
+
+  void invalidCommand(std::ostream& out);
+  void empty(std::ostream &out);
+  void invalidBookmark(std::ostream &out);
+  void invalidStep(std::ostream &out);
 }
 #endif

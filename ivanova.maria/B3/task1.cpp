@@ -19,7 +19,7 @@ int iva::task1(std::istream &in, std::ostream &out)
     std::string command;
     std::stringstream input(str);
     input >> command;
-    Commands fnc;
+    Commands fnc(std::cout);
     fnc.doCommand(command, bookmark, input);
   }
   if (!std::cin.eof())

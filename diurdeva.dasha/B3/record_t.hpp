@@ -2,6 +2,7 @@
 #define RECORD_T_HPP
 
 #include <iosfwd>
+#include <string>
 
 namespace diurdeva {
   struct record_t {

@@ -1,5 +1,6 @@
 #include "task1.hpp"
 #include <sstream>
+#include <iostream>
 #include "comands.hpp"
 
 void diurdeva::task1()

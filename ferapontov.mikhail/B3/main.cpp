@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     }
     else if (taskNumber == 1)
     {
-      ferapontov::task1();
+      ferapontov::task1(std::cin, std::cout);
     }
     else
     {

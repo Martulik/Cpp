@@ -1,7 +1,9 @@
 #include "tasks.hpp"
-#include <iostream>
+#include <string>
 
-void ferapontov::task1()
+namespace fer = ferapontov;
+
+void fer::task1(std::istream& in, std::ostream& out)
 {
-  std::cout << "Hello World";
+  
 }

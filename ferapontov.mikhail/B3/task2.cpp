@@ -1,5 +1,4 @@
 #include "tasks.hpp"
-#include <iostream>
 
 void ferapontov::task2()
 {

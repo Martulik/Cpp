@@ -64,7 +64,7 @@ void lysenko::UsersInterface::createNewBookMarkHere(std::string oldMarkName, std
 void lysenko::UsersInterface::insertNoteNextToBookMark(bool before, std::string markName, std::string name, std::string number)
 {
   lysenko::Book::Note newNote{ name, number };
-  iteratorMark curr = findThisMark(markName); 
+  iteratorMark curr = findThisMark(markName);
   iteratorMark current = findThisMark("current");
   if ((current->contact == telephoneBook_.getBegin()) && (telephoneBook_.isEmpty()))
   {

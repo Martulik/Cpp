@@ -33,7 +33,7 @@ void lysenko::UsersInterface::addNumber(std::string name, std::string number)
   }
   else
   {
-    telephoneBook_.pushBack(note);;
+    telephoneBook_.pushBack(note);
   }
 }
 

@@ -8,21 +8,23 @@ namespace lab = pyatizbyantsev;
 
 namespace pyatizbyantsev
 {
-  using shapePtr = std::unique_ptr< lab::Shape >;
-
   void printCoordinatesFigure(const lab::Shape& figure)
   {
-      std::cout << "Now " << figure.getName() << " is located (" << lab::getX(figure)
-                << ", " << lab::getY(figure) << ")\n";
+    std::cout << figure.getName() << " is located (" << lab::getX(figure) << ", " << lab::getY(figure) << ")\n";
   }
 }
 
 int main()
 {
+  using shapePtr = std::unique_ptr< lab::Shape >;
+  using rectShape = lab::Rectangle;
+  using circShape = lab::Circle;
+  using composShape = lab::CompositeShape;
+
   std::cout << "Rectangle test:\n";
   lab::point_t posRectangle = {2.2, 8};
 
-  lab::shapePtr figureRectangle(std::make_unique< lab::Rectangle >(lab::Rectangle(6, 8, posRectangle)));
+  shapePtr figureRectangle(std::make_unique< rectShape >(rectShape(6, 8, posRectangle)));
   printCoordinatesFigure(*figureRectangle);
 
   figureRectangle->move(6, 9);
@@ -33,7 +35,7 @@ int main()
   std::cout << "Circle test:\n";
   lab::point_t posCircle = {1.3, 3.7};
 
-  lab::shapePtr figureCircle(std::make_unique< lab::Circle >(lab::Circle(3, posCircle)));
+  shapePtr figureCircle(std::make_unique< circShape >(circShape(3, posCircle)));
   printCoordinatesFigure(*figureCircle);
 
   lab::point_t newPosCircle = {55.55, 66.66};
@@ -43,8 +45,8 @@ int main()
   std::cout << "Area of circle is: " << figureCircle->getArea() << '\n';
 
   std::cout << "Composite Shape test:" << '\n';
-  lab::shapePtr composite1(std::make_unique< lab::CompositeShape >(lab::CompositeShape(std::move(figureRectangle), std::move(figureCircle))));
-  lab::shapePtr composite2(std::make_unique< lab::CompositeShape >(composite1->clone()));
+  shapePtr composite1(std::make_unique< composShape >(composShape(std::move(figureRectangle), std::move(figureCircle))));
+  shapePtr composite2(std::make_unique< composShape >(composite1->clone()));
   printCoordinatesFigure(*composite2);
 
   composite2->move(3, 0);

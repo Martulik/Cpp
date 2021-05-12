@@ -1,15 +1,16 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
 
-#include <string>
+#include <cstring>
 #include <vector>
+#include <random>
 
 namespace ferapontov
 {
-  void task1(const std::string& mode);
-  void task2(const std::string& file);
+  void task1(const char* mode);
+  void task2(const char* file);
   void task3();
-  void task4(const std::string& mode, int size);
+  void task4(const char* mode, int size);
 }
 
 #endif

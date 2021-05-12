@@ -1,38 +1,21 @@
 #include <iostream>
-#include <sstream>
+#include <random>
 
 #include "tasks.hpp"
+#include "functions.hpp"
 
 namespace fer = ferapontov;
 
-template< typename T >
-T readArg(std::string arg)
-{
-  T res;
-  std::stringstream in(arg);
-  if (!(in >> res))
-  {
-    std::cerr << "Invalid Argument";
-    std::exit(1);
-  }
-
-  in.get();
-  if(!in.eof()) {
-    std::cerr << "Extra symbols";
-    std::exit(-1);
-  }
-  return res;
-}
-
 int main(int argc, char *argv[])
 {
+  std::random_device rd;
   if (argc < 2)
   {
     std::cerr << "Invalid Arguments";
     std::exit(1);
   }
-
-  int TaskNumber = readArg< int >(argv[1]);
+  fer::checkNumber(argv[1]);
+  int TaskNumber = std::atoi(argv[1]);
 
   if (TaskNumber > 4 || TaskNumber < 1)
   {
@@ -46,7 +29,8 @@ int main(int argc, char *argv[])
       std::cerr << "Invalid Arguments";
       std::exit(1);
     }
-    std::string mode = readArg< std::string >(argv[2]);
+    fer::checkSpaces(argv[2]);
+    const char* mode = argv[2];
     fer::task1(mode);
   }
   else if (TaskNumber == 2)
@@ -56,7 +40,8 @@ int main(int argc, char *argv[])
       std::cerr << "Invalid Arguments";
       std::exit(1);
     }
-    std::string file = readArg< std::string >(argv[2]);
+    fer::checkSpaces(argv[2]);
+    const char* file = argv[2];
     fer::task2(file);
   }
   else if (TaskNumber == 3)
@@ -70,8 +55,10 @@ int main(int argc, char *argv[])
       std::cerr << "Invalid Arguments";
       std::exit(1);
     }
-    std::string mode = readArg< std::string >(argv[2]);
-    int size = readArg< int >(argv[3]);
+    fer::checkSpaces(argv[2]);
+    const char* mode = argv[2];
+    fer::checkNumber(argv[3]);
+    int size = std::atoi(argv[3]);
     fer::task4(mode, size);
   }
   return 0;

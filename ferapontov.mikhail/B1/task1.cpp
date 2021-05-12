@@ -5,7 +5,7 @@
 
 namespace fer = ferapontov;
 
-void fer::task1(const std::string& mode)
+void fer::task1(const char* mode)
 {
   std::function< bool(int, int) > cmp = getSortMode< int >(mode);
 

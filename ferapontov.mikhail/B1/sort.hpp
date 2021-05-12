@@ -2,7 +2,6 @@
 #define SORT_HPP
 
 #include <functional>
-#include <iostream>
 
 namespace ferapontov
 {
@@ -15,7 +14,7 @@ namespace ferapontov
       typename Strat::iterator_t j = i;
       for (j++; j != size; j++)
       {
-        if (cmp(Strat::element(arr, i), Strat::element(arr, j)))
+        if (!cmp(Strat::element(arr, i), Strat::element(arr, j)))
         {
           std::swap(Strat::element(arr, i), Strat::element(arr, j));
         }

@@ -1,22 +1,17 @@
 #include "tasks.hpp"
 
+#include <random>
+#include <iomanip>
+#include <memory>
 #include "functions.hpp"
 #include "sort.hpp"
 #include "strategy.hpp"
-#include <random>
-#include <iomanip>
 
-void ferapontov::task4(const std::string& mode, int size)
+void ferapontov::task4(const char* mode, int size)
 {
   std::function< bool(double, double) > cmp = getSortMode< double >(mode);
-  std::random_device rd;
-  std::uniform_int_distribution< > dist(-10, 10);
   std::vector< double > vec(size);
-  for (int i = 0; i < size; i++)
-  {
-    vec[i] = dist(rd) / 10.0;
-  }
-
+  ferapontov::fillRandom(vec.data(), size);
   print(vec);
   ferapontov::sort< double, ferapontov::at_access< double > >(vec, cmp);
   print(vec);

@@ -14,13 +14,8 @@ int main(int argc, char* argv[])
     {
       throw(std::invalid_argument("Incorrect arguments count"));
     }
-    if (!razukrantov::isNumber(argv[1]))
+    if (!strcmp(argv[1], "1"))
     {
-      throw(std::invalid_argument("Incorrect task number"));
-    }
-    switch (atoi(argv[1]))
-    {
-    case 1:
       if (argc != 3)
       {
         throw(std::invalid_argument("Incorrect arguments count in task1"));
@@ -30,33 +25,36 @@ int main(int argc, char* argv[])
         throw(std::invalid_argument("Argument with spaces"));
       }
       razukrantov::task1(argv[2]);
-      break;
-    case 2:
+    }
+    else if (!strcmp(argv[1], "2"))
+    {
       if (argc != 3)
       {
         throw(std::invalid_argument("Incorrect arguments count in task2"));
       }
       if (strchr(argv[2], ' ') != nullptr)
       {
-          throw(std::invalid_argument("Argument with spaces"));
+        throw(std::invalid_argument("Argument with spaces"));
       }
       razukrantov::task2(argv[2]);
-      break;
-    case 3:
+    }
+    else if (!strcmp(argv[1], "3"))
+    {
       if (argc != 2)
       {
         throw(std::invalid_argument("Incorrect arguments count in task3"));
       }
       razukrantov::task3();
-      break;
-    case 4:
+    }
+    else if (!strcmp(argv[1], "4"))
+    {
       if (argc != 4)
       {
         throw(std::invalid_argument("Incorrect arguments count in task4"));
       }
       if (strchr(argv[2], ' ') != nullptr)
       {
-          throw(std::invalid_argument("Argument with spaces"));
+        throw(std::invalid_argument("Argument with spaces"));
       }
       if (!razukrantov::isNumber(argv[3]))
       {
@@ -67,10 +65,10 @@ int main(int argc, char* argv[])
         throw(std::invalid_argument("Incorrect array size"));
       }
       razukrantov::task4(argv[2], atoi(argv[3]));
-      break;
-    default:
+    }
+    else
+    {
       throw(std::invalid_argument("incorrect number of task"));
-      break;
     }
   }
   catch (std::exception& err)

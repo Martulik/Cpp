@@ -24,11 +24,11 @@ int main(int argc, char *argv[])
     }
     else if (taskNum == 1)
     {
-      exitCode = iva::task1();
+      exitCode = iva::task1(std::cin, std::cout);
     }
     else
     {
-      exitCode = iva::task2();
+      exitCode = iva::task2(std::cout);
     }
   }
   else

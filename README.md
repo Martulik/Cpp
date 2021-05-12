@@ -144,24 +144,25 @@ Accepted Labs
 
 | Name                  | A1 | A3 | B1 | B3 | B4 | B5 |
 |-----------------------|----|----|----|----|----|----|
+| Almuhidat Ahmad       | ✓  |    |    |    |    |    |
 | Arteev Danil          | ✓  |    |    |    |    |    |
 | Borisova Ekaterina    | ✓  | ✓  | ✓  |    |    |    |
 | Diurdeva Dasha        | ✓  | ✓  | ✓  |    |    |    |
-| Doroshin Danil        | ✓  | ✓  | ✓  |    |    |    |
-| Dushechkina Viktoria  | ✓  | ✓  |    |    |    |    |
-| Ezerinia Marta        | ✓  | ✓  | ✓  |    |    |    |
+| Doroshin Danil        | ✓  | ✓  | ✓  | ✓  |    |    |
+| Dushechkina Viktoria  | ✓  | ✓  | ✓  |    |    |    |
+| Ezerinia Marta        | ✓  | ✓  | ✓  | ✓  |    |    |
 | Ferapontov Mikhail    | ✓  | ✓  | ✓  |    |    |    |
 | Ivanova Maria         | ✓  | ✓  | ✓  |    |    |    |
 | Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
 | Lysenko Aleksandra    | ✓  | ✓  | ✓  |    |    |    |
-| Murzakanov Islam      | ✓  | ✓  | ✓  |    |    |    |
+| Murzakanov Islam      | ✓  | ✓  | ✓  | ✓  |    |    |
 | Pochernin Vladislav   | ✓  | ✓  | ✓  |    |    |    |
 | Pozdnyakov Artemy     | ✓  | ✓  | ✓  |    |    |    |
 | Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
 | Razukrantov Vladislav | ✓  | ✓  |    |    |    |    |
 | Savchuk Aleksei       | ✓  | ✓  | ✓  |    |    |    |
-| Shilyaev Vladislav    | ✓  | ✓  | ✓  |    |    |    |
+| Shilyaev Vladislav    | ✓  | ✓  | ✓  | ✓  |    |    |
 | Shkurov Igor          | ✓  | ✓  | ✓  |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  16|  13|   0|   0|   0|
+| __Total__             |  21|  16|  14|   4|   0|   0|

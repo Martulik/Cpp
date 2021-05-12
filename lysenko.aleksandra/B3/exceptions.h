@@ -3,7 +3,7 @@
 
 #include <exception>
 
-class InvalidBookmark : public std::exception
+class InvalidBookmark: public std::exception
 {
 public:
   virtual const char* what() const noexcept
@@ -18,7 +18,7 @@ public:
 
 #include <exception>
 
-class InvalidStep : public std::exception
+class InvalidStep: public std::exception
 {
 public:
   virtual const char* what() const noexcept
@@ -33,7 +33,7 @@ public:
 
 #include <exception>
 
-class InvalidCommand : public std::exception
+class InvalidCommand: public std::exception
 {
 public:
   virtual const char* what() const noexcept

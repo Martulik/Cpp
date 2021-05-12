@@ -2,32 +2,37 @@
 #define B3_CONTAINER_FACTORIAL_HPP
 
 #include <iterator>
-#include <cassert>
+
 namespace ivanova
 {
   using bidiriter = std::bidirectional_iterator_tag;
   class Container
   {
   public:
+    using value_type = unsigned int;
     Container() = default;
     class Iterator: public std::iterator< bidiriter, size_t >
     {
     public:
-      Iterator(size_t index_);
+      Iterator();
       Iterator &operator ++();
       Iterator operator ++(int);
       Iterator &operator --();
       Iterator operator --(int);
-      const size_t &operator *() const;
+      const value_type &operator *() const;
+      const value_type *operator ->() const;
       bool operator ==(const Iterator &iter) const;
       bool operator !=(const Iterator &iter) const;
     private:
+      friend class Container;
       size_t index_;
-      size_t value_;
-      constexpr int factorial(size_t number) ;
+      value_type value_;
+      Iterator(size_t index, value_type value);
     };
     Iterator begin() const;
     Iterator end() const;
   };
+
+  constexpr Container::value_type factorial(size_t number);
 }
 #endif

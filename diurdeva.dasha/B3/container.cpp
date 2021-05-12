@@ -1,4 +1,5 @@
 #include "container.hpp"
+#include <cassert>
 
 using ValueType = diurdeva::Container::ValueType;
 

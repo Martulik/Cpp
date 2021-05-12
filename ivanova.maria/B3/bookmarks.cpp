@@ -1,15 +1,18 @@
-#include <algorithm>
+#include "commands.hpp"
 #include "bookmarks.hpp"
+
+#include <algorithm>
 
 namespace iva = ivanova;
 using iterator = std::map< std::string, iva::PhoneBook::iter >::iterator;
 
-iva::Bookmarks::Bookmarks()
+iva::Bookmarks::Bookmarks():
+  phoneBook_(),
+  bookmarks_({{"current", phoneBook_.begin()}})
 {
-  bookmarks_["current"] = phoneBook_.begin();
 }
 
-void iva::Bookmarks::add(const ivanova::Record &record)
+void iva::Bookmarks::add(const iva::Record &record)
 {
   if (!isEmpty())
   {
@@ -22,16 +25,16 @@ void iva::Bookmarks::add(const ivanova::Record &record)
   }
 }
 
-void iva::Bookmarks::store(const std::pair < std::string, std::string > &data)
+void iva::Bookmarks::store(const iva::Record &data)
 {
-  iterator iter = bookmarks_.find(data.first);
+  iterator iter = bookmarks_.find(data.data.first);
   if (iter != bookmarks_.end())
   {
-    bookmarks_.emplace(data.second, iter->second);
+    bookmarks_.emplace(data.data.second, iter->second);
   }
 }
 
-void iva::Bookmarks::insert(Bookmarks::InsertType dir, const std::string &markName, const iva::Record &rec)
+void iva::Bookmarks::insert(const iva::Record &rec, Bookmarks::InsertType dir, const std::string &markName)
 {
   iterator iter = bookmarks_.find(markName);
   if (iter != bookmarks_.end())
@@ -80,7 +83,7 @@ void iva::Bookmarks::deleteMark(const std::string &markName)
 
 void iva::Bookmarks::show(const std::string &markName)
 {
-  iterator iter = bookmarks_.find(markName);
+  auto iter = bookmarks_.find(markName);
   if (iter == bookmarks_.end())
   {
     invalidBookmark(std::cout);
@@ -129,22 +132,7 @@ bool iva::Bookmarks::isEmpty()
   return phoneBook_.isEmpty();
 }
 
-void ivanova::invalidCommand(std::ostream &out)
+ivanova::Bookmarks::iter ivanova::Bookmarks::findMark(const std::string &name) const
 {
-  out << "<INVALID COMMAND>\n";
-}
-
-void ivanova::empty(std::ostream &out)
-{
-  out << "<EMPTY>\n";
-}
-
-void ivanova::invalidBookmark(std::ostream &out)
-{
-  out << "<INVALID BOOKMARK>\n";
-}
-
-void ivanova::invalidStep(std::ostream &out)
-{
-  out << "<INVALID STEP>\n";
+  return bookmarks_.find(name);
 }

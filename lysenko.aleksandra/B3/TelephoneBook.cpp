@@ -65,11 +65,22 @@ void lysenko::Book::insert(iterator& curr, const Note newNote, bool before)
   }
   else
   {
-    iterator nextOne = goToNextNote(curr);
-    content_.insert(nextOne, newNote);
+    if (curr != content_.begin())
+    {
+      iterator nextOne = goToNextNote(curr);
+      content_.insert(nextOne, newNote);
+    }
+    else
+    {
+      content_.push_back(newNote);
+    }
   }
 }
 
+size_t lysenko::Book::size()
+{
+  return content_.size();
+}
 void lysenko::Book::deleteNote(iterator& curr)
 {
   content_.erase(curr);

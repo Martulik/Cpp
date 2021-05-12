@@ -35,8 +35,7 @@ static std::string readString(std::istream& in)
     {
       result.back() = '\"';
     }
-  } 
-  while (in && !result.empty() && (result.back() == '\"'));
+  } while (in && !result.empty() && (result.back() == '\"'));
   return result;
 }
 
@@ -49,70 +48,55 @@ bool lysenko::isDigitsOnly(std::string& number)
   for (long unsigned int i = 0; i < number.length();++i)
   {
     if ((number[i] < '0') || (number[i] > '9'))
+    {
       return 0;
+    }
   }
-
   return 1;
 }
+
 bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
 {
-  if ((!name.empty())&&(isDigitsOnly(number)))
+  if ((!name.empty()) && (isDigitsOnly(number)))
   {
     return 1;
   }
   else
   {
-    if (name.empty())
-    {
-      std::cerr << "Name can not be empty \n";
-      return 0;
-    }
-
-    std::cerr << "Telephone's number must be a consequence of numbers \n";
+    InvalidCommand error;
+    std::cout << error.what() << "\n";
     return 0;
   }
 }
 
 bool lysenko::checkIfThisMarkNameContains(std::string& markName, lysenko::UsersInterface& myInterface)
 {
-  try
+  UsersInterface::iteratorMark newBookMark = myInterface.findThisMark(markName);
+  if (newBookMark == myInterface.getEndOfBookMarks())
   {
-    UsersInterface::iteratorMark newBookMark = myInterface.findThisMark(markName);
-    if (newBookMark == myInterface.getEndOfBookMarks())
-    {
-      InvalidBookmark error;
-    }
-    return 1;
-  }
-  catch (InvalidBookmark& err)
-  {
-    std::cout << err.what() << "\n";
+    InvalidBookmark error;
+    std::cout << error.what() << "\n";
     return 0;
   }
+  return 1;
 }
 
 void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterface& myInterface)
 {
-  try
+  std::istringstream in{ inputCommand };
+  std::string command;
+
+  in >> command >> std::ws;
+  iteratorInt iter = commandsMap.find(command);
+
+  if (iter == commandsMap.end())
   {
-    std::istringstream in{ inputCommand };
-    std::string command;
-
-    in >> command >> std::ws;
-    iteratorInt iter = commandsMap.find(command);
-
-    if (iter == commandsMap.end())
-    {
-      InvalidCommand error;
-    }
-
-    iter->second(in, myInterface);
-  }
-  catch (InvalidCommand& err)
-  {
-    std::cout << err.what() << "\n";
+    InvalidCommand error;
+    std::cout << error.what() << "\n";
     return;
-  };
+  }
+
+  iter->second(in, myInterface);
 }
 
 void lysenko::executeAdd(std::istream& input, lysenko::UsersInterface& myInterface)
@@ -134,7 +118,8 @@ void lysenko::executeStore(std::istream& input, lysenko::UsersInterface& myInter
   std::string oldMarkName;
   std::string newMarkName;
 
-  input >> oldMarkName >> std::ws >> newMarkName;
+  input >> std::ws >> oldMarkName;
+  input >> std::ws >> newMarkName;
 
   if (checkIfThisMarkNameContains(oldMarkName, myInterface))
   {
@@ -144,13 +129,16 @@ void lysenko::executeStore(std::istream& input, lysenko::UsersInterface& myInter
 
 void lysenko::executeInsert(std::istream& input, lysenko::UsersInterface& myInterface)
 {
-  bool beforeBool;
+  bool beforeBool = 1;
   std::string before;
   std::string markName;
   std::string number;
   std::string name;
 
-  input >> std::ws >> before >> std::ws >> markName >> std::ws >> number >> std::ws >> name;
+  input >> std::ws >> before;
+  input >> std::ws >> markName;
+  input >> std::ws >> number;
+  name = readString(input);
 
   if ((checkIfThisMarkNameContains(markName, myInterface) && (checkCorrectNumberAndName(name, number))))
   {
@@ -164,7 +152,9 @@ void lysenko::executeInsert(std::istream& input, lysenko::UsersInterface& myInte
     }
     else
     {
-      return;///мб здесь надо выбрасывать INVALID_COMMAND
+      InvalidCommand error;
+      std::cout << error.what() << "\n";
+      return;
     }
     myInterface.insertNoteNextToBookMark(beforeBool, markName, name, number);
   }
@@ -174,7 +164,7 @@ void lysenko::executeDelete(std::istream& input, lysenko::UsersInterface& myInte
 {
   std::string markName;
 
-  input >> markName;
+  input >> std::ws >> markName;
 
   if (checkIfThisMarkNameContains(markName, myInterface))
   {
@@ -192,7 +182,7 @@ void lysenko::executeShow(std::istream& input, lysenko::UsersInterface& myInterf
   {
     std::string markName;
 
-    input >> markName;
+    input >> std::ws >> markName;
 
     if (checkIfThisMarkNameContains(markName, myInterface))
     {
@@ -206,44 +196,39 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
   std::string markName;
   std::string steps;
 
-  input >> markName >> std::ws >> steps;
+  input >> std::ws >> markName;
+  input >> std::ws >> steps;
 
   if (checkIfThisMarkNameContains(markName, myInterface))
   {
-    try
+    if (steps == "first")
     {
-      if (steps == "first")
-      {
-        myInterface.removeThisBookMark(markName, 1, 0, 0, steps);
-      }
+      myInterface.removeThisBookMark(markName, 1, 0, 0, steps);
+    }
 
-      else if (steps == "last")
-      {
-        myInterface.removeThisBookMark(markName, 0, 1, 0, steps);
-      }
+    else if (steps == "last")
+    {
+      myInterface.removeThisBookMark(markName, 0, 1, 0, steps);
+    }
 
-      else if (std::stoi(steps))
+    else if (std::stoi(steps))
+    {
+      int stepsInt = std::stoi(steps);
+      if (stepsInt > 0)
       {
-        int stepsInt = std::stoi(steps);
-        if (stepsInt > 0)
-        {
-          myInterface.removeThisBookMark(markName, 0, 0, 1, steps);
-        }
-        else
-        {
-          myInterface.removeThisBookMark(markName, 0, 0, 0, steps);
-        }
+        myInterface.removeThisBookMark(markName, 0, 0, 1, steps);
       }
-
       else
       {
-        InvalidStep error;
+        myInterface.removeThisBookMark(markName, 0, 0, 0, steps);
       }
     }
-    catch (InvalidStep& err)
+
+    else
     {
-      std::cout << err.what() << "\n";
+      InvalidStep error;
+      std::cout << error.what() << "\n";
       return;
-    };
+    }
   }
 }

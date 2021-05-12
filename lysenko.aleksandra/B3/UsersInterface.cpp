@@ -58,20 +58,61 @@ void lysenko::UsersInterface::insertNoteNextToBookMark(bool before, std::string 
   telephoneBook_.insert(curr->contact, {name, number}, before);
 }
 
+bool lysenko::UsersInterface::checkItIsOnlyMarked(lysenko::UsersInterface::iteratorMark curr)
+{
+  int amount = 0;
+  iteratorMark check = bookMarks_.begin();
+  iterator contact= curr->contact;
+  for (size_t i = 0; i < bookMarks_.size();++i)
+  {
+    if (check->contact == contact)
+    {
+      amount += 1;
+    }
+    check++;
+  }
+  if (amount != 1)
+  {
+    return 0;
+  }
+  return 1;
+}
+
 void lysenko::UsersInterface::deleteThisNote(std::string markName)
 {
   iteratorMark curr = findThisMark(markName);
+  lysenko::Book::iterator newContact;
   if (curr->contact != telephoneBook_.goToPrevNote(telephoneBook_.getEnd()))
   {
-    const lysenko::Book::iterator newContact = telephoneBook_.goToNextNote(curr->contact);
+    newContact = telephoneBook_.goToNextNote(curr->contact);
+  }
+  else
+  {
+    newContact = telephoneBook_.goToPrevNote(curr->contact);
+  }
+  if (checkItIsOnlyMarked(curr))
+  {
     telephoneBook_.deleteNote(curr->contact);
     curr->contact = newContact;
   }
   else
   {
-    const lysenko::Book::iterator newContact = telephoneBook_.goToPrevNote(curr->contact);
+    iteratorMark check = bookMarks_.begin();
+    for (size_t i = 0; i < bookMarks_.size() ;++i)
+    {
+      if (check->contact == curr->contact)
+      {
+        if (i != bookMarks_.size() - 1)
+        {
+          check->contact = telephoneBook_.goToNextNote(check->contact);
+        }
+        else
+        {
+          check->contact = telephoneBook_.goToPrevNote(check->contact);
+        }
+      }
+    }
     telephoneBook_.deleteNote(curr->contact);
-    curr->contact = newContact;
   }
 }
 

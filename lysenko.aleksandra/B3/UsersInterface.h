@@ -25,6 +25,7 @@ namespace lysenko
 
     iteratorMark getEndOfBookMarks();
     bool telephoneBookIsEmpty();
+    bool checkItIsOnlyMarked(iteratorMark curr);
 
     void addNumber(std::string name, std::string number);
     void createNewBookMarkHere(std::string oldMarkName, std::string newMarkName);

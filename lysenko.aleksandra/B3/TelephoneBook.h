@@ -22,6 +22,8 @@ namespace lysenko
     iterator getBegin();
     iterator getEnd();
 
+    size_t size();
+
     iterator goToNextNote(iterator curr);
     iterator goToPrevNote(iterator curr);
     iterator goTo(iterator curr,bool forward, int amount);

@@ -65,14 +65,14 @@ void lysenko::Book::insert(iterator& curr, const Note newNote, bool before)
   }
   else
   {
-    if (curr != content_.begin())
+    if ((curr == content_.begin()) && (content_.empty()))
     {
-      iterator nextOne = goToNextNote(curr);
-      content_.insert(nextOne, newNote);
+      content_.push_back(newNote);
     }
     else
     {
-      content_.push_back(newNote);
+      iterator nextOne = goToNextNote(curr);
+      content_.insert(nextOne, newNote);
     }
   }
 }

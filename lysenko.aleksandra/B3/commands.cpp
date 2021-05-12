@@ -184,7 +184,10 @@ void lysenko::executeShow(std::istream& input, lysenko::UsersInterface& myInterf
     {
       std::cout << "<EMPTY>" << "\n";
     }
-    myInterface.showThisNote(markName);
+    else
+    {
+      myInterface.showThisNote(markName);
+    }
   }
 }
 

@@ -105,14 +105,24 @@ void lysenko::UsersInterface::deleteThisNote(std::string markName)
   {
     newContact = telephoneBook_.goToNextNote(curr->contact);
   }
-  else
+  else if (curr->contact != telephoneBook_.getBegin())
   {
     newContact = telephoneBook_.goToPrevNote(curr->contact);
   }
+
   if (checkItIsOnlyMarked(curr))
   {
-    telephoneBook_.deleteNote(curr->contact);
-    curr->contact = newContact;
+    if (curr->contact == telephoneBook_.getBegin())
+    {
+      telephoneBook_.deleteNote(curr->contact);
+      newContact = telephoneBook_.getBegin();
+      curr->contact = newContact;
+    }
+    else
+    {
+      telephoneBook_.deleteNote(curr->contact);
+      curr->contact = newContact;
+    }
   }
   else
   {

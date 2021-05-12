@@ -1,13 +1,24 @@
 #include "container.hpp"
 #include <cassert>
 
-namespace borisova
+namespace lab = borisova;
+using unInt = lab::Container::unInt;
+
+constexpr unInt minimum = 1;
+constexpr unInt maximum = 11;
+
+constexpr unInt factorial(unInt index)
 {
-  constexpr size_t minimum = 1;
-  constexpr size_t maximum = 11;
+  unInt temp = 1;
+  for (unInt i = 1; i <= index; i++)
+  {
+    temp *= i;
+  }
+  return temp;
 }
 
-namespace lab = borisova;
+constexpr unInt minValue = factorial(minimum);
+constexpr unInt maxValue = factorial(maximum);
 
 lab::Container::Iterator::Iterator():
   index_(0),
@@ -15,22 +26,20 @@ lab::Container::Iterator::Iterator():
 {
 }
 
-lab::Container::Iterator::Iterator(size_t index):
+lab::Container::Iterator::Iterator(unInt index):
   index_(index),
   value_(factorial(index))
 {
 }
 
-lab::Container::Iterator lab::Container::begin() const
+lab::Container::Iterator lab::Container::begin() const noexcept
 {
-  Iterator iter;
-  return iter.getBegin();
+  return { minimum };
 }
 
-lab::Container::Iterator lab::Container::end() const
+lab::Container::Iterator lab::Container::end() const noexcept
 {
-  Iterator iter;
-  return iter.getEnd();
+  return { maximum };
 }
 
 lab::Container::Iterator& lab::Container::Iterator::operator++()
@@ -73,31 +82,12 @@ bool lab::Container::Iterator::operator!=(const Iterator& src) const
   return !(*this == src);
 }
 
-size_t& lab::Container::Iterator::operator*()
+const unInt& lab::Container::Iterator::operator*()
 {
   return value_;
 }
 
-size_t* lab::Container::Iterator::operator->()
+const unInt* lab::Container::Iterator::operator->()
 {
   return std::addressof(value_);
-}
-
-lab::Container::Iterator lab::Container::Iterator::getBegin() const
-{
-  return Iterator(minimum);
-}
-lab::Container::Iterator lab::Container::Iterator::getEnd() const
-{
-  return Iterator(maximum);
-}
-
-constexpr size_t lab::Container::Iterator::factorial(size_t index)
-{
-  size_t temp = 1;
-  for (size_t i = 1; i <= index; i++)
-  {
-    temp *= i;
-  }
-  return temp;
 }

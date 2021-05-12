@@ -1,5 +1,6 @@
 #include "interface.hpp"
 #include <iostream>
+#include <cassert>
 #include <list>
 #include <map>
 #include "book.hpp"
@@ -7,9 +8,10 @@
 
 namespace lab = borisova;
 
-lab::Interface::Interface()
+lab::Interface::Interface():
+  phoneNotes_(),
+  notes_({ { "current", phoneNotes_.begin() } })
 {
-  notes_["current"] = phoneNotes_.begin();
 }
 
 void lab::Interface::add(const Note& src)
@@ -21,27 +23,17 @@ void lab::Interface::add(const Note& src)
   }
 }
 
-void lab::Interface::store(const std::string& oldMark, const std::string& newMark, std::ostream& out)
+void lab::Interface::store(const std::string& oldMark, const std::string& newMark)
 {
-  itr iter = notes_.find(oldMark);
-  if (iter == notes_.end())
-  {
-    lab::invalidBookMark(out);
-  }
-  else
-  {
-    notes_[newMark] = iter->second;
-  }
+  constItr iter = notes_.find(oldMark);
+  assert(iter != notes_.end());
+  notes_[newMark] = iter->second;
 }
 
-void lab::Interface::insertBefore(const std::string& bookMark, const Note& src, std::ostream& out)
+void lab::Interface::insertBefore(const std::string& bookMark, const Note& src)
 {
-  itr iter = notes_.find(bookMark);
-  if (iter == notes_.end())
-  {
-    lab::invalidBookMark(out);
-    return;
-  }
+  constItr iter = notes_.find(bookMark);
+  assert(iter != notes_.end());
   if (iter->second == phoneNotes_.end())
   {
     add(src);
@@ -49,14 +41,10 @@ void lab::Interface::insertBefore(const std::string& bookMark, const Note& src, 
   phoneNotes_.insertBefore(iter->second, src);
 }
 
-void lab::Interface::insertAfter(const std::string& bookMark, const Note& src, std::ostream& out)
+void lab::Interface::insertAfter(const std::string& bookMark, const Note& src)
 {
-  itr iter = notes_.find(bookMark);
-  if (iter == notes_.end())
-  {
-    lab::invalidBookMark(out);
-    return;
-  }
+  constItr iter = notes_.find(bookMark);
+  assert(iter != notes_.end());
   if (iter->second == phoneNotes_.end())
   {
     add(src);
@@ -66,11 +54,11 @@ void lab::Interface::insertAfter(const std::string& bookMark, const Note& src, s
 
 void lab::Interface::deleteMark(const std::string& bookMark)
 {
-  itr iter = notes_.find(bookMark);
+  constItr iter = notes_.find(bookMark);
   if (iter != notes_.end())
   {
-    Book::iterator delIter = iter->second;
-    for (itr i = notes_.begin(); i != notes_.end(); ++i)
+    Book::constItr delIter = iter->second;
+    for (auto i = notes_.begin(); i != notes_.end(); ++i)
     {
       if (i->second == delIter)
       {
@@ -89,75 +77,38 @@ void lab::Interface::deleteMark(const std::string& bookMark)
 
 }
 
-void lab::Interface::show(const std::string& bookMark, std::ostream& out)
+void lab::Interface::move(const std::string& bookmark, const int n)
 {
-  itr iteratr = notes_.find(bookMark);
-  if (iteratr != notes_.end())
-  {
-    if (phoneNotes_.empty())
-    {
-      lab::empty(out);
-    }
-    else
-    {
-      phoneNotes_.viewCurrent(iteratr->second, out);
-    }
-  }
-  else
-  {
-    lab::invalidBookMark(out);
-  }
+  constItr iter = notes_.find(bookmark);
+  assert(iter != notes_.end());
+  std::advance(iter->second, n);
 }
 
-void lab::Interface::move(const std::string& bookmark, const int n, std::ostream& out)
+void lab::Interface::move(const std::string& bookmark, const std::string step)
 {
-  itr iter = notes_.find(bookmark);
-  if (iter == notes_.end())
+  constItr iter = findMark(bookmark);
+  assert(iter != notes_.end());
+  if (step == "first")
   {
-    lab::invalidBookMark(out);
+    iter->second = phoneNotes_.begin();
   }
-  else
+  else if (step == "last")
   {
-    std::advance(iter->second, n);
+    iter->second = std::prev(phoneNotes_.end());
   }
 }
 
-void lab::Interface::move(const std::string& bookmark, const std::string step, std::ostream& out)
+lab::Interface::constItr lab::Interface::findMark(const std::string mark) const
 {
-  itr iter = notes_.find(bookmark);
-  if (iter == notes_.end())
-  {
-    lab::invalidBookMark(out);
-  }
-  else
-  {
-    if (step == "first")
-    {
-      iter->second = phoneNotes_.begin();
-    }
-    else if (step == "last")
-    {
-      iter->second = --phoneNotes_.end();
-    }
-  }
+  return notes_.find(mark);
 }
 
-void lab::invalidCommand(std::ostream& out)
+lab::Interface::constItr lab::Interface::getEnd() const
 {
-  out << "<INVALID COMMAND>\n";
+  return notes_.end();
 }
 
-void lab::invalidBookMark(std::ostream& out)
+bool lab::Interface::isEmpty()
 {
-  out << "<INVALID BOOKMARK>\n";
-}
-
-void lab::invalidStep(std::ostream& out)
-{
-  out << "<INVALID STEP>\n";
-}
-
-void lab::empty(std::ostream& out)
-{
-  out << "<EMPTY>\n";
+  return phoneNotes_.empty();
 }

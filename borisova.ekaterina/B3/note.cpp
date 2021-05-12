@@ -3,15 +3,14 @@
 
 namespace lab = borisova;
 
-bool lab::correctName(std::string& name)
+std::string lab::fixName(std::string& name)
 {
   if (name.empty() || name.front() != '\"' || name.back() != '\"')
   {
-    return false;
+    return "";
   }
   name.erase(name.begin());
   name.erase(--name.end());
-
   for (size_t i = 0; i < name.length(); i++)
   {
     if (name[i] == '\\')
@@ -19,14 +18,10 @@ bool lab::correctName(std::string& name)
       name.erase(i, 1);
     }
   }
-  if (name.empty())
-  {
-    return false;
-  }
-  return true;
+  return name;
 }
 
-bool lab::correctNumder(std::string& number)
+bool lab::correctNumder(const std::string& number)
 {
   if (number.length() < 1)
   {

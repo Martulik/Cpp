@@ -11,8 +11,8 @@ namespace borisova
     std::string number_;
   };
 
-  bool correctName(std::string& name);
-  bool correctNumder(std::string& number);
+  std::string fixName(std::string& name);
+  bool correctNumder(const std::string& number);
   std::ostream& operator<<(std::ostream& out, const Note& iter);
 }
 

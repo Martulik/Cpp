@@ -1,21 +1,17 @@
 #include "book.hpp"
-#include <iostream>
+#include <iosfwd>
 #include "note.hpp"
 
 namespace lab = borisova;
-void lab::Book::viewCurrent(iterator iter, std::ostream& out) const
-{
-  out << *iter;
-}
 
-lab::Book::iterator lab::Book::insertAfter(iterator iter, const Note& src)
+lab::Book::constItr lab::Book::insertAfter(constItr iter, const Note& src)
 {
   iter++;
   phoneBook_.insert(iter, src);
   return iter;
 }
 
-lab::Book::iterator lab::Book::insertBefore(iterator iter, const Note& src)
+lab::Book::constItr lab::Book::insertBefore(constItr iter, const Note& src)
 {
   phoneBook_.insert(iter, src);
   return iter;
@@ -26,7 +22,7 @@ void lab::Book::insertBack(const Note& src)
   phoneBook_.push_back(src);
 }
 
-void lab::Book::deleteNote(iterator iter)
+void lab::Book::deleteNote(constItr iter)
 {
   phoneBook_.erase(iter);
 }
@@ -36,12 +32,12 @@ bool lab::Book::empty() const
   return phoneBook_.empty();
 }
 
-lab::Book::iterator lab::Book::begin()
+lab::Book::constItr lab::Book::begin()
 {
   return phoneBook_.begin();
 }
 
-lab::Book::iterator lab::Book::end()
+lab::Book::constItr lab::Book::end()
 {
   return phoneBook_.end();
 }

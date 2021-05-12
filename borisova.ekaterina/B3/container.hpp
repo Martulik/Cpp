@@ -8,34 +8,30 @@ namespace borisova
   class Container
   {
   public:
-
+    using unInt = unsigned int;
     class Iterator;
     Container() = default;
-    Iterator begin() const;
-    Iterator end() const;
-  };
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, unInt >
+    {
+    public:
+      Iterator();
+      Iterator& operator++();
+      Iterator operator++(int);
+      Iterator& operator--();
+      Iterator operator--(int);
+      bool operator==(const Iterator& src) const;
+      bool operator!=(const Iterator& src) const;
+      const unInt& operator*();
+      const unInt* operator->();
 
-  class Container::Iterator: public std::iterator< std::bidirectional_iterator_tag, size_t >
-  {
-  public:
-    Iterator();
-    Iterator& operator++();
-    Iterator operator++(int);
-    Iterator& operator--();
-    Iterator operator--(int);
-    bool operator==(const Iterator& src) const;
-    bool operator!=(const Iterator& src) const;
-    size_t& operator*();
-    size_t* operator->();
-    Iterator getBegin() const;
-    Iterator getEnd() const;
-
-  private:
-    Iterator(size_t index);
-    size_t index_;
-    size_t value_;
-    constexpr size_t factorial(size_t index);
+    private:
+      friend class Container;
+      Iterator(unInt index);
+      unInt index_;
+      unInt value_;
+    };
   };
 }
-
 #endif

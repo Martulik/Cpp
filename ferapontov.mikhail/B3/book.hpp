@@ -4,25 +4,28 @@
 #include <utility>
 #include <string>
 #include <list>
+#include "data.hpp"
 
 namespace ferapontov
 {
-  using data = std::pair< std::string, int>;
-  using iter = std::list< data >::iterator;
+  using iter = std::list< data_t >::iterator;
   class PhoneBook
   {
     public:
-      data& showCurrent(iter it) const;
-      iter next() const;
-      iter previous() const;
-      void insertPrev(const data& phoneNote);
-      void insertNext(const data& phoneNote);
-      void replace(const data& phoneNote);
-      void deleteNote(data& PhoneNote);
-      void pushBack(data& PhoneNote);
+      data_t showCurrent(std::ostream out, iter it) const;
+
+      void insertPrev(iter it, const data_t& phoneNote);
+      void insertNext(iter it, const data_t& phoneNote);
+
+      void replace(const data_t& phoneNote);
+
+      void pushBack(data_t& PhoneNote);
+
       iter move(iter it, int steps) const;
+      iter next(iter it) const;
+      iter prev(iter it) const;
     private:
-      std::list< data > notes;
+      std::list< data_t > notes_;
   };
 }
 

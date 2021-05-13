@@ -143,6 +143,7 @@ int iva::doShow(iva::Bookmarks &bookmarks, std::stringstream &input, std::ostrea
     }
     auto iter = bookmarks.findMark(mark);
     out << *iter->second;
+    return 0;
   }
   else
   {

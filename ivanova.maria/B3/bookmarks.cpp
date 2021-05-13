@@ -1,7 +1,6 @@
-#include "commands.hpp"
 #include "bookmarks.hpp"
-
 #include <algorithm>
+#include "commands.hpp"
 
 namespace iva = ivanova;
 using iterator = std::map< std::string, iva::PhoneBook::iter >::iterator;

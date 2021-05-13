@@ -48,6 +48,6 @@ int main(int argc, char* argv[])
     std::cerr << error.what() << "\n";
     return 1;
   }
-  std::cerr << "...and here we go again\n";
+
   return 0;
 }

@@ -8,7 +8,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
   if (!in.fail())
   {
     in >> separator;
-    if (in.fail() && separator != ',')
+    if (in.fail() || separator != ',')
     {
       std::cerr << "Invalid separator";
       exit(1);
@@ -22,7 +22,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
         exit(1);
       }
       in >> separator;
-      if (in.fail() && separator != ',')
+      if (in.fail() || separator != ',')
       {
         std::cerr << "Invalid separator";
         exit(1);

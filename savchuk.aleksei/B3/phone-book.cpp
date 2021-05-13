@@ -1,12 +1,10 @@
 #include "phone-book.hpp"
 
-#include <ostream>
-
 namespace lab = savchuk;
 
-void lab::PhoneBook::show(std::ostream& os, lab::PhoneBook::iterator it) const
+const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::iterator it) const
 {
-  os << *it;
+  return *it;
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::moveNext(lab::PhoneBook::iterator it)

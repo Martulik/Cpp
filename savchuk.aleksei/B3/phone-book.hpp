@@ -13,7 +13,7 @@ namespace savchuk
     public:
       using iterator = std::list< contact_t >::iterator;
 
-      void show(std::ostream& os, iterator it) const;
+      const contact_t& show(iterator it) const;
       iterator moveNext(iterator it);
       iterator movePrev(iterator it);
       iterator add(iterator it, const contact_t& src);

@@ -74,7 +74,7 @@ void lab::UserInterface::remove(const std::string& markName)
 void lab::UserInterface::show(std::ostream& os, const std::string& markName)
 {
   checkMark(markName);
-  phoneBook_.show(os, bookmarks_[markName]);
+  os << phoneBook_.show(bookmarks_[markName]);
 }
 
 void lab::UserInterface::move(const std::string& markName, const std::string& steps)

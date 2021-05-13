@@ -42,7 +42,7 @@ std::ostream& diurdeva::operator<<(std::ostream& cout, const DataStruct& data)
   return cout;
 }
 
-bool diurdeva::compare(DataStruct& lhs, DataStruct& rhs)
+bool diurdeva::compare(const DataStruct& lhs, const DataStruct& rhs)
 {
   if (lhs.key1 != rhs.key1)
   {

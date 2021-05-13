@@ -13,6 +13,6 @@ namespace diurdeva {
 
   std::istream& operator >>(std::istream& input, DataStruct& dataStruct);
   std::ostream& operator <<(std::ostream& output, const DataStruct& dataStruct);
-  bool compare(DataStruct& lhs, DataStruct& rhs);
+  bool compare(const DataStruct& lhs, const DataStruct& rhs);
 }
 #endif

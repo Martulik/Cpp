@@ -2,12 +2,12 @@
 
 namespace lab = savchuk;
 
-const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::iterator it) const
+const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::const_iterator it) const
 {
   return *it;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::add(lab::PhoneBook::iterator it, const lab::contact_t& contact)
+lab::PhoneBook::iterator lab::PhoneBook::add(lab::PhoneBook::const_iterator it, const lab::contact_t& contact)
 {
   return data_.insert(it, contact);
 }
@@ -20,7 +20,7 @@ lab::PhoneBook::iterator lab::PhoneBook::replace(lab::PhoneBook::iterator it, co
 
 lab::PhoneBook::iterator lab::PhoneBook::add(const lab::contact_t& contact)
 {
-  return add(data_.end(), contact);
+  return add(data_.cend(), contact);
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::move(lab::PhoneBook::iterator it, int steps)
@@ -52,7 +52,7 @@ lab::PhoneBook::iterator lab::PhoneBook::move(lab::PhoneBook::iterator it, int s
   return it;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::remove(lab::PhoneBook::iterator it)
+lab::PhoneBook::iterator lab::PhoneBook::remove(lab::PhoneBook::const_iterator it)
 {
   return data_.erase(it);
 }
@@ -75,4 +75,14 @@ lab::PhoneBook::iterator lab::PhoneBook::begin()
 lab::PhoneBook::iterator lab::PhoneBook::end()
 {
   return data_.end();
+}
+
+lab::PhoneBook::const_iterator lab::PhoneBook::cbegin() const
+{
+  return data_.cbegin();
+}
+
+lab::PhoneBook::const_iterator lab::PhoneBook::cend() const
+{
+  return data_.cend();
 }

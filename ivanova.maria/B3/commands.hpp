@@ -14,11 +14,13 @@ namespace ivanova
   {
   public:
     explicit Commands(std::ostream& out);
-    int doCommand(std::string &command, std::stringstream &input);
+    using comm = std::function< int() >;
+    comm doCommand(std::string &command, std::stringstream &input);
   private:
     Bookmarks marks_;
     std::ostream &out_;
-    const std::map< std::string, int (*)(Bookmarks &, std::stringstream &, std::ostream &) > commands_;
+    using str = std::string;
+    const std::map< str, std::function< int() >(*)(Bookmarks &, std::stringstream &, std::ostream &) > commands_;
   };
 
   bool checkMark(const std::string &mark);

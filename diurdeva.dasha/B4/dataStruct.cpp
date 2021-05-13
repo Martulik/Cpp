@@ -37,7 +37,8 @@ std::istream& diurdeva::operator>>(std::istream& in, DataStruct& dataStruct)
 
 std::ostream& diurdeva::operator<<(std::ostream& cout, const DataStruct& data)
 {
-  return cout << data.key1 << "," << data.key2 << "," << data.str;
+  cout << data.key1 << "," << data.key2 << "," << data.str << "\n";
+  return cout;
 }
 
 bool diurdeva::compare(DataStruct& lhs, DataStruct& rhs)

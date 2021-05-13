@@ -19,15 +19,7 @@ namespace ivanova
       std::stringstream input(string);
       DataStruct data;
       input >> data;
-      if (!empty(data))
-      {
-        vector.push_back(data);
-      }
-    }
-    if (!in.eof())
-    {
-      std::cerr << "failed reading";
-      return 1;
+      vector.push_back(data);
     }
     return 0;
   }

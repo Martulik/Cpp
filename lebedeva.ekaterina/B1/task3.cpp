@@ -8,9 +8,8 @@ void lebedeva::doTask3(const int argc)
   std::vector< int > inVec;
 
   int data = 0;
-  while (std::cin)
+  while (std::cin >> data)
   {
-    std::cin >> data;
     if (data == 0)
     {
       break;

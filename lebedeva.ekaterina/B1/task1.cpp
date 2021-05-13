@@ -9,15 +9,11 @@ void lebedeva::doTask1(const int argc, char* argv[])
   checkNumOfArgs(argc, 3);
   std::vector< int > brackVec;
   int data = 0;
-  while (std::cin)
+  while (std::cin >> data)
   {
-    if ((std::cin >> data).eof())
-    {
-      break;
-    }
     brackVec.push_back(data);
   }
-  if (!std::cin.eof() || std::cin.fail() || (std::cin.bad() && std::cin.eof()))
+  if (std::cin.bad() || (std::cin.fail() && !std::cin.eof()))
   {
     throw std::runtime_error("Invalid input");
   }

@@ -20,6 +20,11 @@ int main(int argc, char* argv[])
     {
       task = std::atoi(argv[1]);
     }
+    else
+    {
+      std::cerr << "Invalid arguments";
+      return 1;
+    }
 
     if ((task <= 0) || (task > 4))
     {

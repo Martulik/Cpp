@@ -48,20 +48,20 @@ void lab::UserInterface::insertAfter(const std::string& markName, const contact_
     add(contact);
     return;
   }
-  PhoneBook::iterator it = bookmarks_[markName];
+  PhoneBook::const_iterator it = bookmarks_[markName];
   phoneBook_.add(++it, contact);
 }
 
 void lab::UserInterface::remove(const std::string& markName)
 {
   checkMark(markName);
-  PhoneBook::iterator it1 = bookmarks_[markName];
-  PhoneBook::iterator it2 = phoneBook_.remove(it1);
+  PhoneBook::const_iterator it1 = bookmarks_[markName];
+  PhoneBook::const_iterator it2 = phoneBook_.remove(it1);
   if (it2 == phoneBook_.end())
   {
     it2 = phoneBook_.begin();
   }
-  for (std::pair< const std::string, PhoneBook::iterator >& mark: bookmarks_)
+  for (std::pair< const std::string, PhoneBook::const_iterator >& mark: bookmarks_)
   {
 
     if (mark.second == it1)
@@ -71,10 +71,10 @@ void lab::UserInterface::remove(const std::string& markName)
   }
 }
 
-void lab::UserInterface::show(std::ostream& os, const std::string& markName)
+void lab::UserInterface::show(std::ostream& os, const std::string& markName) const
 {
   checkMark(markName);
-  os << phoneBook_.show(bookmarks_[markName]);
+  os << phoneBook_.show(bookmarks_.find(markName)->second);
 }
 
 void lab::UserInterface::move(const std::string& markName, const std::string& steps)
@@ -94,7 +94,7 @@ void lab::UserInterface::move(const std::string& markName, const std::string& st
   }
 }
 
-void lab::UserInterface::checkMark(const std::string& markName)
+void lab::UserInterface::checkMark(const std::string& markName) const
 {
   if (bookmarks_.find(markName) == bookmarks_.end())
   {

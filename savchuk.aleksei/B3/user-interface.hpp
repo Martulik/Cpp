@@ -18,14 +18,14 @@ namespace savchuk
       void insertBefore(const std::string& markName, const contact_t& contact);
       void insertAfter(const std::string& markName, const contact_t& contact);
       void remove(const std::string& markName);
-      void show(std::ostream& os, const std::string& markName);
+      void show(std::ostream& os, const std::string& markName) const;
       void move(const std::string& markName, const std::string& steps);
 
     private:
-      std::map< std::string, PhoneBook::iterator > bookmarks_;
+      std::map< std::string, PhoneBook::const_iterator > bookmarks_;
       PhoneBook phoneBook_;
 
-      void checkMark(const std::string& markName);
+      void checkMark(const std::string& markName) const;
   };
 }
 

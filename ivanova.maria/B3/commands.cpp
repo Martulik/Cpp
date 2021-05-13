@@ -1,5 +1,5 @@
-#include <iostream>
 #include "commands.hpp"
+#include <iostream>
 
 namespace iva = ivanova;
 

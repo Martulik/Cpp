@@ -1,7 +1,7 @@
 #ifndef B3_COMMANDS_HPP
 #define B3_COMMANDS_HPP
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <sstream>
 #include <functional>

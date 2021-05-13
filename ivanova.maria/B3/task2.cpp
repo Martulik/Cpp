@@ -1,8 +1,9 @@
 #include "task2.hpp"
-#include "container.hpp"
+
 #include <iostream>
 #include <algorithm>
 
+#include "container.hpp"
 namespace iva = ivanova;
 
 int iva::task2(std::ostream &out)

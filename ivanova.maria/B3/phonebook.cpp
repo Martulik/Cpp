@@ -1,12 +1,12 @@
 #include "phonebook.hpp"
 
 namespace iva = ivanova;
-iva::PhoneBook::iter iva::PhoneBook::begin()
+iva::PhoneBook::iter iva::PhoneBook::begin() const
 {
   return list_.begin();
 }
 
-iva::PhoneBook::iter iva::PhoneBook::end()
+iva::PhoneBook::iter iva::PhoneBook::end() const
 {
   return list_.end();
 }
@@ -31,7 +31,7 @@ bool iva::PhoneBook::isEmpty() const
   return list_.empty();
 }
 
-iva::PhoneBook::iter iva::PhoneBook::moveOnStep(PhoneBook::iter iter, int step)
+iva::PhoneBook::iter iva::PhoneBook::moveOnStep(PhoneBook::iter iter, int step) const
 {
   if (step > 0)
   {

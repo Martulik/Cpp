@@ -31,7 +31,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
   }
   if ((in.fail() || std::abs(data.key1) > 5 || std::abs(data.key2) > 5))
   {
-    std::cerr << "Ivalid input";
+    std::cerr << "Invalid input";
     exit(1);
   }
   if (!in.eof())
@@ -47,11 +47,3 @@ std::ostream &ivanova::operator <<(std::ostream &out, ivanova::DataStruct &data)
   return out;
 }
 
-bool ivanova::empty(ivanova::DataStruct &data)
-{
-  if (data.str.empty())
-  {
-    return true;
-  }
-  return false;
-}

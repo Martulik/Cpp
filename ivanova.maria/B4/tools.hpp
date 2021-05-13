@@ -5,7 +5,5 @@
 
 namespace ivanova
 {
-  bool compare(DataStruct &data1, DataStruct &data2);
+  bool compare(const DataStruct &data1, const DataStruct &data2);
 }
-
-

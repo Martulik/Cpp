@@ -16,9 +16,9 @@ namespace ivanova
     iter begin();
     iter end();
     void add(const Record &record);
-    void insert(const iter &userIt, const Record &record);
-    void erase(const iter &iter);
-    iter moveOnStep(iter &iter, int step);
+    void insert(const iter userIt, const Record &record);
+    void erase(const iter iter);
+    iter moveOnStep(iter iter, int step);
     bool isEmpty() const;
 
   private:

@@ -16,12 +16,12 @@ void iva::PhoneBook::add(const iva::Record &record)
   list_.push_back(record);
 }
 
-void iva::PhoneBook::insert(const PhoneBook::iter &userIt, const iva::Record &record)
+void iva::PhoneBook::insert(const PhoneBook::iter userIt, const iva::Record &record)
 {
   list_.insert(userIt, record);
 }
 
-void iva::PhoneBook::erase(const PhoneBook::iter &iter)
+void iva::PhoneBook::erase(const PhoneBook::iter iter)
 {
   list_.erase(iter);
 }
@@ -31,7 +31,7 @@ bool iva::PhoneBook::isEmpty() const
   return list_.empty();
 }
 
-iva::PhoneBook::iter iva::PhoneBook::moveOnStep(PhoneBook::iter &iter, int step)
+iva::PhoneBook::iter iva::PhoneBook::moveOnStep(PhoneBook::iter iter, int step)
 {
   if (step > 0)
   {

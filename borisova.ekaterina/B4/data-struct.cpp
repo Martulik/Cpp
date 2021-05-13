@@ -46,6 +46,10 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
       if (!in.eof())
       {
         getline(in, data.str);
+        if (data.str.empty())
+        {
+          throw std::invalid_argument("empty str\n");
+        }
       }
       else
       {

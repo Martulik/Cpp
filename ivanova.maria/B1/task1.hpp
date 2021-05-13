@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+
 #include "functions.hpp"
 
 namespace ivanova

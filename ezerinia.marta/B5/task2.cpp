@@ -44,7 +44,7 @@ void ezerinia::task2(std::istream &in, std::ostream &out)
   std::cout << "Squares: " << squares << "\n";
   std::cout << "Rectangles: " << rectangles << "\n";
   std::cout << "Points: ";
-  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, "\n"));
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
   std::cout << "\nShapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

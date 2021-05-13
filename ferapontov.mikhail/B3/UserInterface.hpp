@@ -10,6 +10,7 @@ namespace ferapontov
   {
     public:
       void add(int number, std::string name); //pushback
+      
       void store(std::string oldMark, std::string newMark);
       void insert(std::string mode, std::string markName, int number, std::string name);
       void deleteNote(std::string markName);

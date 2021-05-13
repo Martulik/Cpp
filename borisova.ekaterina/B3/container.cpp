@@ -26,20 +26,20 @@ lab::Container::Iterator::Iterator():
 {
 }
 
-lab::Container::Iterator::Iterator(unInt index):
+lab::Container::Iterator::Iterator(unInt value, unInt index):
   index_(index),
-  value_(factorial(index))
+  value_(value)
 {
 }
 
 lab::Container::Iterator lab::Container::begin() const noexcept
 {
-  return { minimum };
+  return { minValue, minimum };
 }
 
 lab::Container::Iterator lab::Container::end() const noexcept
 {
-  return { maximum };
+  return { maxValue, maximum };
 }
 
 lab::Container::Iterator& lab::Container::Iterator::operator++()
@@ -60,15 +60,14 @@ lab::Container::Iterator lab::Container::Iterator::operator++(int)
 lab::Container::Iterator& lab::Container::Iterator::operator--()
 {
   assert(index_ > minimum);
-  value_ /= index_;
-  index_--;
+  value_ /= index_--;
   return *this;
 }
 
 lab::Container::Iterator lab::Container::Iterator::operator--(int)
 {
   Iterator temp = *this;
-  (*this)--;
+  --(*this);
   return temp;
 }
 

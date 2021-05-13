@@ -86,7 +86,7 @@ void lab::Interface::move(const std::string& bookmark, const int n)
 
 void lab::Interface::move(const std::string& bookmark, const std::string step)
 {
-  constItr iter = findMark(bookmark);
+  auto iter = notes_.find(bookmark);
   assert(iter != notes_.end());
   if (step == "first")
   {

@@ -28,7 +28,7 @@ namespace borisova
 
     private:
       friend class Container;
-      Iterator(unInt index);
+      Iterator(unInt value, unInt index);
       unInt index_;
       unInt value_;
     };

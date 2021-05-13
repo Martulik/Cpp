@@ -169,6 +169,7 @@ int iva::doShow(iva::Bookmarks &bookmarks, std::stringstream &input, std::ostrea
 
 int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input, std::ostream &out)
 {
+
   std::string nameOfMark;
   input >> std::ws >> nameOfMark;
   std::string steps;
@@ -180,6 +181,11 @@ int iva::doMove(iva::Bookmarks &bookmarks, std::stringstream &input, std::ostrea
   if (!iva::checkMark(nameOfMark))
   {
     invalidCommand(out);
+    return 1;
+  }
+  if (!bookmarks.findMark(nameOfMark))
+  {
+    invalidBookmark(out);
     return 1;
   }
   else if (steps[0] == '-' || steps[0] == '+')

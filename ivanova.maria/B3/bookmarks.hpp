@@ -30,7 +30,7 @@ namespace ivanova
     void move(const std::string &markName, int step);
     void move(const std::string &markName, positionMove position);
     bool isEmpty();
-    iter getMark(const std::string &name) const;
+    const iter getMark(const std::string &name) const;
     bool findMark(const std::string &name) const;
   private:
     PhoneBook phoneBook_;

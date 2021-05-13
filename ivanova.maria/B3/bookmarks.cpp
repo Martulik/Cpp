@@ -1,4 +1,5 @@
 #include "bookmarks.hpp"
+#include <iostream>
 #include <algorithm>
 #include "commands.hpp"
 
@@ -83,11 +84,7 @@ void iva::Bookmarks::deleteMark(const std::string &markName)
 void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove position)
 {
   iterator it = bookmarks_.find(markName);
-  if (it == bookmarks_.end())
-  {
-    invalidCommand(std::cout);
-  }
-  else if (position == positionMove::FIRST)
+  if (position == positionMove::FIRST)
   {
     it->second = phoneBook_.begin();
   }
@@ -100,14 +97,7 @@ void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove p
 void iva::Bookmarks::move(const std::string &markName, int step)
 {
   iterator iter = bookmarks_.find(markName);
-  if (iter == bookmarks_.end())
-  {
-    invalidCommand(std::cout);
-  }
-  else
-  {
-    iter->second = phoneBook_.moveOnStep(iter->second, step);
-  }
+  iter->second = phoneBook_.moveOnStep(iter->second, step);
 }
 
 bool iva::Bookmarks::isEmpty()
@@ -117,10 +107,10 @@ bool iva::Bookmarks::isEmpty()
 
 bool ivanova::Bookmarks::findMark(const std::string &name) const
 {
-  return bookmarks_.find(name) == bookmarks_.end() ? false: true;
+  return bookmarks_.find(name) == bookmarks_.end() ? false : true;
 }
 
-ivanova::Bookmarks::iter ivanova::Bookmarks::getMark(const std::string &name) const
+const ivanova::Bookmarks::iter ivanova::Bookmarks::getMark(const std::string &name) const
 {
-    return bookmarks_.find(name);
+  return bookmarks_.find(name);
 }

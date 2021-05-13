@@ -9,9 +9,9 @@ int iva::task2(std::ostream &out)
 {
   Container container;
   using iterator = std::ostream_iterator< Container::value_type >;
-  std::copy(container.begin(), container.end(), iterator (std::cout, " "));
+  std::copy(container.begin(), container.end(), iterator (out, " "));
   out << '\n';
-  std::reverse_copy(container.begin(), container.end(), iterator (std::cout, " "));
+  std::reverse_copy(container.begin(), container.end(), iterator (out, " "));
   out << '\n';
   return 0;
 }

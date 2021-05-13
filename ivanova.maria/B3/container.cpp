@@ -5,7 +5,7 @@ namespace iva = ivanova;
 
 constexpr iva::Container::value_type iva::factorial(const size_t number)
 {
-  if (number == 1)
+  if (number <= 1)
   {
     return 1;
   }
@@ -26,13 +26,14 @@ iva::Container::Iterator iva::Container::begin() const
 
 iva::Container::Iterator iva::Container::end() const
 {
-  return {minFact, maxFact};
+  return {maxNum, maxFact};
 }
 
 iva::Container::Iterator::Iterator():
   index_(0),
   value_(0)
-{}
+{
+}
 
 iva::Container::Iterator &iva::Container::Iterator::operator ++()
 {

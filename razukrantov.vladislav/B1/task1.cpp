@@ -29,13 +29,13 @@ void razukrantov::task1(const char* order)
   std::vector< int > atVector(vector);
   std::forward_list< int > forwardList(vector.begin(), vector.end());
 
-  razukrantov::sort< razukrantov::bracketsAccess< int >, int >(vector, compare);
+  razukrantov::sort< razukrantov::bracketsAccess< int > >(vector, compare);
   razukrantov::print< razukrantov::bracketsAccess< int >, int >(vector, std::cout, " ");
   std::cout << "\n";
-  razukrantov::sort< razukrantov::atAccess< int >, int >(atVector, compare);
+  razukrantov::sort< razukrantov::atAccess< int > >(atVector, compare);
   razukrantov::print< razukrantov::atAccess< int >, int >(vector, std::cout, " ");
   std::cout << "\n";
-  razukrantov::sort< razukrantov::iteratorAccess< int >, int >(forwardList, compare);
+  razukrantov::sort< razukrantov::iteratorAccess< int > >(forwardList, compare);
   razukrantov::print< razukrantov::iteratorAccess< int >, int >(forwardList, std::cout, " ");
   std::cout << "\n";
 }

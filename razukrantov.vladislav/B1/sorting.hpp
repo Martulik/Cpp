@@ -7,8 +7,8 @@
 
 namespace razukrantov
 {
-  template < typename Strategy, typename T >
-  void sort(typename Strategy::container& container, const std::function< bool(T, T) > compare)
+  template < typename Strategy, typename Compare >
+  void sort(typename Strategy::container& container, Compare compare)
   {
     typename Strategy::iterator begin = Strategy::begin(container);
     typename Strategy::iterator size = Strategy::end(container);

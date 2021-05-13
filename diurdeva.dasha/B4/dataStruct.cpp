@@ -5,18 +5,18 @@ std::istream& diurdeva::operator>>(std::istream& in, DataStruct& dataStruct)
 {
   char separator;
   in >> dataStruct.key1;
-  if (!in.fail) {
+  if (!in.fail()) {
     in >> separator;
-    if (in.fail || separator != ',') {
+    if (in.fail() || separator != ',') {
       throw std::invalid_argument("Invalid first separator\n");
     }
     in >> dataStruct.key2;
-    if (!in.fail) {
+    if (!in.fail()) {
       in >> separator;
     }
   }
 
-  if (in.fail || separator != ',')
+  if (in.fail() || separator != ',')
   {
     throw std::invalid_argument("Invalid second separator\n");
   }

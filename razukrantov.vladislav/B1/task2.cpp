@@ -1,11 +1,12 @@
 #include "tasks.hpp"
-#include "functions.hpp"
-#include "strategy.hpp"
 
 #include <iostream>
 #include <fstream>
 #include <memory>
 #include <vector>
+
+#include "functions.hpp"
+#include "strategy.hpp"
 
 void razukrantov::task2(const char* file)
 {

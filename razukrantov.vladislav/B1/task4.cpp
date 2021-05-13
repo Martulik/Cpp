@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "sorting.hpp"
-#include"functions.hpp"
+#include "functions.hpp"
 #include "strategy.hpp"
 
 void razukrantov::task4(const char* order, int size)

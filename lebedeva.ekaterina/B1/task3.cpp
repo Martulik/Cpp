@@ -40,7 +40,7 @@ void lebedeva::doTask3(const int argc)
   {
     if (0 == (*i % 3))
     {
-      inVec.insert(++i, 3, 1);
+      inVec.insert(i + 1, 3, 1);
       i += 2;
     }
     else

@@ -22,19 +22,20 @@ void lebedeva::doTask2(const int argc, char* argv[])
   size_t capacity = 1;
   size_t size = 0;
   std::unique_ptr< char[] > data = std::make_unique< char[] >(capacity);
-  while (!inFile.eof())
+  while (inFile)
   {
     inFile.read(data.get() + size, capacity - size);
     size += inFile.gcount();
-      capacity *= 2;
-      std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
-      for (size_t i = 0; i < size; i++)
-      {
-        temp[i] = data[i];
-      }
-      data = std::move(temp);
+    capacity *= 2;
+    std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
+    for (size_t i = 0; i < size; i++)
+    {
+      temp[i] = data[i];
+    }
+    data = std::move(temp);
+  }
     inFile.close();
     std::vector< char > resVec(data.get(), data.get() + size);
     print(resVec, std::cout);
-  }
+
 }

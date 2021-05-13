@@ -11,8 +11,7 @@ int main(int argc, char* argv[])
   {
     if ((argc < 2) || (argc > 4))
     {
-      std::cerr << "Invalid arguments";
-      return 1;
+      throw std::invalid_argument("Invalid arguments");
     }
 
     int task = 0;
@@ -20,16 +19,11 @@ int main(int argc, char* argv[])
     {
       task = std::atoi(argv[1]);
     }
-    else
-    {
-      std::cerr << "Invalid arguments";
-      return 1;
-    }
 
     if ((task <= 0) || (task > 4))
     {
-      std::cerr << "Invalid task number";
-      return 1;
+      throw std::invalid_argument("Invalid task number");
+
     }
     if (task == 1)
     {

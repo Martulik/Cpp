@@ -15,8 +15,8 @@ namespace lebedeva
     {
       for (Iterator j = i; j != acc::end(data); ++j)
       {
-        valueType& temp1 = acc::get(data, i);
-        valueType& temp2 = acc::get(data, j);
+        valueType& temp1 = acc::get(data, j);
+        valueType& temp2 = acc::get(data, i);
         if (comp(temp1, temp2))
         {
           std::swap(temp1, temp2);

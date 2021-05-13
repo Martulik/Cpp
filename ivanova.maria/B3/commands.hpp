@@ -1,7 +1,7 @@
 #ifndef B3_COMMANDS_HPP
 #define B3_COMMANDS_HPP
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <sstream>
 #include <functional>
@@ -10,16 +10,23 @@
 
 namespace ivanova
 {
-  using pair = std::pair< std::string, std::string >;
-  std::string getName(std::string &name);
-  bool checkNumber(const std::string &number);
+  class Commands
+  {
+  public:
+    explicit Commands(std::ostream& out);
+    using comm = std::function< int() >;
+    comm doCommand(std::string &command, std::stringstream &input);
+  private:
+    Bookmarks marks_;
+    std::ostream &out_;
+    using str = std::string;
+    const std::map< str, std::function< int() >(*)(Bookmarks &, std::stringstream &, std::ostream &) > commands_;
+  };
+
   bool checkMark(const std::string &mark);
-  int doCommand(std::string &command, Bookmarks &bookmarks, std::stringstream &input);
-  int doAdd(Bookmarks &bookmarks, std::stringstream &input);
-  int doStore(Bookmarks &bookmarks, std::stringstream &input);
-  int doInsert(Bookmarks &bookmarks, std::stringstream &input);
-  int doDelete(Bookmarks &bookmarks, std::stringstream &input);
-  int doShow(Bookmarks &bookmarks, std::stringstream &input);
-  int doMove(Bookmarks &bookmarks, std::stringstream &input);
+  void invalidCommand(std::ostream& out);
+  void empty(std::ostream &out);
+  void invalidBookmark(std::ostream &out);
+  void invalidStep(std::ostream &out);
 }
 #endif

@@ -1,37 +1,40 @@
-#include <algorithm>
 #include "bookmarks.hpp"
+#include <iostream>
+#include <algorithm>
+#include "commands.hpp"
 
 namespace iva = ivanova;
 using iterator = std::map< std::string, iva::PhoneBook::iter >::iterator;
 
-iva::Bookmarks::Bookmarks()
+iva::Bookmarks::Bookmarks():
+  phoneBook_(),
+  bookmarks_({{"current", phoneBook_.begin()}})
 {
-  bookmarks_["current"] = phoneBook_.begin();
 }
 
-void iva::Bookmarks::add(const PhoneBook::Record &record)
+void iva::Bookmarks::add(const iva::Record &record)
 {
-  phoneBook_.add(record);
-  if (phoneBook_.size() == 1)
+  if (!isEmpty())
   {
-    std::for_each(bookmarks_.begin(), bookmarks_.end(), [&](auto &iter)
-    {
-        iter.second = phoneBook_.begin();
-    }
-    );
+    phoneBook_.add(record);
+  }
+  else
+  {
+    phoneBook_.add(record);
+    bookmarks_["current"] = phoneBook_.begin();
   }
 }
 
-void iva::Bookmarks::store(const PhoneBook::Record &data)
+void iva::Bookmarks::store(const iva::Record &data)
 {
-  iterator iter = bookmarks_.find(data.first);
+  iterator iter = bookmarks_.find(data.data.first);
   if (iter != bookmarks_.end())
   {
-    bookmarks_.emplace(data.second, iter->second);
+    bookmarks_.emplace(data.data.second, iter->second);
   }
 }
 
-void iva::Bookmarks::insert(Bookmarks::InsertType dir, const std::string &markName, const PhoneBook::Record &rec)
+void iva::Bookmarks::insert(const iva::Record &rec, Bookmarks::InsertType dir, const std::string &markName)
 {
   iterator iter = bookmarks_.find(markName);
   if (iter != bookmarks_.end())
@@ -47,7 +50,7 @@ void iva::Bookmarks::insert(Bookmarks::InsertType dir, const std::string &markNa
     if (dir == InsertType::AFTER)
     {
       phoneBook_.insert(std::next(iter->second), rec);
-      bookmarks_.emplace(rec.first, std::next(iter->second));
+      bookmarks_.emplace(rec.data.first, std::next(iter->second));
     }
   }
 }
@@ -78,22 +81,6 @@ void iva::Bookmarks::deleteMark(const std::string &markName)
   }
 }
 
-void iva::Bookmarks::show(const std::string &markName)
-{
-  iterator iter = bookmarks_.find(markName);
-  if (iter == bookmarks_.end())
-  {
-    std::cout << "<INVALID BOOKMARK>\n";
-    return;
-  }
-  if (phoneBook_.isEmpty())
-  {
-    std::cout << "<EMPTY>\n";
-    return;
-  }
-  std::cout << iter->second << '\n';
-}
-
 void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove position)
 {
   iterator it = bookmarks_.find(markName);
@@ -101,7 +88,7 @@ void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove p
   {
     it->second = phoneBook_.begin();
   }
-  if (position == positionMove::LAST)
+  else if (position == positionMove::LAST)
   {
     it->second = --phoneBook_.end();
   }
@@ -116,4 +103,14 @@ void iva::Bookmarks::move(const std::string &markName, int step)
 bool iva::Bookmarks::isEmpty()
 {
   return phoneBook_.isEmpty();
+}
+
+bool ivanova::Bookmarks::findMark(const std::string &name) const
+{
+  return bookmarks_.find(name) == bookmarks_.end() ? false : true;
+}
+
+const ivanova::Bookmarks::iter ivanova::Bookmarks::getMark(const std::string &name) const
+{
+  return bookmarks_.find(name);
 }

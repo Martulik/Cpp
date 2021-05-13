@@ -1,11 +1,9 @@
 #ifndef B3_TASK1_HPP
 #define B3_TASK1_HPP
-#include <iostream>
-#include <sstream>
 
+#include <iosfwd>
 namespace ivanova
 {
-  int task1();
-
+  int task1(std::istream &in, std::ostream &out);
 }
-#endif //B3_TASK1_HPP
+#endif

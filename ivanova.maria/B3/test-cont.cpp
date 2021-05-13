@@ -1,10 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include <string>
-#include <stdio.h>
-
 #include "container.hpp"
-
-class Iterator;
 
 namespace iva = ivanova;
 

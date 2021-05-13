@@ -1,24 +1,43 @@
 #include "container.hpp"
+#include <cassert>
 
 namespace iva = ivanova;
 
-iva::Container::Iterator iva::Container::begin() const
+constexpr iva::Container::value_type iva::factorial(const size_t number)
 {
-  return {1};
+  if (number <= 1)
+  {
+    return 1;
+  }
+  return number * factorial(number - 1);
 }
 
-iva::Container::Iterator iva::Container::end() const
+constexpr size_t minNum = 1;
+constexpr iva::Container::value_type minFact = iva::factorial(minNum);
+
+constexpr size_t maxNum = 11;
+constexpr iva::Container::value_type maxFact = iva::factorial(maxNum);
+
+
+iva::Container::Iterator iva::Container::begin() const noexcept
 {
-  return {11};
+  return {minNum, minFact};
 }
 
-iva::Container::Iterator::Iterator(size_t index):
-  index_(index),
-  value_(factorial(index))
-{}
+iva::Container::Iterator iva::Container::end() const noexcept
+{
+  return {maxNum, maxFact};
+}
+
+iva::Container::Iterator::Iterator():
+  index_(0),
+  value_(0)
+{
+}
 
 iva::Container::Iterator &iva::Container::Iterator::operator ++()
 {
+  assert(index_ <= maxNum);
   value_ *= ++index_;
   return *this;
 }
@@ -32,12 +51,14 @@ iva::Container::Iterator iva::Container::Iterator::operator ++(int)
 
 iva::Container::Iterator &iva::Container::Iterator::operator --()
 {
+  assert(index_ >= minNum);
   value_ /= index_--;
   return *this;
 }
 
 iva::Container::Iterator iva::Container::Iterator::operator --(int)
 {
+  assert(index_ != minNum);
   Iterator iter = *this;
   --(*this);
   return iter;
@@ -45,7 +66,14 @@ iva::Container::Iterator iva::Container::Iterator::operator --(int)
 
 const size_t &iva::Container::Iterator::operator *() const
 {
+  assert(value_ != 0);
   return value_;
+}
+
+const size_t *iva::Container::Iterator::operator ->() const
+{
+  assert(value_ != 0);
+  return std::addressof(value_);
 }
 
 bool iva::Container::Iterator::operator ==(const Iterator &other) const
@@ -58,12 +86,9 @@ bool iva::Container::Iterator::operator !=(const Iterator &other) const
   return !(*this == other);
 }
 
-size_t iva::Container::Iterator::factorial(const size_t number)
+ivanova::Container::Iterator::Iterator(size_t index, value_type value):
+  index_(index),
+  value_(value)
 {
-  size_t temp = 1;
-  for (size_t i = 1; i <= number; i++)
-  {
-    temp *= i;
-  }
-  return temp;
 }
+

@@ -1,6 +1,9 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
+#include <string>
+#include <iosfwd>
+
 namespace savchuk
 {
   constexpr size_t calcucateFactorial(size_t n)
@@ -12,6 +15,9 @@ namespace savchuk
     }
     return res;
   }
+
+  std::string readNumber(std::istream& is);
+  std::string readName(std::istream& is);
 }
 
 #endif

@@ -10,6 +10,7 @@ namespace borisova
   class Book
   {
   public:
+    Book() = default;
     using constItr = std::list< Note >::const_iterator;
     constItr insertAfter(constItr iter, const Note& src);
     constItr insertBefore(constItr iter, const Note& src);

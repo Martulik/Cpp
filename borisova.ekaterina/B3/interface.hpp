@@ -23,8 +23,8 @@ namespace borisova
     constItr getEnd() const;
     bool isEmpty();
   private:
-    std::map< std::string, Book::constItr > notes_;
     Book phoneNotes_;
+    std::map< std::string, Book::constItr > notes_;
   };
 }
 

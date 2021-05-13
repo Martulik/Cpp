@@ -25,14 +25,14 @@ void lab::Interface::add(const Note& src)
 
 void lab::Interface::store(const std::string& oldMark, const std::string& newMark)
 {
-  constItr iter = notes_.find(oldMark);
+  auto iter = notes_.find(oldMark);
   assert(iter != notes_.end());
   notes_[newMark] = iter->second;
 }
 
 void lab::Interface::insertBefore(const std::string& bookMark, const Note& src)
 {
-  constItr iter = notes_.find(bookMark);
+  auto iter = notes_.find(bookMark);
   assert(iter != notes_.end());
   if (iter->second == phoneNotes_.end())
   {
@@ -43,7 +43,7 @@ void lab::Interface::insertBefore(const std::string& bookMark, const Note& src)
 
 void lab::Interface::insertAfter(const std::string& bookMark, const Note& src)
 {
-  constItr iter = notes_.find(bookMark);
+  auto iter = notes_.find(bookMark);
   assert(iter != notes_.end());
   if (iter->second == phoneNotes_.end())
   {
@@ -54,7 +54,7 @@ void lab::Interface::insertAfter(const std::string& bookMark, const Note& src)
 
 void lab::Interface::deleteMark(const std::string& bookMark)
 {
-  constItr iter = notes_.find(bookMark);
+  auto iter = notes_.find(bookMark);
   if (iter != notes_.end())
   {
     Book::constItr delIter = iter->second;

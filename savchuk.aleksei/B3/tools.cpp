@@ -47,3 +47,21 @@ std::string lab::readName(std::istream& is)
   name.erase(std::remove(name.begin(), name.end(), '\\'), name.end());
   return name;
 }
+
+std::string lab::readMarkName(std::istream& is)
+{
+  std::string markName;
+  is >> markName;
+  if (is.fail() && !is.eof())
+  {
+    throw std::runtime_error(INPUT_ERROR);
+  }
+  for (char& ch: markName)
+  {
+    if (!isalpha(ch) && !isdigit(ch) && ch != '-')
+    {
+      throw std::invalid_argument(INVALID_COMMAND);
+    }
+  }
+  return markName;
+}

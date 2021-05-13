@@ -35,11 +35,11 @@ int main(int argc, char** argv)
   catch (const std::runtime_error& err)
   {
     std::cerr << err.what() << '\n';
-    return 1;
+    return 2;
   }
   catch (...)
   {
-    std::cerr << "Oops!..";
+    std::cerr << "Internal program error\n";
     return 2;
   }
 }

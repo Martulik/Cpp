@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <vector>
+#include <memory>
 #include "tasks.hpp"
 #include "functions.hpp"
 

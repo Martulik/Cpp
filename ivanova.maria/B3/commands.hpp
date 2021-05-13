@@ -14,10 +14,11 @@ namespace ivanova
   {
   public:
     explicit Commands(std::ostream& out);
-    int doCommand(std::string &command, Bookmarks &bookmarks, std::stringstream &input);
+    int doCommand(std::string &command, std::stringstream &input);
   private:
+    Bookmarks marks_;
     std::ostream &out_;
-    const std::map< std::string, int (*)(Bookmarks &, std::stringstream &) > commands_;
+    const std::map< std::string, int (*)(Bookmarks &, std::stringstream &, std::ostream &) > commands_;
   };
 
   void invalidCommand(std::ostream& out);

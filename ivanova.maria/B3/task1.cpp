@@ -7,7 +7,7 @@ namespace iva = ivanova;
 
 int iva::task1(std::istream &in, std::ostream &out)
 {
-  iva::Bookmarks bookmark;
+  Commands book(out);
   std::string str;
   while (std::getline(in, str))
   {
@@ -19,8 +19,7 @@ int iva::task1(std::istream &in, std::ostream &out)
     std::string command;
     std::stringstream input(str);
     input >> command;
-    Commands fnc(std::cout);
-    fnc.doCommand(command, bookmark, input);
+    book.doCommand(command, input);
   }
   if (!std::cin.eof())
   {

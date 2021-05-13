@@ -8,12 +8,12 @@
 
 namespace ivanova
 {
-  template < typename T > int task(std::vector < T > &vector)
+  template < typename T > int task(std::vector < T > &vector, std::istream &in, std::ostream &out)
   {
-    if (readVector(vector) == 0)
+    if (readVector(vector, in) == 0)
     {
       std::sort(vector.begin(), vector.end(), compare);
-      printVector(vector);
+      printVector(vector, out);
       return 0;
     }
     else

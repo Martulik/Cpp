@@ -7,13 +7,13 @@
 
 namespace ivanova
 {
-  template < typename T > void printVector(std::vector < T > &vector)
+  template < typename T > void printVector(std::vector < T > &vector, std::ostream &out)
   {
     size_t i = 0;
     while (i < vector.size())
     {
       DataStruct data = vector.at(i);
-      std::cout << data.key1 << "," << data.key2 << "," << data.str << std::endl;
+      out << data.key1 << "," << data.key2 << "," << data.str << std::endl;
       i++;
     }
   }

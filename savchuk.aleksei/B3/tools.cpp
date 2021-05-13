@@ -65,3 +65,23 @@ std::string lab::readMarkName(std::istream& is)
   }
   return markName;
 }
+
+std::string lab::readSteps(std::istream& is)
+{
+  std::string steps;
+  is >> steps;
+  if (is.fail() && !is.eof())
+  {
+    throw std::runtime_error(INPUT_ERROR);
+  }
+  std::string::iterator it = steps.begin();
+  if (*it == '-' || *it == '+')
+  {
+    ++it;
+  }
+  if (!std::all_of(it, steps.end(), ::isdigit) && steps != "first" && steps != "last")
+  {
+    throw std::invalid_argument(INVALID_STEP);
+  }
+  return steps;
+}

@@ -47,6 +47,10 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
       {
         getline(in, data.str);
       }
+      else
+      {
+        throw std::invalid_argument("Invalid input\n");
+      }
     }
   }
   return in;

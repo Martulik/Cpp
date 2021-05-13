@@ -33,30 +33,27 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
   {
     in >> key1;
     in >> comma;
-    if (comma == ',')
+    if (comma != ',')
     {
-      value.key1 = key1;
-      in >> key2;
-      in >> comma;
-      if (comma == ',')
-      {
-        value.key2 = key2;
-        in >> std::ws;
-        getline(in, value.str, '\n');
-
-        if (value.key1 >= -5 && value.key1 <= 5 && value.key2 >= -5 && value.key2 <= 5)
-        {
-          data = {value.key1, value.key2, value.str};
-        }
-        else
-        {
-          throw std::invalid_argument("Invalid input\n");
-        }
-      }
-      else
-      {
-        throw std::invalid_argument("Invalid input\n");
-      }
+      throw std::invalid_argument("Miss comma\n");
+    }
+    value.key1 = key1;
+    in >> key2;
+    in >> comma;
+    if (comma != ',')
+    {
+      throw std::invalid_argument("Miss comma\n");
+    }
+    value.key2 = key2;
+    in >> std::ws;
+    getline(in, value.str, '\n');
+    if (value.str.empty())
+    {
+      throw std::invalid_argument("str is empty\n");
+    }
+    if (value.key1 >= -5 && value.key1 <= 5 && value.key2 >= -5 && value.key2 <= 5)
+    {
+      data = { value.key1, value.key2, value.str };
     }
     else
     {

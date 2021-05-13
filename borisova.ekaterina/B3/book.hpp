@@ -2,7 +2,6 @@
 #define BOOK_HPP
 
 #include <list>
-#include <iosfwd>
 #include "note.hpp"
 
 namespace borisova

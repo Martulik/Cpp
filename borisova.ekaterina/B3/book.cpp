@@ -1,5 +1,4 @@
 #include "book.hpp"
-#include <iosfwd>
 #include "note.hpp"
 
 namespace lab = borisova;

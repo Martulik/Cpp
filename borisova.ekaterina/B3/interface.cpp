@@ -1,5 +1,4 @@
 #include "interface.hpp"
-#include <iostream>
 #include <cassert>
 #include <list>
 #include <map>

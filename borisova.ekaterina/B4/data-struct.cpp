@@ -37,7 +37,7 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
         in >> comma;
       }
     }
-    if (!in.fail() && comma != ',' && data.key1 < -5 && data.key1 > 5 && data.key2 < -5 && data.key2 > 5)
+    if (in.fail() || comma != ',' || data.key1 < -5 || data.key1 > 5 || data.key2 < -5 || data.key2 > 5)
     {
       throw std::invalid_argument("Invalid input\n");
     }
@@ -45,7 +45,7 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
     {
       if (!in.eof())
       {
-        getline(in, data.str, '\n');
+        getline(in, data.str);
       }
     }
   }

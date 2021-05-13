@@ -6,7 +6,7 @@ BOOST_AUTO_TEST_SUITE(Input)
 
 BOOST_AUTO_TEST_CASE(CorrectInput)
 {
-  std::istringstream in("4, -2, fghjk");
+  std::istringstream in("4,-2,fghjk");
   borisova::DataStruct temp;
   in >> temp;
   BOOST_CHECK_EQUAL(temp.key1, 4);

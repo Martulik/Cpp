@@ -14,6 +14,6 @@ namespace borisova
   bool isCorrect(const std::string& line);
   bool operator<(const DataStruct& temp1, const DataStruct& temp2);
   std::istream& operator>>(std::istream& in, DataStruct& value);
-  std::ostream& operator<<(std::ostream& out, DataStruct& value);
+  std::ostream& operator<<(std::ostream& out, const DataStruct& value);
 }
 #endif

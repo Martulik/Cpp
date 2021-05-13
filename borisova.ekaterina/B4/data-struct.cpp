@@ -66,13 +66,25 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
         {
           data = {value.key1, value.key2, value.str};
         }
+        else
+        {
+          throw std::invalid_argument("Invalid input\n");
+        }
       }
+      else
+      {
+        throw std::invalid_argument("Invalid input\n");
+      }
+    }
+    else
+    {
+      throw std::invalid_argument("Invalid input\n");
     }
   }
   return in;
 }
 
-std::ostream& lab::operator<<(std::ostream& out, DataStruct& value)
+std::ostream& lab::operator<<(std::ostream& out, const DataStruct& value)
 {
   out << value.key1 << " " << value.key2 << " " << value.str << '\n';
   return out;

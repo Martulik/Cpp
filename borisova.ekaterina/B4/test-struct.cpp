@@ -18,20 +18,21 @@ BOOST_AUTO_TEST_CASE(IncorrectKeys)
 {
   std::istringstream in("6, -10, fghjk");
   borisova::DataStruct temp;
-  in >> temp;
-  BOOST_CHECK(temp.key1 != 6);
-  BOOST_CHECK(temp.key2 != -10);
-  BOOST_CHECK(temp.str != "fghjk");
+  BOOST_CHECK_THROW(in >> temp, std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(WithoutCommas)
 {
   std::istringstream in("2 3 fghjk");
   borisova::DataStruct temp;
-  in >> temp;
-  BOOST_CHECK(temp.key1 != 2);
-  BOOST_CHECK(temp.key2 != 3);
-  BOOST_CHECK(temp.str != "fghjk");
+  BOOST_CHECK_THROW(in >> temp, std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(OneComma)
+{
+  std::istringstream in("2, 1 fghjkhk");
+  borisova::DataStruct temp;
+  BOOST_CHECK_THROW(in >> temp, std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

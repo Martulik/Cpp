@@ -27,12 +27,12 @@ fer::iter fer::PhoneBook::move(iter it, int steps) const
   return it;
 }
 
-fer::iter fer::PhoneBook::next(fer::iter it) const
+fer::citer fer::PhoneBook::begin() const
 {
-  return ++it;
+  return notes_.cbegin();
 }
 
-fer::iter fer::PhoneBook::prev(fer::iter it) const
+fer::citer fer::PhoneBook::end() const
 {
-  return --it;
+  return notes_.cend();
 }

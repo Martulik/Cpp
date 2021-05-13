@@ -9,6 +9,7 @@
 namespace ferapontov
 {
   using iter = std::list< data_t >::iterator;
+  using citer = std::list< data_t >::const_iterator;
   class PhoneBook
   {
     public:
@@ -22,8 +23,8 @@ namespace ferapontov
       void pushBack(data_t& PhoneNote);
 
       iter move(iter it, int steps) const;
-      iter next(iter it) const;
-      iter prev(iter it) const;
+      citer begin() const;
+      citer end() const;
     private:
       std::list< data_t > notes_;
   };

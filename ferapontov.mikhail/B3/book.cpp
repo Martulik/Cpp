@@ -2,7 +2,7 @@
 
 namespace fer = ferapontov;
 
-fer::data_t fer::PhoneBook::showCurrent(std::ostream out, iter it) const
+fer::data_t& fer::PhoneBook::showCurrent(const iter it) const
 {
   return *it;
 }
@@ -17,22 +17,22 @@ void fer::PhoneBook::insertNext(iter it, const data_t& phoneNote)
   notes_.insert(++it, phoneNote);
 }
 
-fer::iter fer::PhoneBook::move(iter it, int steps) const
+void fer::PhoneBook::pushBack(data_t& PhoneNote)
 {
-  //нужна будет проверка
-  for (int i = 0; i < steps; i++)
-  {
-    it++;
-  }
-  return it;
+  notes_.push_back(PhoneNote);
 }
 
-fer::citer fer::PhoneBook::begin() const
+bool fer::PhoneBook::empty() const
 {
-  return notes_.cbegin();
+  return notes_.empty();
 }
 
-fer::citer fer::PhoneBook::end() const
+fer::iter fer::PhoneBook::begin()
 {
-  return notes_.cend();
+  return notes_.begin();
+}
+
+fer::iter fer::PhoneBook::end()
+{
+  return notes_.end();
 }

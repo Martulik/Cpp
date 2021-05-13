@@ -13,18 +13,19 @@ namespace ferapontov
   class PhoneBook
   {
     public:
-      data_t showCurrent(std::ostream out, iter it) const;
+      data_t& showCurrent(const iter it) const;
 
       void insertPrev(iter it, const data_t& phoneNote);
       void insertNext(iter it, const data_t& phoneNote);
 
-      void replace(const data_t& phoneNote);
+      void replace(iter it, const data_t& phoneNote);
 
       void pushBack(data_t& PhoneNote);
 
-      iter move(iter it, int steps) const;
-      citer begin() const;
-      citer end() const;
+      bool empty() const;
+
+      iter begin();
+      iter end();
     private:
       std::list< data_t > notes_;
   };

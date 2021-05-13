@@ -18,7 +18,7 @@ namespace savchuk
       iterator add(const_iterator it, const contact_t& contact);
       iterator replace(iterator it, const contact_t& contact);
       iterator add(const contact_t& contact);
-      iterator move(iterator it, int steps);
+      const_iterator move(const_iterator it, int steps);
       iterator remove(const_iterator it);
       bool empty() const;
       size_t size() const;

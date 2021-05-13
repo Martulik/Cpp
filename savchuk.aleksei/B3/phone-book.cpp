@@ -23,28 +23,20 @@ lab::PhoneBook::iterator lab::PhoneBook::add(const lab::contact_t& contact)
   return add(data_.cend(), contact);
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::move(lab::PhoneBook::iterator it, int steps)
+lab::PhoneBook::const_iterator lab::PhoneBook::move(lab::PhoneBook::const_iterator it, int steps)
 {
-  if (steps >= 0)
+  if (steps > 0)
   {
-    while (steps != 0)
+    while (it != --data_.end() && steps != 0)
     {
-      if (it == --data_.end())
-      {
-        return it;
-      }
       ++it;
       --steps;
     }
   }
   else
   {
-    while (steps != 0)
+    while (it != data_.begin() && steps != 0)
     {
-      if (it == data_.begin())
-      {
-        return it;
-      }
       --it;
       ++steps;
     }

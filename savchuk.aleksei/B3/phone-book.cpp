@@ -20,8 +20,7 @@ lab::PhoneBook::iterator lab::PhoneBook::replace(lab::PhoneBook::iterator it, co
 
 lab::PhoneBook::iterator lab::PhoneBook::add(const lab::contact_t& contact)
 {
-  data_.push_back(contact);
-  return --data_.end();
+  return add(data_.end(), contact);
 }
 
 lab::PhoneBook::iterator lab::PhoneBook::move(lab::PhoneBook::iterator it, int steps)

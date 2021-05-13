@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iosfwd>
+#include <sstream>
 #include <string>
 
 #include "struct.hpp"
@@ -10,18 +11,20 @@
 
 namespace ivanova
 {
-  int readVector(std::vector < DataStruct > &vector)
+  int readVector(std::vector < DataStruct > &vector, std::istream &in)
   {
-    while (!std::cin.eof())
+    std::string string;
+    while (std::getline(in, string))
     {
+      std::stringstream input(string);
       DataStruct data;
-      std::cin >> data;
+      input >> data;
       if (!empty(data))
       {
         vector.push_back(data);
       }
     }
-    if (!std::cin.eof())
+    if (!in.eof())
     {
       std::cerr << "failed reading";
       return 1;

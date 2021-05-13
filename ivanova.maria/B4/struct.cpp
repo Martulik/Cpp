@@ -3,17 +3,40 @@
 
 std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
 {
-  std::string str;
-  std::getline(in, str);
+  char separator = ' ';
+  in >> data.key1;
+  if (!in.fail())
   {
-    if (!str.empty())
+    in >> separator;
+    if (separator != ',')
     {
-      data = getVector(str);
+      std::cerr << "Invalid separator";
+      exit(1);
     }
     else
     {
-      in.setstate(in.eofbit);
+      in >> data.key2;
+      if (in.fail())
+      {
+        std::cerr << "Invalid input";
+        exit(1);
+      }
+      in >> separator;
+      if (separator != ',')
+      {
+        std::cerr << "Invalid separator";
+        exit(1);
+      }
     }
+  }
+  if ((std::abs(data.key1) > 5 || std::abs(data.key2) > 5) && !data.str.empty())
+  {
+    std::cerr << "Ivalid input";
+    exit(1);
+  }
+  if (!in.eof())
+  {
+    std::getline(in, data.str);
   }
   return in;
 }

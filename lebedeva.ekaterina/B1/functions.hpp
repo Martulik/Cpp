@@ -2,6 +2,7 @@
 #define FUNCTIONS_HPP
 #include <iostream>
 #include <functional>
+#include <cstring>
 #include "access.hpp"
 
 namespace lebedeva

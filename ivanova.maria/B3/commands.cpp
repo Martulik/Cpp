@@ -143,12 +143,21 @@ int iva::doShow(iva::Bookmarks &bookmarks, std::stringstream &input, std::ostrea
     }
     if (bookmarks.findMark(mark))
     {
-      out << *bookmarks.getMark(mark)->second;
-      return 0;
+      if (!bookmarks.isEmpty())
+      {
+        auto iter = bookmarks.getMark(mark);
+        out << *iter->second;
+        return 0;
+      }
+      else
+      {
+        empty(out);
+        return 1;
+      }
     }
     else
     {
-      empty(out);
+      invalidBookmark(out);
       return 1;
     }
   }

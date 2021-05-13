@@ -81,22 +81,6 @@ void iva::Bookmarks::deleteMark(const std::string &markName)
   }
 }
 
-void iva::Bookmarks::show(const std::string &markName)
-{
-  auto iter = bookmarks_.find(markName);
-  if (iter == bookmarks_.end())
-  {
-    invalidBookmark(std::cout);
-    return;
-  }
-  if (phoneBook_.isEmpty())
-  {
-    empty(std::cout);
-    return;
-  }
-  std::cout << *iter->second;
-}
-
 void iva::Bookmarks::move(const std::string &markName, Bookmarks::positionMove position)
 {
   iterator it = bookmarks_.find(markName);

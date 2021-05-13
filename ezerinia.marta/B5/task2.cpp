@@ -6,12 +6,12 @@
 
 #include "shape.hpp"
 
-void ezerinia::task2()
+void ezerinia::task2(std::istream &in, std::ostream &out)
 {
-  if (!std::cin) {
+  if (!in) {
     throw std::runtime_error("Read fail");
   }
-  std::vector< Shape > shapes((std::istream_iterator< Shape >(std::cin)), std::istream_iterator< Shape >());
+  std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
   int vertices = 0;
   int triangles = 0;
   int squares = 0;
@@ -44,7 +44,7 @@ void ezerinia::task2()
   std::cout << "Squares: " << squares << "\n";
   std::cout << "Rectangles: " << rectangles << "\n";
   std::cout << "Points: ";
-  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, "\n"));
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, "\n"));
   std::cout << "\nShapes:\n";
-  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(std::cout, "\n"));
+  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

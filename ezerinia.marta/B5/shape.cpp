@@ -1,5 +1,6 @@
 #include "shape.hpp"
 #include <iterator>
+#include <iostream>
 #include <algorithm>
 #include <cmath>
 #include <sstream>
@@ -33,7 +34,6 @@ bool compare(const Shape &lhs, const Shape &rhs)
   }
   return false;
 }
-
 
 std::istream &operator>>(std::istream &in, Point &point)
 {
@@ -73,6 +73,7 @@ std::istream &operator>>(std::istream &in, Shape &shape)
   Shape shape_temp((std::istream_iterator< Point >(iss)), std::istream_iterator< Point >());
   shape.swap(shape_temp);
   shape.pop_back();
+  std::cout << "shape.size() = " << shape.size() << "\n";
   if (nVertices != shape.size() || shape.size() < 3) {
     throw std::runtime_error("Wrong number of vertices");
   }

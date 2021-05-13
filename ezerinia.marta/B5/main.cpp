@@ -8,13 +8,15 @@ namespace lab = ezerinia;
 int main(int argc, char *argv[])
 {
   try {
-    if (argc < 2 || std::strlen(argv[1]) != 1 || (std::atoi(argv[1]) != 1 && std::atoi(argv[1]) != 2)) {
-      throw std::runtime_error("Invalid arguments or number of them");
+    if (argc < 2 || std::strlen(argv[1]) != 1 || !std::isdigit(argv[1][0])) {
+      throw std::invalid_argument("Invalid arguments");
     }
-    if (std::atoi(argv[1]) == 1) {
-      lab::task1();
+    if (argv[1][0] == '1') {
+      lab::task1(std::cin, std::cout);
+    } else if (argv[1][0] == '2') {
+      lab::task2(std::cin, std::cout);
     } else {
-      lab::task2();
+      throw std::invalid_argument("Invalid number of task");
     }
   }
   catch (std::exception &ex) {

@@ -20,6 +20,7 @@ namespace savchuk
   std::string readName(std::istream& is);
   std::string readMarkName(std::istream& is);
   std::string readSteps(std::istream& is);
+  std::string readPosition(std::istream& is);
 }
 
 #endif

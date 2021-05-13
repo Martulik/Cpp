@@ -85,3 +85,18 @@ std::string lab::readSteps(std::istream& is)
   }
   return steps;
 }
+
+std::string lab::readPosition(std::istream& is)
+{
+  std::string position;
+  is >> position;
+  if (is.fail() && !is.eof())
+  {
+    throw std::runtime_error(INPUT_ERROR);
+  }
+  if (position != "before" && position != "after")
+  {
+    throw std::invalid_argument(INVALID_COMMAND);
+  }
+  return position;
+}

@@ -19,6 +19,10 @@ int main(int argc, char* argv[])
     {
       task = std::atoi(argv[1]);
     }
+    else
+    {
+      throw std::invalid_argument("Not a number");
+    }
 
     if ((task <= 0) || (task > 4))
     {

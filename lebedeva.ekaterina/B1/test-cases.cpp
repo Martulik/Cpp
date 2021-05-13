@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(checkSortOrderFunc)
 BOOST_AUTO_TEST_CASE(checkIsNumber)
 {
   BOOST_CHECK_EQUAL(lebedeva::isNumber(lebedeva::emtStr), true);
-  BOOST_CHECK_EQUAL(lebedeva::isNumber(lebedeva::invArg), false);
+  BOOST_CHECK_THROW(lebedeva::isNumber(lebedeva::invArg), std::invalid_argument);
   BOOST_CHECK_EQUAL(lebedeva::isNumber(lebedeva::num1), true);
   BOOST_CHECK_EQUAL(lebedeva::isNumber(lebedeva::num2), true);
 }

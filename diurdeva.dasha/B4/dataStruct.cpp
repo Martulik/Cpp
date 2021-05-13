@@ -3,6 +3,7 @@
 
 std::istream& diurdeva::operator>>(std::istream& in, DataStruct& dataStruct)
 {
+  char separator;
   int key1_;
   in >> key1_;
   in >> separator;

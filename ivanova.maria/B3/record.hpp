@@ -15,7 +15,6 @@ namespace ivanova
   std::ostream &operator <<(std::ostream &out, const Record &info);
 
   bool checkNumber(const std::string &number);
-  bool checkMark(const std::string &mark);
 }
 
 #endif

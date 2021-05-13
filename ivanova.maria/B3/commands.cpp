@@ -41,7 +41,6 @@ ivanova::Commands::Commands(std::ostream &out):
       std::make_pair("move", doMove)
     })
 {
-
 }
 
 int iva::doAdd(iva::Bookmarks &bookmarks, std::stringstream &input, std::ostream &out)
@@ -243,6 +242,22 @@ iva::Bookmarks::InsertType iva::getInsertType(std::string &str)
     invalidStep(std::cout);
     return {};
   }
+}
+
+bool iva::checkMark(const std::string &mark)
+{
+  if (mark.empty())
+  {
+    return false;
+  }
+  for (char i: mark)
+  {
+    if ((!std::isalnum(i)) && (i != '-'))
+    {
+      return false;
+    }
+  }
+  return true;
 }
 
 void ivanova::invalidCommand(std::ostream &out)

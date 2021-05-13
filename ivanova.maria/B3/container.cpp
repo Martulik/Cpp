@@ -19,12 +19,12 @@ constexpr size_t maxNum = 11;
 constexpr iva::Container::value_type maxFact = iva::factorial(maxNum);
 
 
-iva::Container::Iterator iva::Container::begin() const
+iva::Container::Iterator iva::Container::begin() const noexcept
 {
   return {minNum, minFact};
 }
 
-iva::Container::Iterator iva::Container::end() const
+iva::Container::Iterator iva::Container::end() const noexcept
 {
   return {maxNum, maxFact};
 }

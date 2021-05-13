@@ -3,7 +3,7 @@
 
 #include "record.hpp"
 
-std::string input = "538111474758 \"yHcQ TaQjVtKtjn\"";
+const std::string input = "538111474758 \"yHcQ TaQjVtKtjn\"";
 const std::string output = "538111474758 yHcQ TaQjVtKtjn";
 
 namespace iva = ivanova;

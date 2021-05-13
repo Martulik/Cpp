@@ -4,8 +4,6 @@
 #include <string>
 #include <cstdio>
 
-
-
 namespace iva = ivanova;
 
 BOOST_AUTO_TEST_SUITE(testOfContainerFactorial)

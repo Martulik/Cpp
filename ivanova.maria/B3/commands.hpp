@@ -21,6 +21,7 @@ namespace ivanova
     const std::map< std::string, int (*)(Bookmarks &, std::stringstream &, std::ostream &) > commands_;
   };
 
+  bool checkMark(const std::string &mark);
   void invalidCommand(std::ostream& out);
   void empty(std::ostream &out);
   void invalidBookmark(std::ostream &out);

@@ -79,18 +79,3 @@ bool iva::checkNumber(const std::string &number)
   return true;
 }
 
-bool iva::checkMark(const std::string &mark)
-{
-  if (mark.empty())
-  {
-    return false;
-  }
-  for (char i: mark)
-  {
-    if ((!std::isalnum(i)) && (i != '-'))
-    {
-      return false;
-    }
-  }
-  return true;
-}

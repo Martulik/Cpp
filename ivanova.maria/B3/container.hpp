@@ -29,8 +29,8 @@ namespace ivanova
       value_type value_;
       Iterator(size_t index, value_type value);
     };
-    Iterator begin() const;
-    Iterator end() const;
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
   };
 
   constexpr Container::value_type factorial(size_t number);

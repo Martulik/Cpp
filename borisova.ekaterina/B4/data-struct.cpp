@@ -24,46 +24,30 @@ bool lab::operator<(const DataStruct& temp1, const DataStruct& temp2)
 
 std::istream& lab::operator>>(std::istream& in, DataStruct& data)
 {
-  DataStruct value;
-  int key1;
-  int key2;
-  std::string str;
   char comma;
-  if (in)
+  in >> data.key1;
+  if (!in.fail())
   {
-    in >> key1;
-    if (!in.fail())
+    in >> comma;
+    if (!in.fail() && comma == ',')
     {
-      in >> comma;
-      if (comma != ',')
-      {
-        throw std::invalid_argument("Miss comma\n");
-      }
-      value.key1 = key1;
-      in >> key2;
+      in >> data.key2;
       if (!in.fail())
       {
         in >> comma;
-        if (comma != ',')
-        {
-          throw std::invalid_argument("Miss comma\n");
-        }
-        value.key2 = key2;
-        in >> std::ws;
-        getline(in, value.str, '\n');
-        if (value.str.empty())
-        {
-          throw std::invalid_argument("str is empty\n");
-        }
+
       }
     }
-    if (!in.fail() && value.key1 >= -5 && value.key1 <= 5 && value.key2 >= -5 && value.key2 <= 5)
+    if (!in.fail() && comma != ',' && data.key1 < -5 && data.key1 > 5 && data.key2 < -5 && data.key2 > 5)
     {
-      data = { value.key1, value.key2, value.str };
+      throw std::invalid_argument("Invalid input\n");
     }
     else
     {
-      throw std::invalid_argument("Invalid input\n");
+      if (!in.eof())
+      {
+        getline(in, data.str, '\n');
+      }    
     }
   }
   return in;

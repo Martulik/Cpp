@@ -17,6 +17,10 @@ namespace ivanova
     while (std::getline(in, string))
     {
       std::stringstream input(string);
+      if (string.empty())
+      {
+        return 0;
+      }
       DataStruct data;
       input >> data;
       vector.push_back(data);

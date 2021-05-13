@@ -52,7 +52,7 @@ namespace razukrantov
     }
     static constIterator begin(const container&)
     {
-        return 0;
+      return 0;
     }
     static iterator end(container& container)
     {
@@ -60,7 +60,7 @@ namespace razukrantov
     }
     static constIterator end(const container& container)
     {
-        return container.size();
+      return container.size();
     }
     static T& get(container& container, iterator iterator)
     {
@@ -68,7 +68,7 @@ namespace razukrantov
     }
     static const T& get(const container& container, constIterator iterator)
     {
-        return container.at(iterator);
+      return container.at(iterator);
     }
   };
 
@@ -85,7 +85,7 @@ namespace razukrantov
     }
     static constIterator begin(const container& container)
     {
-        return container.begin();
+      return container.begin();
     }
     static iterator end(container& container)
     {
@@ -93,7 +93,7 @@ namespace razukrantov
     }
     static constIterator end(const container& container)
     {
-        return container.end();
+      return container.end();
     }
     static T& get(container&, iterator iterator)
     {
@@ -101,7 +101,7 @@ namespace razukrantov
     }
     static const T& get(const container&, constIterator iterator)
     {
-        return *iterator;
+      return *iterator;
     }
   };
 }

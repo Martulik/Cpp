@@ -32,12 +32,12 @@ bool lab::Book::empty() const
   return phoneBook_.empty();
 }
 
-lab::Book::constItr lab::Book::begin()
+lab::Book::constItr lab::Book::begin() const
 {
   return phoneBook_.begin();
 }
 
-lab::Book::constItr lab::Book::end()
+lab::Book::constItr lab::Book::end() const
 {
   return phoneBook_.end();
 }

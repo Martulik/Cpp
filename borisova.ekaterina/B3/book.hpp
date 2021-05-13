@@ -16,8 +16,8 @@ namespace borisova
     void insertBack(const Note& src);
     void deleteNote(constItr iter);
     bool empty() const;
-    constItr begin();
-    constItr end();
+    constItr begin() const;
+    constItr end() const;
 
   private:
     std::list< Note > phoneBook_;

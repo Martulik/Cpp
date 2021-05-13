@@ -79,7 +79,7 @@ void lab::Interface::deleteMark(const std::string& bookMark)
 
 void lab::Interface::move(const std::string& bookmark, const int n)
 {
-  constItr iter = notes_.find(bookmark);
+  auto iter = notes_.find(bookmark);
   assert(iter != notes_.end());
   std::advance(iter->second, n);
 }

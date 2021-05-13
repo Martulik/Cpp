@@ -15,37 +15,39 @@ BOOST_AUTO_TEST_SUITE(testSort)
     BOOST_CHECK(iva::compare({-4, 2, "khhdfl00fgh"}, {3, 2, "khhdfl00fgh"}));
     BOOST_CHECK(iva::compare({-1, 0, "f7dfjgdj493/c#" }, {-1, 4, "f7dfjgdj493/c#"}));
     BOOST_CHECK(iva::compare({0, 3, "5ioof0#$gd"}, {0, 3, "f9g0e$/dfg-+4"}));
-    BOOST_CHECK(!iva::compare(0, 3, "5ioof0#$gd"}, {0, 3, "5ioof0#$gd"));
+    BOOST_CHECK(!iva::compare({0, 3, "555"}, {0, 3, "555"}));
   }
 
   BOOST_AUTO_TEST_CASE(sortKey1)
   {
-    std::vector< lab::DataStruct > vec{{-1,  -3, str},{-3, 3, str},{4, 2, str}};
+    std::vector< iva::DataStruct > vec{{-1,  -3, str},{-3, 3, str},{4, 2, str}};
     std::sort(vec.begin(), vec.end(), iva::compare);
     size_t i = 0;
-    while (i = 0 < vec.size() - 1)
+    while (i < vec.size() - 1)
     {
       BOOST_CHECK(vec[i].key1 <= vec[i + 1].key1);
       i++;
     }
   }
 
-  BOOST_AUTO_TEST_CASE(sort_by_key2)
+  BOOST_AUTO_TEST_CASE(sortKey2)
   {
-    std::vector< lab::DataStruct > vec{{-5, 1,  str}, {-5, -3,  str}, {-5, 4, str}};
+    std::vector< iva::DataStruct > vec{{-5, 1,  str}, {-5, -3,  str}, {-5, 4, str}};
     std::sort(vec.begin(), vec.end(), iva::compare);
-    while (i = 0 < vec.size() - 1)
+    size_t i = 0;
+    while (i < vec.size() - 1)
     {
       BOOST_CHECK(vec[i].key1 <= vec[i + 1].key1);
       i++;
     }
   }
 
-  BOOST_AUTO_TEST_CASE(sort_by_str)
+  BOOST_AUTO_TEST_CASE(sortStr)
   {
-    std::vector< lab::DataStruct > vec{{1, 3, str}, {1, 3, str + "s"},{1, 3, str + "ss"}};
-    std::sort(vec.begin(), vec.end(), lab::compare);
-    while (i = 0 < vec.size() - 1)
+    std::vector< iva::DataStruct > vec{{1, 3, str}, {1, 3, str + "s"},{1, 3, str + "ss"}};
+    std::sort(vec.begin(), vec.end(), iva::compare);
+    size_t i = 0;
+    while (i < vec.size() - 1)
     {
       BOOST_CHECK(vec[i].key1 <= vec[i + 1].key1);
       i++;

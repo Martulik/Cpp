@@ -23,9 +23,9 @@ void testSort(const char* order, size_t size)
   std::generate(vector2.begin(), vector2.end(), rand);
   std::generate(list.begin(), list.end(), rand);
 
-  razukrantov::sort< razukrantov::bracketsAccess< int >, int >(vector, compare);
-  razukrantov::sort< razukrantov::atAccess< int >, int >(vector2, compare);
-  razukrantov::sort< razukrantov::iteratorAccess< int >, int >(list, compare);
+  razukrantov::sort< razukrantov::bracketsAccess< int > >(vector, compare);
+  razukrantov::sort< razukrantov::atAccess< int > >(vector2, compare);
+  razukrantov::sort< razukrantov::iteratorAccess< int > >(list, compare);
 
   BOOST_CHECK(std::is_sorted(vector.begin(), vector.end()));
   BOOST_CHECK(std::is_sorted(vector2.begin(), vector2.end()));

@@ -6,18 +6,18 @@ namespace lebedeva
   template < typename T >
   struct bracketsAccess
   {
-    using iterator = typename T::size_type;
+    using Iterator = typename T::size_type;
     using valueType = typename T::value_type;
 
-    static iterator begin(const T&)
+    static Iterator begin(const T&)
     {
       return 0;
     }
-    static iterator end(const T& vector)
+    static Iterator end(const T& vector)
     {
       return vector.size();
     }
-    static valueType& get(T& vector, iterator index)
+    static valueType& get(T& vector, Iterator index)
     {
       return vector[index];
     }
@@ -26,38 +26,38 @@ namespace lebedeva
   template < typename T >
   struct atAccess
   {
-    using iterator = typename T::size_type;
+    using Iterator = typename T::size_type;
     using valueType = typename T::value_type;
 
-    static iterator begin(const T&)
+    static Iterator begin(const T&)
     {
       return 0;
     }
-    static iterator end(const T& vector)
+    static Iterator end(const T& vector)
     {
       return vector.size();
     }
-    static valueType& get(T& vector, iterator index)
+    static valueType& get(T& vector, Iterator index)
     {
       return vector.at(index);
     }
   };
 
-  template < typename T >
+  template < class T >
   struct iteratorAccess
   {
-    using iterator = typename T::size_type;
+    using Iterator = typename T::iterator;
     using valueType = typename T::value_type;
 
-    static iterator begin(T& list)
+    static Iterator begin(T& list)
     {
       return list.begin();
     }
-    static iterator end(T& list)
+    static Iterator end(T& list)
     {
       return list.end();
     }
-    static valueType& get(T&, iterator iterat)
+    static valueType& get(T&, Iterator& iterat)
     {
       return *iterat;
     }

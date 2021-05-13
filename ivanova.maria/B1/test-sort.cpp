@@ -14,6 +14,7 @@ namespace ivanova
     return rand() % 100;
   }
 }
+const int maxSize = 3;
 
 template< typename T, typename S >
 void testSort(S sort, const int size)

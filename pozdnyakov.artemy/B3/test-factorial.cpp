@@ -1,4 +1,5 @@
-#include <boost/test/unit_test.hpp>
+#define BOOST_TEST_MODULE B3
+#include <boost/test/included/unit_test.hpp>
 #include "container.hpp"
 
 namespace poz = pozdnyakov;
@@ -11,7 +12,7 @@ BOOST_AUTO_TEST_CASE(test_factorial)
   for (size_t i = 1; i < 11; i++)
   {
     factor *= i;
-    BOOST_CHECK_REQUIRE(factor == *begin);
+    BOOST_REQUIRE_EQUAL(factor, *begin);
     begin++;
   }
 }

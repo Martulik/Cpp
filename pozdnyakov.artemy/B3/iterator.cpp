@@ -13,7 +13,7 @@ poz::FactorialIterator& poz::FactorialIterator::operator++()
 poz::FactorialIterator poz::FactorialIterator::operator++(int)
 {
   poz::FactorialIterator temp = (*this);
-  (*this)++;
+  ++(*this);
   return temp;
 }
 
@@ -27,7 +27,7 @@ poz::FactorialIterator& poz::FactorialIterator::operator--()
 poz::FactorialIterator poz::FactorialIterator::operator--(int)
 {
   poz::FactorialIterator temp = (*this);
-  (*this)--;
+  --(*this);
   return temp;
 }
 

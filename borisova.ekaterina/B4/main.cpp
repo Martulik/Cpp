@@ -15,7 +15,15 @@ int main()
   while (std::getline(std::cin, line) && !line.empty())
   {
     std::istringstream in(line);
-    in >> value;
+    try
+    {
+      in >> value;
+    }
+    catch (const std::invalid_argument& ex)
+    {
+      std::cerr << ex.what() << "\n";
+      return -1;
+    }
     vector.push_back(value);
   }
   std::sort(vector.begin(), vector.end());

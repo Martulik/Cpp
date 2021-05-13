@@ -144,24 +144,25 @@ Accepted Labs
 
 | Name                  | A1 | A3 | B1 | B3 | B4 | B5 |
 |-----------------------|----|----|----|----|----|----|
+| Almuhidat Ahmad       | ✓  |    |    |    |    |    |
 | Arteev Danil          | ✓  |    |    |    |    |    |
-| Borisova Ekaterina    | ✓  | ✓  |    |    |    |    |
-| Diurdeva Dasha        | ✓  | ✓  | ✓  |    |    |    |
-| Doroshin Danil        | ✓  | ✓  | ✓  |    |    |    |
-| Dushechkina Viktoria  | ✓  | ✓  |    |    |    |    |
-| Ezerinia Marta        | ✓  | ✓  | ✓  |    |    |    |
-| Ferapontov Mikhail    | ✓  | ✓  |    |    |    |    |
-| Ivanova Maria         | ✓  | ✓  |    |    |    |    |
+| Borisova Ekaterina    | ✓  | ✓  | ✓  |    |    |    |
+| Diurdeva Dasha        | ✓  | ✓  | ✓  | ✓  |    |    |
+| Doroshin Danil        | ✓  | ✓  | ✓  | ✓  |    |    |
+| Dushechkina Viktoria  | ✓  | ✓  | ✓  |    |    |    |
+| Ezerinia Marta        | ✓  | ✓  | ✓  | ✓  |    |    |
+| Ferapontov Mikhail    | ✓  | ✓  | ✓  |    |    |    |
+| Ivanova Maria         | ✓  | ✓  | ✓  |    |    |    |
 | Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
-| Lysenko Aleksandra    | ✓  | ✓  |    |    |    |    |
-| Murzakanov Islam      | ✓  | ✓  |    |    |    |    |
-| Pochernin Vladislav   | ✓  | ✓  |    |    |    |    |
-| Pozdnyakov Artemy     | ✓  | ✓  |    |    |    |    |
-| Pyatizbyantsev Ilya   | ✓  |    |    |    |    |    |
-| Razukrantov Vladislav | ✓  |    |    |    |    |    |
-| Savchuk Aleksei       | ✓  | ✓  |    |    |    |    |
-| Shilyaev Vladislav    | ✓  | ✓  | ✓  |    |    |    |
-| Shkurov Igor          | ✓  | ✓  |    |    |    |    |
+| Lysenko Aleksandra    | ✓  | ✓  | ✓  |    |    |    |
+| Murzakanov Islam      | ✓  | ✓  | ✓  | ✓  |    |    |
+| Pochernin Vladislav   | ✓  | ✓  | ✓  |    |    |    |
+| Pozdnyakov Artemy     | ✓  | ✓  | ✓  |    |    |    |
+| Pyatizbyantsev Ilya   | ✓  | ✓  |    |    |    |    |
+| Razukrantov Vladislav | ✓  | ✓  |    |    |    |    |
+| Savchuk Aleksei       | ✓  | ✓  | ✓  |    |    |    |
+| Shilyaev Vladislav    | ✓  | ✓  | ✓  | ✓  |    |    |
+| Shkurov Igor          | ✓  | ✓  | ✓  |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  20|  15|   4|   0|   0|   0|
+| __Total__             |  21|  17|  14|   5|   0|   0|

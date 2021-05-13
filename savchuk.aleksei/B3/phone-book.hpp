@@ -14,11 +14,9 @@ namespace savchuk
       using iterator = std::list< contact_t >::iterator;
 
       const contact_t& show(iterator it) const;
-      iterator moveNext(iterator it);
-      iterator movePrev(iterator it);
-      iterator add(iterator it, const contact_t& src);
-      iterator replace(iterator it, const contact_t& src);
-      iterator add(const contact_t& src);
+      iterator add(iterator it, const contact_t& contact);
+      iterator replace(iterator it, const contact_t& contact);
+      iterator add(const contact_t& contact);
       iterator move(iterator it, int steps);
       iterator remove(iterator it);
       bool empty() const;

@@ -7,38 +7,20 @@ const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::iterator it) const
   return *it;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::moveNext(lab::PhoneBook::iterator it)
+lab::PhoneBook::iterator lab::PhoneBook::add(lab::PhoneBook::iterator it, const lab::contact_t& contact)
 {
-  if (it != --data_.cend())
-  {
-    ++it;
-  }
+  return data_.insert(it, contact);
+}
+
+lab::PhoneBook::iterator lab::PhoneBook::replace(lab::PhoneBook::iterator it, const contact_t& contact)
+{
+  *it = contact;
   return it;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::movePrev(lab::PhoneBook::iterator it)
+lab::PhoneBook::iterator lab::PhoneBook::add(const lab::contact_t& contact)
 {
-  if (it != data_.cbegin())
-  {
-    --it;
-  }
-  return it;
-}
-
-lab::PhoneBook::iterator lab::PhoneBook::add(lab::PhoneBook::iterator it, const lab::contact_t& src)
-{
-  return data_.insert(it, src);
-}
-
-lab::PhoneBook::iterator lab::PhoneBook::replace(lab::PhoneBook::iterator it, const contact_t& src)
-{
-  *it = src;
-  return it;
-}
-
-lab::PhoneBook::iterator lab::PhoneBook::add(const lab::contact_t& src)
-{
-  data_.push_back(src);
+  data_.push_back(contact);
   return --data_.end();
 }
 

@@ -132,7 +132,12 @@ bool iva::Bookmarks::isEmpty()
   return phoneBook_.isEmpty();
 }
 
-ivanova::Bookmarks::iter ivanova::Bookmarks::findMark(const std::string &name) const
+bool ivanova::Bookmarks::findMark(const std::string &name) const
 {
-  return bookmarks_.find(name);
+  return bookmarks_.find(name) == bookmarks_.end() ? false: true;
+}
+
+ivanova::Bookmarks::iter ivanova::Bookmarks::getMark(const std::string &name) const
+{
+    return bookmarks_.find(name);
 }

@@ -2,13 +2,14 @@
 
 namespace poz = pozdnyakov;
 
-poz::FactorialIterator poz::FactorialContainer::begin() const
+poz::FactorialContainer::const_iterator poz::FactorialContainer::cbegin() const
 {
   return poz::FactorialIterator(1, poz::getFactorial(1));
 }
 
-poz::FactorialIterator poz::FactorialContainer::end() const
+poz::FactorialContainer::const_iterator poz::FactorialContainer::cend() const
 {
-  size_t k = 1;
-  return poz::FactorialIterator(poz::FactorialIterator::MAX_NUM + k, poz::getFactorial(poz::FactorialIterator::MAX_NUM + 1));
+  unsigned k = 1;
+  using fIterator = poz::FactorialIterator;
+  return fIterator(fIterator::MAX_NUM + k, poz::getFactorial(fIterator::MAX_NUM + 1));
 }

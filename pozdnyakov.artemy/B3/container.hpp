@@ -9,9 +9,10 @@ namespace pozdnyakov
   {
   public:
     using iterator = FactorialIterator;
+    using const_iterator = const FactorialIterator;
     FactorialContainer() = default;
-    FactorialIterator begin() const;
-    FactorialIterator end() const;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
   };
 }
 

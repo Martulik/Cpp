@@ -2,6 +2,7 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
+#include <iterator>
 #include "data-struct.hpp"
 
 namespace lab = borisova;

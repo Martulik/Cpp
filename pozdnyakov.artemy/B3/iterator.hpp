@@ -8,21 +8,23 @@ namespace pozdnyakov
   class FactorialIterator: public std::iterator< std::bidirectional_iterator_tag, unsigned long >
   {
   public:
+    using value_type = unsigned long;
+    using number_type = unsigned;
     FactorialIterator& operator++();
     FactorialIterator operator++(int);
     FactorialIterator& operator--();
     FactorialIterator operator--(int);
-    unsigned long& operator*();
-    unsigned long* operator->();
+    value_type& operator*();
+    value_type* operator->();
     bool operator==(const FactorialIterator& it) const;
     bool operator!=(const FactorialIterator& it) const;
   private:
     friend class FactorialContainer;
-    static constexpr unsigned MAX_NUM = 10;
-    unsigned n_;
-    unsigned long value_;
+    static constexpr number_type MAX_NUM = 10;
+    number_type n_;
+    value_type value_;
     FactorialIterator() = default;
-    FactorialIterator(unsigned n, unsigned long value);
+    FactorialIterator(number_type n, value_type value);
   };
   constexpr unsigned long getFactorial(const unsigned n)
   {

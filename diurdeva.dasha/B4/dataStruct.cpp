@@ -1,4 +1,5 @@
 #include "dataStruct.hpp"
+#include <sstream>
 #include <iostream>
 
 std::istream& diurdeva::operator>>(std::istream& in, DataStruct& dataStruct)

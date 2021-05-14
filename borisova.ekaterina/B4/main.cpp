@@ -14,8 +14,8 @@ int main()
   std::string line;
   try
   {
-    std::istream_iterator< lab::DataStruct > input(std::cin);
-    std::vector< lab::DataStruct > vector(input, std::istream_iterator< lab::DataStruct >());
+    std::istream_iterator< lab::DataStruct > in(std::cin);
+    std::vector< lab::DataStruct > vector(in, std::istream_iterator< lab::DataStruct >());
   }
   catch (const std::invalid_argument& ex)
   {

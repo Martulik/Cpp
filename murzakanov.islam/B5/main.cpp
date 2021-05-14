@@ -4,10 +4,11 @@
 
 int main(int argc, char* argv[])
 {
+  int code = 0;
   if (argc != 2)
   {
-    std::cerr << "\n";
-    return 1;
+    std::cerr << "Invalid argument\n";
+    code = 1;
   }
   int task = argv[1][0] - '0';
   if (task == 1)
@@ -18,5 +19,5 @@ int main(int argc, char* argv[])
   {
     murzakanov::task2(std::cin, std::cout);
   }
-  return 0;
+  return code;
 }

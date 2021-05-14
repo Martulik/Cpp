@@ -26,8 +26,8 @@ void lebedeva::doTask1(const int argc, char* argv[])
   sort< atAccess >(atVec, comp);
   sort< iteratorAccess >(iterList, comp);
 
-  print(brackVec, std::cout);
-  print(atVec, std::cout);
-  print(iterList, std::cout);
+  print(brackVec, std::cout, " ");
+  print(atVec, std::cout, " ");
+  print(iterList, std::cout, " ");
 }
 

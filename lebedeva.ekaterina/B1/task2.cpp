@@ -36,6 +36,5 @@ void lebedeva::doTask2(const int argc, char* argv[])
   }
     inFile.close();
     std::vector< char > resVec(data.get(), data.get() + size);
-    print(resVec, std::cout);
-
+    print(resVec, std::cout, "");
 }

@@ -23,6 +23,6 @@ void lebedeva::doTask4(const int argc, char* argv[])
   std::function< bool(double, double) > comp = getSortOrder< double >(argv[2]);
   sort< atAccess >(dVec, comp);
 
-  print(inVec, std::cout);
-  print(dVec, std::cout);
+  print(inVec, std::cout, " ");
+  print(dVec, std::cout, " ");
 }

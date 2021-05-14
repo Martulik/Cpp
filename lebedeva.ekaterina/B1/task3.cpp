@@ -49,6 +49,6 @@ void lebedeva::doTask3(const int argc)
     }
   }
 
-  print(inVec, std::cout);
+  print(inVec, std::cout, " ");
 }
 

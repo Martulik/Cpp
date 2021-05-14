@@ -1,5 +1,5 @@
-#include <boost/test/unit_test.hpp>
 #include <sstream>
+#include <boost/test/unit_test.hpp>
 #include "dataStruct.hpp"
 
 BOOST_AUTO_TEST_SUITE(dataStruct)
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(checkOutput)
   diurdeva::DataStruct data{ 3, 2, "apple" };
   std::stringstream input;
   input << data;
-  BOOST_CHECK_EQUAL(input.str(), "3,2,apple\n");
+  BOOST_CHECK_EQUAL(input.str(), "3,2,apple");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

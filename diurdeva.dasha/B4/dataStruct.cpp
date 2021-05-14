@@ -4,19 +4,23 @@
 std::istream& diurdeva::operator>>(std::istream& in, DataStruct& dataStruct)
 {
   char separator;
-  in >> dataStruct.key1;
-  if (!in.fail()) {
-    in >> separator;
-    if (in.fail() || separator != ',') {
+  std::string str;
+  std::getline(in, str);
+  std::istringstream input(str);
+
+  input >> dataStruct.key1;
+  if (!input.fail()) {
+    input >> separator;
+    if (input.fail() || separator != ',') {
       throw std::invalid_argument("Invalid first separator\n");
     }
-    in >> dataStruct.key2;
-    if (!in.fail()) {
-      in >> separator;
+    input >> dataStruct.key2;
+    if (!input.fail()) {
+      input >> separator;
     }
   }
 
-  if (in.fail() || separator != ',')
+  if (input.fail() || separator != ',')
   {
     throw std::invalid_argument("Invalid second separator\n");
   }
@@ -26,7 +30,7 @@ std::istream& diurdeva::operator>>(std::istream& in, DataStruct& dataStruct)
     throw std::out_of_range("Values out of range\n");
   }
 
-  getline(in, dataStruct.str);
+  getline(input, dataStruct.str);
 
   if (dataStruct.str.empty())
   {

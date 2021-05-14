@@ -43,7 +43,7 @@ bool pochernin::checkName(std::string& name)
   }
   else
   {
-    name.erase(name.end());
+    name.erase(name.end() - 1);
   }
 
   if (name.empty())
@@ -58,7 +58,7 @@ bool pochernin::checkName(std::string& name)
     {
       return false;
     }
-    else if (name[i] = '\\')
+    else if (name[i] == '\\')
     {
       if (i == (name.size() - 1))
       {

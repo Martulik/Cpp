@@ -20,14 +20,16 @@ BOOST_AUTO_TEST_SUITE(data_struct)
   {
     lab::DataStruct data;
     std::stringstream ss("-10,2,str");
-    BOOST_CHECK_THROW(ss >> data, std::invalid_argument);
+    ss >> data;
+    BOOST_CHECK( ss.fail());
   }
 
   BOOST_AUTO_TEST_CASE(miss_comma)
   {
     lab::DataStruct data;
     std::stringstream ss("-1 2,str");
-    BOOST_CHECK_THROW(ss >> data, std::invalid_argument);
+    ss >> data;
+    BOOST_CHECK( ss.fail());
   }
 
   BOOST_AUTO_TEST_CASE(output)
@@ -35,7 +37,7 @@ BOOST_AUTO_TEST_SUITE(data_struct)
     lab::DataStruct data{1, 2, "str"};
     std::stringstream ss;
     ss << data;
-    BOOST_CHECK_EQUAL(ss.str(), "1,2,str\n");
+    BOOST_CHECK_EQUAL(ss.str(), "1,2,str");
   }
 
 BOOST_AUTO_TEST_SUITE_END()

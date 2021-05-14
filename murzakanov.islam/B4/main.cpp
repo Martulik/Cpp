@@ -8,7 +8,8 @@
 
 int main()
 {
-  std::vector< murzakanov::DataStruct > vec{std::istream_iterator< murzakanov::DataStruct >(std::cin), std::istream_iterator< murzakanov::DataStruct >()};
+  using DataStruct = murzakanov::DataStruct;
+  std::vector< DataStruct > vec{std::istream_iterator< DataStruct >(std::cin), std::istream_iterator< DataStruct >()};
   if (std::cin.fail() && !std::cin.eof())
   {
     return 2;

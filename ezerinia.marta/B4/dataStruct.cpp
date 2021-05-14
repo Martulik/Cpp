@@ -1,5 +1,5 @@
 #include "dataStruct.hpp"
-#include <iostream>
+#include <sstream>
 
 bool ezerinia::operator<(const DataStruct &lhs, const DataStruct &rhs){
   if (lhs.key1 != rhs.key1) {
@@ -30,8 +30,9 @@ std::istream &ezerinia::operator>>(std::istream &in, ezerinia::DataStruct &data)
       }
     }
   }
-  if (in.fail() || comma != ',' || abs(data.key1) > 5 || abs(data.key2) > 5) {
-    throw std::invalid_argument("Invalid input\n");
+  if (!in || comma != ',' || abs(data.key1) > 5 || abs(data.key2) > 5) {
+    in.fail();
+    return in;
   }
   if (!in.eof()) {
     std::getline(in, data.str);

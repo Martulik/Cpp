@@ -1,6 +1,6 @@
 #define BOOST_TEST_MODULE B4
-#include <boost/test/included/unit_test.hpp>
 #include <sstream>
+#include <boost/test/included/unit_test.hpp>
 #include "data-struct.hpp"
 
 BOOST_AUTO_TEST_CASE(WrongInput)

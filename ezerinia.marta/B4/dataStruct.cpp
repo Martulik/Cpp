@@ -13,25 +13,28 @@ bool ezerinia::operator<(const DataStruct &lhs, const DataStruct &rhs){
 
 std::ostream &ezerinia::operator<<(std::ostream &out, const ezerinia::DataStruct &data)
 {
-  out << data.key1 << "," << data.key2 << "," << data.str << "\n";
+  out << data.key1 << "," << data.key2 << "," << data.str;
   return out;
 }
 
 std::istream &ezerinia::operator>>(std::istream &in, ezerinia::DataStruct &data)
 {
+  std::string str;
+  std::getline(in,str);
+  std::istringstream iss(str);
   char comma = '\0';
-  in >> data.key1;
+  iss >> data.key1;
   if (!in.fail()) {
-    in >> comma;
+    iss >> comma;
     if (!in.fail() && comma == ',') {
-      in >> data.key2;
+      iss >> data.key2;
       if (!in.fail()) {
-        in >> comma;
+        iss >> comma;
       }
     }
   }
-  if (!in || comma != ',' || abs(data.key1) > 5 || abs(data.key2) > 5) {
-    in.fail();
+  if (!iss || comma != ',' || abs(data.key1) > 5 || abs(data.key2) > 5) {
+    in.setstate(std::ios::failbit);
     return in;
   }
   if (!in.eof()) {

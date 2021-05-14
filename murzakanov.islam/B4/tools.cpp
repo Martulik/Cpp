@@ -1,4 +1,5 @@
 #include "tools.hpp"
+#include <iostream>
 
 std::string murzakanov::readString(std::istream& in)
 {

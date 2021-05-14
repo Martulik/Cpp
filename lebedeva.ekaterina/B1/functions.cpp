@@ -7,12 +7,9 @@ bool lebedeva::isNumber(const char* num)
 {
   for (size_t i = 0; i < strlen(num); i++)
   {
-    if (!std::isdigit(num[i]))
+    if (!isdigit(num[i]))
     {
-      return false;
-    }
-    if (num[i] == ' ')
-    {
+      std::cerr << "Not an integer number\n";
       return false;
     }
     i++;

@@ -11,7 +11,8 @@ int main(int argc, char* argv[])
   {
     if ((argc < 2) || (argc > 4))
     {
-      throw std::invalid_argument("Invalid arguments");
+      std::cerr << "Invalid arguments";
+      return 1;
     }
 
     int task = 0;
@@ -21,13 +22,14 @@ int main(int argc, char* argv[])
     }
     else
     {
-      throw std::invalid_argument("Not a number");
+      std::cerr << "Invalid arguments";
+      return 1;
     }
 
     if ((task <= 0) || (task > 4))
     {
-      throw std::invalid_argument("Invalid task number");
-
+      std::cerr << "Invalid task number";
+      return 1;
     }
     if (task == 1)
     {

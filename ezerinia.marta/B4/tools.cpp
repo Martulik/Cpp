@@ -7,25 +7,13 @@
 
 namespace lab = ezerinia;
 
-bool lab::compare(DataStruct &lhs, DataStruct &rhs)
-{
-  if (lhs.key1 != rhs.key1) {
-    return lhs.key1 < rhs.key1;
-  } else if (lhs.key2 != rhs.key2) {
-    return lhs.key2 < rhs.key2;
-  } else {
-    return lhs.str.length() < rhs.str.length();
-  }
-}
-
 void lab::read(std::vector< lab::DataStruct > &vector, std::istream &in)
 {
   std::string line;
   while (std::getline(in, line)) {
     lab::DataStruct data;
-    std::stringstream input(line);
-    input >> data;
-    vector.push_back(data);
+    std::copy(std::istream_iterator< lab::DataStruct >(in),
+              std::istream_iterator< DataStruct >(), std::back_inserter(vector));
   }
 }
 
@@ -33,8 +21,6 @@ void lab::task(std::istream &in, std::ostream &out)
 {
   std::vector< lab::DataStruct > vector;
   read(vector, in);
-  std::sort(vector.begin(), vector.end(), compare);
-  for (auto &&it: vector) {
-    out << it;
-  }
+  std::sort(vector.begin(), vector.end());
+  std::copy(vector.begin(), vector.end(), std::ostream_iterator< DataStruct >(out));
 }

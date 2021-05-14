@@ -1,7 +1,6 @@
-#include <boost/test/unit_test.hpp>
 #include <vector>
 #include <algorithm>
-#include "tools.hpp"
+#include <boost/test/unit_test.hpp>
 #include "dataStruct.hpp"
 
 namespace lab = ezerinia;
@@ -17,7 +16,7 @@ BOOST_AUTO_TEST_SUITE(sort)
       {-3, 4, str},
       {0,  5, str}
     };
-    std::sort(vec.begin(), vec.end(), lab::compare);
+    std::sort(vec.begin(), vec.end());
     for (unsigned long i = 0; i < vec.size() - 1; i++) {
       BOOST_CHECK(vec[i].key1 <= vec[i + 1].key1);
     }
@@ -30,7 +29,7 @@ BOOST_AUTO_TEST_SUITE(sort)
       {0, 0,  str},
       {0, -3, str},
     };
-    std::sort(vec.begin(), vec.end(), lab::compare);
+    std::sort(vec.begin(), vec.end());
     for (unsigned long i = 0; i < vec.size() - 1; i++) {
       BOOST_CHECK(vec[i].key2 <= vec[i + 1].key2);
     }
@@ -43,7 +42,7 @@ BOOST_AUTO_TEST_SUITE(sort)
       {0, 0, "413&^%$ 2jn"},
       {0, 0, "4j32n4j j321n4jk jn213&*^89"},
     };
-    std::sort(vec.begin(), vec.end(), lab::compare);
+    std::sort(vec.begin(), vec.end());
     for (unsigned long i = 0; i < vec.size() - 1; i++) {
       BOOST_CHECK(vec[i].str.length() <= vec[i + 1].str.length());
     }

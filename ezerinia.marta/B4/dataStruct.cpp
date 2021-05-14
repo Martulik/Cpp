@@ -24,11 +24,11 @@ std::istream &ezerinia::operator>>(std::istream &in, ezerinia::DataStruct &data)
   std::istringstream iss(str);
   char comma = '\0';
   iss >> data.key1;
-  if (!in.fail()) {
+  if (!iss.fail()) {
     iss >> comma;
-    if (!in.fail() && comma == ',') {
+    if (!iss.fail() && comma == ',') {
       iss >> data.key2;
-      if (!in.fail()) {
+      if (!iss.fail()) {
         iss >> comma;
       }
     }
@@ -37,7 +37,7 @@ std::istream &ezerinia::operator>>(std::istream &in, ezerinia::DataStruct &data)
     in.setstate(std::ios::failbit);
     return in;
   }
-  if (!in.eof()) {
+  if (!iss.eof()) {
     std::getline(iss, data.str);
   }
   return in;

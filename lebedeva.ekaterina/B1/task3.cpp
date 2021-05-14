@@ -22,11 +22,11 @@ void lebedeva::doTask3(const int argc)
   }
 
   std::vector< int >::iterator i = inVec.begin();
-  if (1 == inVec.back())
+  if (inVec.back() == 1)
   {
     while (i != inVec.end())
     {
-      if (0 == (*i % 2))
+      if ((*i % 2) == 0)
       {
         inVec.erase(i);
       }
@@ -36,12 +36,14 @@ void lebedeva::doTask3(const int argc)
       }
     }
   }
-  if (2 == inVec.back())
+  if (inVec.back() == 2)
   {
-    if (0 == (*i % 3))
+    if ((*i % 3) == 0)
     {
-      inVec.insert(i + 1, 3, 1);
-      i += 2;
+      i++;
+      inVec.emplace(i, 1);
+      inVec.emplace(i, 1);
+      inVec.emplace(i, 1);
     }
     else
     {

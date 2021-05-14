@@ -1,6 +1,8 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 
+#include <iostream>
+
 namespace pochernin
 {
   using ValueType = unsigned int;
@@ -10,6 +12,11 @@ namespace pochernin
 
   int getTaskNumber(const char* string);
   ValueType getFactorial(ValueType number);
+
+  void invalidCommand(std::ostream& out);
+  void invalidBookmark(std::ostream& out);
+  void invalidStep(std::ostream& out);
+  void empty(std::ostream& out);
 }
 
 #endif

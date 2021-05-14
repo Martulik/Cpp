@@ -7,6 +7,7 @@
 #include "phone-book.hpp"
 #include "phone-book-interface.hpp"
 #include "note.hpp"
+#include "functions.hpp"
 
 void pochernin::task1(std::istream& in, std::ostream& out)
 {
@@ -24,12 +25,12 @@ void pochernin::task1(std::istream& in, std::ostream& out)
       input >> note;
       if ((note.number == "") || (note.name == ""))
       {
-        out << "<INVALID COMMAND>\n";
+        pochernin::invalidCommand(out);
       }
     }
     else
     {
-      out << "<INVALID COMMAND>\n";
+      pochernin::invalidCommand(out);
     }
   }
 }

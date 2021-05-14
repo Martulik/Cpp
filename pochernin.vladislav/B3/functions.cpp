@@ -34,3 +34,23 @@ pochernin::ValueType pochernin::getFactorial(ValueType number)
     return ((number <= 1) ? 1 : (number * getFactorial(number - 1)));
   }
 }
+
+void pochernin::invalidCommand(std::ostream& out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void pochernin::invalidBookmark(std::ostream& out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void pochernin::invalidStep(std::ostream& out)
+{
+  out << "<INVALID STEP>\n";
+}
+
+void pochernin::empty(std::ostream& out)
+{
+  out << "<EMPTY>\n";
+}

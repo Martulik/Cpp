@@ -30,13 +30,13 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
   std::istringstream input(line);
   char comma;
   input >> data.key1;
-  if (!in.fail())
+  if (!input.fail())
   {
     input >> comma;
-    if (!in.fail() && comma == ',')
+    if (!input.fail() && comma == ',')
     {
       input >> data.key2;
-      if (!in.fail())
+      if (!input.fail())
       {
         input >> comma;
       }
@@ -47,7 +47,7 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
     }
     else
     {
-      if (!in.eof())
+      if (!input.eof())
       {
         getline(input, data.str);
         if (data.str.empty())

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <boost/test/unit_test.hpp>
-
 #include "factorial.hpp"
 
 struct Fixture
@@ -9,8 +8,9 @@ struct Fixture
 	std::ostringstream output;
 };
 
-BOOST_AUTO_TEST_SUITE(FACTORIAL)
-  BOOST_FIXTURE_TEST_CASE(correct_dereferencing, Fixture)
+BOOST_FIXTURE_TEST_SUITE(FACTORIAL, Fixture)
+
+  BOOST_AUTO_TEST_CASE(correct_dereferencing)
   {
 	  unsigned k = 1;
 	  unsigned n = 1;
@@ -20,4 +20,5 @@ BOOST_AUTO_TEST_SUITE(FACTORIAL)
 		  k *= ++n;
 	  }
   }
+
 BOOST_AUTO_TEST_SUITE_END()

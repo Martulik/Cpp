@@ -3,6 +3,11 @@
 
 namespace poz = pozdnyakov;
 
+poz::FactorialIterator::FactorialIterator():
+  n_(0),
+  value_(0)
+{}
+
 poz::FactorialIterator& poz::FactorialIterator::operator++()
 {
   assert(n_ != MAX_NUM + 1);
@@ -37,6 +42,7 @@ poz::FactorialIterator poz::FactorialIterator::operator--(int)
 
 unsigned long& poz::FactorialIterator::operator*()
 {
+  assert(n_ != 0);
   return value_;
 }
 

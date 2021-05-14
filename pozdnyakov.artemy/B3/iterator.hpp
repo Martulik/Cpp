@@ -10,6 +10,7 @@ namespace pozdnyakov
   public:
     using value_type = unsigned long;
     using number_type = unsigned;
+    FactorialIterator();
     FactorialIterator& operator++();
     FactorialIterator operator++(int);
     FactorialIterator& operator--();
@@ -23,7 +24,7 @@ namespace pozdnyakov
     static constexpr number_type MAX_NUM = 10;
     number_type n_;
     value_type value_;
-    FactorialIterator() = default;
+    FactorialIterator();
     FactorialIterator(number_type n, value_type value);
   };
 }

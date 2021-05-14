@@ -1,6 +1,5 @@
 #include "tools.hpp"
 #include <iostream>
-#include <sstream>
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -10,12 +9,10 @@ namespace lab = ezerinia;
 
 void lab::read(std::vector< lab::DataStruct > &vector, std::istream &in)
 {
-  std::string line;
-  while (std::getline(in, line)) {
-    lab::DataStruct data;
-    std::copy(std::istream_iterator< lab::DataStruct >(in),
-              std::istream_iterator< DataStruct >(), std::back_inserter(vector));
-  }
+
+  lab::DataStruct data;
+  std::istream_iterator< lab::DataStruct > input(in);
+  std::copy(input, std::istream_iterator< DataStruct >(), std::back_inserter(vector));
 }
 
 void lab::task(std::istream &in, std::ostream &out)

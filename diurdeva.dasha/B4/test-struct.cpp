@@ -18,14 +18,17 @@ BOOST_AUTO_TEST_CASE(wrongInput)
 {
   diurdeva::DataStruct data;
   std::stringstream input("-10,4,apple");
-  BOOST_CHECK_THROW(input >> data, std::out_of_range);
+  input >> data;
+  BOOST_CHECK(input.fail());
+
 }
 
 BOOST_AUTO_TEST_CASE(noSeparator)
 {
   diurdeva::DataStruct data;
   std::stringstream input("2 2,apple");
-  BOOST_CHECK_THROW(input >> data, std::invalid_argument);
+  input >> data;
+  BOOST_CHECK(input.fail());
 }
 
 BOOST_AUTO_TEST_CASE(checkOutput)

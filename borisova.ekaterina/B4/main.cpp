@@ -9,22 +9,24 @@ namespace lab = borisova;
 
 int main()
 {
-  std::vector< lab::DataStruct > vector;
   lab::DataStruct value;
   std::string line;
+  std::istream_iterator< lab::DataStruct > first(std::cin);
+  std::istream_iterator< lab::DataStruct > last;
+  std::vector< lab::DataStruct > vector(first, last);
   try
   {
-    std::istream_iterator< lab::DataStruct > in(std::cin);
-    std::vector< lab::DataStruct > vector(in, std::istream_iterator< lab::DataStruct >());
+    if (std::cin && !std::cin.eof())
+    {
+      throw std::invalid_argument("Invalid input\n");
+    }
+    std::sort(vector.begin(), vector.end());
+    std::copy(vector.begin(), vector.end(), std::ostream_iterator< lab::DataStruct >(std::cout, "\n"));
   }
   catch (const std::invalid_argument& ex)
   {
     std::cerr << ex.what() << "\n";
     return -1;
   }
-
-  std::sort(vector.begin(), vector.end());
-  std::ostream_iterator< lab::DataStruct > out(std::cout);
-  std::copy(vector.begin(), vector.end(), out);
   return 0;
 }

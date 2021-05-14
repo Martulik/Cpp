@@ -33,7 +33,11 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
   if (!input.fail())
   {
     input >> comma;
-    if (!input.fail() && comma == ',')
+    if (input.fail() || comma != ',')
+    {
+      throw std::invalid_argument("Invalid input\n");
+    }
+    else
     {
       input >> data.key2;
       if (!input.fail())
@@ -41,24 +45,21 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
         input >> comma;
       }
     }
-    if (!input || comma != ',' || data.key1 < -5 || data.key1 > 5 || data.key2 < -5 || data.key2 > 5)
+    if (input.fail() || comma != ',' || data.key1 < -5 || data.key1 > 5 || data.key2 < -5 || data.key2 > 5)
     {
       throw std::invalid_argument("Invalid input\n");
     }
+    if (!input.eof())
+    {
+      getline(input, data.str);
+      if (data.str.empty())
+      {
+        throw std::invalid_argument("empty str\n");
+      }
+    }
     else
     {
-      if (!input.eof())
-      {
-        getline(input, data.str);
-        if (data.str.empty())
-        {
-          throw std::invalid_argument("empty str\n");
-        }
-      }
-      else
-      {
-        throw std::invalid_argument("Invalid input\n");
-      }
+      throw std::invalid_argument("Invalid input\n");
     }
   }
   return in;

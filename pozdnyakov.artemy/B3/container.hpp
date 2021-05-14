@@ -14,6 +14,15 @@ namespace pozdnyakov
     const_iterator cbegin() const noexcept;
     const_iterator cend() const noexcept;
   };
+  constexpr unsigned long getFactorial(const unsigned n)
+  {
+    unsigned long fac = 1;
+    for (unsigned i = 1; i <= n; i++)
+    {
+      fac *= i;
+    }
+    return fac;
+  }
 }
 
 #endif

@@ -26,15 +26,6 @@ namespace pozdnyakov
     FactorialIterator() = default;
     FactorialIterator(number_type n, value_type value);
   };
-  constexpr unsigned long getFactorial(const unsigned n)
-  {
-    unsigned long fac = 1;
-    for (unsigned i = 1; i <= n; i++)
-    {
-      fac *= i;
-    }
-    return fac;
-  }
 }
 
 #endif

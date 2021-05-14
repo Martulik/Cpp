@@ -2,7 +2,17 @@
 
 using PB = pochernin::PhoneBook;
 
-void PB::pushBack(const entry_t& entry)
+void PB::add(const Note& note)
 {
-  data_.push_back(entry);
+  data_.push_back(note);
+}
+
+PB::constIterator PB::begin()
+{
+  return data_.cbegin();
+}
+
+PB::constIterator PB::end()
+{
+  return data_.cend();
 }

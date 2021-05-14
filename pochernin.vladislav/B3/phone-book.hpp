@@ -4,21 +4,21 @@
 #include <string>
 #include <list>
 
+#include "note.hpp"
+
 namespace pochernin
 {
   class PhoneBook
   {
   public:
-    struct entry_t
-    {
-      std::string number;
-      std::string name;
-    };
+    using constIterator = std::list< Note >::const_iterator;
 
-    void pushBack(const entry_t& entry);
+    void add(const Note& note);
+    constIterator begin();
+    constIterator end();
 
   private:
-    std::list< entry_t > data_;
+    std::list< Note > data_;
   };
 }
 

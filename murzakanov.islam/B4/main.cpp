@@ -9,7 +9,9 @@
 int main()
 {
   using DataStruct = murzakanov::DataStruct;
-  std::vector< DataStruct > vec{std::istream_iterator< DataStruct >(std::cin), std::istream_iterator< DataStruct >()};
+  std::istream_iterator< DataStuct > firstIterator(std::cin);
+  std::istream_iterator< DataStruct > lastIterator;
+  std::vector< DataStruct > vec{firstIterator, lastIterator};
   if (std::cin.fail() && !std::cin.eof())
   {
     return 2;

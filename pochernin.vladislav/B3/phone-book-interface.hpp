@@ -3,9 +3,11 @@
 
 #include <memory>
 #include <map>
+#include <iostream>
 
 #include "phone-book.hpp"
 #include "note.hpp"
+#include "bookmark.hpp"
 
 namespace pochernin
 {
@@ -17,6 +19,9 @@ namespace pochernin
     explicit PhoneBookInterface(PhoneBook& book);
 
     void add(const Note& note);
+    bool empty() const;
+    bool contains(const Bookmark& bookmark) const;
+    void show(const Bookmark& bookmark, std::ostream& out) const;
 
   private:
     std::unique_ptr< PhoneBook > book_;

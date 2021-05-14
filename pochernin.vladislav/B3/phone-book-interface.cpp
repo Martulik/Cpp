@@ -13,4 +13,23 @@ PBI::PhoneBookInterface(PhoneBook& book):
 void PBI::add(const Note& note)
 {
   book_->add(note);
+  if (bookmarks_.size() == 1)
+  {
+    bookmarks_.at("current") = book_->begin();
+  }
+}
+
+bool PBI::empty() const
+{
+  return book_->empty();
+}
+
+bool PBI::contains(const Bookmark& bookmark) const
+{
+  return (bookmarks_.find(bookmark.name) != bookmarks_.end());
+}
+
+void PBI::show(const Bookmark& bookmark, std::ostream& out) const
+{
+  out << *(bookmarks_.at(bookmark.name));
 }

@@ -2,6 +2,7 @@
 #define BOOKMARK_HPP
 
 #include <string>
+#include <iostream>
 
 namespace pochernin
 {
@@ -10,6 +11,7 @@ namespace pochernin
     std::string name;
   };
   bool operator<(const Bookmark& lhs, const Bookmark& rhs);
+  std::istream& operator>>(std::istream& in, Bookmark& bookmark);
 }
 
 #endif

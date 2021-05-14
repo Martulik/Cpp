@@ -16,3 +16,8 @@ PB::constIterator PB::end()
 {
   return data_.cend();
 }
+
+bool PB::empty() const
+{
+  return data_.empty();
+}

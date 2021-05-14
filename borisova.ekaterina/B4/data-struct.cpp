@@ -62,6 +62,6 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
 
 std::ostream& lab::operator<<(std::ostream& out, const DataStruct& value)
 {
-  out << value.key1 << "," << value.key2 << "," << value.str << '\n';
+  out << value.key1 << "," << value.key2 << "," << value.str;
   return out;
 }

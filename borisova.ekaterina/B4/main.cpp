@@ -27,9 +27,7 @@ int main()
     vector.push_back(value);
   }
   std::sort(vector.begin(), vector.end());
-  for (unInt i = 0; i < vector.size(); i++)
-  {
-    std::cout << vector.at(i);
-  }
+  std::ostream_iterator< lab::DataStruct > out(std::cout);
+  std::copy(vector.begin(), vector.end(), out);
   return 0;
 }

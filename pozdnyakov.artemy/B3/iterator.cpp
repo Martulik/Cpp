@@ -5,6 +5,7 @@ namespace poz = pozdnyakov;
 
 poz::FactorialIterator& poz::FactorialIterator::operator++()
 {
+  assert(n_ != MAX_NUM + 1);
   n_++;
   value_ *= n_;
   return (*this);
@@ -12,6 +13,7 @@ poz::FactorialIterator& poz::FactorialIterator::operator++()
 
 poz::FactorialIterator poz::FactorialIterator::operator++(int)
 {
+  assert(n_ != MAX_NUM + 1);
   poz::FactorialIterator temp = (*this);
   ++(*this);
   return temp;
@@ -19,6 +21,7 @@ poz::FactorialIterator poz::FactorialIterator::operator++(int)
 
 poz::FactorialIterator& poz::FactorialIterator::operator--()
 {
+  assert(n_ != 1);
   value_ /= n_;
   n_--;
   return (*this);
@@ -26,6 +29,7 @@ poz::FactorialIterator& poz::FactorialIterator::operator--()
 
 poz::FactorialIterator poz::FactorialIterator::operator--(int)
 {
+  assert(n_ != 1);
   poz::FactorialIterator temp = (*this);
   --(*this);
   return temp;
@@ -33,7 +37,6 @@ poz::FactorialIterator poz::FactorialIterator::operator--(int)
 
 unsigned long& poz::FactorialIterator::operator*()
 {
-  assert(n_ <= poz::FactorialIterator::MAX_NUM);
   return value_;
 }
 
@@ -56,13 +59,3 @@ poz::FactorialIterator::FactorialIterator(unsigned n, unsigned long value):
   n_(n),
   value_(value)
 {}
-
-unsigned long poz::getFactorial(unsigned n)
-{
-  unsigned long fac = 1;
-  for (unsigned i = 1; i <= n; i++)
-  {
-    fac *= i;
-  }
-  return fac;
-}

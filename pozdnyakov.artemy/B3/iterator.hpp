@@ -18,13 +18,21 @@ namespace pozdnyakov
     bool operator!=(const FactorialIterator& it) const;
   private:
     friend class FactorialContainer;
-    static const unsigned MAX_NUM = 10;
+    static constexpr unsigned MAX_NUM = 10;
     unsigned n_;
     unsigned long value_;
     FactorialIterator() = default;
     FactorialIterator(unsigned n, unsigned long value);
   };
-  unsigned long getFactorial(unsigned n);
+  constexpr unsigned long getFactorial(const unsigned n)
+  {
+    unsigned long fac = 1;
+    for (unsigned i = 1; i <= n; i++)
+    {
+      fac *= i;
+    }
+    return fac;
+  }
 }
 
 #endif

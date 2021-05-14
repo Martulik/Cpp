@@ -8,12 +8,7 @@
 
 int main()
 {
-  std::vector< murzakanov::DataStruct > vec;
-  murzakanov::DataStruct temp;
-  while (std::cin >> temp)
-  {
-    vec.push_back(temp);
-  }
+  std::vector< murzakanov::DataStruct > vec{std::istream_iterator< murzakanov::DataStruct >(std::cin), std::istream_iterator< murzakanov::DataStruct >()};
   if (std::cin.fail() && !std::cin.eof())
   {
     return 2;

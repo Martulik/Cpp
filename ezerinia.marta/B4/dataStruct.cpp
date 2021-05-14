@@ -38,7 +38,7 @@ std::istream &ezerinia::operator>>(std::istream &in, ezerinia::DataStruct &data)
     return in;
   }
   if (!in.eof()) {
-    std::getline(in, data.str);
+    std::getline(iss, data.str);
   }
   return in;
 }

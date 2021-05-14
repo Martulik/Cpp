@@ -9,9 +9,9 @@ int main()
 {
   try
   {
-    std::vector< diurdeva::DataStruct > vector;
     std::istream_iterator< diurdeva::DataStruct > input(std::cin);
-    std::move(input, std::istream_iterator< diurdeva::DataStruct >(), std::back_inserter(vector));
+    std::istream_iterator< diurdeva::DataStruct > lastIterator;
+    std::vector< diurdeva::DataStruct > vector(input, lastIterator);
     if (std::cin.fail() && !std::cin.eof()) {
       throw std::ios_base::failure("Reading failed\n");
     }

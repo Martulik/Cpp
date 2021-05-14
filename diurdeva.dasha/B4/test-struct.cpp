@@ -1,5 +1,5 @@
-#include <sstream>
 #include <boost/test/unit_test.hpp>
+#include <sstream>
 #include "dataStruct.hpp"
 
 BOOST_AUTO_TEST_SUITE(dataStruct)

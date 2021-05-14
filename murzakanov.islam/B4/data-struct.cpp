@@ -46,8 +46,7 @@ std::istream& murzakanov::operator >>(std::istream& in, DataStruct& data)
 
 std::ostream& murzakanov::operator <<(std::ostream& out, const DataStruct& data)
 {
-  out << std::left << data.key1 << ", " << data.key2
-      << ", " << data.str;
+  out << std::left << data.key1 << ", " << data.key2 << ", " << data.str;
   return out;
 }
 

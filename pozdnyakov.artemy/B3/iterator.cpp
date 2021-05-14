@@ -31,13 +31,13 @@ poz::FactorialIterator poz::FactorialIterator::operator--(int)
   return temp;
 }
 
-size_t& poz::FactorialIterator::operator*()
+unsigned long& poz::FactorialIterator::operator*()
 {
   assert(n_ <= poz::FactorialIterator::MAX_NUM);
   return value_;
 }
 
-size_t* poz::FactorialIterator::operator->()
+unsigned long* poz::FactorialIterator::operator->()
 {
   return std::addressof(value_);
 }
@@ -52,15 +52,15 @@ bool poz::FactorialIterator::operator!=(const poz::FactorialIterator& it) const
   return !((*this) == it);
 }
 
-poz::FactorialIterator::FactorialIterator(size_t n, size_t value):
+poz::FactorialIterator::FactorialIterator(unsigned n, unsigned long value):
   n_(n),
   value_(value)
 {}
 
-size_t poz::getFactorial(size_t n)
+unsigned long poz::getFactorial(unsigned n)
 {
-  size_t fac = 1;
-  for (size_t i = 1; i <= n; i++)
+  unsigned long fac = 1;
+  for (unsigned i = 1; i <= n; i++)
   {
     fac *= i;
   }

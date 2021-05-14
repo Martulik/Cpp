@@ -3,11 +3,14 @@
 
 #include <string>
 
-struct DataStruct
+namespace pozdnyakov
 {
-  int key1;
-  int key2;
-  std::string str;
-};
+  struct DataStruct
+  {
+    int key1;
+    int key2;
+    std::string str;
+  };
+}
 
 #endif

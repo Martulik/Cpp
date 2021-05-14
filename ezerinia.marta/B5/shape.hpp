@@ -12,7 +12,6 @@ namespace ezerinia {
 
   double getSideLength(const Point &p1, const Point &p2);
   bool isSideEqual(const Shape &shape);
-  //bool compare(const Shape &lhs, const Shape &rhs);
 
   bool operator<(const Shape &lhs, const Shape &rhs);
   std::istream &operator>>(std::istream &in, Point &point);

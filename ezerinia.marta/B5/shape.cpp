@@ -27,29 +27,15 @@ bool lab::operator<(const Shape &lhs, const Shape &rhs)
 {
   if (lhs.size() < rhs.size()) {
     return true;
-  }
-  if (lhs.size() > rhs.size()) {
-    return false;
-  }
-  if (rhs.size() == 4 && isSideEqual(lhs)){
-    return true;
+  } else {
+    if ((lhs.size() == rhs.size()) && (rhs.size() == 4)) {
+      if (isSideEqual(lhs)) {
+        return true;
+      }
+    }
   }
   return false;
 }
-
-//bool lab::compare(const Shape &lhs, const Shape &rhs)
-//{
-//  if (lhs.size() < rhs.size()) {
-//    return true;
-//  } else {
-//    if ((lhs.size() == rhs.size()) && (rhs.size() == 4)) {
-//      if (isSideEqual(lhs)) {
-//        return true;
-//      }
-//    }
-//  }
-//  return false;
-//}
 
 std::istream &lab::operator>>(std::istream &in, Point &point)
 {

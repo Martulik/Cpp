@@ -24,12 +24,16 @@ int task1(std::istream& in, std::ostream& out)
   return 0;
 }
 
-int task2(std::istream& in, std::ostream& out)
+int task2(std::istream& in, std::ostream& out, std::ostream& err)
 {
   std::vector< dan::Shape > shapes;
   // 1. Input
   std::istream_iterator< dan::Shape > input(in);
   std::move(input, std::istream_iterator< dan::Shape >(), std::back_inserter(shapes));
+  if(in.fail() && !in.eof()) {
+    err << "Invalid input\n";
+    return 1;
+  }
   // 2. Count vertices
   int total_vertices = std::accumulate(shapes.begin(), shapes.end(), 0,
     [](int total, const dan::Shape& shape) {
@@ -107,7 +111,7 @@ int main(int argc, char* argv[])
     return task1(std::cin, std::cout);
   }
   else if(argv[1][0] == '2') {
-    return task2(std::cin, std::cout);
+    return task2(std::cin, std::cout, std::cerr);
   }
   else {
     std::cerr << "Unknown task number\n";

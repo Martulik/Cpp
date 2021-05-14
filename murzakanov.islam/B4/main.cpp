@@ -17,5 +17,5 @@ int main()
     return 2;
   }
   std::sort(vec.begin(), vec.end());
-  std::copy(vec.begin(), vec.end(), std::ostream_iterator< DataStruct >(std::cout));
+  std::copy(vec.begin(), vec.end(), std::ostream_iterator< DataStruct >(std::cout, "\n"));
 }

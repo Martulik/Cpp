@@ -26,7 +26,10 @@ bool lab::operator<(const DataStruct& temp1, const DataStruct& temp2)
 std::istream& lab::operator>>(std::istream& in, DataStruct& data)
 {
   std::string line;
-  std::getline(in, line);
+  if (!getline(in, line))
+  {
+    return in;
+  }
   std::istringstream input(line);
   char comma;
   input >> data.key1;
@@ -35,7 +38,7 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
     input >> comma;
     if (input.fail() || comma != ',')
     {
-      throw std::invalid_argument("Invalid input\n");
+      throw std::invalid_argument("Invalid input or without comma\n");
     }
     else
     {
@@ -59,7 +62,7 @@ std::istream& lab::operator>>(std::istream& in, DataStruct& data)
     }
     else
     {
-      throw std::invalid_argument("Invalid input\n");
+      throw std::invalid_argument("end of file\n");
     }
   }
   return in;

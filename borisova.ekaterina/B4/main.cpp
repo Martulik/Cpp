@@ -9,14 +9,12 @@ namespace lab = borisova;
 
 int main()
 {
-  lab::DataStruct value;
-  std::string line;
-  std::istream_iterator< lab::DataStruct > first(std::cin);
-  std::istream_iterator< lab::DataStruct > last;
-  std::vector< lab::DataStruct > vector(first, last);
   try
   {
-    if (std::cin && !std::cin.eof())
+    std::istream_iterator< lab::DataStruct > first(std::cin);
+    std::istream_iterator< lab::DataStruct > last;
+    std::vector< lab::DataStruct > vector(first, last);
+    if (!std::cin && !std::cin.eof())
     {
       throw std::invalid_argument("Invalid input\n");
     }

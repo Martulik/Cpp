@@ -24,7 +24,6 @@ namespace pozdnyakov
     static constexpr number_type MAX_NUM = 10;
     number_type n_;
     value_type value_;
-    FactorialIterator();
     FactorialIterator(number_type n, value_type value);
   };
 }

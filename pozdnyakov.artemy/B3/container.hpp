@@ -11,8 +11,8 @@ namespace pozdnyakov
     using iterator = FactorialIterator;
     using const_iterator = const FactorialIterator;
     FactorialContainer() = default;
-    const_iterator cbegin() const noexcept;
-    const_iterator cend() const noexcept;
+    const_iterator begin() const noexcept;
+    const_iterator end() const noexcept;
   };
   constexpr unsigned long getFactorial(const unsigned n)
   {

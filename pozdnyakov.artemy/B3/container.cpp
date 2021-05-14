@@ -2,12 +2,12 @@
 
 namespace poz = pozdnyakov;
 
-poz::FactorialContainer::const_iterator poz::FactorialContainer::cbegin() const noexcept
+poz::FactorialContainer::const_iterator poz::FactorialContainer::begin() const noexcept
 {
   return poz::FactorialIterator(1, poz::getFactorial(1));
 }
 
-poz::FactorialContainer::const_iterator poz::FactorialContainer::cend() const noexcept
+poz::FactorialContainer::const_iterator poz::FactorialContainer::end() const noexcept
 {
   unsigned k = 1;
   using fIterator = poz::FactorialIterator;

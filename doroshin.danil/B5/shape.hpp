@@ -7,10 +7,15 @@
 
 namespace doroshin
 {
-  using Shape = std::vector< Point >;
+  struct Shape
+  {
+    std::vector< Point > points_;
+  };
 
-  std::istream& getShape(std::istream&, Shape&);
-  std::ostream& putShape(std::ostream&, const Shape&);
+  bool isSquare(const Shape&);
+
+  std::istream& operator>>(std::istream&, Shape&);
+  std::ostream& operator<<(std::ostream&, const Shape&);
 }
 
 #endif //SHAPE_HPP

@@ -1,16 +1,38 @@
 #include "shape.hpp"
+#include <algorithm>
 #include <sstream>
 #include <iostream>
 
 namespace dan = doroshin;
 
-std::istream& dan::getShape(std::istream& in, Shape& s)
+bool dan::isSquare(const Shape& s)
+{
+  if(s.points_.size() != 4) {
+    return false;
+  }
+
+  auto distSq = [](const Point& a, const Point& b) {
+    return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
+  };
+
+  std::vector< int > distances;
+  distances.reserve(6);
+  for(int i = 0; i < 4; ++i) {
+    for(int j = i + 1; j < 4; ++j) {
+      distances.push_back(distSq(s.points_[i], s.points_[j]));
+    }
+  }
+  std::sort(distances.begin(), distances.end());
+  return distances[0] == distances[3];
+}
+
+std::istream& dan::operator>>(std::istream& in, Shape& s)
 {
   const auto fail = [&]() {
     in.setstate(in.rdstate() | std::ios::failbit);
   };
 
-  s.clear();
+  s.points_.clear();
   std::string line_;
   if(std::getline(in, line_)) {
     std::istringstream line(line_);
@@ -22,11 +44,11 @@ std::istream& dan::getShape(std::istream& in, Shape& s)
       return in;
     }
 
-    s.reserve(n);
+    s.points_.reserve(n);
     for(int i = 0; i < n; ++i) {
       Point p;
       line >> p;
-      s.push_back(p);
+      s.points_.push_back(p);
 
       if(!line || line.peek() != ' ') {
         fail();
@@ -43,10 +65,10 @@ std::istream& dan::getShape(std::istream& in, Shape& s)
   return in;
 }
 
-std::ostream& dan::putShape(std::ostream& out, const Shape& s)
+std::ostream& dan::operator<<(std::ostream& out, const Shape& s)
 {
-  out << s.size() << ' ';
-  for(auto&& point: s) {
+  out << s.points_.size() << ' ';
+  for(auto&& point: s.points_) {
     out << point << ' ';
   }
   return out;

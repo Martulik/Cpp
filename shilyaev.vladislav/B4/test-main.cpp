@@ -1,4 +1,4 @@
-#define BOOST_TEST_MODULE B3
+#define BOOST_TEST_MAIN
 #include <sstream>
 #include <boost/test/included/unit_test.hpp>
 #include "data-struct.hpp"

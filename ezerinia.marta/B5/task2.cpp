@@ -6,7 +6,9 @@
 
 #include "shape.hpp"
 
-void ezerinia::task2(std::istream &in, std::ostream &out)
+namespace lab = ezerinia;
+
+void lab::task2(std::istream &in, std::ostream &out)
 {
   if (!in) {
     throw std::runtime_error("Read fail");
@@ -38,13 +40,13 @@ void ezerinia::task2(std::istream &in, std::ostream &out)
                                 return shape.size() == 5;
                               }), shapes.end());
 
-  std::sort(shapes.begin(), shapes.end(), compare);
-  std::cout << "Vertices: " << vertices << "\n";
-  std::cout << "Triangles: " << triangles << "\n";
-  std::cout << "Squares: " << squares << "\n";
-  std::cout << "Rectangles: " << rectangles << "\n";
-  std::cout << "Points: ";
+  std::sort(shapes.begin(), shapes.end());
+  out << "Vertices: " << vertices << "\n";
+  out << "Triangles: " << triangles << "\n";
+  out << "Squares: " << squares << "\n";
+  out << "Rectangles: " << rectangles << "\n";
+  out << "Points: ";
   std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
-  std::cout << "\nShapes:\n";
+  out << "\nShapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

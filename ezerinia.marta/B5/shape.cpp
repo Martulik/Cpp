@@ -5,12 +5,14 @@
 #include <cmath>
 #include <sstream>
 
-double getSideLength(const Point &p1, const Point &p2)
+namespace lab = ezerinia;
+
+double lab::getSideLength(const Point &p1, const Point &p2)
 {
   return sqrt(abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y)));
 }
 
-bool isSideEqual(const Shape &shape)
+bool lab::isSideEqual(const Shape &shape)
 {
   double side = getSideLength(shape[0], shape[shape.size() - 1]);
   for (unsigned int i = 0; i < shape.size() - 1; i++) {
@@ -21,21 +23,35 @@ bool isSideEqual(const Shape &shape)
   return true;
 }
 
-bool compare(const Shape &lhs, const Shape &rhs)
+bool lab::operator<(const Shape &lhs, const Shape &rhs)
 {
   if (lhs.size() < rhs.size()) {
     return true;
-  } else {
-    if ((lhs.size() == rhs.size()) && (rhs.size() == 4)) {
-      if (isSideEqual(lhs)) {
-        return true;
-      }
-    }
+  }
+  if (lhs.size() > rhs.size()) {
+    return false;
+  }
+  if (rhs.size() == 4 && isSideEqual(lhs)){
+    return true;
   }
   return false;
 }
 
-std::istream &operator>>(std::istream &in, Point &point)
+//bool lab::compare(const Shape &lhs, const Shape &rhs)
+//{
+//  if (lhs.size() < rhs.size()) {
+//    return true;
+//  } else {
+//    if ((lhs.size() == rhs.size()) && (rhs.size() == 4)) {
+//      if (isSideEqual(lhs)) {
+//        return true;
+//      }
+//    }
+//  }
+//  return false;
+//}
+
+std::istream &lab::operator>>(std::istream &in, Point &point)
 {
   std::string str;
   char trash = '\0';
@@ -55,7 +71,7 @@ std::istream &operator>>(std::istream &in, Point &point)
   return in;
 }
 
-std::istream &operator>>(std::istream &in, Shape &shape)
+std::istream &lab::operator>>(std::istream &in, Shape &shape)
 {
   unsigned int nVertices = 0;
   char trash = '\0';
@@ -79,13 +95,13 @@ std::istream &operator>>(std::istream &in, Shape &shape)
   return in;
 }
 
-std::ostream &operator<<(std::ostream &out, const Point &point)
+std::ostream &lab::operator<<(std::ostream &out, const Point &point)
 {
   out << " (" << point.x << "; " << point.y << ")";
   return out;
 }
 
-std::ostream &operator<<(std::ostream &out, const Shape &shape)
+std::ostream &lab::operator<<(std::ostream &out, const Shape &shape)
 {
   out << shape.size() << " ";
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));

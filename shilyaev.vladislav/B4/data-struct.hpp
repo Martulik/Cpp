@@ -13,7 +13,7 @@ namespace shilyaev {
   std::ostream &operator<<(std::ostream &ostream, const DataStruct &dataStruct);
   std::istream &operator>>(std::istream &istream, DataStruct &dataStruct);
   bool operator==(const DataStruct &a, const DataStruct &b);
-  bool compare(const DataStruct &a, const DataStruct &b);
+  bool operator<(const DataStruct &a, const DataStruct &b);
 }
 
 #endif

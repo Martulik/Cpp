@@ -13,7 +13,7 @@ int main()
     std::cerr << "Input error";
     return 1;
   }
-  std::sort(structs.begin(), structs.end(), shilyaev::compare);
+  std::sort(structs.begin(), structs.end());
   std::ostream_iterator< shilyaev::DataStruct > ostreamIterator(std::cout, "\n");
   std::copy(structs.begin(), structs.end(), ostreamIterator);
 }

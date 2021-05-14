@@ -5,10 +5,10 @@
 
 BOOST_AUTO_TEST_CASE(CompareDataStruct)
 {
-  BOOST_CHECK(!shilyaev::compare({1, 2, "str"}, {1, 2, "str"}));
-  BOOST_CHECK(shilyaev::compare({1, 2, "str"}, {2, 2, "str"}));
-  BOOST_CHECK(shilyaev::compare({1, 2, "str"}, {1, 3, "str"}));
-  BOOST_CHECK(shilyaev::compare({1, 2, "str"}, {1, 2, "string"}));
+  BOOST_CHECK(!(shilyaev::DataStruct{1, 2, "str"} < shilyaev::DataStruct{1, 2, "str"}));
+  BOOST_CHECK((shilyaev::DataStruct{1, 2, "str"} < shilyaev::DataStruct{2, 2, "str"}));
+  BOOST_CHECK((shilyaev::DataStruct{1, 2, "str"} < shilyaev::DataStruct{1, 3, "str"}));
+  BOOST_CHECK((shilyaev::DataStruct{1, 2, "str"} < shilyaev::DataStruct{1, 2, "string"}));
 }
 
 BOOST_AUTO_TEST_CASE(OutputDataStruct)

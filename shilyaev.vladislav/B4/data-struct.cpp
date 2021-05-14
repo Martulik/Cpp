@@ -43,7 +43,7 @@ namespace shilyaev {
     return a.key1 == b.key1 && a.key2 == b.key2 && a.str == b.str;
   }
 
-  bool compare(const DataStruct &a, const DataStruct &b)
+  bool operator<(const DataStruct &a, const DataStruct &b)
   {
     if (a.key1 != b.key1) {
       return a.key1 < b.key1;

@@ -9,7 +9,6 @@ namespace lab = borisova;
 
 int main()
 {
-  using unInt = unsigned int;
   std::vector< lab::DataStruct > vector;
   lab::DataStruct value;
   std::string line;

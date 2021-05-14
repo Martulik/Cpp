@@ -32,3 +32,9 @@ std::ostream& dan::operator<<(std::ostream& out, const Point& p)
   out << '(' << p.x << ';' << p.y << ')';
   return out;
 }
+
+
+bool dan::operator==(const Point& lhs, const Point& rhs)
+{
+  return lhs.x == rhs.x && lhs.y == rhs.y;
+}

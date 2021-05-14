@@ -12,6 +12,8 @@ namespace doroshin
 
   std::istream& operator>>(std::istream&, Point&);
   std::ostream& operator<<(std::ostream&, const Point&);
+
+  bool operator==(const Point&, const Point&);
 }
 
 #endif //POINT_HPP

@@ -50,7 +50,7 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
       line >> p;
       s.points_.push_back(p);
 
-      if(!line || (line.peek() != ' ' && !line.eof())) {
+      if(!line) {
         fail();
         return in;
       }

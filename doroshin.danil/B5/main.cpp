@@ -28,11 +28,16 @@ int task2(std::istream& in, std::ostream& out, std::ostream& err)
 {
   std::vector< dan::Shape > shapes;
   // 1. Input
-  std::istream_iterator< dan::Shape > input(in);
-  std::move(input, std::istream_iterator< dan::Shape >(), std::back_inserter(shapes));
-  if(in.fail() && !in.eof()) {
-    err << "Invalid input\n";
-    return 1;
+  while(!in.eof()) {
+    dan::Shape s;
+    in >> std::ws >> s;
+    if(in.fail() && !in.eof()) {
+      err << "Invalid shape\n";
+      return 1;
+    }
+    if(!s.points_.empty()) {
+      shapes.push_back(s);
+    }
   }
   // 2. Count vertices
   int total_vertices = std::accumulate(shapes.begin(), shapes.end(), 0,
@@ -51,11 +56,9 @@ int task2(std::istream& in, std::ostream& out, std::ostream& err)
         total.triangles++;
       }
       else if(shape.points_.size() == 4) {
+          total.rectangles++;
         if(dan::isSquare(shape)) {
           total.squares++;
-        }
-        else {
-          total.rectangles++;
         }
       }
       return total;
@@ -79,6 +82,9 @@ int task2(std::istream& in, std::ostream& out, std::ostream& err)
   // 6. Sort by number of vertices
   std::sort(shapes.begin(), shapes.end(),
     [](const dan::Shape& lhs, const dan::Shape& rhs) {
+      if(lhs.points_.size() == 4 && rhs.points_.size() == 4) {
+        return dan::isSquare(lhs);
+      }
       return lhs.points_.size() < rhs.points_.size();
     }
   );

@@ -14,12 +14,12 @@ std::istream& dan::operator>>(std::istream& in, Point& p)
     fail();
     return in;
   }
-  in >> p.x;
+  in >> std::ws >> p.x >> std::ws;
   if(!in || in.get() != ';') {
     fail();
     return in;
   }
-  in >> p.y;
+  in >> std::ws >> p.y >> std::ws;
   if(!in || in.get() != ')') {
     fail();
     return in;

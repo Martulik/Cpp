@@ -40,3 +40,8 @@ void PB::insertAfter(constIterator iterator, const Note& note)
     data_.insert(temp, note);
   }
 }
+
+void PB::deleteNote(constIterator iterator)
+{
+  data_.erase(iterator);
+}

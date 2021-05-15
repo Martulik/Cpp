@@ -88,3 +88,24 @@ void PBI::move (const Bookmark& bookmark, const Step& step)
     std::advance(iterator, step.steps);
   }
 }
+
+void PBI::deleteNote(const Bookmark& bookmark)
+{
+  constIterator iterator = bookmarks_.at(bookmark);
+  std::map< Bookmark, constIterator >::iterator i = bookmarks_.begin();
+  while (i != bookmarks_.end())
+  {
+    if (i->second == iterator)
+    {
+      if (std::next(i->second) == book_->end())
+      {
+        i->second = book_->begin();
+      }
+      else
+      {
+        i->second = std::next(iterator);
+      }
+    }
+    i++;
+  }
+}

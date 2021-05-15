@@ -75,6 +75,19 @@ void pochernin::task1(std::istream& in, std::ostream& out)
         pochernin::invalidCommand(out);
       }
     }
+    else if (command == "delete")
+    {
+      Bookmark bookmark;
+      input >> bookmark;
+      if (!interface.contains(bookmark) || (bookmark.name == ""))
+      {
+        pochernin::invalidBookmark(out);
+      }
+      else
+      {
+        interface.deleteNote(bookmark);
+      }
+    }
     else if (command == "show")
     {
       Bookmark bookmark;

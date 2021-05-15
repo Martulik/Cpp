@@ -27,6 +27,7 @@ namespace pochernin
     void show(const Bookmark& bookmark, std::ostream& out) const;
     void store(const Bookmark& bookmark, const Bookmark& newBookmark);
     void move(const Bookmark& bookmark, const Step& step);
+    void deleteNote(const Bookmark& bookmark);
 
   private:
     std::unique_ptr< PhoneBook > book_;

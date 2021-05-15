@@ -17,6 +17,7 @@ namespace pochernin
     void insertBefore(constIterator iterator, const Note& note);
     void insertAfter(constIterator iterator, const Note& note);
     bool empty() const;
+    void deleteNote(constIterator iterator);
     constIterator begin();
     constIterator end();
 

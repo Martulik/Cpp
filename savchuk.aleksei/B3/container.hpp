@@ -36,8 +36,8 @@ namespace savchuk
 
       Container() = default;
 
-      Iterator begin();
-      Iterator end();
+      Iterator begin() const noexcept;
+      Iterator end() const noexcept;
   };
 }
 

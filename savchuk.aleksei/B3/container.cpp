@@ -80,12 +80,12 @@ lab::Container::Iterator::Iterator(unsigned int idx, unsigned long long value):
 {
 }
 
-lab::Container::Iterator lab::Container::begin()
+lab::Container::Iterator lab::Container::begin() const noexcept
 {
   return Iterator(1, 1);
 }
 
-lab::Container::Iterator lab::Container::end()
+lab::Container::Iterator lab::Container::end() const noexcept
 {
   return Iterator(MAX_IDX, MAX_VALUE);
 }

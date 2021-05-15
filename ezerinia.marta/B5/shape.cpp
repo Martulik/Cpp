@@ -2,15 +2,13 @@
 #include <iterator>
 #include <iostream>
 #include <algorithm>
-#include <cmath>
 #include <sstream>
 
 namespace lab = ezerinia;
 
 double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {
-  //return sqrt(abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y)));
-  return abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y));
+  return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
 }
 
 bool lab::isSideEqual(const Shape &shape)

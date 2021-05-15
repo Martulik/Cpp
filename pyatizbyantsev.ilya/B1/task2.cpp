@@ -31,7 +31,7 @@ void pyatizbyantsev::taskTwo(const char* fileName)
       std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
       for (size_t i = 0; i < size; ++i)
       {
-        temp[i] = resultArray[i];
+        temp[i] = std::move(resultArray[i]);
       }
       resultArray.swap(temp);
     }

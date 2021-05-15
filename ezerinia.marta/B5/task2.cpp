@@ -21,8 +21,8 @@ void lab::task2(std::istream &in, std::ostream &out)
 
   std::vector< Point > points;
   //for (auto &&shape : shapes) {
-  size_t size = shapes.size();
-  for (int i = 0; i < size; i++) {
+  unsigned int size = shapes.size();
+  for (unsigned int i = 0; i < size; i++) {
     vertices += shapes[i].size();
     if (shapes[i].size() == 3) {
       triangles++;

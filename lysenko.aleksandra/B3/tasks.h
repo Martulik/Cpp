@@ -1,6 +1,6 @@
 #ifndef TASKS_H
 #define TASKS_H
- 
+
 #include <iostream>
 
 namespace lysenko

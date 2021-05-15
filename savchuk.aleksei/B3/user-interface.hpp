@@ -2,7 +2,6 @@
 #define USER_INTERFACE_HPP
 
 #include <map>
-#include <iosfwd>
 
 #include "phone-book.hpp"
 
@@ -18,7 +17,7 @@ namespace savchuk
       void insertBefore(const std::string& markName, const contact_t& contact);
       void insertAfter(const std::string& markName, const contact_t& contact);
       void remove(const std::string& markName);
-      void show(std::ostream& os, const std::string& markName) const;
+      const contact_t& getContact(const std::string& markName) const;
       void move(const std::string& markName, const std::string& steps);
 
     private:

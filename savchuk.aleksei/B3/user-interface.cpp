@@ -1,6 +1,5 @@
 #include "user-interface.hpp"
 
-#include <ostream>
 #include <stdexcept>
 #include <cstdlib>
 
@@ -31,23 +30,23 @@ void lab::UserInterface::store(const std::string& markName, const std::string& n
 
 void lab::UserInterface::insertBefore(const std::string& markName, const contact_t& contact)
 {
-  // checkMark(markName);
   if (markName == "current" && phoneBook_.empty())
   {
     add(contact);
     return;
   }
+  checkMark(markName);
   phoneBook_.add(bookmarks_[markName], contact);
 }
 
 void lab::UserInterface::insertAfter(const std::string& markName, const contact_t& contact)
 {
-  // checkMark(markName);
   if (markName == "current" && phoneBook_.empty())
   {
     add(contact);
     return;
   }
+  checkMark(markName);
   PhoneBook::const_iterator it = bookmarks_[markName];
   phoneBook_.add(++it, contact);
 }
@@ -71,11 +70,11 @@ void lab::UserInterface::remove(const std::string& markName)
   }
 }
 
-void lab::UserInterface::show(std::ostream& os, const std::string& markName) const
+const lab::contact_t& lab::UserInterface::getContact(const std::string& markName) const
 {
   checkMark(markName);
   PhoneBook::const_iterator it = bookmarks_.find(markName)->second;
-  os << *it;
+  return *it;
 }
 
 void lab::UserInterface::move(const std::string& markName, const std::string& steps)

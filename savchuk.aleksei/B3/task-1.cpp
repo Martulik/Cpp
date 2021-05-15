@@ -56,7 +56,7 @@ void lab::task1(std::istream& is, std::ostream& os)
       else if (command == "show")
       {
         std::string markName = readMarkName(ss);
-        userInterface.show(os, markName);
+        os << userInterface.getContact(markName);
       }
       else if (command == "move")
       {

@@ -16,7 +16,7 @@ void pyatizbyantsev::taskTwo(const char* fileName)
     throw std::invalid_argument("Unable to read the file");
   }
 
-  size_t capacity = 1000;
+  size_t capacity = 512;
   size_t size = 0;
   std::unique_ptr< char[] > resultArray  = std::make_unique< char[] >(capacity);
 

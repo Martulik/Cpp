@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+#include "PhoneBook.hpp"
+#include "BookWrap.hpp"
+#include "tools.hpp"
+
+namespace lab = shkurov;
+
+void task1(std::istream& in, std::ostream& out)
+{
+  lab::PhoneBook book;
+  lab::BookWrap wrapper(book, std::cout);
+
+  while (true)
+  {
+    std::string command;
+    std::getline(in, command);
+    std::istringstream istr(command);
+
+    std::string tag;
+    istr >> tag;
+
+    try
+    {
+      wrapper.doAction(tag, istr);
+    }
+    catch (const std::exception& ex)
+    {
+      std::cerr << ex.what() << '\n';
+    }
+  }
+}

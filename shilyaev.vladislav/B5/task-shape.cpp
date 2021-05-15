@@ -13,7 +13,7 @@ namespace shilyaev {
   boost::optional< Shape > readShape(const std::string &input)
   {
     std::istringstream istringstream(input);
-    size_t vertices;
+    size_t vertices = 0;
     istringstream >> vertices;
     if (vertices < 1) {
       return {};

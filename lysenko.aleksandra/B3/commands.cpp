@@ -93,17 +93,23 @@ void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,lys
   in >> command >> std::ws;
   iteratorInt iter = commandsMap.find(command);
 
-  if (iter == commandsMap.end())
+  if (command == "show")
+  {
+    executeShow(in, out, myBook);
+  }
+  else if (iter != commandsMap.end())
+  {
+    iter->second(in, myBook);
+  }
+  else
   {
     InvalidCommand error;
-    std::cout << error.what() << "\n";
-    return;
+      out << error.what() << "\n";
+      return;
   }
-
-  iter->second(in, out, myBook);
 }
 
-void lysenko::executeAdd(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
+void lysenko::executeAdd(std::istream& input, lysenko::PhoneBook& myBook)
 {
   std::string name;
   std::string number;
@@ -117,7 +123,7 @@ void lysenko::executeAdd(std::istream& input, std::ostream& out, lysenko::PhoneB
   }
 }
 
-void lysenko::executeStore(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
+void lysenko::executeStore(std::istream& input, lysenko::PhoneBook& myBook)
 {
   std::string oldMarkName;
   std::string newMarkName;
@@ -131,7 +137,7 @@ void lysenko::executeStore(std::istream& input, std::ostream& out, lysenko::Phon
   }
 }
 
-void lysenko::executeInsert(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
+void lysenko::executeInsert(std::istream& input, lysenko::PhoneBook& myBook)
 {
   bool beforeBool = 1;
   std::string before;
@@ -164,7 +170,7 @@ void lysenko::executeInsert(std::istream& input, std::ostream& out, lysenko::Pho
   }
 }
 
-void lysenko::executeDelete(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
+void lysenko::executeDelete(std::istream& input, lysenko::PhoneBook& myBook)
 {
   std::string markName;
 
@@ -196,7 +202,7 @@ void lysenko::executeShow(std::istream& input, std::ostream& out, lysenko::Phone
   }
 }
 
-void lysenko::executeMove(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
+void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
 {
   std::string markName;
   std::string steps;

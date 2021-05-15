@@ -11,11 +11,12 @@ namespace lab = shkurov;
 void task1(std::istream& in, std::ostream& out)
 {
   lab::PhoneBook book;
-  lab::BookWrap wrapper(book, std::cout);
+  lab::BookWrap wrapper(book, out);
 
-  while (true)
+  std::string command;
+
+  while (std::getline(in, command) && !command.empty())
   {
-    std::string command;
     std::getline(in, command);
     std::istringstream istr(command);
 

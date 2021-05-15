@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iosfwd>
+#include <iterator>
 #include "struct.hpp"
 
 namespace ivanova

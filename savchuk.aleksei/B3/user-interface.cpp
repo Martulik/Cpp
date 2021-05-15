@@ -10,7 +10,7 @@
 namespace lab = savchuk;
 
 lab::UserInterface::UserInterface():
-  bookmarks_({ std::make_pair("current", phoneBook_.begin()) })
+  bookmarks_({ std::make_pair("current", phoneBook_.cbegin()) })
 {
 }
 
@@ -19,7 +19,7 @@ void lab::UserInterface::add(const lab::contact_t& contact)
   phoneBook_.add(contact);
   if (phoneBook_.size() == 1)
   {
-    bookmarks_["current"] = phoneBook_.begin();
+    bookmarks_["current"] = phoneBook_.cbegin();
   }
 }
 
@@ -57,9 +57,9 @@ void lab::UserInterface::remove(const std::string& markName)
   checkMark(markName);
   PhoneBook::const_iterator it1 = bookmarks_[markName];
   PhoneBook::const_iterator it2 = phoneBook_.remove(it1);
-  if (it2 == phoneBook_.end())
+  if (it2 == phoneBook_.cend())
   {
-    it2 = phoneBook_.begin();
+    it2 = phoneBook_.cbegin();
   }
   for (std::pair< const std::string, PhoneBook::const_iterator >& mark: bookmarks_)
   {

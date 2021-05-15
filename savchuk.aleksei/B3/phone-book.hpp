@@ -22,8 +22,6 @@ namespace savchuk
       iterator remove(const_iterator it);
       bool empty() const;
       size_t size() const;
-      iterator begin();
-      iterator end();
       const_iterator cbegin() const;
       const_iterator cend() const;
 

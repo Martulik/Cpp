@@ -63,16 +63,6 @@ size_t lab::PhoneBook::size() const
   return data_.size();
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::begin()
-{
-  return data_.begin();
-}
-
-lab::PhoneBook::iterator lab::PhoneBook::end()
-{
-  return data_.end();
-}
-
 lab::PhoneBook::const_iterator lab::PhoneBook::cbegin() const
 {
   return data_.cbegin();

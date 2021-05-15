@@ -12,6 +12,7 @@ namespace pochernin
   };
   bool operator<(const Bookmark& lhs, const Bookmark& rhs);
   std::istream& operator>>(std::istream& in, Bookmark& bookmark);
+  bool checkBookmarkName(const std::string& name);
 }
 
 #endif

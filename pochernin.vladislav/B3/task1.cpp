@@ -33,13 +33,27 @@ void pochernin::task1(std::istream& in, std::ostream& out)
         interface.add(note);
       }
     }
+    else if (command == "store")
+    {
+      Bookmark bookmark;
+      Bookmark newBookmark;
+      input >> bookmark >> newBookmark;
+      if (!interface.contains(bookmark) || (bookmark.name == "") || (newBookmark.name == ""))
+      {
+        pochernin::invalidBookmark(out);
+      }
+      else
+      {
+        interface.store(bookmark, newBookmark);
+      }
+    }
     else if (command == "insert")
     {
       std::string position;
       Bookmark bookmark;
       Note note;
       input >> position >> bookmark >> note;
-      if (!interface.contains(bookmark))
+      if (!interface.contains(bookmark) || (bookmark.name == ""))
       {
         pochernin::invalidBookmark(out);
       }
@@ -64,7 +78,7 @@ void pochernin::task1(std::istream& in, std::ostream& out)
     {
       Bookmark bookmark;
       input >> bookmark;
-      if (!interface.contains(bookmark))
+      if (!interface.contains(bookmark) || (bookmark.name == ""))
       {
         pochernin::invalidBookmark(out);
       }

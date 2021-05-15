@@ -8,5 +8,21 @@ bool pochernin::operator<(const Bookmark& lhs, const Bookmark& rhs)
 std::istream& pochernin::operator>>(std::istream& in, Bookmark& bookmark)
 {
   in >> std::ws >> bookmark.name;
+  if (!checkBookmarkName(bookmark.name))
+  {
+    bookmark.name = "";
+  }
   return in;
+}
+
+bool pochernin::checkBookmarkName(const std::string& name)
+{
+  for (auto&& i: name)
+  {
+    if (!isdigit(i) && !isalpha(i) && (i != '-'))
+    {
+      return false;
+    }
+  }
+  return true;
 }

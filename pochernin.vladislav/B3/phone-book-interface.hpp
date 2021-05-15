@@ -24,10 +24,11 @@ namespace pochernin
     bool empty() const;
     bool contains(const Bookmark& bookmark) const;
     void show(const Bookmark& bookmark, std::ostream& out) const;
+    void store(const Bookmark& bookmark, const Bookmark& newBookmark);
 
   private:
     std::unique_ptr< PhoneBook > book_;
-    std::map< std::string, constIterator > bookmarks_;
+    std::map< Bookmark, constIterator > bookmarks_;
   };
 }
 

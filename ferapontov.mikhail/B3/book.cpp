@@ -27,12 +27,12 @@ bool fer::PhoneBook::empty() const
   return notes_.empty();
 }
 
-fer::iter fer::PhoneBook::begin()
+fer::const_iter fer::PhoneBook::begin()
 {
-  return notes_.begin();
+  return notes_.cbegin();
 }
 
-fer::iter fer::PhoneBook::end()
+fer::const_iter fer::PhoneBook::end()
 {
-  return notes_.end();
+  return notes_.cend();
 }

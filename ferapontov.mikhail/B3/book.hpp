@@ -9,7 +9,7 @@
 namespace ferapontov
 {
   using iter = std::list< data_t >::iterator;
-  using citer = std::list< data_t >::const_iterator;
+  using const_iter = std::list< data_t >::const_iterator;
   class PhoneBook
   {
     public:
@@ -24,8 +24,8 @@ namespace ferapontov
 
       bool empty() const;
 
-      iter begin();
-      iter end();
+      const_iter begin();
+      const_iter end();
     private:
       std::list< data_t > notes_;
   };

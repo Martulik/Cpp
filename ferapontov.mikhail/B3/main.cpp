@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
       ferapontov::task2();
     }
   }
-  catch (std::exception& e)
+  catch (std::runtime_error& e)
   {
     std::cerr << e.what();
     std::exit(1);

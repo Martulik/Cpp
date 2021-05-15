@@ -12,9 +12,9 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Words &list)
   return in;
 }
 
-std::ostream &ivanova::operator<<(std::ostream &out, ivanova::Words str)
+std::ostream &ivanova::operator <<(std::ostream &out, ivanova::Words str)
 {
-  std::copy(str.vector_.begin(), str.vector_.end(), std::ostream_iterator< std::string > (out, "\n");
+  std::copy(str.vector_.begin(), str.vector_.end(), std::ostream_iterator< std::string > (out, "\n"));
   return out;
 }
 

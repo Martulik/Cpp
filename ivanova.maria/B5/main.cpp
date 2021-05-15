@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    return iva::task2(std::cin, std::cout);
+//    return iva::task2(std::cin, std::cout);
   }
 }
 

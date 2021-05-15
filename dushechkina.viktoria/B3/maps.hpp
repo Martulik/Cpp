@@ -1,5 +1,5 @@
-#ifndef LABS_MAPS_HPP
-#define LABS_MAPS_HPP
+#ifndef MAPS_HPP
+#define MAPS_HPP
 #include <unordered_map>
 #include <string>
 #include <functional>

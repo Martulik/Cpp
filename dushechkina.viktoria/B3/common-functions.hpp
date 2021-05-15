@@ -1,5 +1,5 @@
-#ifndef LABS_COMMON_FUNCTIONS_HPP
-#define LABS_COMMON_FUNCTIONS_HPP
+#ifndef COMMON_FUNCTIONS_HPP
+#define COMMON_FUNCTIONS_HPP
 #include <iostream>
 #include <string>
 

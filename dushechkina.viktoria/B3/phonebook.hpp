@@ -1,5 +1,5 @@
-#ifndef LABS_PHONEBOOK_HPP
-#define LABS_PHONEBOOK_HPP
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 #include <list>
 #include <string>
 

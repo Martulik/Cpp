@@ -1,5 +1,5 @@
-#ifndef LABS_FUNCTIONS_HPP
-#define LABS_FUNCTIONS_HPP
+#ifndef FUNCTIONS_HPP
+#define FUNCTIONS_HPP
 #include <sstream>
 #include <iostream>
 #include <unordered_map>

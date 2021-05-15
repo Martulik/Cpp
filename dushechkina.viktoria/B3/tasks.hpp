@@ -1,5 +1,5 @@
-#ifndef LABS_TASKS_HPP
-#define LABS_TASKS_HPP
+#ifndef TASKS_HPP
+#define TASKS_HPP
 #include <iostream>
 
 namespace dushechkina

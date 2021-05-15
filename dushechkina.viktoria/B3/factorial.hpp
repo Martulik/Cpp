@@ -1,5 +1,5 @@
-#ifndef LABS_FACTORIAL_HPP
-#define LABS_FACTORIAL_HPP
+#ifndef FACTORIAL_HPP
+#define FACTORIAL_HPP
 #include <iterator>
 
 namespace dushechkina

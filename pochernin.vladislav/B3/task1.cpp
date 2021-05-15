@@ -8,6 +8,7 @@
 #include "phone-book-interface.hpp"
 #include "note.hpp"
 #include "bookmark.hpp"
+#include "step.hpp"
 #include "functions.hpp"
 
 void pochernin::task1(std::istream& in, std::ostream& out)
@@ -89,6 +90,24 @@ void pochernin::task1(std::istream& in, std::ostream& out)
       else
       {
         interface.show(bookmark, out);
+      }
+    }
+    else if (command == "move")
+    {
+      Bookmark bookmark;
+      Step step;
+      input >> bookmark >> step;
+      if (!interface.contains(bookmark) || (bookmark.name == ""))
+      {
+        pochernin::invalidBookmark(out);
+      }
+      else if (!step.isCorrect())
+      {
+        pochernin::invalidStep(out);
+      }
+      else
+      {
+        interface.move(bookmark, step);
       }
     }
     else

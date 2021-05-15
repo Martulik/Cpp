@@ -8,6 +8,7 @@
 #include "phone-book.hpp"
 #include "note.hpp"
 #include "bookmark.hpp"
+#include "step.hpp"
 
 namespace pochernin
 {
@@ -25,6 +26,7 @@ namespace pochernin
     bool contains(const Bookmark& bookmark) const;
     void show(const Bookmark& bookmark, std::ostream& out) const;
     void store(const Bookmark& bookmark, const Bookmark& newBookmark);
+    void move(const Bookmark& bookmark, const Step& step);
 
   private:
     std::unique_ptr< PhoneBook > book_;

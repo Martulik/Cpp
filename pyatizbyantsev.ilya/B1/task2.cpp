@@ -16,7 +16,7 @@ void pyatizbyantsev::taskTwo(const char* fileName)
     throw std::invalid_argument("Unable to read the file");
   }
 
-  size_t capacity = 512;
+  size_t capacity = 1;
   size_t size = 0;
   std::unique_ptr< char[] > resultArray  = std::make_unique< char[] >(capacity);
 
@@ -33,10 +33,14 @@ void pyatizbyantsev::taskTwo(const char* fileName)
       {
         temp[i] = std::move(resultArray[i]);
       }
-      resultArray.swap(temp);
+      std::swap(resultArray, temp);
     }
   }
   input.close();
   std::vector< char > vector(resultArray.get(), resultArray.get() + size);
-  print(vector.begin(), vector.end(), "");
+  for (size_t i = 0; i < size; i++)
+  {
+    std::cout << vector[i];
+  }
+  //print(vector.begin(), vector.end(), "");
 }

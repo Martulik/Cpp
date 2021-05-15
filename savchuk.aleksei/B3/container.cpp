@@ -20,6 +20,7 @@ lab::Container::Iterator::Iterator():
 
 lab::Container::Iterator& lab::Container::Iterator::operator++()
 {
+  assert(idx_ != MAX_IDX);
   ++idx_;
   value_ *= idx_;
   return *this;
@@ -34,7 +35,7 @@ lab::Container::Iterator lab::Container::Iterator::operator++(int)
 
 lab::Container::Iterator& lab::Container::Iterator::operator--()
 {
-  assert(idx_ > 1);
+  assert(idx_ != 1);
   value_ /= idx_;
   --idx_;
   return *this;

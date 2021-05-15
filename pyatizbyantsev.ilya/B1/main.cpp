@@ -9,6 +9,7 @@ namespace lab = pyatizbyantsev;
 
 int main(int argc, char* argv[])
 {
+  srand(time(NULL));
   try
   {
     for (int i = 1; i < argc; i++)
@@ -42,7 +43,7 @@ int main(int argc, char* argv[])
       {
         throw std::invalid_argument("Invalid array size");
       }
-      //lab::taskFour(argv[2], atoi(argv[3]));
+      lab::taskFour(argv[2], atoi(argv[3]));
     }
     else
     {

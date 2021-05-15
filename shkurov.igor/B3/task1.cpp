@@ -5,10 +5,11 @@
 #include "PhoneBook.hpp"
 #include "BookWrap.hpp"
 #include "tools.hpp"
+#include "tasks.hpp"
 
 namespace lab = shkurov;
 
-void task1(std::istream& in, std::ostream& out)
+void lab::task1(std::istream& in, std::ostream& out)
 {
   lab::PhoneBook book;
   lab::BookWrap wrapper(book, out);

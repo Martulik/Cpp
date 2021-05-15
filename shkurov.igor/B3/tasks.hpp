@@ -3,6 +3,10 @@
 
 #include <iosfwd>
 
-void task1(std::istream& in, std::ostream& out);
+namespace shkurov
+{
+  void task1(std::istream& in, std::ostream& out);
+  void task2();
+}
 
 #endif

@@ -5,21 +5,20 @@
 struct Fixture
 {
   dushechkina::Container fact;
-  std::ostringstream output;
 };
 
-BOOST_FIXTURE_TEST_SUITE(FACTORIAL, Fixture)
+BOOST_FIXTURE_TEST_SUITE(Container, Fixture)
 
-BOOST_AUTO_TEST_CASE(correct_work)
+BOOST_AUTO_TEST_CASE(correctWork)
 {
-  unsigned k = 1;
-  unsigned n = 1;
-
-for (auto i = fact.begin(); i != fact.end(); ++i)
-{
-  BOOST_CHECK_EQUAL(*i, k);
-	k *= ++n;
-}
+  unsigned int n = 1;
+  unsigned int k = 1;
+  for (auto i = fact.begin(); i != fact.end(); i++)
+  {
+    k *= n;
+    n++;
+    BOOST_CHECK_EQUAL(*i, k);
+  }
 }
 
 BOOST_AUTO_TEST_SUITE_END()

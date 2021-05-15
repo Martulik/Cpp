@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "task1.hpp"
-
+#include "task2.hpp"
 namespace iva = ivanova;
 
 int main(int argc, char* argv[])
@@ -21,9 +21,9 @@ int main(int argc, char* argv[])
     }
     return iva::task1(std::cin, std::cout);
   }
-  else
-  {
+//  else
+//  {
 //    return iva::task2(std::cin, std::cout);
-  }
+//  }
 }
 

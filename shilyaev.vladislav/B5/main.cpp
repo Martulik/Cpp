@@ -1,6 +1,6 @@
 #include <iostream>
 #include "task-words.hpp"
-#include "task-polygons.hpp"
+#include "task-shape.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
   if (task == "1") {
     return shilyaev::runWordsTask();
   } else if (task == "2") {
-    return shilyaev::runPolygonsTask();
+    return shilyaev::runShapeTask();
   } else {
     std::cerr << "No such task";
     return 1;

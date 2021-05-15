@@ -1,4 +1,4 @@
-#include "task-polygons.hpp"
+#include "task-shape.hpp"
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -155,7 +155,7 @@ namespace shilyaev {
     });
   }
 
-  int runPolygonsTask()
+  int runShapeTask()
   {
     boost::optional< std::vector< Shape > > shapes = readShapes(std::cin);
     if (!shapes) {

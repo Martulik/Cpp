@@ -10,7 +10,7 @@ namespace ezerinia {
   };
   using Shape = std::vector< Point >;
 
-  double getSideLength(const Point &p1, const Point &p2);
+  double getSideLengthSquared(const Point &p1, const Point &p2);
   bool isSideEqual(const Shape &shape);
 
   bool operator<(const Shape &lhs, const Shape &rhs);

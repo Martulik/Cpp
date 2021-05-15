@@ -7,16 +7,16 @@
 
 namespace lab = ezerinia;
 
-double lab::getSideLength(const Point &p1, const Point &p2)
+double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {
   //return sqrt(abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y)));
-  return (p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y);
+  return abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y));
 }
 
 bool lab::isSideEqual(const Shape &shape)
 {
-  double side1 = getSideLength(shape[0], shape[1]);
-  double side2 = getSideLength(shape[1], shape[2]);
+  double side1 = getSideLengthSquared(shape[0], shape[1]);
+  double side2 = getSideLengthSquared(shape[1], shape[2]);
 
 //  for (unsigned int i = 0; i < shape.size() - 1; i++) {
 //    if (getSideLength(shape[i], shape[i + 1]) != side) {
@@ -28,14 +28,8 @@ bool lab::isSideEqual(const Shape &shape)
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)
 {
-  if (lhs.size() < rhs.size()) {
+  if (lhs.size() < rhs.size() || ((rhs.size() == 4) && (lhs.size() == rhs.size()) && isSideEqual(lhs))) {
     return true;
-  } else {
-    if ((lhs.size() == rhs.size()) && (rhs.size() == 4)) {
-      if (isSideEqual(lhs)) {
-        return true;
-      }
-    }
   }
   return false;
 }
@@ -44,7 +38,7 @@ std::istream &lab::operator>>(std::istream &in, Point &point)
 {
   std::string str;
   char trash = '\0';
-  std::getline(in, str, ')');
+  std::getline(in >> std::ws, str, ')');
   if (str.empty() || in.eof()) {
     return in;
   }
@@ -76,11 +70,10 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   }
   std::istringstream iss(str);
   Shape shape_temp((std::istream_iterator< Point >(iss)), std::istream_iterator< Point >());
-  shape.swap(shape_temp);
-  shape.pop_back();
-  if (nVertices != shape.size() || shape.size() < 3) {
+  if (nVertices != shape_temp.size() || shape_temp.size() < 3) {
     throw std::runtime_error("Wrong number of vertices");
   }
+  shape.swap(shape_temp);
   return in;
 }
 

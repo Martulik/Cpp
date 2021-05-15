@@ -174,11 +174,12 @@ namespace shilyaev {
               << "Squares: " << squaresCount << '\n'
               << "Rectangles: " << rectanglesCount << '\n'
               << "Points: ";
-    std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, " "));
+    std::ostream_iterator< Point > pointOstreamIterator(std::cout, " ");
+    std::copy(points.begin(), points.end(), pointOstreamIterator);
     std::cout << "\nShapes: ";
     for (const auto &shape: *shapes) {
       std::cout << '\n' << shape.size() << ' ';
-      std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(std::cout, " "));
+      std::copy(shape.begin(), shape.end(), pointOstreamIterator);
     }
     return 0;
   }

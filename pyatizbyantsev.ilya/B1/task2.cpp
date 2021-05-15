@@ -9,7 +9,7 @@
 
 void pyatizbyantsev::taskTwo(const char* fileName)
 {
-  std::ifstream input(fileName);
+  std::ifstream input;
   input.open(fileName);
   if (!input.is_open())
   {

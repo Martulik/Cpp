@@ -29,7 +29,7 @@ namespace savchuk
           unsigned int idx_;
           valueType value_;
 
-          Iterator(unsigned int idx);
+          Iterator(unsigned int idx, unsigned long long value);
 
           friend class Container;
       };

@@ -9,6 +9,9 @@ namespace lab = savchuk;
 
 constexpr unsigned int CONTAINER_SIZE = 10;
 
+constexpr unsigned int MAX_IDX = CONTAINER_SIZE + 1;
+constexpr unsigned long long MAX_VALUE = lab::calcucateFactorial(MAX_IDX);
+
 lab::Container::Iterator::Iterator():
   idx_(1),
   value_(1)
@@ -64,9 +67,9 @@ lab::Container::valueType* lab::Container::Iterator::operator->()
   return std::addressof(value_);
 }
 
-lab::Container::Iterator::Iterator(unsigned int idx):
+lab::Container::Iterator::Iterator(unsigned int idx, unsigned long long value):
   idx_(idx),
-  value_(lab::calcucateFactorial(idx))
+  value_(value)
 {
 }
 
@@ -77,5 +80,5 @@ lab::Container::Iterator lab::Container::begin()
 
 lab::Container::Iterator lab::Container::end()
 {
-  return Iterator(CONTAINER_SIZE + 1);
+  return Iterator(MAX_IDX, MAX_VALUE);
 }

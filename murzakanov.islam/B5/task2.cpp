@@ -4,17 +4,20 @@
 #include <string>
 #include <iomanip>
 #include <vector>
+#include <iterator>
 
 #include "shape.hpp"
 
 void murzakanov::task2(std::istream& in, std::ostream& out)
 {
-  std::vector< murzakanov::Shape > shapes;
-  while (!in.eof())
+  std::istream_iterator< murzakanov::Shape > firstIterator(in);
+  std::istream_iterator< murzakanov::Shape > lastIterator;
+  std::vector< murzakanov::Shape > shapes(firstIterator, lastIterator);
+  int vertices = 0;
+  for (size_t i = 0; i < shapes.size(); i++)
   {
-    murzakanov::Shape temp;
-    in >> temp;
-    shapes.push_back(temp);
+    vertices += shapes[i].size();
   }
-  out << "1";
+  out << vertices << "\n";
+
 }

@@ -19,5 +19,10 @@ int main(int argc, char* argv[])
   {
     murzakanov::task2(std::cin, std::cout);
   }
+  else
+  {
+    std::cerr << "Invalid task number\n";
+    code = 1;
+  }
   return code;
 }

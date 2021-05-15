@@ -6,7 +6,7 @@ namespace ivanova
 {
   int task2(std::istream &in, std::ostream &out)
   {
-    
+    return 0;
   }
 }
 #endif

@@ -4,11 +4,6 @@
 
 namespace lab = savchuk;
 
-const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::const_iterator it) const
-{
-  return *it;
-}
-
 lab::PhoneBook::const_iterator lab::PhoneBook::add(lab::PhoneBook::const_iterator it, const lab::contact_t& contact)
 {
   return data_.insert(it, contact);
@@ -27,11 +22,11 @@ lab::PhoneBook::const_iterator lab::PhoneBook::add(const lab::contact_t& contact
   return add(data_.cend(), contact);
 }
 
-lab::PhoneBook::const_iterator lab::PhoneBook::move(lab::PhoneBook::const_iterator it, int steps)
+lab::PhoneBook::const_iterator lab::PhoneBook::move(lab::PhoneBook::const_iterator it, int steps) const
 {
   if (steps > 0)
   {
-    while (it != --data_.end() && steps != 0)
+    while (it != --data_.cend() && steps != 0)
     {
       ++it;
       --steps;
@@ -39,7 +34,7 @@ lab::PhoneBook::const_iterator lab::PhoneBook::move(lab::PhoneBook::const_iterat
   }
   else
   {
-    while (it != data_.begin() && steps != 0)
+    while (it != data_.cbegin() && steps != 0)
     {
       --it;
       ++steps;

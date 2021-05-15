@@ -2,7 +2,7 @@
 #define CONTAINER_HPP
 
 #include <cstddef>
-#include <algorithm>
+#include <iterator>
 
 namespace savchuk
 {

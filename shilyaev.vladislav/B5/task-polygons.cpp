@@ -169,11 +169,11 @@ namespace shilyaev {
     shapes->erase(std::remove_if(shapes->begin(), shapes->end(), isPentagon), shapes->end());
     const std::vector< Point > points = createPointsVector(*shapes);
     sortShapes(*shapes);
-    std::cout << "Vertices: " << verticesCount << '\n'
-              << "Triangles: " << trianglesCount << '\n'
-              << "Squares: " << squaresCount << '\n'
-              << "Rectangles: " << rectanglesCount << '\n'
-              << "Points: ";
+    std::cout << "Vertices: " << verticesCount
+              << "\nTriangles: " << trianglesCount
+              << "\nSquares: " << squaresCount
+              << "\nRectangles: " << rectanglesCount
+              << "\nPoints: ";
     std::ostream_iterator< Point > pointOstreamIterator(std::cout, " ");
     std::copy(points.begin(), points.end(), pointOstreamIterator);
     std::cout << "\nShapes: ";

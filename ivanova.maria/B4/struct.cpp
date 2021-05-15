@@ -2,11 +2,15 @@
 #include <sstream>
 #include "tools.hpp"
 
-std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
+std::istream &ivanova::operator >>(std::istream &input, ivanova::DataStruct &data)
 {
   std::string string;
-  std::getline(in, string);
-  std::istringstream icin(string);
+  std::getline(input, string);
+  std::istringstream in(string);
+  if (string.empty())
+  {
+    return in;
+  }
   char separator = ' ';
   in >> data.key1;
   if (!in.fail())

@@ -1,7 +1,10 @@
 #include "shape.hpp"
 #include <iostream>
+#include <functional>
 
 namespace shilyaev {
+  using QuadrilateralPredicate = std::function< bool(int ab, int bc, int cd, int da, int bd, int ac) >;
+
   std::ostream &operator<<(std::ostream &ostream, const Point &point)
   {
     ostream << '(' << point.x << "; " << point.y << ')';
@@ -33,7 +36,17 @@ namespace shilyaev {
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
   }
 
-  bool isSquare(const Shape &shape)
+  bool isRectangleByDistances(int ab, int bc, int cd, int da, int bd, int ac)
+  {
+    return ab == cd && bc == da && bd == ac && bd == ab + bc;
+  }
+
+  bool isSquareByDistances(int ab, int bc, int cd, int da, int bd, int ac)
+  {
+    return ab == bc && isRectangleByDistances(ab, bc, cd, da, bd, ac);
+  }
+
+  bool doesQuadrilateralMatch(const Shape &shape, const QuadrilateralPredicate &predicate)
   {
     if (shape.size() != 4) {
       return false;
@@ -44,21 +57,17 @@ namespace shilyaev {
     int da = calculateDistanceSquared(shape[3], shape[0]);
     int bd = calculateDistanceSquared(shape[1], shape[3]);
     int ac = calculateDistanceSquared(shape[0], shape[2]);
-    return ab == bc && ab == cd && ab == da && bd == ac && bd == ab + bc;
+    return predicate(ab, bc, cd, da, bd, ac);
   }
 
   bool isRectangle(const Shape &shape)
   {
-    if (shape.size() != 4) {
-      return false;
-    }
-    int ab = calculateDistanceSquared(shape[0], shape[1]);
-    int bc = calculateDistanceSquared(shape[1], shape[2]);
-    int cd = calculateDistanceSquared(shape[2], shape[3]);
-    int da = calculateDistanceSquared(shape[3], shape[0]);
-    int bd = calculateDistanceSquared(shape[1], shape[3]);
-    int ac = calculateDistanceSquared(shape[0], shape[2]);
-    return ab == cd && bc == da && bd == ac && bd == ab + bc;
+    return doesQuadrilateralMatch(shape, isRectangleByDistances);
+  }
+
+  bool isSquare(const Shape &shape)
+  {
+    return doesQuadrilateralMatch(shape, isSquareByDistances);
   }
 
   bool isPentagon(const Shape &shape)

@@ -22,8 +22,8 @@ namespace savchuk
           Iterator operator--(int);
           bool operator==(const Iterator& other) const;
           bool operator!=(const Iterator& other) const;
-          const valueType& operator*();
-          const valueType* operator->();
+          const valueType& operator*() const;
+          const valueType* operator->() const;
 
         private:
           unsigned int idx_;

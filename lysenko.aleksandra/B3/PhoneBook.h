@@ -24,7 +24,7 @@ namespace lysenko
     };
 
     using iteratorMark = std::list< PhoneBook::bookMark >::iterator;
- 
+
     void addNumber(std::string name, std::string number);
     void createNewbookMarkHere(std::string oldMarkName, std::string newMarkName);
     void insertNoteNextTobookMark(bool before, std::string markName, std::string name, std::string number);

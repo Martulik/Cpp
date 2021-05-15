@@ -4,8 +4,8 @@
 
 namespace dushechkina
 {
-  void doFirstTask(std::istream& in = std::cin, std::ostream& out = std::cout);
-  void doSecondTask(std::istream& in = std::cin, std::ostream& out = std::cout);
+  void task1(std::istream& in = std::cin, std::ostream& out = std::cout);
+  void task2(std::istream& in = std::cin, std::ostream& out = std::cout);
 }
 
 #endif

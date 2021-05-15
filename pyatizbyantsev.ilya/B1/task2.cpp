@@ -38,5 +38,8 @@ void pyatizbyantsev::taskTwo(const char* fileName)
   }
   input.close();
   std::vector< char > vector(resultArray.get(), resultArray.get() + size);
-  print(vector.begin(), vector.end(), "");
+  for (size_t i = 0; i < size; i++)
+  {
+    std::cout << vector[i];
+  }
 }

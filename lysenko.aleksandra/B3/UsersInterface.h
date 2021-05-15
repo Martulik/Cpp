@@ -13,7 +13,7 @@ namespace lysenko
   public:
     UsersInterface();
 
-    typedef std::list< Book::Note >::iterator iterator;
+    using iterator = std::list< Book::Note >::iterator;
 
     struct bookMark
     {
@@ -21,7 +21,7 @@ namespace lysenko
       iterator contact;
     };
 
-    typedef std::list< UsersInterface::bookMark >::iterator iteratorMark;
+    using iteratorMark = std::list< UsersInterface::bookMark >::iterator;
 
     iteratorMark getEndOfBookMarks();
     bool telephoneBookIsEmpty();

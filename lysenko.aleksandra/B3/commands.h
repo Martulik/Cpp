@@ -8,7 +8,7 @@
 
 namespace lysenko
 {
-  typedef std::map< std::string, void (*)(std::istream&, lysenko::UsersInterface&) >::const_iterator iteratorInt;
+  using iteratorInt = std::map< std::string, void (*)(std::istream&, lysenko::UsersInterface&) >::const_iterator;
 
   bool isDigitsOnly(std::string& number);
   bool checkCorrectNumberAndName(std::string& name, std::string& number);

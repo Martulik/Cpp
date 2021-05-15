@@ -39,16 +39,17 @@ namespace shilyaev {
   boost::optional< Shape > readShape(const std::string &input)
   {
     std::istringstream istringstream(input);
-    int vertices;
+    size_t vertices;
     istringstream >> vertices;
     if (vertices < 1) {
       return {};
     }
-    Shape shape(vertices);
-    for (int i = 0; i < vertices; ++i) {
-      istringstream >> shape[i];
-    }
-    if (istringstream.fail()) {
+    Shape shape;
+    shape.reserve(vertices);
+    std::istream_iterator< Point > istreamIterator(istringstream);
+    std::istream_iterator< Point > istreamIteratorEnd;
+    std::copy(istreamIterator, istreamIteratorEnd, std::back_inserter(shape));
+    if ((!istringstream && !istringstream.eof()) || shape.size() != vertices) {
       return {};
     }
     return shape;

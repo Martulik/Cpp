@@ -33,3 +33,27 @@ void PBI::show(const Bookmark& bookmark, std::ostream& out) const
 {
   out << *(bookmarks_.at(bookmark.name));
 }
+
+void PBI::insertBefore(const Bookmark& bookmark, const Note& note)
+{
+  if (book_->empty())
+  {
+    add(note);
+  }
+  else
+  {
+    book_->insertBefore(bookmarks_.at(bookmark.name), note);
+  }
+}
+
+void PBI::insertAfter(const Bookmark& bookmark, const Note& note)
+{
+  if (book_->empty())
+  {
+    add(note);
+  }
+  else
+  {
+    book_->insertAfter(bookmarks_.at(bookmark.name), note);
+  }
+}

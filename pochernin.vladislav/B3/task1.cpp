@@ -33,6 +33,33 @@ void pochernin::task1(std::istream& in, std::ostream& out)
         interface.add(note);
       }
     }
+    else if (command == "insert")
+    {
+      std::string position;
+      Bookmark bookmark;
+      Note note;
+      input >> position >> bookmark >> note;
+      if (!interface.contains(bookmark))
+      {
+        pochernin::invalidBookmark(out);
+      }
+      else if ((note.number == "") || (note.name == ""))
+      {
+        pochernin::invalidCommand(out);
+      }
+      else if (position == "before")
+      {
+        interface.insertBefore(bookmark, note);
+      }
+      else if (position == "after")
+      {
+        interface.insertAfter(bookmark, note);
+      }
+      else
+      {
+        pochernin::invalidCommand(out);
+      }
+    }
     else if (command == "show")
     {
       Bookmark bookmark;

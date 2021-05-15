@@ -14,6 +14,8 @@ namespace pochernin
     using constIterator = std::list< Note >::const_iterator;
 
     void add(const Note& note);
+    void insertBefore(constIterator iterator, const Note& note);
+    void insertAfter(constIterator iterator, const Note& note);
     bool empty() const;
     constIterator begin();
     constIterator end();

@@ -19,6 +19,8 @@ namespace pochernin
     explicit PhoneBookInterface(PhoneBook& book);
 
     void add(const Note& note);
+    void insertBefore(const Bookmark& bookmark, const Note& note);
+    void insertAfter(const Bookmark& bookmark, const Note& note);
     bool empty() const;
     bool contains(const Bookmark& bookmark) const;
     void show(const Bookmark& bookmark, std::ostream& out) const;

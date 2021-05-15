@@ -21,3 +21,22 @@ bool PB::empty() const
 {
   return data_.empty();
 }
+
+void PB::insertBefore(constIterator iterator, const Note& note)
+{
+  data_.insert(iterator, note);
+}
+
+void PB::insertAfter(constIterator iterator, const Note& note)
+{
+  constIterator temp = iterator;
+  temp++;
+  if (temp == end())
+  {
+    add(note);
+  }
+  else
+  {
+    data_.insert(temp, note);
+  }
+}

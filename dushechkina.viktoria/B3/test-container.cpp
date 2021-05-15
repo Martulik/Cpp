@@ -2,7 +2,7 @@
 #include <boost/test/unit_test.hpp>
 #include "factorial.hpp"
 
-struct Fixture
+/*struct Fixture
 {
  dushechkina::Container fact;
  std::ostringstream output;
@@ -21,4 +21,4 @@ BOOST_AUTO_TEST_CASE(correct_work)
 	}
 }
 
-BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()*/

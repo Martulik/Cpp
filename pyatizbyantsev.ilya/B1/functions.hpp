@@ -34,8 +34,7 @@ namespace pyatizbyantsev
 
     for (iterator_t i = begin; i != end; i++)
     {
-      typename Strat::iterator_t j = i;
-
+      iterator_t j = i;
       for (j++; j != end; j++)
       {
         if (!cmp(Strategy::get(arr, i), Strategy::get(arr, j)))
@@ -47,15 +46,14 @@ namespace pyatizbyantsev
   }
 
   template < typename T >
-  void print(const T& arr)
+  void print(T begin, T end, const char* delim)
   {
-    using iterator_t = typename T::const_iterator;
-
-    for (iterator_t it = arr.begin(); it != arr.end(); it++)
+    while (begin != end)
     {
-      std::cout << *it << ' ';
+      std::cout << *begin << delim;
+      ++begin;
     }
-      std::cout << '\n';
+    std::cout << '\n';
   }
 
   bool checkSpaces(const char* str);

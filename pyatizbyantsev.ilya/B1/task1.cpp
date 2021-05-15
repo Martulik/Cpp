@@ -3,9 +3,7 @@
 #include "functions.hpp"
 #include "strategies.hpp"
 
-namespace lab = pyatizbyantsev;
-
-void lab::taskOne(const char* cmp)
+void pyatizbyantsev::taskOne(const char* cmp)
 {
   std::vector< int > vectorFirst;
 
@@ -25,7 +23,7 @@ void lab::taskOne(const char* cmp)
   sort< strategyIndex< int > >(vectorFirst, sortMode< int >(cmp));
   sort< strategyAt< int > >(vectorSecond, sortMode< int >(cmp));
   sort< strategyIterator< int > >(forwardList, sortMode< int >(cmp));
-  print(vectorFirst);
-  print(vectorSecond);
-  print(forwardList);
+  print(vectorFirst.begin(), vectorFirst.end(), " ");
+  print(vectorSecond.begin(), vectorSecond.end(), " ");
+  print(forwardList.begin(), forwardList.end(), " ");
 }

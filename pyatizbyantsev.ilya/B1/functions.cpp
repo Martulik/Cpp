@@ -2,7 +2,7 @@
 
 #include <cctype>
 
-bool checkSpaces(const char* str)
+bool pyatizbyantsev::checkSpaces(const char* str)
 {
   if (strchr(str, ' '))
   {
@@ -11,7 +11,7 @@ bool checkSpaces(const char* str)
   return false;
 }
 
-bool checkNumber(const char* str)
+bool pyatizbyantsev::checkNumber(const char* str)
 {
   for (size_t i = 0; str[i] != '\0'; i++)
   {

@@ -46,7 +46,7 @@ namespace pyatizbyantsev
 
     static T& get(container& data, iterator& index)
     {
-      return cont.at(index);
+      return data.at(index);
     }
   };
 

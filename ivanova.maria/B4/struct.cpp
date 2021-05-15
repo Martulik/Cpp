@@ -1,8 +1,12 @@
 #include "struct.hpp"
+#include <sstream>
 #include "tools.hpp"
 
 std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
 {
+  std::string string;
+  std::getline(in, string);
+  std::istringstream icin(string);
   char separator = ' ';
   in >> data.key1;
   if (!in.fail())
@@ -18,7 +22,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
       in >> data.key2;
       if (in.fail())
       {
-        std::cerr << "Invalid input";
+        std::cerr << "1Invalid input";
         exit(1);
       }
       in >> separator;
@@ -31,7 +35,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
   }
   if ((in.fail() || std::abs(data.key1) > 5 || std::abs(data.key2) > 5))
   {
-    std::cerr << "Invalid input";
+    std::cerr << "2Invalid input";
     exit(1);
   }
   if (!in.eof())
@@ -41,9 +45,9 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::DataStruct &data)
   return in;
 }
 
-std::ostream &ivanova::operator <<(std::ostream &out, ivanova::DataStruct &data)
+std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::DataStruct &data)
 {
-  out << data.key1 << "," << data.key2 << "," << data.str << std::endl;
+  out << data.key1 << "," << data.key2 << "," << data.str << '\n';
   return out;
 }
 

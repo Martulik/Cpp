@@ -13,18 +13,9 @@ namespace ivanova
 {
   int readVector(std::vector < DataStruct > &vector, std::istream &in)
   {
-    std::string string;
-    while (std::getline(in, string))
-    {
-      std::stringstream input(string);
-      if (string.empty())
-      {
-        return 0;
-      }
-      DataStruct data;
-      input >> data;
-      vector.push_back(data);
-    }
+    std::istream_iterator< DataStruct > input(in);
+    std::vector < DataStruct >newVector(input, std::istream_iterator< DataStruct >());
+    vector = std::move(newVector);
     return 0;
   }
 }

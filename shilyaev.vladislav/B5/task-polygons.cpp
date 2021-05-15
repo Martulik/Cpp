@@ -16,13 +16,13 @@ namespace shilyaev {
 
   using Shape = std::vector< Point >;
 
-  std::ostream &operator<<(std::ostream &ostream, const Point& point)
+  std::ostream &operator<<(std::ostream &ostream, const Point &point)
   {
     ostream << '(' << point.x << "; " << point.y << ')';
     return ostream;
   }
 
-  std::istream &operator>>(std::istream &istream, Point& point)
+  std::istream &operator>>(std::istream &istream, Point &point)
   {
     try {
       std::string str;
@@ -61,7 +61,7 @@ namespace shilyaev {
     std::vector< Shape > shapes;
     std::string line;
     while (std::getline(istream, line)) {
-      if (std::all_of(line.begin(), line.end(), static_cast< int(&)(int) >(std::isspace))) {
+      if (std::all_of(line.begin(), line.end(), static_cast< int (&)(int) >(std::isspace))) {
         continue;
       }
       boost::optional< Shape > shape = readShape(line);

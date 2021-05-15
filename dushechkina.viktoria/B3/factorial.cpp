@@ -1,7 +1,7 @@
 #include "factorial.hpp"
 #include <stdexcept>
 
-#define INCORRECT_INDEX "Incorrect index! Index could be from 1 to 11!\n"
+#define INCORRECT_INDEX "Incorrect index, it could be from 1 to 11"
 
 dushechkina::Container::Iterator::Iterator() :
   index_(BEGIN_INDEX),

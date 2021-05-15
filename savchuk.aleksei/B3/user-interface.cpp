@@ -9,9 +9,9 @@
 
 namespace lab = savchuk;
 
-lab::UserInterface::UserInterface()
+lab::UserInterface::UserInterface():
+  bookmarks_({ std::make_pair("current", phoneBook_.begin()) })
 {
-  bookmarks_.insert(std::make_pair("current", phoneBook_.begin()));
 }
 
 void lab::UserInterface::add(const lab::contact_t& contact)

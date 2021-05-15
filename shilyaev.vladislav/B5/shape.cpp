@@ -44,7 +44,7 @@ namespace shilyaev {
     int da = calculateDistanceSquared(shape[3], shape[0]);
     int bd = calculateDistanceSquared(shape[1], shape[3]);
     int ac = calculateDistanceSquared(shape[0], shape[2]);
-    return ab == bc && ab == cd && ab == da && bd == ac;
+    return ab == bc && ab == cd && ab == da && bd == ac && bd == ab + bc;
   }
 
   bool isRectangle(const Shape &shape)
@@ -58,7 +58,7 @@ namespace shilyaev {
     int da = calculateDistanceSquared(shape[3], shape[0]);
     int bd = calculateDistanceSquared(shape[1], shape[3]);
     int ac = calculateDistanceSquared(shape[0], shape[2]);
-    return ab == cd && bc == da && bd == ac;
+    return ab == cd && bc == da && bd == ac && bd == ab + bc;
   }
 
   bool isPentagon(const Shape &shape)

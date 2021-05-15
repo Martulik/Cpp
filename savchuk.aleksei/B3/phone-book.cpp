@@ -1,5 +1,7 @@
 #include "phone-book.hpp"
 
+#include <iterator>
+
 namespace lab = savchuk;
 
 const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::const_iterator it) const
@@ -7,18 +9,20 @@ const lab::contact_t& lab::PhoneBook::show(lab::PhoneBook::const_iterator it) co
   return *it;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::add(lab::PhoneBook::const_iterator it, const lab::contact_t& contact)
+lab::PhoneBook::const_iterator lab::PhoneBook::add(lab::PhoneBook::const_iterator it, const lab::contact_t& contact)
 {
   return data_.insert(it, contact);
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::replace(lab::PhoneBook::iterator it, const contact_t& contact)
+lab::PhoneBook::const_iterator lab::PhoneBook::replace(lab::PhoneBook::const_iterator it, const contact_t& contact)
 {
-  *it = contact;
-  return it;
+  iterator iter = data_.begin();
+  std::advance(iter, std::distance(data_.cbegin(), it));
+  *iter = contact;
+  return iter;
 }
 
-lab::PhoneBook::iterator lab::PhoneBook::add(const lab::contact_t& contact)
+lab::PhoneBook::const_iterator lab::PhoneBook::add(const lab::contact_t& contact)
 {
   return add(data_.cend(), contact);
 }

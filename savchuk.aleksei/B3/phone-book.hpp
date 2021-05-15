@@ -15,9 +15,9 @@ namespace savchuk
       using const_iterator = std::list< contact_t >::const_iterator;
 
       const contact_t& show(const_iterator it) const;
-      iterator add(const_iterator it, const contact_t& contact);
-      iterator replace(iterator it, const contact_t& contact);
-      iterator add(const contact_t& contact);
+      const_iterator add(const_iterator it, const contact_t& contact);
+      const_iterator replace(const_iterator it, const contact_t& contact);
+      const_iterator add(const contact_t& contact);
       const_iterator move(const_iterator it, int steps);
       iterator remove(const_iterator it);
       bool empty() const;

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <numeric>
 #include <iterator>
+#include <cctype>
 #include <boost/optional/optional.hpp>
 
 namespace shilyaev {
@@ -60,7 +61,7 @@ namespace shilyaev {
     std::vector< Shape > shapes;
     std::string line;
     while (std::getline(istream, line)) {
-      if (line.empty()) {
+      if (std::all_of(line.begin(), line.end(), static_cast< int(&)(int) >(std::isspace))) {
         continue;
       }
       boost::optional< Shape > shape = readShape(line);

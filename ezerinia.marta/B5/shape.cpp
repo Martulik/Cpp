@@ -13,15 +13,13 @@ double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 
 bool lab::isSideEqual(const Shape &shape)
 {
-  double side1 = getSideLengthSquared(shape[0], shape[1]);
-  double side2 = getSideLengthSquared(shape[1], shape[2]);
-
-//  for (unsigned int i = 0; i < shape.size() - 1; i++) {
-//    if (getSideLength(shape[i], shape[i + 1]) != side) {
-//      return false;
-//    }
-//  }
-  return side1 == side2;
+  double side = getSideLengthSquared(shape[0], shape[1]);
+  for (unsigned int i = 0; i < shape.size() - 1; i++) {
+    if (getSideLengthSquared(shape[i], shape[i + 1]) != side) {
+      return false;
+    }
+  }
+  return true;
 }
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)

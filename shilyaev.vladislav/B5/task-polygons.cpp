@@ -121,11 +121,9 @@ namespace shilyaev {
     return ab == cd && bc == da && bd == ac;
   }
 
-  void removePentagons(std::vector< Shape > &shapes)
+  bool isPentagon(const Shape &shape)
   {
-    shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](const Shape &shape) {
-      return shape.size() == 5;
-    }), shapes.end());
+    return shape.size() == 5;
   }
 
   std::vector< Point > createPointsVector(const std::vector< Shape > &shapes)
@@ -176,7 +174,7 @@ namespace shilyaev {
     const unsigned int trianglesCount = std::count_if(shapes->begin(), shapes->end(), isTriangle);
     const unsigned int squaresCount = std::count_if(shapes->begin(), shapes->end(), isSquare);
     const unsigned int rectanglesCount = std::count_if(shapes->begin(), shapes->end(), isRectangle);
-    removePentagons(*shapes);
+    shapes->erase(std::remove_if(shapes->begin(), shapes->end(), isPentagon), shapes->end());
     const std::vector< Point > points = createPointsVector(*shapes);
     transformShapes(*shapes);
     std::cout << "Vertices: " << verticesCount << '\n'

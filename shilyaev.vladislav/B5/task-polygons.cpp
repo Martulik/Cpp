@@ -148,7 +148,7 @@ namespace shilyaev {
     return 3;
   }
 
-  void transformShapes(std::vector< Shape > &shapes)
+  void sortShapes(std::vector< Shape > &shapes)
   {
     std::sort(shapes.begin(), shapes.end(), [](const Shape &a, const Shape &b) {
       return getPriority(a) < getPriority(b);
@@ -168,7 +168,7 @@ namespace shilyaev {
     const unsigned int rectanglesCount = std::count_if(shapes->begin(), shapes->end(), isRectangle);
     shapes->erase(std::remove_if(shapes->begin(), shapes->end(), isPentagon), shapes->end());
     const std::vector< Point > points = createPointsVector(*shapes);
-    transformShapes(*shapes);
+    sortShapes(*shapes);
     std::cout << "Vertices: " << verticesCount << '\n'
               << "Triangles: " << trianglesCount << '\n'
               << "Squares: " << squaresCount << '\n'

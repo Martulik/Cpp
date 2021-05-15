@@ -6,6 +6,8 @@
 #include <string>
 
 #include "Exceptions.h"
+#include "PhoneBook.h"
+#include "Contacts.h"
 
 static bool readDelimiter(std::istream& in, char delimiter)
 {
@@ -71,19 +73,19 @@ bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
   }
 }
 
-bool lysenko::checkIfThisMarkNameContains(std::string& markName, lysenko::UsersInterface& myInterface)
+bool lysenko::checkIfThisMarkNameContains(std::string& markName, lysenko::PhoneBook& myBook)
 {
-  UsersInterface::iteratorMark newBookMark = myInterface.findThisMark(markName);
-  if (newBookMark == myInterface.getEndOfBookMarks())
+  PhoneBook::iteratorMark newbookMark = findThisMark(markName, myBook);
+  if (newbookMark == getEndOfbookMarks(myBook))
   {
-    InvalidBookmark error;
+    InvalidbookMark error;
     std::cout << error.what() << "\n";
     return 0;
   }
   return 1;
 }
 
-void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterface& myInterface)
+void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,lysenko::PhoneBook& myBook)
 {
   std::istringstream in{ inputCommand };
   std::string command;
@@ -98,10 +100,10 @@ void lysenko::readCommand(const std::string& inputCommand, lysenko::UsersInterfa
     return;
   }
 
-  iter->second(in, myInterface);
+  iter->second(in, out, myBook);
 }
 
-void lysenko::executeAdd(std::istream& input, lysenko::UsersInterface& myInterface)
+void lysenko::executeAdd(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
 {
   std::string name;
   std::string number;
@@ -111,11 +113,11 @@ void lysenko::executeAdd(std::istream& input, lysenko::UsersInterface& myInterfa
 
   if (checkCorrectNumberAndName(name, number))
   {
-    myInterface.addNumber(name, number);
+    myBook.addNumber(name, number);
   }
 }
 
-void lysenko::executeStore(std::istream& input, lysenko::UsersInterface& myInterface)
+void lysenko::executeStore(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
 {
   std::string oldMarkName;
   std::string newMarkName;
@@ -123,13 +125,13 @@ void lysenko::executeStore(std::istream& input, lysenko::UsersInterface& myInter
   input >> std::ws >> oldMarkName;
   input >> std::ws >> newMarkName;
 
-  if (checkIfThisMarkNameContains(oldMarkName, myInterface))
+  if (checkIfThisMarkNameContains(oldMarkName, myBook))
   {
-    myInterface.createNewBookMarkHere(oldMarkName, newMarkName);
+    myBook.createNewbookMarkHere(oldMarkName, newMarkName);
   }
 }
 
-void lysenko::executeInsert(std::istream& input, lysenko::UsersInterface& myInterface)
+void lysenko::executeInsert(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
 {
   bool beforeBool = 1;
   std::string before;
@@ -142,7 +144,7 @@ void lysenko::executeInsert(std::istream& input, lysenko::UsersInterface& myInte
   input >> std::ws >> number;
   name = readString(input);
 
-  if ((checkIfThisMarkNameContains(markName, myInterface) && (checkCorrectNumberAndName(name, number))))
+  if ((checkIfThisMarkNameContains(markName, myBook) && (checkCorrectNumberAndName(name, number))))
   {
     if (before == "before")
     {
@@ -158,42 +160,43 @@ void lysenko::executeInsert(std::istream& input, lysenko::UsersInterface& myInte
       std::cout << error.what() << "\n";
       return;
     }
-    myInterface.insertNoteNextToBookMark(beforeBool, markName, name, number);
+    myBook.insertNoteNextTobookMark(beforeBool, markName, name, number);
   }
 }
 
-void lysenko::executeDelete(std::istream& input, lysenko::UsersInterface& myInterface)
+void lysenko::executeDelete(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
 {
   std::string markName;
 
   input >> std::ws >> markName;
 
-  if (checkIfThisMarkNameContains(markName, myInterface))
+  if (checkIfThisMarkNameContains(markName, myBook))
   {
-    myInterface.deleteThisNote(markName);
+    myBook.deleteThisNote(markName);
   }
 }
 
-void lysenko::executeShow(std::istream& input, lysenko::UsersInterface& myInterface)
+void lysenko::executeShow(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
 {
   std::string markName;
 
   input >> std::ws >> markName;
 
-  if (checkIfThisMarkNameContains(markName, myInterface))
+  if (checkIfThisMarkNameContains(markName, myBook))
   {
-    if (myInterface.telephoneBookIsEmpty())
+    if (noContacts(myBook))
     {
       std::cout << "<EMPTY>" << "\n";
     }
     else
     {
-      myInterface.showThisNote(markName);
+      Contacts::constIterator thisNote = myBook.showThisNote(markName);
+      out << thisNote->number << " " << thisNote->name << "\n";
     }
   }
 }
 
-void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterface)
+void lysenko::executeMove(std::istream& input, std::ostream& out, lysenko::PhoneBook& myBook)
 {
   std::string markName;
   std::string steps;
@@ -203,16 +206,16 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
 
   std::string cuttedOne = steps.substr(1, steps.size() - 1);
 
-  if (checkIfThisMarkNameContains(markName, myInterface))
+  if (checkIfThisMarkNameContains(markName, myBook))
   {
     if (steps == "first")
     {
-      myInterface.removeThisBookMark(markName, 1, 0, 0, steps);
+      myBook.removeThisbookMark(markName, 1, 0, 0, steps);
     }
 
     else if (steps == "last")
     {
-      myInterface.removeThisBookMark(markName, 0, 1, 0, steps);
+      myBook.removeThisbookMark(markName, 0, 1, 0, steps);
     }
 
     else if ((((steps[0] == '+') || (steps[0] == '-')) && (isDigitsOnly(cuttedOne))) || (isDigitsOnly(steps)))
@@ -220,11 +223,11 @@ void lysenko::executeMove(std::istream& input, lysenko::UsersInterface& myInterf
       int stepsInt = std::stoi(steps);
       if (stepsInt > 0)
       {
-        myInterface.removeThisBookMark(markName, 0, 0, 1, steps);
+        myBook.removeThisbookMark(markName, 0, 0, 1, steps);
       }
       else
       {
-        myInterface.removeThisBookMark(markName, 0, 0, 0, steps);
+        myBook.removeThisbookMark(markName, 0, 0, 0, steps);
       }
     }
 

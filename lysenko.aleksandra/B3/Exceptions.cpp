@@ -10,7 +10,7 @@ const char* lysenko::InvalidStep::what() const noexcept
   return "<INVALID STEP>";
 }
 
-const char* lysenko::InvalidBookmark::what() const noexcept
+const char* lysenko::InvalidbookMark::what() const noexcept
 {
-  return "<INVALID BOOKMARK>";
+  return "<INVALID bookMark>";
 }

@@ -3,20 +3,20 @@
 #include <iostream>
 #include <string>
 
-#include "UsersInterface.h"
+#include "PhoneBook.h"
 #include "commands.h"
 
-int lysenko::task1()
+int lysenko::task1(std::istream& in, std::ostream& out)
 {
-  lysenko::UsersInterface myInterface;
+  lysenko::PhoneBook myBook;
   std::string myCommand;
 
-  while (std::getline(std::cin, myCommand))
+  while (std::getline(in, myCommand))
   {
-    readCommand(myCommand, myInterface);
+    readCommand(myCommand, out, myBook);
   }
 
-  if (!std::cin.eof())
+  if (!in.eof())
   {
     std::cerr << "Error with reading command \n";
     return 2;

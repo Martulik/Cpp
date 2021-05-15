@@ -3,26 +3,27 @@
 
 #include <string>
 #include <map>
+#include <functional>
 
-#include "UsersInterface.h"
+#include "PhoneBook.h"
 
 namespace lysenko
 {
-  using iteratorInt = std::map< std::string, void (*)(std::istream&, lysenko::UsersInterface&) >::const_iterator;
+  using iteratorInt = std::map< std::string, std::function< void (std::istream&, std::ostream&, lysenko::PhoneBook&) > >::const_iterator;
 
   bool isDigitsOnly(std::string& number);
   bool checkCorrectNumberAndName(std::string& name, std::string& number);
-  bool checkIfThisMarkNameContains(std::string& markName, UsersInterface& myInterface);
+  bool checkIfThisMarkNameContains(std::string& markName, PhoneBook& myBook);
 
-  void readCommand(const std::string& inputCommand, lysenko::UsersInterface& myInterface);
-  void executeAdd(std::istream& input, lysenko::UsersInterface& myInterface);
-  void executeStore(std::istream& input, lysenko::UsersInterface& myInterface);
-  void executeInsert(std::istream& input, lysenko::UsersInterface& myInterface);
-  void executeDelete(std::istream& input, lysenko::UsersInterface& myInterface);
-  void executeShow(std::istream& input, lysenko::UsersInterface& myInterface);
-  void executeMove(std::istream& input, lysenko::UsersInterface& myInterface);
+  void readCommand(const std::string& inputCommand, std::ostream& out, lysenko::PhoneBook& myBook);
+  void executeAdd(std::istream& in, std::ostream& out, lysenko::PhoneBook& myBook);
+  void executeStore(std::istream& in, std::ostream& out, lysenko::PhoneBook& myBook);
+  void executeInsert(std::istream& in, std::ostream& out, lysenko::PhoneBook& myBook);
+  void executeDelete(std::istream& in, std::ostream& out, lysenko::PhoneBook& myBook);
+  void executeShow(std::istream& in, std::ostream& out, lysenko::PhoneBook& myBook);
+  void executeMove(std::istream& in, std::ostream& out, lysenko::PhoneBook& myBook);
 
-  const std::map< std::string, void (*)(std::istream&, lysenko::UsersInterface&) > commandsMap
+  const std::map< std::string, std::function< void (std::istream&, std::ostream&, lysenko::PhoneBook&) > >commandsMap
   (
     {
         {"add", executeAdd},

@@ -3,17 +3,18 @@
 
 #include "tasks.h"
 
-int main(int argc, std::string argv)
+int main(int argc, char* argv[])
 {
   if (argc == 2)
   {
-    if (argv == "1")
+    std::string argument(argv[1]);
+    if (argument == "1")
     {
-      return lysenko::task1();
+      return lysenko::task1(std::cin, std::cout);
     }
-    else if (argv == "2")
+    else if (argument == "2")
     {
-      return lysenko::task2();
+      return lysenko::task2(std::cout);
     }
   }
   return 1;

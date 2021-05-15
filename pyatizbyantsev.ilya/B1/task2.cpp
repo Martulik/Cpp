@@ -24,13 +24,17 @@ void pyatizbyantsev::taskTwo(const char* fileName)
   {
     input.read(resultArray.get() + size, capacity - size);
     size += input.gcount();
-    capacity *= 2;
-    std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
-    for (size_t i = 0; i < size; ++i)
+
+    if (capacity == size)
     {
-      temp[i] = resultArray[i];
+      capacity *= 2;
+      std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
+      for (size_t i = 0; i < size; ++i)
+      {
+        temp[i] = resultArray[i];
+      }
+      resultArray.swap(temp);
     }
-    resultArray.swap(temp);
   }
   input.close();
   std::vector< char > vector(resultArray.get(), resultArray.get() + size);

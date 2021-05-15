@@ -155,14 +155,6 @@ namespace shilyaev {
     });
   }
 
-  void printShapes(const std::vector< Shape > &shapes)
-  {
-    for (const auto &shape: shapes) {
-      std::cout << '\n' << shape.size() << ' ';
-      std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(std::cout, " "));
-    }
-  }
-
   int runPolygonsTask()
   {
     boost::optional< std::vector< Shape > > shapes = readShapes(std::cin);
@@ -184,7 +176,10 @@ namespace shilyaev {
               << "Points: ";
     std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, " "));
     std::cout << "\nShapes: ";
-    printShapes(*shapes);
+    for (const auto &shape: *shapes) {
+      std::cout << '\n' << shape.size() << ' ';
+      std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(std::cout, " "));
+    }
     return 0;
   }
 }

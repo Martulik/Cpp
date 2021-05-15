@@ -1,6 +1,7 @@
 #include "container.hpp"
 
 #include <cassert>
+#include <memory>
 
 #include "tools.hpp"
 
@@ -60,7 +61,7 @@ lab::Container::valueType& lab::Container::Iterator::operator*()
 
 lab::Container::valueType* lab::Container::Iterator::operator->()
 {
-  return &value_;
+  return std::addressof(value_);
 }
 
 lab::Container::Iterator::Iterator(unsigned int idx):

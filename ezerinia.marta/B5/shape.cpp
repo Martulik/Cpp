@@ -9,18 +9,21 @@ namespace lab = ezerinia;
 
 double lab::getSideLength(const Point &p1, const Point &p2)
 {
-  return sqrt(abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y)));
+  //return sqrt(abs((p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y)));
+  return (p1.x - p2.x) * (p1.x - p2.x) - (p1.y - p2.y) * (p1.y - p2.y);
 }
 
 bool lab::isSideEqual(const Shape &shape)
 {
-  double side = getSideLength(shape[0], shape[shape.size() - 1]);
-  for (unsigned int i = 0; i < shape.size() - 1; i++) {
-    if (getSideLength(shape[i], shape[i + 1]) != side) {
-      return false;
-    }
-  }
-  return true;
+  double side1 = getSideLength(shape[0], shape[1]);
+  double side2 = getSideLength(shape[1], shape[2]);
+
+//  for (unsigned int i = 0; i < shape.size() - 1; i++) {
+//    if (getSideLength(shape[i], shape[i + 1]) != side) {
+//      return false;
+//    }
+//  }
+  return side1 == side2;
 }
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)

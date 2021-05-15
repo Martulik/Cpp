@@ -20,25 +20,29 @@ void lab::task2(std::istream &in, std::ostream &out)
   int rectangles = 0;
 
   std::vector< Point > points;
-  for (auto &&shape : shapes) {
-    vertices += shape.size();
-    if (shape.size() == 3) {
+  //for (auto &&shape : shapes) {
+  size_t size = shapes.size();
+  for (int i = 0; i < size; i++) {
+    vertices += shapes[i].size();
+    if (shapes[i].size() == 3) {
       triangles++;
-    } else if (shape.size() == 4) {
+    } else if (shapes[i].size() == 4) {
       rectangles++;
-      if (isSideEqual(shape)) {
+      if (isSideEqual(shapes[i])) {
         squares++;
       }
     }
-    if (shape.size() != 5) {
-      points.push_back(shape.front());
+    if (shapes[i].size() == 5) {
+      shapes.erase(shapes.begin() + i);
+      continue;
     }
+    points.push_back(shapes[i].front());
   }
 
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
-                              [](const Shape &shape) {
-                                return shape.size() == 5;
-                              }), shapes.end());
+//  shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
+//                              [](const Shape &shape) {
+//                                return shape.size() == 5;
+//                              }), shapes.end());
 
   std::sort(shapes.begin(), shapes.end());
   out << "Vertices: " << vertices << "\n";

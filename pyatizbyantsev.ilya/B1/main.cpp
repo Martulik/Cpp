@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     }
     else if ((argc == 2) && (atoi(argv[1]) == 3))
     {
-      //lab::taskThree();
+      lab::taskThree();
     }
     else if ((argc == 4) && (atoi(argv[1]) == 4))
     {

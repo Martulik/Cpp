@@ -26,6 +26,7 @@ namespace razukrantov
 		void replace(iterator iterator, const note_t& note);
 		void pushBack(const note_t& note);
 		void move(iterator iterator, int step) const;
+		void erase(iterator iterator);
 		iterator begin();
 		iterator end();
 	private:

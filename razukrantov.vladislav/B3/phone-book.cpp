@@ -44,3 +44,13 @@ bool razukrantov::PhoneBook::empty() const
 {
 	return recordings_.empty();
 }
+
+razukrantov::PhoneBook::iterator razukrantov::PhoneBook::begin()
+{
+	recondings_.begin();
+}
+
+razukrantov::PhoneBook::iterator razukrantov::PhoneBook::end()
+{
+	recondings_.end();
+}

@@ -58,12 +58,12 @@ bool lab::Container::Iterator::operator!=(const Iterator& other) const
   return idx_ != other.idx_;
 }
 
-lab::Container::valueType& lab::Container::Iterator::operator*()
+const lab::Container::valueType& lab::Container::Iterator::operator*()
 {
   return value_;
 }
 
-lab::Container::valueType* lab::Container::Iterator::operator->()
+const lab::Container::valueType* lab::Container::Iterator::operator->()
 {
   return std::addressof(value_);
 }

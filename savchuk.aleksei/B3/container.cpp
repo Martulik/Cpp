@@ -6,7 +6,7 @@
 
 namespace lab = savchuk;
 
-constexpr size_t CONTAINER_SIZE = 10;
+constexpr unsigned int CONTAINER_SIZE = 10;
 
 lab::Container::Iterator::Iterator():
   idx_(1),
@@ -63,7 +63,7 @@ lab::Container::valueType* lab::Container::Iterator::operator->()
   return &value_;
 }
 
-lab::Container::Iterator::Iterator(size_t idx):
+lab::Container::Iterator::Iterator(unsigned int idx):
   idx_(idx),
   value_(lab::calcucateFactorial(idx))
 {

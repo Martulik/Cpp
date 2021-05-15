@@ -9,7 +9,7 @@ namespace savchuk
   class Container
   {
     public:
-      using valueType = size_t;
+      using valueType = unsigned long long;
 
       class Iterator: public std::iterator< std::bidirectional_iterator_tag, valueType >
       {
@@ -26,10 +26,10 @@ namespace savchuk
           valueType* operator->();
 
         private:
-          size_t idx_;
+          unsigned int idx_;
           valueType value_;
 
-          Iterator(size_t idx);
+          Iterator(unsigned int idx);
 
           friend class Container;
       };

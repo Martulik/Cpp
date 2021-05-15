@@ -6,7 +6,7 @@
 
 namespace savchuk
 {
-  constexpr size_t calcucateFactorial(size_t n)
+  constexpr unsigned long long calcucateFactorial(unsigned int n)
   {
     size_t res = 1;
     for (size_t i = n; i > 0; --i)

@@ -10,7 +10,7 @@ struct Fixture
 
 BOOST_FIXTURE_TEST_SUITE(FACTORIAL, Fixture)
 
-  BOOST_AUTO_TEST_CASE(correct_dereferencing)
+  BOOST_AUTO_TEST_CASE(correct_work)
   {
 	  unsigned k = 1;
 	  unsigned n = 1;

@@ -9,7 +9,7 @@ std::istream &ivanova::operator >>(std::istream &input, ivanova::DataStruct &dat
   std::istringstream in(string);
   if (string.empty())
   {
-    return in;
+    return input;
   }
   char separator = ' ';
   in >> data.key1;
@@ -46,7 +46,7 @@ std::istream &ivanova::operator >>(std::istream &input, ivanova::DataStruct &dat
   {
     std::getline(in, data.str);
   }
-  return in;
+  return input;
 }
 
 std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::DataStruct &data)

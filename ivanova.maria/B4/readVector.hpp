@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <iosfwd>
-#include <sstream>
 #include <string>
 #include <iterator>
 #include "struct.hpp"

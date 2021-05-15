@@ -2,7 +2,7 @@
 #define B4_STRUCT_HPP
 
 #include <string>
-#include <iostream>
+#include <iosfwd>
 
 namespace ivanova
 {

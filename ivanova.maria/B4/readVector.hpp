@@ -5,7 +5,7 @@
 #include <iosfwd>
 #include <sstream>
 #include <string>
-
+#include <iterator>
 #include "struct.hpp"
 #include "tools.hpp"
 

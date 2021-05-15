@@ -2,7 +2,6 @@
 #define B4_TASK_HPP
 #include <vector>
 #include <algorithm>
-
 #include "readVector.hpp"
 #include "printVector.hpp"
 

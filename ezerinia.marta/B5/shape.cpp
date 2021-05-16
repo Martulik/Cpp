@@ -7,7 +7,7 @@
 
 namespace lab = ezerinia;
 
-const int num_of_reserve = 10;
+const int num_of_reserve = 5;
 
 double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {

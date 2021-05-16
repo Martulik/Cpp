@@ -1,6 +1,6 @@
-﻿#include <iostream>
-#include <stdexcept>
+﻿#include <stdexcept>
 #include <ctime>
+#include <sstream>
 
 #include "tasks.hpp"
 #include "functions.hpp"
@@ -52,8 +52,8 @@ int main(int argc, char* argv[])
   }
   catch (const std::exception& ex)
   {
-    std::ostream error;
-    error << ex.what() << '\n';
+    const char* error = (ex.what());
+    pyatizbyantsev::print(error, std::cout);
     return 1;
   }
 

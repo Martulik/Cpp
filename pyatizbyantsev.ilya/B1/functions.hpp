@@ -60,6 +60,7 @@ namespace pyatizbyantsev
   bool checkSpaces(const char* str);
   bool checkNumber(const char* str);
   void fillRandom(double* array, int size);
+  void print(const char* error, std::ostream& out);
 }
 
 #endif

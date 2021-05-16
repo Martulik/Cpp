@@ -28,3 +28,8 @@ void pyatizbyantsev::fillRandom(double *array, int size)
     array[i] = (rand() % 21) / 10.0 - 1;
   }
 }
+
+void pyatizbyantsev::print(const char* error, std::ostream& out)
+{
+  out << error << '\n';
+}

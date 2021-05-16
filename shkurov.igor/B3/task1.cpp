@@ -31,7 +31,7 @@ int lab::task1(std::istream& in, std::ostream& out)
     }
     catch (const std::exception& ex)
     {
-      std::cerr << ex.what() << '\n';
+      std::cout << ex.what() << '\n';
       returnVal = 2;
     }
   }

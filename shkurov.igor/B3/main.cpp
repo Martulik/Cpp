@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 #include "PhoneBook.hpp"
 #include "tasks.hpp"
@@ -10,11 +11,11 @@ int main(int argc, char* argv[])
   try {
     if (argc == 2)
     {
-      if (atoi(argv[1]) == 1)
+      if (atoi(argv[1]) == 1 && strlen(argv[1]) == 1)
       {
         return lab::task1(std::cin, std::cout);
       }
-      else if (atoi(argv[1]) == 2)
+      else if (atoi(argv[1]) == 2 && strlen(argv[1]) == 1)
       {
         lab::task2(std::cout);
       }

@@ -1,7 +1,6 @@
 #ifndef CONTAINER_HPP
 #define CONTAINER_HPP
 
-#include <cstddef>
 #include <iterator>
 
 namespace savchuk

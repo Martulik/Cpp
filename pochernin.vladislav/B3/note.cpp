@@ -100,6 +100,6 @@ std::istream& pochernin::operator>>(std::istream& in, Note& note)
 
 std::ostream& pochernin::operator<<(std::ostream& out, const Note& note)
 {
-  out << note.name << ": " << note.number << "\n";
+  out << note.number << " " << note.name << "\n";
   return out;
 }

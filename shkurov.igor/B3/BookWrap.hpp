@@ -17,6 +17,7 @@ namespace shkurov
       using iterator = std::map< std::string, PhoneBook::const_iterator_t >::iterator;
       BookWrap(PhoneBook& book, std::ostream& out);
       void doAction(const std::string& tag, std::istringstream& istr);
+      void add(const std::string& number, const std::string& name);
     private:
       bookPtr book_;
       std::map< std::string, PhoneBook::const_iterator_t > bookmarks_;

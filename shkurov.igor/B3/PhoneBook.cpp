@@ -18,7 +18,7 @@ lab::PhoneBook::iterator_t lab::PhoneBook::end()
 
 void lab::PhoneBook::insertForward(lab::PhoneBook::const_iterator_t& it, const lab::PhoneBook::node_t& node)
 {
-  if (it == std::prev(container_.end()))
+  if (it == std::prev(container_.end()) || it == container_.end())
   {
     container_.push_back(node);
   }

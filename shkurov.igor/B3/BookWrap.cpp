@@ -22,12 +22,8 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
 
     istr >> std::ws >> number;
     getline(istr >> std::ws, name);
-    book_->pushBack(std::pair< std::string, std::string >(nameCorrection(name), number));
-
-    if (book_->size() == 1)
-    {
-      bookmarks_["current"] = book_->begin();
-    }
+    
+    add(number, name);
   }
   else if (tag == "store")
   {
@@ -59,17 +55,32 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     getline(istr >> std::ws, name);
 
     iterator it = bookmarks_.find(mark);
+    PhoneBook::const_iterator_t bookIter = it->second;
     if (it == bookmarks_.end())
     {
       throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
     if (insertion == "after")
     {
-      book_->insertForward(it->second, {nameCorrection(name), number});
+      if (bookIter == std::prev(book_->end()) || bookIter == book_->end())
+      {
+        add(number, name);
+      }
+      else
+      {
+        book_->insertForward(bookIter, {nameCorrection(name), number});
+      }
     }
     else if (insertion == "before")
     {
-      book_->insertBackward(it->second, {nameCorrection(name), number});
+      if (bookIter == std::prev(book_->end()) || bookIter == book_->end())
+      {
+        add(number, name);
+      }
+      else
+      {
+        book_->insertBackward(bookIter, {nameCorrection(name), number});
+      }
     }
     else
     {
@@ -166,5 +177,15 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
   else
   {
     throw std::runtime_error("<INVALID COMMAND>\n");
+  }
+}
+
+void lab::BookWrap::add(const std::string& number, const std::string& name)
+{
+  book_->pushBack(std::pair< std::string, std::string >(nameCorrection(name), number));
+
+  if (book_->size() == 1)
+  {
+    bookmarks_["current"] = book_->begin();
   }
 }

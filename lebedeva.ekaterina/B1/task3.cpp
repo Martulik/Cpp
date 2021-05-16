@@ -2,9 +2,8 @@
 #include "tasks.hpp"
 #include "functions.hpp"
 
-void lebedeva::doTask3(const int argc)
+void lebedeva::doTask3()
 {
-  checkNumOfArgs(argc, 2);
   std::vector< int > inVec;
 
   int data = 0;
@@ -19,6 +18,11 @@ void lebedeva::doTask3(const int argc)
   if ((data != 0) || (!std::cin.eof() && std::cin.fail()) || std::cin.bad())
   {
     throw(std::runtime_error("Incorrect input in task3\n"));
+  }
+
+  if (inVec.empty())
+  {
+    return;
   }
 
   std::vector< int >::iterator i = inVec.begin();
@@ -36,16 +40,14 @@ void lebedeva::doTask3(const int argc)
       }
     }
   }
-  if (inVec.back() == 2)
+  else if (inVec.back() == 2)
   {
     while (i != inVec.end())
     {
       if ((*i % 3) == 0)
       {
-        i++;
-        inVec.emplace(i, 1);
-        inVec.emplace(i, 1);
-        inVec.emplace(i, 1);
+        i = inVec.insert(i + 1, 3, 1);
+        i += 2;
       }
       else
       {
@@ -54,6 +56,6 @@ void lebedeva::doTask3(const int argc)
     }
   }
 
-  print(inVec, std::cout, " ");
+  print(inVec, std::cout, " ", 1);
 }
 

@@ -31,13 +31,16 @@ namespace lebedeva
   }
 
   template< class T >
-  void print(T& data, std::ostream& out, const char* delim)
+  void print(T& data, std::ostream& out, const char* delim, bool lineBreak)
   {
     for (auto i = data.begin(); i != data.end(); i++)
     {
       out << *i << delim;
     }
-    out << '\n';
+    if (lineBreak)
+    {
+      out << '\n';
+    }
   }
 }
 #endif

@@ -11,41 +11,49 @@ int main(int argc, char* argv[])
   {
     if ((argc < 2) || (argc > 4))
     {
-      std::cerr << "Invalid arguments\n";
-      return 1;
+      throw std::invalid_argument("Invalid arguments\n");
     }
 
     int task = 0;
-    if (lebedeva::isNumber(argv[1]))
+    if (!lebedeva::isNumber(argv[1]))
     {
-      task = std::atoi(argv[1]);
+      throw std::invalid_argument("Invalid first argument\n");
     }
+    task = std::atoi(argv[1]);
+    /*
     else
     {
       std::cerr << "Invalid arguments\n";
       return 1;
-    }
+    }*/
 
     if ((task <= 0) || (task > 4))
     {
-      std::cerr << "Invalid task number\n";
-      return 1;
+      throw std::invalid_argument("Invalid task number\n");
     }
     if (task == 1)
     {
-      lebedeva::doTask1(argc, argv);
+      lebedeva::checkNumOfArgs(argc, 3);
+      lebedeva::doTask1(argv);
     }
     if (task == 2)
     {
-      lebedeva::doTask2(argc, argv);
+      lebedeva::checkNumOfArgs(argc, 3);
+      lebedeva::doTask2(argv);
     }
     if (task == 3)
     {
-      lebedeva::doTask3(argc);
+      lebedeva::checkNumOfArgs(argc, 2);
+      lebedeva::doTask3();
     }
     if (task == 4)
     {
-      lebedeva::doTask4(argc, argv);
+      lebedeva::checkNumOfArgs(argc, 4);
+      if (!lebedeva::isNumber(argv[3]))
+      {
+        throw std::invalid_argument("Invalid vector size in task 4\n");
+      }
+      lebedeva::doTask4(argv);
     }
   }
   catch (const std::exception& error)

@@ -9,10 +9,8 @@ bool lebedeva::isNumber(const char* num)
   {
     if (!isdigit(num[i]))
     {
-      std::cerr << "Not an integer number\n";
       return false;
     }
-    i++;
   }
   return true;
 }

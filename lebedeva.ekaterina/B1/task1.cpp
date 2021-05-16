@@ -4,9 +4,8 @@
 #include "tasks.hpp"
 #include "functions.hpp"
 
-void lebedeva::doTask1(const int argc, char* argv[])
+void lebedeva::doTask1(char* argv[])
 {
-  checkNumOfArgs(argc, 3);
   std::vector< int > brackVec;
   int data = 0;
   while (std::cin >> data)
@@ -26,8 +25,8 @@ void lebedeva::doTask1(const int argc, char* argv[])
   sort< atAccess >(atVec, comp);
   sort< iteratorAccess >(iterList, comp);
 
-  print(brackVec, std::cout, " ");
-  print(atVec, std::cout, " ");
-  print(iterList, std::cout, " ");
+  print(brackVec, std::cout, " ", 1);
+  print(atVec, std::cout, " ", 1);
+  print(iterList, std::cout, " ", 1);
 }
 

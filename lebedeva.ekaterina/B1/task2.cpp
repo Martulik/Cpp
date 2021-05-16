@@ -5,20 +5,20 @@
 #include "tasks.hpp"
 #include "functions.hpp"
 
-void lebedeva::doTask2(const int argc, char* argv[])
+void lebedeva::doTask2(char* argv[])
 {
-  checkNumOfArgs(argc, 3);
   char* fileName = argv[2];
   if (fileName == nullptr)
   {
-    throw std::invalid_argument("Invalid file name");
+    throw std::invalid_argument("Invalid file name\n");
   }
   std::ifstream inFile;
   inFile.open(fileName);
   if (!inFile.is_open())
   {
-    throw std::runtime_error("Opening file failed");
+    throw std::runtime_error("Opening file failed\n");
   }
+
   size_t capacity = 1;
   size_t size = 0;
   std::unique_ptr< char[] > data = std::make_unique< char[] >(capacity);
@@ -35,6 +35,7 @@ void lebedeva::doTask2(const int argc, char* argv[])
     data = std::move(temp);
   }
     inFile.close();
+
     std::vector< char > resVec(data.get(), data.get() + size);
-    print(resVec, std::cout, "");
+    print(resVec, std::cout, "", 0);
 }

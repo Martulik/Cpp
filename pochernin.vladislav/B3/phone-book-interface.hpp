@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <map>
-#include <iostream>
 
 #include "phone-book.hpp"
 #include "note.hpp"

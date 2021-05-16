@@ -9,16 +9,15 @@
 
 namespace lab = shkurov;
 
-void lab::task1(std::istream& in, std::ostream& out)
+int lab::task1(std::istream& in, std::ostream& out)
 {
   lab::PhoneBook book;
   lab::BookWrap wrapper(book, out);
 
   std::string command;
 
-  while (std::getline(in, command) && !command.empty())
+  while (std::getline(in, command) && !in.eof())
   {
-    std::getline(in, command);
     std::istringstream istr(command);
 
     std::string tag;
@@ -33,4 +32,6 @@ void lab::task1(std::istream& in, std::ostream& out)
       std::cerr << ex.what() << '\n';
     }
   }
+
+  return 2;
 }

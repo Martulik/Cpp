@@ -99,3 +99,15 @@ void lab::printNode(std::ostream& out, const node_t& pair)
 {
   out << std::get<0>(pair) << ' ' << std::get<1>(pair) << '\n';
 }
+
+constexpr unsigned long factorial(unsigned long number)
+{
+  if (number == 1)
+  {
+    return 1;
+  }
+  else
+  {
+    return factorial(number - 1) * number;
+  }
+}

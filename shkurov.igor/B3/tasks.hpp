@@ -5,8 +5,8 @@
 
 namespace shkurov
 {
-  void task1(std::istream& in, std::ostream& out);
-  void task2();
+  int task1(std::istream& in, std::ostream& out);
+  void task2(std::ostream& out);
 }
 
 #endif

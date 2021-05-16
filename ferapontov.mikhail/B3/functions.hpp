@@ -5,6 +5,15 @@
 
 namespace ferapontov
 {
+  constexpr unsigned long getFarctorial(unsigned int num)
+  {
+    if (num == 1)
+    {
+      return 1;
+    }
+    return num * getFarctorial(num -1);
+  }
+
   std::string checkName(std::string& name);
   std::string checkMarkName(std::string& markName);
   int checkNumber(std::string& num);

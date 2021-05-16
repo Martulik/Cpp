@@ -1,5 +1,7 @@
 #include "bookmark.hpp"
 
+#include <iomanip>
+
 bool pochernin::operator<(const Bookmark& lhs, const Bookmark& rhs)
 {
   return lhs.name < rhs.name;

@@ -2,7 +2,7 @@
 #define BOOKMARK_HPP
 
 #include <string>
-#include <iostream>
+#include <iosfwd>
 
 namespace pochernin
 {

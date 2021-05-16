@@ -1,7 +1,7 @@
 #ifndef STEP_HPP
 #define STEP_HPP
 
-#include <iostream>
+#include <iosfwd>
 
 namespace pochernin
 {

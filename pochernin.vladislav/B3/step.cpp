@@ -2,6 +2,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <iomanip>
 
 bool pochernin::Step::isCorrect() const
 {

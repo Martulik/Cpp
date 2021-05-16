@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <stdexcept>
+#include <iostream>
 
 int pochernin::getTaskNumber(const char* string)
 {

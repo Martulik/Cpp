@@ -33,5 +33,5 @@ int lab::task1(std::istream& in, std::ostream& out)
     }
   }
 
-  return 2;
+  return 0;
 }

@@ -60,7 +60,7 @@ std::string lab::nameCorrection(std::string str)
 bool lab::isNumber(const std::string& str)
 {
   std::string::const_iterator it = str.cbegin();
-  if (*it == '-')
+  if (*it == '-' || *it == '+')
   {
     if (++it == str.cend())
     {
@@ -97,17 +97,5 @@ bool lab::isCorrectBookmarkName(const std::string& str)
 
 void lab::printNode(std::ostream& out, const node_t& pair)
 {
-  out << std::get<0>(pair) << ' ' << std::get<1>(pair) << '\n';
-}
-
-constexpr unsigned long factorial(unsigned long number)
-{
-  if (number == 1)
-  {
-    return 1;
-  }
-  else
-  {
-    return factorial(number - 1) * number;
-  }
+  out << std::get<1>(pair) << ' ' << std::get<0>(pair) << '\n';
 }

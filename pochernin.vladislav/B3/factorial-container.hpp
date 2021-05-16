@@ -28,8 +28,6 @@ namespace pochernin
       ValueType number_;
       ValueType factorial_;
 
-      FactorialIterator() = delete;
-
       explicit FactorialIterator(ValueType number);
     };
 

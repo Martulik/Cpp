@@ -5,10 +5,9 @@
 using PBI = pochernin::PhoneBookInterface;
 
 PBI::PhoneBookInterface(PhoneBook& book):
-  book_(std::make_unique < PhoneBook >(book))
-{
-  bookmarks_.insert(std::make_pair< Bookmark, PBI::constIterator >({"current"}, book_->begin()));
-}
+  book_(std::make_unique < PhoneBook >(book)),
+  bookmarks_({std::make_pair< Bookmark, PBI::constIterator >({"current"}, book_->begin())})
+{}
 
 void PBI::add(const Note& note)
 {

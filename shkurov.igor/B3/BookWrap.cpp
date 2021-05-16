@@ -31,7 +31,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     std::string newMark;
 
     istr >> oldMark >> newMark;
-    if (isCorrectBookmarkName(newMark))
+    if (!isCorrectBookmarkName(newMark))
     {
       throw std::runtime_error("invalid bookmark name");
     }

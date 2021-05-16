@@ -13,7 +13,7 @@ void lebedeva::doTask4(const int argc, char* argv[])
   }
   if (size <= 0)
   {
-    throw std::invalid_argument("Invalid size");
+    throw std::invalid_argument("Invalid size\n");
   }
 
   std::vector< double > inVec(size);

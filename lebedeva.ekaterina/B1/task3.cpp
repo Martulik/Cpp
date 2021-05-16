@@ -38,16 +38,19 @@ void lebedeva::doTask3(const int argc)
   }
   if (inVec.back() == 2)
   {
-    if ((*i % 3) == 0)
+    while (i != inVec.end())
     {
-      i++;
-      inVec.emplace(i, 1);
-      inVec.emplace(i, 1);
-      inVec.emplace(i, 1);
-    }
-    else
-    {
-      ++i;
+      if ((*i % 3) == 0)
+      {
+        i++;
+        inVec.emplace(i, 1);
+        inVec.emplace(i, 1);
+        inVec.emplace(i, 1);
+      }
+      else
+      {
+        ++i;
+      }
     }
   }
 

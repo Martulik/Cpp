@@ -13,7 +13,7 @@ fer::Container::Iterator::Iterator():
 {
 }
 
-fer::Container::Iterator::Iterator(size_t index, unsigned long value):
+fer::Container::Iterator::Iterator(size_t index, valueType value):
   index_(index),
   value_(value)
 {

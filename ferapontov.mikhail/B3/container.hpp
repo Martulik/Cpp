@@ -31,12 +31,12 @@ namespace ferapontov
           size_t index_;
           valueType value_;
 
-          Iterator(size_t index, unsigned long value);
+          Iterator(size_t index, valueType value);
           friend class Container;
       };
       Iterator begin() const noexcept;
       Iterator end() const noexcept;
-};
+  };
 }
 
 #endif

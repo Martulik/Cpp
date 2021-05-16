@@ -66,11 +66,11 @@ void PBI::store(const Bookmark& bookmark, const Bookmark& newBookmark)
 void PBI::move(const Bookmark& bookmark, const Step& step)
 {
   constIterator iterator = bookmarks_.at(bookmark);
-  if (step.isFirst)
+  if (step.type == Step::first)
   {
     iterator = book_->begin();
   }
-  else if (step.isLast)
+  else if (step.type == Step::last)
   {
     if (book_->empty())
     {
@@ -81,7 +81,7 @@ void PBI::move(const Bookmark& bookmark, const Step& step)
       iterator = std::prev(book_->end());
     }
   }
-  else if (step.isSpecific)
+  else if (step.type == Step::specific)
   {
     std::advance(iterator, step.steps);
   }

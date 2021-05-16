@@ -7,9 +7,14 @@ namespace pochernin
 {
   struct Step
   {
-    bool isFirst = false;
-    bool isLast = false;
-    bool isSpecific = false;
+    enum type_t
+    {
+      first,
+      last,
+      specific,
+      error
+    };
+    type_t type = error;
     int steps = 0;
     bool isCorrect() const;
   };

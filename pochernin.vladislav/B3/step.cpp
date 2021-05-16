@@ -6,7 +6,7 @@
 
 bool pochernin::Step::isCorrect() const
 {
-  return ((isFirst != false) || (isLast != false) || (isSpecific != false));
+  return !(type == Step::error);
 }
 
 std::istream& pochernin::operator>>(std::istream& in, Step& step)
@@ -15,32 +15,24 @@ std::istream& pochernin::operator>>(std::istream& in, Step& step)
   in >> std::ws >> stepString;
   if (stepString == "first")
   {
-    step.isFirst = true;
-    step.isLast = false;
-    step.isSpecific = false;
+    step.type = Step::first;
     step.steps = 0;
   }
   else if (stepString == "last")
   {
-    step.isFirst = false;
-    step.isLast = true;
-    step.isSpecific = false;
+    step.type = Step::last;
     step.steps = 0;
   }
   else
   {
     try
     {
-      step.isFirst = false;
-      step.isLast = false;
-      step.isSpecific = true;
+      step.type = Step::specific;
       step.steps = std::stoi(stepString);
     }
     catch (std::exception& error)
     {
-      step.isFirst = false;
-      step.isLast = false;
-      step.isSpecific = false;
+      step.type = Step::error;
       step.steps = 0;
     }
   }

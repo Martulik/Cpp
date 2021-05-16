@@ -5,7 +5,7 @@
 namespace ferapontov
 {
   void task1(std::istream& in, std::ostream& out);
-  void task2();
+  void task2(std::ostream& out);
 }
 
 #endif

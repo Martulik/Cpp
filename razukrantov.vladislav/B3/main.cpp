@@ -14,11 +14,11 @@ int main(int argc, char* argv[])
     }
     if (!std::strcmp(argv[1], "1"))
     {
-      razukrantov::taskFactorial();
+      //razukrantov::taskPhoneBook();
     }
     else if (!std::strcmp(argv[1], "2"))
     {
-      //razukrantov::taskPhoneBook();
+      razukrantov::taskFactorial(std::cout);
     }
     else
     {

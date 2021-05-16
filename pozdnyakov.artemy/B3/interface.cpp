@@ -2,8 +2,8 @@
 #include <stdexcept>
 #include <sstream>
 #include <functional>
-#include <algorithm>
 #include <iterator>
+#include <algorithm>
 #include "field-handlers.hpp"
 #include "tools.hpp"
 

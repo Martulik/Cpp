@@ -1,10 +1,10 @@
 #ifndef BOOKMARK_HPP
 #define BOOKMARK_HPP
 
-#include "phonebook.hpp"
 #include <memory>
 #include <map>
 #include <iostream>
+#include "phonebook.hpp"
 
 namespace pozdnyakov
 {
@@ -25,8 +25,6 @@ namespace pozdnyakov
     std::unique_ptr< Phonebook >& book_ ;
     std::map< std::string, std::string > bookmarks_;
   };
-  Phonebook::iterator getEntry(Interface::bookPtr& book, std::string number);
-  bool checkNumber(Interface::bookPtr& book, std::string number);
 }
 
 #endif

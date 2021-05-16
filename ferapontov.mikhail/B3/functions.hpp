@@ -14,6 +14,7 @@ namespace ferapontov
     return num * getFarctorial(num -1);
   }
 
+  std::string read(std::istream& in);
   std::string checkName(std::string& name);
   std::string checkMarkName(std::string& markName);
   int checkNumber(std::string& num);

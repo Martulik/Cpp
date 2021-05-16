@@ -2,6 +2,17 @@
 #include <stdexcept>
 #include <algorithm>
 #include <cctype>
+#include <istream>
+
+std::string ferapontov::read(std::istream& in)
+{
+  std::string line;
+  in >> line;
+  if (in.fail() && !in.eof())
+  {
+    throw std::runtime_error("<INPUT ERROR>");
+  }
+}
 
 std::string ferapontov::checkName(std::string& name)
 {

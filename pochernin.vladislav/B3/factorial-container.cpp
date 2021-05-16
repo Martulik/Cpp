@@ -65,12 +65,12 @@ FI FI::operator--(int)
   return temp;
 }
 
-FI FC::begin() const
+FI FC::begin() const noexcept
 {
   return FI(minNumber);
 }
 
-FI FC::end() const
+FI FC::end() const noexcept
 {
   return FI(maxNumber);
 }

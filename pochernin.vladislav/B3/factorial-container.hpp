@@ -31,8 +31,8 @@ namespace pochernin
       explicit FactorialIterator(ValueType number);
     };
 
-    FactorialIterator begin() const;
-    FactorialIterator end() const;
+    FactorialIterator begin() const noexcept;
+    FactorialIterator end() const noexcept;
   };
 }
 

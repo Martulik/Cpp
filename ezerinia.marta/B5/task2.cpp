@@ -103,7 +103,7 @@ void lab::task2(std::istream &in, std::ostream &out)
       << "Squares: " << squares << "\n"
       << "Rectangles: " << rectangles << "\n"
       << "Points: ";
-  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out));
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
   out << "\nShapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

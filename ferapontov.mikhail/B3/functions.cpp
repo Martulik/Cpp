@@ -12,6 +12,7 @@ std::string ferapontov::read(std::istream& in)
   {
     throw std::runtime_error("<INPUT ERROR>");
   }
+  return line;
 }
 
 std::string ferapontov::checkName(std::string& name)

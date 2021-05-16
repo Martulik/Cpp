@@ -7,8 +7,8 @@ namespace ferapontov
 {
   class Container
   {
-    using valueType = unsigned long;
     public:
+      using valueType = unsigned long;
       Container() = default;
 
       class Iterator: public std::iterator< std::bidirectional_iterator_tag, valueType >
@@ -16,17 +16,17 @@ namespace ferapontov
         public:
           Iterator();
 
-          Iterator& operator+(int num);
-          Iterator& operator-(int num);
-
           Iterator& operator++();
           Iterator& operator--();
 
-          Iterator& operator--(int num);
-          Iterator& operator++(int num);
+          Iterator& operator--(int);
+          Iterator& operator++(int);
 
           const value_type& operator*();
           const value_type* operator->();
+
+          bool operator==(const Iterator& it);
+          bool operator!=(const Iterator& it);
         private:
           size_t index_;
           valueType value_;

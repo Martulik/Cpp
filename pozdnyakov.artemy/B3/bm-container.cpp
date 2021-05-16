@@ -19,28 +19,29 @@ void poz::BmContainer::store(std::string bmName, std::string number)
 void poz::BmContainer::deleteEntry(std::string bmName)
 {
   assert(this->checkBookmark(bmName) && book_->size() != 0);
-  std::string& numberRef = bookmarks_.at(bmName);
+  std::string number = bookmarks_.at(bmName);
+  poz::Phonebook::iterator it = poz::getEntry(book_, number);
   std::map< std::string, std::string >::iterator bmIt;
-  poz::Phonebook::iterator it = poz::getEntry(book_, numberRef);
-  if (book_->size() == 1)
+  for (bmIt = bookmarks_.begin(); bmIt != bookmarks_.end(); bmIt++)
+  {
+    std::string& numberRef = std::get< 1 >(*bmIt);
+    if (numberRef == number)
+    {
+      if (it == std::prev(book_->end()))
+      {
+        numberRef = std::get< 0 >(*book_->begin());
+      }
+      else
+      {
+        numberRef = std::get< 0 >(*std::next(it));
+      }
+    }
+  }
+  book_->erase(it);
+  if (book_->size() == 1 || book_->size() == 0)
   {
     this->reset();
   }
-  else
-  {
-    for (bmIt = bookmarks_.begin(); bmIt != bookmarks_.end(); bmIt++)
-    {
-        if (it == std::prev(book_->end()))
-        {
-          numberRef = std::get<0>(*book_->begin());
-        }
-        else
-        {
-          numberRef = std::get<0>(*std::next(it));
-        }
-      }
-    }
-  book_->erase(it);
 }
 
 void poz::BmContainer::show(std::string bmName, std::ostream& out)
@@ -71,7 +72,7 @@ void poz::BmContainer::move(std::string bmName, std::string step)
   }
   else
   {
-    poz::Phonebook::iterator bookIt = poz::getEntry(book_, bmName);
+    poz::Phonebook::iterator bookIt = poz::getEntry(book_, numberRef);
     int n = std::stoi(step);
     if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
     {
@@ -93,11 +94,10 @@ void poz::BmContainer::reset()
   {
     number = std::get<0>(*book_->begin());
   }
-  auto move = [&number](std::pair< std::string, std::string > pair)
+  for (auto& pair: bookmarks_)
   {
     std::get<1>(pair) = number;
-  };
-  std::for_each(bookmarks_.begin(), bookmarks_.end(), move);
+  }
 }
 
 std::string poz::BmContainer::at(std::string bmName)

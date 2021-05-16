@@ -111,7 +111,8 @@ void poz::Interface::doStore(poz::Interface::argsType args)
 void poz::Interface::doInsert(poz::Interface::argsType args)
 {
   std::pair< std::string, std::string > pair{args[2], args[3]};
-  poz::Phonebook::iterator it = poz::getEntry(book_, args[1]);
+  std::string number = bookmarks_.at(args[1]);
+  poz::Phonebook::iterator it = poz::getEntry(book_, number);
   if (it == book_->end())
   {
     args.erase(args.begin(), std::next(args.begin(), 2));

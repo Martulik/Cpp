@@ -1,6 +1,8 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 
+#include <cstddef>
+
 namespace razukrantov
 {
 	constexpr size_t getFactorial(const size_t index)

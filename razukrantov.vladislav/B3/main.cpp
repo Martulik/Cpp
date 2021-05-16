@@ -8,13 +8,13 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if (args != 2)
+    if (argc != 2)
     {
       throw(std::invalid_argument("incorrect arguments count"));
     }
     if (!std::strcmp(argv[1], "1"))
     {
-      //razukrantov::taskPhoneBook();
+      razukrantov::taskPhoneBook(std::cin, std::cout);
     }
     else if (!std::strcmp(argv[1], "2"))
     {
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      throw(std::invalid_argument("incorrect arguments"))
+      throw(std::invalid_argument("incorrect arguments"));
     }
   }
   catch (std::invalid_argument& error)

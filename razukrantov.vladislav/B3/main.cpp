@@ -28,6 +28,11 @@ int main(int argc, char* argv[])
   catch (std::invalid_argument& error)
   {
     std::cerr << error.what() << "\n";
+    return 1;
+  }
+  catch (std::runtime_error& error)
+  {
+    std::cerr << error.what() << "\n";
     return 2;
   }
 

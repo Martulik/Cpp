@@ -86,10 +86,19 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
 
     PhoneBook::const_iterator_t bookIter = it->second;
-    book_->deleteNode(bookIter);
+    PhoneBook::const_iterator_t nextIter = std::next(bookIter);
 
+    book_->deleteNode(bookIter);
     bookmarks_.erase(mark);
-    bookmarks_.insert({mark, ++bookIter});
+
+    if (nextIter != book_->end())
+    {
+      bookmarks_.insert({mark, nextIter});
+    }
+    else
+    {
+      bookmarks_.insert({mark, book_->begin()});
+    }
   }
   else if (tag == "show")
   {

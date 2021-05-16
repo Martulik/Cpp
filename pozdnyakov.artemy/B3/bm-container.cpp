@@ -54,7 +54,7 @@ void poz::BmContainer::show(std::string bmName, std::ostream& out)
   name.erase(name.begin());
   std::string::iterator last = std::remove(name.begin(), name.end(), '\\');
   name = std::string(name.begin(), last);
-  out << std::get<0>(*it) << ' ' << name << '\n';
+  out << std::get< 0 >(*it) << ' ' << name << '\n';
 }
 
 void poz::BmContainer::move(std::string bmName, std::string step)
@@ -80,7 +80,7 @@ void poz::BmContainer::move(std::string bmName, std::string step)
     }
     newIt = std::next(bookIt, n);
   }
-  numberRef = std::get<0>(*newIt);
+  numberRef = std::get< 0 >(*newIt);
 }
 
 void poz::BmContainer::reset()
@@ -92,11 +92,11 @@ void poz::BmContainer::reset()
   }
   else
   {
-    number = std::get<0>(*book_->begin());
+    number = std::get< 0 >(*book_->begin());
   }
   for (auto& pair: bookmarks_)
   {
-    std::get<1>(pair) = number;
+    std::get< 1 >(pair) = number;
   }
 }
 

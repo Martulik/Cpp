@@ -19,5 +19,4 @@ void murzakanov::task2(std::istream& in, std::ostream& out)
     vertices += shapes[i].size();
   }
   out << vertices << "\n";
-
 }

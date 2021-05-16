@@ -13,11 +13,11 @@ int main(int argc, char* argv[])
   int task = argv[1][0] - '0';
   if (task == 1)
   {
-    murzakanov::task1(std::cin, std::cout);
+    code = murzakanov::task1(std::cin, std::cout);
   }
   else if (task == 2)
   {
-    murzakanov::task2(std::cin, std::cout);
+    code = murzakanov::task2(std::cin, std::cout);
   }
   else
   {

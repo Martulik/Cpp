@@ -8,7 +8,7 @@
 
 #include "shape.hpp"
 
-void murzakanov::task2(std::istream& in, std::ostream& out)
+int murzakanov::task2(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< murzakanov::Shape > firstIterator(in);
   std::istream_iterator< murzakanov::Shape > lastIterator;

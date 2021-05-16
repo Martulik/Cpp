@@ -5,8 +5,15 @@
 #include <string>
 #include <iterator>
 
-void murzakanov::task1(std::istream& in, std::ostream& out)
+int murzakanov::task1(std::istream& in, std::ostream& out)
 {
-  std::unordered_set< std::string > words{std::istream_iterator< std::string >(in), std::istream_iterator< std::string >()};
+  std::istream_iterator firstIt< std::string >(in);
+  std::istream_iterator lastIt< std::string>;
+  std::unordered_set< std::string > words(firstIt, lastIt);
+  if (in.fail() && !in.eof())
+  {
+    std::cerr << "Input error\n";
+    return;
+  }
   std::copy(words.begin(), words.end(), std::ostream_iterator< std::string >(out, "\n"));
 }

@@ -4,9 +4,10 @@
 
 namespace murzakanov
 {
-  checkIsRectangle(const Shape& shp);
-  checkIsSquare(const Shape& shp);
-  getDistance(const Point& p1, const Point& p2);
+  bool checkIsRectangle(const Shape& shp);
+  bool checkIsSquare(const Shape& shp);
+  bool isEqual(double op1, double op2);
+  double getDistance(const Point& p1, const Point& p2);
 }
 
 #endif

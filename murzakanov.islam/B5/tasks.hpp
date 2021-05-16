@@ -5,8 +5,8 @@
 
 namespace murzakanov
 {
-  void task1(std::istream& in, std::ostream& out);
-  void task2(std::istream& in, std::ostream& out);
+  int task1(std::istream& in, std::ostream& out);
+  int task2(std::istream& in, std::ostream& out);
 }
 
 #endif

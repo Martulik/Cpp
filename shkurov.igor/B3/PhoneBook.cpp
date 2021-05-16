@@ -58,6 +58,11 @@ void lab::PhoneBook::pushBack(const node_t& node)
   container_.push_back(node);
 }
 
+void lab::PhoneBook::pushFront(const node_t& node)
+{
+  container_.push_front(node);
+}
+
 void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, int steps)
 {
   std::advance(it, steps);

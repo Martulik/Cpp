@@ -23,7 +23,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     istr >> std::ws >> number;
     getline(istr >> std::ws, name);
 
-    add(number, name);
+    pushBack(number, name);
   }
   else if (tag == "store")
   {
@@ -64,7 +64,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     {
       if (bookIter == std::prev(book_->end()) || bookIter == book_->end())
       {
-        add(number, name);
+        pushBack(number, name);
       }
       else
       {
@@ -73,9 +73,9 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
     else if (insertion == "before")
     {
-      if (bookIter == std::prev(book_->end()) || bookIter == book_->end())
+      if (bookIter == book_->begin())
       {
-        add(number, name);
+        pushFront(number, name);
       }
       else
       {
@@ -180,9 +180,19 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
   }
 }
 
-void lab::BookWrap::add(const std::string& number, const std::string& name)
+void lab::BookWrap::pushBack(const std::string& number, const std::string& name)
 {
   book_->pushBack(std::pair< std::string, std::string >(nameCorrection(name), number));
+
+  if (book_->size() == 1)
+  {
+    bookmarks_["current"] = book_->begin();
+  }
+}
+
+void lab::BookWrap::pushFront(const std::string& number, const std::string& name)
+{
+  book_->pushFront(std::pair< std::string, std::string >(nameCorrection(name), number));
 
   if (book_->size() == 1)
   {

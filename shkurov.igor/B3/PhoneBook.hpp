@@ -23,6 +23,7 @@ namespace shkurov
       node_t pullCurrent(const const_iterator_t& it) const;
       void replaceCurrent(const iterator_t& it, const node_t& node);
       void pushBack(const node_t& node);
+      void pushFront(const node_t& node);
       void move(const_iterator_t& it, int steps);
       void move(const_iterator_t& it, const std::string& pos);
       void deleteNode(const const_iterator_t& it);

@@ -11,8 +11,6 @@ namespace lab = shkurov;
 
 int lab::task1(std::istream& in, std::ostream& out)
 {
-  int returnVal = 0;
-
   lab::PhoneBook book;
   lab::BookWrap wrapper(book, out);
 
@@ -32,7 +30,6 @@ int lab::task1(std::istream& in, std::ostream& out)
     catch (const std::exception& ex)
     {
       out << ex.what();
-      returnVal = 2;
     }
   }
   if (in.fail() && !in.eof())

@@ -12,9 +12,6 @@ namespace razukrantov
     class Iterator : public std::iterator< std::bidirectional_iterator_tag, unsigned int >
     {
     public:
-      //using ValueType = unsigned int;
-      Iterator();
-
       Iterator& operator++();
       Iterator operator++(int);
       Iterator& operator--();
@@ -25,13 +22,15 @@ namespace razukrantov
       bool operator!=(const Iterator&) const;
 
     private:
+      friend class Container;
       size_t index_;
       size_t value_;
+      Iterator(size_t number);
     };
 
     Container() = default;
-    Iterator begin();
-    Iterator end();
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
   };
 }
 

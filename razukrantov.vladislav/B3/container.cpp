@@ -1,13 +1,10 @@
 #include "container.hpp"
+
+#include <cassert>
+
 #include "functions.hpp"
 
 constexpr size_t MAX_SIZE = 11;
-
-razukrantov::Container::Iterator::Iterator() :
-	index_(1),
-	value_(1)
-{
-}
 
 razukrantov::Container::Iterator::Iterator(const size_t index) :
 	index_(index),
@@ -17,6 +14,7 @@ razukrantov::Container::Iterator::Iterator(const size_t index) :
 
 razukrantov::Container::Iterator& razukrantov::Container::Iterator::operator++()
 {
+	assert(index_ < MAX_SIZE);
 	++index_;
 	value_ *= index_;
 	return *this;
@@ -31,6 +29,7 @@ razukrantov::Container::Iterator razukrantov::Container::Iterator::operator++(in
 
 razukrantov::Container::Iterator& razukrantov::Container::Iterator::operator--()
 {
+	assert(index_ != 1);
 	value_ /= index_;
 	--index_;
 	return *this;
@@ -59,15 +58,15 @@ bool razukrantov::Container::Iterator::operator==(const Iterator& other) const
 
 bool razukrantov::Container::Iterator::operator!=(const Iterator& other) const
 {
-	return !(value_ == other.value_ && other.index_ == index_);
+	return !(this->operator==(other));
 }
 
-razukrantov::Container::Iterator razukrantov::Container::begin()
+razukrantov::Container::Iterator razukrantov::Container::begin() const noexcept
 {
-	return Iterator();
+	return Iterator(1, 1);
 }
 
-razukrantov::Container::Iterator razukrantov::Container::end()
+razukrantov::Container::Iterator razukrantov::Container::end() const noexcept
 {
-	return Iterator(MAX_SIZE);
+	return Iterator(MAX_SIZE, getFactorial(MAX_SIZE));
 }

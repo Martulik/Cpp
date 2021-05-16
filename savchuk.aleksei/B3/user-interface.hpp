@@ -21,8 +21,8 @@ namespace savchuk
       void move(const std::string& markName, const std::string& steps);
 
     private:
-      std::map< std::string, PhoneBook::const_iterator > bookmarks_;
       PhoneBook phoneBook_;
+      std::map< std::string, PhoneBook::const_iterator > bookmarks_;
 
       void checkMark(const std::string& markName) const;
   };

@@ -3,12 +3,12 @@
 #include <stdexcept>
 #include <cstdlib>
 
-#include "phone-book.hpp"
 #include "error-messages.hpp"
 
 namespace lab = savchuk;
 
 lab::UserInterface::UserInterface():
+  phoneBook_(),
   bookmarks_({ std::make_pair("current", phoneBook_.cbegin()) })
 {
 }

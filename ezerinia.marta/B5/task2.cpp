@@ -3,7 +3,6 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
-#include <numeric>
 
 #include "shape.hpp"
 
@@ -35,16 +34,11 @@ void lab::task2(std::istream &in, std::ostream &out)
 //      points.push_back(shape.front());
 //    }
 //  }
-//  vertices = std::accumulate(shapes.begin(), shapes.end(),
-//                             [](auto vertices_, const Shape &shape) {
-//                               return vertices_ + shape.size();
-//                             });
-//  std::for_each(shapes.begin(), shapes.end(), vertices + shapes.size());
 
   for (auto &&shape : shapes) {
     vertices += shape.size();
   }
-  
+
   triangles = std::count_if(shapes.begin(), shapes.end(),
                             [](const Shape &shape) {
                               return shape.size() == 3;

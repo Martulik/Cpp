@@ -21,7 +21,7 @@ bool pochernin::checkBookmarkName(const std::string& name)
 {
   for (auto&& i: name)
   {
-    if (!isdigit(i) && !isalpha(i) && (i != '-'))
+    if (!std::isdigit(i) && !std::isalpha(i) && (i != '-'))
     {
       return false;
     }

@@ -52,7 +52,8 @@ int main(int argc, char* argv[])
   }
   catch (const std::exception& ex)
   {
-    std::cerr << ex.what() << '\n';
+    std::ostream error;
+    error << ex.what() << '\n';
     return 1;
   }
 

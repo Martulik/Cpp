@@ -31,10 +31,11 @@ int lab::task1(std::istream& in, std::ostream& out)
     }
     catch (const std::exception& ex)
     {
-      std::cout << ex.what();
+      out << ex.what();
       returnVal = 2;
     }
   }
+  out << '\n';
   if (in.fail() && !in.eof())
   {
     return returnVal;

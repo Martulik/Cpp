@@ -106,7 +106,7 @@ void PBI::deleteNote(const Bookmark& bookmark)
         i->second = std::next(iterator);
       }
     }
-    i++;
+    i = std::next(i);
   }
   book_->deleteNote(iterator);
 }

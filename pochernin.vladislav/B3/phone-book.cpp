@@ -29,8 +29,7 @@ void PB::insertBefore(constIterator iterator, const Note& note)
 
 void PB::insertAfter(constIterator iterator, const Note& note)
 {
-  constIterator temp = iterator;
-  temp++;
+  constIterator temp = std::next(iterator);
   if (temp == end())
   {
     add(note);

@@ -22,7 +22,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
 
     istr >> std::ws >> number;
     getline(istr >> std::ws, name);
-    
+
     add(number, name);
   }
   else if (tag == "store")

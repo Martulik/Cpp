@@ -86,7 +86,7 @@ std::istream& pochernin::operator>>(std::istream& in, Note& note)
   }
 
   std::string name;
-  in >> std::ws >> name;
+  std::getline(in >> std::ws, name);
   if (!checkName(name))
   {
     makeEmpty(note);

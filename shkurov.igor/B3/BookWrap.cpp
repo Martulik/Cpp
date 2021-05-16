@@ -39,7 +39,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(oldMark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>\n");
+      throw std::runtime_error("<INVALID BOOKMARK>");
     }
 
     bookmarks_.insert({newMark, it->second});
@@ -58,7 +58,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     PhoneBook::const_iterator_t bookIter = it->second;
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>\n");
+      throw std::runtime_error("<INVALID BOOKMARK>");
     }
     if (insertion == "after")
     {
@@ -84,7 +84,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
     else
     {
-      throw std::runtime_error("<INVALID COMMAND>\n");
+      throw std::runtime_error("<INVALID COMMAND>");
     }
   }
   else if (tag == "delete")
@@ -96,7 +96,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>\n");
+      throw std::runtime_error("<INVALID BOOKMARK>");
     }
 
     PhoneBook::const_iterator_t bookIter = it->second;
@@ -123,7 +123,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>\n");
+      throw std::runtime_error("<INVALID BOOKMARK>");
     }
 
     if (!(book_->size() == 0))
@@ -132,7 +132,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
     else
     {
-      throw std::runtime_error("<EMPTY>\n");
+      throw std::runtime_error("<EMPTY>");
     }
   }
   else if (tag == "move")
@@ -146,7 +146,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>\n");
+      throw std::runtime_error("<INVALID BOOKMARK>");
     }
 
     PhoneBook::const_iterator_t recordIt = it->second;
@@ -163,7 +163,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
       }
       else
       {
-        throw std::runtime_error("<INVALID STEP>\n");
+        throw std::runtime_error("<INVALID STEP>");
       }
     }
 
@@ -176,7 +176,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
   }
   else
   {
-    throw std::runtime_error("<INVALID COMMAND>\n");
+    throw std::runtime_error("<INVALID COMMAND>");
   }
 }
 

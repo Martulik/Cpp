@@ -2,7 +2,6 @@
 #define BOOK_HPP
 
 #include <utility>
-#include <string>
 #include <list>
 #include "data.hpp"
 
@@ -13,10 +12,8 @@ namespace ferapontov
   class PhoneBook
   {
     public:
-      data_t& showCurrent(const iter it) const;
-
-      void insertPrev(iter it, const data_t& phoneNote);
-      void insertNext(iter it, const data_t& phoneNote);
+      void insertPrev(const_iter it, const data_t& phoneNote);
+      void insertNext(const_iter it, const data_t& phoneNote);
 
       void replace(iter it, const data_t& phoneNote);
 

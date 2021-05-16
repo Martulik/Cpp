@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
   {
     if (argc != 2)
     {
-      throw std::runtime_error("Invalid number of arguments");
+      throw std::runtime_error("<Invalid number of arguments>");
     }
 
     int taskNumber = 0;
@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
     }
     if (taskNumber != 1 && taskNumber != 2)
     {
-      throw std::runtime_error("Invalid TaskNumber");
+      throw std::runtime_error("<Invalid TaskNumber>");
     }
     else if (taskNumber == 1)
     {

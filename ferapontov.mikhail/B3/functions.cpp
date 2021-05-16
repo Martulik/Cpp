@@ -14,6 +14,18 @@ std::string ferapontov::checkName(std::string& name)
   return name;
 }
 
+std::string ferapontov::checkMarkName(std::string& markName)
+{
+  for (char& ch: markName)
+  {
+    if (!isalpha(ch) && !isdigit(ch) && ch != '-')
+    {
+      throw std::invalid_argument("<INVALID COMMAND>");
+    }
+  }
+  return markName;
+}
+
 int ferapontov::checkNumber(std::string& num)
 {
   if (!std::all_of(num.begin(), num.end(), ::isdigit))

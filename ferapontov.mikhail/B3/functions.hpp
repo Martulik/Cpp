@@ -6,6 +6,7 @@
 namespace ferapontov
 {
   std::string checkName(std::string& name);
+  std::string checkMarkName(std::string& markName);
   int checkNumber(std::string& num);
 }
 

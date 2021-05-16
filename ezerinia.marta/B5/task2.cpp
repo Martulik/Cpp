@@ -43,20 +43,45 @@ void lab::task2(std::istream &in, std::ostream &out)
                                 });
   int triangles = 0;
   if (itTriangle != shapes.end()) {
-    triangles = itSquares - itTriangle;
+    if (itSquares != shapes.end()) {
+      triangles = itSquares - itTriangle;
+    } else {
+      auto firstNotTriangle = std::find_if(itTriangle, shapes.end(),
+                                           [](const Shape &shape) {
+                                             return shape.size() != 3;
+                                           });
+      triangles = firstNotTriangle - itTriangle;
+    }
   }
   int squares = 0;
   if (itSquares != shapes.end()) {
-    squares = itRectangles - itSquares;
+    if (itRectangles != shapes.end()) {
+      squares = itRectangles - itSquares;
+    } else {
+      auto firstNotSquare = std::find_if(std::next(itSquares), shapes.end(),
+                                         [](const Shape &shape) {
+                                           return shape.size() != 4;
+                                         });
+      squares = firstNotSquare - itSquares;
+    }
   }
-  int rectangles = 0;
+  int rectangles = squares;
   if (itRectangles != shapes.end()) {
-    rectangles = itPentagons - itSquares;
+    if (itPentagons != shapes.end()) {
+      rectangles += itPentagons - itRectangles;
+    } else {
+      auto firstNotRectangle = std::find_if(std::next(itRectangles), shapes.end(),
+                                            [](const Shape &shape) {
+                                              return shape.size() != 4;
+                                            });
+      rectangles += firstNotRectangle - itRectangles;
+    }
   }
+
   if (itPentagons != shapes.end()) {
     shapes.erase(itPentagons, itHexagon);
   }
-  
+
   std::vector< Point > points;
   points.reserve(shapes.size());
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),

@@ -37,6 +37,7 @@ void lab::task2(std::istream &in, std::ostream &out)
                               }), shapes.end());
 
   std::vector< Point > points;
+  points.reserve(shapes.size());
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
                  [](const Shape &shape) {
                    return shape.front();

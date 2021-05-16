@@ -98,12 +98,12 @@ void lab::task2(std::istream &in, std::ostream &out)
                    return shape.front();
                  });
 
-  out << "Vertices: " << vertices << "\n";
-  out << "Triangles: " << triangles << "\n";
-  out << "Squares: " << squares << "\n";
-  out << "Rectangles: " << rectangles << "\n";
-  out << "Points: ";
-  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
+  out << "Vertices: " << vertices << "\n"
+      << "Triangles: " << triangles << "\n"
+      << "Squares: " << squares << "\n"
+      << "Rectangles: " << rectangles << "\n"
+      << "Points: ";
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out));
   out << "\nShapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

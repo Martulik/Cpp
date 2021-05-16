@@ -1,6 +1,7 @@
 #include "factorial-container.hpp"
 
 #include <stdexcept>
+#include <cassert>
 
 #include "functions.hpp"
 
@@ -36,16 +37,10 @@ const ValueType* FI::operator->() const
 
 FI& FI::operator++()
 {
-  if (number_ >= maxNumber)
-  {
-    throw(std::runtime_error("Out of range"));
-  }
-  else
-  {
-    number_++;
-    factorial_ *= number_;
-    return *this;
-  }
+  assert(number_ < maxNumber);
+  number_++;
+  factorial_ *= number_;
+  return *this;
 }
 
 FI FI::operator++(int)
@@ -57,16 +52,10 @@ FI FI::operator++(int)
 
 FI& FI::operator--()
 {
-  if (number_ <= minNumber)
-  {
-    throw(std::runtime_error("Out of range"));
-  }
-  else
-  {
-    factorial_ /= number_;
-    number_--;
-    return *this;
-  }
+  assert(number_ > minNumber);
+  factorial_ /= number_;
+  number_--;
+  return *this;
 }
 
 FI FI::operator--(int)

@@ -43,7 +43,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(oldMark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>");
+      throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
 
     bookmarks_.insert({newMark, it->second});
@@ -61,7 +61,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>");
+      throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
 
     if (insertion == "after")
@@ -82,7 +82,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>");
+      throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
 
     PhoneBook::const_iterator_t bookIter = it->second;
@@ -109,7 +109,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>");
+      throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
 
     if (!(book_->size() == 0))
@@ -118,7 +118,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
     else
     {
-      throw std::runtime_error("<EMPTY>");
+      throw std::runtime_error("<EMPTY>\n");
     }
   }
   else if (tag == "move")
@@ -132,7 +132,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     iterator it = bookmarks_.find(mark);
     if (it == bookmarks_.end())
     {
-      throw std::runtime_error("<INVALID BOOKMARK>");
+      throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
 
     PhoneBook::const_iterator_t recordIt = it->second;
@@ -149,7 +149,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
       }
       else
       {
-        throw std::runtime_error("<INVALID STEP>");
+        throw std::runtime_error("<INVALID STEP>\n");
       }
     }
 
@@ -162,6 +162,6 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
   }
   else
   {
-    throw std::runtime_error("<INVALID COMMAND>");
+    throw std::runtime_error("<INVALID COMMAND>\n");
   }
 }

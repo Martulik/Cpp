@@ -19,7 +19,7 @@ number_t lab::stringToNumber(const std::string& str)
     }
     else
     {
-      throw std::invalid_argument("Number should only consist of digits.");
+      throw std::invalid_argument("<INVALID COMMAND>\n");
     }
     radix--;
     it++;
@@ -37,7 +37,7 @@ std::string lab::nameCorrection(std::string str)
   }
   else
   {
-    throw std::invalid_argument("Name should be enclosed in quotes.");
+    throw std::invalid_argument("<INVALID COMMAND>\n");
   }
 
   std::string::iterator it = str.begin();

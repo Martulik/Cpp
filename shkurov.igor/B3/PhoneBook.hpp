@@ -9,8 +9,7 @@ namespace shkurov
   class PhoneBook
   {
     public:
-      using number_t = unsigned long long;
-      using node_t = std::pair< std::string, number_t >;
+      using node_t = std::pair< std::string, std::string >;
       using iterator_t = std::list< node_t >::iterator;
       using const_iterator_t = std::list< node_t >::const_iterator;
 

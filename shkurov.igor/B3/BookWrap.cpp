@@ -22,7 +22,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
 
     istr >> std::ws >> number;
     getline(istr >> std::ws, name);
-    book_->pushBack(std::pair< std::string, number_t >(nameCorrection(name), stringToNumber(number)));
+    book_->pushBack(std::pair< std::string, std::string >(nameCorrection(name), number));
 
     if (book_->size() == 1)
     {
@@ -63,14 +63,17 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     {
       throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
-
     if (insertion == "after")
     {
-      book_->insertForward(it->second, {nameCorrection(name), stringToNumber(number)});
+      book_->insertForward(it->second, {nameCorrection(name), number});
     }
     else if (insertion == "before")
     {
-      book_->insertBackward(it->second, {nameCorrection(name), stringToNumber(number)});
+      book_->insertBackward(it->second, {nameCorrection(name), number});
+    }
+    else
+    {
+      throw std::runtime_error("<INVALID COMMAND>\n");
     }
   }
   else if (tag == "delete")

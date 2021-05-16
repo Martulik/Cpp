@@ -5,28 +5,28 @@
 
 namespace lab = shkurov;
 
-number_t lab::stringToNumber(const std::string& str)
-{
-  number_t result = 0;
-  size_t radix = str.size() - 1;
-  std::string::const_iterator it = str.cbegin();
+// number_t lab::stringToNumber(const std::string& str)
+// {
+//   number_t result = 0;
+//   size_t radix = str.size() - 1;
+//   std::string::const_iterator it = str.cbegin();
 
-  while (it != str.cend())
-  {
-    if (std::isdigit(*it))
-    {
-      result += pow(10, radix) * ((*it) - '0');
-    }
-    else
-    {
-      throw std::invalid_argument("<INVALID COMMAND>\n");
-    }
-    radix--;
-    it++;
-  }
+//   while (it != str.cend())
+//   {
+//     if (std::isdigit(*it))
+//     {
+//       result += pow(10, radix) * ((*it) - '0');
+//     }
+//     else
+//     {
+//       throw std::invalid_argument("<INVALID COMMAND>\n");
+//     }
+//     radix--;
+//     it++;
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
 std::string lab::nameCorrection(std::string str)
 {

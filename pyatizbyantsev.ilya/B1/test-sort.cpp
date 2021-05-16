@@ -1,7 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include "functions.hpp"
-#include <algorithm>
 
 namespace lab = pyatizbyantsev;
 

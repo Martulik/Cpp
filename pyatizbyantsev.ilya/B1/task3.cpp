@@ -4,12 +4,12 @@
 #include <iostream>
 #include <vector>
 
-void pyatizbyantsev::taskThree()
+void pyatizbyantsev::taskThree(std::istream& in)
 {
   std::vector< int > vector;
   int x = 0;
 
-  while (std::cin >> x)
+  while (in >> x)
   {
     if (x == 0)
     {
@@ -18,7 +18,7 @@ void pyatizbyantsev::taskThree()
     vector.push_back(x);
   }
 
-  if (!std::cin.eof() && std::cin.fail())
+  if (!in.eof() && in.fail())
   {
     throw std::invalid_argument("Incorrect input");
   }
@@ -63,5 +63,5 @@ void pyatizbyantsev::taskThree()
       }
     }
   }
-  print(vector.begin(), vector.end(), " ");
+  print< pyatizbyantsev::strategyIndex< int > >(vector, std::cout, " ");
 }

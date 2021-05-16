@@ -1,16 +1,15 @@
 #include "tasks.hpp"
-
 #include "functions.hpp"
 #include "strategies.hpp"
 
-void pyatizbyantsev::taskOne(const char* cmp)
+void pyatizbyantsev::taskOne(const char* cmp, std::istream& in)
 {
   std::vector< int > vectorFirst;
 
   int data;
-  while (std::cin && !(std::cin >> data).eof())
+  while (in && !(in >> data).eof())
   {
-    if (std::cin.fail() || std::cin.bad())
+    if (in.fail() || in.bad())
     {
       throw std::invalid_argument("Incorrect input");
     }
@@ -23,7 +22,7 @@ void pyatizbyantsev::taskOne(const char* cmp)
   sort< strategyIndex< int > >(vectorFirst, sortMode< int >(cmp));
   sort< strategyAt< int > >(vectorSecond, sortMode< int >(cmp));
   sort< strategyIterator< int > >(forwardList, sortMode< int >(cmp));
-  print(vectorFirst.begin(), vectorFirst.end(), " ");
-  print(vectorSecond.begin(), vectorSecond.end(), " ");
-  print(forwardList.begin(), forwardList.end(), " ");
+  print< pyatizbyantsev::strategyIndex< int > >(vectorFirst, std::cout, " ");
+  print< pyatizbyantsev::strategyAt< int > >(vectorSecond, std::cout, " ");
+  print< pyatizbyantsev::strategyIterator< int > >(forwardList, std::cout, " ");
 }

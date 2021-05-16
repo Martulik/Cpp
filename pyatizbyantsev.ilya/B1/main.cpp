@@ -1,6 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
 #include <stdexcept>
-#include <stdlib.h>
+#include <ctime>
 
 #include "tasks.hpp"
 #include "functions.hpp"
@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
     for (int i = 1; i < argc; i++)
     {
       if (lab::checkSpaces(argv[i]))
-        {
-          throw std::invalid_argument("Spaces are not allowed in arguments");
-        }
+      {
+        throw std::invalid_argument("Spaces are not allowed in arguments");
+      }
     }
 
     if ((argc > 1) && (!lab::checkNumber(argv[1])))
@@ -27,15 +27,15 @@ int main(int argc, char* argv[])
 
     if ((argc == 3) && (atoi(argv[1]) == 1))
     {
-      lab::taskOne(argv[2]);
+      lab::taskOne(argv[2], std::cin);
     }
     else if ((argc == 3) && (atoi(argv[1]) == 2))
     {
-      lab::taskTwo(argv[2]);
+      lab::taskTwo(argv[2], std::cout);
     }
     else if ((argc == 2) && (atoi(argv[1]) == 3))
     {
-      lab::taskThree();
+      lab::taskThree(std::cin);
     }
     else if ((argc == 4) && (atoi(argv[1]) == 4))
     {

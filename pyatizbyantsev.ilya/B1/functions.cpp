@@ -2,14 +2,11 @@
 
 #include <cctype>
 #include <cmath>
+#include <cstring>
 
 bool pyatizbyantsev::checkSpaces(const char* str)
 {
-  if (strchr(str, ' '))
-  {
-    return true;
-  }
-  return false;
+  return (strchr(str, ' '));
 }
 
 bool pyatizbyantsev::checkNumber(const char* str)
@@ -28,6 +25,6 @@ void pyatizbyantsev::fillRandom(double *array, int size)
 {
   for (int i = 0; i < size; i++)
   {
-    array[i] = trunc((static_cast< double >(rand()) / RAND_MAX * 2 - 1) * 10) / 10;
+    array[i] = (rand() % 21) / 10.0 - 1;
   }
 }

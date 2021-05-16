@@ -7,7 +7,7 @@
 #include <vector>
 #include <memory>
 
-void pyatizbyantsev::taskTwo(const char* fileName)
+void pyatizbyantsev::taskTwo(const char* fileName, std::ostream& out)
 {
   std::ifstream input;
   input.open(fileName);
@@ -40,6 +40,6 @@ void pyatizbyantsev::taskTwo(const char* fileName)
   std::vector< char > vector(resultArray.get(), resultArray.get() + size);
   for (size_t i = 0; i < size; i++)
   {
-    std::cout << vector[i];
+    out << vector[i];
   }
 }

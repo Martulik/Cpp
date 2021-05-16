@@ -22,8 +22,8 @@ namespace pyatizbyantsev
     {
       return std::greater< T >();
     }
-      throw std::invalid_argument("Invalid sorting mode");
-    }
+    throw std::invalid_argument("Invalid sorting mode");
+  }
 
   template < typename Strategy, typename T >
   void sort(typename Strategy::container& arr, std::function< bool(T, T) > cmp)
@@ -45,15 +45,16 @@ namespace pyatizbyantsev
     }
   }
 
-  template < typename T >
-  void print(T begin, T end, const char* delim)
+  template < typename Strategy >
+  void print(typename Strategy::container& container, std::ostream& out, const char* delimiter)
   {
-    while (begin != end)
+    typename Strategy::iterator begin = Strategy::begin(container);
+    typename Strategy::iterator end = Strategy::end(container);
+    for (typename Strategy::iterator i = begin; i != end; i++)
     {
-      std::cout << *begin << delim;
-      ++begin;
+      out << Strategy::get(container, i) << delimiter;
     }
-    std::cout << '\n';
+    out << '\n';
   }
 
   bool checkSpaces(const char* str);

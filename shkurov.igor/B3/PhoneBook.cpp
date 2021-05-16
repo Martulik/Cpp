@@ -57,7 +57,14 @@ void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, const std::strin
   }
   else if (pos == "last")
   {
-    it = --container_.cend();
+    if (size() == 0)
+    {
+      it = container_.cend();
+    }
+    else
+    {
+      it = --container_.cend();
+    }
   }
 }
 

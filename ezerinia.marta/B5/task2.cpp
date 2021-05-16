@@ -41,10 +41,21 @@ void lab::task2(std::istream &in, std::ostream &out)
                                 [](const Shape &shape) {
                                   return shape.size() == 6;
                                 });
-  int triangles = itSquares - itTriangle;
-  int squares = itRectangles - itSquares;
-  int rectangles = itPentagons - itSquares;
-  shapes.erase(itPentagons, itHexagon);
+  int triangles = 0;
+  if (itTriangle != shapes.end()) {
+    triangles = itSquares - itTriangle;
+  }
+  int squares = 0;
+  if (itSquares != shapes.end()) {
+    squares = itRectangles - itSquares;
+  }
+  int rectangles = 0;
+  if (itRectangles != shapes.end()) {
+    rectangles = itPentagons - itSquares;
+  }
+  if (itPentagons != shapes.end()) {
+    shapes.erase(itPentagons, itHexagon);
+  }
   
   std::vector< Point > points;
   points.reserve(shapes.size());

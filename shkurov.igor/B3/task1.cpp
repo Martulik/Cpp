@@ -37,7 +37,7 @@ int lab::task1(std::istream& in, std::ostream& out)
   }
   if (in.fail() && !in.eof())
   {
-    return returnVal;
+    throw std::runtime_error("Incorret input.");
   }
   return 0;
 }

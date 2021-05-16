@@ -92,7 +92,7 @@ size_t lab::PhoneBook::size() const
   return container_.size();
 }
 
-void lab::PhoneBook::deleteNode(const lab::PhoneBook::const_iterator_t& it)
+lab::PhoneBook::iterator_t lab::PhoneBook::deleteNode(const lab::PhoneBook::const_iterator_t& it)
 {
-  container_.erase(it);
+  return container_.erase(it);
 }

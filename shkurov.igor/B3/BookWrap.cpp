@@ -100,18 +100,21 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
 
     PhoneBook::const_iterator_t bookIter = it->second;
-    PhoneBook::const_iterator_t nextIter = std::next(bookIter);
+    PhoneBook::const_iterator_t nextIter = book_->deleteNode(bookIter);
 
-    book_->deleteNode(bookIter);
-    bookmarks_.erase(mark);
-
-    if (nextIter != book_->end())
+    if (nextIter == book_->end())
     {
-      bookmarks_.insert({mark, nextIter});
+      nextIter = book_->begin();
     }
-    else
+
+    it = bookmarks_.begin();
+    while (it != bookmarks_.end())
     {
-      bookmarks_.insert({mark, book_->begin()});
+      if (it->second == bookIter)
+      {
+        it->second = nextIter;
+      }
+      it++;
     }
   }
   else if (tag == "show")

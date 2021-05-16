@@ -26,7 +26,7 @@ namespace shkurov
       void pushFront(const node_t& node);
       void move(const_iterator_t& it, int steps);
       void move(const_iterator_t& it, const std::string& pos);
-      void deleteNode(const const_iterator_t& it);
+      lab::PhoneBook::iterator_t deleteNode(const const_iterator_t& it);
 
       size_t size() const;
 

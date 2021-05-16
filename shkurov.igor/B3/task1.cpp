@@ -35,7 +35,6 @@ int lab::task1(std::istream& in, std::ostream& out)
       returnVal = 2;
     }
   }
-  out << '\n';
   if (in.fail() && !in.eof())
   {
     return returnVal;

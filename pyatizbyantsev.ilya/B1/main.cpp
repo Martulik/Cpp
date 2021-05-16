@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
   catch (const std::exception& ex)
   {
     const char* error = (ex.what());
-    pyatizbyantsev::print(error, std::cout);
+    pyatizbyantsev::printError(error, std::cout);
     return 1;
   }
 

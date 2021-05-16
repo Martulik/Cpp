@@ -29,7 +29,7 @@ void pyatizbyantsev::fillRandom(double *array, int size)
   }
 }
 
-void pyatizbyantsev::print(const char* error, std::ostream& out)
+void pyatizbyantsev::printError(const char* error, std::ostream& out)
 {
   out << error << '\n';
 }

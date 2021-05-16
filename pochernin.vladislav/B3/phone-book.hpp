@@ -18,8 +18,8 @@ namespace pochernin
     void insertAfter(constIterator iterator, const Note& note);
     bool empty() const;
     void deleteNote(constIterator iterator);
-    constIterator begin();
-    constIterator end();
+    constIterator begin() const;
+    constIterator end() const;
 
   private:
     std::list< Note > data_;

@@ -7,12 +7,12 @@ void PB::add(const Note& note)
   data_.push_back(note);
 }
 
-PB::constIterator PB::begin()
+PB::constIterator PB::begin() const
 {
   return data_.cbegin();
 }
 
-PB::constIterator PB::end()
+PB::constIterator PB::end() const
 {
   return data_.cend();
 }

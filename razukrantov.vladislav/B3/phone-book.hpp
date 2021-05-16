@@ -4,33 +4,27 @@
 #include <list>
 #include <string>
 
+#include "note.hpp"
+
 namespace razukrantov
 {
 	class PhoneBook
 	{
 	public:
-		struct note_t
-		{
-			std::string name;
-			std::string number;
-		};
+		using iterator = std::list< razukrantov::note_t >::iterator;
+		using constIterator = std::list< razukrantov::note_t >::const_iterator;
 
-		using iterator = std::list< note_t >::iterator;
 		size_t size() const;
 		bool empty() const;
-		void show(std::ostream& out, iterator iterator) const;
-		void moveNext(iterator iterator);
-		void movePrev(iterator iterator);
-		void insertAfter(iterator iterator, const note_t& note);
-		void insertBefore(iterator iterator, const note_t& note);
-		void replace(iterator iterator, const note_t& note);
-		void pushBack(const note_t& note);
-		void move(iterator iterator, int step) const;
-		void erase(iterator iterator);
-		iterator begin();
-		iterator end();
+		void insertAfter(constIterator iterator, const razukrantov::note_t& note);
+		void insertBefore(constIterator iterator, const razukrantov::note_t& note);
+		void pushBack(const razukrantov::note_t& note);
+		void erase(constIterator iterator);
+		constIterator begin();
+		constIterator end();
+
 	private:
-		std::list< note_t > recondings_;
+		std::list< razukrantov::note_t > recordings_;
 	};
 }
 

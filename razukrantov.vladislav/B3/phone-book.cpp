@@ -1,36 +1,29 @@
 #include "phone-book.hpp"
 
-void razukrantov::PhoneBook::show(std::ostream& out, iterator iterator) const
+void razukrantov::PhoneBook::insertAfter(constIterator iterator, const note_t& note)
 {
-	out  << iterator->number << " " << iterator->name << "\n";
+	constIterator temp = std::next(iterator);
+	if (temp == end())
+	{
+		pushBack(note);
+	}
+	else
+	{
+		recordings_.insert(temp, note);
+	}
 }
 
-void razukrantov::PhoneBook::insertAfter(iterator iterator, const note_t& note)
+void razukrantov::PhoneBook::insertBefore(constIterator iterator, const note_t& note)
 {
-	iterator++;
-	note_t temp{ note.name, note.number };
-	recordings_.insert(iterator, temp);
-}
-
-void razukrantov::PhoneBook::insertBefore(iterator iterator, const note_t& note)
-{
-	note_t temp{ note.name, note.number };
-	recordings_.insert(iterator, temp);
+	recordings_.insert(iterator, note);
 }
 
 void razukrantov::PhoneBook::pushBack(const note_t& note)
 {
-	note_t temp{ note.name, note.number };
-	recordings_.push_back(temp);
+	recordings_.push_back(note);
 }
 
-void razukrantov::PhoneBook::replace(iterator iterator, const note_t& note)
-{
-	iterator->name = note.name;
-	iterator->number = note.number;
-}
-
-void razukrantov::PhoneBook::erase(iterator iterator)
+void razukrantov::PhoneBook::erase(constIterator iterator)
 {
 	recordings_.erase(iterator);
 }
@@ -45,12 +38,12 @@ bool razukrantov::PhoneBook::empty() const
 	return recordings_.empty();
 }
 
-razukrantov::PhoneBook::iterator razukrantov::PhoneBook::begin()
+razukrantov::PhoneBook::constIterator razukrantov::PhoneBook::begin()
 {
-	recondings_.begin();
+	return recordings_.cbegin();
 }
 
-razukrantov::PhoneBook::iterator razukrantov::PhoneBook::end()
+razukrantov::PhoneBook::constIterator razukrantov::PhoneBook::end()
 {
-	recondings_.end();
+	return recordings_.cend();
 }

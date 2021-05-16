@@ -63,10 +63,10 @@ bool razukrantov::Container::Iterator::operator!=(const Iterator& other) const
 
 razukrantov::Container::Iterator razukrantov::Container::begin() const noexcept
 {
-	return Iterator(1, 1);
+	return Iterator(1);
 }
 
 razukrantov::Container::Iterator razukrantov::Container::end() const noexcept
 {
-	return Iterator(MAX_SIZE, getFactorial(MAX_SIZE));
+	return Iterator(MAX_SIZE);
 }

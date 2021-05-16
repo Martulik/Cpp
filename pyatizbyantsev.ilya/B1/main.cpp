@@ -1,6 +1,5 @@
 ﻿#include <stdexcept>
 #include <ctime>
-#include <sstream>
 
 #include "tasks.hpp"
 #include "functions.hpp"

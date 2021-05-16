@@ -34,18 +34,18 @@ fer::Container::Iterator& fer::Container::Iterator::operator--()
   return *this;
 }
 
-fer::Container::Iterator& fer::Container::Iterator::operator++(int)
+fer::Container::Iterator fer::Container::Iterator::operator++(int)
 {
   Iterator temp = *this;
   ++(*this);
   return temp;
 }
 
-fer::Container::Iterator& fer::Container::Iterator::operator--(int)
+fer::Container::Iterator fer::Container::Iterator::operator--(int)
 {
   Iterator temp = *this;
   --(*this);
-  return *this;
+  return temp;
 }
 
 const fer::Container::valueType& fer::Container::Iterator::operator*()

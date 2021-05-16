@@ -19,8 +19,8 @@ namespace ferapontov
           Iterator& operator++();
           Iterator& operator--();
 
-          Iterator& operator--(int);
-          Iterator& operator++(int);
+          Iterator operator--(int);
+          Iterator operator++(int);
 
           const value_type& operator*();
           const value_type* operator->();

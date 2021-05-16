@@ -67,7 +67,11 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
     return in;
   }
   std::istringstream iss(str);
-  Shape shape_temp((std::istream_iterator< Point >(iss)), std::istream_iterator< Point >());
+  Shape shape_temp;
+  shape_temp.reserve(nVertices);
+  std::istream_iterator< Point > istream_iter(iss);
+  std::istream_iterator< Point > istream_iter_end;
+  std::copy(istream_iter, istream_iter_end, std::back_inserter(shape_temp));
   if (nVertices != shape_temp.size() || shape_temp.size() < 3) {
     throw std::runtime_error("Wrong number of vertices");
   }

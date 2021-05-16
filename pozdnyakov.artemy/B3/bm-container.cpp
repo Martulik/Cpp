@@ -20,7 +20,7 @@ void poz::BmContainer::deleteEntry(std::string bmName)
 {
   assert(this->checkBookmark(bmName) && book_->size() != 0);
   std::string number = bookmarks_.at(bmName);
-  poz::Phonebook::iterator it = poz::getEntry(book_, number);
+  poz::Phonebook::iterator it = poz::getEntryByNumber(book_, number);
   std::map< std::string, std::string >::iterator bmIt;
   for (bmIt = bookmarks_.begin(); bmIt != bookmarks_.end(); bmIt++)
   {
@@ -48,7 +48,7 @@ void poz::BmContainer::show(std::string bmName, std::ostream& out)
 {
   assert(this->checkBookmark(bmName));
   std::string number = bookmarks_.at(bmName);
-  poz::Phonebook::iterator it = poz::getEntry(book_, number);
+  poz::Phonebook::iterator it = poz::getEntryByNumber(book_, number);
   std::string name = std::get< 1 >(*it);
   name.pop_back();
   name.erase(name.begin());
@@ -72,7 +72,7 @@ void poz::BmContainer::move(std::string bmName, std::string step)
   }
   else
   {
-    poz::Phonebook::iterator bookIt = poz::getEntry(book_, numberRef);
+    poz::Phonebook::iterator bookIt = poz::getEntryByNumber(book_, numberRef);
     int n = std::stoi(step);
     if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
     {

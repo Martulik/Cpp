@@ -3,7 +3,7 @@
 
 namespace poz = pozdnyakov;
 
-poz::Phonebook::iterator poz::getEntry(std::unique_ptr< poz::Phonebook >& book, std::string number)
+poz::Phonebook::iterator poz::getEntryByNumber(std::unique_ptr< poz::Phonebook >& book, std::string number)
 {
   if (book->size() == 0)
   {

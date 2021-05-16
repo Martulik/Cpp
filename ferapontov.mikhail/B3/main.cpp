@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      ferapontov::task2();
+      ferapontov::task2(std::cout);
     }
   }
   catch (std::runtime_error& e)

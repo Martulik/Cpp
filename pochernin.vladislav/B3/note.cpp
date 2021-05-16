@@ -15,7 +15,7 @@ bool pochernin::checkNumber(const std::string& number)
     return false;
   }
 
-  for (auto&& i : number)
+  for (auto&& i: number)
   {
     if (!std::isdigit(i))
     {

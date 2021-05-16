@@ -7,6 +7,8 @@
 
 namespace lab = ezerinia;
 
+const int num_of_reserve = 10;
+
 double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {
   return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
@@ -68,7 +70,7 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   }
   std::istringstream iss(str);
   Shape shape_temp;
-  shape_temp.reserve(nVertices);
+  shape_temp.reserve(num_of_reserve);
   std::istream_iterator< Point > istream_iter(iss);
   std::istream_iterator< Point > istream_iter_end;
   std::copy(istream_iter, istream_iter_end, std::back_inserter(shape_temp));

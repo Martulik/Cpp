@@ -64,7 +64,7 @@ void PBI::store(const Bookmark& bookmark, const Bookmark& newBookmark)
   bookmarks_.insert(std::make_pair(newBookmark, iterator));
 }
 
-void PBI::move (const Bookmark& bookmark, const Step& step)
+void PBI::move(const Bookmark& bookmark, const Step& step)
 {
   constIterator iterator = bookmarks_.at(bookmark);
   if (step.isFirst)
@@ -79,14 +79,14 @@ void PBI::move (const Bookmark& bookmark, const Step& step)
     }
     else
     {
-      iterator = book_->end();
-      iterator--;
+      iterator = std::prev(book_->end());
     }
   }
   else if (step.isSpecific)
   {
     std::advance(iterator, step.steps);
   }
+  bookmarks_.at(bookmark) = iterator;
 }
 
 void PBI::deleteNote(const Bookmark& bookmark)
@@ -108,4 +108,5 @@ void PBI::deleteNote(const Bookmark& bookmark)
     }
     i++;
   }
+  book_->deleteNote(iterator);
 }

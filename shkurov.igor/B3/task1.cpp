@@ -18,7 +18,7 @@ int lab::task1(std::istream& in, std::ostream& out)
 
   std::string command;
 
-  while (std::getline(in, command) && !in.eof())
+  while (std::getline(in, command) && !command.empty())
   {
     std::istringstream istr(command);
 
@@ -35,5 +35,9 @@ int lab::task1(std::istream& in, std::ostream& out)
       returnVal = 2;
     }
   }
-  return returnVal;
+  if (in.fail() && !in.eof())
+  {
+    return returnVal;
+  }
+  return 0;
 }

@@ -8,7 +8,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "phonebook.hpp"
+#include "interface.hpp"
+#include "bm-container.hpp"
 #include "command-table.hpp"
 
 namespace pozdnyakov
@@ -17,7 +18,6 @@ namespace pozdnyakov
   {
   public:
     using argsType = std::vector< std::string >&;
-    using bmsType = std::map< std::string, std::string >;
     using bookPtr = std::unique_ptr< Phonebook >;
     Interface(std::unique_ptr< Phonebook > book, std::istream& in, std::ostream& out);
     void doCommand(argsType args);
@@ -25,9 +25,9 @@ namespace pozdnyakov
 
   private:
     bookPtr book_;
-    bmsType bookmarks_;
     std::istream& in_;
     std::ostream& out_;
+    BmContainer bookmarks_;
     const std::map< std::string, void(Interface::*)(argsType) > commands_
     {
       {"add", &Interface::doAdd},
@@ -44,9 +44,6 @@ namespace pozdnyakov
     void doShow(argsType args);
     void doMove(argsType args);
   };
-  Phonebook::iterator getEntry(Interface::bookPtr& book, Interface::bmsType bms, std::string bmName);
-  bool compareEntry(std::pair< std::string, std::string > entry, std::string number);
-  bool checkBookmark(Interface::bmsType bms, std::string name, std::ostream& out);
   CommandTable getTable();
 }
 

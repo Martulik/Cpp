@@ -1,9 +1,9 @@
 #include "point.hpp"
 #include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <iterator>
 #include <cmath>
-#include <sstream>
 
 namespace iva = ivanova;
 
@@ -30,7 +30,7 @@ bool iva::isPentagon(const iva::Shape &shp)
 std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;
-  std::getline(in, str, ')');
+  std::getline(in >> std::ws, str, ')');
   std::istringstream iss(str);
   if (str.empty())
   {

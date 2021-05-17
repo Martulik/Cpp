@@ -47,6 +47,12 @@ namespace ivanova
 std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
 {
   size_t vertices = 0;
+  in >> vertices;
+  if (vertices < 3)
+  {
+    std::cerr << "invalid input 4";
+    exit(1);
+  }
   std::string line;
   std::getline(in, line);
   if (line.empty())
@@ -54,12 +60,6 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     return in;
   }
   std::istringstream iss(line);
-  iss >> vertices;
-  if (vertices < 3)
-  {
-    std::cerr << "invalid input 4";
-    exit(1);
-  }
   Shape temp;
   temp.reserve(vertices);
   std::istream_iterator < Point > isi(iss);

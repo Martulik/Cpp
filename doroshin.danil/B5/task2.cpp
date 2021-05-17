@@ -16,6 +16,22 @@ bool shapeOrder(const dan::Shape& lhs, const dan::Shape& rhs)
   return lhs.points_.size() < rhs.points_.size();
 }
 
+struct StatCounter
+{
+  int triangles = 0;
+  int squares = 0;
+  int rectangles = 0;
+  int vertices = 0;
+
+  void operator()(const dan::Shape& shape)
+  {
+    vertices += shape.points_.size();
+    triangles += dan::isTriangle(shape);
+    rectangles += dan::isRectangle(shape);
+    squares += dan::isSquare(shape);
+  }
+};
+
 int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
 {
   std::vector< dan::Shape > shapes;
@@ -27,16 +43,7 @@ int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
     return 1;
   }
   // 2+3. Count vertices & shapes
-  struct Stats
-  {
-    int triangles, squares, rectangles, vertices;
-  } shape_stats { 0, 0, 0, 0 };
-  for(auto&& shape: shapes) {
-    shape_stats.vertices += shape.points_.size();
-    shape_stats.triangles += dan::isTriangle(shape);
-    shape_stats.rectangles += dan::isRectangle(shape);
-    shape_stats.squares += dan::isSquare(shape);
-  }
+  StatCounter shape_stats = std::for_each(shapes.begin(), shapes.end(), StatCounter());
   // 4. Delete pentagons
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), dan::isPentagon), shapes.end());
   // 5. Get any point

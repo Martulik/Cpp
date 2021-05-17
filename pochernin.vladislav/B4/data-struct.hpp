@@ -8,8 +8,8 @@ namespace pochernin
 {
   struct DataStruct
   {
-    int key1;
-    int key2;
+    int key1 = 0;
+    int key2 = 0;
     std::string str;
   };
   bool operator<(const DataStruct& lhs, const DataStruct& rhs);

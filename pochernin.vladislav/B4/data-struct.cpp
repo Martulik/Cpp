@@ -1,6 +1,10 @@
 #include "data-struct.hpp"
 
 #include <iostream>
+#include <string>
+#include <sstream>
+
+#include "functions.hpp"
 
 bool pochernin::operator<(const DataStruct& lhs, const DataStruct& rhs)
 {
@@ -22,4 +26,33 @@ std::ostream& pochernin::operator<<(std::ostream& out, const DataStruct& dataStr
 {
   out << dataStruct.key1 << ", " << dataStruct.key2 << ", " << dataStruct.str;
   return out;
+}
+
+std::istream& pochernin::operator>>(std::istream& in, DataStruct& dataStruct)
+{
+  std::string str;
+  std::getline(in, str);
+  std::stringstream stream(str);
+
+  dataStruct.key1 = getKey(stream);
+  if (stream.fail())
+  {
+    in.setstate(std::ios::failbit);
+    return in;
+  }
+
+  dataStruct.key2 = getKey(stream);
+  {
+    in.setstate(std::ios::failbit);
+    return in;
+  }
+
+  std::getline(stream, str);
+  {
+    in.setstate(std::ios::failbit);
+    return in;
+  }
+
+  dataStruct.str = str;
+  return in;
 }

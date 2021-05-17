@@ -55,7 +55,7 @@ void fer::task1(std::istream& in, std::ostream& out)
       {
         std::string markName = read(stream);
         markName = checkMarkName(markName);
-        out << UI.show(markName) << "\n";
+        out << UI.show(markName);
       }
       else if (action == "move")
       {

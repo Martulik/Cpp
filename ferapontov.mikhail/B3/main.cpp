@@ -17,6 +17,10 @@ int main(int argc, char* argv[])
     {
       taskNumber = std::atoi(argv[1]);
     }
+    else
+    {
+      throw std::runtime_error("<Invalid Args>");
+    }
     if (taskNumber != 1 && taskNumber != 2)
     {
       throw std::runtime_error("<Invalid TaskNumber>");
@@ -32,7 +36,7 @@ int main(int argc, char* argv[])
   }
   catch (std::runtime_error& e)
   {
-    std::cerr << e.what();
+    std::cout << e.what();
     std::exit(1);
   }
   return 0;

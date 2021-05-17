@@ -7,7 +7,7 @@
 
 namespace lab = ezerinia;
 
-const int num_of_reserve = 5;
+//const int num_of_reserve = 5;
 
 double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {
@@ -56,9 +56,10 @@ std::istream &lab::operator>>(std::istream &in, Point &point)
 
 std::istream &lab::operator>>(std::istream &in, Shape &shape)
 {
-  unsigned int nVertices = 0;
+  int nVertices = 0;
   char trash = '\0';
-  in >> nVertices >> std::noskipws >> trash;
+  in >> nVertices;
+  in >> std::noskipws >> trash;
   if (trash == '\n') {
     throw std::runtime_error("Read shape fail");
   }
@@ -70,7 +71,7 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   }
   std::istringstream iss(str);
   Shape shape_temp;
-  shape_temp.reserve(num_of_reserve);
+  shape_temp.reserve(nVertices);
   std::istream_iterator< Point > istream_iter(iss);
   std::istream_iterator< Point > istream_iter_end;
   std::copy(istream_iter, istream_iter_end, std::back_inserter(shape_temp));
@@ -83,7 +84,7 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
 
 std::ostream &lab::operator<<(std::ostream &out, const Point &point)
 {
-  out << " (" << point.x << "; " << point.y << ")";
+  out << "(" << point.x << "; " << point.y << ")";
   return out;
 }
 

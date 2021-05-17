@@ -21,14 +21,14 @@ void lab::task2(std::istream &in, std::ostream &out)
                                    return vertices_ + shape.size();
                                  });
 
-  auto itHexagon = std::find_if(shapes.begin(), shapes.end(),
-                                [](const Shape &shape) {
-                                  return shape.size() == 6;
-                                });
-  auto itPentagons = std::find_if(shapes.begin(), itHexagon,
+  auto itPentagons = std::find_if(shapes.begin(), shapes.end(),
                                   [](const Shape &shape) {
                                     return shape.size() == 5;
                                   });
+  auto firstNotPentagon = std::find_if(std::next(itPentagons), shapes.end(),
+                                       [](const Shape &shape) {
+                                         return shape.size() != 5;
+                                       });
   auto itRectangles = std::find_if(shapes.begin(), itPentagons,
                                    [](const Shape &shape) {
                                      return shape.size() == 4 && !isSideEqual(shape);
@@ -80,15 +80,7 @@ void lab::task2(std::istream &in, std::ostream &out)
   }
 
   if (itPentagons != shapes.end()) {
-    if (itHexagon != shapes.end()) {
-      shapes.erase(itPentagons, itHexagon);
-    } else {
-      auto firstNotPentagon = std::find_if(std::next(itPentagons), shapes.end(),
-                                           [](const Shape &shape) {
-                                             return shape.size() != 5;
-                                           });
-      shapes.erase(itPentagons, firstNotPentagon);
-    }
+    shapes.erase(itPentagons, firstNotPentagon);
   }
 
   std::vector< Point > points;

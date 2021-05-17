@@ -10,7 +10,7 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
 {
   unsigned int numberOfVertices = 0;
   in >> numberOfVertices;
-  char point = '\n';
+  char point = '\0';
   in >> std::noskipws >> point;
   if (point == '\n') {
     throw std::runtime_error("Error read");

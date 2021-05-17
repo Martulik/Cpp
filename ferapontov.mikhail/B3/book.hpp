@@ -17,9 +17,15 @@ namespace ferapontov
 
       void replace(iter it, const data_t& phoneNote);
 
+      const_iter move(const_iter it, int steps);
+
+      iter deletNote(const_iter it);
+
       void pushBack(data_t& PhoneNote);
 
       bool empty() const;
+
+      size_t size() const;
 
       const_iter begin();
       const_iter end();

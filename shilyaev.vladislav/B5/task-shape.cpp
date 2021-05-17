@@ -43,13 +43,13 @@ namespace shilyaev {
     });
   }
 
-  int runShapeTask()
+  int runShapeTask(std::istream &istream, std::ostream &ostream)
   {
-    std::istream_iterator< Shape > istreamIterator(std::cin);
+    std::istream_iterator< Shape > istreamIterator(istream);
     std::istream_iterator< Shape > istreamIteratorEnd;
     std::vector< Shape > shapes;
     std::copy(istreamIterator, istreamIteratorEnd, std::back_inserter(shapes));
-    if (!std::cin && !std::cin.eof()) {
+    if (!istream && !istream.eof()) {
       std::cerr << "Input error";
       return 1;
     }
@@ -60,15 +60,15 @@ namespace shilyaev {
     shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
     const std::vector< Point > points = createPointsVector(shapes);
     sortShapes(shapes);
-    std::cout << "Vertices: " << verticesCount
+    ostream << "Vertices: " << verticesCount
               << "\nTriangles: " << trianglesCount
               << "\nSquares: " << squaresCount
               << "\nRectangles: " << rectanglesCount
               << "\nPoints: ";
-    std::ostream_iterator< Point > pointOstreamIterator(std::cout, " ");
-    std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, " "));
-    std::cout << "\nShapes: \n";
-    std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(std::cout, "\n"));
+    std::ostream_iterator< Point > pointOstreamIterator(ostream, " ");
+    std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(ostream, " "));
+    ostream << "\nShapes: \n";
+    std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(ostream, "\n"));
     return 0;
   }
 }

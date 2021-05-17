@@ -1,8 +1,10 @@
 #ifndef TASK_SHAPE_HPP
 #define TASK_SHAPE_HPP
 
+#include <iosfwd>
+
 namespace shilyaev {
-  int runShapeTask();
+  int runShapeTask(std::istream &istream, std::ostream &ostream);
 }
 
 #endif

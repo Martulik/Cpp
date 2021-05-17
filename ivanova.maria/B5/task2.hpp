@@ -1,6 +1,6 @@
 #ifndef B5_TASK2_HPP
 #define B5_TASK2_HPP
-#include <iosfwd>
+#include <iostream>
 #include <sstream>
 #include <iterator>
 #include <numeric>

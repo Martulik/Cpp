@@ -29,8 +29,13 @@ namespace ivanova
     std::sort(shapes.begin(), shapes.end(), compare);
     out << "Points: ";
     std::ostream_iterator < Point > oit(out, " ");
+    out << "Vertices: " << info.vertices << "\n";
+    out << "Triangles: " << info.triangles << '\n';
+    out << "Rectangles: " << info.rectangles << '\n';
+    out << "Squares: " << info.squares << '\n';
+    out << "Points: ";
     std::copy(points.begin(), points.end(), oit);
-    print(shapes, info, out);
+    out << "Shapes: " << shapes;
     return 0;
   }
 }
@@ -84,11 +89,7 @@ bool ivanova::compare(Shape &elem1, Shape &elem2)
 
 void ivanova::print(const std::vector < Shape > &shp, const count &info, std::ostream &out)
 {
-  out << "Vertices: " << info.vertices << "\n";
-  out << "Triangles: " << info.triangles << '\n';
-  out << "Rectangles: " << info.rectangles << '\n';
-  out << "Squares: " << info.squares << '\n';
-  out << "Points: ";
+
   out << shp;
 }
 #endif

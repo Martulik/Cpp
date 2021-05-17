@@ -36,16 +36,20 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
   std::string str;
   std::getline(in, str, '(');
   std::getline(in, str, ';');
+  if (str.empty())
+  {
+    return in;
+  }
   if (!checkNum(str))
   {
-    std::cerr << "invalid input";
+    std::cerr << "1invalid input";
     exit(1);
   }
   point.x = std::stoi(str);
   std::getline(in, str, ')');
   if (!checkNum(str))
   {
-    std::cerr << "invalid input";
+    std::cerr << "2invalid input";
     exit(1);
   }
   point.y = std::stoi(str);
@@ -82,6 +86,17 @@ bool iva::checkDiagonalsAndSides(const iva::Shape &shp)
 
 bool iva::checkNum(std::string &num)
 {
-  auto b = (std::any_of(num.begin(), num.end(), [](const char &elem) { return (std::isdigit(elem)); }));
-  return b;
+  std::string check;
+  std::for_each(num.begin(), num.end(), [&check](const char &s){ if (s != ' ') { check += s; } });
+  bool b = true;
+  if (*check.begin() == '+' || *check.begin() == '-')
+  {
+    b = (std::any_of(check.begin() + 1, check.end(), [](const char &elem){ return (!std::isdigit(elem)); }));
+  }
+  else
+  {
+    std::cout << *num.end();
+    b = (std::any_of(check.begin(), check.end(), [](const char &elem){ return (!std::isdigit(elem));}));
+  }
+  return !b;
 }

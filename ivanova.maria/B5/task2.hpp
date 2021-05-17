@@ -19,9 +19,8 @@ namespace ivanova
 
   int task2(std::istream &in, std::ostream &out)
   {
-    std::vector < Shape > shapes;
     std::istream_iterator< Shape > isi(in);
-    shapes = std::move(std::vector < Shape > (isi, std::istream_iterator< Shape >()));
+    std::vector < Shape > shapes(isi, std::istream_iterator< Shape >());
     count info;
     doCount(info, shapes);
     deletePentagons(shapes);

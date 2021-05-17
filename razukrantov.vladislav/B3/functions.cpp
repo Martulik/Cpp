@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <sstream>
 
 std::istream& razukrantov::readName(std::istream& in, std::string& name)

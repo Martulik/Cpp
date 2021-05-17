@@ -1,8 +1,7 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 
-#include <cstddef>
-#include <ostream>
+#include <iosfwd>
 
 namespace razukrantov
 {

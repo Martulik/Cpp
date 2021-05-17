@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <algorithm>
-#include <functional>
 #include <sstream>
 
 #include "phone-book.hpp"

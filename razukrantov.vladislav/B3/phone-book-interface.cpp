@@ -1,7 +1,5 @@
 #include "phone-book-interface.hpp"
 
-#include <ostream>
-
 #include "phone-book.hpp"
 
 razukrantov::PhoneBookInterface::PhoneBookInterface(PhoneBook& book):

@@ -2,7 +2,6 @@
 
 #include <ostream>
 #include <algorithm>
-#include <iterator>
 
 #include "container.hpp"
 

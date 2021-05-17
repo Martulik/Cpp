@@ -9,10 +9,10 @@ const int PENTAGON_TOPS = 5;
 std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
 {
   unsigned int numberOfVertices = 0;
-  char point = '\0';
+  char point = ' ';
   in >> numberOfVertices;
   in >> std::noskipws >> point;
-  if (point == '\n') {
+  if (point == ' ') {
     throw std::runtime_error("Read shape fail");
   }
   std::string str;
@@ -21,13 +21,13 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
   if (str.empty()) {
     return in;
   }
-  std::istringstream iss(str);
+  std::istringstream input(str);
   Shape shapeTemp;
   shapeTemp.reserve(numberOfVertices);
-  std::istream_iterator< Point > istream_iter(iss);
+  std::istream_iterator< Point > istream_iter(input);
   std::istream_iterator< Point > istream_iter_end;
   std::copy(istream_iter, istream_iter_end, std::back_inserter(shapeTemp));
-  if ((!iss && !iss.eof()) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
+  if ((!input && !input.eof()) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
     throw std::runtime_error("Read shape fail");
   }
   shape.swap(shapeTemp);

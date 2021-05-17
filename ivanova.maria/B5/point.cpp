@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iterator>
 #include <cmath>
+#include <sstream>
 
 namespace iva = ivanova;
 
@@ -29,26 +30,31 @@ bool iva::isPentagon(const iva::Shape &shp)
 std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;
-  std::getline(in >> std::ws,str, '(');
+  std::getline(in, str, ')');
+  std::istringstream iss(str);
   if (str.empty())
   {
     return in;
   }
-  in >> point.x;
-  std::getline(in >> std::ws, str, ';');
-  if (!str.empty())
+  char separator = ' ';
+  iss >> separator;
+  if (separator != '(')
   {
-    std::cerr << "Invalid input x";
+    std::cerr << "invalid separator";
     exit(1);
   }
-  in >> point.y;
-  std::getline(in >> std::ws, str, ')');
-  if (!str.empty())
+  iss >> point.x;
+  iss >> separator;
+  if (separator == ';')
   {
-    std::cerr << "Invalid input y";
+    iss >> point.y;
+    return in;
+  }
+  else
+  {
+    std::cerr << "invalid separator";
     exit(1);
   }
-  return in;
 }
 
 std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Point &point)

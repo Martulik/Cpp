@@ -14,22 +14,37 @@ void lab::task2(std::istream &in, std::ostream &out)
     throw std::runtime_error("Read fail");
   }
   std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
-  std::sort(shapes.begin(), shapes.end());
 
   int vertices = std::accumulate(shapes.begin(), shapes.end(), 0,
                                  [](int vertices_, const Shape &shape) {
                                    return vertices_ + shape.size();
                                  });
 
-  auto itPentagons = std::find_if(shapes.begin(), shapes.end(),
-                                  [](const Shape &shape) {
-                                    return shape.size() == 5;
-                                  });
-  auto firstNotPentagon = std::find_if(std::next(itPentagons), shapes.end(),
-                                       [](const Shape &shape) {
-                                         return shape.size() != 5;
-                                       });
-  auto itRectangles = std::find_if(shapes.begin(), itPentagons,
+//  auto itPentagons = std::find_if(shapes.begin(), shapes.end(),
+//                                  [](const Shape &shape) {
+//                                    return shape.size() == 5;
+//                                  });
+//  auto firstNotPentagon = std::find_if(std::next(itPentagons), shapes.end(),
+//                                       [](const Shape &shape) {
+//                                         return shape.size() != 5;
+//                                       });
+
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
+                              [](const Shape &shape) {
+                                return shape.size() == 5;
+                              }), shapes.end());
+  std::vector< Point > points;
+  points.reserve(shapes.size());
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
+                 [](const Shape &shape) {
+                   return shape.front();
+                 });
+  std::sort(shapes.begin(), shapes.end());
+  auto itMoreThenPentagons = std::find_if(shapes.begin(), shapes.end(),
+                                          [](const Shape &shape) {
+                                            return shape.size() > 5;
+                                          });
+  auto itRectangles = std::find_if(shapes.begin(), itMoreThenPentagons,
                                    [](const Shape &shape) {
                                      return shape.size() == 4 && !isSideEqual(shape);
                                    });
@@ -68,8 +83,8 @@ void lab::task2(std::istream &in, std::ostream &out)
   }
   int rectangles = squares;
   if (itRectangles != shapes.end()) {
-    if (itPentagons != shapes.end()) {
-      rectangles += itPentagons - itRectangles;
+    if (itMoreThenPentagons != shapes.end()) {
+      rectangles += itMoreThenPentagons - itRectangles;
     } else {
       auto firstNotRectangle = std::find_if(std::next(itRectangles), shapes.end(),
                                             [](const Shape &shape) {
@@ -79,16 +94,11 @@ void lab::task2(std::istream &in, std::ostream &out)
     }
   }
 
-  if (itPentagons != shapes.end()) {
-    shapes.erase(itPentagons, firstNotPentagon);
-  }
+//  if (itPentagons != shapes.end()) {
+//    shapes.erase(itPentagons, firstNotPentagon);
+//  }
 
-  std::vector< Point > points;
-  points.reserve(shapes.size());
-  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
-                 [](const Shape &shape) {
-                   return shape.front();
-                 });
+
 
   out << "Vertices: " << vertices << "\n"
       << "Triangles: " << triangles << "\n"

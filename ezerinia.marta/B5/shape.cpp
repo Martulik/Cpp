@@ -7,8 +7,6 @@
 
 namespace lab = ezerinia;
 
-//const int num_of_reserve = 5;
-
 double lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {
   return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
@@ -28,6 +26,9 @@ bool lab::isSideEqual(const Shape &shape)
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)
 {
+  if (lhs.size() > 5 && rhs.size() > 5) {
+    return false;
+  }
   if (lhs.size() < rhs.size() || ((rhs.size() == 4) && (lhs.size() == rhs.size()) && isSideEqual(lhs))) {
     return true;
   }
@@ -75,8 +76,8 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   std::istream_iterator< Point > istream_iter(iss);
   std::istream_iterator< Point > istream_iter_end;
   std::copy(istream_iter, istream_iter_end, std::back_inserter(shape_temp));
-  if (nVertices != shape_temp.size() || shape_temp.size() < 3) {
-    throw std::runtime_error("Wrong number of vertices");
+  if ((!iss && !iss.eof()) || nVertices != shape_temp.size() || shape_temp.size() < 3) {
+    throw std::runtime_error("Read shape fail");
   }
   shape.swap(shape_temp);
   return in;
@@ -84,13 +85,13 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
 
 std::ostream &lab::operator<<(std::ostream &out, const Point &point)
 {
-  out << "(" << point.x << "; " << point.y << ")";
+  out << '(' << point.x << "; " << point.y << ')';
   return out;
 }
 
 std::ostream &lab::operator<<(std::ostream &out, const Shape &shape)
 {
-  out << shape.size() << " ";
+  out << shape.size() << ' ';
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
   return out;
 }

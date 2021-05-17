@@ -5,21 +5,20 @@
 
 namespace dan = doroshin;
 
+int distSq(const dan::Point& a, const dan::Point& b)
+{
+  return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
+}
+
 bool dan::isSquare(const Shape& s)
 {
   if(s.points_.size() != 4) {
     return false;
   }
 
-  auto distSq = [](const Point& a, const Point& b) {
-    return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
-  };
-
   int d1 = distSq(s.points_[0], s.points_[1]);
   int d2 = distSq(s.points_[1], s.points_[2]);
-  int d3 = distSq(s.points_[2], s.points_[3]);
-  int d4 = distSq(s.points_[3], s.points_[0]);
-  return d1 == d2 && d3 == d4 && d1 == d3;
+  return d1 == d2;
 }
 
 std::istream& dan::operator>>(std::istream& in, Shape& s)

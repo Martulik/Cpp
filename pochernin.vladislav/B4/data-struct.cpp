@@ -42,12 +42,14 @@ std::istream& pochernin::operator>>(std::istream& in, DataStruct& dataStruct)
   }
 
   dataStruct.key2 = getKey(stream);
+  if (stream.fail())
   {
     in.setstate(std::ios::failbit);
     return in;
   }
 
   std::getline(stream, str);
+  if (stream.fail())
   {
     in.setstate(std::ios::failbit);
     return in;

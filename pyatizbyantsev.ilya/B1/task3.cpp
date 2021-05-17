@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-void pyatizbyantsev::taskThree(std::istream& in)
+void pyatizbyantsev::taskThree(std::istream& in, std::ostream& out)
 {
   std::vector< int > vector;
   int x = 0;
@@ -63,5 +63,5 @@ void pyatizbyantsev::taskThree(std::istream& in)
       }
     }
   }
-  print< pyatizbyantsev::strategyIndex< int > >(vector, std::cout, " ");
+  print< pyatizbyantsev::strategyIndex< int > >(vector, out, " ");
 }

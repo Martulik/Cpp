@@ -2,7 +2,7 @@
 #include "functions.hpp"
 #include "strategies.hpp"
 
-void pyatizbyantsev::taskOne(const char* cmp, std::istream& in)
+void pyatizbyantsev::taskOne(const char* cmp, std::istream& in, std::ostream& out)
 {
   std::vector< int > vectorFirst;
 
@@ -22,7 +22,7 @@ void pyatizbyantsev::taskOne(const char* cmp, std::istream& in)
   sort< strategyIndex< int > >(vectorFirst, sortMode< int >(cmp));
   sort< strategyAt< int > >(vectorSecond, sortMode< int >(cmp));
   sort< strategyIterator< int > >(forwardList, sortMode< int >(cmp));
-  print< pyatizbyantsev::strategyIndex< int > >(vectorFirst, std::cout, " ");
-  print< pyatizbyantsev::strategyAt< int > >(vectorSecond, std::cout, " ");
-  print< pyatizbyantsev::strategyIterator< int > >(forwardList, std::cout, " ");
+  print< pyatizbyantsev::strategyIndex< int > >(vectorFirst, out, " ");
+  print< pyatizbyantsev::strategyAt< int > >(vectorSecond, out, " ");
+  print< pyatizbyantsev::strategyIterator< int > >(forwardList, out, " ");
 }

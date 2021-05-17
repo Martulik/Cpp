@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
     if ((argc == 3) && (atoi(argv[1]) == 1))
     {
-      lab::taskOne(argv[2], std::cin);
+      lab::taskOne(argv[2], std::cin, std::cout);
     }
     else if ((argc == 3) && (atoi(argv[1]) == 2))
     {
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     }
     else if ((argc == 2) && (atoi(argv[1]) == 3))
     {
-      lab::taskThree(std::cin);
+      lab::taskThree(std::cin, std::cout);
     }
     else if ((argc == 4) && (atoi(argv[1]) == 4))
     {
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
       {
         throw std::invalid_argument("Invalid array size");
       }
-      lab::taskFour(argv[2], atoi(argv[3]));
+      lab::taskFour(argv[2], atoi(argv[3]), std::cout);
     }
     else
     {

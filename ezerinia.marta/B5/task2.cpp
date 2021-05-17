@@ -73,10 +73,6 @@ void lab::task2(std::istream &in, std::ostream &out)
     rectangles += itMoreThenPentagons - itRectangles;
   }
 
-//  if (itPentagons != shapes.end()) {
-//    shapes.erase(itPentagons, firstNotPentagon);
-//  }
-
   out << "Vertices: " << vertices << "\n"
       << "Triangles: " << triangles << "\n"
       << "Squares: " << squares << "\n"

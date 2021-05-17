@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(output)
     std::ostringstream oss;
     iva::Shape shape{{12, 36},  {3, -2225},  {-435, 8726}, {0, -1}};
     oss << shape;
-    BOOST_CHECK_EQUAL(oss.str(), "4  (12; 36) (3; -2225) (-435; 8726) (0; -1)");
+    BOOST_CHECK_EQUAL(oss.str(), "4 (12; 36) (3; -2225) (-435; 8726) (0; -1)");
   }
 
 BOOST_AUTO_TEST_SUITE_END()

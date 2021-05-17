@@ -2,6 +2,6 @@
 
 std::ostream& ferapontov::operator<<(std::ostream& out, const ferapontov::data_t& src)
 {
-  out << src.name << " " << src.number;
+  out << src.number << " " << src.name;
   return out;
 }

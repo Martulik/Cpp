@@ -1,6 +1,10 @@
 #include "shape.hpp"
 #include <iostream>
+#include <iterator>
 #include <functional>
+#include <algorithm>
+#include <sstream>
+#include <cctype>
 
 namespace shilyaev {
   using QuadrilateralPredicate = std::function< bool(int ab, int bc, int cd, int da, int bd, int ac) >;
@@ -23,6 +27,41 @@ namespace shilyaev {
     } catch (const std::invalid_argument &) {
       istream.setstate(std::ios::failbit);
     }
+    return istream;
+  }
+
+  std::ostream &operator<<(std::ostream &ostream, const Shape &shape)
+  {
+    ostream << shape.size() << ' ';
+    std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(ostream, " "));
+    return ostream;
+  }
+
+  std::istream &operator>>(std::istream &istream, Shape &shape)
+  {
+    std::string line;
+    while (std::all_of(line.begin(), line.end(), static_cast< int (&)(int) >(std::isspace))) {
+      if (!std::getline(istream, line)) {
+        return istream;
+      }
+    }
+    std::istringstream istringstream(line);
+    size_t verticesCount = 0;
+    istringstream >> verticesCount;
+    if (verticesCount < 1) {
+      istream.setstate(std::ios::failbit);
+      return istream;
+    }
+    Shape newShape;
+    newShape.reserve(verticesCount);
+    std::istream_iterator< Point > istreamIterator(istringstream);
+    std::istream_iterator< Point > istreamIteratorEnd;
+    std::copy(istreamIterator, istreamIteratorEnd, std::back_inserter(newShape));
+    if ((!istringstream && !istringstream.eof()) || newShape.size() != verticesCount) {
+      istream.setstate(std::ios::failbit);
+      return istream;
+    }
+    shape.swap(newShape);
     return istream;
   }
 

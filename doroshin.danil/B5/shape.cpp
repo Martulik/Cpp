@@ -30,6 +30,7 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
 
   s.points_.clear();
   std::string line_;
+  in >> std::ws;
   if(std::getline(in, line_)) {
     std::istringstream line(line_);
 

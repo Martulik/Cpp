@@ -20,16 +20,11 @@ int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
 {
   std::vector< dan::Shape > shapes;
   // 1. Input
-  while(!in.eof()) {
-    dan::Shape s;
-    in >> std::ws >> s;
-    if(in.fail() && !in.eof()) {
-      err << "Invalid shape\n";
-      return 1;
-    }
-    if(!s.points_.empty()) {
-      shapes.emplace_back(std::move(s));
-    }
+  std::istream_iterator< dan::Shape > iBegin(in), iEnd;
+  std::move(iBegin, iEnd, std::back_inserter(shapes));
+  if(in.fail() && !in.eof()) {
+    err << "Invalid shape\n";
+    return 1;
   }
   // 2+3. Count vertices & shapes
   struct Stats

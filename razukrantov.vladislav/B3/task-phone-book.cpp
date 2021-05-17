@@ -14,7 +14,7 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
 	razukrantov::PhoneBook phoneBook;
 	razukrantov::PhoneBookInterface  interface(phoneBook);
 	std::string string;
-	while (std::getline(in, string) && !string.empty())
+	while (std::getline(in, string))
 	{
 		std::stringstream input(string);
 		std::string command;
@@ -44,13 +44,13 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
 			std::string bookmark;
 			std::string newBookMark;
 			input >> bookmark >> newBookMark;
-			if (interface.contains(bookmark))
+			if (!interface.contains(bookmark))
 			{
-				interface.store(bookmark, newBookMark);
+				razukrantov::invalidBookmark(out);
 			}
 			else
 			{
-				razukrantov::invalidBookmark(out);
+				interface.store(bookmark, newBookMark);
 			}
 		}
 		else if (command == "insert")
@@ -91,13 +91,13 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
 		{
 			std::string bookmark;
 			input >> bookmark;
-			if (interface.contains(bookmark))
+			if (!interface.contains(bookmark))
 			{
-				interface.erase(bookmark);
+				razukrantov::invalidBookmark(out);
 			}
 			else
 			{
-				razukrantov::invalidBookmark(out);
+				interface.erase(bookmark);
 			}
 		}
 		else if (command == "show")

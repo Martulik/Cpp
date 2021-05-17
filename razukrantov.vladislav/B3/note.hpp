@@ -6,12 +6,12 @@
 
 namespace razukrantov
 {
-	struct note_t
-	{
-		std::string number;
-		std::string name;
-	};
-	std::ostream& operator<<(std::ostream& out, const note_t& note);
+  struct note_t
+  {
+    std::string number;
+    std::string name;
+  };
+  std::ostream& operator<<(std::ostream& out, const note_t& note);
 }
 
 #endif

@@ -8,14 +8,9 @@
 
 namespace dan = doroshin;
 
-bool isPentagon(const dan::Shape& s)
-{
-  return s.points_.size() == 5;
-}
-
 bool shapeOrder(const dan::Shape& lhs, const dan::Shape& rhs)
 {
-  if(lhs.points_.size() == 4 && rhs.points_.size() == 4) {
+  if(dan::isRectangle(lhs) && dan::isRectangle(rhs)) {
     return dan::isSquare(lhs);
   }
   return lhs.points_.size() < rhs.points_.size();
@@ -43,18 +38,12 @@ int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
   } shape_stats { 0, 0, 0, 0 };
   for(auto&& shape: shapes) {
     shape_stats.vertices += shape.points_.size();
-    if(shape.points_.size() == 3) {
-      shape_stats.triangles++;
-    }
-    else if(shape.points_.size() == 4) {
-      shape_stats.rectangles++;
-      if(dan::isSquare(shape)) {
-        shape_stats.squares++;
-      }
-    }
+    shape_stats.triangles += dan::isTriangle(shape);
+    shape_stats.rectangles += dan::isRectangle(shape);
+    shape_stats.squares += dan::isSquare(shape);
   }
   // 4. Delete pentagons
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), dan::isPentagon), shapes.end());
   // 5. Get any point
   std::vector< dan::Point > points;
   points.reserve(shapes.size());

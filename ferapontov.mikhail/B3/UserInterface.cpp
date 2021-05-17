@@ -1,9 +1,10 @@
-#include "userInterface.hpp"
+#include "UserInterface.hpp"
 
 namespace fer = ferapontov;
-fer::Interface::Interface()
+fer::Interface::Interface():
+  book_(PhoneBook()),
+  bookmarks_({std::make_pair("current", book_.begin())})
 {
-  bookmarks_.insert(std::make_pair("current", book_.begin()));
 }
 
 void fer::Interface::add(const std::string& name, const int number)
@@ -39,7 +40,7 @@ fer::data_t fer::Interface::show(std::string& markName)
   checkBookMark(markName);
   if (book_.empty())
   {
-    throw std::invalid_argument("EMPTY");
+    throw std::invalid_argument("<EMPTY>");
   }
   const_map_iter it = bookmarks_.find(markName);
   return *it->second;

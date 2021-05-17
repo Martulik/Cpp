@@ -68,7 +68,7 @@ void fer::task1(std::istream& in, std::ostream& out)
         }
         else
         {
-          throw std::invalid_argument("<INVALID STEPS>");
+          throw std::invalid_argument("<INVALID STEP>");
         }
       }
       else

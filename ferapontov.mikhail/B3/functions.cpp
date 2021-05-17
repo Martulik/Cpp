@@ -4,6 +4,7 @@
 #include <cctype>
 #include <istream>
 
+
 std::string ferapontov::read(std::istream& in)
 {
   std::string line;

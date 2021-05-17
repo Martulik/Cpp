@@ -20,6 +20,10 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
   std::istream_iterator< murzakanov::Shape > firstIterator(in);
   std::istream_iterator< murzakanov::Shape > lastIterator;
   std::vector< murzakanov::Shape > shapes(firstIterator, lastIterator);
+  if (shapes.size() == 0)
+  {
+    return 0;
+  }
   int vertices = murzakanov::calculateVertices(shapes);
   int triangles = 0;
   int rectangles = 0;

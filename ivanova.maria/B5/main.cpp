@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <algorithm>
 #include <fstream>
 #include "task1.hpp"
@@ -12,22 +13,30 @@ int main(int argc, char* argv[])
     std::cerr << "invalid task number";
     return 1;
   }
-  if (std::stoi(argv[1]) == 1)
+  if (std::isdigit(argv[1][0]) && std::strlen(argv[1]) == 1)
   {
-    std::ifstream in(*argv);
-    if (!in.is_open() || in.eof())
+    if (std::stoi(argv[1]) == 1)
     {
-      std::cerr << "Failed reading";
-      return 1;
+      std::ifstream in(*argv);
+      if (!in.is_open() || in.eof())
+      {
+        std::cerr << "Failed reading";
+        return 1;
+      }
+      else
+      {
+        return iva::task1(std::cin, std::cout);
+      }
     }
-    else
+    else if (std::stoi(argv[1]) == 2)
     {
-      return iva::task1(std::cin, std::cout);
+      return iva::task2(std::cin, std::cout);
     }
   }
   else
   {
-    return iva::task2(std::cin, std::cout);
+    std::cerr << "invalid task number";
+    return 1;
   }
 }
 

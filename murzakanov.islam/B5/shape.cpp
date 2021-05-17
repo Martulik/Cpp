@@ -6,6 +6,19 @@
 #include <sstream>
 #include <vector>
 
+std::istream& murzakanov::operator>>(std::istream& in, Point& point)
+{
+  char bracketOpen = '(';
+  char semicolon = ';';
+  char bracketClose = ')';
+  in >> bracketOpen >> point.x >> semicolon >> point.y >> bracketClose;
+  if (!in || bracketOpen != '(' && bracketClose != ')' || semicolon != ';')
+  {
+    in.setstate(std::ios_base::failbit);
+  }
+  return in;
+}
+
 std::istream& murzakanov::operator >>(std::istream& in, murzakanov::Shape& shp)
 {
   std::string line;
@@ -21,18 +34,14 @@ std::istream& murzakanov::operator >>(std::istream& in, murzakanov::Shape& shp)
   int y = 0;
   int n = 0;
   lin >> n;
-  while (n != 0)
+  std::istream_iterator< murzakanov::Point > firstIterator(lin);
+  std::istream_iterator< murzakanov::Point > lastIterator;
+  murzakanov::Shape tempShape(firstIterator, lastIterator);
+  if (tempShape.size() != n)
   {
-    lin >> bracketOp >> x >> semicolon >> y >> bracketClose;
-    n--;
-    if (!lin || bracketOp != '(' || semicolon != ';' || bracketClose != ')')
-    {
-      std::cerr << "Invalid arguments\n";
-      std::exit(1);
-    }
-    murzakanov::Point temp{ x, y };
-    shp.push_back(temp);
+    in.setstate(std::ios_base::failbit);
   }
+  shp = tempShape;
   return in;
 }
 
@@ -46,7 +55,7 @@ std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Shape&
   return out;
 }
 
-std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point point)
+std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point& point)
 {
   out << '(' << point.x << ';' << point.y << ')' << ' ';
   return out;

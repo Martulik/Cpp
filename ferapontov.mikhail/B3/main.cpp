@@ -5,6 +5,7 @@
 
 int main(int argc, char* argv[])
 {
+  int returnCode = 0;
   try
   {
     if (argc != 2)
@@ -37,12 +38,12 @@ int main(int argc, char* argv[])
   catch (const std::invalid_argument& e)
   {
     std::cerr << e.what() << "\n";
-    std::exit(1);
+    returnCode = 1;
   }
   catch (const std::runtime_error& e)
   {
     std::cerr << e.what() << "\n";
-    std::exit(2);
+    returnCode = 2;
   }
-  return 0;
+  return returnCode;
 }

@@ -9,7 +9,7 @@ std::istream& razukrantov::readName(std::istream& in, std::string& name)
 {
 	name.clear();
 	in >> std::ws;
-	if (name.front() != '"' || name.back() != '"')
+	if (in.get() != '"')
 	{
 		in.setstate(std::ios_base::failbit);
 		return in;

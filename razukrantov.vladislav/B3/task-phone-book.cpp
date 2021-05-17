@@ -14,7 +14,7 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
 	razukrantov::PhoneBook phoneBook;
 	razukrantov::PhoneBookInterface  interface(phoneBook);
 	std::string string;
-	while (std::getline(in, string))
+	while (std::getline(in, string) && !string.empty())
 	{
 		std::istringstream input(string);
 		std::string command;

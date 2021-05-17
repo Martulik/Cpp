@@ -15,7 +15,6 @@ namespace ivanova
   void doCount(count &shapes, std::vector < Shape > &vec);
   void deletePentagons(std::vector < Shape > &vec);
   bool compare(Shape &elem1, Shape &elem2);
-  void print(const std::vector < Shape > &shp, const count &info, std::ostream &out);
 
   int task2(std::istream &in, std::ostream &out)
   {
@@ -87,9 +86,4 @@ bool ivanova::compare(Shape &elem1, Shape &elem2)
   return (elem1.size() < elem2.size());
 }
 
-void ivanova::print(const std::vector < Shape > &shp, const count &info, std::ostream &out)
-{
-
-  out << shp;
-}
 #endif

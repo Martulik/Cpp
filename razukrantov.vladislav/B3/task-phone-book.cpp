@@ -42,15 +42,15 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
     else if (command == "store")
     {
       std::string bookmark;
-      std::string newBookMark;
-      input >> bookmark >> newBookMark;
+      std::string newBookmark;
+      input >> bookmark >> newBookmark;
       if (!interface.contains(bookmark))
       {
         razukrantov::invalidBookmark(out);
       }
       else
       {
-        interface.store(bookmark, newBookMark);
+        interface.store(bookmark, newBookmark);
       }
     }
     else if (command == "insert")

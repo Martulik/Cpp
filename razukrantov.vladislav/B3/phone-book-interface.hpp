@@ -18,13 +18,13 @@ namespace razukrantov
     using constIterType = std::map< std::string, razukrantov::PhoneBook::constIterator >::const_iterator;
     explicit PhoneBookInterface(PhoneBook& book);
     void add(const note_t& note);
-    void store(const std::string& bookMark, const std::string& newBookMark);
-    void insertBefore(const std::string& bookMark, const note_t& note);
-    void insertAfter(const std::string& bookMark, const note_t& note);
-    void erase(const std::string& bookMark);
-    void show(const std::string& bookMark, std::ostream& out) const;
-    void move(const std::string& bookMark, const std::string& steps);
-    void move(const std::string& bookMark, const int steps);
+    void store(const std::string& bookmark, const std::string& newBookmark);
+    void insertBefore(const std::string& bookmark, const note_t& note);
+    void insertAfter(const std::string& bookmark, const note_t& note);
+    void erase(const std::string& bookmark);
+    void show(const std::string& bookmark, std::ostream& out) const;
+    void move(const std::string& bookmark, const std::string& steps);
+    void move(const std::string& bookmark, const int steps);
     bool empty() const;
     bool contains(const std::string& bookmark) const;
 

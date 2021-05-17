@@ -29,13 +29,13 @@ bool razukrantov::PhoneBookInterface::contains(const std::string& bookmark) cons
   return (bookmarks_.find(bookmark) != bookmarks_.end());
 }
 
-void razukrantov::PhoneBookInterface::store(const std::string& bookMark, const std::string& newBookMark)
+void razukrantov::PhoneBookInterface::store(const std::string& bookmark, const std::string& newBookmark)
 {
-  iteratorType iterator = bookmarks_.find(bookMark);
-  bookmarks_.insert(std::make_pair(newBookMark, iterator->second));
+  iteratorType iterator = bookmarks_.find(bookmark);
+  bookmarks_.insert(std::make_pair(newBookmark, iterator->second));
 }
 
-void razukrantov::PhoneBookInterface::insertBefore(const std::string& bookMark, const note_t& note)
+void razukrantov::PhoneBookInterface::insertBefore(const std::string& bookmark, const note_t& note)
 {
   if (book_->empty())
   {
@@ -43,12 +43,12 @@ void razukrantov::PhoneBookInterface::insertBefore(const std::string& bookMark, 
   }
   else
   {
-    iteratorType iterator = bookmarks_.find(bookMark);
+    iteratorType iterator = bookmarks_.find(bookmark);
     book_->insertBefore(iterator->second, note);
   }
 }
 
-void razukrantov::PhoneBookInterface::insertAfter(const std::string& bookMark, const note_t& note)
+void razukrantov::PhoneBookInterface::insertAfter(const std::string& bookmark, const note_t& note)
 {
   if (book_->empty())
   {
@@ -56,14 +56,14 @@ void razukrantov::PhoneBookInterface::insertAfter(const std::string& bookMark, c
   }
   else
   {
-    iteratorType iterator = bookmarks_.find(bookMark);
+    iteratorType iterator = bookmarks_.find(bookmark);
     book_->insertAfter(iterator->second, note);
   }
 }
 
-void razukrantov::PhoneBookInterface::erase(const std::string& bookMark)
+void razukrantov::PhoneBookInterface::erase(const std::string& bookmark)
 {
-  iteratorType iterator = bookmarks_.find(bookMark);
+  iteratorType iterator = bookmarks_.find(bookmark);
   auto temp = iterator->second;
   iteratorType i = bookmarks_.begin();
   while (i != bookmarks_.end())
@@ -84,15 +84,15 @@ void razukrantov::PhoneBookInterface::erase(const std::string& bookMark)
   book_->erase(temp);
 }
 
-void razukrantov::PhoneBookInterface::show(const std::string& bookMark, std::ostream& out) const
+void razukrantov::PhoneBookInterface::show(const std::string& bookmark, std::ostream& out) const
 {
-  constIterType iterator = bookmarks_.find(bookMark);
+  constIterType iterator = bookmarks_.find(bookmark);
   out << *iterator->second;
 }
 
-void razukrantov::PhoneBookInterface::move(const std::string& bookMark, const std::string& steps)
+void razukrantov::PhoneBookInterface::move(const std::string& bookmark, const std::string& steps)
 {
-  iteratorType iterator = bookmarks_.find(bookMark);
+  iteratorType iterator = bookmarks_.find(bookmark);
   if (steps == "first")
   {
     iterator->second = book_->begin();
@@ -110,8 +110,8 @@ void razukrantov::PhoneBookInterface::move(const std::string& bookMark, const st
   }
 }
 
-void razukrantov::PhoneBookInterface::move(const std::string& bookMark, const int steps)
+void razukrantov::PhoneBookInterface::move(const std::string& bookmark, const int steps)
 {
-  iteratorType iterator = bookmarks_.find(bookMark);
+  iteratorType iterator = bookmarks_.find(bookmark);
   iterator->second = book_->move(iterator->second, steps);
 }

@@ -36,34 +36,26 @@ int task2(std::istream& in, std::ostream& out, std::ostream& err)
       return 1;
     }
     if(!s.points_.empty()) {
-      shapes.push_back(s);
+      shapes.emplace_back(std::move(s));
     }
   }
-  // 2. Count vertices
-  int total_vertices = std::accumulate(shapes.begin(), shapes.end(), 0,
-    [](int total, const dan::Shape& shape) {
-      return total + shape.points_.size();
-    }
-  );
-  // 3. Count shapes
+  // 2+3. Count vertices & shapes
   struct Stats
   {
-    int triangles, squares, rectangles;
-  } shape_stats;
-  shape_stats = std::accumulate(shapes.begin(), shapes.end(), Stats{0, 0, 0},
-    [](Stats total, const dan::Shape& shape) {
-      if(shape.points_.size() == 3) {
-        total.triangles++;
-      }
-      else if(shape.points_.size() == 4) {
-          total.rectangles++;
-        if(dan::isSquare(shape)) {
-          total.squares++;
-        }
-      }
-      return total;
+    int triangles, squares, rectangles, vertices;
+  } shape_stats { 0, 0, 0, 0 };
+  for(auto&& shape: shapes) {
+    shape_stats.vertices += shape.points_.size();
+    if(shape.points_.size() == 3) {
+      shape_stats.triangles++;
     }
-  );
+    else if(shape.points_.size() == 4) {
+      shape_stats.rectangles++;
+      if(dan::isSquare(shape)) {
+        shape_stats.squares++;
+      }
+    }
+  }
   // 4. Delete pentagons
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
     [](const dan::Shape& shape) {
@@ -89,7 +81,7 @@ int task2(std::istream& in, std::ostream& out, std::ostream& err)
     }
   );
   // 7. Output
-  out << "Vertices: " << total_vertices << '\n'
+  out << "Vertices: " << shape_stats.vertices << '\n'
       << "Triangles: " << shape_stats.triangles << '\n'
       << "Squares: " << shape_stats.squares << '\n'
       << "Rectangles: " << shape_stats.rectangles << '\n';

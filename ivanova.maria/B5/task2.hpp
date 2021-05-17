@@ -43,8 +43,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   std::getline(in, line);
   if (line.empty())
   {
-    std::cerr << "invalid input";
-    exit(1);
+    return in;
   }
   std::istringstream iss(line);
   iss >> vertices;

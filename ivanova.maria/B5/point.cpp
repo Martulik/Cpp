@@ -29,7 +29,7 @@ bool iva::isPentagon(const iva::Shape &shp)
 std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;
-  std::getline(in,str, '(');
+  std::getline(in >> std::ws,str, '(');
   if (str.empty())
   {
     return in;
@@ -53,7 +53,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 
 std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Point &point)
 {
-  out << " (" << point.x << "; " << point.y << ')';
+  out << " (" << point.x << "; " << point.y << ")";
   return out;
 }
 

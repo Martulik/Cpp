@@ -17,23 +17,27 @@ namespace ivanova
 
   int task2(std::istream &in, std::ostream &out)
   {
-    std::istream_iterator< Shape > isi(in);
-    std::vector < Shape > shapes(isi, std::istream_iterator< Shape >());
+    if (!in)
+    {
+      std::cerr << "failed reading";
+      exit(1);
+    }
+    std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
     count info;
     doCount(info, shapes);
     deletePentagons(shapes);
-    std::vector< Point > points(shapes.size());
+    std::vector< Point > points;
+    points.reserve(shapes.size());
     std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &elem){ points.push_back(elem.at(0)); });
     std::sort(shapes.begin(), shapes.end(), compare);
-    out << "Points: ";
-    std::ostream_iterator < Point > oit(out, " ");
     out << "Vertices: " << info.vertices << "\n";
     out << "Triangles: " << info.triangles << '\n';
-    out << "Rectangles: " << info.rectangles << '\n';
     out << "Squares: " << info.squares << '\n';
+    out << "Rectangles: " << info.rectangles << '\n';
     out << "Points: ";
+    std::ostream_iterator < Point > oit(out, " ");
     std::copy(points.begin(), points.end(), oit);
-    out << "Shapes: ";
+    out << "\nShapes:\n";
     std::ostream_iterator < Shape > oits(out, "\n");
     std::copy(shapes.begin(), shapes.end(), oits);
     return 0;

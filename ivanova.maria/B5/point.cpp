@@ -53,7 +53,7 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 
 std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Point &point)
 {
-  out << '(' << point.x << ';' << point.y << ')' << ' ';
+  out << '(' << point.x << "; " << point.y << ')' << ' ';
   return out;
 }
 

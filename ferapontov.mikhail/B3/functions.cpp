@@ -46,7 +46,7 @@ void ferapontov::checkInsertMode(std::string& mode)
 {
   if (mode != "before" && mode != "after")
   {
-    throw std::invalid_argument("<INVALID COMMAND>2");
+    throw std::invalid_argument("<INVALID COMMAND>");
   }
 }
 

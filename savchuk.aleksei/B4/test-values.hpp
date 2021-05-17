@@ -1,6 +1,7 @@
 #ifndef TEST_VALUES_HPP
 #define TEST_VALUES_HPP
 
+#include <cstddef>
 #include <array>
 
 namespace savchuk

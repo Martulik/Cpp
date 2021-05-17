@@ -20,15 +20,6 @@ void lab::task2(std::istream &in, std::ostream &out)
                                    return vertices_ + shape.size();
                                  });
 
-//  auto itPentagons = std::find_if(shapes.begin(), shapes.end(),
-//                                  [](const Shape &shape) {
-//                                    return shape.size() == 5;
-//                                  });
-//  auto firstNotPentagon = std::find_if(std::next(itPentagons), shapes.end(),
-//                                       [](const Shape &shape) {
-//                                         return shape.size() != 5;
-//                                       });
-
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
                               [](const Shape &shape) {
                                 return shape.size() == 5;
@@ -61,44 +52,30 @@ void lab::task2(std::istream &in, std::ostream &out)
   if (itTriangle != shapes.end()) {
     if (itSquares != shapes.end()) {
       triangles = itSquares - itTriangle;
+    } else if (itRectangles != shapes.end()) {
+      triangles = itRectangles - itTriangle;
     } else {
-      auto firstNotTriangle = std::find_if(itTriangle, shapes.end(),
-                                           [](const Shape &shape) {
-                                             return shape.size() != 3;
-                                           });
-      triangles = firstNotTriangle - itTriangle;
+      triangles = itMoreThenPentagons - itTriangle;
     }
   }
+
   int squares = 0;
   if (itSquares != shapes.end()) {
     if (itRectangles != shapes.end()) {
       squares = itRectangles - itSquares;
     } else {
-      auto firstNotSquare = std::find_if(std::next(itSquares), shapes.end(),
-                                         [](const Shape &shape) {
-                                           return shape.size() != 4;
-                                         });
-      squares = firstNotSquare - itSquares;
+      squares = itMoreThenPentagons - itSquares;
     }
   }
+
   int rectangles = squares;
   if (itRectangles != shapes.end()) {
-    if (itMoreThenPentagons != shapes.end()) {
-      rectangles += itMoreThenPentagons - itRectangles;
-    } else {
-      auto firstNotRectangle = std::find_if(std::next(itRectangles), shapes.end(),
-                                            [](const Shape &shape) {
-                                              return shape.size() != 4;
-                                            });
-      rectangles += firstNotRectangle - itRectangles;
-    }
+    rectangles += itMoreThenPentagons - itRectangles;
   }
 
 //  if (itPentagons != shapes.end()) {
 //    shapes.erase(itPentagons, firstNotPentagon);
 //  }
-
-
 
   out << "Vertices: " << vertices << "\n"
       << "Triangles: " << triangles << "\n"

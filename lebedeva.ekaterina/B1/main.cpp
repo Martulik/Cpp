@@ -28,17 +28,17 @@ int main(int argc, char* argv[])
     if (task == 1)
     {
       lebedeva::checkNumOfArgs(argc, 3);
-      lebedeva::doTask1(argv);
+      lebedeva::doTask1(argv, std::cin, std::cout);
     }
     if (task == 2)
     {
       lebedeva::checkNumOfArgs(argc, 3);
-      lebedeva::doTask2(argv);
+      lebedeva::doTask2(argv, std::cout);
     }
     if (task == 3)
     {
       lebedeva::checkNumOfArgs(argc, 2);
-      lebedeva::doTask3();
+      lebedeva::doTask3(std::cin, std::cout);
     }
     if (task == 4)
     {
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
       {
         throw std::invalid_argument("Invalid vector size in task 4\n");
       }
-      lebedeva::doTask4(argv);
+      lebedeva::doTask4(argv, std::cout);
     }
   }
   catch (const std::exception& error)

@@ -5,15 +5,15 @@
 #include "functions.hpp"
 #include "sort.hpp"
 
-void lebedeva::doTask1(char* argv[])
+void lebedeva::doTask1(char* argv[], std::istream& in, std::ostream& out)
 {
   std::vector< int > brackVec;
   int data = 0;
-  while (std::cin >> data)
+  while (in >> data)
   {
     brackVec.push_back(data);
   }
-  if (std::cin.bad() || (std::cin.fail() && !std::cin.eof()))
+  if (in.bad() || (in.fail() && !in.eof()))
   {
     throw std::runtime_error("Invalid input");
   }
@@ -26,8 +26,8 @@ void lebedeva::doTask1(char* argv[])
   sort< atAccess >(atVec, comp);
   sort< iteratorAccess >(iterList, comp);
 
-  print(brackVec, std::cout, " ", 1);
-  print(atVec, std::cout, " ", 1);
-  print(iterList, std::cout, " ", 1);
+  print(brackVec, out, " ", 1);
+  print(atVec, out, " ", 1);
+  print(iterList, out, " ", 1);
 }
 

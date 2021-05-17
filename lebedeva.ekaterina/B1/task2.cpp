@@ -5,7 +5,7 @@
 #include <memory>
 #include "functions.hpp"
 
-void lebedeva::doTask2(char* argv[])
+void lebedeva::doTask2(char* argv[], std::ostream& out)
 {
   char* fileName = argv[2];
   if (fileName == nullptr)
@@ -37,5 +37,5 @@ void lebedeva::doTask2(char* argv[])
   inFile.close();
 
   std::vector< char > resVec(data.get(), data.get() + size);
-  print(resVec, std::cout, "", 0);
+  print(resVec, out, "", 0);
 }

@@ -14,6 +14,11 @@ namespace razukrantov
 		}
 		return result;
 	}
+
+	void invalidCommand(std::ostream& out);
+	void invalidBookmark(std::ostream& out);
+	void invaildStep(std::ostream& out);
+	void empty(std::ostream& out);
 }
 
 #endif

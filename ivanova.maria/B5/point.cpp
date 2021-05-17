@@ -35,6 +35,10 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;
   std::getline(in, str, '(');
+  if (str.empty())
+  {
+    return in;
+  }
   std::getline(in, str, ';');
   if (!checkNum(str))
   {

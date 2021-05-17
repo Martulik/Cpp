@@ -60,7 +60,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   temp.reserve(vertices);
   std::istream_iterator < Point > isi(iss);
   std::copy(isi, std::istream_iterator < Point >(), std::back_inserter(temp));
-  if (!iss && !iss.eof() || temp.size() != vertices)
+  if ((!iss && !iss.eof()) || (temp.size() != vertices))
   {
     std::cerr << "invalid input 3";
     exit(1);

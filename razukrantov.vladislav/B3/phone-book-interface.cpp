@@ -4,7 +4,7 @@
 
 #include "phone-book.hpp"
 
-razukrantov::PhoneBookInterface::PhoneBookInterface(PhoneBook& book) :
+razukrantov::PhoneBookInterface::PhoneBookInterface(PhoneBook& book):
   book_(std::make_unique< PhoneBook >(book))
 {
   bookmarks_.insert(std::make_pair("current", book_->begin()));

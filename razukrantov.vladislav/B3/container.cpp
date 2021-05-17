@@ -6,7 +6,7 @@
 
 constexpr size_t MAX_SIZE = 11;
 
-razukrantov::Container::Iterator::Iterator(const size_t index) :
+razukrantov::Container::Iterator::Iterator(const size_t index):
   index_(index),
   value_(razukrantov::getFactorial(index))
 {

@@ -9,7 +9,7 @@ namespace razukrantov
   class Container
   {
   public:
-    class Iterator : public std::iterator< std::bidirectional_iterator_tag, unsigned int >
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned int >
     {
     public:
       Iterator& operator++();

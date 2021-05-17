@@ -30,7 +30,7 @@ namespace razukrantov
 
   private:
     std::unique_ptr< razukrantov::PhoneBook > book_;
-    std::map < std::string, razukrantov::PhoneBook::constIterator > bookmarks_;
+    std::map< std::string, razukrantov::PhoneBook::constIterator > bookmarks_;
   };
 }
 

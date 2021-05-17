@@ -97,7 +97,15 @@ void ivanova::deletePentagons(std::vector < ivanova::Shape > &vec)
 
 bool ivanova::compare(Shape &elem1, Shape &elem2)
 {
-  return (elem1.size() < elem2.size());
+  if (isSquare(elem1) && isRect(elem2))
+  {
+    return true;
+  }
+  if (isRect(elem1) && isSquare(elem2))
+  {
+    return false;
+  }
+  return (elem2.size() < elem2.size());
 }
 
 #endif

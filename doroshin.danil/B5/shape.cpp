@@ -15,15 +15,11 @@ bool dan::isSquare(const Shape& s)
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
   };
 
-  std::vector< int > distances;
-  distances.reserve(6);
-  for(int i = 0; i < 4; ++i) {
-    for(int j = i + 1; j < 4; ++j) {
-      distances.push_back(distSq(s.points_[i], s.points_[j]));
-    }
-  }
-  std::sort(distances.begin(), distances.end());
-  return distances[0] == distances[3];
+  int d1 = distSq(s.points_[0], s.points_[1]);
+  int d2 = distSq(s.points_[1], s.points_[2]);
+  int d3 = distSq(s.points_[2], s.points_[3]);
+  int d4 = distSq(s.points_[3], s.points_[0]);
+  return d1 == d2 && d3 == d4 && d1 == d3;
 }
 
 std::istream& dan::operator>>(std::istream& in, Shape& s)

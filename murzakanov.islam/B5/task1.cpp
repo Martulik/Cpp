@@ -7,13 +7,14 @@
 
 int murzakanov::task1(std::istream& in, std::ostream& out)
 {
-  std::istream_iterator firstIt< std::string >(in);
-  std::istream_iterator lastIt< std::string>;
+  std::istream_iterator< std::string > firstIt(in);
+  std::istream_iterator< std::string > lastIt;
   std::unordered_set< std::string > words(firstIt, lastIt);
   if (in.fail() && !in.eof())
   {
     std::cerr << "Input error\n";
-    return;
+    return 1;
   }
   std::copy(words.begin(), words.end(), std::ostream_iterator< std::string >(out, "\n"));
+  return 0;
 }

@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
   if (argc != 2)
   {
-    std::cerr << "invalid task number";
+    std::cerr << "Invalid arguments number";
     return 1;
   }
   if (std::isdigit(argv[1][0]) && std::strlen(argv[1]) == 1)

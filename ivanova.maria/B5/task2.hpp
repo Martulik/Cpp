@@ -64,6 +64,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   {
     std::cerr << "invalid input 3";
     exit(1);
+    
   }
   shp.swap(temp);
   return in;

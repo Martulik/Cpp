@@ -38,14 +38,14 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
   std::getline(in >> std::ws, str, ';');
   if (!str.empty())
   {
-    std::cerr << "1invalid input";
+    std::cerr << "Invalid input x";
     exit(1);
   }
   in >> point.y;
   std::getline(in >> std::ws, str, ')');
   if (!str.empty())
   {
-    std::cerr << "2invalid input";
+    std::cerr << "Invalid input y";
     exit(1);
   }
   return in;

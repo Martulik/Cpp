@@ -21,4 +21,5 @@ namespace ivanova
   bool isPentagon(const Shape &shp);
   bool checkDiagonalsAndSides(const Shape &shp);
 }
+
 #endif

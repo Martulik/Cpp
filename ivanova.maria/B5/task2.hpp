@@ -40,10 +40,13 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   size_t vertices = 0;
   std::string line;
   std::getline(in, line);
+  if (!line.empty())
+  {
   std::istringstream iss(line);
   iss >> vertices;
   std::istream_iterator < Point > isi(iss);
   shp = std::move(std::vector< Point > (isi, std::istream_iterator< Point >()));
+  }
   return in;
 }
 

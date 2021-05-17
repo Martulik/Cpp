@@ -9,23 +9,24 @@ namespace razukrantov
   class Container
   {
   public:
-    class Iterator: public std::iterator< std::bidirectional_iterator_tag, unsigned int >
+    using valueType = unsigned int;
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, valueType >
     {
     public:
       Iterator& operator++();
       Iterator operator++(int);
       Iterator& operator--();
       Iterator operator --(int);
-      size_t& operator*();
-      size_t* operator->();
+      const valueType& operator*();
+      const valueType* operator->();
       bool operator==(const Iterator&) const;
       bool operator!=(const Iterator&) const;
 
     private:
       friend class Container;
-      size_t index_;
-      size_t value_;
-      Iterator(size_t number);
+      valueType index_;
+      valueType value_;
+      explicit Iterator(valueType number);
     };
 
     Container() = default;

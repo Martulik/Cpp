@@ -6,7 +6,7 @@
 
 constexpr size_t MAX_SIZE = 11;
 
-razukrantov::Container::Iterator::Iterator(const size_t index):
+razukrantov::Container::Iterator::Iterator(const valueType index):
   index_(index),
   value_(razukrantov::getFactorial(index))
 {
@@ -42,12 +42,12 @@ razukrantov::Container::Iterator razukrantov::Container::Iterator::operator--(in
   return temp;
 }
 
-size_t& razukrantov::Container::Iterator::operator*()
+const razukrantov::Container::valueType& razukrantov::Container::Iterator::operator*()
 {
   return value_;
 }
 
-size_t* razukrantov::Container::Iterator::operator->()
+const razukrantov::Container::valueType* razukrantov::Container::Iterator::operator->()
 {
   return std::addressof(value_);
 }

@@ -113,24 +113,5 @@ void razukrantov::PhoneBookInterface::move(const std::string& bookMark, const st
 void razukrantov::PhoneBookInterface::move(const std::string& bookMark, const int steps)
 {
 	iteratorType iterator = bookmarks_.find(bookMark);
-	int x = 0;
-	if (steps > 0)
-	{
-		x = std::distance(iterator->second, book_->end());
-		if (steps >= x)
-		{
-			iterator->second = std::prev(book_->end());
-			return;
-		}
-	}
-	else
-	{
-		x = std::distance(book_->begin(), iterator->second);
-		if (std::abs(steps) >= x)
-		{
-			iterator->second = book_->begin();
-			return;
-		}
-	}
-	std::advance(iterator->second, steps);
+	iterator->second = book_->move(iterator->second, steps);
 }

@@ -23,6 +23,27 @@ void razukrantov::PhoneBook::pushBack(const note_t& note)
 	recordings_.push_back(note);
 }
 
+razukrantov::PhoneBook::constIterator razukrantov::PhoneBook::move(razukrantov::PhoneBook::constIterator iterator, int steps) const
+{
+	if (steps > 0)
+	{
+		while (std::next(iterator) != recordings_.end() && steps != 0)
+		{
+			iterator = std::next(iterator);
+			--steps;
+		}
+	}
+	else
+	{
+		while (iterator != recordings_.begin() && (steps != 0))
+		{
+			iterator = std::prev(iterator);
+			--steps;
+		}
+	}
+	return iterator;
+}
+
 void razukrantov::PhoneBook::erase(constIterator iterator)
 {
 	recordings_.erase(iterator);

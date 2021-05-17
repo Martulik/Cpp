@@ -1,5 +1,6 @@
 #include "shape.hpp"
 #include <sstream>
+#include <iterator>
 
 const int TRIANGLE_TOPS = 3;
 const int QUADRANGLE_TOPS = 4;

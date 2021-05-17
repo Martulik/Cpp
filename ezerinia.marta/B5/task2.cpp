@@ -15,21 +15,19 @@ void lab::task2(std::istream &in, std::ostream &out)
   }
   std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
 
-  int vertices = std::accumulate(shapes.begin(), shapes.end(), 0,
-                                 [](int vertices_, const Shape &shape) {
-                                   return vertices_ + shape.size();
-                                 });
-
+  unsigned int sizeWithPentagons = shapes.size();
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
                               [](const Shape &shape) {
                                 return shape.size() == 5;
                               }), shapes.end());
+
   std::vector< Point > points;
   points.reserve(shapes.size());
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
                  [](const Shape &shape) {
                    return shape.front();
                  });
+
   std::sort(shapes.begin(), shapes.end());
   auto itMoreThenPentagons = std::find_if(shapes.begin(), shapes.end(),
                                           [](const Shape &shape) {
@@ -48,7 +46,7 @@ void lab::task2(std::istream &in, std::ostream &out)
                                    return shape.size() == 3;
                                  });
 
-  int triangles = 0;
+  unsigned int triangles = 0;
   if (itTriangle != shapes.end()) {
     if (itSquares != shapes.end()) {
       triangles = itSquares - itTriangle;
@@ -59,7 +57,7 @@ void lab::task2(std::istream &in, std::ostream &out)
     }
   }
 
-  int squares = 0;
+  unsigned int squares = 0;
   if (itSquares != shapes.end()) {
     if (itRectangles != shapes.end()) {
       squares = itRectangles - itSquares;
@@ -68,10 +66,17 @@ void lab::task2(std::istream &in, std::ostream &out)
     }
   }
 
-  int rectangles = squares;
+  unsigned int rectangles = squares;
   if (itRectangles != shapes.end()) {
     rectangles += itMoreThenPentagons - itRectangles;
   }
+
+  unsigned int vertices = std::accumulate(itMoreThenPentagons, shapes.end(), 0,
+                                          [](int vertices_, const Shape &shape) {
+                                            return vertices_ + shape.size();
+                                          });
+
+  vertices += triangles * 3 + rectangles * 4 + (sizeWithPentagons - shapes.size()) * 5;
 
   out << "Vertices: " << vertices << "\n"
       << "Triangles: " << triangles << "\n"

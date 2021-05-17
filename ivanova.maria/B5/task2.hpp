@@ -41,10 +41,6 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   size_t vertices = 0;
   std::string line;
   std::getline(in, line);
-  if (line.empty())
-  {
-    return in;
-  }
   std::istringstream iss(line);
   iss >> vertices;
   std::istream_iterator < Point > isi(iss);

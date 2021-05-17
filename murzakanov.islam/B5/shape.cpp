@@ -35,3 +35,19 @@ std::istream& murzakanov::operator >>(std::istream& in, murzakanov::Shape& shp)
   }
   return in;
 }
+
+std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Shape& shp)
+{
+  out << shp.size() << " ";
+  for (size_t i = 0; i < shp.size(); i++)
+  {
+    out << shp[i];
+  }
+  return out;
+}
+
+std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point point)
+{
+  out << '(' << point.x << ';' << point.y << ')' << ' ';
+  return out;
+}

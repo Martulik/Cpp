@@ -32,6 +32,11 @@ int main(int argc, char* argv[])
     {
       return iva::task2(std::cin, std::cout);
     }
+    else
+    {
+      std::cerr << "invalid task number";
+      return 1;
+    }
   }
   else
   {

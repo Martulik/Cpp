@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     std::cerr << "invalid task number";
     return 1;
   }
-  if (std::stoi(argv[1]) == 1);
+  if (std::stoi(argv[1]) == 1)
   {
     std::ifstream in(*argv);
     if (!in.is_open() || in.eof())
@@ -24,6 +24,10 @@ int main(int argc, char* argv[])
     {
       return iva::task1(std::cin, std::cout);
     }
+  }
+  else
+  {
+    return iva::task2(std::cin, std::cout);
   }
 }
 

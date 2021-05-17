@@ -3,20 +3,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
 #include <iterator>
 
 namespace ivanova
 {
   int task1(std::istream &in, std::ostream &out)
   {
-    std::istream_iterator< std::string> iss(in);
-    std::vector< std::string > vec(iss, std::istream_iterator< std::string > ());
-    if (in.fail() && !in.eof())
-    {
-      std::cerr << "failed reading";
-      return 1;
-    }
-    std::copy(vec.begin(), vec.end(), std::ostream_iterator< std::string > (out, "\n"));
+    std::istream_iterator< std::string > iss(in);
+    std::set< std::string > vector(iss, std::istream_iterator < std::string >());
+    std::copy(vector.begin(), vector.end(), std::ostream_iterator< std::string >(out, "\n"));
     return 0;
   }
 }

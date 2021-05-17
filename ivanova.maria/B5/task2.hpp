@@ -32,6 +32,7 @@ namespace ivanova
     std::ostream_iterator < Point > oit(out, " ");
     std::copy(points.begin(), points.end(), oit);
     print(shapes, info, out);
+    return 0;
   }
 }
 

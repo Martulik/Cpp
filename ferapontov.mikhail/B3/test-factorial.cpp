@@ -2,7 +2,9 @@
 
 #include "container.hpp"
 
-void startFactorialTest()
+BOOST_AUTO_TEST_SUITE(testFactorial)
+
+BOOST_AUTO_TEST_CASE(fact)
 {
   ferapontov::Container container;
   unsigned int factorial = 1;
@@ -13,13 +15,6 @@ void startFactorialTest()
     BOOST_CHECK_EQUAL(factorial, *myFactorial);
     myFactorial++;
   }
-}
-
-BOOST_AUTO_TEST_SUITE(testFactorial)
-
-BOOST_AUTO_TEST_CASE(fact)
-{
-  startFactorialTest();
 }
 
 BOOST_AUTO_TEST_SUITE_END()

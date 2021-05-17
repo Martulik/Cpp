@@ -7,7 +7,7 @@ bool lebedeva::isNumber(const char* num)
 {
   for (size_t i = 0; i < strlen(num); i++)
   {
-    if (!isdigit(num[i]))
+    if (!std::isdigit(num[i]))
     {
       return false;
     }
@@ -29,8 +29,8 @@ void lebedeva::fillRandom(double* array, int size)
   {
     throw std::invalid_argument("Invalid array size");
   }
-  for (size_t i = 0; i < sizeof(array); i++)
+  for (int i = 0; i < size; i++)
   {
-    array[i] = static_cast<double>(rand()) / RAND_MAX * 2 - 1;
+    array[i] = static_cast< double >(rand()) / RAND_MAX * 2 - 1;
   }
 }

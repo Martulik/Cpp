@@ -1,5 +1,5 @@
-#include <vector>
 #include "tasks.hpp"
+#include <vector>
 #include "functions.hpp"
 
 void lebedeva::doTask3()

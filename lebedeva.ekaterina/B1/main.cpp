@@ -20,12 +20,6 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid first argument\n");
     }
     task = std::atoi(argv[1]);
-    /*
-    else
-    {
-      std::cerr << "Invalid arguments\n";
-      return 1;
-    }*/
 
     if ((task <= 0) || (task > 4))
     {

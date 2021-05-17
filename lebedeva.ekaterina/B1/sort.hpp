@@ -1,7 +1,6 @@
 #ifndef SORT_HPP
 #define SORT_HPP
 #include <functional>
-#include "access.hpp"
 
 namespace lebedeva
 {

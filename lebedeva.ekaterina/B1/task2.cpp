@@ -1,8 +1,8 @@
+#include "tasks.hpp"
 #include <stdexcept>
 #include <fstream>
 #include <vector>
 #include <memory>
-#include "tasks.hpp"
 #include "functions.hpp"
 
 void lebedeva::doTask2(char* argv[])
@@ -34,8 +34,8 @@ void lebedeva::doTask2(char* argv[])
     }
     data = std::move(temp);
   }
-    inFile.close();
+  inFile.close();
 
-    std::vector< char > resVec(data.get(), data.get() + size);
-    print(resVec, std::cout, "", 0);
+  std::vector< char > resVec(data.get(), data.get() + size);
+  print(resVec, std::cout, "", 0);
 }

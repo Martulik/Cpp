@@ -1,6 +1,6 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
-#include "sort.hpp"
+
 namespace lebedeva
 {
   void doTask1(char* argv[]);

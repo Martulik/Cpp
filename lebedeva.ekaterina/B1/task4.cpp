@@ -1,6 +1,7 @@
-#include <vector>
 #include "tasks.hpp"
+#include <vector>
 #include "functions.hpp"
+#include "sort.hpp"
 
 void lebedeva::doTask4(char* argv[])
 {

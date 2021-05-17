@@ -64,11 +64,11 @@ void razukrantov::PhoneBookInterface::insertAfter(const std::string& bookMark, c
 void razukrantov::PhoneBookInterface::erase(const std::string& bookMark)
 {
 	iteratorType iterator = bookmarks_.find(bookMark);
-	iteratorType temp = iterator;
+	auto temp = iterator->second;
 	iteratorType i = bookmarks_.begin();
 	while (i != bookmarks_.end())
 	{
-		if (i->second == temp->second)
+		if (i->second == temp)
 		{
 		  if (std::next(i->second) == book_->end())
 		  {
@@ -76,12 +76,12 @@ void razukrantov::PhoneBookInterface::erase(const std::string& bookMark)
 			}
 			else
 			{
-				i->second = std::next(temp->second);
+				i->second = std::next(i->second);
 			}
 		}
 		i = std::next(i);
 	}
-	book_->erase(temp->second);
+	book_->erase(temp);
 }
 
 void razukrantov::PhoneBookInterface::show(const std::string& bookMark, std::ostream& out) const

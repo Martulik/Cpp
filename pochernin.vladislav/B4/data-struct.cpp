@@ -18,7 +18,7 @@ bool pochernin::operator<(const DataStruct& lhs, const DataStruct& rhs)
   }
   else
   {
-    return lhs.str < rhs.str;
+    return lhs.str.length() < rhs.str.length();
   }
 }
 

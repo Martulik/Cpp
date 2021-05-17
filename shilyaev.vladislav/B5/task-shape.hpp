@@ -4,7 +4,7 @@
 #include <iosfwd>
 
 namespace shilyaev {
-  int runShapeTask(std::istream &istream, std::ostream &ostream);
+  int runShapeTask(std::istream &istream, std::ostream &ostream, std::ostream &err);
 }
 
 #endif

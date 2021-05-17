@@ -4,7 +4,7 @@
 #include <iosfwd>
 
 namespace shilyaev {
-  int runWordsTask(std::istream &istream, std::ostream &ostream);
+  int runWordsTask(std::istream &istream, std::ostream &ostream, std::ostream &err);
 }
 
 #endif

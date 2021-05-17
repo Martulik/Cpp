@@ -43,14 +43,14 @@ namespace shilyaev {
     });
   }
 
-  int runShapeTask(std::istream &istream, std::ostream &ostream)
+  int runShapeTask(std::istream &istream, std::ostream &ostream, std::ostream &err)
   {
     std::istream_iterator< Shape > istreamIterator(istream);
     std::istream_iterator< Shape > istreamIteratorEnd;
     std::vector< Shape > shapes;
     std::copy(istreamIterator, istreamIteratorEnd, std::back_inserter(shapes));
     if (!istream && !istream.eof()) {
-      std::cerr << "Input error";
+      err << "Input error";
       return 1;
     }
     const unsigned int verticesCount = countVertices(shapes);

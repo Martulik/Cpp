@@ -10,9 +10,9 @@ int main(int argc, char *argv[])
   }
   std::string task = argv[1];
   if (task == "1") {
-    return shilyaev::runWordsTask(std::cin, std::cout);
+    return shilyaev::runWordsTask(std::cin, std::cout, std::cerr);
   } else if (task == "2") {
-    return shilyaev::runShapeTask(std::cin, std::cout);
+    return shilyaev::runShapeTask(std::cin, std::cout, std::cerr);
   } else {
     std::cerr << "No such task";
     return 1;

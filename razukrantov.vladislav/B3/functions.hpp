@@ -2,6 +2,7 @@
 #define FUNCTIONS_HPP
 
 #include <cstddef>
+#include <ostream>
 
 namespace razukrantov
 {
@@ -15,9 +16,10 @@ namespace razukrantov
 		return result;
 	}
 
+	std::istream& readName(std::istream& in, std::string& name);
 	void invalidCommand(std::ostream& out);
 	void invalidBookmark(std::ostream& out);
-	void invaildStep(std::ostream& out);
+	void invalidStep(std::ostream& out);
 	void empty(std::ostream& out);
 }
 

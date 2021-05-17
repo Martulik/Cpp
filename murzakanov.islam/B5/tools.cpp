@@ -7,9 +7,13 @@
 
 bool murzakanov::checkIsRectangle(const Shape& shp)
 {
+  if (shp.size() != 4)
+  {
+    return false;
+  }
   std::vector< int > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
-  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5])
+  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[2] != sides[4])
   {
     return true;
   }
@@ -18,6 +22,10 @@ bool murzakanov::checkIsRectangle(const Shape& shp)
 
 bool murzakanov::checkIsSquare(const Shape& shp)
 {
+  if (shp.size() != 4)
+  {
+    return false;
+  }
   std::vector< int > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
   if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[2] == sides[4])

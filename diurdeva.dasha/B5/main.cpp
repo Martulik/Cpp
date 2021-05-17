@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <cstring>
 
 #include "task1.hpp"
 #include "task2.hpp"

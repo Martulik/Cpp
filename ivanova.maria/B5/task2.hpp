@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <iterator>
-#include <numeric>
+#include <algorithm>
 #include "point.hpp"
 #include "count.hpp"
 

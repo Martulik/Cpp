@@ -15,10 +15,10 @@ namespace ferapontov
   }
 
   std::string read(std::istream& in);
-  std::string checkName(std::string& name);
+  std::string readName(std::istream& in);
   std::string checkMarkName(std::string& markName);
   void checkInsertMode(std::string& mode);
-  int checkNumber(std::string& num);
+  void checkNumber(std::string& num);
   bool checkSteps(std::string& steps);
 }
 

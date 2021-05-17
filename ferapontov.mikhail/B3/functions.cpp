@@ -16,14 +16,18 @@ std::string ferapontov::read(std::istream& in)
   return line;
 }
 
-std::string ferapontov::checkName(std::string& name)
+std::string ferapontov::readName(std::istream& in)
 {
+  std::string name;
+  in >> std::ws;
+  std::getline(in, name);
   if (name.front() != '"' || name.back() != '"' || (name.size() < 2))
   {
     throw std::invalid_argument("<INVALID COMMAND>");
   }
   name.pop_back();
   name.erase(0, 1);
+  name.erase(std::remove(name.begin(), name.end(), '\\'), name.end());
   return name;
 }
 
@@ -47,14 +51,12 @@ void ferapontov::checkInsertMode(std::string& mode)
   }
 }
 
-int ferapontov::checkNumber(std::string& num)
+void ferapontov::checkNumber(std::string& num)
 {
   if (!std::all_of(num.begin(), num.end(), ::isdigit))
   {
     throw std::invalid_argument("<INVALID COMMAND>");
   }
-  int number = std::stoi(num);
-  return number;
 }
 
 bool ferapontov::checkSteps(std::string& steps)

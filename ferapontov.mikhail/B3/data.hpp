@@ -9,7 +9,7 @@ namespace ferapontov
   struct data_t
   {
     std::string name;
-    int number;
+    std::string number;
   };
   std::ostream& operator<<(std::ostream& out, const data_t& src);
 }

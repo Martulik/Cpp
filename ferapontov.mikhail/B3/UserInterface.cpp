@@ -7,7 +7,7 @@ fer::Interface::Interface():
 {
 }
 
-void fer::Interface::add(const std::string& name, const int number)
+void fer::Interface::add(const std::string& name, const std::string& number)
 {
   data_t note({name, number});
   book_.pushBack(note);
@@ -23,7 +23,7 @@ void fer::Interface::store(const std::string& firstMark, const std::string& seco
   bookmarks_.insert(std::make_pair(secondMark, bookmarks_[firstMark]));
 }
 
-void fer::Interface::insertNote(std::string& mode, std::string& markName, std::string& name, int number)
+void fer::Interface::insertNote(std::string& mode, std::string& markName, std::string& name, std::string& number)
 {
   if (mode == "before")
   {

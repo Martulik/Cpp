@@ -1,6 +1,6 @@
 #include <sstream>
 #include <boost/test/unit_test.hpp>
-#include "shape.hpp"
+#include "task2.hpp"
 
 namespace iva = ivanova;
 

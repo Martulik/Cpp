@@ -1,6 +1,8 @@
 #include "data-struct.hpp"
 
 #include <iostream>
+#include <sstream>
+#include <string>
 
 #include "tools.hpp"
 
@@ -8,17 +10,26 @@ namespace lab = savchuk;
 
 std::istream& lab::operator>>(std::istream& is, lab::DataStruct& ds)
 {
-  char delim = ',';
-  int key1 = readKey(is, delim);
-  int key2 = readKey(is, delim);
-  std::string str = readString(is);
-  if (is.fail() && !is.eof())
+  std::string data;
+  if (getline(is, data) && !data.empty())
   {
-    throw std::runtime_error("oops");
+    std::istringstream ss(data);
+    char delim = ',';
+    int key1 = readKey(ss, delim);
+    int key2 = readKey(ss, delim);
+    std::string str = readString(ss);
+    if (ss.fail())
+    {
+      is.setstate(std::ios::failbit);
+    }
+    else
+    {
+      ds = { key1, key2, str };
+    }
   }
   else
   {
-    ds = { key1, key2, str };
+    is.setstate(std::ios::failbit);
   }
   return is;
 }

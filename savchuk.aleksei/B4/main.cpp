@@ -16,6 +16,10 @@ int main()
     std::istream_iterator< lab::DataStruct > first(std::cin);
     std::istream_iterator< lab::DataStruct > last;
     std::vector< lab::DataStruct > v(first, last);
+    if (std::cin.fail() && !std::cin.eof())
+    {
+      throw std::runtime_error("Input error");
+    }
     std::sort(v.begin(), v.end(), lab::compare);
     std::copy(v.begin(), v.end(), std::ostream_iterator< lab::DataStruct >(std::cout, "\n"));
   }

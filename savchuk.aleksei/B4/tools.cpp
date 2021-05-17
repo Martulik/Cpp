@@ -12,17 +12,13 @@ int lab::readKey(std::istream& is, char delim)
   if (is)
   {
     is >> std::ws >> key;
-    if (!is.eof())
+    if (is.get() != delim)
     {
-      if (is.get() != delim || is.fail())
-      {
-        is.setstate(std::ios::failbit);
-        return key;
-      }
-      if (std::abs(key) > 5)
-      {
-        throw std::invalid_argument("invalid key");
-      }
+      is.setstate(std::ios::failbit);
+    }
+    else if (std::abs(key) > 5)
+    {
+      throw std::invalid_argument("Key out of range");
     }
   }
   return key;
@@ -33,9 +29,9 @@ std::string lab::readString(std::istream& is)
   std::string str;
   if (is)
   {
-    if (!getline(is, str) || str.empty())
+    if (!getline(is >> std::ws, str) || str.empty())
     {
-      throw std::runtime_error("input error");
+      is.setstate(std::ios::failbit);
     }
   }
   return str;

@@ -10,7 +10,6 @@
 namespace ivanova
 {
   std::istream &operator >>(std::istream &in, Shape &shp);
-//  std::ostream &operator <<(std::ostream &out, const std::vector < Shape > &shp);
   std::ostream &operator <<(std::ostream &out, const Shape &elem);
   void doCount(count &shapes, std::vector < Shape > &vec);
   void deletePentagons(std::vector < Shape > &vec);
@@ -53,7 +52,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   std::istringstream iss(line);
   iss >> vertices;
   std::istream_iterator < Point > isi(iss);
-  shp = std::move(std::vector< Point > (isi, std::istream_iterator< Point >()));
+   shp = std::move(std::vector< Point > (isi, std::istream_iterator< Point >()));
   return in;
 }
 

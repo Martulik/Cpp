@@ -6,11 +6,6 @@
 
 namespace iva = ivanova;
 
-namespace ivanova
-{
-  bool checkDiagonalsAndSides(const Shape &shp);
-  bool checkNum(std::string &num);
-}
 bool iva::isRect(const iva::Shape &shp)
 {
   return (shp.size() == 4 && iva::checkDiagonalsAndSides(shp));
@@ -34,25 +29,25 @@ bool iva::isPentagon(const iva::Shape &shp)
 std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;
-  std::getline(in, str, '(');
+  std::getline(in,str, '(');
   if (str.empty())
   {
     return in;
   }
-  std::getline(in, str, ';');
-  if (!checkNum(str))
+  in >> point.x;
+  std::getline(in >> std::ws, str, ';');
+  if (!str.empty())
   {
-    std::cerr << "1invalid input";
+    std::cerr << "invalid input";
     exit(1);
   }
-  point.x = std::stoi(str);
-  std::getline(in, str, ')');
-  if (!checkNum(str))
+  in >> point.y;
+  std::getline(in >> std::ws, str, ')');
+  if (!str.empty())
   {
-    std::cerr << "2invalid input";
+    std::cerr << "invalid input";
     exit(1);
   }
-  point.y = std::stoi(str);
   return in;
 }
 
@@ -82,21 +77,4 @@ bool iva::checkDiagonalsAndSides(const iva::Shape &shp)
   {
     return false;
   }
-}
-
-bool iva::checkNum(std::string &num)
-{
-  std::string check;
-  std::for_each(num.begin(), num.end(), [&check](const char &s){ if (s != ' ') { check += s; } });
-  bool b = true;
-  if (*check.begin() == '+' || *check.begin() == '-')
-  {
-    b = (std::any_of(check.begin() + 1, check.end(), [](const char &elem){ return (!std::isdigit(elem)); }));
-  }
-  else
-  {
-    std::cout << *num.end();
-    b = (std::any_of(check.begin(), check.end(), [](const char &elem){ return (!std::isdigit(elem));}));
-  }
-  return !b;
 }

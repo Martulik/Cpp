@@ -19,5 +19,6 @@ namespace ivanova
   bool isTriangle(const Shape& shp);
   bool isSquare(const Shape &shp);
   bool isPentagon(const Shape &shp);
+  bool checkDiagonalsAndSides(const Shape &shp);
 }
 #endif

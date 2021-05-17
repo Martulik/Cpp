@@ -61,10 +61,10 @@ namespace shilyaev {
     const std::vector< Point > points = createPointsVector(shapes);
     sortShapes(shapes);
     ostream << "Vertices: " << verticesCount
-              << "\nTriangles: " << trianglesCount
-              << "\nSquares: " << squaresCount
-              << "\nRectangles: " << rectanglesCount
-              << "\nPoints: ";
+            << "\nTriangles: " << trianglesCount
+            << "\nSquares: " << squaresCount
+            << "\nRectangles: " << rectanglesCount
+            << "\nPoints: ";
     std::ostream_iterator< Point > pointOstreamIterator(ostream, " ");
     std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(ostream, " "));
     ostream << "\nShapes: \n";

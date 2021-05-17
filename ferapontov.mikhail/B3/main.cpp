@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
   {
     if (argc != 2)
     {
-      throw std::runtime_error("<Invalid number of arguments>");
+      throw std::invalid_argument("<Invalid number of arguments>");
     }
 
     int taskNumber = 0;
@@ -19,11 +19,11 @@ int main(int argc, char* argv[])
     }
     else
     {
-      throw std::runtime_error("<Invalid Args>");
+      throw std::invalid_argument("<Invalid Args>");
     }
     if (taskNumber != 1 && taskNumber != 2)
     {
-      throw std::runtime_error("<Invalid TaskNumber>");
+      throw std::invalid_argument("<Invalid TaskNumber>");
     }
     else if (taskNumber == 1)
     {
@@ -33,6 +33,11 @@ int main(int argc, char* argv[])
     {
       ferapontov::task2(std::cout);
     }
+  }
+  catch (std::invalid_argument& e)
+  {
+    std::cerr << e.what() << "\n";
+    std::exit(1);
   }
   catch (std::runtime_error& e)
   {

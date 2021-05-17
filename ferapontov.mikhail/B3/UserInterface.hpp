@@ -9,19 +9,21 @@ namespace ferapontov
   class Interface
   {
     public:
+      using map_iter = std::map< std::string, const_iter >::iterator;
+      using const_map_iter = std::map< std::string, const_iter >::const_iterator;
       Interface();
 
-      void add(std::string& name, int number);
-      void store(std::string& oldMark, std::string& newMark);
-      void insertNote(std::string& mode, std::string& markName, int number, std::string& name);
+      void add(const std::string& name, const int number);
+      void store(const std::string& firstMark, const std::string& secondMark);
+      void insertNote(std::string& mode, std::string& markName, std::string& name, int number);
       void deleteNote(std::string& markName);
-      void show(std::ostream& out, std::string& markName);
-      void move(std::string& markName, int steps);
+      ferapontov::data_t show(std::string& markName);
+      void move(std::string& markName, std::string& steps);
     private:
       PhoneBook book_;
-      std::map< std::string, iter > bookmarks_;
+      std::map< const std::string, const_iter > bookmarks_;
 
-      void checkBookMark(std::string& name) const;
+      void checkBookMark(const std::string& name) const;
   };
 }
 

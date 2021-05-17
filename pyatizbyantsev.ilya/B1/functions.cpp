@@ -6,7 +6,7 @@
 
 bool pyatizbyantsev::checkSpaces(const char* str)
 {
-  return (strchr(str, ' '));
+  return (std::strchr(str, ' '));
 }
 
 bool pyatizbyantsev::checkNumber(const char* str)

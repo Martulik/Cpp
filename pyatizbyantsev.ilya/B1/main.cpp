@@ -24,25 +24,25 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("The first argument must be the task number");
     }
 
-    if ((argc == 3) && (atoi(argv[1]) == 1))
+    if ((argc == 3) && (std::atoi(argv[1]) == 1))
     {
       lab::taskOne(argv[2], std::cin, std::cout);
     }
-    else if ((argc == 3) && (atoi(argv[1]) == 2))
+    else if ((argc == 3) && (std::atoi(argv[1]) == 2))
     {
       lab::taskTwo(argv[2], std::cout);
     }
-    else if ((argc == 2) && (atoi(argv[1]) == 3))
+    else if ((argc == 2) && (std::atoi(argv[1]) == 3))
     {
       lab::taskThree(std::cin, std::cout);
     }
-    else if ((argc == 4) && (atoi(argv[1]) == 4))
+    else if ((argc == 4) && (std::atoi(argv[1]) == 4))
     {
       if (!lab::checkNumber(argv[3]))
       {
         throw std::invalid_argument("Invalid array size");
       }
-      lab::taskFour(argv[2], atoi(argv[3]), std::cout);
+      lab::taskFour(argv[2], std::atoi(argv[3]), std::cout);
     }
     else
     {

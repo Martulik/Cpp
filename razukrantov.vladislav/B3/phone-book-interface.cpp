@@ -74,7 +74,7 @@ void razukrantov::PhoneBookInterface::erase(const std::string& bookMark)
 		  {
 				i->second = book_->begin();
 			}
-			else 
+			else
 			{
 				i->second = std::next(temp->second);
 			}

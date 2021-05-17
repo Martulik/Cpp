@@ -16,13 +16,13 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
 	std::string string;
 	while (std::getline(in, string) && !string.empty())
 	{
-		std::istringstream input(string);
+		std::stringstream input(string);
 		std::string command;
 		input >> command;
 		if (command == "add")
 		{
 			std::string number;
-			in >> number;
+			input >> number;
 			if (!std::all_of(number.begin(), number.end(), ::isdigit))
 			{
 				razukrantov::invalidCommand(out);
@@ -30,7 +30,7 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
 			}
 			std::string name;
 			razukrantov::readName(input, name);
-			if (in)
+			if (input)
 			{
 				interface.add({ number, name });
 			}

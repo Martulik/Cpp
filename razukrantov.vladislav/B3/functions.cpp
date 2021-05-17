@@ -52,7 +52,7 @@ void razukrantov::invalidBookmark(std::ostream& out)
 
 void razukrantov::invalidStep(std::ostream& out)
 {
-	out << "INVALID STEP>\n";
+	out << "<INVALID STEP>\n";
 }
 
 void razukrantov::empty(std::ostream& out)

@@ -73,7 +73,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
 std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
 {
   std::ostream_iterator< Point > oit(out);
-  out << elem.size() << " ";
+  out << elem.size();
   std::copy(elem.begin(), elem.end(), oit);
   return out;
 }

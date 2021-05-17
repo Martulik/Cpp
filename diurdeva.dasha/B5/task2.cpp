@@ -38,5 +38,5 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
     [](const Shape& shape1, const Shape& shape2) {return getType(shape2) > getType(shape1); });
 
   out << "\nShapes:\n";
-  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator<Shape>(out));
+  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator<Shape>(out, "\n"));
 }

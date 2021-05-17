@@ -38,7 +38,7 @@ std::ostream& diurdeva::operator<<(std::ostream& out, const Shape& shape)
 {
   out << shape.size() << " ";
   std::copy(shape.begin(), shape.end(), std::ostream_iterator<Point>(out, " "));
-  return out << "\n";
+  return out;
 }
 
 diurdeva::ShapeType diurdeva::getType(const Shape& shape)

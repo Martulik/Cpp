@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_SUITE(test_shape)
 
 BOOST_AUTO_TEST_CASE(success_input_shape)
 {
-  std::istringstream in("4  (13;13)  (13; 45)  (45; 45)  (45; 13) ");
+  std::istringstream in("3  (13;13)  (13; 45)  (36; 13) ");
   diurdeva::Shape shape;
   in >> shape;
   BOOST_CHECK(shape.size() == 4);
@@ -37,9 +37,7 @@ BOOST_AUTO_TEST_CASE(success_input_shape)
   BOOST_CHECK_EQUAL(shape[0].y, 13);
   BOOST_CHECK_EQUAL(shape[1].x, 13);
   BOOST_CHECK_EQUAL(shape[1].y, 45);
-  BOOST_CHECK_EQUAL(shape[2].x, 45);
-  BOOST_CHECK_EQUAL(shape[2].y, 45);
-  BOOST_CHECK_EQUAL(shape[2].x, 45);
+  BOOST_CHECK_EQUAL(shape[2].x, 36);
   BOOST_CHECK_EQUAL(shape[2].y, 13);
 }
 
@@ -53,9 +51,9 @@ BOOST_AUTO_TEST_CASE(wrong_input_shape)
 BOOST_AUTO_TEST_CASE(output_shape)
 {
   std::ostringstream out;
-  diurdeva::Shape shape{ {13, 45}, {25, 71}, {45, 13} };
+  diurdeva::Shape shape{{13, 45}, {25, 71}, {45, 13}};
   out << shape;
-  BOOST_CHECK_EQUAL(out.str(), "3 (13; 45) (25; 71) (45; 13) ");
+  BOOST_CHECK_EQUAL(out.str(), "3 (13; 45) (25; 71) (45; 13)");
 }
 
 BOOST_AUTO_TEST_CASE(IsShape)

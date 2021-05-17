@@ -51,10 +51,20 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   }
   std::istringstream iss(line);
   iss >> vertices;
+  if (vertices < 3)
+  {
+    std::cerr << "invalid input 4";
+    exit(1);
+  }
   Shape temp;
   temp.reserve(vertices);
   std::istream_iterator < Point > isi(iss);
   std::copy(isi, std::istream_iterator < Point >(), std::back_inserter(temp));
+  if (!iss && !iss.eof() || temp.size() != vertices)
+  {
+    std::cerr << "invalid input 3";
+    exit(1);
+  }
   shp.swap(temp);
   return in;
 }

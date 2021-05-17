@@ -4,7 +4,6 @@
 #include <cctype>
 #include <istream>
 
-
 std::string ferapontov::read(std::istream& in)
 {
   std::string line;
@@ -45,9 +44,9 @@ std::string ferapontov::checkMarkName(std::string& markName)
 
 void ferapontov::checkInsertMode(std::string& mode)
 {
-  if (mode != "before" || mode != "after")
+  if (mode != "before" && mode != "after")
   {
-    throw std::invalid_argument("<INVALID COMMAND>");
+    throw std::invalid_argument("<INVALID COMMAND>2");
   }
 }
 
@@ -65,7 +64,7 @@ bool ferapontov::checkSteps(std::string& steps)
   {
     return true;
   }
-  if (steps[0] == '-' && (std::all_of(steps.begin() + 1, steps.end(), ::isdigit)))
+  if ((steps[0] == '-' || steps[0] == '+') && (std::all_of(steps.begin() + 1, steps.end(), ::isdigit)))
   {
     return true;
   }

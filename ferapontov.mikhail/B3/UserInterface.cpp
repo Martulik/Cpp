@@ -25,11 +25,16 @@ void fer::Interface::store(const std::string& firstMark, const std::string& seco
 
 void fer::Interface::insertNote(std::string& mode, std::string& markName, std::string& name, std::string& number)
 {
+  if (book_.empty())
+  {
+    add(name, number);
+    return;
+  }
   if (mode == "before")
   {
     book_.insertPrev(bookmarks_.find(markName)->second, {name, number});
   }
-  if (mode == "after")
+  else if (mode == "after")
   {
     book_.insertNext(bookmarks_.find(markName)->second, {name, number});
   }

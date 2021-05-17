@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iterator>
 #include <algorithm>
-#include <numeric> 
+#include <numeric>
 #include "shape.hpp"
 
 void diurdeva::task2(std::istream& in, std::ostream& out)

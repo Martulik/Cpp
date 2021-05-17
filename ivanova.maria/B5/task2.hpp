@@ -51,17 +51,13 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   }
   std::istringstream iss(line);
   iss >> vertices;
+  Shape temp;
+  temp.reserve(vertices);
   std::istream_iterator < Point > isi(iss);
-   shp = std::move(std::vector< Point > (isi, std::istream_iterator< Point >()));
+  std::copy(isi, std::istream_iterator < Point >(), std::back_inserter(temp));
+  shp.swap(temp);
   return in;
 }
-
-//std::ostream &ivanova::operator <<(std::ostream &out, const std::vector < Shape > &shp)
-//{
-//  std::ostream_iterator< Shape > oit(out);
-//  std::copy(shp.begin(), shp.end(), oit);
-//  return out;
-//}
 
 std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
 {

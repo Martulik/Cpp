@@ -56,7 +56,7 @@ std::istream &lab::operator>>(std::istream &in, Point &point)
 
 std::istream &lab::operator>>(std::istream &in, Shape &shape)
 {
-  int nVertices = 0;
+  unsigned int nVertices = 0;
   char trash = '\0';
   in >> nVertices;
   in >> std::noskipws >> trash;

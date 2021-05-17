@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_SUITE(shape_ostream)
     std::ostringstream oss;
     lab::Shape shape{{723,   3968}, {723,   26}, {-3219, 26}};
     oss << shape;
-    BOOST_CHECK_EQUAL(oss.str(), "3  (723; 3968)  (723; 26)  (-3219; 26) ");
+    BOOST_CHECK_EQUAL(oss.str(), "3 (723; 3968) (723; 26) (-3219; 26) ");
   }
 
 BOOST_AUTO_TEST_SUITE_END()

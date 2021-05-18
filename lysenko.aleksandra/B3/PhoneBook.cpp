@@ -121,7 +121,6 @@ void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool forward, 
 
 void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool first)
 {
-  iteratorMark curr = findThisMark(markName, *this);
   constIterator note;
 
   if (first)

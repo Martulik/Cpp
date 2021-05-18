@@ -216,12 +216,12 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
   {
     if (steps == "first")
     {
-      myBook.removeThisbookMark(markName, 1, 0, 0, steps);
+      myBook.removeThisBookMark(markName, 1);
     }
 
     else if (steps == "last")
     {
-      myBook.removeThisbookMark(markName, 0, 1, 0, steps);
+      myBook.removeThisBookMark(markName, 0);
     }
 
     else if ((((steps[0] == '+') || (steps[0] == '-')) && (isDigitsOnly(cuttedOne))) || (isDigitsOnly(steps)))
@@ -229,11 +229,11 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
       int stepsInt = std::stoi(steps);
       if (stepsInt > 0)
       {
-        myBook.removeThisbookMark(markName, 0, 0, 1, steps);
+        myBook.removeThisBookMark(markName, 1, steps);
       }
       else
       {
-        myBook.removeThisbookMark(markName, 0, 0, 0, steps);
+        myBook.removeThisBookMark(markName, 0, steps);
       }
     }
 

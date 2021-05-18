@@ -29,7 +29,8 @@ namespace lysenko
     void createNewbookMarkHere(std::string oldMarkName, std::string newMarkName);
     void insertNoteNextTobookMark(bool before, std::string markName, std::string name, std::string number);
     void deleteThisNote(std::string markName);
-    void removeThisbookMark(std::string markName, bool first, bool last, bool forward, std::string steps);
+    void removeThisBookMark(std::string markName, bool forward, std::string steps);
+    void removeThisBookMark(std::string markName, bool first);
 
     constIterator showThisNote(std::string markName);
 

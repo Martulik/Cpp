@@ -11,8 +11,8 @@ namespace ivanova
 {
   std::istream &operator >>(std::istream &in, Shape &shp);
   std::ostream &operator <<(std::ostream &out, const Shape &elem);
-  void doCount(count &shapes, std::vector < Shape > &vec);
-  void deletePentagons(std::vector < Shape > &vec);
+//  void doCount(count &shapes, std::vector < Shape > &vec);
+//  void deletePentagons(std::vector < Shape > &vec);
   bool compare(Shape &elem1, Shape &elem2);
 
   int task2(std::istream &in, std::ostream &out)
@@ -24,8 +24,13 @@ namespace ivanova
     }
     std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
     count info;
-    doCount(info, shapes);
-    deletePentagons(shapes);
+    std::for_each(shapes.begin(), shapes.end(),[&info](const Shape &elem){ info.countShape(elem); });
+//    doCount(info, shapes);
+    using shp = const Shape;
+    std::vector < Shape > temp;
+    std::for_each(shapes.begin(), shapes.end(), [&temp](shp &elem){ if (!isPentagon(elem)) { temp.push_back(elem);}});
+    shapes.swap(temp);
+//    deletePentagons(shapes);
     std::vector< Point > points;
     points.reserve(shapes.size());
     std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &elem){ points.push_back(elem.at(0)); });
@@ -82,30 +87,33 @@ std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
   return out;
 }
 
-void ivanova::doCount(count &shapes, std::vector < Shape > &vec)
-{
-  std::for_each(vec.begin(), vec.end(),[&shapes](const Shape &elem){ shapes.countShape(elem); });
-}
-
-void ivanova::deletePentagons(std::vector < ivanova::Shape > &vec)
-{
-  using shp = const Shape;
-  std::vector < Shape > temp;
-  std::for_each(vec.begin(), vec.end(), [&temp](shp &elem){ if (!isPentagon(elem)) { temp.push_back(elem);}});
-  vec.swap(temp);
-}
+//void ivanova::doCount(count &shapes, std::vector < Shape > &vec)
+//{
+//  std::for_each(vec.begin(), vec.end(),[&shapes](const Shape &elem){ shapes.countShape(elem); });
+//}
+//
+//void ivanova::deletePentagons(std::vector < ivanova::Shape > &vec)
+//{
+//  using shp = const Shape;
+//  std::vector < Shape > temp;
+//  std::for_each(vec.begin(), vec.end(), [&temp](shp &elem){ if (!isPentagon(elem)) { temp.push_back(elem);}});
+//  vec.swap(temp);
+//}
 
 bool ivanova::compare(Shape &elem1, Shape &elem2)
 {
-  if (isSquare(elem1) && isRect(elem2))
+  if (elem1.size() < elem2.size())
   {
     return true;
   }
-  if (isRect(elem1) && isSquare(elem2))
+  if (isSquare(elem1))
   {
-    return false;
+    if (isRect(elem2))
+    {
+      return true;
+    }
   }
-  return (elem1.size() < elem2.size());
+  return false;
 }
 
 #endif

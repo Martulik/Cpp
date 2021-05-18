@@ -16,17 +16,6 @@ lysenko::Contacts::constIterator lysenko::Contacts::getEnd() const
   return content_.end();
 }
 
-void lysenko::Contacts::replaceNote(iterator curr, Note newNote)
-{
-  *curr = newNote;
-}
-
-lysenko::Contacts::constIterator lysenko::Contacts::showCurrNote(constIterator curr) const
-{
-  constIterator note = curr;
-  return note;
-}
-
 void lysenko::Contacts::insert(constIterator curr, const Note newNote, bool before)
 {
   if (before)
@@ -52,7 +41,7 @@ void lysenko::Contacts::deleteNote(constIterator curr)
   content_.erase(curr);
 }
 
-void lysenko::Contacts::pushBack(Note newNote)
+void lysenko::Contacts::pushBack(Note& newNote)
 {
   content_.push_back(newNote);
 }

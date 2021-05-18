@@ -22,7 +22,6 @@ void lysenko::PhoneBook::addNumber(std::string name, std::string number)
   }
 }
 
-
 void lysenko::PhoneBook::createNewbookMarkHere(std::string oldMarkName, std::string newMarkName)
 {
   iteratorMark newbookMark = findThisMark(oldMarkName, *this);
@@ -44,7 +43,6 @@ void lysenko::PhoneBook::insertNoteNextTobookMark(bool before, std::string markN
     contacts_.insert(curr->contact, newNote, before);
   }
 }
-
 
 void lysenko::PhoneBook::deleteThisNote(std::string markName)
 {
@@ -97,7 +95,7 @@ void lysenko::PhoneBook::deleteThisNote(std::string markName)
 lysenko::PhoneBook::constIterator lysenko::PhoneBook::showThisNote(std::string markName)
 {
   iteratorMark curr = findThisMark(markName, *this);
-  constIterator thisNote = contacts_.showCurrNote(curr->contact);
+  constIterator thisNote = curr->contact;
   return thisNote;
 }
 

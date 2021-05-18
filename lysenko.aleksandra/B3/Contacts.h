@@ -23,12 +23,9 @@ namespace lysenko
     constIterator getBegin() const;
     constIterator getEnd() const;
 
-    constIterator showCurrNote(constIterator curr) const;
-
-    void replaceNote(iterator curr, Note newNote);
     void insert(constIterator curr, const Note newNote, bool before);
     void deleteNote(constIterator curr);
-    void pushBack(Note newNote);
+    void pushBack(Note& newNote);
 
   private:
     std::list< Note > content_;

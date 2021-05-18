@@ -1,7 +1,7 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 #include <sstream>
-#include <iostream>
+#include <iosfwd>
 #include <unordered_map>
 #include "phonebook.hpp"
 
@@ -14,14 +14,13 @@ namespace dushechkina
 {
   using MarkList = std::unordered_map<std::string, dushechkina::Phonebook::iterator>;
 
-  void runCommand(Phonebook& phonebook, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
-
-  void add(Phonebook& phonebook, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
-  void store(Phonebook&, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
-  void insert(Phonebook& phonebook, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
-  void remove(Phonebook& phonebook, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
-  void show(Phonebook& phonebook, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
-  void move(Phonebook& phonebook, MarkList& marks, std::istream & = std::cin, std::ostream & = std::cout);
+  void runCommand(Phonebook& phonebook, MarkList& marks, std::istream &, std::ostream &);
+  void add(Phonebook& phonebook, MarkList& marks, std::istream &, std::ostream &);
+  void store(Phonebook&, MarkList& marks, std::istream &, std::ostream &);
+  void insert(Phonebook& phonebook, MarkList& marks, std::istream &, std::ostream &);
+  void remove(Phonebook& phonebook, MarkList& marks, std::istream &, std::ostream &);
+  void show(Phonebook& phonebook, MarkList& marks, std::istream &, std::ostream &);
+  void move(Phonebook& phonebook, MarkList& marks, std::istream &, std::ostream &);
 
   std::string getPhoneNumber(std::istream& in);
   std::string getName(std::istream& in);

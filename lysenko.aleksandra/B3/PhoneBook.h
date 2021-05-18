@@ -38,8 +38,8 @@ namespace lysenko
     friend lysenko::PhoneBook::iteratorMark findThisMark(std::string thisMark, PhoneBook& myBook);
     friend lysenko::PhoneBook::iteratorMark getEndOfbookMarks(PhoneBook& myBook);
   private:
-    std::list< bookMark > bookMarks_;
     Contacts contacts_;
+    std::list< bookMark > bookMarks_;
   };
 }
 #endif

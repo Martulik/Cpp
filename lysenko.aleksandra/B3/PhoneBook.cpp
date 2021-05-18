@@ -3,7 +3,7 @@
 #include <list>
 
 lysenko::PhoneBook::PhoneBook():
-  bookMarks_({ lysenko::PhoneBook::bookMark{"current", contacts_.getBegin()} }),
+  bookMarks_{ lysenko::PhoneBook::bookMark{"current", contacts_.getBegin()} },
   contacts_()
 {}
 

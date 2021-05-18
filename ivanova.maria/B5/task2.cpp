@@ -35,7 +35,6 @@ int iva::task2(std::istream &in, std::ostream &out)
   return 0;
 }
 
-
 std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
 {
   size_t vertices = 0;
@@ -53,7 +52,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     exit(1);
   }
   std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(shp));
-  if (shp.size() != vertices)
+  if (shp.size() != vertices || (!iss.eof() && !iss))
   {
     std::cerr << "invalid input 3";
     exit(1);

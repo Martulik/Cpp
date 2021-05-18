@@ -1,6 +1,6 @@
 #ifndef COMMON_FUNCTIONS_HPP
 #define COMMON_FUNCTIONS_HPP
-#include <iostream>
+#include <iosfwd>
 #include <string>
 namespace dushechkina
 {

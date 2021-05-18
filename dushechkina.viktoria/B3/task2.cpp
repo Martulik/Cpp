@@ -9,8 +9,8 @@ void dushechkina::task2(std::istream&, std::ostream& out)
   std::ostream_iterator< unsigned int > output(out, " ");
 
   std::copy(container.begin(), container.end(), output);
-  std::cout << "\n";
+  out << "\n";
 
   std::reverse_copy(container.begin(), container.end(), output);
-  std::cout << "\n";
+  out << "\n";
 }

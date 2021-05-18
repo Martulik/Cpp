@@ -89,9 +89,10 @@ void ivanova::doCount(count &shapes, std::vector < Shape > &vec)
 
 void ivanova::deletePentagons(std::vector < ivanova::Shape > &vec)
 {
-  auto it = vec.begin();
   using shp = const Shape;
-  std::for_each(vec.begin(), vec.end(), [&vec, &it](shp &elem){ if (isPentagon(elem)) { vec.erase(it); } it++;});
+  std::vector < Shape > temp;
+  std::for_each(vec.begin(), vec.end(), [&temp](shp &elem){ if (!isPentagon(elem)) { temp.push_back(elem);}});
+  vec.swap(temp);
 }
 
 bool ivanova::compare(Shape &elem1, Shape &elem2)

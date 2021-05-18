@@ -12,8 +12,8 @@ void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream
     return;
   }
 
-  checkForFailInput(in);
-  checkForEmptyInput(input);
+  dushechkina::checkForFailInput(in);
+  dushechkina::checkForEmptyInput(input);
 
   std::istringstream stream(input);
   std::string command;

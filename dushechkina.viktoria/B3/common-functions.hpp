@@ -3,7 +3,9 @@
 #include <iostream>
 #include <string>
 
-void checkForFailInput(const std::istream& in);
-void checkForEmptyInput(const std::string& in);
-
+namespace dushechkina
+{
+	void checkForFailInput(const std::istream& in);
+	void checkForEmptyInput(const std::string& in);
+}
 #endif

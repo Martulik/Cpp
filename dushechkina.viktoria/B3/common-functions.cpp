@@ -3,7 +3,7 @@
 #include <string>
 #include <cctype>
 
-void checkForFailInput(const std::istream& in)
+void dushechkina::checkForFailInput(const std::istream& in)
 {
   if (in.bad())
   {
@@ -16,7 +16,7 @@ void checkForFailInput(const std::istream& in)
   }
 }
 
-void checkForEmptyInput(const std::string& in)
+void dushechkina::checkForEmptyInput(const std::string& in)
 {
   if (in.empty())
   {

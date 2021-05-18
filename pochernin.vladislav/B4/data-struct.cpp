@@ -4,8 +4,6 @@
 #include <string>
 #include <sstream>
 
-#include "functions.hpp"
-
 bool pochernin::operator<(const DataStruct& lhs, const DataStruct& rhs)
 {
   if (lhs.key1 != rhs.key1)
@@ -57,4 +55,26 @@ std::istream& pochernin::operator>>(std::istream& in, DataStruct& dataStruct)
 
   dataStruct.str = str;
   return in;
+}
+
+int pochernin::getKey(std::istream& in)
+{
+  std::string str;
+  std::getline(in, str, ',');
+  int key = 0;
+  try
+  {
+    key = std::stoi(str);
+  }
+  catch (std::exception& error)
+  {
+    in.setstate(std::ios::failbit);
+    return 0;
+  }
+  if (std::abs(key) > 5)
+  {
+    in.setstate(std::ios::failbit);
+    return 0;
+  }
+  return key;
 }

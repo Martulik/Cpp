@@ -23,3 +23,23 @@ void dushechkina::checkForEmptyInput(const std::string& in)
     throw std::invalid_argument("Incorrect input,it must have command\n");
   }
 }
+
+void dushechkina::empty(std::ostream& out)
+{
+  out << "<EMPTY>\n";
+}
+
+void dushechkina::invalidCommand(std::ostream& out)
+{
+  out << "<INVALID COMMAND>\n";
+}
+
+void dushechkina::invalidBookmark(std::ostream& out)
+{
+  out << "<INVALID BOOKMARK>\n";
+}
+
+void dushechkina::invalidStep(std::ostream& out)
+{
+  out << "<INVALID STEP>\n";
+}

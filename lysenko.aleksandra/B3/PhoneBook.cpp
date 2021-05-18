@@ -3,11 +3,9 @@
 #include <list>
 
 lysenko::PhoneBook::PhoneBook():
-  bookMarks_(),
+  bookMarks_({ lysenko::PhoneBook::bookMark{"current", contacts_.getBegin()} }),
   contacts_()
-{
-  bookMarks_.push_front({"current", contacts_.getBegin()});
-};
+{}
 
 
 void lysenko::PhoneBook::addNumber(std::string name, std::string number)

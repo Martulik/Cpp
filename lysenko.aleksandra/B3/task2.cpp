@@ -3,16 +3,16 @@
 #include <iostream>
 #include <algorithm>
 
-#include "container.h"
+#include "FactorialList.h"
 
 int lysenko::task2(std::ostream& out)
 {
-  lysenko::Container factorial;
+  lysenko::FactorialList factorial;
 
-  std::copy(factorial.begin(), factorial.end(), std::ostream_iterator< size_t >(out, " "));
+  std::copy(factorial.begin(), factorial.end(), std::ostream_iterator< unsigned int >(out, " "));
   out << '\n';
 
-  std::reverse_copy(factorial.begin(), factorial.end(), std::ostream_iterator< size_t >(out, " "));
+  std::reverse_copy(factorial.begin(), factorial.end(), std::ostream_iterator< unsigned int >(out, " "));
   out << '\n';
 
   return 0;

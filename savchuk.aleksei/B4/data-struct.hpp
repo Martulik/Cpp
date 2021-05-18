@@ -15,6 +15,9 @@ namespace savchuk
 
   std::istream& operator>>(std::istream& is, DataStruct& ds);
   std::ostream& operator<<(std::ostream& os, const DataStruct& ds);
+
+  int readKey(std::istream& is, char delim);
+  std::string readString(std::istream& is);
 }
 
 #endif

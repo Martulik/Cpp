@@ -20,12 +20,6 @@ bool iva::isSquare(const iva::Shape &shp)
   return (shp.size() == 4 && iva::checkSidesForSquare(shp));
 }
 
-bool iva::isPentagon(const iva::Shape &shp)
-{
-  return (shp.size() == 5);
-}
-
-
 std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;

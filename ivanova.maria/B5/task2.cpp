@@ -19,7 +19,8 @@ int iva::task2(std::istream &in, std::ostream &out)
   int tri = std::count_if(shapes.begin(), shapes.end(), isTriangle);
   int sqr = std::count_if(shapes.begin(), shapes.end(), isSquare);
   int rect = std::count_if(shapes.begin(), shapes.end(), isRect);
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
+  using cSh = const Shape;
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){return shp.size() == 5; }), shapes.end());
   std::vector< Point > points;
   std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &elem){ points.push_back(elem[0]); });
   std::sort(shapes.begin(), shapes.end(), compare);
@@ -51,14 +52,12 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     std::cerr << "invalid input 4";
     exit(1);
   }
-//  Shape tmp;
   std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(shp));
   if (shp.size() != vertices)
   {
     std::cerr << "invalid input 3";
     exit(1);
   }
-//  shp.swap(tmp);
   return in;
 }
 

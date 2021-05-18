@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <iterator>
 
 std::istream& murzakanov::operator>>(std::istream& in, Point& point)
 {
@@ -12,7 +13,7 @@ std::istream& murzakanov::operator>>(std::istream& in, Point& point)
   char semicolon = ';';
   char bracketClose = ')';
   in >> bracketOpen >> point.x >> semicolon >> point.y >> bracketClose;
-  if (!in || bracketOpen != '(' && bracketClose != ')' || semicolon != ';')
+  if (!in || bracketOpen != '(' || bracketClose != ')' || semicolon != ';')
   {
     in.setstate(std::ios_base::failbit);
   }
@@ -27,12 +28,7 @@ std::istream& murzakanov::operator >>(std::istream& in, murzakanov::Shape& shp)
     return in;
   }
   std::istringstream lin(line);
-  char bracketOp = '\0';
-  char bracketClose = '\0';
-  char semicolon = '\0';
-  int x = 0;
-  int y = 0;
-  int n = 0;
+  size_t n = 0;
   lin >> n;
   std::istream_iterator< murzakanov::Point > firstIterator(lin);
   std::istream_iterator< murzakanov::Point > lastIterator;

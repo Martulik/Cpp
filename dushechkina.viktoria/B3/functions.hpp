@@ -5,6 +5,9 @@
 #include <unordered_map>
 #include "phonebook.hpp"
 
+#define EMPTY "<EMPTY>\n"
+#define INVALID_COMMAND "<INVALID COMMAND>\n"
+#define INVALID_BOOKMARK "<INVALID BOOKMARK>\n"
 #define INVALID_STEP "<INVALID STEP>\n"
 
 namespace dushechkina

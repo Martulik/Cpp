@@ -12,8 +12,8 @@ void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream
     return;
   }
 
-  dushechkina::checkForFailInput(in);
-  dushechkina::checkForEmptyInput(input);
+  checkForFailInput(in);
+  checkForEmptyInput(input);
 
   std::istringstream stream(input);
   std::string command;
@@ -21,7 +21,7 @@ void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream
 
   if (dushechkina::commandName.find(command) == dushechkina::commandName.end())
   {
-    invalidCommand(out);
+    std::cout << INVALID_COMMAND;
   }
 
   dushechkina::commandName.at(command)(phonebook, marks, stream, out);
@@ -104,7 +104,7 @@ void dushechkina::insert(dushechkina::Phonebook& phonebook, MarkList& marks, std
       phonebook.insertAfterCurrentRecord(mark->second, newRecord);
       return;
     }
-    invalidCommand(out);
+    out << INVALID_COMMAND;
   }
   catch (const std::invalid_argument& error)
   {
@@ -122,7 +122,7 @@ void dushechkina::remove(dushechkina::Phonebook& phonebook, MarkList& marks, std
     markName = getMarkName(in);
 
     auto removedRecord = findMark(marks, markName)->second;
-    for (auto& mark: marks)
+    for (auto& mark : marks)
     {
       if (mark.second == removedRecord)
       {
@@ -130,7 +130,7 @@ void dushechkina::remove(dushechkina::Phonebook& phonebook, MarkList& marks, std
       }
     }
     phonebook.removeCurrentRecord(removedRecord);
-    for (auto& mark: marks)
+    for (auto& mark : marks)
     {
       if (mark.second == phonebook.end())
       {
@@ -155,7 +155,7 @@ void dushechkina::show(dushechkina::Phonebook& phonebook, MarkList& marks, std::
     auto record = findMark(marks, markName)->second;
     if (phonebook.isEmpty())
     {
-      empty(out);
+      out << EMPTY;
       return;
     }
     out << record->phoneNumber << " " << record->name << "\n";
@@ -205,14 +205,14 @@ std::string dushechkina::getPhoneNumber(std::istream& in)
 
   if (phoneNumber.empty())
   {
-    invalidCommand(std::cout);
+    throw std::invalid_argument(INVALID_COMMAND);
   }
 
-  for (char i: phoneNumber)
+  for (char i : phoneNumber)
   {
-    if (!std::isdigit(i))
+    if (!isdigit(i))
     {
-      invalidCommand(std::cout);
+      throw std::invalid_argument(INVALID_COMMAND);
     }
   }
   return phoneNumber;
@@ -226,7 +226,7 @@ std::string dushechkina::getName(std::istream& in)
 
   if (name.empty() || name.front() != '\"' || (name.back() != '\"'))
   {
-    invalidCommand(std::cout);
+    throw std::invalid_argument(INVALID_COMMAND);
   }
   name.erase(name.begin());
 
@@ -236,7 +236,7 @@ std::string dushechkina::getName(std::istream& in)
     {
       if ((name[i + 1] != '\"') || (i + 2 >= name.size()))
       {
-        invalidCommand(std::cout);
+        throw std::invalid_argument(INVALID_COMMAND);
       }
       name.erase(i, 1);
     }
@@ -253,14 +253,14 @@ std::string dushechkina::getMarkName(std::istream& in)
 
   if (markName.empty())
   {
-    invalidCommand(std::cout);
+    throw std::invalid_argument(INVALID_COMMAND);
   }
 
   for (char i : markName)
   {
     if ((!isalnum(i)) && (i != '-'))
     {
-      invalidCommand(std::cout);
+      throw std::invalid_argument(INVALID_COMMAND);
     }
   }
   return markName;
@@ -272,7 +272,7 @@ dushechkina::MarkList::iterator dushechkina::findMark(dushechkina::MarkList& mar
 
   if (mark == marks.end())
   {
-    invalidBookmark(std::cout);
+    throw std::invalid_argument(INVALID_BOOKMARK);
   }
   return mark;
 }

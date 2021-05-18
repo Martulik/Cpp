@@ -1,11 +1,12 @@
 #include "tasks.hpp"
-#include "functions.hpp"
 
 #include <iostream>
 #include <stdexcept>
 #include <fstream>
 #include <vector>
 #include <memory>
+
+#include "functions.hpp"
 
 void pyatizbyantsev::taskTwo(const char* fileName, std::ostream& out)
 {
@@ -31,7 +32,7 @@ void pyatizbyantsev::taskTwo(const char* fileName, std::ostream& out)
       std::unique_ptr< char[] > temp = std::make_unique< char[] >(capacity);
       for (size_t i = 0; i < size; ++i)
       {
-        temp[i] = std::move(resultArray[i]);
+        temp[i] = resultArray[i];
       }
       std::swap(resultArray, temp);
     }

@@ -5,15 +5,31 @@
 
 #include "PhoneBook.h"
 #include "commands.h"
+#include "Exceptions.h"
 
 int lysenko::task1(std::istream& in, std::ostream& out)
 {
-  lysenko::PhoneBook myBook;
+  PhoneBook myBook;
   std::string myCommand;
 
-  while (std::getline(in, myCommand))
+  try
   {
-    readCommand(myCommand, out, myBook);
+    while (std::getline(in, myCommand))
+    {
+      readCommand(myCommand, out, myBook);
+    }
+  }
+  catch (InvalidCommand& err)
+  {
+    std::cout << err.what();
+  }
+  catch (InvalidbookMark& err)
+  {
+    std::cout << err.what();
+  }
+  catch (InvalidStep& err)
+  {
+    std::cout << err.what();
   }
 
   if (!in.eof())

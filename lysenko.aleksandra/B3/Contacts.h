@@ -17,16 +17,15 @@ namespace lysenko
 
     using constIteratorNote = std::list< Note >::const_iterator;
     using iteratorNote = std::list< Note >::iterator;
-    using constNote = const Note&;
 
     bool isEmpty() const;
 
     constIteratorNote getBegin() const;
     constIteratorNote getEnd() const;
 
-    void insert(constIteratorNote curr, constNote newNote, bool before);
+    void insert(constIteratorNote curr, const Note& newNote, bool before);
     void deleteNote(constIteratorNote curr);
-    void pushBack(constNote newNote);
+    void pushBack(const Note& newNote);
 
   private:
     std::list< Note > content_;

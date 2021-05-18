@@ -15,11 +15,11 @@ bool readDelimiter(std::istream& in, char delimiter)
   if (in.peek() != delimiter)
   {
     in.setstate(std::istream::failbit);
-    return false;
+    return 0;
   }
   char c;
   in >> c;
-  return true;
+  return 1;
 }
 
 std::string readString(std::istream& in)
@@ -68,7 +68,6 @@ bool lysenko::checkCorrectNumberAndName(const std::string& name, const std::stri
   else
   {
     throw InvalidCommand();
-    return 0;
   }
 }
 
@@ -79,7 +78,10 @@ void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,
   std::string command;
 
   in >> command >> std::ws;
-  using constCommandIter = std::map< std::string, std::function< void(std::istream&, lysenko::PhoneBook&) > >::const_iterator;
+
+  using myFunc = std::map < std::string, std::function< void(std::istream&, lysenko::PhoneBook&) > >;
+  using constCommandIter = myFunc::const_iterator;
+
   constCommandIter iter = commandsMap.find(command);
 
   if (command == "show")
@@ -154,7 +156,6 @@ void lysenko::executeInsert(std::istream& input, lysenko::PhoneBook& myBook)
     else
     {
       throw InvalidCommand();
-      return;
     }
     myBook.insertNoteNextTobookMark(beforeBool, markName, { name, number });
   }
@@ -241,7 +242,6 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
     else
     {
       throw InvalidStep();
-      return;
     }
   }
   else

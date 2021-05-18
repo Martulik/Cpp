@@ -13,7 +13,8 @@ namespace lysenko
   public:
     PhoneBook();
 
-    using constIteratorNote = std::list< Contacts::Note >::const_iterator;
+    using note_t = Contacts::Note;
+    using constIteratorNote = std::list< note_t >::const_iterator;
 
     struct bookMark
     {
@@ -22,18 +23,17 @@ namespace lysenko
     };
 
     using iteratorMark = std::list< PhoneBook::bookMark >::iterator;
-    using constNote = const Contacts::Note&;
 
-    void addNumber(constNote note);
+    void addNumber(const note_t& note);
     void createNewbookMarkHere(std::string oldMarkName, std::string newMarkName);
-    void insertNoteNextTobookMark(bool before, std::string markName, constNote note);
+    void insertNoteNextTobookMark(bool before, std::string markName, const note_t& note);
     void deleteThisNote(std::string markName);
     void removeThisBookMark(std::string markName, bool forward, int steps);
     void removeThisBookMark(std::string markName, bool first);
 
     constIteratorNote showThisNote(std::string markName);
     bool checkIfThisMarkNameContains(std::string markName);
-    bool noContacts();
+    bool noContacts() const;
   private:
     Contacts contacts_;
     std::list< bookMark > bookMarks_;

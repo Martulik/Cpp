@@ -43,3 +43,8 @@ void dushechkina::invalidStep(std::ostream& out)
 {
   out << "<INVALID STEP>\n";
 }
+
+void dushechkina::incorrectIndex(std::ostream& out)
+{
+  out << "Incorrect index, it could be from 1 to 11";
+}

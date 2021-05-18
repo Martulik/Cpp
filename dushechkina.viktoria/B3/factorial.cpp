@@ -1,8 +1,8 @@
 #include "factorial.hpp"
+#include "common-functions.hpp"
 #include <stdexcept>
 #include <cassert>
-
-#define INCORRECT_INDEX "Incorrect index, it could be from 1 to 11"
+#include <iostream>
 
 dushechkina::Container::Iterator::Iterator():
   index_(BEGIN_INDEX),
@@ -14,7 +14,7 @@ dushechkina::Container::Iterator::Iterator(unsigned int index):
 {
   if (index < BEGIN_INDEX || index > END_INDEX)
   {
-    throw std::out_of_range(INCORRECT_INDEX);
+    incorrectIndex(std::cout);
   }
 
   unsigned int value = BEGIN_VALUE;

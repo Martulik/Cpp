@@ -10,5 +10,6 @@ namespace dushechkina
  void invalidCommand(std::ostream& out);
  void invalidBookmark(std::ostream& out);
  void invalidStep(std::ostream& out);
+ void incorrectIndex(std::ostream& out);
 }
 #endif

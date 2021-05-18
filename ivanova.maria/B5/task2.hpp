@@ -32,19 +32,19 @@ namespace ivanova
     shapes.swap(temp);
 //    deletePentagons(shapes);
     std::vector< Point > points;
-    points.reserve(shapes.size());
-    std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &elem){ points.push_back(elem.at(0)); });
+//    points.reserve(shapes.size());
+    std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &elem){ points.push_back(elem[0]); });
     std::sort(shapes.begin(), shapes.end(), compare);
     out << "Vertices: " << info.vertices << "\n";
     out << "Triangles: " << info.triangles << '\n';
     out << "Squares: " << info.squares << '\n';
     out << "Rectangles: " << info.rectangles << '\n';
     out << "Points: ";
-    std::ostream_iterator < Point > oit(out, " ");
-    std::copy(points.begin(), points.end(), oit);
+//    std::ostream_iterator < Point > oit(out, " ");
+    std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
     out << "\nShapes:\n";
-    std::ostream_iterator < Shape > oits(out, "\n");
-    std::copy(shapes.begin(), shapes.end(), oits);
+//    std::ostream_iterator < Shape > oits(out, "\n");
+    std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
     return 0;
   }
 }
@@ -59,31 +59,30 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     return in;
   }
   std::istringstream iss(line);
-  iss >> vertices;
-  iss >> std::skipws;
+  iss >> vertices >> std::skipws;
   if (vertices < 3)
   {
     std::cerr << "invalid input 4";
     exit(1);
   }
-  Shape temp;
-  temp.reserve(vertices);
-  std::istream_iterator < Point > isi(iss);
-  std::copy(isi, std::istream_iterator < Point >(), std::back_inserter(temp));
-  if ((!iss && !iss.eof()) || (temp.size() != vertices))
+  Shape tmp;
+//  tmp.reserve(vertices);
+//  std::istream_iterator < Point > isi(iss);
+  std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
+  if ((!iss && !iss.eof()) || (tmp.size() != vertices))
   {
     std::cerr << "invalid input 3";
     exit(1);
   }
-  shp.swap(temp);
+  shp.swap(tmp);
   return in;
 }
 
 std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
 {
-  std::ostream_iterator< Point > oit(out);
+//  std::ostream_iterator< Point > oit(out);
   out << elem.size();
-  std::copy(elem.begin(), elem.end(), oit);
+  std::copy(elem.begin(), elem.end(), std::ostream_iterator< Point >(out));
   return out;
 }
 

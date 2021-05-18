@@ -20,7 +20,7 @@ namespace ivanova
   bool isTriangle(const Shape& shp);
   bool isSquare(const Shape &shp);
   bool isPentagon(const Shape &shp);
-  int getSide(const Point &p, const Point&b);
+//  int getSide(const Point &p, const Point&b);
   bool checkSidesForRectangle(const Shape &shp);
   bool checkSidesForSquare(const Shape &shp);
 }

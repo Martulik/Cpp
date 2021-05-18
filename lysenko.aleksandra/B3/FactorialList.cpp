@@ -81,12 +81,12 @@ bool lysenko::FactorialList::Iterator::operator !=(const lysenko::FactorialList:
 
 lysenko::FactorialList::Iterator lysenko::FactorialList::begin() const noexcept
 {
-  return Iterator(MINIMUM_INDEX,MINIMUM_INDEX);
+  return Iterator(1, 1);
 }
 
 lysenko::FactorialList::Iterator lysenko::FactorialList::end() const noexcept
 {
-  return Iterator(lysenko::getFactorial(MAXIMUM_INDEX),MAXIMUM_INDEX);
+  return Iterator(lysenko::getFactorial(11), 11);
 }
 
 lysenko::FactorialList::reverseIterator lysenko::FactorialList::rbegin() const noexcept

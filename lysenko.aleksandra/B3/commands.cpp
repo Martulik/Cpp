@@ -91,7 +91,7 @@ void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,lys
   std::string command;
 
   in >> command >> std::ws;
-  iteratorInt iter = commandsMap.find(command);
+  std::map< std::string, std::function< void(std::istream&, lysenko::PhoneBook&) > >::const_iterator iter = commandsMap.find(command);
 
   if (command == "show")
   {

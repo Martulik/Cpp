@@ -28,7 +28,8 @@ void lysenko::PhoneBook::createNewbookMarkHere(std::string oldMarkName, std::str
   bookMarks_.push_front({ newMarkName, newbookMark->contact });
 }
 
-void lysenko::PhoneBook::insertNoteNextTobookMark(bool before, std::string markName, std::string name, std::string number)
+void lysenko::PhoneBook::insertNoteNextTobookMark(bool before, std::string markName,
+  std::string name, std::string number)
 {
   lysenko::Contacts::Note newNote{ name, number };
   iteratorMark curr = findThisMark(markName, *this);

@@ -9,7 +9,7 @@
 
 namespace lysenko
 {
-  using iteratorInt = std::map< std::string, std::function< void (std::istream&, lysenko::PhoneBook&) > >::const_iterator;
+  /*using iteratorInt = std::map< std::string, std::function< void (std::istream&, lysenko::PhoneBook&) > >::const_iterator;*/
 
   bool isDigitsOnly(std::string& number);
   bool checkCorrectNumberAndName(std::string& name, std::string& number);
@@ -28,11 +28,11 @@ namespace lysenko
   const std::map< std::string, std::function< void (std::istream&, lysenko::PhoneBook&) > >commandsMap
   (
     {
-        {"add", executeAdd},
-        {"store", executeStore},
-        {"insert", executeInsert},
-        {"delete", executeDelete},
-        {"move", executeMove}
+        { "add", executeAdd },
+        { "store", executeStore },
+        { "insert", executeInsert },
+        { "delete", executeDelete },
+        { "move", executeMove }
     }
   );
 }

@@ -8,9 +8,9 @@ namespace savchuk
 {
   constexpr size_t size = 3;
 
-  constexpr std::array< const char*, size > correctValues = { "1, 2, fgh", "5, -3, xdf", "-5, -5, vxr" };
-  constexpr std::array< const char*, size > incorrectValues = { "-5f, 3, asd", "1, 2. bni", "3 4, btk" };
-  constexpr std::array< const char*, size > invalidKeys = { "-5, 6, wrt", "6, 0, sdf", "7, -9, dfg" };
+  constexpr std::array< const char*, size > correctValues = { "1, 2, fgh\n", "5, -3, xdf\n", "-5, -5, vxr\n" };
+  constexpr std::array< const char*, size > incorrectValues = { "-5f, 3, asd\n", "1, 2. bni\n", "3 4, btk\n" };
+  constexpr std::array< const char*, size > invalidKeys = { "-5, 6, wrt\n", "6, 0, sdf\n", "7, -9, dfg\n" };
 }
 
 #endif

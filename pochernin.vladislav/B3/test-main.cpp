@@ -1,3 +1,2 @@
-#define BOOST_TEST_MODULE TASK_B4
-
+#define BOOST_TEST_MODULE B3
 #include <boost/test/included/unit_test.hpp>

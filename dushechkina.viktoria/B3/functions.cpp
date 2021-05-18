@@ -21,7 +21,7 @@ void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream
 
   if (dushechkina::commandName.find(command) == dushechkina::commandName.end())
   {
-    std::cout << INVALID_COMMAND;
+    out << INVALID_COMMAND;
   }
 
   dushechkina::commandName.at(command)(phonebook, marks, stream, out);

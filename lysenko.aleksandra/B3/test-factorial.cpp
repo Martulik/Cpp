@@ -1,15 +1,15 @@
 #include <boost/test/unit_test.hpp>
 
-#include "container.h"
+#include "FactorialList.h"
 
 BOOST_AUTO_TEST_SUITE(testFactorialContainer)
 
 BOOST_AUTO_TEST_CASE(testFactorialValue)
 {
-  lysenko::Container myCont;
+  lysenko::FactorialList myCont;
   int number = 1;
   int factorialValue = 1;
-  for (lysenko::Container::Iterator iter = myCont.begin(); iter != myCont.end(); iter++)
+  for (lysenko::FactorialList ::Iterator iter = myCont.begin(); iter != myCont.end(); iter++)
   {
     factorialValue *= number;
     number++;

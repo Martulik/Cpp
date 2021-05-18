@@ -2,6 +2,7 @@
 #define B5_POINT_HPP
 #include <iosfwd>
 #include <vector>
+#include <string>
 namespace ivanova
 {
   struct Point
@@ -19,7 +20,8 @@ namespace ivanova
   bool isTriangle(const Shape& shp);
   bool isSquare(const Shape &shp);
   bool isPentagon(const Shape &shp);
-  bool checkDiagonalsAndSides(const Shape &shp);
+  bool checkSidesForRectangle(const Shape &shp);
+  bool checkSidesForSquare(const Shape &shp);
 }
 
 #endif

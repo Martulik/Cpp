@@ -82,7 +82,6 @@ std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
   return out;
 }
 
-
 void ivanova::doCount(count &shapes, std::vector < Shape > &vec)
 {
   std::for_each(vec.begin(), vec.end(),[&shapes](const Shape &elem){ shapes.countShape(elem); });
@@ -105,7 +104,7 @@ bool ivanova::compare(Shape &elem1, Shape &elem2)
   {
     return false;
   }
-  return (elem2.size() < elem2.size());
+  return (elem1.size() < elem2.size());
 }
 
 #endif

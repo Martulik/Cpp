@@ -1,6 +1,10 @@
 #include <sstream>
 #include <boost/test/unit_test.hpp>
 #include "task2.hpp"
+#include <iterator>
+#include <algorithm>
+#include <numeric>
+#include "point.hpp"
 namespace iva = ivanova;
 
 BOOST_AUTO_TEST_SUITE(testShapeIn)
@@ -61,17 +65,17 @@ BOOST_AUTO_TEST_SUITE(testTools)
     BOOST_CHECK(iva::compare(square, hexagon));
   }
 
-  BOOST_AUTO_TEST_CASE(testCount)
-  {
-    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
-    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
-    iva::count info;
-    info.countShape(square);
-    info.countShape(rectangle);
-    BOOST_CHECK(info.vertices == 8);
-    BOOST_CHECK(info.squares == 1);
-    BOOST_CHECK(info.rectangles == 2);
-  }
+//  BOOST_AUTO_TEST_CASE(testCount)
+//  {
+//    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
+//    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
+//    iva::count info;
+//    info.countShape(square);
+//    info.countShape(rectangle);
+//    BOOST_CHECK(info.vertices == 8);
+//    BOOST_CHECK(info.squares == 1);
+//    BOOST_CHECK(info.rectangles == 2);
+//  }
 
   BOOST_AUTO_TEST_CASE(testDelete)
   {

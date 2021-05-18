@@ -4,16 +4,8 @@
 #include <iterator>
 #include <algorithm>
 #include <numeric>
-#include "point.hpp"
-#include "count.hpp"
 
 namespace iva = ivanova;
-namespace ivanova
-{
-  std::istream &operator>>(std::istream &in, Shape &shp);
-  std::ostream &operator<<(std::ostream &out, const Shape &elem);
-  bool compare(Shape &elem1, Shape &elem2);
-}
 
 int iva::task2(std::istream &in, std::ostream &out)
 {
@@ -26,11 +18,12 @@ int iva::task2(std::istream &in, std::ostream &out)
   int vert = std::accumulate(shapes.begin(), shapes.end(), 0, [](int cnt, const Shape &e){ return cnt + e.size();});
   int tri = std::count_if(shapes.begin(), shapes.end(), isTriangle);
   int sqr = std::count_if(shapes.begin(), shapes.end(), isSquare);
-  int rect = sqr + std::count_if(shapes.begin(), shapes.end(), isRect);
-  using shp = const Shape;
-  std::vector < Shape > temp;
-  std::for_each(shapes.begin(), shapes.end(), [&temp](shp &elem){ if (!isPentagon(elem)) { temp.push_back(elem);}});
-  shapes.swap(temp);
+  int rect = std::count_if(shapes.begin(), shapes.end(), isRect);
+//  using shp = const Shape;
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
+//  std::vector < Shape > temp;
+//  std::for_each(shapes.begin(), shapes.end(), [&temp](shp &elem){ if (!isPentagon(elem)) { temp.push_back(elem);}});
+//  shapes.swap(temp);
   std::vector< Point > points;
   std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &elem){ points.push_back(elem[0]); });
   std::sort(shapes.begin(), shapes.end(), compare);
@@ -64,7 +57,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   }
   Shape tmp;
   std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
-  if ((!iss && !iss.eof()) || (tmp.size() != vertices))
+  if (tmp.size() != vertices)
   {
     std::cerr << "invalid input 3";
     exit(1);

@@ -239,10 +239,9 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
         myBook.removeThisBookMark(markName, 0, stepsInt);
       }
     }
-
     else
     {
-      throw InvalidCommand();
+      throw InvalidStep();
       return;
     }
   }

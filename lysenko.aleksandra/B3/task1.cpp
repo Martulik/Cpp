@@ -18,6 +18,11 @@ int lysenko::task1(std::istream& in, std::ostream& out)
     {
       readCommand(myCommand, out, myBook);
     }
+    if (!in.eof())
+    {
+      std::cerr << "Error with reading command \n";
+      return 2;
+    }
   }
   catch (InvalidCommand& err)
   {
@@ -30,12 +35,6 @@ int lysenko::task1(std::istream& in, std::ostream& out)
   catch (InvalidStep& err)
   {
     std::cout << err.what();
-  }
-
-  if (!in.eof())
-  {
-    std::cerr << "Error with reading command \n";
-    return 2;
   }
 
   return 0;

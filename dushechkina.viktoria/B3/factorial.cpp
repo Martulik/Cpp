@@ -1,5 +1,6 @@
 #include "factorial.hpp"
 #include <stdexcept>
+#include <cassert>
 
 #define INCORRECT_INDEX "Incorrect index, it could be from 1 to 11"
 
@@ -46,10 +47,7 @@ bool dushechkina::Container::Iterator::operator!=(const Iterator& rhs) const
 
 dushechkina::Container::Iterator& dushechkina::Container::Iterator::operator++()
 {
-  if (index_ + 1 > END_INDEX)
-  {
-    throw std::out_of_range(INCORRECT_INDEX);
-  }
+  assert(index_ <= END_INDEX);
   ++index_;
   factorial_ *= index_;
   return *this;
@@ -57,10 +55,7 @@ dushechkina::Container::Iterator& dushechkina::Container::Iterator::operator++()
 
 dushechkina::Container::Iterator dushechkina::Container::Iterator::operator++(int)
 {
-  if (index_ + 1 > END_INDEX)
-  {
-    throw std::out_of_range(INCORRECT_INDEX);
-  }
+  assert(index_ <= END_INDEX);
   Iterator temp = *this;
   ++index_;
   factorial_ *= index_;
@@ -69,10 +64,7 @@ dushechkina::Container::Iterator dushechkina::Container::Iterator::operator++(in
 
 dushechkina::Container::Iterator& dushechkina::Container::Iterator::operator--()
 {
-  if (index_ - 1 < BEGIN_INDEX)
-  {
-    throw std::out_of_range(INCORRECT_INDEX);
-  }
+  assert(index_ >= BEGIN_INDEX);
   factorial_ /= index_;
   --index_;
   return *this;
@@ -80,10 +72,7 @@ dushechkina::Container::Iterator& dushechkina::Container::Iterator::operator--()
 
 dushechkina::Container::Iterator dushechkina::Container::Iterator::operator--(int)
 {
-  if (index_ - 1 < BEGIN_INDEX)
-  {
-    throw std::out_of_range(INCORRECT_INDEX);
-  }
+  assert(index_ >= BEGIN_INDEX);
   Iterator temp = *this;
   factorial_ /= index_;
   --index_;

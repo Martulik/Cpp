@@ -122,7 +122,7 @@ void dushechkina::remove(dushechkina::Phonebook& phonebook, MarkList& marks, std
     markName = getMarkName(in);
 
     auto removedRecord = findMark(marks, markName)->second;
-    for (auto& mark : marks)
+    for (auto& mark: marks)
     {
       if (mark.second == removedRecord)
       {
@@ -130,7 +130,7 @@ void dushechkina::remove(dushechkina::Phonebook& phonebook, MarkList& marks, std
       }
     }
     phonebook.removeCurrentRecord(removedRecord);
-    for (auto& mark : marks)
+    for (auto& mark: marks)
     {
       if (mark.second == phonebook.end())
       {

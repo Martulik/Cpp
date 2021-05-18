@@ -210,7 +210,7 @@ std::string dushechkina::getPhoneNumber(std::istream& in)
 
   for (char i : phoneNumber)
   {
-    if (!isdigit(i))
+    if (!std::isdigit(i))
     {
       throw std::invalid_argument(INVALID_COMMAND);
     }

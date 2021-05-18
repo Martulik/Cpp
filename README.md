@@ -153,7 +153,7 @@ Accepted Labs
 | Ezerinia Marta        | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Ferapontov Mikhail    | ✓  | ✓  | ✓  |    |    |    |
 | Ivanova Maria         | ✓  | ✓  | ✓  | ✓  | ✓  |    |
-| Lebedeva Ekaterina    | ✓  | ✓  |    |    |    |    |
+| Lebedeva Ekaterina    | ✓  | ✓  | ✓  |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
 | Lysenko Aleksandra    | ✓  | ✓  | ✓  |    |    |    |
 | Murzakanov Islam      | ✓  | ✓  | ✓  | ✓  | ✓  |    |
@@ -165,4 +165,4 @@ Accepted Labs
 | Shilyaev Vladislav    | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Shkurov Igor          | ✓  | ✓  | ✓  |    |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  21|  17|  15|   9|   7|   0|
+| __Total__             |  21|  17|  16|   9|   7|   0|

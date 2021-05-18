@@ -12,29 +12,29 @@ int lysenko::task1(std::istream& in, std::ostream& out)
   PhoneBook myBook;
   std::string myCommand;
 
-  try
+  while (std::getline(in, myCommand))
   {
-    while (std::getline(in, myCommand))
+    try
     {
       readCommand(myCommand, out, myBook);
     }
-    if (!in.eof())
+    catch (InvalidCommand& err)
     {
-      std::cerr << "Error with reading command \n";
-      return 2;
+      std::cout << err.what();
+    }
+    catch (InvalidbookMark& err)
+    {
+      std::cout << err.what();
+    }
+    catch (InvalidStep& err)
+    {
+      std::cout << err.what();
     }
   }
-  catch (InvalidCommand& err)
+  if (!in.eof())
   {
-    std::cout << err.what();
-  }
-  catch (InvalidbookMark& err)
-  {
-    std::cout << err.what();
-  }
-  catch (InvalidStep& err)
-  {
-    std::cout << err.what();
+    std::cerr << "Error with reading command \n";
+    return 2;
   }
 
   return 0;

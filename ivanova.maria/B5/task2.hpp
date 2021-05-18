@@ -48,7 +48,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
 {
   size_t vertices = 0;
   std::string line;
-  std::getline(in, line);
+  std::getline(in >> std::ws, line);
   if (line.empty())
   {
     return in;

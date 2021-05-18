@@ -20,15 +20,15 @@ int lysenko::task1(std::istream& in, std::ostream& out)
     }
     catch (InvalidCommand& err)
     {
-      std::cout << err.what();
+      std::cout << err.what() << "\n";
     }
     catch (InvalidbookMark& err)
     {
-      std::cout << err.what();
+      std::cout << err.what() << "\n";
     }
     catch (InvalidStep& err)
     {
-      std::cout << err.what();
+      std::cout << err.what() << "\n";
     }
   }
   if (!in.eof())

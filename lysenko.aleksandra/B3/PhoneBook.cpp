@@ -128,7 +128,7 @@ void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool first)
   {
     note = contacts_.getBegin();
   }
-  else 
+  else
   {
     note = goToPrevNote(contacts_.getEnd());
   }

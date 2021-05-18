@@ -6,7 +6,7 @@
 void dushechkina::task2(std::istream&, std::ostream& out)
 {
   dushechkina::Container container;
-  std::ostream_iterator<unsigned int> output(out, " ");
+  std::ostream_iterator< unsigned int > output(out, " ");
 
   std::copy(container.begin(), container.end(), output);
   std::cout << "\n";

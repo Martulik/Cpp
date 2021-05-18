@@ -14,7 +14,7 @@ namespace dushechkina
       std::string name;
     };
 
-    using iterator = std::list<Record>::iterator;
+    using iterator = std::list< Record >::iterator;
 
     iterator begin();
     iterator end();
@@ -24,7 +24,7 @@ namespace dushechkina
     void removeCurrentRecord(iterator& current);
     bool isEmpty() const;
   private:
-    std::list<Record> records_;
+    std::list< Record > records_;
   };
 }
 

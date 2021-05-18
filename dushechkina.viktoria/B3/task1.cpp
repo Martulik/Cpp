@@ -7,7 +7,7 @@
 void dushechkina::task1(std::istream& in, std::ostream& out)
 {
   dushechkina::Phonebook phonebook;
-  std::unordered_map<std::string, dushechkina::Phonebook::iterator> marks;
+  std::unordered_map< std::string, dushechkina::Phonebook::iterator > marks;
   marks["current"] = phonebook.begin();
 
   while (!in.eof())

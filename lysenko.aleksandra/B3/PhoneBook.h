@@ -6,8 +6,6 @@
 #include <string>
 #include <map>
 
-#include "helpFunctions.h"
-
 namespace lysenko
 {
   class PhoneBook
@@ -25,7 +23,7 @@ namespace lysenko
 
     using iteratorMark = std::list< PhoneBook::bookMark >::iterator;
 
-    void addNumber(std::string name, std::string number);
+    void addNumber(Contacts::Note note);
     void createNewbookMarkHere(std::string oldMarkName, std::string newMarkName);
     void insertNoteNextTobookMark(bool before, std::string markName, std::string name, std::string number);
     void deleteThisNote(std::string markName);
@@ -33,15 +31,16 @@ namespace lysenko
     void removeThisBookMark(std::string markName, bool first);
 
     constIterator showThisNote(std::string markName);
-
-    friend bool checkItIsOnlyMarked(lysenko::PhoneBook::iteratorMark curr, PhoneBook& myBook);
-    friend bool noContacts(PhoneBook& myBook);
+    bool checkIfThisMarkNameContains(std::string& markName);
+    bool noContacts();
   private:
     Contacts contacts_;
     std::list< bookMark > bookMarks_;
 
-    friend lysenko::PhoneBook::iteratorMark findThisMark(std::string thisMark, PhoneBook& myBook);
-    friend lysenko::PhoneBook::iteratorMark getEndOfbookMarks(PhoneBook& myBook);
+    constIterator goTo(constIterator curr, bool forward, int amount);
+    bool checkItIsOnlyMarked(lysenko::PhoneBook::iteratorMark curr);
+    iteratorMark findThisMark(std::string thisMark);
+    iteratorMark getEndOfBookMarks();
   };
 }
 #endif

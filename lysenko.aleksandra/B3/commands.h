@@ -9,11 +9,8 @@
 
 namespace lysenko
 {
-  /*using iteratorInt = std::map< std::string, std::function< void (std::istream&, lysenko::PhoneBook&) > >::const_iterator;*/
-
   bool isDigitsOnly(std::string& number);
   bool checkCorrectNumberAndName(std::string& name, std::string& number);
-  bool checkIfThisMarkNameContains(std::string& markName, PhoneBook& myBook);
 
   void readCommand(const std::string& inputCommand, std::ostream& out, lysenko::PhoneBook& myBook);
 

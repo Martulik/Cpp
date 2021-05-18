@@ -73,18 +73,6 @@ bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
   }
 }
 
-bool lysenko::checkIfThisMarkNameContains(std::string& markName, lysenko::PhoneBook& myBook)
-{
-  PhoneBook::iteratorMark newbookMark = findThisMark(markName, myBook);
-  if (newbookMark == getEndOfbookMarks(myBook))
-  {
-    InvalidbookMark error;
-    std::cout << error.what() << "\n";
-    return 0;
-  }
-  return 1;
-}
-
 void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,lysenko::PhoneBook& myBook)
 {
   std::istringstream in{ inputCommand };
@@ -119,7 +107,7 @@ void lysenko::executeAdd(std::istream& input, lysenko::PhoneBook& myBook)
 
   if (checkCorrectNumberAndName(name, number))
   {
-    myBook.addNumber(name, number);
+    myBook.addNumber( { name, number } );
   }
 }
 
@@ -131,9 +119,14 @@ void lysenko::executeStore(std::istream& input, lysenko::PhoneBook& myBook)
   input >> std::ws >> oldMarkName;
   input >> std::ws >> newMarkName;
 
-  if (checkIfThisMarkNameContains(oldMarkName, myBook))
+  if (myBook.checkIfThisMarkNameContains(oldMarkName))
   {
     myBook.createNewbookMarkHere(oldMarkName, newMarkName);
+  }
+  else
+  {
+    InvalidbookMark error;
+    std::cout << error.what() << "\n";
   }
 }
 
@@ -150,7 +143,7 @@ void lysenko::executeInsert(std::istream& input, lysenko::PhoneBook& myBook)
   input >> std::ws >> number;
   name = readString(input);
 
-  if ((checkIfThisMarkNameContains(markName, myBook) && (checkCorrectNumberAndName(name, number))))
+  if ((myBook.checkIfThisMarkNameContains(markName) && (checkCorrectNumberAndName(name, number))))
   {
     if (before == "before")
     {
@@ -168,6 +161,11 @@ void lysenko::executeInsert(std::istream& input, lysenko::PhoneBook& myBook)
     }
     myBook.insertNoteNextTobookMark(beforeBool, markName, name, number);
   }
+  if (!(myBook.checkIfThisMarkNameContains(markName)))
+  {
+    InvalidbookMark error;
+    std::cout << error.what() << "\n";
+  }
 }
 
 void lysenko::executeDelete(std::istream& input, lysenko::PhoneBook& myBook)
@@ -176,9 +174,14 @@ void lysenko::executeDelete(std::istream& input, lysenko::PhoneBook& myBook)
 
   input >> std::ws >> markName;
 
-  if (checkIfThisMarkNameContains(markName, myBook))
+  if (myBook.checkIfThisMarkNameContains(markName))
   {
     myBook.deleteThisNote(markName);
+  }
+  else
+  {
+    InvalidbookMark error;
+    std::cout << error.what() << "\n";
   }
 }
 
@@ -188,9 +191,9 @@ void lysenko::executeShow(std::istream& input, std::ostream& out, lysenko::Phone
 
   input >> std::ws >> markName;
 
-  if (checkIfThisMarkNameContains(markName, myBook))
+  if (myBook.checkIfThisMarkNameContains(markName))
   {
-    if (noContacts(myBook))
+    if (myBook.noContacts())
     {
       std::cout << "<EMPTY>" << "\n";
     }
@@ -199,6 +202,11 @@ void lysenko::executeShow(std::istream& input, std::ostream& out, lysenko::Phone
       Contacts::constIterator thisNote = myBook.showThisNote(markName);
       out << thisNote->number << " " << thisNote->name << "\n";
     }
+  }
+  else
+  {
+    InvalidbookMark error;
+    std::cout << error.what() << "\n";
   }
 }
 
@@ -212,7 +220,7 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
 
   std::string cuttedOne = steps.substr(1, steps.size() - 1);
 
-  if (checkIfThisMarkNameContains(markName, myBook))
+  if (myBook.checkIfThisMarkNameContains(markName))
   {
     if (steps == "first")
     {
@@ -243,5 +251,10 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
       std::cout << error.what() << "\n";
       return;
     }
+  }
+  else
+  {
+    InvalidbookMark error;
+    std::cout << error.what() << "\n";
   }
 }

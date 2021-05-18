@@ -1,5 +1,4 @@
 #include "Contacts.h"
-#include "helpFunctions.h"
 
 bool lysenko::Contacts::isEmpty() const
 {
@@ -30,7 +29,7 @@ void lysenko::Contacts::insert(constIterator curr, const Note& newNote, bool bef
     }
     else
     {
-      constIterator nextOne = goToNextNote(curr);
+      constIterator nextOne = ++curr;
       content_.insert(nextOne, newNote);
     }
   }
@@ -45,3 +44,4 @@ void lysenko::Contacts::pushBack(Note& newNote)
 {
   content_.push_back(newNote);
 }
+

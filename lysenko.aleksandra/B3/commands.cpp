@@ -67,8 +67,7 @@ bool lysenko::checkCorrectNumberAndName(const std::string& name, const std::stri
   }
   else
   {
-    InvalidCommand error;
-    std::cout << error.what() << "\n";
+    throw InvalidCommand();
     return 0;
   }
 }

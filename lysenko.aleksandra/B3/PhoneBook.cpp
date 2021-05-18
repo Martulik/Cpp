@@ -2,7 +2,7 @@
 
 #include <list>
 
-lysenko::PhoneBook::PhoneBook() :
+lysenko::PhoneBook::PhoneBook():
   contacts_(),
   bookMarks_({ {"current", contacts_.getBegin()} })
 {}

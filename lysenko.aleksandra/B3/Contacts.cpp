@@ -44,4 +44,3 @@ void lysenko::Contacts::pushBack(Note& newNote)
 {
   content_.push_back(newNote);
 }
-

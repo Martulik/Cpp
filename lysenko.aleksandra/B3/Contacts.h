@@ -23,7 +23,7 @@ namespace lysenko
     constIterator getBegin() const;
     constIterator getEnd() const;
 
-    void insert(constIterator curr, const Note newNote, bool before);
+    void insert(constIterator curr, const Note& newNote, bool before);
     void deleteNote(constIterator curr);
     void pushBack(Note& newNote);
 

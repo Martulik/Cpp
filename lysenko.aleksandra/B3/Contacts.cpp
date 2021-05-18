@@ -16,7 +16,7 @@ lysenko::Contacts::constIterator lysenko::Contacts::getEnd() const
   return content_.end();
 }
 
-void lysenko::Contacts::insert(constIterator curr, const Note newNote, bool before)
+void lysenko::Contacts::insert(constIterator curr, const Note& newNote, bool before)
 {
   if (before)
   {

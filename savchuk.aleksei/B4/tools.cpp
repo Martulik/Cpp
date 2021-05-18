@@ -2,23 +2,21 @@
 
 #include <istream>
 #include <cstdlib>
-#include <stdexcept>
 
 namespace lab = savchuk;
 
 int lab::readKey(std::istream& is, char delim)
 {
   int key;
-  if (is)
+  if (is >> std::ws >> key)
   {
-    is >> std::ws >> key;
     if (is.get() != delim)
     {
       is.setstate(std::ios::failbit);
     }
     else if (std::abs(key) > 5)
     {
-      throw std::invalid_argument("Key out of range");
+      is.setstate(std::ios::failbit);
     }
   }
   return key;

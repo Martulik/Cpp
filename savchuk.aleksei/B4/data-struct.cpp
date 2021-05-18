@@ -11,7 +11,7 @@ namespace lab = savchuk;
 std::istream& lab::operator>>(std::istream& is, lab::DataStruct& ds)
 {
   std::string data;
-  if (getline(is, data) && !data.empty())
+  if (getline(is, data))
   {
     std::istringstream ss(data);
     char delim = ',';
@@ -26,10 +26,6 @@ std::istream& lab::operator>>(std::istream& is, lab::DataStruct& ds)
     {
       ds = { key1, key2, str };
     }
-  }
-  else
-  {
-    is.setstate(std::ios::failbit);
   }
   return is;
 }

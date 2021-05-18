@@ -3,12 +3,12 @@
 
 #define INCORRECT_INDEX "Incorrect index, it could be from 1 to 11"
 
-dushechkina::Container::Iterator::Iterator() :
+dushechkina::Container::Iterator::Iterator():
   index_(BEGIN_INDEX),
   factorial_(BEGIN_VALUE)
 {}
 
-dushechkina::Container::Iterator::Iterator(unsigned int index) :
+dushechkina::Container::Iterator::Iterator(unsigned int index):
   index_(index)
 {
   if (index < BEGIN_INDEX || index > END_INDEX)

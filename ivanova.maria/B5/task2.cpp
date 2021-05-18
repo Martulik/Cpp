@@ -51,12 +51,14 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     std::cerr << "invalid input 4";
     exit(1);
   }
-  std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(shp));
-  if (shp.size() != vertices || (!iss.eof() && !iss))
+  Shape tmp;
+  std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
+  if (shp.size() != vertices)
   {
     std::cerr << "invalid input 3";
     exit(1);
   }
+  shp.swap(tmp);
   return in;
 }
 

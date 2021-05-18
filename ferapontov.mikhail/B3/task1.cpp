@@ -1,6 +1,6 @@
 #include "tasks.hpp"
-#include "UserInterface.hpp"
 #include <sstream>
+#include "UserInterface.hpp"
 #include "functions.hpp"
 
 namespace fer = ferapontov;
@@ -15,8 +15,7 @@ void fer::task1(std::istream& in, std::ostream& out)
     try
     {
       std::istringstream stream(command);
-      std::string action;
-      stream >> action;
+      std::string action = read(stream);
       if (action == "add")
       {
         std::string number = read(stream);

@@ -7,7 +7,6 @@ lysenko::PhoneBook::PhoneBook() :
   bookMarks_({ {"current", contacts_.getBegin()} })
 {}
 
-
 void lysenko::PhoneBook::addNumber(std::string name, std::string number)
 {
   lysenko::Contacts::Note note{ name, number };

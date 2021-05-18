@@ -121,6 +121,7 @@ void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool forward, 
 
 void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool first)
 {
+  iteratorMark curr = findThisMark(markName, *this);
   constIterator note;
 
   if (first)
@@ -131,4 +132,5 @@ void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool first)
   {
     note = goToPrevNote(contacts_.getEnd());
   }
+  curr->contact = note;
 }

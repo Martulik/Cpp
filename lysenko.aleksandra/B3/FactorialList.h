@@ -39,8 +39,8 @@ namespace lysenko
     reverseIterator rbegin() const noexcept;
     reverseIterator rend() const noexcept;
 
-    static const size_t MINIMUM_INDEX = 1;
-    static const size_t MAXIMUM_INDEX = 11;
+    static constexpr unsigned int MINIMUM_INDEX = 1;
+    static constexpr unsigned int MAXIMUM_INDEX = 11;
 
     FactorialList() = default;
   };

@@ -4,7 +4,7 @@
 
 namespace lysenko
 {
-  unsigned int getFactorial(unsigned int index)
+  constexpr unsigned int getFactorial(unsigned int index)
   {
     unsigned int res = 1;
     for (unsigned int i = 1; i <= index; i++)
@@ -27,17 +27,19 @@ lysenko::FactorialList::Iterator::Iterator(unsigned int content, unsigned int in
 
 const unsigned int* lysenko::FactorialList::Iterator::operator->()
 {
+  assert(index_ > 1);
   return std::addressof(content_);
 }
 
 const unsigned int& lysenko::FactorialList::Iterator::operator*()
 {
+  assert(index_ > 1);
   return content_;
 }
 
 lysenko::FactorialList::Iterator& lysenko::FactorialList::Iterator::operator++()
 {
-  assert(index_ != 11);
+  assert((index_ != 11) && (index_ > 1));
   index_++;
   content_ *= index_;
 

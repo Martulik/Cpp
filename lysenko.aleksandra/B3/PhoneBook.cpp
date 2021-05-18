@@ -1,5 +1,7 @@
 #include "PhoneBook.h"
 
+#include "helpFunctions.h"
+
 #include <list>
 
 lysenko::PhoneBook::PhoneBook():
@@ -9,7 +11,6 @@ lysenko::PhoneBook::PhoneBook():
 
 void lysenko::PhoneBook::addNumber(Contacts::Note note)
 {
- /* lysenko::Contacts::Note note{ name, number };*/
   iteratorMark current = findThisMark("current");
   if ((current->contact == contacts_.getBegin()) && (noContacts()))
   {
@@ -51,11 +52,11 @@ void lysenko::PhoneBook::deleteThisNote(std::string markName)
   lysenko::Contacts::constIterator newContact;
   if (curr->contact != --contacts_.getEnd())
   {
-    newContact = ++curr->contact;
+    newContact = goToNextNote(curr->contact);
   }
   else if (curr->contact != contacts_.getBegin())
   {
-    newContact = --curr->contact;
+    newContact = goToPrevNote(curr->contact);
   }
 
   if (checkItIsOnlyMarked(curr))
@@ -81,11 +82,11 @@ void lysenko::PhoneBook::deleteThisNote(std::string markName)
       {
         if (i != bookMarks_.size() - 1)
         {
-          check->contact = ++check->contact;
+          check->contact = goToNextNote(check->contact);
         }
         else
         {
-          check->contact = --check->contact;
+          check->contact = goToPrevNote(check->contact);
         }
       }
     }
@@ -129,7 +130,7 @@ void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool first)
   }
   else
   {
-    note = --contacts_.getEnd();
+    note = goToPrevNote(contacts_.getEnd());
   }
   curr->contact = note;
 }
@@ -193,23 +194,4 @@ bool lysenko::PhoneBook::checkIfThisMarkNameContains(std::string& markName)
   return 1;
 }
 
-lysenko::PhoneBook::constIterator lysenko::PhoneBook::goTo(lysenko::PhoneBook::constIterator curr,
-  bool forward, int amount)
-{
-  if (forward)
-  {
-    for (int i = 0; i < amount; ++i)
-    {
-      ++curr;
-    }
-  }
-  else
-  {
-    for (int i = 0; i < amount; ++i)
-    {
-      --curr;
-    }
-  }
-  return curr;
-}
 

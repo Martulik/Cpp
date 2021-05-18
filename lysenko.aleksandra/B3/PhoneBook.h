@@ -37,7 +37,6 @@ namespace lysenko
     Contacts contacts_;
     std::list< bookMark > bookMarks_;
 
-    constIterator goTo(constIterator curr, bool forward, int amount);
     bool checkItIsOnlyMarked(lysenko::PhoneBook::iteratorMark curr);
     iteratorMark findThisMark(std::string thisMark);
     iteratorMark getEndOfBookMarks();

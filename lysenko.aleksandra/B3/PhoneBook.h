@@ -25,7 +25,8 @@ namespace lysenko
 
     void addNumber(Contacts::Note note);
     void createNewbookMarkHere(std::string oldMarkName, std::string newMarkName);
-    void insertNoteNextTobookMark(bool before, std::string markName, std::string name, std::string number);
+    void insertNoteNextTobookMark(bool before, std::string markName,
+      std::string name, std::string number);
     void deleteThisNote(std::string markName);
     void removeThisBookMark(std::string markName, bool forward, std::string steps);
     void removeThisBookMark(std::string markName, bool first);

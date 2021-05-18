@@ -73,7 +73,8 @@ bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
   }
 }
 
-void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,lysenko::PhoneBook& myBook)
+void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,
+  lysenko::PhoneBook& myBook)
 {
   std::istringstream in{ inputCommand };
   std::string command;

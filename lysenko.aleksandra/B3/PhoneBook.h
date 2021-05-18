@@ -36,11 +36,12 @@ namespace lysenko
 
     friend bool checkItIsOnlyMarked(lysenko::PhoneBook::iteratorMark curr, PhoneBook& myBook);
     friend bool noContacts(PhoneBook& myBook);
-    friend lysenko::PhoneBook::iteratorMark findThisMark(std::string thisMark, PhoneBook& myBook);
-    friend lysenko::PhoneBook::iteratorMark getEndOfbookMarks(PhoneBook& myBook);
   private:
     Contacts contacts_;
     std::list< bookMark > bookMarks_;
+
+    friend lysenko::PhoneBook::iteratorMark findThisMark(std::string thisMark, PhoneBook& myBook);
+    friend lysenko::PhoneBook::iteratorMark getEndOfbookMarks(PhoneBook& myBook);
   };
 }
 #endif

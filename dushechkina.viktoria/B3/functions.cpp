@@ -286,7 +286,7 @@ int dushechkina::convertOffsetToNumber(const std::string& steps)
   }
   catch (const std::invalid_argument&)
   {
-    invalidStep(std::cout);
+    throw std::invalid_argument(INVALID_STEP);
   }
 }
 

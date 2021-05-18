@@ -5,6 +5,8 @@
 #include <unordered_map>
 #include "phonebook.hpp"
 
+#define INVALID_STEP "<INVALID STEP>\n"
+
 namespace dushechkina
 {
   using MarkList = std::unordered_map<std::string, dushechkina::Phonebook::iterator>;

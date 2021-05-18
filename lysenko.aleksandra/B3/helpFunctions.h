@@ -5,9 +5,9 @@
 
 namespace lysenko
 {
-  Contacts::constIterator goToNextNote(Contacts::constIterator curr);
-  Contacts::constIterator goToPrevNote(Contacts::constIterator curr);
-  Contacts::constIterator goTo(Contacts::constIterator curr, bool forward, int amount);
+  Contacts::constIteratorNote goToNextNote(Contacts::constIteratorNote curr);
+  Contacts::constIteratorNote goToPrevNote(Contacts::constIteratorNote curr);
+  Contacts::constIteratorNote goTo(Contacts::constIteratorNote curr, bool forward, int amount);
 }
 
 #endif

@@ -9,8 +9,8 @@
 
 namespace lysenko
 {
-  bool isDigitsOnly(std::string& number);
-  bool checkCorrectNumberAndName(std::string& name, std::string& number);
+  bool isDigitsOnly(const std::string& number);
+  bool checkCorrectNumberAndName(const std::string& name, const std::string& number);
 
   void readCommand(const std::string& inputCommand, std::ostream& out, lysenko::PhoneBook& myBook);
 

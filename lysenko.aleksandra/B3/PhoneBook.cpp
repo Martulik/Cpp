@@ -9,7 +9,7 @@ lysenko::PhoneBook::PhoneBook():
   bookMarks_({ {"current", contacts_.getBegin()} })
 {}
 
-void lysenko::PhoneBook::addNumber(Contacts::Note note)
+void lysenko::PhoneBook::addNumber(constNote note)
 {
   iteratorMark current = findThisMark("current");
   if ((current->contact == contacts_.getBegin()) && (noContacts()))
@@ -29,10 +29,8 @@ void lysenko::PhoneBook::createNewbookMarkHere(std::string oldMarkName, std::str
   bookMarks_.push_front({ newMarkName, newbookMark->contact });
 }
 
-void lysenko::PhoneBook::insertNoteNextTobookMark(bool before, std::string markName,
-  std::string name, std::string number)
+void lysenko::PhoneBook::insertNoteNextTobookMark(bool before, std::string markName, constNote newNote)
 {
-  lysenko::Contacts::Note newNote{ name, number };
   iteratorMark curr = findThisMark(markName);
   iteratorMark current = findThisMark("current");
   if ((current->contact == contacts_.getBegin()) && (contacts_.isEmpty()))
@@ -49,7 +47,7 @@ void lysenko::PhoneBook::insertNoteNextTobookMark(bool before, std::string markN
 void lysenko::PhoneBook::deleteThisNote(std::string markName)
 {
   iteratorMark curr = findThisMark(markName);
-  lysenko::Contacts::constIterator newContact;
+  lysenko::Contacts::constIteratorNote newContact;
   if (curr->contact != --contacts_.getEnd())
   {
     newContact = goToNextNote(curr->contact);
@@ -94,27 +92,26 @@ void lysenko::PhoneBook::deleteThisNote(std::string markName)
   }
 }
 
-lysenko::PhoneBook::constIterator lysenko::PhoneBook::showThisNote(std::string markName)
+lysenko::PhoneBook::constIteratorNote lysenko::PhoneBook::showThisNote(std::string markName)
 {
   iteratorMark curr = findThisMark(markName);
-  constIterator thisNote = curr->contact;
+  constIteratorNote thisNote = curr->contact;
   return thisNote;
 }
 
-void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool forward, std::string steps)
+void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool forward, int steps)
 {
   iteratorMark curr = findThisMark(markName);
-  constIterator note;
+  constIteratorNote note;
 
-  int intSteps = stoi(steps);
   if (forward)
   {
-    note = goTo(curr->contact, 1, intSteps);
+    note = goTo(curr->contact, 1, steps);
   }
   else
   {
-    intSteps = abs(intSteps);
-    note = goTo(curr->contact, 0, intSteps);
+    steps = std::abs(steps);
+    note = goTo(curr->contact, 0, steps);
   }
   curr->contact = note;
 }
@@ -122,7 +119,7 @@ void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool forward, 
 void lysenko::PhoneBook::removeThisBookMark(std::string markName, bool first)
 {
   iteratorMark curr = findThisMark(markName);
-  constIterator note;
+  constIteratorNote note;
 
   if (first)
   {
@@ -168,8 +165,8 @@ bool lysenko::PhoneBook::checkItIsOnlyMarked(iteratorMark curr)
 {
   int amount = 0;
   PhoneBook::iteratorMark check = bookMarks_.begin();
-  PhoneBook::constIterator contact = curr->contact;
-  for (size_t i = 0; i < bookMarks_.size();++i)
+  PhoneBook::constIteratorNote contact = curr->contact;
+  for (size_t i = 0; i < bookMarks_.size(); ++i)
   {
     if (check->contact == contact)
     {
@@ -184,7 +181,7 @@ bool lysenko::PhoneBook::checkItIsOnlyMarked(iteratorMark curr)
   return 1;
 }
 
-bool lysenko::PhoneBook::checkIfThisMarkNameContains(std::string& markName)
+bool lysenko::PhoneBook::checkIfThisMarkNameContains(std::string markName)
 {
   PhoneBook::iteratorMark newbookMark = findThisMark(markName);
   if (newbookMark == getEndOfBookMarks())

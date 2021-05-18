@@ -15,17 +15,18 @@ namespace lysenko
       std::string number;
     };
 
-    using iterator = std::list< lysenko::Contacts::Note >::iterator;
-    using constIterator = std::list< lysenko::Contacts::Note >::const_iterator;
+    using constIteratorNote = std::list< Note >::const_iterator;
+    using iteratorNote = std::list< Note >::iterator;
+    using constNote = const Note&;
 
     bool isEmpty() const;
 
-    constIterator getBegin() const;
-    constIterator getEnd() const;
+    constIteratorNote getBegin() const;
+    constIteratorNote getEnd() const;
 
-    void insert(constIterator curr, const Note& newNote, bool before);
-    void deleteNote(constIterator curr);
-    void pushBack(Note& newNote);
+    void insert(constIteratorNote curr, constNote newNote, bool before);
+    void deleteNote(constIteratorNote curr);
+    void pushBack(constNote newNote);
 
   private:
     std::list< Note > content_;

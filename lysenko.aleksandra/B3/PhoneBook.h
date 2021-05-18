@@ -13,32 +13,32 @@ namespace lysenko
   public:
     PhoneBook();
 
-    using constIterator = std::list< Contacts::Note >::const_iterator;
+    using constIteratorNote = std::list< Contacts::Note >::const_iterator;
 
     struct bookMark
     {
       std::string markName;
-      constIterator contact;
+      constIteratorNote contact;
     };
 
     using iteratorMark = std::list< PhoneBook::bookMark >::iterator;
+    using constNote = const Contacts::Note&;
 
-    void addNumber(Contacts::Note note);
+    void addNumber(constNote note);
     void createNewbookMarkHere(std::string oldMarkName, std::string newMarkName);
-    void insertNoteNextTobookMark(bool before, std::string markName,
-      std::string name, std::string number);
+    void insertNoteNextTobookMark(bool before, std::string markName, constNote note);
     void deleteThisNote(std::string markName);
-    void removeThisBookMark(std::string markName, bool forward, std::string steps);
+    void removeThisBookMark(std::string markName, bool forward, int steps);
     void removeThisBookMark(std::string markName, bool first);
 
-    constIterator showThisNote(std::string markName);
-    bool checkIfThisMarkNameContains(std::string& markName);
+    constIteratorNote showThisNote(std::string markName);
+    bool checkIfThisMarkNameContains(std::string markName);
     bool noContacts();
   private:
     Contacts contacts_;
     std::list< bookMark > bookMarks_;
 
-    bool checkItIsOnlyMarked(lysenko::PhoneBook::iteratorMark curr);
+    bool checkItIsOnlyMarked(iteratorMark curr);
     iteratorMark findThisMark(std::string thisMark);
     iteratorMark getEndOfBookMarks();
   };

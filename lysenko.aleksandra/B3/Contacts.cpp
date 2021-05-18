@@ -5,17 +5,17 @@ bool lysenko::Contacts::isEmpty() const
   return content_.empty();
 }
 
-lysenko::Contacts::constIterator lysenko::Contacts::getBegin() const
+lysenko::Contacts::constIteratorNote lysenko::Contacts::getBegin() const
 {
   return content_.begin();
 }
 
-lysenko::Contacts::constIterator lysenko::Contacts::getEnd() const
+lysenko::Contacts::constIteratorNote lysenko::Contacts::getEnd() const
 {
   return content_.end();
 }
 
-void lysenko::Contacts::insert(constIterator curr, const Note& newNote, bool before)
+void lysenko::Contacts::insert(constIteratorNote curr, constNote newNote, bool before)
 {
   if (before)
   {
@@ -29,18 +29,18 @@ void lysenko::Contacts::insert(constIterator curr, const Note& newNote, bool bef
     }
     else
     {
-      constIterator nextOne = ++curr;
+      constIteratorNote nextOne = ++curr;
       content_.insert(nextOne, newNote);
     }
   }
 }
 
-void lysenko::Contacts::deleteNote(constIterator curr)
+void lysenko::Contacts::deleteNote(constIteratorNote curr)
 {
   content_.erase(curr);
 }
 
-void lysenko::Contacts::pushBack(Note& newNote)
+void lysenko::Contacts::pushBack(constNote newNote)
 {
   content_.push_back(newNote);
 }

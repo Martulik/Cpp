@@ -9,7 +9,7 @@
 #include "PhoneBook.h"
 #include "Contacts.h"
 
-static bool readDelimiter(std::istream& in, char delimiter)
+bool readDelimiter(std::istream& in, char delimiter)
 {
   in >> std::ws;
   if (in.peek() != delimiter)
@@ -22,7 +22,7 @@ static bool readDelimiter(std::istream& in, char delimiter)
   return true;
 }
 
-static std::string readString(std::istream& in)
+std::string readString(std::istream& in)
 {
   std::string result;
   std::string buffer;
@@ -43,7 +43,7 @@ static std::string readString(std::istream& in)
   return result;
 }
 
-bool lysenko::isDigitsOnly(std::string& number)
+bool lysenko::isDigitsOnly(const std::string& number)
 {
   if (number == "")
   {
@@ -59,7 +59,7 @@ bool lysenko::isDigitsOnly(std::string& number)
   return 1;
 }
 
-bool lysenko::checkCorrectNumberAndName(std::string& name, std::string& number)
+bool lysenko::checkCorrectNumberAndName(const std::string& name, const std::string& number)
 {
   if ((!name.empty()) && (isDigitsOnly(number)))
   {
@@ -80,7 +80,8 @@ void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,
   std::string command;
 
   in >> command >> std::ws;
-  std::map< std::string, std::function< void(std::istream&, lysenko::PhoneBook&) > >::const_iterator iter = commandsMap.find(command);
+  using constCommandIter = std::map< std::string, std::function< void(std::istream&, lysenko::PhoneBook&) > >::const_iterator;
+  constCommandIter iter = commandsMap.find(command);
 
   if (command == "show")
   {
@@ -92,9 +93,7 @@ void lysenko::readCommand(const std::string& inputCommand, std::ostream& out,
   }
   else
   {
-    InvalidCommand error;
-      out << error.what() << "\n";
-      return;
+    throw InvalidCommand();
   }
 }
 
@@ -126,8 +125,7 @@ void lysenko::executeStore(std::istream& input, lysenko::PhoneBook& myBook)
   }
   else
   {
-    InvalidbookMark error;
-    std::cout << error.what() << "\n";
+    throw InvalidbookMark();
   }
 }
 
@@ -156,16 +154,14 @@ void lysenko::executeInsert(std::istream& input, lysenko::PhoneBook& myBook)
     }
     else
     {
-      InvalidCommand error;
-      std::cout << error.what() << "\n";
+      throw InvalidCommand();
       return;
     }
-    myBook.insertNoteNextTobookMark(beforeBool, markName, name, number);
+    myBook.insertNoteNextTobookMark(beforeBool, markName, { name, number });
   }
   if (!(myBook.checkIfThisMarkNameContains(markName)))
   {
-    InvalidbookMark error;
-    std::cout << error.what() << "\n";
+    throw InvalidbookMark();
   }
 }
 
@@ -181,8 +177,7 @@ void lysenko::executeDelete(std::istream& input, lysenko::PhoneBook& myBook)
   }
   else
   {
-    InvalidbookMark error;
-    std::cout << error.what() << "\n";
+     throw InvalidbookMark();
   }
 }
 
@@ -200,14 +195,13 @@ void lysenko::executeShow(std::istream& input, std::ostream& out, lysenko::Phone
     }
     else
     {
-      Contacts::constIterator thisNote = myBook.showThisNote(markName);
+      Contacts::constIteratorNote thisNote = myBook.showThisNote(markName);
       out << thisNote->number << " " << thisNote->name << "\n";
     }
   }
   else
   {
-    InvalidbookMark error;
-    std::cout << error.what() << "\n";
+    throw InvalidbookMark();
   }
 }
 
@@ -238,24 +232,22 @@ void lysenko::executeMove(std::istream& input, lysenko::PhoneBook& myBook)
       int stepsInt = std::stoi(steps);
       if (stepsInt > 0)
       {
-        myBook.removeThisBookMark(markName, 1, steps);
+        myBook.removeThisBookMark(markName, 1, stepsInt);
       }
       else
       {
-        myBook.removeThisBookMark(markName, 0, steps);
+        myBook.removeThisBookMark(markName, 0, stepsInt);
       }
     }
 
     else
     {
-      InvalidStep error;
-      std::cout << error.what() << "\n";
+      throw InvalidCommand();
       return;
     }
   }
   else
   {
-    InvalidbookMark error;
-    std::cout << error.what() << "\n";
+    throw InvalidbookMark();
   }
 }

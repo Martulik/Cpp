@@ -4,7 +4,7 @@
 
 namespace lab = shkurov;
 
-unsigned long factorial(unsigned long number)
+constexpr unsigned long factorial(unsigned long number)
 {
   if (number == 1)
   {

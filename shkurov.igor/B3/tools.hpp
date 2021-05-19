@@ -1,10 +1,10 @@
 #include <string>
 #include <utility>
 
-using node_t = std::pair< std::string, std::string >;
-
 namespace shkurov
 {
+  using node_t = std::pair< std::string, std::string >;
+
   std::string nameCorrection(std::string str);
   bool isNumber(const std::string& str);
   bool isCorrectBookmarkName(const std::string& str);

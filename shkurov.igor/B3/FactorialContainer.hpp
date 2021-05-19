@@ -28,6 +28,8 @@ namespace shkurov
           friend Iterator FactorialContainer::begin() const noexcept;
           friend Iterator FactorialContainer::end() const noexcept;
           Iterator(unsigned long value, size_t index);
+          Iterator();
+
           unsigned long value_;
           size_t index_;
       };

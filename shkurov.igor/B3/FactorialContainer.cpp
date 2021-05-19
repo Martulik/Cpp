@@ -86,3 +86,9 @@ lab::FactorialContainer::Iterator::Iterator(unsigned long value, size_t index):
   index_(index)
 {
 }
+
+lab::FactorialContainer::Iterator::Iterator():
+  value_(0),
+  index_(0)
+{
+}

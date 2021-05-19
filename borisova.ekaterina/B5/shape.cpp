@@ -54,7 +54,7 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
   in >> peaks;
   if (in.fail() || in.eof() || peaks <= 2)
   {
-    throw std::invalid_argument("Invalid figure\n");
+    return in;
   }
   for (size_t i = 0; i < peaks; i++)
   {

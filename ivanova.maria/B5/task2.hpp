@@ -9,7 +9,7 @@ namespace ivanova
 
   std::istream &operator >>(std::istream &in, Shape &shp);
   std::ostream &operator <<(std::ostream &out, const Shape &elem);
-  inline bool compare(Shape &elem1, Shape &elem2);
+  bool compare(Shape &elem1, Shape &elem2);
 }
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef COMMON_FUNCTIONS_HPP
-#define COMMON_FUNCTIONS_HPP
+#ifndef UTIL_HPP
+#define UTIL_HPP
 #include <iosfwd>
 #include <string>
 namespace dushechkina

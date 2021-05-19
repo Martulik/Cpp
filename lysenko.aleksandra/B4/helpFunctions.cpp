@@ -36,7 +36,7 @@ namespace lysenko
 
       keys.push_back(std::stoi(keyStr));
     }
-     
+
     str = line;
     return { keys[0], keys[1], str };
   }

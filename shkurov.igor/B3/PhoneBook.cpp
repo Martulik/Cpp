@@ -6,14 +6,14 @@
 
 namespace lab = shkurov;
 
-lab::PhoneBook::iterator_t lab::PhoneBook::begin()
+lab::PhoneBook::const_iterator_t lab::PhoneBook::begin()
 {
-  return container_.begin();
+  return container_.cbegin();
 }
 
-lab::PhoneBook::iterator_t lab::PhoneBook::end()
+lab::PhoneBook::const_iterator_t lab::PhoneBook::end()
 {
-  return container_.end();
+  return container_.cend();
 }
 
 void lab::PhoneBook::insertForward(lab::PhoneBook::const_iterator_t& it, const lab::PhoneBook::node_t& node)
@@ -43,14 +43,6 @@ void lab::PhoneBook::insertBackward(lab::PhoneBook::const_iterator_t& it, const 
 lab::PhoneBook::node_t lab::PhoneBook::pullCurrent(const lab::PhoneBook::const_iterator_t& it) const
 {
   return *it;
-}
-
-void lab::PhoneBook::replaceCurrent(const lab::PhoneBook::iterator_t& it, const node_t& node)
-{
-  node_t temp = node;
-  iterator_t tempIt = it;
-  std::swap(std::get<0>(*tempIt), std::get<0>(temp));
-  std::swap(std::get<1>(*tempIt), std::get<1>(temp));
 }
 
 void lab::PhoneBook::pushBack(const node_t& node)
@@ -92,7 +84,7 @@ size_t lab::PhoneBook::size() const
   return container_.size();
 }
 
-lab::PhoneBook::iterator_t lab::PhoneBook::deleteNode(const lab::PhoneBook::const_iterator_t& it)
+lab::PhoneBook::const_iterator_t lab::PhoneBook::deleteNode(const lab::PhoneBook::const_iterator_t& it)
 {
   return container_.erase(it);
 }

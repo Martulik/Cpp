@@ -15,18 +15,17 @@ namespace shkurov
 
       PhoneBook() = default;
 
-      iterator_t begin();
-      iterator_t end();
+      const_iterator_t begin();
+      const_iterator_t end();
 
       void insertForward(const_iterator_t& it, const node_t& node);
       void insertBackward(const_iterator_t& it, const node_t& node);
       node_t pullCurrent(const const_iterator_t& it) const;
-      void replaceCurrent(const iterator_t& it, const node_t& node);
       void pushBack(const node_t& node);
       void pushFront(const node_t& node);
       void move(const_iterator_t& it, int steps);
       void move(const_iterator_t& it, const std::string& pos);
-      PhoneBook::iterator_t deleteNode(const const_iterator_t& it);
+      PhoneBook::const_iterator_t deleteNode(const const_iterator_t& it);
 
       size_t size() const;
 

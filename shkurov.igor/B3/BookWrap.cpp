@@ -3,14 +3,15 @@
 
 #include <iostream>
 #include <sstream>
+#include <utility>
 
 namespace lab = shkurov;
 
 lab::BookWrap::BookWrap(lab::PhoneBook& book, std::ostream& out):
   book_(std::make_unique< PhoneBook >(book)),
+  bookmarks_({ {"current", book_->begin()} }),
   out_(out)
 {
-  bookmarks_.insert({"current", book_->begin()});
 }
 
 void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)

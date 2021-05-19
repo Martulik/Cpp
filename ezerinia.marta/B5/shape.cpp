@@ -27,10 +27,10 @@ bool lab::operator<(const Shape &lhs, const Shape &rhs)
   if (lhs.size() > 5 && rhs.size() > 5) {
     return false;
   }
-  if (lhs.size() < rhs.size() || ((rhs.size() == 4) && (lhs.size() == rhs.size()) && isSideEqual(lhs))) {
-    return true;
+  if (rhs.size() == 4 && lhs.size() == 4) {
+    return isSideEqual(lhs) && !isSideEqual(rhs);
   }
-  return false;
+  return lhs.size() < rhs.size();
 }
 
 std::istream &lab::operator>>(std::istream &in, Point &point)

@@ -76,6 +76,6 @@ std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
 
 bool ivanova::compare(Shape &elem1, Shape &elem2)
 {
-  return elem1.size() < elem2.size() || isSquare(elem1) && (isRect(elem2));
+  return (elem1.size() < elem2.size()) || (isSquare(elem1) && (isRect(elem2)));
 }
 

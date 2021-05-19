@@ -12,10 +12,8 @@ BOOST_AUTO_TEST_CASE(correctWork)
 {
   unsigned int n = 1;
   unsigned int k = 1;
-  for (auto i = fact.begin(); i != fact.end(); i++)
+  for (auto i = fact.begin(); i != fact.end(); i++, n++, k *= n)
   {
-    k *= n;
-    n++;
     BOOST_CHECK_EQUAL(*i, k);
   }
 }

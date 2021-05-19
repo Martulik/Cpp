@@ -21,10 +21,10 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
 {
   char sign;
   std::string line;
-  std::getline(in >> std::ws, line, ')');
-  if (line.empty() || in.eof())
+  std::getline(in >> std::skipws, line, ')');
+  if (line.empty()|| in.eof())
   {
-    return in;
+    throw std::invalid_argument("Empty input\n");
   }
   std::istringstream input(line);
   input >> sign;
@@ -42,7 +42,7 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
   {
     throw std::invalid_argument("Invalid separate\n");
   }
-  in >> point.y;
+  input >> point.y;
   if (input.fail())
   {
     throw std::invalid_argument("Invalid coordinate Y\n");

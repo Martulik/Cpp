@@ -7,6 +7,7 @@
 namespace borisova
 {
   using Shape = std::vector< Point >;
+
   std::istream& operator>>(std::istream& in, Shape& shape);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
   bool operator<(const Shape& firstShape, const Shape& secondShape);
@@ -15,7 +16,6 @@ namespace borisova
   bool isSquare(const Shape& shape);
   bool isRectangle(const Shape& shape);
   bool isPentagon(const Shape& shape);
-
 };
 
 #endif

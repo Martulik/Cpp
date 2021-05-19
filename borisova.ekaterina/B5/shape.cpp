@@ -50,19 +50,21 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   int peaks;
   Point point;
-  in >> std::skipws;
+  in >> std::noskipws;
   in >> peaks;
-  if (in.fail() || in.eof())
+  if (in.fail() || in.eof() || peaks <= 2)
   {
     throw std::invalid_argument("Invalid figure\n");
   }
   for (int i = 0; i < peaks; i++)
   {
-    if (peaks > 2)
-    {
-      in >> point;
-      shape.push_back(point);
-    }
+    in >> std::skipws;
+    in >> point;
+    shape.push_back(point);
+  }
+  if (shape.size() != peaks)
+  {
+    throw std::invalid_argument("Invalid number of peaks\n");
   }
   return in;
 }

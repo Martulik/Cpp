@@ -1,6 +1,7 @@
 #include "FactorialContainer.hpp"
 
 #include <memory>
+#include <cassert>
 
 namespace lab = shkurov;
 
@@ -28,10 +29,7 @@ const unsigned long& lab::FactorialContainer::Iterator::operator*() const
 
 lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator++()
 {
-  if (index_ == 11)
-  {
-    throw std::out_of_range("Iterator is out of range.");
-  }
+  assert(index_ < 11);
 
   value_ *= ++index_;
   return *this;
@@ -39,10 +37,7 @@ lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator++
 
 lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator++(int)
 {
-  if (index_ == 11)
-  {
-    throw std::out_of_range("Iterator is out of range.");
-  }
+  assert(index_ < 11);
 
   Iterator temp = *this;
   ++(*this);
@@ -51,10 +46,7 @@ lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator++(
 
 lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator--()
 {
-  if (index_ == 1)
-  {
-    throw std::out_of_range("Iterator is out of range.");
-  }
+  assert(index_ > 0);
 
   value_ /= index_--;
   return *this;
@@ -62,10 +54,7 @@ lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator--
 
 lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator--(int)
 {
-  if (index_ == 1)
-  {
-    throw std::out_of_range("Iterator is out of range.");
-  }
+  assert(index_ > 0);
 
   Iterator temp = *this;
   --(*this);

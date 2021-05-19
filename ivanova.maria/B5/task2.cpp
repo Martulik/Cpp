@@ -23,9 +23,7 @@ int iva::task2(std::istream &in, std::ostream &out)
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){return shp.size() == 5; }), shapes.end());
   std::vector< Point > points;
   points.reserve(shapes.size());
-  for(auto&& point: shapes) {
-    points.emplace_back(point.front());
-  }
+  std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &e){ points.push_back(e[0]); });Z
   std::sort(shapes.begin(), shapes.end(), compare);
   out << "Vertices: " << vert << "\n";
   out << "Triangles: " << tri << '\n';

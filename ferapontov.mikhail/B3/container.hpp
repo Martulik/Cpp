@@ -22,11 +22,11 @@ namespace ferapontov
           Iterator operator--(int);
           Iterator operator++(int);
 
-          const value_type& operator*();
-          const value_type* operator->();
+          const value_type& operator*() const;
+          const value_type* operator->() const;
 
-          bool operator==(const Iterator& it);
-          bool operator!=(const Iterator& it);
+          bool operator==(const Iterator& it) const;
+          bool operator!=(const Iterator& it) const;
         private:
           size_t index_;
           valueType value_;

@@ -14,9 +14,9 @@ namespace dushechkina
       std::string name;
     };
 
-    using iterator = std::list< Record >::iterator;
-    iterator begin();
-    iterator end();
+    using iterator = std::list< Record >::const_iterator;
+    iterator begin() const;
+    iterator end() const;
     void insertBeforeCurrentRecord(iterator current, const Record& newRecord);
     void insertAfterCurrentRecord(iterator current, const Record& newRecord);
     void insertAtTheEnd(const Record& newRecord);

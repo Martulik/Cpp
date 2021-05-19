@@ -1,14 +1,14 @@
 #include "phonebook.hpp"
 #include "factorial.hpp"
 
-dushechkina::Phonebook::iterator dushechkina::Phonebook::begin()
+dushechkina::Phonebook::iterator dushechkina::Phonebook::begin() const
 {
-  return records_.begin();
+  return records_.cbegin();
 }
 
-dushechkina::Phonebook::iterator dushechkina::Phonebook::end()
+dushechkina::Phonebook::iterator dushechkina::Phonebook::end() const
 {
-  return records_.end();
+  return records_.cend();
 }
 
 void dushechkina::Phonebook::insertBeforeCurrentRecord(iterator current, const Record& newRecord)

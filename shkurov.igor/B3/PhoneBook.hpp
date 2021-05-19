@@ -28,6 +28,7 @@ namespace shkurov
       PhoneBook::const_iterator_t deleteNode(const const_iterator_t& it);
 
       size_t size() const;
+      bool empty() const;
 
     private:
       bool iteratorInRange(const const_iterator_t& it) const;

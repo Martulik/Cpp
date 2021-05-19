@@ -68,7 +68,7 @@ void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, const std::strin
   }
   else if (pos == "last")
   {
-    if (size() == 0)
+    if (empty())
     {
       it = container_.cend();
     }
@@ -82,6 +82,15 @@ void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, const std::strin
 size_t lab::PhoneBook::size() const
 {
   return container_.size();
+}
+
+bool lab::PhoneBook::empty() const
+{
+  if (size() == 0)
+  {
+    return true;
+  }
+  return false;
 }
 
 lab::PhoneBook::const_iterator_t lab::PhoneBook::deleteNode(const lab::PhoneBook::const_iterator_t& it)

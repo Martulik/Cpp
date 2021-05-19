@@ -130,7 +130,7 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
       throw std::runtime_error("<INVALID BOOKMARK>\n");
     }
 
-    if (!(book_->size() == 0))
+    if (!book_->empty())
     {
       printNode(out_, book_->pullCurrent(it->second));
     }

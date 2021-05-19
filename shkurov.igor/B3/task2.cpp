@@ -16,7 +16,7 @@ void lab::task2(std::ostream& out)
   {
     std::copy(cont.begin(), cont.end(), std::ostream_iterator< unsigned long >(out, " "));
     out << '\n';
-    std::reverse_copy(cont.begin(), cont.end(), std::ostream_iterator< unsigned >(out, " "));
+    std::reverse_copy(cont.begin(), cont.end(), std::ostream_iterator< unsigned long >(out, " "));
     out << '\n';
   }
   catch (const std::exception& ex)

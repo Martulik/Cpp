@@ -12,8 +12,8 @@ namespace dushechkina
     public:
       Iterator();
       explicit Iterator(unsigned int index);
-      unsigned int operator->() const;
-      unsigned int operator*() const;
+      const unsigned int* operator->();
+      const unsigned int& operator*();
       bool operator==(const Iterator& rhs) const;
       bool operator!=(const Iterator& rhs) const;
       Iterator& operator++();

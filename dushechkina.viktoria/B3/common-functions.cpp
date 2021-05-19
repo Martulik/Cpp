@@ -24,26 +24,6 @@ void dushechkina::checkForEmptyInput(const std::string& in)
   }
 }
 
-void dushechkina::empty(std::ostream& out)
-{
-  out << "<EMPTY>\n";
-}
-
-void dushechkina::invalidCommand(std::ostream& out)
-{
-  out << "<INVALID COMMAND>\n";
-}
-
-void dushechkina::invalidBookmark(std::ostream& out)
-{
-  out << "<INVALID BOOKMARK>\n";
-}
-
-void dushechkina::invalidStep(std::ostream& out)
-{
-  out << "<INVALID STEP>\n";
-}
-
 void dushechkina::incorrectIndex(std::ostream& out)
 {
   out << "Incorrect index, it could be from 1 to 11";

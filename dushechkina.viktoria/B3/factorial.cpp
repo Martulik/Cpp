@@ -1,6 +1,5 @@
 #include "factorial.hpp"
 #include "common-functions.hpp"
-#include <stdexcept>
 #include <cassert>
 #include <iostream>
 
@@ -25,13 +24,15 @@ dushechkina::Container::Iterator::Iterator(unsigned int index):
   factorial_ = value;
 }
 
-unsigned int dushechkina::Container::Iterator::operator->() const
+const unsigned int* dushechkina::Container::Iterator::operator->()
 {
-  return factorial_;
+  assert(index_ >= BEGIN_INDEX);
+  return std::addressof(factorial_);
 }
 
-unsigned int dushechkina::Container::Iterator::operator*() const
+const unsigned int& dushechkina::Container::Iterator::operator*()
 {
+  assert(index_ >= BEGIN_INDEX);
   return factorial_;
 }
 

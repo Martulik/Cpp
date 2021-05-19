@@ -64,29 +64,4 @@ BOOST_AUTO_TEST_SUITE(testTools)
     BOOST_CHECK(iva::compare(square, hexagon));
   }
 
-//  BOOST_AUTO_TEST_CASE(testCount)
-//  {
-//    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
-//    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
-//    iva::count info;
-//    info.countShape(square);
-//    info.countShape(rectangle);
-//    BOOST_CHECK(info.vertices == 8);
-//    BOOST_CHECK(info.squares == 1);
-//    BOOST_CHECK(info.rectangles == 2);
-//  }
-
-//  BOOST_AUTO_TEST_CASE(testDelete)
-//  {
-//    std::vector < iva::Shape > vec;
-//    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
-//    iva::Shape pentagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}};
-//    vec.push_back(square);
-//    vec.push_back(pentagon);
-//    std::vector < iva::Shape > tmp;
-//    std::for_each(vec.begin(), vec.end(), [&tmp](const iva::Shape &a){ if (!iva::isPentagon(a)) { tmp.push_back(a);}});
-//    vec.swap(tmp);
-//    BOOST_CHECK(vec.size() == 1);
-//  }
-
 BOOST_AUTO_TEST_SUITE_END()

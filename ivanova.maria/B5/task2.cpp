@@ -20,10 +20,11 @@ int iva::task2(std::istream &in, std::ostream &out)
   int sqr = std::count_if(shapes.begin(), shapes.end(), isSquare);
   int rect = std::count_if(shapes.begin(), shapes.end(), isRect);
   using cSh = const Shape;
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){return shp.size() == 5; }), shapes.end());
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){ return shp.size() == 5; }), shapes.end());
   std::vector< Point > points;
   points.reserve(shapes.size());
-  for(auto&& point: shapes) {
+  for(auto&& point: shapes)
+  {
     points.emplace_back(point.front());
   }
   std::sort(shapes.begin(), shapes.end(), compare);
@@ -54,15 +55,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     std::cerr << "invalid input 4";
     exit(1);
   }
-//  size_t i =0;
   shp.reserve(vertices);
-//  while (i < vertices)
-//  {
-//    i++;
-//    Point pt;
-//    iss >> pt;
-//    shp.push_back(pt);
-//  }
   Shape tmp;
   std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
   if (tmp.size() != vertices)
@@ -83,13 +76,6 @@ std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
 
 bool ivanova::compare(Shape &elem1, Shape &elem2)
 {
-  if (isSquare(elem1))
-  {
-    if (isRect(elem2))
-    {
-      return true;
-    }
-  }
-  return elem1.size() < elem2.size();
+  return elem1.size() < elem2.size() || isSquare(elem1) && (isRect(elem2));
 }
 

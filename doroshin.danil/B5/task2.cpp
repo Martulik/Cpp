@@ -11,7 +11,7 @@ namespace dan = doroshin;
 bool shapeOrder(const dan::Shape& lhs, const dan::Shape& rhs)
 {
   if(dan::isRectangle(lhs) && dan::isRectangle(rhs)) {
-    return dan::isSquare(lhs);
+    return dan::isSquare(lhs) && !dan::isSquare(rhs);
   }
   return lhs.points_.size() < rhs.points_.size();
 }

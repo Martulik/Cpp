@@ -1,8 +1,8 @@
 #ifndef USER_INTERFACE_HPP
 #define USER_INTERFACE_HPP
 
-#include "book.hpp"
 #include <map>
+#include "book.hpp"
 
 namespace ferapontov
 {
@@ -15,10 +15,10 @@ namespace ferapontov
 
       void add(const std::string& name, const std::string& number);
       void store(const std::string& firstMark, const std::string& secondMark);
-      void insertNote(std::string& mode, std::string& markName, std::string& name, std::string& number);
-      void deleteNote(std::string& markName);
-      ferapontov::data_t show(std::string& markName);
-      void move(std::string& markName, std::string& steps);
+      void insertNote(const std::string& mode, const std::string& markName, const std::string& name, const std::string& number);
+      void deleteNote(const std::string& markName);
+      ferapontov::data_t show(const std::string& markName);
+      void move(const std::string& markName, const std::string& steps);
     private:
       PhoneBook book_;
       std::map< const std::string, const_iter > bookmarks_;

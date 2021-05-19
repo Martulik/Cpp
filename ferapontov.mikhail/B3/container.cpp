@@ -48,22 +48,22 @@ fer::Container::Iterator fer::Container::Iterator::operator--(int)
   return temp;
 }
 
-const fer::Container::valueType& fer::Container::Iterator::operator*()
+const fer::Container::valueType& fer::Container::Iterator::operator*() const
 {
   return value_;
 }
 
-const fer::Container::valueType* fer::Container::Iterator::operator->()
+const fer::Container::valueType* fer::Container::Iterator::operator->() const
 {
   return std::addressof(value_);
 }
 
-bool fer::Container::Iterator::operator==(const Iterator& it)
+bool fer::Container::Iterator::operator==(const Iterator& it) const
 {
   return index_ == it.index_;
 }
 
-bool fer::Container::Iterator::operator!=(const Iterator& it)
+bool fer::Container::Iterator::operator!=(const Iterator& it) const
 {
   return index_ != it.index_;
 }

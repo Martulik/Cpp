@@ -11,15 +11,16 @@ namespace ferapontov
     {
       return 1;
     }
-    return num * getFarctorial(num -1);
+    return num * getFarctorial(num - 1);
   }
 
   std::string read(std::istream& in);
   std::string readName(std::istream& in);
-  std::string checkMarkName(std::string& markName);
-  void checkInsertMode(std::string& mode);
-  void checkNumber(std::string& num);
-  bool checkSteps(std::string& steps);
+  std::string checkMarkName(const std::string& markName);
+  void checkInsertMode(const std::string& mode);
+  void checkNumber(const std::string& num);
+  bool checkStepsKeyWords(const std::string& steps);
+  bool checkStepsNum(const std::string& steps);
 }
 
 #endif

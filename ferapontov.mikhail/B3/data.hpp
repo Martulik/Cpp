@@ -2,7 +2,7 @@
 #define DATA_HPP
 
 #include <string>
-#include <iostream>
+#include <iosfwd>
 
 namespace ferapontov
 {

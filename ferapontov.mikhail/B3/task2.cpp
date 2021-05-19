@@ -1,5 +1,6 @@
 #include "tasks.hpp"
 #include <algorithm>
+#include <ostream>
 #include "container.hpp"
 
 void ferapontov::task2(std::ostream& out)

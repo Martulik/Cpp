@@ -1,4 +1,5 @@
 #include "UserInterface.hpp"
+#include <stdexcept>
 
 namespace fer = ferapontov;
 fer::Interface::Interface():
@@ -23,7 +24,7 @@ void fer::Interface::store(const std::string& firstMark, const std::string& seco
   bookmarks_.insert(std::make_pair(secondMark, bookmarks_[firstMark]));
 }
 
-void fer::Interface::insertNote(std::string& mode, std::string& markName, std::string& name, std::string& number)
+void fer::Interface::insertNote(const std::string& mode, const std::string& markName, const std::string& name, const std::string& number)
 {
   if (book_.empty())
   {
@@ -40,7 +41,7 @@ void fer::Interface::insertNote(std::string& mode, std::string& markName, std::s
   }
 }
 
-fer::data_t fer::Interface::show(std::string& markName)
+fer::data_t fer::Interface::show(const std::string& markName)
 {
   checkBookMark(markName);
   if (book_.empty())
@@ -51,7 +52,7 @@ fer::data_t fer::Interface::show(std::string& markName)
   return *it->second;
 }
 
-void fer::Interface::deleteNote(std::string& markName)
+void fer::Interface::deleteNote(const std::string& markName)
 {
   checkBookMark(markName);
   fer::const_iter oldValue = bookmarks_[markName];
@@ -69,7 +70,7 @@ void fer::Interface::deleteNote(std::string& markName)
   }
 }
 
-void fer::Interface::move(std::string& markName, std::string& steps)
+void fer::Interface::move(const std::string& markName, const std::string& steps)
 {
   checkBookMark(markName);
   if (steps == "last")

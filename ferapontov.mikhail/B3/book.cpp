@@ -17,12 +17,12 @@ void fer::PhoneBook::pushBack(data_t& PhoneNote)
   notes_.push_back(PhoneNote);
 }
 
-fer::iter fer::PhoneBook::deletNote(const_iter it)
+fer::const_iter fer::PhoneBook::deletNote(const_iter it)
 {
   return notes_.erase(it);
 }
 
-fer::const_iter fer::PhoneBook::move(const_iter it, int steps)
+fer::const_iter fer::PhoneBook::move(const_iter it, int steps) const
 {
   if (steps < 0)
   {
@@ -53,12 +53,12 @@ size_t fer::PhoneBook::size() const
   return notes_.size();
 }
 
-fer::const_iter fer::PhoneBook::begin()
+fer::const_iter fer::PhoneBook::begin() const
 {
   return notes_.cbegin();
 }
 
-fer::const_iter fer::PhoneBook::end()
+fer::const_iter fer::PhoneBook::end() const
 {
   return notes_.cend();
 }

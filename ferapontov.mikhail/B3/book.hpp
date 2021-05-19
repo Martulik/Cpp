@@ -17,9 +17,9 @@ namespace ferapontov
 
       void replace(iter it, const data_t& phoneNote);
 
-      const_iter move(const_iter it, int steps);
+      const_iter move(const_iter it, int steps) const;
 
-      iter deletNote(const_iter it);
+      const_iter deletNote(const_iter it);
 
       void pushBack(data_t& PhoneNote);
 
@@ -27,8 +27,8 @@ namespace ferapontov
 
       size_t size() const;
 
-      const_iter begin();
-      const_iter end();
+      const_iter begin() const;
+      const_iter end() const;
     private:
       std::list< data_t > notes_;
   };

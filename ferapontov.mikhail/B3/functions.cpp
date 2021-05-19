@@ -30,9 +30,9 @@ std::string ferapontov::readName(std::istream& in)
   return name;
 }
 
-std::string ferapontov::checkMarkName(std::string& markName)
+std::string ferapontov::checkMarkName(const std::string& markName)
 {
-  for (char& ch: markName)
+  for (const char& ch: markName)
   {
     if (!isalpha(ch) && !isdigit(ch) && ch != '-')
     {
@@ -42,7 +42,7 @@ std::string ferapontov::checkMarkName(std::string& markName)
   return markName;
 }
 
-void ferapontov::checkInsertMode(std::string& mode)
+void ferapontov::checkInsertMode(const std::string& mode)
 {
   if (mode != "before" && mode != "after")
   {
@@ -50,7 +50,7 @@ void ferapontov::checkInsertMode(std::string& mode)
   }
 }
 
-void ferapontov::checkNumber(std::string& num)
+void ferapontov::checkNumber(const std::string& num)
 {
   if (!std::all_of(num.begin(), num.end(), ::isdigit))
   {
@@ -58,12 +58,17 @@ void ferapontov::checkNumber(std::string& num)
   }
 }
 
-bool ferapontov::checkSteps(std::string& steps)
+bool ferapontov::checkStepsKeyWords(const std::string& steps)
 {
   if (steps == "last" || steps == "first" || (std::all_of(steps.begin(), steps.end(), ::isdigit)))
   {
     return true;
   }
+  return false;
+}
+
+bool ferapontov::checkStepsNum(const std::string& steps)
+{
   if ((steps[0] == '-' || steps[0] == '+') && (std::all_of(steps.begin() + 1, steps.end(), ::isdigit)))
   {
     return true;

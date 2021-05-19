@@ -1,6 +1,7 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
-#include <iostream>
+
+#include <iosfwd>
 
 namespace ferapontov
 {

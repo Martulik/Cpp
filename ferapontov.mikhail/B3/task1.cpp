@@ -59,7 +59,7 @@ void fer::task1(std::istream& in, std::ostream& out)
         std::string markName = read(stream);
         checkMarkName(markName);
         std::string steps = read(stream);
-        if (checkSteps(steps))
+        if (checkStepsKeyWords(steps) || checkStepsNum(steps))
         {
           UI.move(markName, steps);
         }

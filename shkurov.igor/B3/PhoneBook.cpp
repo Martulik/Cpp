@@ -60,13 +60,13 @@ void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, int steps) const
   std::advance(it, steps);
 }
 
-void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, const std::string& pos) const
+void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, insert pos) const
 {
-  if (pos == "first")
+  if (pos == insert::FIRST)
   {
     it = container_.cbegin();
   }
-  else if (pos == "last")
+  else if (pos == insert::LAST)
   {
     if (empty())
     {

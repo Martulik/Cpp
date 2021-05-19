@@ -161,9 +161,13 @@ void lab::BookWrap::doAction(const std::string& tag, std::istringstream& istr)
     }
     else
     {
-      if (steps == "last" || steps == "first")
+      if (steps == "last")
       {
-        book_->move(recordIt, steps);
+        book_->move(recordIt, PhoneBook::insert::LAST);
+      }
+      else if (steps == "first")
+      {
+        book_->move(recordIt, PhoneBook::insert::FIRST);
       }
       else
       {

@@ -9,6 +9,11 @@ namespace shkurov
   class PhoneBook
   {
     public:
+      enum insert
+      {
+        FIRST,
+        LAST
+      };
       using node_t = std::pair< std::string, std::string >;
       using iterator_t = std::list< node_t >::iterator;
       using const_iterator_t = std::list< node_t >::const_iterator;
@@ -24,7 +29,7 @@ namespace shkurov
       void pushBack(const node_t& node);
       void pushFront(const node_t& node);
       void move(const_iterator_t& it, int steps) const;
-      void move(const_iterator_t& it, const std::string& pos) const;
+      void move(const_iterator_t& it, insert pos) const;
       PhoneBook::const_iterator_t deleteNode(const const_iterator_t& it);
 
       size_t size() const;

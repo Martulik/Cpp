@@ -19,7 +19,7 @@ namespace ivanova
   bool isRect(const Shape &shp);
   bool isTriangle(const Shape &shp);
   bool isSquare(const Shape &shp);
-  inline bool checkSidesForSquare(const Shape &shp);
+  bool checkSidesForSquare(const Shape &shp);
 }
 
 #endif

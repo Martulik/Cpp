@@ -91,6 +91,5 @@ bool ivanova::compare(Shape &elem1, Shape &elem2)
     return isSquare(elem1) && isRect(elem2);
   }
   return false;
-//  return (elem1.size() < elem2.size()) || (isSquare(elem1) && (isRect(elem2)));
 }
 

@@ -38,22 +38,11 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
   }
   std::string a;
   std::getline(iss, a, ';');
-//  iss >> point.x;
-point.x = std::stoi(a);
-a.clear();
-//  iss >> separator;
-//  if (separator == ';')
-  {
-//    iss >> point.y;
-    std::getline(iss, a, ')');
-point.y = std::stoi(a);
-    return in;
-  }
-//  else
-//  {
-//    std::cerr << "invalid separator";
-//    exit(1);
-//  }
+  point.x = std::stoi(a);
+  a.clear();
+  std::getline(iss, a, ')');
+  point.y = std::stoi(a);
+  return in;
 }
 
 std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Point &point)

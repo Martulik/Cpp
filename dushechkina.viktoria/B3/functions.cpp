@@ -21,7 +21,7 @@ void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream
 
   if (dushechkina::commandName.find(command) == dushechkina::commandName.end())
   {
-    std::cout << INVALID_COMMAND;
+    out << INVALID_COMMAND;
   }
 
   dushechkina::commandName.at(command)(phonebook, marks, stream, out);
@@ -122,7 +122,7 @@ void dushechkina::remove(dushechkina::Phonebook& phonebook, MarkList& marks, std
     markName = getMarkName(in);
 
     auto removedRecord = findMark(marks, markName)->second;
-    for (auto& mark : marks)
+    for (auto& mark: marks)
     {
       if (mark.second == removedRecord)
       {
@@ -130,7 +130,7 @@ void dushechkina::remove(dushechkina::Phonebook& phonebook, MarkList& marks, std
       }
     }
     phonebook.removeCurrentRecord(removedRecord);
-    for (auto& mark : marks)
+    for (auto& mark: marks)
     {
       if (mark.second == phonebook.end())
       {
@@ -208,9 +208,9 @@ std::string dushechkina::getPhoneNumber(std::istream& in)
     throw std::invalid_argument(INVALID_COMMAND);
   }
 
-  for (char i : phoneNumber)
+  for (char i: phoneNumber)
   {
-    if (!isdigit(i))
+    if (!std::isdigit(i))
     {
       throw std::invalid_argument(INVALID_COMMAND);
     }

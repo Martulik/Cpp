@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     {
       throw std::invalid_argument("Invalid arguments\n");
     }
-    
+
     if (!std::isdigit(firstArg[0]))
     {
       throw std::invalid_argument("Invalid first arguments\n");

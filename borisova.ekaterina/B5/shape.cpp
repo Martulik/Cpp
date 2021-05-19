@@ -1,5 +1,6 @@
 #include "shape.hpp"
 #include <iostream>
+#include <iterator>
 
 namespace lab = borisova;
 
@@ -13,12 +14,6 @@ bool lab::operator<(const Shape& firstShape, const Shape& secondShape)
   {
     return firstShape.size() < secondShape.size();
   }
-}
-
-bool lab::isPerpendicularity(const Point& one, const Point& two, const Point three)
-{
-  return ((one.x - two.x) * (three.x - two.x)
-    + (one.y - two.y) * (three.y - two.y)) == 0;
 }
 
 bool lab::isTriangle(const Shape& shape)

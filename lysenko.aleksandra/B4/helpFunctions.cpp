@@ -43,9 +43,9 @@ namespace lysenko
 
   void sortVector(std::vector< DataStruct >& myVect)
   {
-    for (int i = 0; i < myVect.size(); i++)
+    for (long unsigned int i = 0; i < myVect.size(); i++)
     {
-      for (int j = i; j < myVect.size(); j++)
+      for (long unsigned int j = i; j < myVect.size(); j++)
       {
         if (!isGreater(myVect[i], myVect[j]))
         {
@@ -57,7 +57,7 @@ namespace lysenko
 
   void printVector(const std::vector< DataStruct >& myVect, std::ostream& out)
   {
-    for (int i = 0; i < myVect.size(); i++)
+    for (long unsigned int i = 0; i < myVect.size(); i++)
     {
       out << myVect[i].key1 << "," << myVect[i].key2 << "," << myVect[i].str << "\n";
     }

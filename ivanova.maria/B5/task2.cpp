@@ -14,12 +14,13 @@ int iva::task2(std::istream &in, std::ostream &out)
     std::cerr << "failed reading";
     exit(1);
   }
-  std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
-  int vert = std::accumulate(shapes.begin(), shapes.end(), 0, [](int cnt, const Shape &e){ return cnt + e.size();});
-  int tri = std::count_if(shapes.begin(), shapes.end(), isTriangle);
-  int sqr = std::count_if(shapes.begin(), shapes.end(), isSquare);
-  int rect = std::count_if(shapes.begin(), shapes.end(), isRect);
   using cSh = const Shape;
+  using uint = unsigned int;
+  std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
+  uint vert = std::accumulate(shapes.begin(), shapes.end(), 0, [](register uint cnt, cSh &e){ return cnt + e.size();});
+  uint tri = std::count_if(shapes.begin(), shapes.end(), isTriangle);
+  uint sqr = std::count_if(shapes.begin(), shapes.end(), isSquare);
+  uint rect = std::count_if(shapes.begin(), shapes.end(), isRect);
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){ return shp.size() == 5; }), shapes.end());
   std::vector< Point > points;
   points.reserve(shapes.size());
@@ -48,6 +49,7 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
   {
     return in;
   }
+  std::istringstream iu;
   std::istringstream iss(line);
   iss >> vertices >> std::skipws;
   if (vertices < 3)

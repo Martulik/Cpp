@@ -16,9 +16,9 @@ namespace ivanova
   std::istream &operator >>(std::istream &in, Point& point);
   std::ostream &operator <<(std::ostream &out, const Point &point);
 
-  inline bool isRect(const Shape &shp);
-  inline bool isTriangle(const Shape& shp);
-  inline bool isSquare(const Shape &shp);
+  bool isRect(const Shape &shp);
+  bool isTriangle(const Shape &shp);
+  bool isSquare(const Shape &shp);
   inline bool checkSidesForSquare(const Shape &shp);
 }
 

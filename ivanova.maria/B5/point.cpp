@@ -5,17 +5,17 @@
 
 namespace iva = ivanova;
 
-bool iva::isRect(const iva::Shape &shp)
+bool iva::isRect(const Shape &shp)
 {
   return shp.size() == 4;
 }
 
-bool iva::isTriangle(const iva::Shape &shp)
+bool iva::isTriangle(const Shape &shp)
 {
   return shp.size() == 3;
 }
 
-bool iva::isSquare(const iva::Shape &shp)
+bool iva::isSquare(const Shape &shp)
 {
   return shp.size() == 4 && iva::checkSidesForSquare(shp);
 }
@@ -36,18 +36,24 @@ std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
     std::cerr << "invalid separator";
     exit(1);
   }
-  iss >> point.x;
-  iss >> separator;
-  if (separator == ';')
+  std::string a;
+  std::getline(iss, a, ';');
+//  iss >> point.x;
+point.x = std::stoi(a);
+a.clear();
+//  iss >> separator;
+//  if (separator == ';')
   {
-    iss >> point.y;
+//    iss >> point.y;
+    std::getline(iss, a, ')');
+point.y = std::stoi(a);
     return in;
   }
-  else
-  {
-    std::cerr << "invalid separator";
-    exit(1);
-  }
+//  else
+//  {
+//    std::cerr << "invalid separator";
+//    exit(1);
+//  }
 }
 
 std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Point &point)

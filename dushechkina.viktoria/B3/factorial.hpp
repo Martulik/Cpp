@@ -11,7 +11,6 @@ namespace dushechkina
     {
     public:
       Iterator();
-      explicit Iterator(unsigned int index);
       const unsigned int* operator->();
       const unsigned int& operator*();
       bool operator==(const Iterator& rhs) const;
@@ -21,16 +20,14 @@ namespace dushechkina
       Iterator& operator--();
       Iterator operator--(int);
     private:
+      Iterator(unsigned int index);
+      friend class Container;
       unsigned int index_;
       unsigned int factorial_;
     };
     Container() = default;
-    Iterator begin() const;
-    Iterator end() const;
-  private:
-    static const unsigned int BEGIN_VALUE = 1;
-    static const unsigned int BEGIN_INDEX = 1;
-    static const unsigned int END_INDEX = 11;
+    Iterator begin() const noexcept;
+    Iterator end() const noexcept;
   };
 }
 

@@ -3,6 +3,10 @@
 #include <cassert>
 #include <iostream>
 
+constexpr unsigned int BEGIN_VALUE = 1;
+constexpr unsigned int BEGIN_INDEX = 1;
+constexpr unsigned int END_INDEX = 11;
+
 dushechkina::Container::Iterator::Iterator():
   index_(BEGIN_INDEX),
   factorial_(BEGIN_VALUE)
@@ -80,12 +84,12 @@ dushechkina::Container::Iterator dushechkina::Container::Iterator::operator--(in
   return temp;
 }
 
-dushechkina::Container::Iterator dushechkina::Container::begin() const
+dushechkina::Container::Iterator dushechkina::Container::begin() const noexcept
 {
   return Iterator(BEGIN_INDEX);
 }
 
-dushechkina::Container::Iterator dushechkina::Container::end() const
+dushechkina::Container::Iterator dushechkina::Container::end() const noexcept
 {
   return Iterator(END_INDEX);
 }

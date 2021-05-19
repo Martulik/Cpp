@@ -74,5 +74,5 @@ bool lab::isCorrectBookmarkName(const std::string& str)
 
 void lab::printNode(std::ostream& out, const node_t& pair)
 {
-  out << std::get<1>(pair) << ' ' << std::get<0>(pair) << '\n';
+  out << std::get< 1 >(pair) << ' ' << std::get< 0 >(pair) << '\n';
 }

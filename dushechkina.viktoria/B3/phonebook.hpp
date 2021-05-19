@@ -15,13 +15,12 @@ namespace dushechkina
     };
 
     using iterator = std::list< Record >::iterator;
-
     iterator begin();
     iterator end();
-    void insertBeforeCurrentRecord(iterator& current, const Record& newRecord);
-    void insertAfterCurrentRecord(iterator& current, const Record& newRecord);
+    void insertBeforeCurrentRecord(iterator current, const Record& newRecord);
+    void insertAfterCurrentRecord(iterator current, const Record& newRecord);
     void insertAtTheEnd(const Record& newRecord);
-    void removeCurrentRecord(iterator& current);
+    void removeCurrentRecord(iterator current);
     bool isEmpty() const;
   private:
     std::list< Record > records_;

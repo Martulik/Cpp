@@ -62,8 +62,7 @@ dushechkina::Container::Iterator dushechkina::Container::Iterator::operator++(in
 {
   assert(index_ <= END_INDEX);
   Iterator temp = *this;
-  ++index_;
-  factorial_ *= index_;
+  operator++();
   return temp;
 }
 
@@ -79,8 +78,7 @@ dushechkina::Container::Iterator dushechkina::Container::Iterator::operator--(in
 {
   assert(index_ >= BEGIN_INDEX);
   Iterator temp = *this;
-  factorial_ /= index_;
-  --index_;
+  operator--();
   return temp;
 }
 

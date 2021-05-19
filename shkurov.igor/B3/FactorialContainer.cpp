@@ -19,11 +19,15 @@ constexpr unsigned long factorial(unsigned long number)
 
 const unsigned long* lab::FactorialContainer::Iterator::operator->() const
 {
+  assert(index_ > 0 && index_ < 11);
+
   return std::addressof(value_);
 }
 
 const unsigned long& lab::FactorialContainer::Iterator::operator*() const
 {
+  assert(index_ > 0 && index_ < 11);
+
   return value_;
 }
 

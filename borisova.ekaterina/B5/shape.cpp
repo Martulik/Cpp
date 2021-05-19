@@ -48,7 +48,7 @@ bool lab::isPentagon(const Shape& shape)
 
 std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
-  int peaks;
+  size_t peaks;
   Point point;
   in >> std::noskipws;
   in >> peaks;
@@ -56,7 +56,7 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
   {
     throw std::invalid_argument("Invalid figure\n");
   }
-  for (int i = 0; i < peaks; i++)
+  for (size_t i = 0; i < peaks; i++)
   {
     in >> std::skipws;
     in >> point;

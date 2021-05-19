@@ -6,12 +6,12 @@
 
 namespace lab = shkurov;
 
-lab::PhoneBook::const_iterator_t lab::PhoneBook::begin()
+lab::PhoneBook::const_iterator_t lab::PhoneBook::begin() const
 {
   return container_.cbegin();
 }
 
-lab::PhoneBook::const_iterator_t lab::PhoneBook::end()
+lab::PhoneBook::const_iterator_t lab::PhoneBook::end() const
 {
   return container_.cend();
 }
@@ -55,12 +55,12 @@ void lab::PhoneBook::pushFront(const node_t& node)
   container_.push_front(node);
 }
 
-void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, int steps)
+void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, int steps) const
 {
   std::advance(it, steps);
 }
 
-void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, const std::string& pos)
+void lab::PhoneBook::move(lab::PhoneBook::const_iterator_t& it, const std::string& pos) const
 {
   if (pos == "first")
   {

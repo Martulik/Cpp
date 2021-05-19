@@ -23,7 +23,9 @@ int iva::task2(std::istream &in, std::ostream &out)
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){return shp.size() == 5; }), shapes.end());
   std::vector< Point > points;
   points.reserve(shapes.size());
-  std::for_each(shapes.begin(), shapes.end(), [&points](const Shape &e){ points.push_back(e[0]); });
+  for(auto&& point: shapes) {
+    points.emplace_back(point.front());
+  }
   std::sort(shapes.begin(), shapes.end(), compare);
   out << "Vertices: " << vert << "\n";
   out << "Triangles: " << tri << '\n';
@@ -52,15 +54,23 @@ std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
     std::cerr << "invalid input 4";
     exit(1);
   }
-  size_t i =0;
+//  size_t i =0;
   shp.reserve(vertices);
-  while (i < vertices)
+//  while (i < vertices)
+//  {
+//    i++;
+//    Point pt;
+//    iss >> pt;
+//    shp.push_back(pt);
+//  }
+  Shape tmp;
+  std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
+  if (tmp.size() != vertices)
   {
-    i++;
-    Point pt;
-    iss >> pt;
-    shp.push_back(pt);
+    std::cerr << "invalid input 3";
+    exit(1);
   }
+  shp.swap(tmp);
   return in;
 }
 

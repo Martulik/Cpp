@@ -33,7 +33,7 @@ const unsigned long& lab::FactorialContainer::Iterator::operator*() const
 
 lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator++()
 {
-  assert(index_ < 11);
+  assert(index_ > 0 && index_ < 11);
 
   value_ *= ++index_;
   return *this;
@@ -41,7 +41,7 @@ lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator++
 
 lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator++(int)
 {
-  assert(index_ < 11);
+  assert(index_ > 0 && index_ < 11);
 
   Iterator temp = *this;
   ++(*this);
@@ -50,7 +50,7 @@ lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator++(
 
 lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator--()
 {
-  assert(index_ > 0);
+  assert(index_ > 0 && index_ < 11);
 
   value_ /= index_--;
   return *this;
@@ -58,7 +58,7 @@ lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator--
 
 lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator--(int)
 {
-  assert(index_ > 0);
+  assert(index_ > 0 && index_ < 11);
 
   Iterator temp = *this;
   --(*this);

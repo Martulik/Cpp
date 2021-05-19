@@ -28,7 +28,7 @@ const unsigned long& lab::FactorialContainer::Iterator::operator*() const
 
 lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator++()
 {
-  if ((index_ + 1) == 11)
+  if (index_ == 11)
   {
     throw std::out_of_range("Iterator is out of range.");
   }
@@ -39,7 +39,7 @@ lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator++
 
 lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator++(int)
 {
-  if ((index_ + 1) == 11)
+  if (index_ == 11)
   {
     throw std::out_of_range("Iterator is out of range.");
   }
@@ -51,7 +51,7 @@ lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator++(
 
 lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator--()
 {
-  if ((index_ - 1) == 0)
+  if (index_ == 1)
   {
     throw std::out_of_range("Iterator is out of range.");
   }
@@ -62,7 +62,7 @@ lab::FactorialContainer::Iterator& lab::FactorialContainer::Iterator::operator--
 
 lab::FactorialContainer::Iterator lab::FactorialContainer::Iterator::operator--(int)
 {
-  if ((index_ - 1) == 0)
+  if (index_ == 1)
   {
     throw std::out_of_range("Iterator is out of range.");
   }

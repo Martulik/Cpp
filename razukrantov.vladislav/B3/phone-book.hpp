@@ -19,7 +19,7 @@ namespace razukrantov
     void insertAfter(constIterator iterator, const razukrantov::note_t& note);
     void insertBefore(constIterator iterator, const razukrantov::note_t& note);
     void pushBack(const razukrantov::note_t& note);
-    constIterator move(constIterator it, int  steps) const;
+    constIterator move(constIterator it, int steps) const;
     void erase(constIterator iterator);
     constIterator begin();
     constIterator end();

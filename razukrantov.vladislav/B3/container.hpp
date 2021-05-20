@@ -17,8 +17,8 @@ namespace razukrantov
       Iterator operator++(int);
       Iterator& operator--();
       Iterator operator --(int);
-      const valueType& operator*();
-      const valueType* operator->();
+      const valueType& operator*() const;
+      const valueType* operator->() const;
       bool operator==(const Iterator&) const;
       bool operator!=(const Iterator&) const;
 

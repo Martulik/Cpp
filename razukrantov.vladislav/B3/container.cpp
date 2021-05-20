@@ -42,12 +42,12 @@ razukrantov::Container::Iterator razukrantov::Container::Iterator::operator--(in
   return temp;
 }
 
-const razukrantov::Container::valueType& razukrantov::Container::Iterator::operator*()
+const razukrantov::Container::valueType& razukrantov::Container::Iterator::operator*() const
 {
   return value_;
 }
 
-const razukrantov::Container::valueType* razukrantov::Container::Iterator::operator->()
+const razukrantov::Container::valueType* razukrantov::Container::Iterator::operator->() const
 {
   return std::addressof(value_);
 }

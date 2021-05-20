@@ -5,10 +5,10 @@
 
 namespace razukrantov
 {
-  constexpr size_t getFactorial(const size_t index)
+  constexpr unsigned long long getFactorial(const unsigned int index)
   {
-    size_t result = 1;
-    for (size_t i = index; i > 0; --i)
+    unsigned long long result = 1;
+    for (unsigned int i = index; i > 0; --i)
     {
       result *= i;
     }

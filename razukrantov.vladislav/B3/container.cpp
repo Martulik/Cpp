@@ -4,17 +4,18 @@
 
 #include "functions.hpp"
 
-constexpr size_t MAX_SIZE = 11;
+constexpr unsigned Max = 11;
+constexpr unsigned Res = razukrantov::getFactorial(Max);
 
-razukrantov::Container::Iterator::Iterator(const valueType index):
+razukrantov::Container::Iterator::Iterator(const valueType index, unsigned long long value):
   index_(index),
-  value_(razukrantov::getFactorial(index))
+  value_(value)
 {
 }
 
 razukrantov::Container::Iterator& razukrantov::Container::Iterator::operator++()
 {
-  assert(index_ < MAX_SIZE);
+  assert(index_ < Res);
   ++index_;
   value_ *= index_;
   return *this;
@@ -63,10 +64,10 @@ bool razukrantov::Container::Iterator::operator!=(const Iterator& other) const
 
 razukrantov::Container::Iterator razukrantov::Container::begin() const noexcept
 {
-  return Iterator(1);
+  return Iterator(1, 1);
 }
 
 razukrantov::Container::Iterator razukrantov::Container::end() const noexcept
 {
-  return Iterator(MAX_SIZE);
+  return Iterator(Max, Res);
 }

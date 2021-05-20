@@ -26,7 +26,7 @@ namespace razukrantov
       friend class Container;
       valueType index_;
       valueType value_;
-      explicit Iterator(valueType number);
+      explicit Iterator(valueType number, unsigned long long value);
     };
 
     Container() = default;

@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include "maps.hpp"
-#include "common-functions.hpp"
+#include "util.hpp"
 
 void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream& in, std::ostream& out)
 {

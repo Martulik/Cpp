@@ -2,7 +2,6 @@
 #define CONTAINER_HPP
 
 #include <iterator>
-#include <cstddef>
 
 namespace razukrantov
 {

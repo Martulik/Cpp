@@ -40,7 +40,7 @@ raz::PhoneBook::constIterator raz::PhoneBook::move(raz::PhoneBook::constIterator
     while (it != recordings_.begin() && (steps != 0))
     {
       it = std::prev(it);
-      --steps;
+      ++steps;
     }
   }
   return it;

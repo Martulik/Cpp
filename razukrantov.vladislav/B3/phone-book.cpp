@@ -61,12 +61,12 @@ bool raz::PhoneBook::empty() const
   return recordings_.empty();
 }
 
-raz::PhoneBook::constIterator raz::PhoneBook::begin()
+raz::PhoneBook::constIterator raz::PhoneBook::begin() const
 {
   return recordings_.cbegin();
 }
 
-raz::PhoneBook::constIterator raz::PhoneBook::end()
+raz::PhoneBook::constIterator raz::PhoneBook::end() const
 {
   return recordings_.cend();
 }

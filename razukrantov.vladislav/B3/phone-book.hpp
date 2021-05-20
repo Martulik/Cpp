@@ -21,8 +21,8 @@ namespace razukrantov
     void pushBack(const razukrantov::note_t& note);
     constIterator move(constIterator it, int steps) const;
     void erase(constIterator iterator);
-    constIterator begin();
-    constIterator end();
+    constIterator begin() const;
+    constIterator end() const;
 
   private:
     std::list< razukrantov::note_t > recordings_;

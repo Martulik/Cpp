@@ -22,7 +22,7 @@ namespace razukrantov
     void insertBefore(const std::string& bookmark, const note_t& note);
     void insertAfter(const std::string& bookmark, const note_t& note);
     void erase(const std::string& bookmark);
-    void show(const std::string& bookmark, std::ostream& out) const;
+    const note_t& show(const std::string& bookmark) const;
     void move(const std::string& bookmark, const std::string& steps);
     void move(const std::string& bookmark, const int steps);
     bool empty() const;

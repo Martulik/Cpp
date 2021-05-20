@@ -82,10 +82,10 @@ void razukrantov::PhoneBookInterface::erase(const std::string& bookmark)
   book_->erase(temp);
 }
 
-void razukrantov::PhoneBookInterface::show(const std::string& bookmark, std::ostream& out) const
+const razukrantov::note_t& razukrantov::PhoneBookInterface::show(const std::string& bookmark) const
 {
   constIterType iterator = bookmarks_.find(bookmark);
-  out << *iterator->second;
+  return *iterator->second;
 }
 
 void razukrantov::PhoneBookInterface::move(const std::string& bookmark, const std::string& steps)

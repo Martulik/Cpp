@@ -107,7 +107,7 @@ void razukrantov::taskPhoneBook(std::istream& in, std::ostream& out)
       {
         if (!interface.empty())
         {
-          interface.show(bookmark, out);
+          out << interface.show(bookmark);
         }
         else
         {

@@ -1,5 +1,5 @@
 #include "factorial.hpp"
-#include "common-functions.hpp"
+#include "util.hpp"
 #include <cassert>
 #include <iostream>
 

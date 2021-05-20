@@ -27,21 +27,12 @@ void raz::PhoneBook::pushBack(const note_t& note)
 
 raz::PhoneBook::constIterator raz::PhoneBook::move(raz::PhoneBook::constIterator it, int steps) const
 {
-  if (steps > 0)
+  constIterator edge = (steps > 0) ? std::prev(recordings_.end()) : recordings_.begin();
+  int sign = (steps > 0) ? 1 : -1;
+  while (steps != 0 && it != edge)
   {
-    while (std::next(it) != recordings_.end() && steps != 0)
-    {
-      it = std::next(it);
-      --steps;
-    }
-  }
-  else
-  {
-    while (it != recordings_.begin() && (steps != 0))
-    {
-      it = std::prev(it);
-      ++steps;
-    }
+    it = std::next(it, sign);
+    steps -= sign;
   }
   return it;
 }

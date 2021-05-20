@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include "maps.hpp"
-#include "util.hpp"
+#include "common-functions.hpp"
 
 void dushechkina::runCommand(Phonebook& phonebook, MarkList& marks, std::istream& in, std::ostream& out)
 {
@@ -256,9 +256,9 @@ std::string dushechkina::getMarkName(std::istream& in)
     throw std::invalid_argument(INVALID_COMMAND);
   }
 
-  for (char i : markName)
+  for (char i: markName)
   {
-    if ((!isalnum(i)) && (i != '-'))
+    if ((!std::isalnum(i)) && (i != '-'))
     {
       throw std::invalid_argument(INVALID_COMMAND);
     }

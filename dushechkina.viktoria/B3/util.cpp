@@ -23,8 +23,3 @@ void dushechkina::checkForEmptyInput(const std::string& in)
     throw std::invalid_argument("Incorrect input,it must have command\n");
   }
 }
-
-void dushechkina::incorrectIndex(std::ostream& out)
-{
-  out << "Incorrect index, it could be from 1 to 11";
-}

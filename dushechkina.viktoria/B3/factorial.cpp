@@ -1,5 +1,5 @@
 #include "factorial.hpp"
-#include "util.hpp"
+#include "common-functions.hpp"
 #include <cassert>
 #include <iostream>
 
@@ -15,11 +15,7 @@ dushechkina::Container::Iterator::Iterator():
 dushechkina::Container::Iterator::Iterator(unsigned int index):
   index_(index)
 {
-  if (index < BEGIN_INDEX || index > END_INDEX)
-  {
-    incorrectIndex(std::cout);
-  }
-
+  assert(index >= BEGIN_INDEX || index <= END_INDEX);
   unsigned int value = BEGIN_VALUE;
   for (unsigned int i = BEGIN_INDEX; i <= index; ++i)
   {

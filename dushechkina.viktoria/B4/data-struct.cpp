@@ -3,9 +3,9 @@
 #include <sstream>
 #include <string>
 
-const int MIN = -5;
-const int MAX = 5;
-const char COMMA = ',';
+constexpr int MIN = -5;
+constexpr int MAX = 5;
+constexpr char COMMA = ',';
 
 std::ostream& dushechkina::operator<<(std::ostream& out, const dushechkina::DataStruct& data)
 {

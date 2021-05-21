@@ -51,7 +51,6 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   size_t peaks;
   std::string line;
-  in >> std::noskipws;
   if (!(in >> peaks))
   {
     return in;

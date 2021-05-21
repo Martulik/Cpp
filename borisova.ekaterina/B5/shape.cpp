@@ -15,10 +15,7 @@ bool lab::operator<(const Shape& firstShape, const Shape& secondShape)
   {
     return isSquare(firstShape);
   }
-  else
-  {
-    return firstShape.size() < secondShape.size();
-  }
+  return firstShape.size() < secondShape.size();
 }
 
 bool lab::isTriangle(const Shape& shape)
@@ -44,11 +41,6 @@ bool lab::isRectangle(const Shape& shape)
     }
   }
   return false;
-}
-
-bool lab::isOther(const Shape& shape)
-{
-  return (shape.size() > 4 && !isRectangle(shape));
 }
 
 bool lab::isPentagon(const Shape& shape)

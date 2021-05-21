@@ -13,17 +13,15 @@ void lab::doTask2(std::istream& in, std::ostream& out)
   using iterIn = std::istream_iterator< Shape >;
   std::vector< Shape > vec{ iterIn(in), iterIn() };
 
+  int peaks = std::accumulate(vec.begin(), vec.end(), 0, [](int count, const Shape& shape)
+    {
+      return count + shape.size();
+    });
+
   int triangles = std::count_if(vec.begin(), vec.end(), isTriangle);
   int squares = std::count_if(vec.begin(), vec.end(), isSquare);
   int rectangles = std::count_if(vec.begin(), vec.end(), isRectangle);
-  int peaks = std::accumulate(vec.begin(), vec.end(), 0, [](int peaks_, const Shape& shape)
-    {
-      if (isOther(shape))
-      {
-        return peaks_ + shape.size();
-      }
-    });
-  peaks += triangles * 3 + (rectangles) * 4;
+
   vec.erase(std::remove_if(vec.begin(), vec.end(), isPentagon), vec.end());
 
   std::vector< Point > points;

@@ -3,12 +3,12 @@
 
 namespace poz = pozdnyakov;
 
-poz::Phonebook::const_iterator poz::Phonebook::cbegin()
+poz::Phonebook::const_iterator poz::Phonebook::cbegin() const
 {
   return this->book_.cbegin();
 }
 
-poz::Phonebook::const_iterator poz::Phonebook::cend()
+poz::Phonebook::const_iterator poz::Phonebook::cend() const
 {
   return this->book_.cend();
 }
@@ -28,7 +28,7 @@ poz::Phonebook::const_iterator poz::Phonebook::erase(const_iterator it)
   return this->book_.erase(it);
 }
 
-size_t poz::Phonebook::size()
+size_t poz::Phonebook::size() const
 {
   return book_.size();
 }

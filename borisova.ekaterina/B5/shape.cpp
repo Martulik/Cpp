@@ -46,6 +46,11 @@ bool lab::isRectangle(const Shape& shape)
   return false;
 }
 
+bool lab::isOther(const Shape& shape)
+{
+  return (shape.size() > 4 && !isRectangle(shape));
+}
+
 bool lab::isPentagon(const Shape& shape)
 {
   return (shape.size() == 5);

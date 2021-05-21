@@ -21,7 +21,7 @@ bool poz::insert_param_t::operator()(std::string field) const
 
 bool poz::move_param_t::operator()(std::string field) const
 {
-  bool isString = std::find(params.begin(), params.end(), field) != params.end();
+  bool isString = (std::find(params.begin(), params.end(), field) != params.end());
   bool isNumber;
   if (field[0] == '+' || field[0] == '-')
   {

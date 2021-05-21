@@ -8,8 +8,8 @@ namespace poz = pozdnyakov;
 void poz::task2()
 {
   poz::FactorialContainer cont;
-  std::copy(cont.begin(), cont.end(), std::ostream_iterator< size_t >(std::cout, " "));
+  std::copy(cont.begin(), cont.end(), std::ostream_iterator< unsigned long >(std::cout, " "));
   std::cout << '\n';
-  std::reverse_copy(cont.begin(), cont.end(), std::ostream_iterator< size_t >(std::cout, " "));
+  std::reverse_copy(cont.begin(), cont.end(), std::ostream_iterator< unsigned long >(std::cout, " "));
   std::cout << '\n';
 }

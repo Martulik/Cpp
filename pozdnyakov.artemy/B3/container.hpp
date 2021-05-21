@@ -9,10 +9,20 @@ namespace pozdnyakov
   {
   public:
     using iterator = FactorialIterator;
+    using const_iterator = const FactorialIterator;
     FactorialContainer() = default;
-    FactorialIterator begin() const;
-    FactorialIterator end() const;
+    const_iterator begin() const noexcept;
+    const_iterator end() const noexcept;
   };
+  constexpr unsigned long getFactorial(const unsigned n)
+  {
+    unsigned long fac = 1;
+    for (unsigned i = 1; i <= n; i++)
+    {
+      fac *= i;
+    }
+    return fac;
+  }
 }
 
 #endif

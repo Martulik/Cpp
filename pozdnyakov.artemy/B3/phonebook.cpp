@@ -3,22 +3,12 @@
 
 namespace poz = pozdnyakov;
 
-poz::Phonebook::iterator poz::Phonebook::begin()
-{
-  return this->book_.begin();
-}
-
-poz::Phonebook::iterator poz::Phonebook::end()
-{
-  return this->book_.end();
-}
-
-poz::Phonebook::const_iterator poz::Phonebook::cbegin()
+poz::Phonebook::const_iterator poz::Phonebook::cbegin() const
 {
   return this->book_.cbegin();
 }
 
-poz::Phonebook::const_iterator poz::Phonebook::cend()
+poz::Phonebook::const_iterator poz::Phonebook::cend() const
 {
   return this->book_.cend();
 }
@@ -28,22 +18,27 @@ void poz::Phonebook::pushBack(value_type& val)
   return this->book_.push_back(val);
 }
 
-poz::Phonebook::iterator poz::Phonebook::insert(const_iterator position, const value_type& val)
+poz::Phonebook::const_iterator poz::Phonebook::insert(const_iterator position, const value_type& val)
 {
   return this->book_.insert(position, val);
 }
 
-poz::Phonebook::iterator poz::Phonebook::erase(iterator it)
+poz::Phonebook::const_iterator poz::Phonebook::erase(const_iterator it)
 {
   return this->book_.erase(it);
 }
 
-void poz::Phonebook::replace(iterator it, value_type& val)
-{
-  *it = val;
-}
-
-size_t poz::Phonebook::size()
+size_t poz::Phonebook::size() const
 {
   return book_.size();
+}
+
+poz::Phonebook::iterator poz::Phonebook::begin()
+{
+  return this->book_.begin();
+}
+
+poz::Phonebook::iterator poz::Phonebook::end()
+{
+  return this->book_.end();
 }

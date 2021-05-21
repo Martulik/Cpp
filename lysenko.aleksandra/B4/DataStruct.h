@@ -13,6 +13,7 @@ namespace lysenko
   };
 
   std::istream& operator >> (std::istream&, DataStruct& data);
+  std::ostream& operator << (std::ostream&, const DataStruct& data);
   bool operator <(const DataStruct& firstOp, const DataStruct& secondOp);
 }
 

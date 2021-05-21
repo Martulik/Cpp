@@ -13,10 +13,6 @@ int main()
     std::istream_iterator< lysenko::DataStruct >inpIt(std::cin);
     std::istream_iterator< lysenko::DataStruct >eof;
     std::vector< lysenko::DataStruct > myVector(inpIt, eof);
-    if (std::cin.fail())
-    {
-      throw std::invalid_argument("Invalid std::cin\n");
-    }
     std::sort(myVector.begin(), myVector.end());
     std::copy(myVector.begin(), myVector.end(), std::ostream_iterator< lysenko::DataStruct >(std::cout, "\n"));
   }

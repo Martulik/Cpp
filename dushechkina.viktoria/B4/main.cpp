@@ -1,11 +1,8 @@
 ﻿#include <iostream>
 #include <vector>
 #include <iterator>
-#include <iostream>
 #include <sstream>
 #include <algorithm>
-#include <vector>
-#include <iterator>
 #include "data-struct.hpp"
 
 int main()

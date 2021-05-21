@@ -10,7 +10,7 @@ poz::FactorialIterator::FactorialIterator():
 
 poz::FactorialIterator& poz::FactorialIterator::operator++()
 {
-  assert(n_ != MAX_NUM + 1);
+  assert(n_ != MAX_NUM + 1 && n_ != 0);
   n_++;
   value_ *= n_;
   return (*this);
@@ -18,7 +18,7 @@ poz::FactorialIterator& poz::FactorialIterator::operator++()
 
 poz::FactorialIterator poz::FactorialIterator::operator++(int)
 {
-  assert(n_ != MAX_NUM + 1);
+  assert(n_ != MAX_NUM + 1 && n_ != 0);
   poz::FactorialIterator temp = (*this);
   ++(*this);
   return temp;
@@ -26,7 +26,7 @@ poz::FactorialIterator poz::FactorialIterator::operator++(int)
 
 poz::FactorialIterator& poz::FactorialIterator::operator--()
 {
-  assert(n_ != 1);
+  assert(n_ > 1);
   value_ /= n_;
   n_--;
   return (*this);
@@ -34,7 +34,7 @@ poz::FactorialIterator& poz::FactorialIterator::operator--()
 
 poz::FactorialIterator poz::FactorialIterator::operator--(int)
 {
-  assert(n_ != 1);
+  assert(n_ > 1);
   poz::FactorialIterator temp = (*this);
   --(*this);
   return temp;

@@ -14,7 +14,7 @@ int main()
     std::vector< dushechkina::DataStruct > vector(begin, end);
     if (std::cin.fail() && !std::cin.eof())
     {
-      throw std::invalid_argument("Invalid input\n");
+      throw std::ios_base::failure("Invalid input\n");
     }
     std::sort(vector.begin(), vector.end());
     std::copy(vector.begin(), vector.end(), std::ostream_iterator< dushechkina::DataStruct >(std::cout, "\n"));

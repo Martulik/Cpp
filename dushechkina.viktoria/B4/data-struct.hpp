@@ -11,6 +11,7 @@ namespace dushechkina
     int key2;
     std::string str;
   };
+
   std::ostream& operator<<(std::ostream& out, const DataStruct& data);
   std::istream& operator>>(std::istream& in, DataStruct& data);
   bool operator<(const DataStruct& first, const DataStruct& second);

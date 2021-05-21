@@ -7,7 +7,6 @@ const int MIN = -5;
 const int MAX = 5;
 const char COMMA = ',';
 
-
 std::ostream& dushechkina::operator<<(std::ostream& out, const dushechkina::DataStruct& data)
 {
   out << data.key1 << COMMA << data.key2 << COMMA << data.str;
@@ -16,14 +15,14 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const dushechkina::Data
 
 std::istream& dushechkina::operator>>(std::istream& in, dushechkina::DataStruct& data)
 {
-  std::string str;
-  std::getline(in, str);
-  std::istringstream input(str);
-  char sep;
+  std::string line;
+  std::getline(in, line);
+  std::istringstream input(line);
+  char sep = '\0';
   input >> data.key1;
   if (!input.fail()) {
     input >> sep;
-    if (input.fail() || sep != ',') {
+    if (input.fail() || sep != COMMA) {
       in.setstate(std::ios::failbit);
       return in;
     }
@@ -32,8 +31,7 @@ std::istream& dushechkina::operator>>(std::istream& in, dushechkina::DataStruct&
       input >> sep;
     }
   }
-
-  if (input.fail() || sep != ',' || abs(data.key1) > 5 || abs(data.key2) > 5)
+  if (input.fail() || sep != COMMA || data.key1 > MAX || data.key2 > MAX || data.key1 < MIN || data.key2 < MIN)
   {
     in.setstate(std::ios::failbit);
     return in;

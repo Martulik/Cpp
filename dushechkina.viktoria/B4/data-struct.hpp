@@ -14,10 +14,6 @@ namespace dushechkina
   std::ostream& operator<<(std::ostream& out, const DataStruct& data);
   std::istream& operator>>(std::istream& in, DataStruct& data);
   bool operator<(const DataStruct& first, const DataStruct& second);
-  std::istream& checkNewLine(std::istream& in);
-  std::istream& readSeparator(std::istream& in);
-  std::istream& readKey(std::istream& in, int& key);
-  std::istream& skipBlanks(std::istream& in);
 }
 
 #endif

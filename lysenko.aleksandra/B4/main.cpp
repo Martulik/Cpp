@@ -1,6 +1,6 @@
 #include <iostream>
-#include<vector>
-#include <stdexcept>
+#include <vector>
+#include <iterator>
 
 #include "DataStruct.h"
 #include "helpFunctions.h"
@@ -9,9 +9,10 @@ int main()
 {
   try
   {
-
     std::istream_iterator< lysenko::DataStruct > inputIt(std::cin);
-    std::vector< lysenko::DataStruct > myVector(inputIt, std::istream_iterator< lysenko::DataStruct >());
+    std::istream_iterator< lysenko::DataStruct> eof;
+
+    std::vector< lysenko::DataStruct > myVector(inputIt, eof);
     lysenko::sortVector(myVector);
     lysenko::printVector(myVector, std::cout);
   }

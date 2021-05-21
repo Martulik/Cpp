@@ -1,9 +1,7 @@
 #include "helpFunctions.h"
 
-#include <iterator>
 #include <vector>
 #include <iostream>
-#include <sstream>
 
 #include "DataStruct.h"
 

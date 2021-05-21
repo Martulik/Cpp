@@ -47,7 +47,7 @@ std::istream& lysenko::operator >> (std::istream& in, lysenko::DataStruct& data)
   {
     if (inpStr.empty())
     {
-      throw std::invalid_argument("Too little arguments for DataStruct\n");
+      return in;
     }
 
     std::string key;

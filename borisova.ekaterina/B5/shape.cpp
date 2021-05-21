@@ -1,5 +1,6 @@
 #include "shape.hpp"
 #include <iostream>
+#include <sstream>
 #include <iterator>
 
 namespace lab = borisova;
@@ -50,33 +51,39 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   size_t peaks;
   Point point;
-  in >> std::skipws;
-  in >> peaks;
-  if (in.eof())
+  std::string line;
+  in >> std::noskipws;
+  if (!(in >> peaks))
   {
     return in;
   }
-  if (in.fail() || peaks <= 2)
+  in >> std::skipws;
+  if (!std::getline(in, line))
+  {
+    return in;
+  }
+  std::istringstream input(line);
+
+  if (peaks <= 2)
   {
     throw std::invalid_argument("Invalid figure\n");
   }
-
-  for (size_t i = 0; i < peaks; i++)
+  Shape temp;
+  temp.reserve(peaks);
+  std::istream_iterator< Point > iterFirst(input);
+  std::istream_iterator< Point > iterLast;
+  std::copy(iterFirst, iterLast, std::back_inserter(temp));
+  if (!input && !input.eof() || temp.size() != peaks)
   {
-    in >> std::skipws;
-    in >> point;
-    shape.push_back(point);
+    throw std::invalid_argument("Invalid number of peaks");
   }
-  if (shape.size() != peaks)
-  {
-    throw std::invalid_argument("Invalid number of peaks\n");
-  }
+  std::swap(shape, temp);
   return in;
 }
 
 std::ostream& lab::operator<<(std::ostream& out, const Shape& shape)
 {
-  out << shape.size() << " ";
+  out << shape.size() << ' ';
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
   return out;
 }

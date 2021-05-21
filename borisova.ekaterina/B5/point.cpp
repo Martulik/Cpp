@@ -19,24 +19,28 @@ bool lab::isPerpendicularity(const Point& one, const Point& two, const Point thr
 
 std::istream& lab::operator>>(std::istream& in, Point& point)
 {
-  char sign;
+  std::istream::sentry sentry(in);
+  if (!sentry)
+  {
+    return in;
+  }
   std::string line;
-  std::getline(in >> std::skipws, line, ')');
-  if (line.empty()|| in.eof())
+  std::getline(in, line, '(');
+  if (in.eof())
+  {
+    return in;
+  }
+  if (!std::getline(in, line, ')'))
   {
     throw std::invalid_argument("Empty input\n");
   }
   std::istringstream input(line);
-  input >> sign;
-  if (sign != '(')
-  {
-    throw std::invalid_argument("Invalid literal\n");
-  }
   input >> point.x;
   if (input.fail())
   {
     throw std::invalid_argument("Invalid coordinate X\n");
   }
+  char sign;
   input >> sign;
   if (sign != ';')
   {
@@ -52,6 +56,6 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
 
 std::ostream& lab::operator<<(std::ostream& out, const Point& point)
 {
-  out << '(' << point.x << ';' << point.y << ')';
+  out << '(' << point.x << "; " << point.y << ')';
   return out;
 }

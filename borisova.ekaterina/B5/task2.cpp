@@ -15,12 +15,12 @@ void lab::doTask2(std::istream& in, std::ostream& out)
 
   int peaks = std::accumulate(vec.begin(), vec.end(), 0, [](int count, const Shape& shape)
     {
-    return count + shape.size();
+      return count + shape.size();
     });
 
   int triangles = std::count_if(vec.begin(), vec.end(), isTriangle);
   int squares = std::count_if(vec.begin(), vec.end(), isSquare);
-  int rectangles = squares + std::count_if(vec.begin(), vec.end(), isRectangle);
+  int rectangles = std::count_if(vec.begin(), vec.end(), isRectangle);
 
   vec.erase(std::remove_if(vec.begin(), vec.end(), isPentagon), vec.end());
 
@@ -36,6 +36,6 @@ void lab::doTask2(std::istream& in, std::ostream& out)
   out << "\nSquares: " << squares << "\nRectangles: " << rectangles;
   out << "\nPoints: ";
   std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
-  out << "\nShapes: ";
+  out << "\nShapes:\n";
   std::copy(vec.begin(), vec.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

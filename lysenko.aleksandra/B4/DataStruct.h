@@ -12,10 +12,14 @@ namespace lysenko
     std::string str;
   };
 
-  std::istream& operator >> (std::istream&, DataStruct& data);
-  std::ostream& operator << (std::ostream&, const DataStruct& data);
-  bool operator <(const DataStruct& firstOp, const DataStruct& secondOp);
-  bool operator!=(const DataStruct& firstOp, const DataStruct& secondOp);
+  std::istream& operator>> (std::istream&, DataStruct& data);
+  std::ostream& operator<< (std::ostream&, const DataStruct& data);
+  bool operator< (const DataStruct& firstOp, const DataStruct& secondOp);
+  bool operator<= (const DataStruct& firstOp, const DataStruct& secondOp);
+  bool operator> (const DataStruct& firstOp, const DataStruct& secondOp);
+  bool operator>= (const DataStruct& firstOp, const DataStruct& secondOp);
+  bool operator== (const DataStruct& firstOp, const DataStruct& secondOp);
+  bool operator!= (const DataStruct& firstOp, const DataStruct& secondOp);
 }
 
 #endif

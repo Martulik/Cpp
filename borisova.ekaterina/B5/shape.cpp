@@ -50,7 +50,6 @@ bool lab::isPentagon(const Shape& shape)
 std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   size_t peaks;
-  Point point;
   std::string line;
   in >> std::noskipws;
   if (!(in >> peaks))
@@ -73,7 +72,7 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
   std::istream_iterator< Point > iterFirst(input);
   std::istream_iterator< Point > iterLast;
   std::copy(iterFirst, iterLast, std::back_inserter(temp));
-  if (!input && !input.eof() || temp.size() != peaks)
+  if ((!input && !input.eof()) || temp.size() != peaks)
   {
     throw std::invalid_argument("Invalid number of peaks");
   }

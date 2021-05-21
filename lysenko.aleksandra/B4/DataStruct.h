@@ -12,7 +12,8 @@ namespace lysenko
     std::string str;
   };
 
-  bool isGreater(const DataStruct& firstOp, const DataStruct& secondOp);
+  std::istream& operator >> (std::istream&, DataStruct& data);
+  bool operator <(const DataStruct& firstOp, const DataStruct& secondOp);
 }
 
 #endif

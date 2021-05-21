@@ -149,20 +149,20 @@ Accepted Labs
 | Borisova Ekaterina    | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Diurdeva Dasha        | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Doroshin Danil        | ✓  | ✓  | ✓  | ✓  | ✓  |    |
-| Dushechkina Viktoria  | ✓  | ✓  | ✓  |    |    |    |
+| Dushechkina Viktoria  | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Ezerinia Marta        | ✓  | ✓  | ✓  | ✓  | ✓  |    |
-| Ferapontov Mikhail    | ✓  | ✓  | ✓  |    |    |    |
+| Ferapontov Mikhail    | ✓  | ✓  | ✓  | ✓  |    |    |
 | Ivanova Maria         | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Lebedeva Ekaterina    | ✓  | ✓  | ✓  |    |    |    |
 | Levashov Mikhail      | ✓  |    |    |    |    |    |
-| Lysenko Aleksandra    | ✓  | ✓  | ✓  |    |    |    |
+| Lysenko Aleksandra    | ✓  | ✓  | ✓  | ✓  |    |    |
 | Murzakanov Islam      | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Pochernin Vladislav   | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Pozdnyakov Artemy     | ✓  | ✓  | ✓  |    |    |    |
 | Pyatizbyantsev Ilya   | ✓  | ✓  | ✓  |    |    |    |
-| Razukrantov Vladislav | ✓  | ✓  | ✓  |    |    |    |
-| Savchuk Aleksei       | ✓  | ✓  | ✓  | ✓  |    |    |
+| Razukrantov Vladislav | ✓  | ✓  | ✓  | ✓  |    |    |
+| Savchuk Aleksei       | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Shilyaev Vladislav    | ✓  | ✓  | ✓  | ✓  | ✓  |    |
-| Shkurov Igor          | ✓  | ✓  | ✓  |    |    |    |
+| Shkurov Igor          | ✓  | ✓  | ✓  | ✓  |    |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  21|  17|  17|   9|   8|   0|
+| __Total__             |  21|  17|  17|  14|  10|   0|

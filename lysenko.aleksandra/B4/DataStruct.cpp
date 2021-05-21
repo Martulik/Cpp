@@ -24,6 +24,10 @@ bool lysenko::operator < (const DataStruct& firstOp, const DataStruct& secondOp)
   return 0;
 }
 
+bool lysenko::operator!=(const DataStruct& firstOp, const DataStruct& secondOp)
+{
+  return !((firstOp.key1 == secondOp.key1) && (firstOp.key2 == secondOp.key2) && (firstOp.str == secondOp.str));
+}
 
 std::ostream& lysenko::operator << (std::ostream& out, const lysenko::DataStruct& data)
 {

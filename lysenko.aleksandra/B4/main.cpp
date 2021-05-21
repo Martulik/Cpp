@@ -5,7 +5,6 @@
 #include <algorithm>
 
 #include "DataStruct.h"
-#include "helpFunctions.h"
 
 int main()
 {

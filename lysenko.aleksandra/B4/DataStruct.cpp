@@ -33,57 +33,41 @@ std::ostream& lysenko::operator << (std::ostream& out, const lysenko::DataStruct
 
 std::istream& lysenko::operator >> (std::istream& in, lysenko::DataStruct& data)
 {
-  const int MAX = 5;
-  const int MIN = -5;
+  constexpr int MAXABS = 5;
   char delimiter = ',';
 
-  std::string str;
   size_t amountOfKeys = 2;
   std::vector< int > keys;
+
   std::string inpStr;
   getline(in, inpStr);
   std::istringstream inp(inpStr);
 
-  for (size_t i = 0; i < amountOfKeys;i++)
+  for (size_t i = 0; i < amountOfKeys; i++)
   {
     if (inpStr.empty())
     {
-      throw std::invalid_argument("Invalid input/n");
-      return in;
+      throw std::invalid_argument("Too little arguments for DataStruct\n");
     }
 
     std::string key;
     getline(inp, key, delimiter);
 
-    if (key.empty())
-    {
-      throw std::invalid_argument("Invalid key/n");
-      return in;
-    }
     if (inp.fail())
     {
-      throw std::invalid_argument("Invalid input/n");
-      return in;
+      throw std::invalid_argument("No or not many enough delimiters\n");
     }
+
     keys.push_back(std::stoi(key));
   }
 
-  if (inpStr.empty())
-  {
-    throw std::invalid_argument("Invalid input/n");
-    return in;
-  }
-
-  inp >> str;
-
   data.key1 = keys[0];
   data.key2 = keys[1];
-  data.str = str;
+  getline(inp, data.str);
 
-  if (inp.fail() || data.key1 > MAX || data.key2 > MAX || data.key1 < MIN || data.key2 < MIN)
+  if (inp.fail() || (std::abs(data.key1)> MAXABS) ||(std::abs(data.key2) > MAXABS) || (data.str.empty()))
   {
-    throw std::invalid_argument("Invalid input/n");
-    return in;
+    throw std::invalid_argument("Illegal input data\n");
   }
 
   return in;

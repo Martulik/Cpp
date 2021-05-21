@@ -27,7 +27,7 @@ bool lysenko::operator < (const DataStruct& firstOp, const DataStruct& secondOp)
 
 std::ostream& lysenko::operator << (std::ostream& out, const lysenko::DataStruct& data)
 {
-  out << data.key1 << "," << data.key2 << "," << data.str << "\n";
+  out << data.key1 << "," << data.key2 << "," << data.str;
   return out;
 }
 
@@ -63,6 +63,7 @@ std::istream& lysenko::operator >> (std::istream& in, lysenko::DataStruct& data)
 
   data.key1 = keys[0];
   data.key2 = keys[1];
+  inp >> std::ws;
   getline(inp, data.str);
 
   if (inp.fail() || (std::abs(data.key1)> MAXABS) ||(std::abs(data.key2) > MAXABS) || (data.str.empty()))

@@ -15,8 +15,8 @@ namespace pozdnyakov
     FactorialIterator operator++(int);
     FactorialIterator& operator--();
     FactorialIterator operator--(int);
-    value_type& operator*();
-    value_type* operator->();
+    const value_type& operator*() const;
+    const value_type* operator->() const;
     bool operator==(const FactorialIterator& it) const;
     bool operator!=(const FactorialIterator& it) const;
   private:

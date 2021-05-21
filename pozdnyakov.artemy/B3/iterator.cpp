@@ -40,13 +40,13 @@ poz::FactorialIterator poz::FactorialIterator::operator--(int)
   return temp;
 }
 
-unsigned long& poz::FactorialIterator::operator*()
+const unsigned long& poz::FactorialIterator::operator*() const
 {
   assert(n_ != 0);
   return value_;
 }
 
-unsigned long* poz::FactorialIterator::operator->()
+const unsigned long* poz::FactorialIterator::operator->() const
 {
   return std::addressof(value_);
 }

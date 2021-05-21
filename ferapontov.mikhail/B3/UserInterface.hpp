@@ -13,9 +13,9 @@ namespace ferapontov
       using const_map_iter = std::map< std::string, const_iter >::const_iterator;
       Interface();
 
-      void add(const std::string& name, const std::string& number);
+      void add(const data_t& note);
       void store(const std::string& firstMark, const std::string& secondMark);
-      void insertNote(const std::string& mode, const std::string& markName, const std::string& name, const std::string& number);
+      void insertNote(const std::string& mode, const std::string& markName, const data_t& note);
       void deleteNote(const std::string& markName);
       ferapontov::data_t show(const std::string& markName);
       void move(const std::string& markName, const std::string& steps);

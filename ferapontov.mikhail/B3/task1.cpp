@@ -21,7 +21,7 @@ void fer::task1(std::istream& in, std::ostream& out)
         std::string number = read(stream);
         checkNumber(number);
         std::string name = readName(stream);
-        UI.add(name, number);
+        UI.add({name, number});
       }
       else if (action == "store")
       {
@@ -40,7 +40,7 @@ void fer::task1(std::istream& in, std::ostream& out)
         std::string number = read(stream);;
         checkNumber(number);
         std::string name = readName(stream);
-        UI.insertNote(mode, markName, name, number);
+        UI.insertNote(mode, markName, {name, number});
       }
       else if (action == "delete")
       {

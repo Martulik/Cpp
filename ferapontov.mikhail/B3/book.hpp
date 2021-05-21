@@ -21,7 +21,7 @@ namespace ferapontov
 
       const_iter deletNote(const_iter it);
 
-      void pushBack(data_t& PhoneNote);
+      void pushBack(const data_t& PhoneNote);
 
       bool empty() const;
 

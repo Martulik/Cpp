@@ -12,7 +12,7 @@ void fer::PhoneBook::insertNext(const_iter it, const data_t& phoneNote)
   notes_.insert(++it, phoneNote);
 }
 
-void fer::PhoneBook::pushBack(data_t& PhoneNote)
+void fer::PhoneBook::pushBack(const data_t& PhoneNote)
 {
   notes_.push_back(PhoneNote);
 }

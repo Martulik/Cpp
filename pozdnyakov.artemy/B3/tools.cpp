@@ -3,17 +3,17 @@
 
 namespace poz = pozdnyakov;
 
-poz::Phonebook::iterator poz::getEntryByNumber(std::unique_ptr< poz::Phonebook >& book, std::string number)
+poz::Phonebook::const_iterator poz::getEntryByNumber(std::unique_ptr< poz::Phonebook >& book, std::string number)
 {
   if (book->size() == 0)
   {
-    return book->end();
+    return book->cend();
   }
   auto cond = [&number](std::pair< std::string, std::string > entry)
   {
     return std::get< 0 >(entry) == number;
   };
-  poz::Phonebook::iterator it = std::find_if(book->begin(), book->end(), cond);
+  poz::Phonebook::const_iterator it = std::find_if(book->cbegin(), book->cend(), cond);
   return it;
 }
 
@@ -23,5 +23,5 @@ bool poz::checkNumber(std::unique_ptr< Phonebook >& book, std::string number)
   {
     return number == std::get< 0 >(entry);
   };
-  return (std::find_if(book->begin(), book->end(), cond) != book->end());
+  return (std::find_if(book->cbegin(), book->cend(), cond) != book->cend());
 }

@@ -20,16 +20,16 @@ void poz::BmContainer::deleteEntry(std::string bmName)
 {
   assert(this->checkBookmark(bmName) && book_->size() != 0);
   std::string number = bookmarks_.at(bmName);
-  poz::Phonebook::iterator it = poz::getEntryByNumber(book_, number);
+  poz::Phonebook::const_iterator it = poz::getEntryByNumber(book_, number);
   std::map< std::string, std::string >::iterator bmIt;
   for (bmIt = bookmarks_.begin(); bmIt != bookmarks_.end(); bmIt++)
   {
     std::string& numberRef = std::get< 1 >(*bmIt);
     if (numberRef == number)
     {
-      if (it == std::prev(book_->end()))
+      if (it == std::prev(book_->cend()))
       {
-        numberRef = std::get< 0 >(*book_->begin());
+        numberRef = std::get< 0 >(*book_->cbegin());
       }
       else
       {
@@ -48,7 +48,7 @@ void poz::BmContainer::show(std::string bmName, std::ostream& out)
 {
   assert(this->checkBookmark(bmName));
   std::string number = bookmarks_.at(bmName);
-  poz::Phonebook::iterator it = poz::getEntryByNumber(book_, number);
+  poz::Phonebook::const_iterator it = poz::getEntryByNumber(book_, number);
   std::string name = std::get< 1 >(*it);
   name.pop_back();
   name.erase(name.begin());
@@ -61,20 +61,22 @@ void poz::BmContainer::move(std::string bmName, std::string step)
 {
   assert(this->checkBookmark(bmName));
   std::string& numberRef = bookmarks_.at(bmName);
-  poz::Phonebook::iterator newIt;
+  poz::Phonebook::const_iterator newIt;
   if (!step.compare("last"))
   {
-    newIt = --book_->end();
+    newIt = --book_->cend();
   }
   else if (!step.compare("first"))
   {
-    newIt = book_->begin();
+    newIt = book_->cbegin();
   }
   else
   {
-    poz::Phonebook::iterator bookIt = poz::getEntryByNumber(book_, numberRef);
+    poz::Phonebook::const_iterator bookIt = poz::getEntryByNumber(book_, numberRef);
     int n = std::stoi(step);
-    if (!((n >= 0 && n < std::distance(bookIt, book_->end())) || (n < 0 && n < std::distance(bookIt, book_->begin()))))
+    bool isNotTooBig = (n >= 0 && n < std::distance(bookIt, book_->cend()));
+    bool isNotTooSmall = (n < 0 && n < std::distance(bookIt, book_->cbegin()));
+    if (!(isNotTooBig || isNotTooSmall))
     {
       return;
     }
@@ -92,7 +94,7 @@ void poz::BmContainer::reset()
   }
   else
   {
-    number = std::get< 0 >(*book_->begin());
+    number = std::get< 0 >(*book_->cbegin());
   }
   for (auto& pair: bookmarks_)
   {

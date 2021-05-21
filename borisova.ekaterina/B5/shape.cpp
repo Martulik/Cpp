@@ -7,6 +7,10 @@ namespace lab = borisova;
 
 bool lab::operator<(const Shape& firstShape, const Shape& secondShape)
 {
+  if (firstShape.size() > 4 && secondShape.size() > 4)
+  {
+    return false;
+  }
   if ((firstShape.size() == secondShape.size()) && (firstShape.size() == 4))
   {
     return isSquare(firstShape);

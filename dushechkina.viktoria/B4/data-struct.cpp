@@ -16,34 +16,33 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const dushechkina::Data
 
 std::istream& dushechkina::operator>>(std::istream& in, dushechkina::DataStruct& data)
 {
-  std::string line;
-  std::istringstream input(line);
+  std::string str;
+  std::getline(in, str);
+  std::istringstream input(str);
   char sep;
   input >> data.key1;
-  if (!input.fail())
-  {
+  if (!input.fail()) {
     input >> sep;
-    if (input.fail() || sep != COMMA)
-    {
-      throw std::invalid_argument("Invalid input or separator not a comma\n");
+    if (input.fail() || sep != ',') {
+      in.setstate(std::ios::failbit);
+      return in;
     }
-    else
-    {
-      input >> data.key2;
-      if (!input.fail())
-      {
-        input >> sep;
-      }
-    }
-    if (sep != COMMA || data.key1 < MIN || data.key1 > MAX || data.key2 < MIN || data.key2 > MAX || input.fail())
-    {
-      throw std::invalid_argument("Invalid input\n");
-    }
-    if (!input.eof())
-    {
-      getline(input, data.str);
+    input >> data.key2;
+    if (!input.fail()) {
+      input >> sep;
     }
   }
+
+  if (input.fail() || sep != ',' || abs(data.key1) > 5 || abs(data.key2) > 5)
+  {
+    in.setstate(std::ios::failbit);
+    return in;
+  }
+
+  if (!input.eof()) {
+    std::getline(input, data.str);
+  }
+
   return in;
 }
 

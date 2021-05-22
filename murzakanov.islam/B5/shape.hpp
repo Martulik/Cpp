@@ -10,6 +10,7 @@ namespace murzakanov
   using Shape = std::vector< murzakanov::Point >;
   std::istream& operator>>(std::istream& in, Shape& shp);
   std::ostream& operator<<(std::ostream& out, const Shape& shp);
+  bool operator<(const Shape& shp1, const Shape& shp2);
   bool isTriangle(const Shape& shp);
   bool isRectangle(const Shape& shp);
   bool isSquare(const Shape& shp);

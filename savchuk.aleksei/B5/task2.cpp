@@ -7,6 +7,7 @@
 #include <numeric>
 
 #include "shape.hpp"
+#include "tools.hpp"
 
 namespace lab = savchuk;
 
@@ -19,14 +20,7 @@ void lab::doTask2(std::istream& is, std::ostream& os)
   {
     throw std::runtime_error("Input error");
   }
-  unsigned int vertices = std::accumulate(shapes.cbegin(), shapes.cend(), 0u,
-                                          [](unsigned int sum, const Shape& s)
-                                          {
-                                            return sum + s.size();
-                                          });
-  unsigned int triangles = std::count_if(shapes.cbegin(), shapes.cend(), isTriangle);
-  unsigned int rectangles = std::count_if(shapes.cbegin(), shapes.cend(), isRectangle);
-  unsigned int squares = std::count_if(shapes.cbegin(), shapes.cend(), isSquare);
+  ShapeCounter counter = std::for_each(shapes.cbegin(), shapes.cend(), ShapeCounter());
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
   std::vector< Point > points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
@@ -35,10 +29,10 @@ void lab::doTask2(std::istream& is, std::ostream& os)
                   return s.back();
                 });
   std::sort(shapes.begin(), shapes.end(), compare);
-  os << "Vertices: " << vertices;
-  os << "\nTriangles: " << triangles;
-  os << "\nSquares: " << squares;
-  os << "\nRectangles: " << rectangles;
+  os << "Vertices: " << counter.vertices;
+  os << "\nTriangles: " << counter.triangles;
+  os << "\nSquares: " << counter.squares;
+  os << "\nRectangles: " << counter.rectangles;
   os << "\nPoints: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(os, " "));
   os << "\nShapes:\n";

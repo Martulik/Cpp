@@ -7,6 +7,7 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
+#include <array>
 
 #include "tools.hpp"
 
@@ -58,7 +59,7 @@ bool murzakanov::isRectangle(const Shape& shp)
   {
     return false;
   }
-  std::vector< int > sides = calculateSides(shp);
+  std::array< int, 6 > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
   if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] != sides[2])
   {
@@ -73,7 +74,7 @@ bool murzakanov::isSquare(const Shape& shp)
   {
     return false;
   }
-  std::vector< int > sides = calculateSides(shp);
+  std::array< int, 6 > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
   if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] == sides[2])
   {

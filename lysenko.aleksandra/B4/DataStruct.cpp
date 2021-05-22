@@ -10,7 +10,7 @@ bool lysenko::operator<(const DataStruct& firstOp, const DataStruct& secondOp)
   {
     return (firstOp.key1 < secondOp.key1);
   }
-  if (firstOp.key1 != secondOp.key1)
+  if (firstOp.key2 != secondOp.key2)
   {
     return (firstOp.key2 < secondOp.key2);
   }

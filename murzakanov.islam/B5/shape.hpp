@@ -1,20 +1,18 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include <iostream>
+#include <iosfwd>
 #include <vector>
+#include "point.hpp"
 
 namespace murzakanov
 {
-  struct Point
-  {
-    int x, y;
-  };
-  std::ostream& operator<<(std::ostream& out, const Point& point);
-  std::istream& operator>>(std::istream& in, Point& point);
-  using Shape = std::vector< Point >;
+  using Shape = std::vector< murzakanov::Point >;
   std::istream& operator>>(std::istream& in, Shape& shp);
   std::ostream& operator<<(std::ostream& out, const Shape& shp);
+  bool isRectangle();
+  bool isSquare();
+  bool isTriangle();
 }
 
 #endif

@@ -6,6 +6,15 @@ std::istream& razukrantov::operator>>(std::istream& in, DataStruct& ds)
 {
   std::string line;
   std::getline(in, line); 
+  std::istringstream stream(line);
+  ds.key1 = readKey(stream);
+  ds.key2 = readKey(stream);
+  std::getline(stream, ds.str);
+  if (stream.fail())
+  {
+    in.setstate(std::ios::failbit);
+  }
+  return in;
 }
 
 std::ostream& razukrantov::operator<<(std::ostream& out, const DataStruct& ds)

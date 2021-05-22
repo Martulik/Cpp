@@ -13,13 +13,19 @@
 std::istream& murzakanov::operator>>(std::istream& in, murzakanov::Shape& shp)
 {
   std::string line;
-  while (!getline(in, line))
+  do
   {
-    return in;
-  }
+    getline(in, line);
+  } while (std::all_of(line.begin(), line.end(), ::isspace) && !in.eof());
+
   std::istringstream lin(line);
   size_t n = 0;
   lin >> n;
+  if (!lin)
+  {
+    in.setstate(std::ios_base::failbit);
+    return in;
+  }
   std::istream_iterator< murzakanov::Point > firstIterator(lin);
   std::istream_iterator< murzakanov::Point > lastIterator;
   murzakanov::Shape tempShape(firstIterator, lastIterator);

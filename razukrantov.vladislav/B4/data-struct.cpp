@@ -7,7 +7,7 @@
 std::istream& razukrantov::operator>>(std::istream& in, DataStruct& ds)
 {
   std::string line;
-  std::getline(in, line); 
+  std::getline(in, line);
   std::istringstream stream(line);
   ds.key1 = readKey(stream);
   ds.key2 = readKey(stream);

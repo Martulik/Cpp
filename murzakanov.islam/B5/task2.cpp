@@ -19,6 +19,11 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< murzakanov::Shape > firstIterator(in);
   std::istream_iterator< murzakanov::Shape > lastIterator;
+  if (in.fail())
+  {
+    std::cerr << "Invalid input\n";
+    return 1;
+  }
   std::vector< murzakanov::Shape > shapes(firstIterator, lastIterator);
   if (shapes.size() == 0)
   {
@@ -38,7 +43,11 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
   {
     rectangles++;
   }
-  std::remove_if(shapes.begin(), shapes.end(), murzakanov::isPentagon);
+  if (std::all_of(shapes.begin(), shapes.end(), murzakanov::isTriangle))
+  {
+    triangles++;
+  }
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), murzakanov::isPentagon), shapes.end());
   std::vector< murzakanov::Point > points;
   for (size_t i = 0; i < shapes.size(); i++)
   {

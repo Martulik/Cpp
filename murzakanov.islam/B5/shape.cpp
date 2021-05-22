@@ -43,7 +43,7 @@ std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Shape&
 
 bool murzakanov::isTriangle(const Shape& shp)
 {
-  return shp.size();
+  return shp.size() == 3;
 }
 
 bool murzakanov::isRectangle(const Shape& shp)
@@ -54,7 +54,7 @@ bool murzakanov::isRectangle(const Shape& shp)
   }
   std::vector< int > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
-  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[2] != sides[4])
+  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] != sides[2])
   {
     return true;
   }
@@ -69,7 +69,7 @@ bool murzakanov::isSquare(const Shape& shp)
   }
   std::vector< int > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
-  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[2] == sides[4])
+  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] == sides[2])
   {
     return true;
   }

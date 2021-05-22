@@ -83,23 +83,13 @@ bool murzakanov::isPentagon(const Shape& shp)
 
 bool murzakanov::operator<(const murzakanov::Shape& shp1, const murzakanov::Shape& shp2)
 {
+  if (shp1.size() > 4 && shp2.size() > 4)
+  {
+    return false;
+  }
   if (shp1.size() == 4 && shp1.size() == shp2.size())
   {
-    if (isSquare(shp1))
-    {
-      return true;
-    }
-    else if (isSquare(shp2))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+    return isSquare(shp1);
   }
-  else
-  {
-    return shp1.size() < shp2.size();
-  }
+  return shp1.size() < shp2.size();
 }

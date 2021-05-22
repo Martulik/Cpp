@@ -38,6 +38,7 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
   {
     rectangles++;
   }
+  std::remove_if(shapes.begin(), shapes.end(), murzakanov::isPentagon);
   std::vector< murzakanov::Point > points;
   for (size_t i = 0; i < shapes.size(); i++)
   {

@@ -10,11 +10,6 @@
 #include "tools.hpp"
 #include "shape.hpp"
 
-size_t returnSize(const murzakanov::Shape shp)
-{
-  return shp.size();
-}
-
 int murzakanov::task2(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< murzakanov::Shape > firstIterator(in);

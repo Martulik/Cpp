@@ -11,11 +11,11 @@ int main(int argc, char* argv[])
     code = 1;
   }
   int task = argv[1][0] - '0';
-  if (task == 1)
+  if (!code && task == 1)
   {
     code = murzakanov::task1(std::cin, std::cout);
   }
-  else if (task == 2)
+  else if (!code && task == 2)
   {
     code = murzakanov::task2(std::cin, std::cout);
   }

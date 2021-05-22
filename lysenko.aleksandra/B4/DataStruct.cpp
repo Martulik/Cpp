@@ -4,59 +4,52 @@
 #include <stdexcept>
 #include <sstream>
 
-bool lysenko::operator< (const DataStruct& firstOp, const DataStruct& secondOp)
+bool lysenko::operator<(const DataStruct& firstOp, const DataStruct& secondOp)
 {
-  if (firstOp.key1 < secondOp.key1)
+  if (firstOp.key1 != secondOp.key1)
   {
-    return true;
+    return (firstOp.key1 < secondOp.key1);
   }
-  if (firstOp.key1 == secondOp.key1)
+  if (firstOp.key1 != secondOp.key1)
   {
-    if (firstOp.key2 < secondOp.key2)
-    {
-      return true;
-    }
-    if (firstOp.key2 == secondOp.key2)
-    {
-      return (firstOp.str.length() < secondOp.str.length());
-    }
+    return (firstOp.key2 < secondOp.key2);
   }
-  return false;
+  return (firstOp.str.length() < secondOp.str.length());
 }
 
-bool lysenko::operator> (const DataStruct& firstOp, const DataStruct& secondOp)
+bool lysenko::operator>(const DataStruct& firstOp, const DataStruct& secondOp)
 {
   return (secondOp < firstOp);
 }
 
-bool lysenko::operator== (const DataStruct& firstOp, const DataStruct& secondOp)
+bool lysenko::operator==(const DataStruct& firstOp, const DataStruct& secondOp)
 {
   return (!((firstOp < secondOp) || (secondOp < firstOp)));
 }
 
 
-bool lysenko::operator>= (const DataStruct& firstOp, const DataStruct& secondOp)
+bool lysenko::operator>=(const DataStruct& firstOp, const DataStruct& secondOp)
 {
   return !(firstOp < secondOp);
 }
 
-bool lysenko::operator<= (const DataStruct& firstOp, const DataStruct& secondOp)
+bool lysenko::operator<=(const DataStruct& firstOp, const DataStruct& secondOp)
 {
   return !(secondOp < firstOp);
 }
 
-bool lysenko::operator!= (const DataStruct& firstOp, const DataStruct& secondOp)
+bool lysenko::operator!=(const DataStruct& firstOp, const DataStruct& secondOp)
 {
   return ((firstOp < secondOp) || (secondOp < firstOp));
 }
 
-std::ostream& lysenko::operator<< (std::ostream& out, const lysenko::DataStruct& data)
+std::ostream& lysenko::operator<<(std::ostream& out, const lysenko::DataStruct& data)
 {
   out << data.key1 << "," << data.key2 << "," << data.str;
   return out;
 }
 
-std::istream& lysenko::operator>> (std::istream& in, lysenko::DataStruct& data)
+std::istream& lysenko::operator>>(std::istream& in, lysenko::DataStruct& data)
 {
   constexpr int MAXABS = 5;
   char delimiter = ',';

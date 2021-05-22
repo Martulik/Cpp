@@ -13,12 +13,12 @@ namespace pozdnyakov
   template < typename T, typename Getter, typename Comparator >
   bool testSort(std::vector< DataStruct > vector, Getter getter, Comparator tComp)
   {
-    std::vector< T > exp(vector.size());
-    std::transform(vector.begin(), vector.end(), exp.begin(), getter);
+    std::vector< T > exp;
+    std::transform(vector.begin(), vector.end(), std::back_inserter(exp), getter);
     std::sort(exp.begin(), exp.end(), tComp);
     std::sort(vector.begin(), vector.end(), comparator);
-    std::vector< T > got(vector.size());
-    std::transform(vector.begin(), vector.end(), got.begin(), getter);
+    std::vector< T > got;
+    std::transform(vector.begin(), vector.end(), std::back_inserter(got), getter);
     return got == exp;
   }
 }

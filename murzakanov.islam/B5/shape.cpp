@@ -6,8 +6,11 @@
 #include <sstream>
 #include <vector>
 #include <iterator>
+#include <algorithm>
 
-std::istream& murzakanov::operator >>(std::istream& in, murzakanov::Shape& shp)
+#include "tools.hpp"
+
+std::istream& murzakanov::operator>>(std::istream& in, murzakanov::Shape& shp)
 {
   std::string line;
   while (!getline(in, line))
@@ -36,4 +39,44 @@ std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Shape&
     out << shp[i];
   }
   return out;
+}
+
+bool murzakanov::isTriangle(const Shape& shp)
+{
+  return shp.size();
+}
+
+bool murzakanov::isRectangle(const Shape& shp)
+{
+  if (shp.size() != 4)
+  {
+    return false;
+  }
+  std::vector< int > sides = calculateSides(shp);
+  std::sort(sides.begin(), sides.end());
+  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[2] != sides[4])
+  {
+    return true;
+  }
+  return false;
+}
+
+bool murzakanov::isSquare(const Shape& shp)
+{
+  if (shp.size() != 4)
+  {
+    return false;
+  }
+  std::vector< int > sides = calculateSides(shp);
+  std::sort(sides.begin(), sides.end());
+  if (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[2] == sides[4])
+  {
+    return true;
+  }
+  return false;
+}
+
+bool murzakanov::isPentagon(const Shape& shp)
+{
+  return shp.size() == 5;
 }

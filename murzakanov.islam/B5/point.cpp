@@ -1,4 +1,5 @@
 #include "point.hpp"
+#include <iostream>
 
 std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point& point)
 {

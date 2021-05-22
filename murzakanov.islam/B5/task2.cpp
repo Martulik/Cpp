@@ -28,13 +28,13 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
   int triangles = 0;
   int rectangles = 0;
   int squares = 0;
-  if (std::all_of(shapes.begin(), shapes.end(), murzakanov::checkIsSquare))
+  if (std::all_of(shapes.begin(), shapes.end(), murzakanov::isSquare))
   {
     squares++;
     rectangles++;
   }
 
-  if (std::all_of(shapes.begin(), shapes.end(), murzakanov::checkIsRectangle))
+  if (std::all_of(shapes.begin(), shapes.end(), murzakanov::isRectangle))
   {
     rectangles++;
   }

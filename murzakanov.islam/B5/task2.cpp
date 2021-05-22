@@ -19,18 +19,15 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< murzakanov::Shape > firstIterator(in);
   std::istream_iterator< murzakanov::Shape > lastIterator;
-  if (in.fail())
+  if (in.fail() && !in.eof())
   {
     std::cerr << "Invalid input\n";
     return 1;
   }
   std::vector< murzakanov::Shape > shapes(firstIterator, lastIterator);
-  if (shapes.size() == 0)
-  {
-    return 0;
-  }
   int vertices = murzakanov::calculateVertices(shapes);
-  int rectangles = std::count_if(shapes.begin(), shapes.end(), murzakanov::isSquare) + std::count_if(shapes.begin(), shapes.end(), murzakanov::isRectangle);
+  int rectangles = std::count_if(shapes.begin(), shapes.end(), murzakanov::isSquare);
+  rectangles += std::count_if(shapes.begin(), shapes.end(), murzakanov::isRectangle);
   int squares = std::count_if(shapes.begin(), shapes.end(), murzakanov::isSquare);
   int triangles = std::count_if(shapes.begin(), shapes.end(), murzakanov::isTriangle);
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), murzakanov::isPentagon), shapes.end());

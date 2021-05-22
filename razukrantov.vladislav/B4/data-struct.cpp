@@ -21,7 +21,7 @@ std::istream& razukrantov::operator>>(std::istream& in, DataStruct& ds)
 
 std::ostream& razukrantov::operator<<(std::ostream& out, const DataStruct& ds)
 {
-  out << ds.key1 << "," << ds.key2 << "," << ds.str;
+  out << ds.key1 << ", " << ds.key2 << ", " << ds.str;
   return out;
 }
 

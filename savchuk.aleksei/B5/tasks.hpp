@@ -6,6 +6,7 @@
 namespace savchuk
 {
   void doTask1(std::istream& is, std::ostream& os);
+  void doTask2(std::istream& is, std::ostream& os);
 }
 
 #endif

@@ -10,21 +10,18 @@ int main(int argc, char** argv)
 {
   try
   {
-    if (argc != 2)
-    {
-      throw std::runtime_error("Invalid command line arguments");
-    }
-    if (!strcmp(argv[1], "1"))
+    if (argc == 2 && !strcmp(argv[1], "1"))
     {
       lab::doTask1(std::cin, std::cout);
     }
-    else if (!strcmp(argv[1], "2"))
+    else if (argc == 2 && !strcmp(argv[1], "2"))
     {
-      // lab::doTask2(std::cin, std::cout);
+      lab::doTask2(std::cin, std::cout);
     }
     else
     {
-      throw std::runtime_error("Invalid command line arguments");
+      std::cerr << "Invalid command line arguments";
+      return 1;
     }
   }
   catch (const std::runtime_error& e)

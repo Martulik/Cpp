@@ -29,3 +29,24 @@ bool razukrantov::operator<(const DataStruct& lhs, const DataStruct& rhs)
     return lhs.str.length() < rhs.str.length();
   }
 }
+
+int razukrantov::readKey(std::istream& in)
+{
+  std::string str;
+  std::getline(in, str, ',');
+  try
+  {
+    int key = std::atoi(str);
+  }
+  catch (std::exception& err)
+  {
+    in.setstate(std::ios::failbit);
+    return 0;
+  }
+  if (key < -5 || key >5)
+  {
+    in.setstate(std::ios::failbit);
+    return 0;
+  }
+  return key;
+}

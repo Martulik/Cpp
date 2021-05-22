@@ -1,6 +1,8 @@
 #include "data-struct.hpp"
 
 #include <iostream>
+#include <string>
+#include <sstream>
 
 std::istream& razukrantov::operator>>(std::istream& in, DataStruct& ds)
 {
@@ -43,9 +45,10 @@ int razukrantov::readKey(std::istream& in)
 {
   std::string str;
   std::getline(in, str, ',');
+  int key = 0;
   try
   {
-    int key = std::atoi(str);
+    key = std::stoi(str);
   }
   catch (std::exception& err)
   {

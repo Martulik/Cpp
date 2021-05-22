@@ -1,5 +1,7 @@
 ﻿#include <iterator>
 #include <vector>
+#include <iostream>
+#include <algorithm>
 
 #include "data-struct.hpp"
 
@@ -10,10 +12,10 @@ int main()
   std::vector < razukrantov::DataStruct > vector(start, finish);
   if (std::cin.fail() && !std::cin.eof())
   {
-    std::current_exception << "Incorrect input" << "\n";
+    std::cerr << "Incorrect input" << "\n";
     return 1;
   }
-  std::sort(vec.begin(), vec.end());
-  std::ostream_iterator< razukrantov::DataStruct > out(std::count, "\n");
+  std::sort(vector.begin(), vector.end());
+  std::ostream_iterator< razukrantov::DataStruct > out(std::cout, "\n");
   std::copy(vector.begin(), vector.end(), out);
 }

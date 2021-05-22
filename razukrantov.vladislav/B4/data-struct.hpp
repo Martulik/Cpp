@@ -6,15 +6,16 @@
 
 namespace razukrantov
 {
-	struct DataStruct
-	{
-		int key1;
-		int key2;
-		std::string str;
-	};
+  struct DataStruct
+  {
+    int key1;
+    int key2;
+    std::string str;
+  };
 
-	std::istream& operator>>(std::istream& in, DataStruct& ds);
-	std::ostream& operator<<(std::ostream& out, const DataStruct& ds);
+  std::istream& operator>>(std::istream& in, DataStruct& ds);
+  std::ostream& operator<<(std::ostream& out, const DataStruct& ds);
+  bool operator<(const DataStruct& lhs, const DataStruct& rhs);
 }
 
 #endif

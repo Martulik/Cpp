@@ -12,6 +12,11 @@ namespace savchuk
 
   std::istream& operator>>(std::istream& is, Shape& shape);
   std::ostream& operator<<(std::ostream& os, const Shape& shape);
+
+  bool isTriangle(const Shape& shape);
+  bool isRectangle(const Shape& shape);
+  bool isSquare(const Shape& shape);
+  bool isPentagon(const Shape& shape);
 }
 
 #endif

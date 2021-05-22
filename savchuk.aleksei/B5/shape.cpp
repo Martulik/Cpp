@@ -7,6 +7,8 @@
 #include <cstddef>
 #include <string>
 
+#include "vector.hpp"
+
 namespace lab = savchuk;
 
 std::istream& lab::operator>>(std::istream& is, Shape& shape)
@@ -50,4 +52,42 @@ std::ostream& lab::operator<<(std::ostream& os, const Shape& shape)
     std::copy(shape.cbegin(), shape.cend(), std::ostream_iterator< Point >(os, " "));
   }
   return os;
+}
+
+bool lab::isTriangle(const Shape& shape)
+{
+  return shape.size() == 3;
+}
+
+bool lab::isRectangle(const Shape& shape)
+{
+  return shape.size() == 4;
+}
+
+bool lab::isSquare(const Shape& shape)
+{
+  if (isRectangle(shape))
+  {
+    Vector v1 = { shape[0], shape[1] };
+    Vector v2 = { shape[0], shape[2] };
+    Vector v3 = { shape[0], shape[3] };
+    if (v1 + v2 == v3)
+    {
+      return v1 * v1 == v2 * v2;
+    }
+    else if (v1 + v3 == v2)
+    {
+      return v1 * v1 == v3 * v3;
+    }
+    else if (v2 + v3 == v1)
+    {
+      return v2 * v2 == v3 * v3;
+    }
+  }
+  return false;
+}
+
+bool lab::isPentagon(const Shape& shape)
+{
+  return shape.size() == 5;
 }

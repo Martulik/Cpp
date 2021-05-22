@@ -55,7 +55,7 @@ int razukrantov::readKey(std::istream& in)
     in.setstate(std::ios::failbit);
     return 0;
   }
-  if (key < -5 || key >5)
+  if (key < -5 || key > 5)
   {
     in.setstate(std::ios::failbit);
     return 0;

@@ -12,7 +12,7 @@ int main()
   std::vector < razukrantov::DataStruct > vector(start, finish);
   if (std::cin.fail() && !std::cin.eof())
   {
-    std::cerr << "Incorrect input" << "\n";
+    std::cerr << "Incorrect input\n";
     return 1;
   }
   std::sort(vector.begin(), vector.end());

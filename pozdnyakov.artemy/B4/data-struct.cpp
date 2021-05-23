@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <stdexcept>
 #include <cmath>
+#include <functional>
 
 namespace poz = pozdnyakov;
 

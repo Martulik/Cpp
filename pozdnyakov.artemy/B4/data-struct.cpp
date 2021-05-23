@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <stdexcept>
 #include <cmath>
-#include <boost/optional.hpp>
 
 namespace poz = pozdnyakov;
 

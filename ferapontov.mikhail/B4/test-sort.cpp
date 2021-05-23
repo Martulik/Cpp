@@ -13,10 +13,7 @@ BOOST_AUTO_TEST_CASE(sort)
   std::vector< ferapontov::DataStruct > sortedVec;
   sortedVec = {{-4, 2, "sorted moment"}, {-1, -1, "sort"}, {5, 5, "data"}};
   std::sort(unsortedVec.begin(), unsortedVec.end());
-  for (size_t i = 0; i < sortedVec.size(); i++)
-  {
-    BOOST_CHECK_EQUAL(unsortedVec[i], sortedVec[i]);
-  }
+  BOOST_CHECK(unsortedVec == sortedVec);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

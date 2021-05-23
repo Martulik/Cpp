@@ -6,6 +6,7 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
+#include <numeric>
 
 #include "tools.hpp"
 #include "shape.hpp"
@@ -20,7 +21,12 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
     return 1;
   }
   std::vector< murzakanov::Shape > shapes(firstIterator, lastIterator);
-  int vertices = murzakanov::calculateVertices(shapes);
+  //int vertices = murzakanov::calculateVertices(shapes);
+    int vertices = std::accumulate(shapes.begin(), shapes.end(), 0, [](int count, const Shape& shape)
+    {
+      return count + shape.size();
+    });
+
   int squares = std::count_if(shapes.begin(), shapes.end(), murzakanov::isSquare);
   int rectangles = squares + std::count_if(shapes.begin(), shapes.end(), murzakanov::isRectangle);
   int triangles = std::count_if(shapes.begin(), shapes.end(), murzakanov::isTriangle);

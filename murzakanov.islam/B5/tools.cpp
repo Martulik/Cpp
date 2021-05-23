@@ -1,6 +1,5 @@
 #include "tools.hpp"
 #include <cmath>
-#include <limits>
 #include <vector>
 #include <algorithm>
 #include <array>
@@ -38,11 +37,11 @@ void murzakanov::sortShapes(std::vector< murzakanov::Shape >& shps)
 {
   std::vector< murzakanov::Shape > temp;
   std::copy_if(shps.begin(), shps.end(), std::back_inserter(temp), murzakanov::isTriangle);
-  std::copy_if(shps.begin(), shps.end(), std::back_inserter(temp), murzakanov::isSquare);
-  std::copy_if(shps.begin(), shps.end(), std::back_inserter(temp), murzakanov::isRectangle);
   shps.erase(std::remove_if(shps.begin(), shps.end(), isTriangle), shps.end());
+  std::copy_if(shps.begin(), shps.end(), std::back_inserter(temp), murzakanov::isSquare);
   shps.erase(std::remove_if(shps.begin(), shps.end(), isSquare), shps.end());
+  std::copy_if(shps.begin(), shps.end(), std::back_inserter(temp), murzakanov::isRectangle);
   shps.erase(std::remove_if(shps.begin(), shps.end(), isRectangle), shps.end());
   std::copy(shps.begin(), shps.end(), std::back_inserter(temp));
-  shps = temp;
+  shps.swap(temp);
 }

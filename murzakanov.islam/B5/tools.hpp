@@ -7,7 +7,8 @@ namespace murzakanov
 {
   int getDistanceSquared(const Point& p1, const Point& p2);
   std::array< int, 6 > calculateSides(const murzakanov::Shape& shp);
-  int calculateVertices(const std::vector< murzakanov::Shape >& shp);
+  int calculateVertices(const std::vector< murzakanov::Shape >& shps);
+  void sortShapes(std::vector< murzakanov::Shape >& shps);
 }
 
 #endif

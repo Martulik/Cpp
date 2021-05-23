@@ -33,6 +33,7 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
     points.push_back(shapes[i][0]);
   }
   //std::sort(shapes.begin(), shapes.end());
+  murzakanov::sortShapes(shapes);
   out << "Vertices: " << vertices << "\n";
   out << "Triangles: " << triangles << "\n";
   out << "Squares: " << squares << "\n";

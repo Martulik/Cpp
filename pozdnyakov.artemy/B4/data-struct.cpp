@@ -53,11 +53,6 @@ int poz::extractKey(std::string& str)
 
 bool poz::comparator(const poz::DataStruct& s1, const poz::DataStruct& s2)
 {
-  bool compKey1 = s1.key1 < s2.key1;
-  bool compKey2 = s1.key2 < s2.key2;
-  bool compStr = s1.str.length() < s2.str.length();
-  bool eqKey1 = s1.key1 == s2.key1;
-  bool eqKey2 = s1.key2 == s2.key2;
-  return (compKey1 || (eqKey1 && (compKey2 || (eqKey2 && compStr))));
-
+  return ((s1.key1 < s2.key1) || ((s1.key1 == s2.key1) && ((s1.key2 < s2.key2) || ((s1.key2 == s2.key2)
+    && (s1.str.length() < s2.str.length())))));
 }

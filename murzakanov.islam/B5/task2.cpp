@@ -21,11 +21,7 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
     return 1;
   }
   std::vector< murzakanov::Shape > shapes(firstIterator, lastIterator);
-  //int vertices = murzakanov::calculateVertices(shapes);
-    int vertices = std::accumulate(shapes.begin(), shapes.end(), 0, [](int count, const Shape& shape)
-    {
-      return count + shape.size();
-    });
+  int vertices = murzakanov::calculateVertices(shapes);
 
   int squares = std::count_if(shapes.begin(), shapes.end(), murzakanov::isSquare);
   int rectangles = squares + std::count_if(shapes.begin(), shapes.end(), murzakanov::isRectangle);
@@ -36,7 +32,7 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
   {
     points.push_back(shapes[i][0]);
   }
-  std::sort(shapes.begin(), shapes.end());
+  //std::sort(shapes.begin(), shapes.end());
   out << "Vertices: " << vertices << "\n";
   out << "Triangles: " << triangles << "\n";
   out << "Squares: " << squares << "\n";

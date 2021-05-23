@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <stdexcept>
 #include <cmath>
+#include <boost/optional.hpp>
 
 namespace poz = pozdnyakov;
 
@@ -53,6 +54,25 @@ int poz::extractKey(std::string& str)
 
 bool poz::comparator(const poz::DataStruct& s1, const poz::DataStruct& s2)
 {
-  return ((s1.key1 < s2.key1) || ((s1.key1 == s2.key1) && ((s1.key2 < s2.key2) || ((s1.key2 == s2.key2)
-    && (s1.str.length() < s2.str.length())))));
+  std::function< bool() > compKey1 = [s1, s2]()
+  {
+    return s1.key1 < s2.key1;
+  };
+  std::function< bool() > compKey2 = [s1, s2]()
+  {
+    return s1.key2 < s2.key2;
+  };
+  std::function< bool() > compStr = [s1, s2]()
+  {
+    return s1.str.length() < s2.str.length();
+  };
+  std::function< bool() > eqKey1 = [s1, s2]()
+  {
+    return s1.key1 == s2.key1;
+  };
+  std::function< bool() > eqKey2 = [s1, s2]()
+  {
+    return s1.key2 == s2.key2;
+  };
+  return (compKey1() || (eqKey1() && (compKey2() || (eqKey2() && compStr()))));
 }

@@ -12,5 +12,7 @@ namespace lebedeva
 
   std::ostream& operator<<(std::ostream& out, const record_t& rec);
   bool checkNumber(const std::string& number);
+  void extractName(std::string& name);
+  bool isName(const std::string& name);
 }
 #endif

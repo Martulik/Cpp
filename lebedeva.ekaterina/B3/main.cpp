@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <string>
 #include "tasks.hpp"
 
 int main(int argc, char* argv[])
@@ -11,17 +12,17 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid arguments\n");
     }
 
-    char* firstArg = argv[1];
-    if (sizeof(firstArg) != 1)
+    std::string firstArg = argv[1];
+    if (firstArg.length() != 1)
     {
       throw std::invalid_argument("Invalid arguments\n");
     }
 
     if (!std::isdigit(firstArg[0]))
     {
-      throw std::invalid_argument("Invalid first arguments\n");
+      throw std::invalid_argument("Invalid first argument\n");
     }
-    int task = std::atoi(firstArg);
+    int task = std::stoi(firstArg);
 
     if (task == 1)
     {

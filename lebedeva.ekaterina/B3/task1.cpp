@@ -4,12 +4,16 @@
 #include "phonebook_interface.hpp"
 
 using constIter = std::map< std::string, lebedeva::PhoneBook::constIter >::const_iterator;
+namespace lebedeva
+{
+  int isNegative(std::string& steps);
+}
 
 void lebedeva::doTask1(std::istream& in, std::ostream& out)
 {
   Interface obj;
   std::string str;
-  while (std::getline(in, str))
+  while (std::getline(in, str) && !str.empty())
   {
     if (in.fail())
     {
@@ -22,13 +26,21 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
     if (command == "add")
     {
       record_t recToAdd;
-      in >> std::ws >> recToAdd.phoneNumber;
+      input >> std::ws >> recToAdd.phoneNumber;
       if (checkNumber(recToAdd.phoneNumber))
       {
-        std::getline(in >> std::ws, recToAdd.name);
-        if (!recToAdd.name.empty())
+        std::getline(input >> std::ws, recToAdd.name);
+        if (isName(recToAdd.name))
         {
-          obj.add(recToAdd);
+          extractName(recToAdd.name);
+          if (!recToAdd.name.empty())
+          {
+            obj.add(recToAdd);
+          }
+          else
+          {
+            out << "<INVALID COMMAND>\n";
+          }
         }
         else
         {
@@ -45,8 +57,8 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       std::string markName;
       std::string newMarkName;
 
-      in >> std::ws >> markName;
-      in >> std::ws >> newMarkName;
+      input >> std::ws >> markName;
+      input >> std::ws >> newMarkName;
 
       constIter iter = obj.find(markName);
       if (iter != obj.end())
@@ -64,23 +76,30 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       std::string markName;
       record_t recToIns;
 
-      in >> std::ws >> whr;
-      in >> std::ws >> markName;
-      in >> std::ws >> recToIns.phoneNumber;
-      std::getline(in >> std::ws, recToIns.name);
-
-      if (!(recToIns.name.empty()) && checkNumber(recToIns.phoneNumber))
+      input >> std::ws >> whr;
+      input >> std::ws >> markName;
+      input >> std::ws >> recToIns.phoneNumber;
+      std::getline(input >> std::ws, recToIns.name);
+      if (isName(recToIns.name))
       {
-        constIter iter = obj.find(markName);
-        if (iter != obj.end())
+        extractName(recToIns.name);
+        if (!(recToIns.name.empty()) && checkNumber(recToIns.phoneNumber))
         {
-          if (whr == "before")
+          constIter iter = obj.find(markName);
+          if (iter != obj.end())
           {
-            obj.insert(Interface::Where::before, markName, recToIns);
-          }
-          else if (whr == "after")
-          {
-            obj.insert(Interface::Where::after, markName, recToIns);
+            if (whr == "before")
+            {
+              obj.insert(Interface::Where::before, markName, recToIns);
+            }
+            else if (whr == "after")
+            {
+              obj.insert(Interface::Where::after, markName, recToIns);
+            }
+            else
+            {
+              out << "<INVALID COMMAND>\n";
+            }
           }
           else
           {
@@ -100,7 +119,7 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
     else if (command == "delete")
     {
       std::string markName;
-      in >> std::ws >> markName;
+      input >> std::ws >> markName;
       constIter iter = obj.find(markName);
       if (iter != obj.end())
       {
@@ -113,25 +132,87 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
     }
     else if (command == "show")
     {
-      // input markName
-      // find it in obj
-      // obj.show(markName, out);
-      // out << '\n';
-      // if not found
-      out << "<INVALID COMMAND>\n";
+      std::string markName;
+      input >> std::ws >> markName;
+
+      constIter iter = obj.find(markName);
+      if (iter != obj.end())
+      {
+        obj.show(markName, out);
+        out << '\n';
+      }
+      else
+      {
+        out << "<INVALID BOOKMARK>\n";
+      }
     }
     else if (command == "move")
     {
-      // input markName and steps
-      // find markName in obj
-      // check if steps is a known word or int digit
-      // obj.move(markName, steps);
-      // if not found
-      out << "<INVALID COMMAND>\n";
+      std::string markName;
+      std::string steps;
+      input >> std::ws >> markName;
+      std::getline(input >> std::ws, steps);
+
+      constIter iter = obj.find(markName);
+      if (iter != obj.end())
+      {
+        if (!(steps.empty()))
+        {
+          int isNeg = isNegative(steps);
+
+          if (checkNumber(steps))
+          {
+            int iSteps = std::stoi(steps);
+            if (isNeg != 0)
+            {
+              iSteps *= isNeg;
+            }
+            obj.move(markName, iSteps);
+          }
+          else if (steps == "first")
+          {
+            obj.move(markName, Interface::Steps::first);
+          }
+          else if (steps == "last")
+          {
+            obj.move(markName, Interface::Steps::last);
+          }
+          else
+          {
+            out << "<INVALID STEP>\n";
+          }
+        }
+        else
+        {
+          out << "<INVALID COMMAND>\n";
+        }
+      }
+      else
+      {
+        out << "<INVALID COMMAND>\n";
+      }
     }
     else
     {
       out << "<INVALID COMMAND>\n";
     }
   }
+}
+
+int lebedeva::isNegative(std::string& steps)
+{
+  int isNeg = 0;
+  if (steps.front() == '+' || steps.front() == '-')
+  {
+    if (steps.front() == '+')
+    {
+      isNeg = 1;
+    }
+    if (steps.front() == '-')
+    {
+      isNeg = -1;
+    }
+    steps.erase(steps.begin());
+  }
+  return isNeg;
 }

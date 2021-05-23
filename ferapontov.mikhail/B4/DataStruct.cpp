@@ -63,11 +63,7 @@ bool ferapontov::operator<(const DataStruct& lhs, const DataStruct& rhs)
 
 bool ferapontov::operator==(const DataStruct& lhs, const DataStruct& rhs)
 {
-  if (lhs.key1 == rhs.key1 && lhs.key2 == rhs.key2 && lhs.str == rhs.str)
-  {
-    return true;
-  }
-  return false;
+  return lhs.key1 == rhs.key1 && lhs.key2 == rhs.key2 && lhs.str == rhs.str;
 }
 
 int ferapontov::readNumber(std::istream& in, const char& delim)

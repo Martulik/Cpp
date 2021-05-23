@@ -20,15 +20,26 @@ void lab::doTask2(std::istream& is, std::ostream& os)
   {
     throw std::runtime_error("Input error");
   }
+
   ShapeCounter counter = std::for_each(shapes.cbegin(), shapes.cend(), ShapeCounter());
+
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
+
   std::vector< Point > points;
-  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
-                [](Shape& s)
-                {
-                  return s.back();
-                });
-  std::sort(shapes.begin(), shapes.end(), compare);
+  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points),
+                 [](const Shape& s) { return s.back(); });
+
+  std::vector< Shape > sortedShapes;
+  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isTriangle);
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isTriangle), shapes.end());
+
+  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isSquare);
+  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes),
+               [](const Shape& s) { return isRectangle(s) && !isSquare(s); });
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isRectangle), shapes.end());
+
+  sortedShapes.insert(sortedShapes.end(), shapes.cbegin(), shapes.cend());
+
   os << "Vertices: " << counter.vertices;
   os << "\nTriangles: " << counter.triangles;
   os << "\nSquares: " << counter.squares;
@@ -36,5 +47,5 @@ void lab::doTask2(std::istream& is, std::ostream& os)
   os << "\nPoints: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(os, " "));
   os << "\nShapes:\n";
-  std::copy(shapes.cbegin(), shapes.cend(), std::ostream_iterator< Shape >(os, "\n"));
+  std::copy(sortedShapes.cbegin(), sortedShapes.cend(), std::ostream_iterator< Shape >(os, "\n"));
 }

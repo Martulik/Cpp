@@ -17,8 +17,6 @@ namespace savchuk
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
-
-  bool compare(const Shape& lhs, const Shape& rhs);
 }
 
 #endif

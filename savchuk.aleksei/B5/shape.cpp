@@ -91,23 +91,3 @@ bool lab::isPentagon(const Shape& shape)
 {
   return shape.size() == 5;
 }
-
-bool lab::compare(const Shape& lhs, const Shape& rhs)
-{
-  if (isRectangle(lhs) && isRectangle(rhs))
-  {
-    if (isSquare(lhs) && isSquare(rhs))
-    {
-      return true;
-    }
-    else if (isSquare(lhs))
-    {
-      return true;
-    }
-    else if (isSquare(rhs))
-    {
-      return false;
-    }
-  }
-  return lhs.size() < rhs.size();
-}

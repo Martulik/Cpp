@@ -1,4 +1,5 @@
 #include "functions.hpp"
+#include <iostream>
 
 bool lebedeva::isNumber(std::string& str)
 {
@@ -27,4 +28,12 @@ bool lebedeva::isAcceplable(int key)
     bResult = true;
   }
   return bResult;
+}
+
+void lebedeva::print(std::vector< DataStruct > data, std::ostream& out)
+{
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    out << data[i];
+  }
 }

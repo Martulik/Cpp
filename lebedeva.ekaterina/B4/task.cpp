@@ -2,12 +2,14 @@
 #include <sstream>
 #include <stdio.h>
 #include <stdexcept>
+#include <vector>
 #include "data-struct.hpp"
 #include "functions.hpp"
 
 void lebedeva::doTask1(std::istream& in, std::ostream& out)
 {
   std::string inStr;
+  std::vector< DataStruct > data;
   while (std::getline(in, inStr) && !inStr.empty())
   {
     if (in.fail())
@@ -34,7 +36,7 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
             std::getline(input, temp.str);
             if (!temp.str.empty())
             {
-              out << temp;
+              data.push_back(temp);
             }
             else
             {
@@ -61,5 +63,5 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       throw std::invalid_argument("Invalid key1 input\n");
     }
   }
-  
+  print(data, out);
 }

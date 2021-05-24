@@ -51,3 +51,8 @@ unsigned int pochernin::sumVertices(unsigned int sum, const Shape& shape)
 {
   return sum + shape.size();
 }
+
+bool pochernin::isTriangle(const Shape& shape)
+{
+  return shape.size() == 3;
+}

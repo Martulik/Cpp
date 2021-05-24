@@ -2,11 +2,11 @@
 #include <iterator>
 #include <iostream>
 #include <algorithm>
-#include <sstream>
+#include <string>
 
 namespace lab = ezerinia;
 
-double lab::getSideLengthSquared(const Point &p1, const Point &p2)
+int lab::getSideLengthSquared(const Point &p1, const Point &p2)
 {
   return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
 }
@@ -35,47 +35,52 @@ bool lab::operator<(const Shape &lhs, const Shape &rhs)
 
 std::istream &lab::operator>>(std::istream &in, Point &point)
 {
-  std::string str;
-  char trash = '\0';
-  std::getline(in >> std::ws, str, ')');
-  if (str.empty() || in.eof()) {
-    return in;
+  std::string line;
+  try {
+    std::getline(in, line, '(');
+    std::getline(in, line, ';');
+    if (line.empty() || line == "\n") {
+      return in;
+    }
+    point.x = std::stoi(line);
+    std::getline(in, line, ')');
+    if (line.empty() || line == "\n") {
+      return in;
+    }
+    point.y = std::stoi(line);
   }
-  std::istringstream iss(str);
-  iss >> trash;
-  if (trash != '(') {
-    throw std::runtime_error("Read point.x fail");
-  }
-  iss >> point.x >> trash >> point.y;
-  if (trash != ';') {
-    throw std::runtime_error("Read point.y fail");
+  catch (const std::invalid_argument &ex) {
+    throw std::invalid_argument("Read point fail");
   }
   return in;
 }
 
 std::istream &lab::operator>>(std::istream &in, Shape &shape)
 {
-  unsigned int nVertices = 0;
-  char trash = '\0';
-  in >> nVertices;
-  in >> std::noskipws >> trash;
-  if (trash == '\n') {
-    throw std::runtime_error("Read shape fail");
+  std::string vertices_str;
+  if (in.fail() || in.bad()) {
+    throw std::invalid_argument("Read fail");
   }
-  std::string str;
-  in >> std::skipws;
-  std::getline(in, str);
-  if (str.empty()) {
-    return in;
+  unsigned int vertices_int;
+  try {
+    in >> vertices_str;
+    if (vertices_str.empty()) {
+      return in;
+    }
+    vertices_int = std::stoi(vertices_str);
   }
-  std::istringstream iss(str);
+  catch (const std::invalid_argument &ex) {
+    throw std::invalid_argument("Read vertices fail");
+  }
   Shape shape_temp;
-  shape_temp.reserve(nVertices);
-  std::istream_iterator< Point > istream_iter(iss);
-  std::istream_iterator< Point > istream_iter_end;
-  std::copy(istream_iter, istream_iter_end, std::back_inserter(shape_temp));
-  if ((!iss && !iss.eof()) || nVertices != shape_temp.size() || shape_temp.size() < 3) {
-    throw std::runtime_error("Read shape fail");
+  shape_temp.reserve(vertices_int);
+  Point point;
+  while (in && in.peek() != '\n') {
+    in >> point;
+    shape_temp.push_back(point);
+  }
+  if ((!in && !in.eof()) || vertices_int != shape_temp.size() || shape_temp.size() < 3) {
+    throw std::invalid_argument("Read shape fail");
   }
   shape.swap(shape_temp);
   return in;

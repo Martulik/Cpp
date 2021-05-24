@@ -61,7 +61,6 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   if (!in) {
     throw std::invalid_argument("Read fail");
   }
-  in >> std::noskipws;
   unsigned int vertices_int;
   try {
     std::string vertices_str;

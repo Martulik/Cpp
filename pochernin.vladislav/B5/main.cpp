@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     }
     else if (taskNumber == 2)
     {
-      //pochernin::task2
+      pochernin::task2(std::cin, std::cout);
     }
     else
     {

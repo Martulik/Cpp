@@ -76,7 +76,7 @@ std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
   }
 
   Shape temp;
-  std::copy_n(std::istream_iterator< Point >(in), count, std::back_inserter< Shape >(temp));
+  std::copy_n(std::istream_iterator< Point >(in), count, std::back_inserter(temp));
 
   std::string remaining;
   std::getline(in, remaining);

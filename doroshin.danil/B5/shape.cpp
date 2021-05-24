@@ -21,6 +21,21 @@ bool dan::isSquare(const Shape& s)
   return d1 == d2;
 }
 
+namespace doroshin {
+  template< class InputIt, class Size, class OutputIt>
+  OutputIt copy_n(InputIt first, Size count, OutputIt result)
+  {
+      while(count > 0) {
+          *result++ = *first;
+          if(count > 1) {
+            first++;
+          }
+          count--;
+      }
+      return result;
+  }
+}
+
 std::istream& dan::operator>>(std::istream& in, Shape& s)
 {
   const auto fail = [&]() {
@@ -36,15 +51,8 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
   }
 
   s.points_.reserve(n);
-  for(size_t i = 0; i < n; ++i) {
-    Point p;
-    in >> p;
-    if(!in) {
-      fail();
-      return in;
-    }
-    s.points_.emplace_back(std::move(p));
-  }
+  std::istream_iterator< Point > iPoint(in);
+  dan::copy_n(iPoint, n, std::back_inserter(s.points_));
   return in;
 }
 

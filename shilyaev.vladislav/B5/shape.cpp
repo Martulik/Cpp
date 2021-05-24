@@ -3,11 +3,22 @@
 #include <iterator>
 #include <functional>
 #include <algorithm>
-#include <sstream>
-#include <cctype>
 
 namespace shilyaev {
   using QuadrilateralPredicate = std::function< bool(int ab, int bc, int cd, int da, int bd, int ac) >;
+
+  bool safeGetline(std::istream &istream, std::string &str, char delimiter)
+  {
+    str.erase();
+    char ch;
+    while (istream.peek() != '\n' && istream.get(ch)) {
+      if (ch == delimiter) {
+        return true;
+      }
+      str += ch;
+    }
+    return false;
+  }
 
   std::ostream &operator<<(std::ostream &ostream, const Point &point)
   {
@@ -17,16 +28,23 @@ namespace shilyaev {
 
   std::istream &operator>>(std::istream &istream, Point &point)
   {
+    Point newPoint{};
     try {
       std::string str;
-      std::getline(istream, str, '(');
-      std::getline(istream, str, ';');
-      point.x = std::stoi(str);
-      std::getline(istream, str, ')');
-      point.y = std::stoi(str);
+      bool foundDelimiter = safeGetline(istream, str, '(');
+      foundDelimiter &= safeGetline(istream, str, ';');
+      newPoint.x = std::stoi(str);
+      foundDelimiter &= safeGetline(istream, str, ')');
+      newPoint.y = std::stoi(str);
+      if (!foundDelimiter) {
+        istream.setstate(std::ios::failbit);
+        return istream;
+      }
     } catch (const std::invalid_argument &) {
       istream.setstate(std::ios::failbit);
+      return istream;
     }
+    point = newPoint;
     return istream;
   }
 
@@ -39,25 +57,22 @@ namespace shilyaev {
 
   std::istream &operator>>(std::istream &istream, Shape &shape)
   {
-    std::string line;
-    while (std::all_of(line.begin(), line.end(), static_cast< int (&)(int) >(std::isspace))) {
-      if (!std::getline(istream, line)) {
-        return istream;
-      }
-    }
-    std::istringstream istringstream(line);
     size_t verticesCount = 0;
-    istringstream >> verticesCount;
-    if (verticesCount < 1) {
+    istream >> verticesCount;
+    if (!istream || verticesCount < 1) {
       istream.setstate(std::ios::failbit);
       return istream;
     }
     Shape newShape;
     newShape.reserve(verticesCount);
-    std::istream_iterator< Point > istreamIterator(istringstream);
-    std::istream_iterator< Point > istreamIteratorEnd;
-    std::copy(istreamIterator, istreamIteratorEnd, std::back_inserter(newShape));
-    if ((!istringstream && !istringstream.eof()) || newShape.size() != verticesCount) {
+    std::istream_iterator< Point > istreamIterator(istream);
+    std::copy_n(istreamIterator, verticesCount, std::back_inserter(newShape));
+    if (!istream) {
+      return istream;
+    }
+    std::string rest;
+    std::getline(istream, rest);
+    if (!std::all_of(rest.begin(), rest.end(), ::isspace)) {
       istream.setstate(std::ios::failbit);
       return istream;
     }

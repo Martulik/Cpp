@@ -2,6 +2,7 @@
 #define SHAPE_HPP
 
 #include <vector>
+#include <iosfwd>
 
 namespace pochernin
 {
@@ -11,6 +12,8 @@ namespace pochernin
   };
 
   using Shape = std::vector< Point >;
+
+  std::ostream& operator<<(std::ostream& out, const Point& point);
 }
 
 #endif

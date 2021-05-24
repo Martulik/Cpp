@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <iterator>
 
 #include "functions.hpp"
 
@@ -59,9 +60,7 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
 
 std::ostream& pochernin::operator<<(std::ostream& out, const Shape& shape)
 {
-  out << shape.size();
-  for (auto&& point: shape)
-  {
-    out << " " << point;
-  }
+  out << shape.size() << " ";
+  std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
+  return out;
 }

@@ -13,6 +13,7 @@ namespace pochernin
   bool isTriangle(const Shape& shape);
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
   bool isRectangle(const Shape& shape);
+  bool isSquare(const Shape& shape);
 }
 
 #endif

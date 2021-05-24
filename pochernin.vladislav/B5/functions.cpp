@@ -78,5 +78,28 @@ bool pochernin::isRectangle(const Shape& shape)
   squaredSides.push_back(getSquaredSide(shape[1], shape[3]));
 
   std::sort(squaredSides.begin(), squaredSides.end());
-  return ((squaredSides[0] == squaredSides[1]) && (squaredSides[2] == squaredSides[3]) && (squaredSides[4] == squaredSides[5]));
+  return ((squaredSides[0] == squaredSides[1]) &&
+          (squaredSides[2] == squaredSides[3]) &&
+          (squaredSides[4] == squaredSides[5]));
+}
+
+bool pochernin::isSquare(const Shape& shape)
+{
+  if (shape.size() != 4)
+  {
+    return false;
+  }
+
+  std::vector< unsigned int > squaredSides;
+  squaredSides.push_back(getSquaredSide(shape[0], shape[1]));
+  squaredSides.push_back(getSquaredSide(shape[1], shape[2]));
+  squaredSides.push_back(getSquaredSide(shape[2], shape[3]));
+  squaredSides.push_back(getSquaredSide(shape[3], shape[0]));
+  squaredSides.push_back(getSquaredSide(shape[0], shape[2]));
+  squaredSides.push_back(getSquaredSide(shape[1], shape[3]));
+
+  return ((squaredSides[0] == squaredSides[1]) &&
+          (squaredSides[0] == squaredSides[2]) &&
+          (squaredSides[0] == squaredSides[3]) &&
+          (squaredSides[4] == squaredSides[5]));
 }

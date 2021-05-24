@@ -16,12 +16,13 @@ void pochernin::task2(std::istream& in, std::ostream& out)
   unsigned int countOfVertices = std::accumulate(shapes.begin(), shapes.end(), 0, pochernin::sumVertices);
 
   unsigned int countOfTriangles = std::count_if(shapes.begin(), shapes.end(), pochernin::isTriangle);
-
   unsigned int countOfRectangles = std::count_if(shapes.begin(), shapes.end(), pochernin::isRectangle);
+  unsigned int countOfSquares = std::count_if(shapes.begin(), shapes.end(), pochernin::isSquare);
 
 
 
   out << "Verticies: " << countOfVertices << "\n";
   out << "Triangles: " << countOfTriangles << "\n";
+  out << "Squares: " << countOfSquares << "\n";
   out << "Rectangles: " << countOfRectangles << "\n";
 }

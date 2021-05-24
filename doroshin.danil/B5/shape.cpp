@@ -28,7 +28,7 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
   };
 
   s.points_.clear();
-  int n = 0;
+  size_t n = 0;
   in >> n;
   if(!in || in.peek() != ' ') {
     fail();
@@ -36,8 +36,15 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
   }
 
   s.points_.reserve(n);
-  std::istream_iterator< Point > iPoint(in), iEnd;
-  std::copy_n(iPoint, n, std::back_inserter(s.points_));
+  for(size_t i = 0; i < n; ++i) {
+    Point p;
+    in >> p;
+    if(!in) {
+      fail();
+      return in;
+    }
+    s.points_.emplace_back(std::move(p));
+  }
   return in;
 }
 

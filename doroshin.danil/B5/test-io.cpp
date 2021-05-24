@@ -60,9 +60,23 @@ BOOST_AUTO_TEST_CASE(not_enough_points)
   BOOST_CHECK(in.fail());
 }
 
+BOOST_AUTO_TEST_CASE(too_many_points)
+{
+  std::istringstream in ("3 (1;1) (2;2) (3;3) (4;4)");
+  dan::Shape s;
+  in >> s;
+  BOOST_CHECK(!in.fail());
+  BOOST_CHECK_EQUAL(s.points_.size(), 3);
+  BOOST_CHECK_EQUAL(s.points_[0], (dan::Point{1,1}));
+  BOOST_CHECK_EQUAL(s.points_[1], (dan::Point{2,2}));
+  BOOST_CHECK_EQUAL(s.points_[2], (dan::Point{3,3}));
+  in >> s;
+  BOOST_CHECK(in.fail());
+}
+
 BOOST_AUTO_TEST_CASE(correct)
 {
-  std::istringstream in ("3 (1;1) (2;2) (3;3)");
+  std::istringstream in ("3 (1;1) (2;2) (3;3) a\n");
   dan::Shape s;
   in >> s;
   BOOST_CHECK(!in.fail());

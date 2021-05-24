@@ -36,11 +36,13 @@ int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
 {
   std::vector< dan::Shape > shapes;
   // 1. Input
-  std::istream_iterator< dan::Shape > iBegin(in), iEnd;
-  std::move(iBegin, iEnd, std::back_inserter(shapes));
-  if(in.fail() && !in.eof()) {
-    err << "Invalid shape\n";
-    return 1;
+  if(!(in >> std::ws).eof()) {
+    std::istream_iterator< dan::Shape > iBegin(in), iEnd;
+    std::move(iBegin, iEnd, std::back_inserter(shapes));
+    if((in.fail() && !in.eof()) || shapes.empty()) {
+      err << "Invalid shape\n";
+      return 1;
+    }
   }
   // 2+3. Count vertices & shapes
   StatCounter shape_stats = std::for_each(shapes.begin(), shapes.end(), StatCounter());

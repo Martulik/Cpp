@@ -28,6 +28,10 @@ int main(int argc, char* argv[])
     {
       lebedeva::doTask1(std::cin, std::cout);
     }
+    else if (task == 2)
+    {
+      lebedeva::doTask2(std::cout);
+    }
     else
     {
       throw std::invalid_argument("Invalid arguments\n");

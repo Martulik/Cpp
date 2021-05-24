@@ -38,13 +38,20 @@ std::istream &lab::operator>>(std::istream &in, Point &point)
   try {
     std::string line;
     std::getline(in, line, '(');
-    std::getline(in, line, ';');
-    point.x = std::stoi(line);
+    if (line.find('\n') != std::string::npos) {
+      throw std::invalid_argument("Read point fail");
+    }
     std::getline(in, line, ')');
-    point.y = std::stoi(line);
+    if (line.find(';') == std::string::npos) {
+      throw std::invalid_argument("Not found ';'");
+    }
+    std::string str_point_x = line.substr(0, line.find(';'));
+    point.x = std::stoi(str_point_x);
+    std::string str_point_y = line.substr(line.find(';') + 1);
+    point.y = std::stoi(str_point_y);
   }
   catch (const std::invalid_argument &ex) {
-    throw std::invalid_argument("Read point fail");
+    throw ex;
   }
   return in;
 }
@@ -54,6 +61,7 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   if (!in) {
     throw std::invalid_argument("Read fail");
   }
+  in >> std::noskipws;
   unsigned int vertices_int;
   try {
     std::string vertices_str;

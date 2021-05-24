@@ -14,6 +14,7 @@ namespace pochernin
   using Shape = std::vector< Point >;
 
   std::ostream& operator<<(std::ostream& out, const Point& point);
+  std::istream& operator>>(std::istream& in, Point& point);
 }
 
 #endif

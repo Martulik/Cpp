@@ -56,3 +56,12 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
 
   return in;
 }
+
+std::ostream& pochernin::operator<<(std::ostream& out, const Shape& shape)
+{
+  out << shape.size();
+  for (auto&& point: shape)
+  {
+    out << " " << point;
+  }
+}

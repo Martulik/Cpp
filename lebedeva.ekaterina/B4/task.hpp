@@ -4,6 +4,6 @@
 
 namespace lebedeva
 {
-  void doTask1(std::ostream& out);
+  void doTask1(std::istream& in, std::ostream& out);
 }
 #endif

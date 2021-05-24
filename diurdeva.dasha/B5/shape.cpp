@@ -1,5 +1,7 @@
 #include "shape.hpp"
-#include <sstream>
+#include <iostream>
+#include <string>
+#include <algorithm>
 #include <iterator>
 
 const int TRIANGLE_TOPS = 3;
@@ -10,24 +12,17 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
 {
   unsigned int numberOfVertices = 0;
   in >> numberOfVertices;
-  char point = '\0';
-  in >> std::noskipws >> point;
-  if (point == '\n') {
-    throw std::runtime_error("Error read");
-  }
-  std::string str;
-  in >> std::skipws;
-  std::getline(in, str);
-  if (str.empty()) {
+  if (!in || numberOfVertices < 1) {
+    in.setstate(std::ios::failbit);
     return in;
   }
-  std::istringstream input(str);
   Shape shapeTemp;
   shapeTemp.reserve(numberOfVertices);
-  std::istream_iterator< Point > istream_iter(input);
-  std::istream_iterator< Point > istream_iter_end;
-  std::copy(istream_iter, istream_iter_end, std::back_inserter(shapeTemp));
-  if ((!input && !input.eof()) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
+  std::istream_iterator< Point > istream_iter(in);
+  std::copy_n(istream_iter, numberOfVertices, std::back_inserter(shapeTemp));
+  std::string str;
+  std::getline(in, str);
+  if ((!in && !in.eof()) || !std::all_of(str.begin(), str.end(), ::isspace) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
     throw std::runtime_error("Error read");
   }
   shape.swap(shapeTemp);

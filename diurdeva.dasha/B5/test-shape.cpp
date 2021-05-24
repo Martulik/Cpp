@@ -17,10 +17,9 @@ BOOST_AUTO_TEST_CASE(success_input_point)
 
 BOOST_AUTO_TEST_CASE(wrong_input_point)
 {
-  std::istringstream istringstream("(-3,-3)");
+  std::istringstream in("(-3,-3)");
   diurdeva::Point point{};
-  istringstream >> point;
-  BOOST_CHECK(istringstream.fail());
+  BOOST_CHECK_THROW(in >> point, std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -43,7 +42,7 @@ BOOST_AUTO_TEST_CASE(success_input_shape)
 
 BOOST_AUTO_TEST_CASE(wrong_input_shape)
 {
-  std::istringstream in("3  (13; 13)  (13; 45) ");
+  std::istringstream in("3 (13; 13) (13; 45) ");
   diurdeva::Shape shape;
   BOOST_CHECK_THROW(in >> shape, std::invalid_argument);
 }

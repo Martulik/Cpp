@@ -16,7 +16,7 @@ namespace razukrantov
   std::istream& operator>>(std::istream& in, DataStruct& ds);
   std::ostream& operator<<(std::ostream& out, const DataStruct& ds);
   bool operator<(const DataStruct& lhs, const DataStruct& rhs);
-  int readKey(std::istream& in);
+  int readKey(std::string& line, std::istream& in);
 }
 
 #endif

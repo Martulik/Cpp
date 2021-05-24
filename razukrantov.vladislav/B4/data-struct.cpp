@@ -8,13 +8,22 @@ std::istream& razukrantov::operator>>(std::istream& in, DataStruct& ds)
 {
   std::string line;
   std::getline(in, line);
-  std::istringstream stream(line);
-  ds.key1 = readKey(stream);
-  ds.key2 = readKey(stream);
-  std::getline(stream, ds.str);
-  if (stream.fail())
+  int key1 = readKey(line, in);
+  int key2 = readKey(line, in);
+  std::string::iterator iterator = line.begin();
+  std::string str;
+  while (iterator != line.end())
+  {
+    str += *iterator;
+    ++iterator;
+  }
+  if (str.empty())
   {
     in.setstate(std::ios::failbit);
+  }
+  if (!in.fail())
+  {
+    ds = { key1, key2, str };
   }
   return in;
 }
@@ -41,10 +50,21 @@ bool razukrantov::operator<(const DataStruct& lhs, const DataStruct& rhs)
   }
 }
 
-int razukrantov::readKey(std::istream& in)
+int razukrantov::readKey(std::string& line, std::istream& in)
 {
   std::string str;
-  std::getline(in, str, ',');
+  std::string::iterator iterator = line.begin();
+  while (*iterator != ',')
+  {
+    if (iterator == line.end())
+    {
+      in.setstate(std::ios::failbit);
+      return 0;
+    }
+    str += *iterator;
+    line.erase(iterator);
+  }
+  line.erase(0, 1);
   int key = 0;
   try
   {

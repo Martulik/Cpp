@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <iterator>
+#include <algorithm>
 
 #include "functions.hpp"
 
@@ -63,4 +64,28 @@ std::ostream& pochernin::operator<<(std::ostream& out, const Shape& shape)
   out << shape.size() << " ";
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
   return out;
+}
+
+std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
+{
+  size_t count = 0;
+  in >> count;
+  if (!in || (count == 0))
+  {
+    throw(std::invalid_argument("Incorrect shape reading"));
+  }
+
+  Shape temp;
+  std::copy_n(std::istream_iterator< Point >(in), count, std::back_inserter< Shape >(temp));
+
+  std::string remaining;
+  std::getline(in, remaining);
+  if (!std::all_of(remaining.begin(), remaining.end(), ::isspace) || !in)
+  {
+    throw(std::invalid_argument("Incorrect shape reading"));
+  }
+
+  shape.swap(temp);
+
+  return in;
 }

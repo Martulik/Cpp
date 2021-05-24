@@ -39,7 +39,7 @@ bool pochernin::isNumber(const std::string& str)
     {
       return false;
     }
-    if (!std::all_of(str.begin() + 1, str.end(), isdigit))
+    if (!std::all_of(str.begin() + 1, str.end(), ::isdigit))
     {
       return false;
     }

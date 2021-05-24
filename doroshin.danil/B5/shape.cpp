@@ -1,6 +1,6 @@
 #include "shape.hpp"
 #include <algorithm>
-#include <sstream>
+#include <iterator>
 #include <iostream>
 
 namespace dan = doroshin;
@@ -28,36 +28,16 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
   };
 
   s.points_.clear();
-  std::string line_;
-  in >> std::ws;
-  if(std::getline(in, line_)) {
-    std::istringstream line(line_);
-
-    int n = 0;
-    line >> n;
-    if(!line || line.peek() != ' ') {
-      fail();
-      return in;
-    }
-
-    s.points_.reserve(n);
-    for(int i = 0; i < n; ++i) {
-      Point p;
-      line >> p;
-      s.points_.push_back(p);
-
-      if(!line) {
-        fail();
-        return in;
-      }
-    }
-
-    line >> std::ws;
-    if(!line.eof()) {
-      fail();
-      return in;
-    }
+  int n = 0;
+  in >> n;
+  if(!in || in.peek() != ' ') {
+    fail();
+    return in;
   }
+
+  s.points_.reserve(n);
+  std::istream_iterator< Point > iPoint(in), iEnd;
+  std::copy_n(iPoint, n, std::back_inserter(s.points_));
   return in;
 }
 

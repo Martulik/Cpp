@@ -60,14 +60,6 @@ BOOST_AUTO_TEST_CASE(not_enough_points)
   BOOST_CHECK(in.fail());
 }
 
-BOOST_AUTO_TEST_CASE(too_many_points)
-{
-  std::istringstream in ("3 (1;1) (2;2) (3;3) (4;4)");
-  dan::Shape s;
-  in >> s;
-  BOOST_CHECK(in.fail());
-}
-
 BOOST_AUTO_TEST_CASE(correct)
 {
   std::istringstream in ("3 (1;1) (2;2) (3;3)");

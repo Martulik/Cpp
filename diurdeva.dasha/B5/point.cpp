@@ -22,8 +22,8 @@ std::istream& diurdeva::operator>>(std::istream& in, Point& point)
     std::string y = str.substr(str.find(SEMICOLON) + 1);
     point.y = std::stoi(y);
   }
-  catch (const std::invalid_argument&) {
-    in.setstate(std::ios::failbit);
+  catch (const std::invalid_argument &fail) {
+    throw fail;
   }
   return in;
 }

@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
+#include <algorithm>
 
 int pochernin::getTaskNumber(const char* string)
 {
@@ -38,12 +39,9 @@ bool pochernin::isNumber(const std::string& str)
     {
       return false;
     }
-    for (size_t i = 1; i < str.length(); i++)
+    if (!std::all_of(str.begin() + 1, str.end(), isdigit))
     {
-      if (!std::isdigit(str[i]))
-      {
-        return false;
-      }
+      return false;
     }
   }
   return true;

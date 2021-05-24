@@ -2,64 +2,34 @@
 
 #include <iostream>
 #include <fstream>
-#include <stdexcept>
 #include <string>
 #include <vector>
+#include <set>
 
 int lysenko::task1(std::istream& in, std::ostream& out)
 {
-  std::string nameOfFile;
-  in >> nameOfFile;
-  std::ifstream inputFile;
-  inputFile.open(nameOfFile);
-  try
+  std::set< std::string > uniqueWords;
+  while (!in.eof())
   {
-    if (inputFile.is_open())
+    std::streampos numberOfReadLetters = 0;
+    std::string word;
+    in >> std::ws;
+    if (!((in.peek() == ' ') || (in.peek() == '\n') || (in.peek() == '\t')))
     {
-      std::vector< std::vector< char > > uniqueWords;
-      while (!inputFile.eof())
-      {
-        std::vector< char > word;
-        if (!((inputFile.peek() == ' ') || (inputFile.peek() == '\n') || (inputFile.peek() == '\t')))
-        {
-          char letterOfTheWord = inputFile.get();
-          word.push_back(letterOfTheWord);
-          char delimiter;
-          inputFile >> delimiter;
-        }
-        else
-        {
-          for (unsigned long int i = 0; i < uniqueWords.size(); i++)
-          {
-            if (uniqueWords[i] == word)
-            {
-              break;
-            }
-            if (i == uniqueWords.size() - 1)
-            {
-              uniqueWords.push_back(word);
-            }
-          }
-        }
-      }
-      for (unsigned long int i = 0; i < uniqueWords.size(); i++)
-      {
-        for (unsigned long int j = 0; j < uniqueWords[i].size(); j++)
-        {
-          out << uniqueWords[i][j];
-        }
-        out << '\n';
-      }
+      char wordLetter;
+      in >> wordLetter;
+      numberOfReadLetters += 1;;
     }
     else
     {
-      throw std::invalid_argument("Unable to open the file.Check it exists and openable");
+      char delimiter;
+      in >> delimiter;
+      in.seekg(in.tellg() - numberOfReadLetters);
+      getline(in, word, delimiter);
+
+      uniqueWords.insert(word);
     }
   }
-  catch (std::invalid_argument& err)
-  {
-    std::cerr << err.what();
-    return 1;
-  }
+  std::copy(uniqueWords.begin(), uniqueWords.end(), std::ostream_iterator< std::string >(out, "\n"));
   return 0;
 }

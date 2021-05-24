@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <iterator>
 
 int lysenko::task1(std::istream& in, std::ostream& out)
 {
@@ -12,8 +13,6 @@ int lysenko::task1(std::istream& in, std::ostream& out)
   while (!in.eof())
   {
     std::streampos numberOfReadLetters = 0;
-    std::string word;
-    in >> std::ws;
     if (!((in.peek() == ' ') || (in.peek() == '\n') || (in.peek() == '\t')))
     {
       char wordLetter;
@@ -24,10 +23,13 @@ int lysenko::task1(std::istream& in, std::ostream& out)
     {
       char delimiter;
       in >> delimiter;
+      std::string word;
       in.seekg(in.tellg() - numberOfReadLetters);
       getline(in, word, delimiter);
-
-      uniqueWords.insert(word);
+      if (word.size() != 0)
+      {
+        uniqueWords.insert(word);
+      }
     }
   }
   std::copy(uniqueWords.begin(), uniqueWords.end(), std::ostream_iterator< std::string >(out, "\n"));

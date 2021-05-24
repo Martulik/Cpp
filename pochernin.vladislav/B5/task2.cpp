@@ -17,8 +17,11 @@ void pochernin::task2(std::istream& in, std::ostream& out)
 
   unsigned int countOfTriangles = std::count_if(shapes.begin(), shapes.end(), pochernin::isTriangle);
 
+  unsigned int countOfRectangles = std::count_if(shapes.begin(), shapes.end(), pochernin::isRectangle);
+
 
 
   out << "Verticies: " << countOfVertices << "\n";
   out << "Triangles: " << countOfTriangles << "\n";
+  out << "Rectangles: " << countOfRectangles << "\n";
 }

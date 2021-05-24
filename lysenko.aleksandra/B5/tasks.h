@@ -9,4 +9,4 @@ namespace lysenko
   int task2(std::istream&, std::ostream&);
 }
 
-#endif 
+#endif

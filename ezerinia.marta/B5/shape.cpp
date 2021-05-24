@@ -35,18 +35,12 @@ bool lab::operator<(const Shape &lhs, const Shape &rhs)
 
 std::istream &lab::operator>>(std::istream &in, Point &point)
 {
-  std::string line;
   try {
+    std::string line;
     std::getline(in, line, '(');
     std::getline(in, line, ';');
-    if (line.empty() || line == "\n") {
-      return in;
-    }
     point.x = std::stoi(line);
     std::getline(in, line, ')');
-    if (line.empty() || line == "\n") {
-      return in;
-    }
     point.y = std::stoi(line);
   }
   catch (const std::invalid_argument &ex) {
@@ -57,12 +51,12 @@ std::istream &lab::operator>>(std::istream &in, Point &point)
 
 std::istream &lab::operator>>(std::istream &in, Shape &shape)
 {
-  std::string vertices_str;
-  if (in.fail() || in.bad()) {
+  if (!in) {
     throw std::invalid_argument("Read fail");
   }
   unsigned int vertices_int;
   try {
+    std::string vertices_str;
     in >> vertices_str;
     if (vertices_str.empty()) {
       return in;
@@ -74,12 +68,10 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   }
   Shape shape_temp;
   shape_temp.reserve(vertices_int);
-  Point point;
-  while (in && in.peek() != '\n') {
-    in >> point;
-    shape_temp.push_back(point);
-  }
-  if ((!in && !in.eof()) || vertices_int != shape_temp.size() || shape_temp.size() < 3) {
+  std::copy_n(std::istream_iterator< Point >(in), vertices_int, std::back_inserter(shape_temp));
+  std::string str;
+  std::getline(in, str);
+  if ((!in && !in.eof()) || !std::all_of(str.begin(), str.end(), ::isspace) || vertices_int != shape_temp.size()) {
     throw std::invalid_argument("Read shape fail");
   }
   shape.swap(shape_temp);

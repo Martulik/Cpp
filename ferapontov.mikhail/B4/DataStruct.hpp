@@ -20,7 +20,7 @@ namespace ferapontov
   bool operator<(const DataStruct& lhs, const DataStruct& rhs);
   bool operator==(const DataStruct& lhs, const DataStruct& rhs);
 
-  int readNumber(std::istream& in, const char& delim);
+  int readNumber(std::string& line, const char& delim, std::istream& in);
 }
 
 #endif

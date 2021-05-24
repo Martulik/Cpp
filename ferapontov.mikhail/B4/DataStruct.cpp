@@ -8,13 +8,11 @@ std::istream& ferapontov::operator>>(std::istream& in, DataStruct& src)
   std::istream::sentry sentry(in);
   if (sentry)
   {
-    char delim = ',';
     std::string line;
+    char delim = ',';
     std::getline(in, line);
-    std::istringstream stream(line);
-
-    int key1 = readNumber(stream, delim);
-    int key2 = readNumber(stream, delim);
+    int key1 = readNumber(line, delim, in);
+    int key2 = readNumber(line, delim, in);
 
     if (std::abs(key1) > 5 || std::abs(key2) > 5)
     {
@@ -22,12 +20,17 @@ std::istream& ferapontov::operator>>(std::istream& in, DataStruct& src)
     }
 
     std::string name;
-    std::getline(stream, name);
-    if(stream.fail())
+    std::string::iterator it = line.begin();
+    while (it != line.end())
+    {
+      name += *it;
+      ++it;
+    }
+    if (name.empty())
     {
       in.setstate(std::ios::badbit);
     }
-    else
+    if (!in.fail())
     {
       src = {key1, key2, name};
     }
@@ -66,10 +69,21 @@ bool ferapontov::operator==(const DataStruct& lhs, const DataStruct& rhs)
   return lhs.key1 == rhs.key1 && lhs.key2 == rhs.key2 && lhs.str == rhs.str;
 }
 
-int ferapontov::readNumber(std::istream& in, const char& delim)
+int ferapontov::readNumber(std::string& line, const char& delim, std::istream& in)
 {
   std::string number;
-  std::getline(in, number, delim);
+  std::string::iterator it = line.begin();
+  while (*it != delim)
+  {
+    if (it == line.end())
+    {
+      in.setstate(std::ios::badbit);
+      return 0;
+    }
+    number += *it;
+    line.erase(it);
+  }
+  line.erase(0, 1);
   try
   {
     int num = std::stoi(number);

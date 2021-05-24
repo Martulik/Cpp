@@ -1,10 +1,10 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-#include "point.hpp"
-
 namespace savchuk
 {
+  struct Point;
+
   class Vector
   {
     public:

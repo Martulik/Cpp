@@ -1,5 +1,7 @@
 #include "vector.hpp"
 
+#include "point.hpp"
+
 namespace lab = savchuk;
 
 lab::Vector::Vector(const Point& start, const Point& finish):

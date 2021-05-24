@@ -54,8 +54,8 @@ lebedeva::Container::Iterator lebedeva::Container::Iterator::operator++(int)
 lebedeva::Container::Iterator& lebedeva::Container::Iterator::operator--()
 {
   assert(index_ > MIN);
-  index_--;
   value_ /= index_;
+  index_--;
   return *this;
 }
 
@@ -76,12 +76,12 @@ bool lebedeva::Container::Iterator::operator!=(const Iterator& rhs) const
   return (index_ != rhs.index_);
 }
 
-lebedeva::Container::Iterator lebedeva::Container::begin() const
+lebedeva::Container::Iterator lebedeva::Container::begin() const noexcept
 {
   return { MIN, factorial(MIN) };
 }
 
-lebedeva::Container::Iterator lebedeva::Container::end() const
+lebedeva::Container::Iterator lebedeva::Container::end() const noexcept
 {
   return { MAX, factorial(MAX) };
 }

@@ -9,14 +9,18 @@ std::istream& diurdeva::operator>>(std::istream& in, Point& point)
 {
   try {
     std::string str;
-    std::getline(in, str, OPEN_BRACKET);
-    if (str.find(OPEN_BRACKET) != std::string::npos) {
-      throw std::invalid_argument("Not found open bracket");
+    std::getline(in, line, OPEN_BRACKET);
+    if (line.find('\n') != std::string::npos) {
+      throw std::invalid_argument("Read point fail");
     }
-    std::getline(in, str, SEMICOLON);
-    point.x = std::stoi(str);
-    std::getline(in, str, CLOSE_BRACKET);
-    point.y = std::stoi(str);
+    std::getline(in, line, CLOSE_BRACKET);
+    if (line.find(SEMICOLON) == std::string::npos) {
+      throw std::invalid_argument("Not found semicolon");
+    }
+    std::string str_point_x = line.substr(0, line.find(SEMICOLON));
+    point.x = std::stoi(str_point_x);
+    std::string str_point_y = line.substr(line.find(SEMICOLON) + 1);
+    point.y = std::stoi(str_point_y);
   }
   catch (const std::invalid_argument&) {
     in.setstate(std::ios::failbit);

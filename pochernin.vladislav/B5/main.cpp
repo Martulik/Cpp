@@ -2,6 +2,7 @@
 #include <stdexcept>
 
 #include "functions.hpp"
+#include "tasks.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -15,7 +16,7 @@ int main(int argc, char* argv[])
     int taskNumber = pochernin::getTaskNumber(argv[1]);
     if (taskNumber == 1)
     {
-      //pochernin::task1
+      pochernin::task1(std::cin, std::cout);
     }
     else if (taskNumber == 2)
     {

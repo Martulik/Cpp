@@ -10,6 +10,9 @@ std::istream& diurdeva::operator>>(std::istream& in, Point& point)
   try {
     std::string str;
     std::getline(in, str, OPEN_BRACKET);
+    if (str.find(OPEN_BRACKET) != std::string::npos) {
+      throw std::invalid_argument("Not found open bracket");
+    }
     std::getline(in, str, SEMICOLON);
     point.x = std::stoi(str);
     std::getline(in, str, CLOSE_BRACKET);

@@ -12,10 +12,10 @@ int main(int argc, char* argv[])
     {
       return lysenko::task1(std::cin, std::cout);
     }
-    else if (argument == "2")
+   /* else if (argument == "2")
     {
       return lysenko::task2(std::cin, std::cout);
-    }
+    }*/
   }
   return 1;
 }

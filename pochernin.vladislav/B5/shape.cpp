@@ -70,9 +70,13 @@ std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
 {
   size_t count = 0;
   in >> count;
-  if (!in || (count == 0))
+  if ((!in.eof() && in.fail()) || in.bad())
   {
     throw(std::invalid_argument("Incorrect shape reading"));
+  }
+  if (count == 0)
+  {
+    return in;
   }
 
   Shape temp;

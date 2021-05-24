@@ -22,7 +22,7 @@ std::istream& diurdeva::operator>>(std::istream& in, Point& point)
     point.y = std::stoi(str);
   }
   catch (const std::invalid_argument&) {
-    in.setstate(std::ios::failbit)
+    in.setstate(std::ios::failbit);
   }
   return in;
 }

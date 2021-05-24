@@ -22,19 +22,19 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
     std::getline(input>> std::ws, key1, delimiter);
     if (!key1.empty() && isNumber(key1))
     {
-      temp.key1 = std::stoi(key1) * isNegative(key1);
+      temp.key1 = std::stoi(key1);
       if (isAcceplable(temp.key1))
       {
         std::getline(input >> std::ws, key2, delimiter);
         if (!key2.empty() && isNumber(key2))
         {
-          temp.key2 = std::stoi(key2) * isNegative(key2);
+          temp.key2 = std::stoi(key2);
           if (isAcceplable(temp.key2))
           {
             std::getline(input, temp.str);
             if (!temp.str.empty())
             {
-              out << key1 << delimiter << key2 << delimiter << temp.str << '\n';
+              out << temp;
             }
             else
             {

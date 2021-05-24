@@ -5,7 +5,6 @@
 namespace lebedeva
 {
   bool isNumber(std::string& str);
-  int isNegative(std::string& str);
   bool isAcceplable(int key);
 }
 

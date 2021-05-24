@@ -19,19 +19,6 @@ bool lebedeva::isNumber(std::string& str)
   return bResult;
 }
 
-int lebedeva::isNegative(std::string& str)
-{
-  int result = 1;
-  if (str.length() > 1)
-  {
-    if (str[0] == '-')
-    {
-      result = -1;
-    }
-  }
-  return result;
-}
-
 bool lebedeva::isAcceplable(int key)
 {
   bool bResult = false;

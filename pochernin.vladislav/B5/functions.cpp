@@ -46,3 +46,8 @@ bool pochernin::isNumber(const std::string& str)
   }
   return true;
 }
+
+unsigned int pochernin::sumVertices(unsigned int sum, const Shape& shape)
+{
+  return sum + shape.size();
+}

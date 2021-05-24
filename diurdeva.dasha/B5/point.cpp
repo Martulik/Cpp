@@ -13,17 +13,16 @@ std::istream& diurdeva::operator>>(std::istream& in, Point& point)
     if (str.find('\n') != std::string::npos) {
       throw std::invalid_argument("Read point fail");
     }
-    std::getline(in, str, CLOSE_BRACKET);
-    if (str.find(SEMICOLON) == std::string::npos) {
-      throw std::invalid_argument("Not found semicolon");
+    if (!in) {
+      return in;
     }
-    std::string x = str.substr(0, str.find(SEMICOLON));
-    point.x = std::stoi(x);
-    std::string y = str.substr(str.find(SEMICOLON) + 1);
-    point.y = std::stoi(y);
+    std::getline(in, str, SEMICOLON);
+    point.x = std::stoi(str);
+    std::getline(in, str, CLOSE_BRACKET);
+    point.y = std::stoi(str);
   }
-  catch (const std::invalid_argument &fail) {
-    throw fail;
+  catch (const std::invalid_argument&) {
+    in.setstate(std::ios::failbit)
   }
   return in;
 }

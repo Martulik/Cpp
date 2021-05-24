@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(wrong_input_shape)
 {
   std::istringstream in("3  (13; 13)  (13; 45) ");
   diurdeva::Shape shape;
-  BOOST_CHECK_THROW(in >> shape, std::runtime_error);
+  BOOST_CHECK_THROW(in >> shape, std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(output_shape)

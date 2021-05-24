@@ -1,22 +1,16 @@
 #include <iostream>
 #include <set>
+#include <iterator>
 #include "task2.hpp"
 
 namespace dan = doroshin;
 
 int task1(std::istream& in, std::ostream& out)
 {
-  std::set< std::string > dict;
-  while(in) {
-    std::string word;
-    in >> std::ws >> word;
-    if(!word.empty()) {
-      dict.emplace(std::move(word));
-    }
-  }
-  for(auto&& word: dict) {
-    out << word << '\n';
-  }
+  std::istream_iterator< std::string > iBegin(in), iEnd;
+  std::set< std::string > dict(iBegin, iEnd);
+  std::ostream_iterator< std::string > iOut(out, "\n");
+  std::move(dict.begin(), dict.end(), iOut);
   return 0;
 }
 

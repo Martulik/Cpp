@@ -59,8 +59,7 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
 std::ostream& dan::operator<<(std::ostream& out, const Shape& s)
 {
   out << s.points_.size() << ' ';
-  for(auto&& point: s.points_) {
-    out << point << ' ';
-  }
+  std::ostream_iterator< Point > iOut(out, " ");
+  std::copy(s.points_.begin(), s.points_.end(), iOut);
   return out;
 }

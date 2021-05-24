@@ -12,6 +12,7 @@ int lysenko::task1(std::istream& in, std::ostream& out)
   std::set< std::string > uniqueWords;
   while (!in.eof())
   {
+    in >> std::ws;
     std::string word;
     in >> word;
     if (word.size() != 1)

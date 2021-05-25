@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_CASE(WrongShapeInput)
 {
-  std::string line("3 (asd;1) (1;4) (5;2)");
+  std::string line("3 (das;1) (1;4) (5;2)");
   std::stringstream sin(line);
   murzakanov::Shape shp;
   sin >> shp;

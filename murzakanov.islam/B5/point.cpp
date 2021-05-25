@@ -10,6 +10,8 @@ std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point&
 
 std::istream& murzakanov::operator>>(std::istream& in, Point& point)
 {
+  int x = 0;
+  int y = 0;
   in >> std::ws;
   if (in.get() != '(')
   {
@@ -17,17 +19,18 @@ std::istream& murzakanov::operator>>(std::istream& in, Point& point)
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  in >> std::ws >> point.x >> std::ws;
+  in >> std::ws >> x >> std::ws;
   if (!in || in.get() != ';')
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  in >> std::ws >> point.y >> std::ws;
+  in >> std::ws >> y >> std::ws;
   if (!in || in.get() != ')')
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
+  point = {x, y};
   return in;
 }

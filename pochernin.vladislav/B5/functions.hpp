@@ -22,6 +22,7 @@ namespace pochernin
   Point getFirstPoint(const Shape& shape);
   void deleteExtraSpaces(std::string& str);
   void sortShapes(std::vector< Shape >& shapes);
+  void checkNoLineFeed(const std::string& str);
 }
 
 #endif

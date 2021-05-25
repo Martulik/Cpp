@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <cassert>
+#include <stdexcept>
 
 int pochernin::getTaskNumber(const char* string)
 {
@@ -155,4 +156,12 @@ void pochernin::sortShapes(std::vector< Shape >& shapes)
   std::copy(shapes.begin(), shapes.end(), std::back_inserter(temp));
 
   shapes.swap(temp);
+}
+
+void pochernin::checkNoLineFeed(const std::string& str)
+{
+  if (!std::all_of(str.begin(), str.end(), [](char ch){return ch != '\n';}))
+  {
+    throw(std::invalid_argument("Incorrect point reading"));
+  }
 }

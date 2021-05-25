@@ -16,17 +16,12 @@ std::ostream& pochernin::operator<<(std::ostream& out, const Point& point)
 std::istream& pochernin::operator>>(std::istream& in, Point& point)
 {
   std::string buffer;
+
   std::getline(in, buffer, '(');
-  if (!std::all_of(buffer.begin(), buffer.end(), [](char ch){return ch != '\n';}))
-  {
-    throw(std::invalid_argument("Incorrect point reading"));
-  }
+  checkNoLineFeed(buffer);
 
   std::getline(in, buffer, ';');
-  if (!std::all_of(buffer.begin(), buffer.end(), [](char ch){return ch != '\n';}))
-  {
-    throw(std::invalid_argument("Incorrect point reading"));
-  }
+  checkNoLineFeed(buffer);
   int x = 0;
   deleteExtraSpaces(buffer);
   if (isNumber(buffer))
@@ -39,10 +34,7 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
   }
 
   std::getline(in, buffer, ')');
-  if (!std::all_of(buffer.begin(), buffer.end(), [](char ch){return ch != '\n';}))
-  {
-    throw(std::invalid_argument("Incorrect point reading"));
-  }
+  checkNoLineFeed(buffer);
   int y = 0;
   deleteExtraSpaces(buffer);
   if (isNumber(buffer))

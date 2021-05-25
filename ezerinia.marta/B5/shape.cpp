@@ -35,23 +35,23 @@ bool lab::operator<(const Shape &lhs, const Shape &rhs)
 
 std::istream &lab::operator>>(std::istream &in, Point &point)
 {
+  std::string line;
+  std::getline(in, line, '(');
+  if (line.find('\n') != std::string::npos) {
+    throw std::invalid_argument("Read point fail");
+  }
+  std::getline(in, line, ')');
+  if (line.find(';') == std::string::npos) {
+    throw std::invalid_argument("Not found ';'");
+  }
+  std::string str_point_x = line.substr(0, line.find(';'));
+  std::string str_point_y = line.substr(line.find(';') + 1);
   try {
-    std::string line;
-    std::getline(in, line, '(');
-    if (line.find('\n') != std::string::npos) {
-      throw std::invalid_argument("Read point fail");
-    }
-    std::getline(in, line, ')');
-    if (line.find(';') == std::string::npos) {
-      throw std::invalid_argument("Not found ';'");
-    }
-    std::string str_point_x = line.substr(0, line.find(';'));
     point.x = std::stoi(str_point_x);
-    std::string str_point_y = line.substr(line.find(';') + 1);
     point.y = std::stoi(str_point_y);
   }
-  catch (const std::invalid_argument &ex) {
-    throw ex;
+  catch (const std::invalid_argument &) {
+    throw std::invalid_argument("Convert point failed");
   }
   return in;
 }
@@ -62,12 +62,12 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
     throw std::invalid_argument("Read fail");
   }
   unsigned int vertices_int;
+  std::string vertices_str;
+  in >> vertices_str;
+  if (vertices_str.empty()) {
+    return in;
+  }
   try {
-    std::string vertices_str;
-    in >> vertices_str;
-    if (vertices_str.empty()) {
-      return in;
-    }
     vertices_int = std::stoi(vertices_str);
   }
   catch (const std::invalid_argument &ex) {

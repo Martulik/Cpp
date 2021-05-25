@@ -13,7 +13,9 @@ namespace pochernin
   bool isTriangle(const Shape& shape);
   void fillSquaredSideVector(std::vector< unsigned int >& squaredSides, const Shape& shape);
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
+  bool compareRectangleSides(const std::vector< unsigned int >& sides);
   bool isRectangle(const Shape& shape);
+  bool compareSquareSides(const std::vector< unsigned int >& sides);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
   Point getFirstPoint(const Shape& shape);

@@ -75,6 +75,13 @@ void pochernin::fillSquaredSideVector(std::vector< unsigned int >& squaredSides,
   squaredSides.push_back(getSquaredSide(shape[1], shape[3]));
 }
 
+bool pochernin::compareRectangleSides(const std::vector< unsigned int >& sides)
+{
+  assert(sides.size() == 6);
+
+  return (sides[0] == sides[1]) && (sides[2] == sides[3]) && (sides[4] == sides[5]);
+}
+
 bool pochernin::isRectangle(const Shape& shape)
 {
   if (shape.size() != 4)
@@ -86,9 +93,14 @@ bool pochernin::isRectangle(const Shape& shape)
   fillSquaredSideVector(squaredSides, shape);
 
   std::sort(squaredSides.begin(), squaredSides.end());
-  return ((squaredSides[0] == squaredSides[1]) &&
-          (squaredSides[2] == squaredSides[3]) &&
-          (squaredSides[4] == squaredSides[5]));
+  return compareRectangleSides(squaredSides);
+}
+
+bool pochernin::compareSquareSides(const std::vector< unsigned int >& sides)
+{
+  assert(sides.size() == 6);
+
+  return (sides[0] == sides[1]) && (sides[0] == sides[2]) && (sides[0] == sides[3]) && (sides[4] == sides[5]);
 }
 
 bool pochernin::isSquare(const Shape& shape)
@@ -101,10 +113,7 @@ bool pochernin::isSquare(const Shape& shape)
   std::vector< unsigned int > squaredSides;
   fillSquaredSideVector(squaredSides, shape);
 
-  return ((squaredSides[0] == squaredSides[1]) &&
-          (squaredSides[0] == squaredSides[2]) &&
-          (squaredSides[0] == squaredSides[3]) &&
-          (squaredSides[4] == squaredSides[5]));
+  return compareSquareSides(squaredSides);
 }
 
 bool pochernin::isPentagon(const Shape& shape)

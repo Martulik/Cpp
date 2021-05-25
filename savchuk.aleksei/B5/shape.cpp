@@ -3,7 +3,6 @@
 #include <iterator>
 #include <algorithm>
 #include <iostream>
-#include <sstream>
 #include <cstddef>
 #include <string>
 
@@ -16,23 +15,13 @@ std::istream& lab::operator>>(std::istream& is, Shape& shape)
   std::istream::sentry sentry(is);
   if (sentry)
   {
-    std::string buffer;
-    size_t size = 0u;
+    size_t size;
+    is >> size >> skipws;
     Shape temp;
-    if (getline(is >> std::ws, buffer))
+    std::copy_n(std::istream_iterator< Point >(is), size, std::back_inserter(temp));
+    if ((is.fail() && is.eof()) && !temp.empty())
     {
-      std::istringstream ss(buffer);
-      ss >> size;
-      std::istream_iterator< Point > first(ss);
-      std::istream_iterator< Point > last;
-      temp.insert(temp.end(), first, last);
-      if (ss.fail() && !ss.eof())
-      {
-        is.setstate(std::ios::failbit);
-      }
-    }
-    if (temp.size() != size)
-    {
+      is.clear();
       is.setstate(std::ios::failbit);
     }
     if (is)

@@ -19,9 +19,9 @@ namespace lebedeva
     void store(const std::string& markName, const std::string& newMarkName);
     void insert(Where pos, const std::string& markName, record_t& rec);
     void deleteRec(const std::string& markName);
-    void show(const std::string& markName, std::ostream& out);
     void move(const std::string& markName, int steps);
     void move(const std::string& markName, Steps steps);
+    bool empty() const;
 
     constIter find(const std::string& markName) const;
     constIter begin() const;

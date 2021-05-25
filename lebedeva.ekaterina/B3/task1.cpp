@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include "phonebook_interface.hpp"
+#include "error-messages.hpp"
 
 namespace lebedeva
 {
@@ -38,17 +39,17 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
           }
           else
           {
-            out << "<INVALID COMMAND>\n";
+            invalidCommand(out);
           }
         }
         else
         {
-          out << "<INVALID COMMAND>\n";
+          invalidCommand(out);
         }
       }
       else
       {
-        out << "<INVALID COMMAND>\n";
+        invalidCommand(out);
       }
     }
     else if (command == "store")
@@ -66,7 +67,7 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       }
       else
       {
-        out << "<INVALID COMMAND>\n";
+        invalidCommand(out);
       }
     }
     else if (command == "insert")
@@ -97,22 +98,22 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
             }
             else
             {
-              out << "<INVALID COMMAND>\n";
+              invalidCommand(out);
             }
           }
           else
           {
-            out << "<INVALID COMMAND>\n";
+            invalidCommand(out);
           }
         }
         else
         {
-          out << "<INVALID COMMAND>\n";
+          invalidCommand(out);
         }
       }
       else
       {
-        out << "<INVALID COMMAND>\n";
+        invalidCommand(out);
       }
     }
     else if (command == "delete")
@@ -126,7 +127,7 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       }
       else
       {
-        out << "<INVALID COMMAND>\n";
+        invalidCommand(out);
       }
     }
     else if (command == "show")
@@ -137,12 +138,18 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       constIter iter = obj.find(markName);
       if (iter != obj.end())
       {
-        obj.show(markName, out);
-        out << '\n';
+        if (!obj.empty())
+        {
+          out << *iter->second << '\n';
+        }
+        else
+        {
+          empty(out);
+        }
       }
       else
       {
-        out << "<INVALID BOOKMARK>\n";
+        invalidBookmark(out);
       }
     }
     else if (command == "move")
@@ -172,22 +179,22 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
           }
           else
           {
-            out << "<INVALID STEP>\n";
+            invalidStep(out);
           }
         }
         else
         {
-          out << "<INVALID COMMAND>\n";
+          invalidCommand(out);
         }
       }
       else
       {
-        out << "<INVALID COMMAND>\n";
+        invalidCommand(out);
       }
     }
     else
     {
-      out << "<INVALID COMMAND>\n";
+      invalidCommand(out);
     }
   }
 }

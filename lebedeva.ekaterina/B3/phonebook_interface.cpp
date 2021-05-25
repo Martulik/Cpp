@@ -68,19 +68,6 @@ void lebedeva::Interface::deleteRec(const std::string& markName)
   }
 }
 
-void lebedeva::Interface::show(const std::string& markName, std::ostream& out)
-{
-  Iter iter = bookmarks_.find(markName);
-  if (iter->second == book_.end())
-  {
-    out << "<EMPTY>";
-  }
-  else
-  {
-    out << *(iter->second);
-  }
-}
-
 void lebedeva::Interface::move(const std::string& markName, int steps)
 {
   Iter iter = bookmarks_.find(markName);
@@ -104,6 +91,11 @@ void lebedeva::Interface::move(const std::string& markName, Steps steps)
       iter->second = std::prev(book_.end());
     }
   }
+}
+
+bool lebedeva::Interface::empty() const
+{
+  return book_.empty();
 }
 
 lebedeva::Interface::constIter lebedeva::Interface::find(const std::string& markName) const

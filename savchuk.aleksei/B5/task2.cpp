@@ -27,7 +27,10 @@ void lab::doTask2(std::istream& is, std::ostream& os)
 
   std::vector< Point > points;
   std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points),
-                 [](const Shape& s) { return s.back(); });
+                 [](const Shape& s)
+                 {
+                   return s.back();
+                 });
 
   std::vector< Shape > sortedShapes;
   std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isTriangle);
@@ -35,16 +38,19 @@ void lab::doTask2(std::istream& is, std::ostream& os)
 
   std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isSquare);
   std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes),
-               [](const Shape& s) { return isRectangle(s) && !isSquare(s); });
+               [](const Shape& s)
+               {
+                 return isRectangle(s) && !isSquare(s);
+               });
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isRectangle), shapes.end());
 
   sortedShapes.insert(sortedShapes.end(), shapes.cbegin(), shapes.cend());
 
-  os << "Vertices: " << counter.vertices;
-  os << "\nTriangles: " << counter.triangles;
-  os << "\nSquares: " << counter.squares;
-  os << "\nRectangles: " << counter.rectangles;
-  os << "\nPoints: ";
+  os << "Vertices: " << counter.vertices
+     << "\nTriangles: " << counter.triangles
+     << "\nSquares: " << counter.squares
+     << "\nRectangles: " << counter.rectangles
+     << "\nPoints: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(os, " "));
   os << "\nShapes:\n";
   std::copy(sortedShapes.cbegin(), sortedShapes.cend(), std::ostream_iterator< Shape >(os, "\n"));

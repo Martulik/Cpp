@@ -21,7 +21,7 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
     DataStruct temp;
     const char delimiter = ',';
     std::stringstream input(inStr);
-    
+
     std::getline(input>> std::ws, key1, delimiter);
     if (!key1.empty() && isNumber(key1))
     {

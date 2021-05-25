@@ -1,6 +1,7 @@
 #include "point.hpp"
 
 #include <iostream>
+#include <cctype>
 
 namespace lab = savchuk;
 
@@ -11,9 +12,9 @@ std::istream& lab::operator>>(std::istream& is, Point& point)
   {
     int x, y;
     readDelimiter(is, '(');
-    is >> std::ws >> x;
+    is >> skipws >> x;
     readDelimiter(is, ';');
-    is >> std::ws >> y;
+    is >> skipws >> y;
     readDelimiter(is, ')');
     if (is)
     {
@@ -35,11 +36,32 @@ std::ostream& lab::operator<<(std::ostream& os, const Point& point)
 
 void lab::readDelimiter(std::istream& is, char delim)
 {
-  is >> std::ws;
-  if (is.peek() != delim)
+  if (is >> skipws)
   {
-    is.setstate(std::ios::failbit);
-    return;
+    if (is.peek() != delim)
+    {
+      is.setstate(std::ios::failbit);
+      return;
+    }
+    is.get();
   }
-  is.get();
+}
+
+std::istream& lab::skipws(std::istream& is)
+{
+  if (is)
+  {
+    char ch = is.peek();
+    while (isspace(ch))
+    {
+      if (ch == '\n')
+      {
+        is.setstate(std::ios::failbit);
+        break;
+      }
+      is.get();
+      ch = is.peek();
+    }
+  }
+  return is;
 }

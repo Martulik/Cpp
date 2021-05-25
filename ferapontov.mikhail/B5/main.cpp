@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      ferapontov::task2();
+      ferapontov::task2(std::cin, std::cout);
     }
   }
   catch(const std::exception& e)

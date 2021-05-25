@@ -124,3 +124,24 @@ void pochernin::deleteExtraSpaces(std::string& str)
   deleteFrom = std::remove(str.begin(), str.end(), '\t');
   str.erase(deleteFrom, str.end());
 }
+
+void pochernin::sortShapes(std::vector< Shape >& shapes)
+{
+  std::vector< Shape > temp;
+
+  std::copy_if(shapes.begin(), shapes.end(), std::back_inserter(temp), pochernin::isTriangle);
+  std::vector< Shape >::iterator deleteFrom = std::remove_if(shapes.begin(), shapes.end(), pochernin::isTriangle);
+  shapes.erase(deleteFrom, shapes.end());
+
+  std::copy_if(shapes.begin(), shapes.end(), std::back_inserter(temp), pochernin::isSquare);
+  deleteFrom = std::remove_if(shapes.begin(), shapes.end(), pochernin::isSquare);
+  shapes.erase(deleteFrom, shapes.end());
+
+  std::copy_if(shapes.begin(), shapes.end(), std::back_inserter(temp), pochernin::isRectangle);
+  deleteFrom = std::remove_if(shapes.begin(), shapes.end(), pochernin::isRectangle);
+  shapes.erase(deleteFrom, shapes.end());
+
+  std::copy(shapes.begin(), shapes.end(), std::back_inserter(temp));
+
+  shapes.swap(temp);
+}

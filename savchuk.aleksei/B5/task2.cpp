@@ -13,6 +13,14 @@ namespace lab = savchuk;
 
 void lab::doTask2(std::istream& is, std::ostream& os)
 {
+  struct getPoint
+  {
+    Point operator()(const Shape& s)
+    {
+      return s.back();
+    }
+  };
+
   std::istream_iterator< Shape > first(is);
   std::istream_iterator< Shape > last;
   std::vector< Shape > shapes(first, last);
@@ -26,22 +34,16 @@ void lab::doTask2(std::istream& is, std::ostream& os)
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
 
   std::vector< Point > points;
-  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points),
-                 [](const Shape& s)
-                 {
-                   return s.back();
-                 });
+  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), getPoint());
 
   std::vector< Shape > sortedShapes;
   std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isTriangle);
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isTriangle), shapes.end());
 
   std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isSquare);
-  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes),
-               [](const Shape& s)
-               {
-                 return isRectangle(s) && !isSquare(s);
-               });
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isSquare), shapes.end());
+
+  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isRectangle);
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isRectangle), shapes.end());
 
   sortedShapes.insert(sortedShapes.end(), shapes.cbegin(), shapes.cend());

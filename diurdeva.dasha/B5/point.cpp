@@ -8,19 +8,20 @@ const char SEMICOLON = ';';
 std::istream& diurdeva::operator>>(std::istream& in, Point& point)
 {
   in >> std::ws;
-  if (!in || in.get() != '(')
+  if (!in || in.get() != OPEN_BRACKET)
   {
+    in.clear();
     in.setstate(std::ios_base::failbit);
     return in;
   }
   in >> std::ws >> point.x >> std::ws;
-  if (!in || in.get() != ';')
+  if (!in || in.get() != SEMICOLON)
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
   in >> std::ws >> point.y >> std::ws;
-  if (!in || in.get() != ')')
+  if (!in || in.get() != CLOSE_BRACKET)
   {
     in.setstate(std::ios_base::failbit);
     return in;

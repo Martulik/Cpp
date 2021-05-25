@@ -7,20 +7,21 @@
 #include "shape.hpp"
 
 namespace shilyaev {
-  unsigned int countVertices(const std::vector< Shape > &shapes)
+  unsigned int accumulateVertices(unsigned int acc, const Shape &shape)
   {
-    return std::accumulate(shapes.begin(), shapes.end(), 0, [](unsigned int sum, const Shape &shape) {
-      return sum + shape.size();
-    });
+    return acc + shape.size();
+  }
+
+  const Point &getFront(const Shape &shape)
+  {
+    return shape.front();
   }
 
   std::vector< Point > createPointsVector(const std::vector< Shape > &shapes)
   {
     std::vector< Point > points;
     points.reserve(shapes.size());
-    std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), [](const Shape &shape) {
-      return shape.front();
-    });
+    std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getFront);
     return points;
   }
 
@@ -36,11 +37,9 @@ namespace shilyaev {
     return 3;
   }
 
-  void sortShapes(std::vector< Shape > &shapes)
+  bool compare(const Shape &a, const Shape &b)
   {
-    std::sort(shapes.begin(), shapes.end(), [](const Shape &a, const Shape &b) {
-      return getPriority(a) < getPriority(b);
-    });
+    return getPriority(a) < getPriority(b);
   }
 
   int runShapeTask(std::istream &istream, std::ostream &ostream, std::ostream &err)
@@ -53,13 +52,13 @@ namespace shilyaev {
       err << "Input error";
       return 1;
     }
-    const unsigned int verticesCount = countVertices(shapes);
+    const unsigned int verticesCount = std::accumulate(shapes.begin(), shapes.end(), 0, accumulateVertices);
     const unsigned int trianglesCount = std::count_if(shapes.begin(), shapes.end(), isTriangle);
     const unsigned int squaresCount = std::count_if(shapes.begin(), shapes.end(), isSquare);
     const unsigned int rectanglesCount = std::count_if(shapes.begin(), shapes.end(), isRectangle);
     shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
     const std::vector< Point > points = createPointsVector(shapes);
-    sortShapes(shapes);
+    std::sort(shapes.begin(), shapes.end(), compare);
     ostream << "Vertices: " << verticesCount
             << "\nTriangles: " << trianglesCount
             << "\nSquares: " << squaresCount

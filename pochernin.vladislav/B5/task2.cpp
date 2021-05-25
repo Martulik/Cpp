@@ -27,7 +27,7 @@ void pochernin::task2(std::istream& in, std::ostream& out)
 
   std::sort(shapes.begin(), shapes.end());
 
-  out << "Verticies: " << countOfVertices << "\n";
+  out << "Vertices: " << countOfVertices << "\n";
   out << "Triangles: " << countOfTriangles << "\n";
   out << "Squares: " << countOfSquares << "\n";
   out << "Rectangles: " << countOfRectangles << "\n";

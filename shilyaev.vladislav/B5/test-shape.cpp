@@ -75,9 +75,9 @@ BOOST_AUTO_TEST_CASE(InputShape)
   BOOST_CHECK_EQUAL(shape[2].y, 1);
 }
 
-BOOST_AUTO_TEST_CASE(InputShapeExtraVertex)
+BOOST_AUTO_TEST_CASE(InputShapeNewLine)
 {
-  std::istringstream istringstream("3 (60;-24) (43; 34) (23;1) (4;4)");
+  std::istringstream istringstream("3 (60;-24) (43; 34) (23\n;1)");
   shilyaev::Shape shape;
   istringstream >> shape;
   BOOST_CHECK(istringstream.fail());

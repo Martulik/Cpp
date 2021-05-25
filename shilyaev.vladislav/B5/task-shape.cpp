@@ -25,21 +25,11 @@ namespace shilyaev {
     return points;
   }
 
-  int getPriority(const Shape &shape)
+  void partitionShapes(std::vector< Shape > &shapes)
   {
-    if (isTriangle(shape)) {
-      return 0;
-    } else if (isSquare(shape)) {
-      return 1;
-    } else if (isRectangle(shape)) {
-      return 2;
-    }
-    return 3;
-  }
-
-  bool compare(const Shape &a, const Shape &b)
-  {
-    return getPriority(a) < getPriority(b);
+    auto bound = std::partition(shapes.begin(), shapes.end(), isTriangle);
+    bound = std::partition(bound, shapes.end(), isSquare);
+    std::partition(bound, shapes.end(), isRectangle);
   }
 
   int runShapeTask(std::istream &istream, std::ostream &ostream, std::ostream &err)
@@ -58,7 +48,7 @@ namespace shilyaev {
     const unsigned int rectanglesCount = std::count_if(shapes.begin(), shapes.end(), isRectangle);
     shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
     const std::vector< Point > points = createPointsVector(shapes);
-    std::sort(shapes.begin(), shapes.end(), compare);
+    partitionShapes(shapes);
     ostream << "Vertices: " << verticesCount
             << "\nTriangles: " << trianglesCount
             << "\nSquares: " << squaresCount

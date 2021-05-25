@@ -22,6 +22,9 @@ void pochernin::task2(std::istream& in, std::ostream& out)
   std::vector< Shape >::iterator removedStart = std::remove_if(shapes.begin(), shapes.end(), pochernin::isPentagon);
   shapes.erase(removedStart, shapes.end());
 
+  std::vector< Point > points;
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), pochernin::getFirstPoint);
+
   out << "Verticies: " << countOfVertices << "\n";
   out << "Triangles: " << countOfTriangles << "\n";
   out << "Squares: " << countOfSquares << "\n";

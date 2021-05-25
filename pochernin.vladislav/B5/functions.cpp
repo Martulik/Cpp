@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <algorithm>
+#include <cassert>
 
 int pochernin::getTaskNumber(const char* string)
 {
@@ -107,4 +108,11 @@ bool pochernin::isSquare(const Shape& shape)
 bool pochernin::isPentagon(const Shape& shape)
 {
   return shape.size() == 5;
+}
+
+pochernin::Point pochernin::getFirstPoint(const Shape& shape)
+{
+  assert(shape.size() > 0);
+
+  return shape[0];
 }

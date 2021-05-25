@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <array>
+#include <iterator>
 #include "shape.hpp"
 
 std::array< int, 6 > murzakanov::calculateSides(const murzakanov::Shape& shp)

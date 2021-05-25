@@ -13,26 +13,24 @@
 
 std::istream& murzakanov::operator>>(std::istream& in, murzakanov::Shape& shp)
 {
-  std::string line;
-  do
-  {
-    getline(in, line);
-  } while (std::all_of(line.begin(), line.end(), ::isspace) && !in.eof());
-
-  std::istringstream lin(line);
   size_t n = 0;
-  lin >> n;
-  if (!lin)
+  in >> n;
+  if (!in || in.peek() != ' ')
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  std::istream_iterator< murzakanov::Point > firstIterator(lin);
-  std::istream_iterator< murzakanov::Point > lastIterator;
-  murzakanov::Shape tempShape(firstIterator, lastIterator);
-  if (tempShape.size() != n)
+  if (!in)
   {
     in.setstate(std::ios_base::failbit);
+    return in;
+  }
+  murzakanov::Shape tempShape;
+  std::copy_n(std::istream_iterator< Point >(in), n, std::back_inserter(tempShape));
+  if ((in.fail() && !in.eof()) || tempShape.size() != n)
+  {
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   shp = tempShape;
   return in;
@@ -99,4 +97,28 @@ bool murzakanov::operator<(const murzakanov::Shape& shp1, const murzakanov::Shap
     return isSquare(shp1);
   }
   return shp1.size() < shp2.size();
+}
+
+int murzakanov::readNumber(std::string& buff, char delim, std::istream& in)
+{
+  std::string num;
+  std::string::iterator it = buff.begin();
+  while (*it != delim)
+  {
+    if (it == buff.end())
+    {
+      in.setstate(std::ios::failbit);
+      return 0;
+    }
+    num += *it;
+    buff.erase(it);
+  }
+  buff.erase(0, 1);
+  if (!std::all_of(num.begin(), num.end(), ::isdigit))
+  {
+    in.setstate(std::ios::failbit);
+    return 0;
+  }
+  int number = std::stoi(num);
+  return number;
 }

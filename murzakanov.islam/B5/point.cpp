@@ -9,13 +9,24 @@ std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point&
 
 std::istream& murzakanov::operator>>(std::istream& in, Point& point)
 {
-  char bracketOpen = '(';
-  char semicolon = ';';
-  char bracketClose = ')';
-  in >> bracketOpen >> point.x >> semicolon >> point.y >> bracketClose;
-  if (!in || bracketOpen != '(' || bracketClose != ')' || semicolon != ';')
+  in >> std::ws;
+  if (in.get() != '(')
+  {
+    in.clear();
+    in.setstate(std::ios_base::failbit);
+    return in;
+  }
+  in >> std::ws >> point.x >> std::ws;
+  if (!in || in.get() != ';')
   {
     in.setstate(std::ios_base::failbit);
+    return in;
+  }
+  in >> std::ws >> point.y >> std::ws;
+  if (!in || in.get() != ')')
+  {
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   return in;
 }

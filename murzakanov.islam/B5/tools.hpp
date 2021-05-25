@@ -1,7 +1,8 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
-#include "shape.hpp"
 #include <array>
+#include <string>
+#include "shape.hpp"
 
 namespace murzakanov
 {

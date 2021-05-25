@@ -103,3 +103,8 @@ bool pochernin::isSquare(const Shape& shape)
           (squaredSides[0] == squaredSides[3]) &&
           (squaredSides[4] == squaredSides[5]));
 }
+
+bool pochernin::isPentagon(const Shape& shape)
+{
+  return shape.size() == 5;
+}

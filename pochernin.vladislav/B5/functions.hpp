@@ -14,6 +14,7 @@ namespace pochernin
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);
+  bool isPentagon(const Shape& shape);
 }
 
 #endif

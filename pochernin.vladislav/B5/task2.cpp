@@ -19,7 +19,8 @@ void pochernin::task2(std::istream& in, std::ostream& out)
   unsigned int countOfRectangles = std::count_if(shapes.begin(), shapes.end(), pochernin::isRectangle);
   unsigned int countOfSquares = std::count_if(shapes.begin(), shapes.end(), pochernin::isSquare);
 
-
+  std::vector< Shape >::iterator removedStart = std::remove_if(shapes.begin(), shapes.end(), pochernin::isPentagon);
+  shapes.erase(removedStart, shapes.end());
 
   out << "Verticies: " << countOfVertices << "\n";
   out << "Triangles: " << countOfTriangles << "\n";

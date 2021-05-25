@@ -6,6 +6,23 @@
 #include <numeric>
 #include "shape.hpp"
 
+namespace diurdeva {
+  unsigned int accumulateVertices(unsigned int vertices, const Shape& shape)
+  {
+    return vertices + shape.size();
+  }
+
+  Point frontPoint(const Shape& shape)
+  {
+    return shape.front();
+  }
+
+  bool isLess(const Shape& shape1, const Shape& shape2)
+  {
+    return getType(shape2) > getType(shape1);
+  }
+}
+
 void diurdeva::task2(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< Shape > firstIterator(in);
@@ -15,9 +32,7 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
   if (!in && !in.eof()) {
     throw std::runtime_error("Stream reading failed");
   }
-  int verticesAmount = std::accumulate(shapes.begin(), shapes.end(), 0, [](unsigned int count, const Shape& shape) {
-    return count + shape.size();
-  });
+  int verticesAmount = std::accumulate(shapes.begin(), shapes.end(), 0, accumulateVertices);
 
   int trianglesAmount = std::count_if(shapes.begin(), shapes.end(), isTriangle);
 
@@ -31,14 +46,12 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon),shapes.end());
 
   Shape points;
-  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
-    [](const Shape& shape) {return shape.front(); });
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), frontPoint);
 
   out << "\nPoints: ";
   std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, " "));
 
-  std::sort(shapes.begin(), shapes.end(),
-    [](const Shape& shape1, const Shape& shape2) {return getType(shape2) > getType(shape1); });
+  std::sort(shapes.begin(), shapes.end(), isLess);
 
   out << "\nShapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator<Shape>(out, "\n"));

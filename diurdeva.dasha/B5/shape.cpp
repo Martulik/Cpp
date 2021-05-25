@@ -25,7 +25,7 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
   }
   std::string str;
   std::getline(in, str);
-  if (!std::all_of(str.begin(), str.end(), ::isspace) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
+  if ((in.fail() && !in.eof()) || !std::all_of(str.begin(), str.end(), ::isspace) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
     in.setstate(std::ios_base::failbit);
     return in;
   }

@@ -10,6 +10,7 @@ std::istream& diurdeva::operator>>(std::istream& in, Point& point)
   in >> std::ws;
   if (!in || in.get() != '(')
   {
+    in.clear();
     in.setstate(std::ios_base::failbit);
     return in;
   }

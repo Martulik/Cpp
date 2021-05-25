@@ -12,6 +12,9 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
   std::istream_iterator< Shape > lastIterator;
   std::vector<Shape> shapes(firstIterator, lastIterator);
 
+  if (!in && !in.eof()) {
+    throw std::runtime_error("Stream reading failed");
+  }
   int verticesAmount = std::accumulate(shapes.begin(), shapes.end(), 0, [](unsigned int count, const Shape& shape) {
     return count + shape.size();
   });

@@ -1,12 +1,12 @@
 #ifndef ERROR_MESSAGES_HPP
 #define ERROR_MESSAGES_HPP
-#include <iostream>
+#include <string>
 
 namespace lebedeva
 {
-  void invalidCommand(std::ostream& out);
-  void invalidBookmark(std::ostream& out);
-  void invalidStep(std::ostream& out);
-  void empty(std::ostream& out);
+  std::string invalidCommand();
+  std::string invalidBookmark();
+  std::string invalidStep();
+  std::string empty();
 }
 #endif

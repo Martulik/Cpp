@@ -1,21 +1,21 @@
 #include "error-messages.hpp"
 
-void lebedeva::invalidCommand(std::ostream& out)
+std::string lebedeva::invalidCommand()
 {
-  out << "<INVALID COMMAND>\n";
+  return "<INVALID COMMAND>\n";
 }
 
-void lebedeva::invalidBookmark(std::ostream& out)
+std::string lebedeva::invalidBookmark()
 {
-  out << "<INVALID BOOKMARK>\n";
+  return "<INVALID BOOKMARK>\n";
 }
 
-void lebedeva::invalidStep(std::ostream& out)
+std::string lebedeva::invalidStep()
 {
-  out << "<INVALID STEP>\n";
+  return "<INVALID STEP>\n";
 }
 
-void lebedeva::empty(std::ostream& out)
+std::string lebedeva::empty()
 {
-  out << "<EMPTY>\n";
+  return "<EMPTY>\n";
 }

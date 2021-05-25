@@ -2,6 +2,7 @@
 #define FUNCTIONS_HPP
 
 #include <string>
+#include <vector>
 
 #include "shape.hpp"
 

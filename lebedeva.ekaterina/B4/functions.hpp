@@ -10,5 +10,4 @@ namespace lebedeva
   bool isAcceplable(int key);
   void print(std::vector< DataStruct > data, std::ostream& out);
 }
-
 #endif

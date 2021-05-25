@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdexcept>
 #include <vector>
+#include <algorithm>
 #include "data-struct.hpp"
 #include "functions.hpp"
 
@@ -62,6 +63,10 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
     {
       throw std::invalid_argument("Invalid key1 input\n");
     }
+  }
+  if (data.size() > 1)
+  {
+    std::sort(data.begin(), data.end());
   }
   print(data, out);
 }

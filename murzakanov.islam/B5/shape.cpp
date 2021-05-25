@@ -98,27 +98,3 @@ bool murzakanov::operator<(const murzakanov::Shape& shp1, const murzakanov::Shap
   }
   return shp1.size() < shp2.size();
 }
-
-int murzakanov::readNumber(std::string& buff, char delim, std::istream& in)
-{
-  std::string num;
-  std::string::iterator it = buff.begin();
-  while (*it != delim)
-  {
-    if (it == buff.end())
-    {
-      in.setstate(std::ios::failbit);
-      return 0;
-    }
-    num += *it;
-    buff.erase(it);
-  }
-  buff.erase(0, 1);
-  if (!std::all_of(num.begin(), num.end(), ::isdigit))
-  {
-    in.setstate(std::ios::failbit);
-    return 0;
-  }
-  int number = std::stoi(num);
-  return number;
-}

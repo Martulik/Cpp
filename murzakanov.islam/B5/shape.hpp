@@ -15,7 +15,6 @@ namespace murzakanov
   bool isRectangle(const Shape& shp);
   bool isSquare(const Shape& shp);
   bool isPentagon(const Shape& shp);
-  int readNumber(std::string& buff, char delim, std::istream& in);
 }
 
 #endif

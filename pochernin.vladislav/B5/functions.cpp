@@ -114,6 +114,7 @@ bool pochernin::isSquare(const Shape& shape)
   std::vector< unsigned int > squaredSides;
   fillSquaredSideVector(squaredSides, shape);
 
+  std::sort(squaredSides.begin(), squaredSides.end());
   return compareSquareSides(squaredSides);
 }
 

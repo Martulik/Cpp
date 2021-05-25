@@ -28,7 +28,7 @@ namespace lebedeva
     constIter end() const;
   private:
     PhoneBook book_;
-    std::map< std::string, PhoneBook::constIter > bookmarks_;\
+    std::map< std::string, PhoneBook::constIter > bookmarks_;
   };
 }
 #endif

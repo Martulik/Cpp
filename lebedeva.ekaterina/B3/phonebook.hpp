@@ -19,12 +19,8 @@ namespace lebedeva
     void replaceRec(Iterator iter, const record_t& rec);
     void deleteRec(constIter iter);
     void pushBack(const record_t& rec);
-    // public funcs
   private:
     std::list< record_t > data_;
-    // constIter& findRec(const record_t& rec);
-    // void replace(constIter iter, const record_t& rec);
   };
 }
-
 #endif

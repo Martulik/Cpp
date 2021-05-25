@@ -3,9 +3,9 @@
 #include <sstream>
 #include "phonebook_interface.hpp"
 
-using constIter = std::map< std::string, lebedeva::PhoneBook::constIter >::const_iterator;
 namespace lebedeva
 {
+  using constIter = std::map< std::string, lebedeva::PhoneBook::constIter >::const_iterator;
   int isNegative(std::string& steps);
 }
 

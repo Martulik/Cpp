@@ -1,4 +1,4 @@
-#define BOOST_TEST_MODULE mytests
+#define BOOST_TEST_MODULE testmain
 #include <boost/test/included/unit_test.hpp>
 #include "container.hpp"
 
@@ -10,6 +10,7 @@ BOOST_AUTO_TEST_CASE(factorialTest)
   using iter = lebedeva::Container::Iterator;
   Type elem = 1;
   Type factorial = 1;
+
   for (iter i = factContainer.begin(); i != factContainer.end(); i++)
   {
     factorial *= elem++;

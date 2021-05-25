@@ -94,16 +94,3 @@ std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
 
   return in;
 }
-
-bool pochernin::operator<(const Shape& lhs, const Shape& rhs)
-{
-  if ((lhs.size() > 4) && (rhs.size() > 4))
-  {
-    return false;
-  }
-  if ((lhs.size() == 4) && (rhs.size() == 4))
-  {
-    return isSquare(lhs);
-  }
-  return lhs.size() < rhs.size();
-}

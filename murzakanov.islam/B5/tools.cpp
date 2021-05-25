@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <array>
 #include <iterator>
+#include <iostream>
+#include <cctype>
 
 #include "point.hpp"
 #include "shape.hpp"
@@ -47,4 +49,20 @@ void murzakanov::sortShapes(std::vector< murzakanov::Shape >& shps)
   shps.erase(std::remove_if(shps.begin(), shps.end(), isRectangle), shps.end());
   std::copy(shps.begin(), shps.end(), std::back_inserter(temp));
   shps.swap(temp);
+}
+
+std::istream& murzakanov::myWs(std::istream& in)
+{
+  while (in && std::isblank(in.peek()))
+  {
+    if (in.peek() == '\n')
+    {
+      break;
+    }
+    else
+    {
+      in.get();
+    }
+  }
+  return in;
 }

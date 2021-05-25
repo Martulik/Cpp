@@ -2,6 +2,7 @@
 #define TOOLS_HPP
 
 #include <array>
+#include <iosfwd>
 
 #include "shape.hpp"
 #include "point.hpp"
@@ -13,6 +14,7 @@ namespace murzakanov
   void sortShapes(std::vector< murzakanov::Shape >& shps);
   std::array< int, 6 > calculateSides(const murzakanov::Shape& shp);
   murzakanov::Point returnFrontPnt(const murzakanov::Shape& shp);
+  std::istream& myWs(std::istream& in);
 }
 
 #endif

@@ -1,6 +1,16 @@
 #define BOOST_TEST_MODULE testmain
 #include <boost/test/included/unit_test.hpp>
+#include "test-functions.hpp"
 #include "container.hpp"
+
+BOOST_AUTO_TEST_SUITE(testInterface)
+
+BOOST_AUTO_TEST_CASE(emptyInterface)
+{
+  std::unique_ptr< lebedeva::Interface > i1 = lebedeva::makeEmptyInterface();
+}
+
+BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(testContainer)
 BOOST_AUTO_TEST_CASE(factorialTest)

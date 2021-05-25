@@ -71,7 +71,7 @@ namespace shilyaev {
       istream.setstate(std::ios::failbit);
       return istream;
     }
-    shape.swap(newShape);
+    shape = std::move(newShape);
     return istream;
   }
 

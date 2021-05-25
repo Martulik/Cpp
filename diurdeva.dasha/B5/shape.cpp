@@ -20,16 +20,11 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
   shapeTemp.reserve(numberOfVertices);
   std::istream_iterator< Point > istream_iter(in);
   std::copy_n(istream_iter, numberOfVertices, std::back_inserter(shapeTemp));
-  if (!in) {
-    return in;
-  }
-  std::string str;
-  std::getline(in, str);
-  if ((in.fail() && !in.eof()) || !std::all_of(str.begin(), str.end(), ::isspace) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
+  if ((!in && !in.eof()) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  shape.swap(shapeTemp);
+  shape = shapeTemp;
   return in;
 }
 

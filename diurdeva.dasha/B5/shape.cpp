@@ -23,7 +23,8 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
   std::string str;
   std::getline(in, str);
   if ((!in && !in.eof()) || !std::all_of(str.begin(), str.end(), ::isspace) || numberOfVertices != shapeTemp.size() || shapeTemp.size() < 3) {
-    throw std::runtime_error("Error read");
+    in.setstate(std::ios_base::failbit);
+    return in;
   }
   shape.swap(shapeTemp);
   return in;

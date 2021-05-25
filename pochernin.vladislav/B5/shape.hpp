@@ -17,6 +17,7 @@ namespace pochernin
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
   std::istream& operator>>(std::istream& in, Shape& shape);
+  bool operator<(const Shape& lhs, const Shape& rhs);
 }
 
 #endif

@@ -116,3 +116,23 @@ pochernin::Point pochernin::getFirstPoint(const Shape& shape)
 
   return shape[0];
 }
+
+int pochernin::getWeight(const Shape& shape)
+{
+  if (isTriangle(shape))
+  {
+    return 1;
+  }
+  else if (isSquare(shape))
+  {
+    return 2;
+  }
+  else if (isRectangle(shape))
+  {
+    return 3;
+  }
+  else
+  {
+    return 4;
+  }
+}

@@ -25,6 +25,8 @@ void pochernin::task2(std::istream& in, std::ostream& out)
   std::vector< Point > points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), pochernin::getFirstPoint);
 
+  std::sort(shapes.begin(), shapes.end());
+
   out << "Verticies: " << countOfVertices << "\n";
   out << "Triangles: " << countOfTriangles << "\n";
   out << "Squares: " << countOfSquares << "\n";

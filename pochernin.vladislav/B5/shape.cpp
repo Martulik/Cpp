@@ -93,3 +93,11 @@ std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
 
   return in;
 }
+
+bool pochernin::operator<(const Shape& lhs, const Shape& rhs)
+{
+  int lhsWeight = getWeight(lhs);
+  int rhsWeight = getWeight(rhs);
+
+  return lhsWeight < rhsWeight;
+}

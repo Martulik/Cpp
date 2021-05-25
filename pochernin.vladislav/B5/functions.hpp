@@ -16,6 +16,7 @@ namespace pochernin
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
   Point getFirstPoint(const Shape& shape);
+  int getWeight(const Shape& shape);
 }
 
 #endif

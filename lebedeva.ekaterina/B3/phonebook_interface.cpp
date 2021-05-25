@@ -1,5 +1,6 @@
 #include "phonebook_interface.hpp"
 #include <iostream>
+#include <algorithm>
 
 lebedeva::Interface::Interface():
   book_(),
@@ -50,20 +51,22 @@ void lebedeva::Interface::deleteRec(const std::string& markName)
   if (iter != bookmarks_.end())
   {
     PhoneBook::constIter del = iter->second;
-    for (Iter i = bookmarks_.begin(); i != bookmarks_.end(); i++)
-    {
-      if (i->second == del)
+    std::for_each(bookmarks_.begin(), bookmarks_.end(), [del, this] (BookmarkMap::value_type& bookmark)
       {
-        if (std::next(i->second) == book_.end())
+        if (bookmark.second == del)
         {
-          i->second = std::prev(del);
-        }
-        else
-        {
-          i->second = std::next(del);
+          PhoneBook::constIter next = std::next(bookmark.second);
+          if (next == book_.end())
+          {
+            bookmark.second = std::prev(del);
+          }
+          else
+          {
+            bookmark.second = std::next(del);
+          }
         }
       }
-    }
+    );
     book_.deleteRec(del);
   }
 }

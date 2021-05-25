@@ -12,6 +12,7 @@ namespace lebedeva
     enum class Steps { first, last };
     using constIter = std::map< std::string, PhoneBook::constIter >::const_iterator;
     using Iter = std::map< std::string, PhoneBook::constIter >::iterator;
+    using BookmarkMap = std::map< std::string, PhoneBook::constIter >;
 
     Interface();
 
@@ -28,7 +29,7 @@ namespace lebedeva
     constIter end() const;
   private:
     PhoneBook book_;
-    std::map< std::string, PhoneBook::constIter > bookmarks_;
+    BookmarkMap bookmarks_;
   };
 }
 #endif

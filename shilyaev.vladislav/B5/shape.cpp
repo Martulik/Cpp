@@ -67,12 +67,7 @@ namespace shilyaev {
     newShape.reserve(verticesCount);
     std::istream_iterator< Point > istreamIterator(istream);
     std::copy_n(istreamIterator, verticesCount, std::back_inserter(newShape));
-    if (!istream) {
-      return istream;
-    }
-    std::string rest;
-    std::getline(istream, rest);
-    if (!std::all_of(rest.begin(), rest.end(), ::isspace)) {
+    if (!istream || verticesCount != newShape.size()) {
       istream.setstate(std::ios::failbit);
       return istream;
     }

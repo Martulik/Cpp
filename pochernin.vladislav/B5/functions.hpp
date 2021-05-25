@@ -23,6 +23,7 @@ namespace pochernin
   void deleteExtraSpaces(std::string& str);
   void sortShapes(std::vector< Shape >& shapes);
   void checkNoLineFeed(const std::string& str);
+  void readCoordinate(const std::string& str, int& coordinate);
 }
 
 #endif

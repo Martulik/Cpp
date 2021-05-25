@@ -22,29 +22,15 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
 
   std::getline(in, buffer, ';');
   checkNoLineFeed(buffer);
-  int x = 0;
   deleteExtraSpaces(buffer);
-  if (isNumber(buffer))
-  {
-    x = std::stoi(buffer);
-  }
-  else
-  {
-    throw(std::invalid_argument("Incorrect point reading"));
-  }
+  int x = 0;
+  readCoordinate(buffer, x);
 
   std::getline(in, buffer, ')');
   checkNoLineFeed(buffer);
-  int y = 0;
   deleteExtraSpaces(buffer);
-  if (isNumber(buffer))
-  {
-    y = std::stoi(buffer);
-  }
-  else
-  {
-    throw(std::invalid_argument("Incorrect point reading"));
-  }
+  int y = 0;
+  readCoordinate(buffer, y);
 
   point.x = x;
   point.y = y;

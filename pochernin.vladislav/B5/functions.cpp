@@ -165,3 +165,15 @@ void pochernin::checkNoLineFeed(const std::string& str)
     throw(std::invalid_argument("Incorrect point reading"));
   }
 }
+
+void pochernin::readCoordinate(const std::string& str, int& coordinate)
+{
+  if (isNumber(str))
+  {
+    coordinate = std::stoi(str);
+  }
+  else
+  {
+    throw(std::invalid_argument("Incorrect point reading"));
+  }
+}

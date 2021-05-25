@@ -11,6 +11,7 @@ namespace pochernin
   bool isNumber(const std::string& str);
   unsigned int sumVertices(unsigned int sum, const Shape& shape);
   bool isTriangle(const Shape& shape);
+  void fillSquaredSideVector(std::vector< unsigned int >& squaredSides, const Shape& shape);
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);

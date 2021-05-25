@@ -97,8 +97,13 @@ std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
 
 bool pochernin::operator<(const Shape& lhs, const Shape& rhs)
 {
-  int lhsWeight = getWeight(lhs);
-  int rhsWeight = getWeight(rhs);
-
-  return lhsWeight < rhsWeight;
+  if ((lhs.size() > 4) && (rhs.size() > 4))
+  {
+    return false;
+  }
+  if ((lhs.size() == 4) && (rhs.size() == 4))
+  {
+    return isSquare(lhs);
+  }
+  return lhs.size() < rhs.size();
 }

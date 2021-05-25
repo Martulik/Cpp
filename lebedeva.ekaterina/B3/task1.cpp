@@ -12,7 +12,6 @@ namespace lebedeva
 {
   using constIter = std::map< std::string, lebedeva::PhoneBook::constIter >::const_iterator;
   void commandProcessing(std::string str);
-  //std::ostream& output;
   Interface obj;
   std::string myOut = "";
 }
@@ -22,8 +21,6 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
   std::istream_iterator< Line > inIterFirst(in);
   std::istream_iterator< Line > inIterLast;
   std::vector< std::string > inVec(inIterFirst, inIterLast);
-  //output.copyfmt(out);
-  //std::vector< std::string >::iterator it = inVec.begin();
   std::for_each(inVec.begin(), inVec.end(), commandProcessing);
   out << lebedeva::myOut;
 }

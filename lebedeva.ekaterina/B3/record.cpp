@@ -1,5 +1,6 @@
 #include "record.hpp"
 #include <iostream>
+#include <algorithm>
 
 std::ostream& lebedeva::operator<<(std::ostream& out, const record_t& rec)
 {
@@ -12,19 +13,17 @@ bool lebedeva::checkNumber(const std::string& number)
   bool bResult = false;
   if (number.length() >= 1)
   {
-    size_t iter = 0;
-    bResult = true;
-    if ((number[iter] == '+') || (number[iter] == '-'))
+    std::string::const_iterator it = number.begin();
+    if (number.length() > 1)
     {
-      iter++;
-    }
-    for (size_t i = iter; i < number.length(); i++)
-    {
-      if (!isdigit(number[i]))
+      if ((*it == '+') || (*it == '-'))
       {
-        bResult = false;
-        break;
+        it++;
       }
+    }
+    if (std::all_of(it, number.end(), ::isdigit))
+    {
+      bResult = true;
     }
   }
   return bResult;
@@ -41,13 +40,7 @@ void lebedeva::extractName(std::string& name)
     name.erase(--name.end());
   }
 
-  for (size_t i = 0; i < name.length(); i++)
-  {
-    if (name[i] == '\\')
-    {
-      name.erase(i, 1);
-    }
-  }
+  name.erase(std::remove(name.begin(), name.end(), '\\'), name.end());
 }
 
 bool lebedeva::isName(const std::string& name)

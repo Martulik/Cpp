@@ -136,3 +136,9 @@ int pochernin::getWeight(const Shape& shape)
     return 4;
   }
 }
+
+void pochernin::deleteExtraSpaces(std::string& str)
+{
+  std::string::iterator deleteFrom = std::remove(str.begin(), str.end(), ' ');
+  str.erase(deleteFrom, str.end());
+}

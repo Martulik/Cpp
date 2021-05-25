@@ -17,6 +17,7 @@ namespace pochernin
   bool isPentagon(const Shape& shape);
   Point getFirstPoint(const Shape& shape);
   int getWeight(const Shape& shape);
+  void deleteExtraSpaces(std::string& str);
 }
 
 #endif

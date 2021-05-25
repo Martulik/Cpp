@@ -28,6 +28,7 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
     throw(std::invalid_argument("Incorrect point reading"));
   }
   int x = 0;
+  deleteExtraSpaces(buffer);
   if (isNumber(buffer))
   {
     x = std::stoi(buffer);
@@ -37,14 +38,14 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
     throw(std::invalid_argument("Incorrect point reading"));
   }
 
-  in >> std::ws;
   std::getline(in, buffer, ')');
   if (buffer.back() == '\n')
   {
     throw(std::invalid_argument("Incorrect point reading"));
   }
   int y = 0;
-    if (isNumber(buffer))
+  deleteExtraSpaces(buffer);
+  if (isNumber(buffer))
   {
     y = std::stoi(buffer);
   }

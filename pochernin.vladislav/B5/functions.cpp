@@ -141,4 +141,6 @@ void pochernin::deleteExtraSpaces(std::string& str)
 {
   std::string::iterator deleteFrom = std::remove(str.begin(), str.end(), ' ');
   str.erase(deleteFrom, str.end());
+  deleteFrom = std::remove(str.begin(), str.end(), '\t');
+  str.erase(deleteFrom, str.end());
 }

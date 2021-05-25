@@ -9,7 +9,7 @@ namespace lebedeva
   public:
     Container() = default;
     using valueType = unsigned int;
-    class Iterator : public std::iterator< std::bidirectional_iterator_tag, valueType >
+    class Iterator: public std::iterator< std::bidirectional_iterator_tag, valueType >
     {
     public:
       const valueType* operator->();

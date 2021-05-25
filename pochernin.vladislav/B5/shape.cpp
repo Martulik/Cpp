@@ -85,7 +85,7 @@ std::istream& pochernin::operator>>(std::istream& in, Shape& shape)
 
   std::string remaining;
   std::getline(in, remaining);
-  if (!std::all_of(remaining.begin(), remaining.end(), ::isspace) || !in)
+  if (!std::all_of(remaining.begin(), remaining.end(), ::isspace))
   {
     throw(std::invalid_argument("Incorrect shape reading"));
   }

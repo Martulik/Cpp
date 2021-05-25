@@ -13,6 +13,7 @@ namespace lebedeva
   using constIter = std::map< std::string, lebedeva::PhoneBook::constIter >::const_iterator;
   void commandProcessing(std::string str);
   //std::ostream& output;
+  Interface obj;
   std::string myOut = "";
 }
 
@@ -29,7 +30,6 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
 
 void lebedeva::commandProcessing(std::string str)
 {
-  Interface obj;
   std::stringstream input(str);
   std::string command;
   input >> std::ws >> command;
@@ -151,9 +151,9 @@ void lebedeva::commandProcessing(std::string str)
     {
       if (!obj.empty())
       {
-        myOut += (*iter->second).name;
-        myOut += " ";
         myOut += (*iter->second).phoneNumber;
+        myOut += " ";
+        myOut += (*iter->second).name;
         myOut += "\n";
       }
       else

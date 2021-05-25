@@ -6,7 +6,6 @@
 namespace lebedeva
 {
   using constIter = std::map< std::string, lebedeva::PhoneBook::constIter >::const_iterator;
-  int isNegative(std::string& steps);
 }
 
 void lebedeva::doTask1(std::istream& in, std::ostream& out)
@@ -158,15 +157,9 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       {
         if (!(steps.empty()))
         {
-          int isNeg = isNegative(steps);
-
           if (checkNumber(steps))
           {
             int iSteps = std::stoi(steps);
-            if (isNeg != 0)
-            {
-              iSteps *= isNeg;
-            }
             obj.move(markName, iSteps);
           }
           else if (steps == "first")
@@ -197,22 +190,4 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
       out << "<INVALID COMMAND>\n";
     }
   }
-}
-
-int lebedeva::isNegative(std::string& steps)
-{
-  int isNeg = 0;
-  if (steps.front() == '+' || steps.front() == '-')
-  {
-    if (steps.front() == '+')
-    {
-      isNeg = 1;
-    }
-    if (steps.front() == '-')
-    {
-      isNeg = -1;
-    }
-    steps.erase(steps.begin());
-  }
-  return isNeg;
 }

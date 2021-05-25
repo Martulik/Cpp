@@ -12,8 +12,13 @@ bool lebedeva::checkNumber(const std::string& number)
   bool bResult = false;
   if (number.length() >= 1)
   {
+    size_t iter = 0;
     bResult = true;
-    for (size_t i = 0; i < number.length(); i++)
+    if ((number[iter] == '+') || (number[iter] == '-'))
+    {
+      iter++;
+    }
+    for (size_t i = iter; i < number.length(); i++)
     {
       if (!isdigit(number[i]))
       {

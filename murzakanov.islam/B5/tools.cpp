@@ -1,9 +1,11 @@
 #include "tools.hpp"
-#include <cmath>
+
 #include <vector>
 #include <algorithm>
 #include <array>
 #include <iterator>
+
+#include "point.hpp"
 #include "shape.hpp"
 
 std::array< int, 6 > murzakanov::calculateSides(const murzakanov::Shape& shp)
@@ -17,14 +19,14 @@ std::array< int, 6 > murzakanov::calculateSides(const murzakanov::Shape& shp)
   return std::array< int, 6 >{ ab, ac, ad, bc, bd, cd };
 }
 
-int murzakanov::calculateVertices(const std::vector< murzakanov::Shape >& shps)
+int murzakanov::calculateVertices(int vertices, const murzakanov::Shape& shp)
 {
-  int vertices = 0;
-  for (size_t i = 0; i < shps.size(); i++)
-  {
-    vertices += shps[i].size();
-  }
-  return vertices;
+  return vertices + shp.size();
+}
+
+murzakanov::Point murzakanov::returnFrontPnt(const murzakanov::Shape& shp)
+{
+  return shp.front();
 }
 
 int murzakanov::getDistanceSquared(const Point& p1, const Point& p2)

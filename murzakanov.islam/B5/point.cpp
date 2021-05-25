@@ -1,9 +1,10 @@
 #include "point.hpp"
+
 #include <iostream>
 
 std::ostream& murzakanov::operator<<(std::ostream& out, const murzakanov::Point& point)
 {
-  out << '(' << point.x << ';' << point.y << ')' << ' ';
+  out << '(' << point.x << ';' << point.y << ')';
   return out;
 }
 

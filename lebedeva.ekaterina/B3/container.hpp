@@ -12,15 +12,15 @@ namespace lebedeva
     class Iterator: public std::iterator< std::bidirectional_iterator_tag, valueType >
     {
     public:
-      const valueType* operator->();
-      const valueType& operator*();
+      const valueType* operator->() const;
+      const valueType& operator*() const;
+      bool operator==(const Iterator& rhs) const;
+      bool operator!=(const Iterator& rhs) const;
+
       Iterator& operator++();
       Iterator operator++(int);
       Iterator& operator--();
       Iterator operator--(int);
-
-      bool operator==(const Iterator& rhs) const;
-      bool operator!=(const Iterator& rhs) const;
     private:
       friend class Container;
       valueType index_;

@@ -26,14 +26,24 @@ lebedeva::Container::Iterator::Iterator(valueType i, valueType value):
   value_(value)
 {}
 
-const lebedeva::Container::valueType* lebedeva::Container::Iterator::operator->()
+const lebedeva::Container::valueType* lebedeva::Container::Iterator::operator->() const
 {
   return std::addressof(value_);
 }
 
-const lebedeva::Container::valueType& lebedeva::Container::Iterator::operator*()
+const lebedeva::Container::valueType& lebedeva::Container::Iterator::operator*() const
 {
   return value_;
+}
+
+bool lebedeva::Container::Iterator::operator==(const Iterator& rhs) const
+{
+  return (index_ == rhs.index_);
+}
+
+bool lebedeva::Container::Iterator::operator!=(const Iterator& rhs) const
+{
+  return (index_ != rhs.index_);
 }
 
 lebedeva::Container::Iterator& lebedeva::Container::Iterator::operator++()
@@ -64,16 +74,6 @@ lebedeva::Container::Iterator lebedeva::Container::Iterator::operator--(int)
   Iterator iter = *this;
   --(*this);
   return iter;
-}
-
-bool lebedeva::Container::Iterator::operator==(const Iterator& rhs) const
-{
-  return (index_ == rhs.index_);
-}
-
-bool lebedeva::Container::Iterator::operator!=(const Iterator& rhs) const
-{
-  return (index_ != rhs.index_);
 }
 
 lebedeva::Container::Iterator lebedeva::Container::begin() const noexcept

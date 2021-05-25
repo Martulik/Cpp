@@ -2,10 +2,9 @@
 #include <iostream>
 
 lebedeva::Interface::Interface():
-  book_()
-{
-  bookmarks_["current"] = book_.begin();
-}
+  book_(),
+  bookmarks_({ { "current", book_.begin() }})
+{}
 
 void lebedeva::Interface::add(const record_t& rec)
 {

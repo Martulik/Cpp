@@ -161,7 +161,7 @@ void pochernin::sortShapes(std::vector< Shape >& shapes)
 
 void pochernin::checkNoLineFeed(const std::string& str)
 {
-  if (!std::all_of(str.begin(), str.end(), [](char ch){return ch != '\n';}))
+  if (str.find('\n') != str.npos)
   {
     throw(std::invalid_argument("Incorrect point reading"));
   }

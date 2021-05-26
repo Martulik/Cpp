@@ -25,6 +25,10 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
   {
     return in;
   }
+  if (peaks <= 2)
+  {
+    throw std::invalid_argument("Invalid figure\n");
+  }
   Shape temp;
   temp.reserve(peaks);
   std::copy_n(std::istream_iterator< Point >(in), peaks, std::back_inserter(temp));

@@ -24,10 +24,6 @@ int iva::task2(std::istream &in, std::ostream &out)
   std::vector< Point > points;
   points.reserve(shapes.size());
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getFront);
-  for(auto&& point: shapes)
-  {
-    points.emplace_back(point.front());
-  }
   std::sort(shapes.begin(), shapes.end(), compare);
   out << "Vertices: " << vert << "\n";
   out << "Triangles: " << tri << '\n';

@@ -7,11 +7,17 @@ namespace lab = shkurov;
 
 std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
 {
+  in >> std::ws;
+  if (in.eof())
+  {
+    return in;
+  }
+
   data.key1 = readKey(in);
   data.key2 = readKey(in);
   getline(in, data.str, '\n');
 
-  if (in.fail() && !in.eof())
+  if ((in.fail() && !in.eof()) || (data.str.empty()))
   {
     throw std::logic_error("Error while reading.");
   }
@@ -23,11 +29,6 @@ int lab::readKey(std::istream& in)
 {
   std::string keyStr;
   std::getline(in >> std::ws, keyStr, ',');
-
-  if (in.eof())
-  {
-    return 0;
-  }
 
   int key = 0;
   try

@@ -41,6 +41,8 @@ namespace ezerinia {
   {
     return vertices + shape.size();
   }
+
+  using const_iterator = const std::vector< Shape >::const_iterator;
 }
 
 namespace lab = ezerinia;
@@ -61,10 +63,10 @@ void lab::task2(std::istream &in, std::ostream &out)
 
   std::sort(shapes.begin(), shapes.end());
 
-  const std::vector< Shape >::const_iterator itMorePentagon = std::find_if(shapes.cbegin(), shapes.cend(), isMorePentagon);
-  const std::vector< Shape >::const_iterator itRectangles = std::find_if(shapes.cbegin(), itMorePentagon, isRectangle);
-  const std::vector< Shape >::const_iterator itSquares = std::find_if(shapes.cbegin(), itRectangles, isSquare);
-  const std::vector< Shape >::const_iterator itTriangle = std::find_if(shapes.cbegin(), itSquares, isTriangle);
+  lab::const_iterator itMorePentagon = std::find_if(shapes.cbegin(), shapes.cend(), isMorePentagon);
+  lab::const_iterator itRectangles = std::find_if(shapes.cbegin(), itMorePentagon, isRectangle);
+  lab::const_iterator itSquares = std::find_if(shapes.cbegin(), itRectangles, isSquare);
+  lab::const_iterator itTriangle = std::find_if(shapes.cbegin(), itSquares, isTriangle);
 
   unsigned int triangles = 0;
   if (itTriangle != shapes.end()) {
@@ -95,11 +97,11 @@ void lab::task2(std::istream &in, std::ostream &out)
 
   vertices += triangles * 3 + rectangles * 4 + (sizeWithPentagons - shapes.size()) * 5;
 
-  out << "Vertices: " << vertices << "\n"
-      << "Triangles: " << triangles << "\n"
-      << "Squares: " << squares << "\n"
-      << "Rectangles: " << rectangles << "\n"
-      << "Points: ";
+  out << "Vertices: " << vertices << "\n";
+  out << "Triangles: " << triangles << "\n";
+  out << "Squares: " << squares << "\n";
+  out << "Rectangles: " << rectangles << "\n";
+  out << "Points: ";
   std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
   out << "\nShapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));

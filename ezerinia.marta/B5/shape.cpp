@@ -12,18 +12,12 @@ int lab::getSideSquared(const Point &p1, const Point &p2)
   return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
 }
 
-bool compare(int x, int y)
-{
-  return x == y;
-}
-
 bool lab::isSideEqual(const Shape &sh)
 {
   double side = getSideSquared(sh.front(), sh.back());
   std::vector< int > sides;
-  sides.reserve(sh.size());
-  std::transform(sh.begin(), std::prev(sh.end()), std::next(sh.begin()), std::back_inserter(sides), getSideSquared);
-  return std::all_of(sides.begin(), sides.end(), std::bind(compare, std::placeholders::_1, side));
+  std::transform(std::next(sh.begin()), sh.end(), sh.begin(), std::back_inserter(sides), getSideSquared);
+  return std::all_of(sides.begin(), sides.end(), std::bind(std::equal_to< >(), std::placeholders::_1, side));
 }
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)

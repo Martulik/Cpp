@@ -1,6 +1,5 @@
 #include <sstream>
 #include <boost/test/unit_test.hpp>
-#include "shape.hpp"
 #include "point.hpp"
 
 BOOST_AUTO_TEST_SUITE(test_point)

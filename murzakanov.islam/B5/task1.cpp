@@ -16,6 +16,9 @@ int murzakanov::task1(std::istream& in, std::ostream& out)
     std::cerr << "Input error\n";
     code = 1;
   }
-  std::copy(words.begin(), words.end(), std::ostream_iterator< std::string >(out, "\n"));
+  else
+  {
+    std::copy(words.begin(), words.end(), std::ostream_iterator< std::string >(out, "\n"));
+  }
   return code;
 }

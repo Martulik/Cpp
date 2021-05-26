@@ -19,8 +19,9 @@ bool compare(int x, int y)
 
 bool lab::isSideEqual(const Shape &sh)
 {
-  double side = getSideSquared(sh[0], sh[sh.size() - 1]);
+  double side = getSideSquared(sh.front(), sh.back());
   std::vector< int > sides;
+  sides.reserve(sh.size());
   std::transform(sh.begin(), std::prev(sh.end()), std::next(sh.begin()), std::back_inserter(sides), getSideSquared);
   return std::all_of(sides.begin(), sides.end(), std::bind(compare, std::placeholders::_1, side));
 }

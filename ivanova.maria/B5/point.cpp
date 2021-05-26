@@ -1,32 +1,31 @@
 #include "point.hpp"
 #include <iostream>
-#include <sstream>
 #include <iterator>
 #include <algorithm>
-
+#include <cmath>
+#include <functional>
 namespace iva = ivanova;
 
 std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
 {
-  size_t vertices = 0;
-  std::string line;
-  std::getline(in >> std::ws, line);
-  if (line.empty())
+  unsigned int vCount = 0;
+  std::string vert;
+  in >> vert;
+  if (vert.empty())
   {
     return in;
   }
-  std::istringstream iu;
-  std::istringstream iss(line);
-  iss >> vertices >> std::skipws;
-  if (vertices < 3)
+  vCount = std::stoi(vert);
+  if (vCount < 3)
   {
     std::cerr << "invalid input";
     exit(1);
   }
-  shp.reserve(vertices);
+  shp.reserve(vCount);
   Shape tmp;
-  std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
-  if (tmp.size() != vertices)
+  std::copy_n(std::istream_iterator< Point >(in), vCount, std::back_inserter(tmp));
+  std::getline(in, vert);
+  if ((!in.eof() && !in) || tmp.size() != vCount || !std::all_of(vert.begin(), vert.end(), ::isspace))
   {
     std::cerr << "invalid input";
     exit(1);
@@ -42,21 +41,13 @@ std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
   return out;
 }
 
-bool ivanova::compare(Shape &elem1, Shape &elem2)
+bool ivanova::compare(const Shape &elem1, const Shape &elem2)
 {
   if (elem1.size() != elem2.size())
   {
     return elem1.size() < elem2.size();
   }
-  if (isRect(elem1) && isRect(elem2))
-  {
-    if (isSquare(elem1) && (isSquare(elem2)))
-    {
-      return false;
-    }
-    return isSquare(elem1) && isRect(elem2);
-  }
-  return false;
+  return isSquare(elem1) && isRect(elem2);
 }
 
 unsigned int ivanova::countVertices(unsigned int sum, const Shape& shp)
@@ -88,25 +79,22 @@ bool iva::isSquare(const Shape &shp)
 std::istream &ivanova::operator >>(std::istream &in, ivanova::Point &point)
 {
   std::string str;
-  std::getline(in >> std::ws, str, ')');
-  std::istringstream iss(str);
-  if (str.empty())
+  std::getline(in, str, '(');
+  if (!std::all_of(str.begin(), str.end(), ::isspace) || str.find('\n') != std::string::npos)
   {
-    return in;
+    std::cerr << "invalid input";
+    exit(1);
   }
-  char separator = ' ';
-  iss >> separator;
-  if (separator != '(')
+  std::getline(in, str, ')');
+  if (!str.find(';'))
   {
     std::cerr << "invalid separator";
     exit(1);
   }
-  std::string a;
-  std::getline(iss, a, ';');
-  point.x = std::stoi(a);
-  a.clear();
-  std::getline(iss, a, ')');
-  point.y = std::stoi(a);
+  std::string x = str.substr(0, str.find(';'));
+  point.x = std::stoi(x);
+  std::string y = str.substr(str.find(';') + 1);
+  point.y = std::stoi(y);
   return in;
 }
 
@@ -118,20 +106,19 @@ std::ostream &ivanova::operator <<(std::ostream &out, const ivanova::Point &poin
 
 bool iva::checkSidesForSquare(const Shape &shp)
 {
-  int ab = (shp[0].x - shp[1].x) * (shp[0].x - shp[1].x) + (shp[0].y - shp[1].y) * (shp[0].y - shp[1].y);
-  int bc = (shp[1].x - shp[2].x) * (shp[1].x - shp[2].x) + (shp[1].y - shp[2].y) * (shp[1].y - shp[2].y);
-  int cd = (shp[2].x - shp[3].x) * (shp[2].x - shp[3].x) + (shp[2].y - shp[3].y) * (shp[2].y - shp[3].y);
-  int da = (shp[3].x - shp[0].x) * (shp[3].x - shp[0].x) + (shp[3].y - shp[0].y) * (shp[3].y - shp[0].y);
-  int ac = (shp[0].x - shp[2].x) * (shp[0].x - shp[2].x) + (shp[0].y - shp[2].y) * (shp[0].y - shp[2].y);
-  int bd = (shp[1].x - shp[3].x) * (shp[1].x - shp[3].x) + (shp[1].y - shp[3].y) * (shp[1].y - shp[3].y);
-  if (ab == bc && bc == cd && cd == da && ac == bd && bd == ab + bc)
-  {
-    return true;
-  }
-  else return false;
+  int last = getSide(shp.front(), shp.back());
+  std::vector < int > temp;
+  temp.reserve(shp.size());
+  std::transform(shp.begin() + 1, shp.end(), shp.begin(), std::back_inserter(temp), getSide);
+  return (std::all_of(temp.begin(), temp.end(), std::bind(std::equal_to<> (), std::placeholders::_1, last)));
 }
 
 bool ivanova::isPentagon(const ivanova::Shape &shp)
 {
   return shp.size() == 5;
+}
+
+int ivanova::getSide(const ivanova::Point &a, const ivanova::Point &b)
+{
+  return std::pow(a.x - b.x, 2) + std::pow(a.y - b.y, 2);
 }

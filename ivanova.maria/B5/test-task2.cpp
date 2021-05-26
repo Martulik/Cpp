@@ -5,6 +5,13 @@
 
 namespace iva = ivanova;
 
+const iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
+const iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
+const iva::Shape triangle{{8, 12}, {3, 56}, {-34, 5}};
+const iva::Shape pentagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}};
+const iva::Shape hexagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}, {3, 15}};
+
+
 BOOST_AUTO_TEST_SUITE(testShapeIn)
 
   BOOST_AUTO_TEST_CASE(correctInput)
@@ -41,10 +48,6 @@ BOOST_AUTO_TEST_SUITE(testTools)
 
   BOOST_AUTO_TEST_CASE(testShapes)
   {
-    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
-    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
-    iva::Shape triangle{{8, 12}, {3, 56}, {-34, 5}};
-    iva::Shape pentagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}};
     BOOST_CHECK(iva::isRect(rectangle));
     BOOST_CHECK(iva::isSquare(square));
     BOOST_CHECK(iva::isTriangle(triangle));
@@ -53,10 +56,6 @@ BOOST_AUTO_TEST_SUITE(testTools)
 
   BOOST_AUTO_TEST_CASE(testCompare)
   {
-    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
-    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
-    iva::Shape triangle{{8, 12}, {3, 56}, {-34, 5}};
-    iva::Shape hexagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}, {3, 15}};
     BOOST_CHECK(iva::compare(triangle, square));
     BOOST_CHECK(iva::compare(triangle, rectangle));
     BOOST_CHECK(iva::compare(square, rectangle));
@@ -65,10 +64,6 @@ BOOST_AUTO_TEST_SUITE(testTools)
 
   BOOST_AUTO_TEST_CASE(testCountVertices)
   {
-    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
-    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
-    iva::Shape triangle{{8, 12}, {3, 56}, {-34, 5}};
-    iva::Shape hexagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}, {3, 15}};
     unsigned int count = 0;
     count = iva::countVertices(count, square);
     BOOST_CHECK_EQUAL(count, 4);
@@ -82,7 +77,6 @@ BOOST_AUTO_TEST_SUITE(testTools)
 
   BOOST_AUTO_TEST_CASE(testGetFront)
   {
-    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
     iva::Point p = iva::getFront(square);
     BOOST_CHECK(p.x == square[0].x);
     BOOST_CHECK(p.y == square[0].y);

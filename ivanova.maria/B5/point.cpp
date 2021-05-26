@@ -49,8 +49,9 @@ bool ivanova::compare(const Shape &elem1, const Shape &elem2)
     {
       return checkSidesForSquare(elem1) && !checkSidesForSquare(elem2);
     }
+    return elem1.size() < elem2.size();
   }
-  return elem1.size() < elem2.size();
+  return false;
 }
 
 unsigned int ivanova::countVertices(unsigned int sum, const Shape& shp)

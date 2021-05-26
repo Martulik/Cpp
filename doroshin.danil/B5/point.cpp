@@ -1,28 +1,22 @@
 #include "point.hpp"
 #include <iostream>
+#include "istream-fail.hpp"
 
 namespace dan = doroshin;
 
 std::istream& dan::operator>>(std::istream& in, Point& p)
 {
-  const auto fail = [&]() {
-    in.setstate(in.rdstate() | std::ios::failbit);
-  };
-
   in >> std::ws;
   if(!in || in.get() != '(') {
-    fail();
-    return in;
+    return dan::fail(in);
   }
   in >> std::ws >> p.x >> std::ws;
   if(!in || in.get() != ';') {
-    fail();
-    return in;
+    return dan::fail(in);
   }
   in >> std::ws >> p.y >> std::ws;
   if(!in || in.get() != ')') {
-    fail();
-    return in;
+    return dan::fail(in);
   }
   return in;
 }

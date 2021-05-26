@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iterator>
 #include <iostream>
+#include "istream-fail.hpp"
 
 namespace dan = doroshin;
 
@@ -27,8 +28,7 @@ std::istream& dan::operator>>(std::istream& in, Shape& s)
   size_t n = 0;
   in >> n;
   if(!in || in.peek() != ' ') {
-    in.setstate(in.rdstate() | std::ios::failbit);
-    return in;
+    return dan::fail(in);
   }
 
   s.points_.reserve(n);

@@ -1,6 +1,7 @@
 #include "shape.hpp"
 #include <iostream>
 #include <iterator>
+#include <algorithm>
 
 namespace lab = borisova;
 

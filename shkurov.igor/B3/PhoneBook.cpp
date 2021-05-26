@@ -86,11 +86,7 @@ size_t lab::PhoneBook::size() const
 
 bool lab::PhoneBook::empty() const
 {
-  if (size() == 0)
-  {
-    return true;
-  }
-  return false;
+  return container_.empty();
 }
 
 lab::PhoneBook::const_iterator_t lab::PhoneBook::deleteNode(const lab::PhoneBook::const_iterator_t& it)

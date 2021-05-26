@@ -50,7 +50,7 @@ bool ivanova::compare(const Shape &elem1, const Shape &elem2)
       return checkSidesForSquare(elem1) && !checkSidesForSquare(elem2);
     }
   }
-  return (elem1.size() < elem2.size()) && (elem1.size() < 5) ;
+  return (elem1.size() < elem2.size()) && (elem1.size() < 5);
 }
 
 unsigned int ivanova::countVertices(unsigned int sum, const Shape& shp)
@@ -113,7 +113,7 @@ bool iva::checkSidesForSquare(const Shape &shp)
   std::vector < int > temp;
   temp.reserve(shp.size());
   std::transform(shp.begin() + 1, shp.end(), shp.begin(), std::back_inserter(temp), getSide);
-  return (std::all_of(temp.begin(), temp.end(), std::bind(std::equal_to<> (), std::placeholders::_1, last)));
+  return (std::all_of(temp.begin(), temp.end(), std::bind(std::equal_to<>(), std::placeholders::_1, last)));
 }
 
 bool ivanova::isPentagon(const ivanova::Shape &shp)

@@ -65,3 +65,8 @@ bool iva::checkSidesForSquare(const Shape &shp)
   }
   else return false;
 }
+
+bool ivanova::isPentagon(const ivanova::Shape &shp)
+{
+  return shp.size() == 5;
+}

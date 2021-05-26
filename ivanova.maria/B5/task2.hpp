@@ -10,6 +10,8 @@ namespace ivanova
   std::istream &operator >>(std::istream &in, Shape &shp);
   std::ostream &operator <<(std::ostream &out, const Shape &elem);
   bool compare(Shape &elem1, Shape &elem2);
+  int countVertices(const Shape& shp, unsigned int sum);
+  Point getFront(const Shape &shp);
 }
 
 #endif

@@ -14,16 +14,16 @@ int iva::task2(std::istream &in, std::ostream &out)
     std::cerr << "failed reading";
     exit(1);
   }
-  using cSh = const Shape;
   using uint = unsigned int;
   std::vector< Shape > shapes((std::istream_iterator< Shape >(in)), std::istream_iterator< Shape >());
-  uint vert = std::accumulate(shapes.begin(), shapes.end(), 0, [](register uint cnt, cSh &e){ return cnt + e.size();});
+  uint vert = std::accumulate(shapes.begin(), shapes.end(), 0, countVertices);
   uint tri = std::count_if(shapes.begin(), shapes.end(), isTriangle);
   uint sqr = std::count_if(shapes.begin(), shapes.end(), isSquare);
   uint rect = std::count_if(shapes.begin(), shapes.end(), isRect);
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), [](cSh &shp){ return shp.size() == 5; }), shapes.end());
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
   std::vector< Point > points;
   points.reserve(shapes.size());
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getFront);
   for(auto&& point: shapes)
   {
     points.emplace_back(point.front());
@@ -91,5 +91,16 @@ bool ivanova::compare(Shape &elem1, Shape &elem2)
     return isSquare(elem1) && isRect(elem2);
   }
   return false;
+}
+
+int ivanova::countVertices(const ivanova::Shape &shp, unsigned int sum)
+{
+  sum += shp.size();
+  return sum;
+}
+
+ivanova::Point ivanova::getFront(const ivanova::Shape &shp)
+{
+  return shp.front();
 }
 

@@ -46,13 +46,8 @@ std::istream &lab::operator>>(std::istream &in, Point &point)
   }
   std::string str_point_x = line.substr(0, line.find(';'));
   std::string str_point_y = line.substr(line.find(';') + 1);
-  try {
-    point.x = std::stoi(str_point_x);
-    point.y = std::stoi(str_point_y);
-  }
-  catch (const std::invalid_argument &) {
-    throw std::invalid_argument("Convert point failed");
-  }
+  point.x = std::stoi(str_point_x);
+  point.y = std::stoi(str_point_y);
   return in;
 }
 
@@ -67,12 +62,7 @@ std::istream &lab::operator>>(std::istream &in, Shape &shape)
   if (vertices_str.empty()) {
     return in;
   }
-  try {
-    vertices_int = std::stoi(vertices_str);
-  }
-  catch (const std::invalid_argument &ex) {
-    throw std::invalid_argument("Read vertices fail");
-  }
+  vertices_int = std::stoi(vertices_str);
   Shape shape_temp;
   shape_temp.reserve(vertices_int);
   std::copy_n(std::istream_iterator< Point >(in), vertices_int, std::back_inserter(shape_temp));

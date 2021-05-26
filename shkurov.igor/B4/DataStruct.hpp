@@ -8,8 +8,8 @@ namespace shkurov
 {
   struct DataStruct
   {
-    int         key1;
-    int         key2;
+    int key1;
+    int key2;
     std::string str;
   };
 

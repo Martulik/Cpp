@@ -12,16 +12,17 @@ int distSq(const dan::Point& a, const dan::Point& b)
   return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
 }
 
-bool dan::isSquare(const Shape& s)
+bool allSidesEqual(const dan::Shape& s)
 {
   using namespace std::placeholders;
-  if(s.points_.size() != 4) {
-    return false;
-  }
-
   std::vector< int > sides;
   std::transform(++s.points_.begin(), s.points_.end(), s.points_.begin(), std::back_inserter(sides), distSq);
   return std::all_of(sides.begin(), sides.end(), std::bind(std::equal_to<>(), sides.front(), _1));
+}
+
+bool dan::isSquare(const Shape& s)
+{
+  return isRectangle(s) && allSidesEqual(s);
 }
 
 bool dan::isTriangle(const Shape& s)

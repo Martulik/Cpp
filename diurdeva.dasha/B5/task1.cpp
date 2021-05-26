@@ -1,5 +1,4 @@
 #include "task1.hpp"
-
 #include <iostream>
 #include <iterator>
 #include <unordered_set>

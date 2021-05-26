@@ -44,18 +44,12 @@ diurdeva::ShapeType diurdeva::getType(const Shape& shape)
     return TRIANGLE;
   case QUADRANGLE_TOPS:
   {
-    const int s1 = squareDistance(shape.at(0), shape.at(1));
-    const int s2 = squareDistance(shape.at(0), shape.at(2));
-    const int s3 = squareDistance(shape.at(0), shape.at(3));
-    const int s4 = squareDistance(shape.at(1), shape.at(2));
-    const int s5 = squareDistance(shape.at(1), shape.at(3));
-    const int s6 = squareDistance(shape.at(2), shape.at(3));
-    if (s1 == s6 && s3 == s4 && s2 == s5)
-    {
-      if (2 * s1 == s2 || 2 * s2 == s1 || 2 * s1 == s3)
-      {
-        return SQUARE;
-      }
+    std::vector< int > side;
+    side.reserve(size);
+    std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(side), squareDistance);
+    if (std::count(side.begin(), side.end(), side.front()) == side.size()) {
+      return SQUARE;
+    } else if ((side[0] == side[2]) && (side[1] == side[3])) {
       return RECTANGLE;
     }
     return DEFAULT;

@@ -1,5 +1,4 @@
 #include "task2.hpp"
-
 #include <iostream>
 #include <iterator>
 #include <algorithm>
@@ -27,18 +26,15 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< Shape > firstIterator(in);
   std::istream_iterator< Shape > lastIterator;
-  std::vector<Shape> shapes(firstIterator, lastIterator);
+  std::vector< Shape > shapes(firstIterator, lastIterator);
 
   if (!in && !in.eof()) {
     throw std::runtime_error("Stream reading failed");
   }
-  int verticesAmount = std::accumulate(shapes.begin(), shapes.end(), 0, accumulateVertices);
-
-  int trianglesAmount = std::count_if(shapes.begin(), shapes.end(), isTriangle);
-
-  int squaresAmount = std::count_if(shapes.begin(), shapes.end(), isSquare);
-
-  int rectanglesAmount = squaresAmount + std::count_if(shapes.begin(), shapes.end(), isRectangle);
+  const int verticesAmount = std::accumulate(shapes.begin(), shapes.end(), 0, accumulateVertices);
+  const int trianglesAmount = std::count_if(shapes.begin(), shapes.end(), isTriangle);
+  const int squaresAmount = std::count_if(shapes.begin(), shapes.end(), isSquare);
+  const int rectanglesAmount = squaresAmount + std::count_if(shapes.begin(), shapes.end(), isRectangle);
 
   out << "Vertices: " << verticesAmount << "\nTriangles: " << trianglesAmount
     << "\nSquares: " << squaresAmount << "\nRectangles: " << rectanglesAmount;
@@ -54,5 +50,5 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
   std::sort(shapes.begin(), shapes.end(), isLess);
 
   out << "\nShapes:\n";
-  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator<Shape>(out, "\n"));
+  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

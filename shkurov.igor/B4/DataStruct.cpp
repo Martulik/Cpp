@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <limits>
 
 namespace lab = shkurov;
 
@@ -10,6 +11,7 @@ std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
   in >> std::ws;
   if (in.eof())
   {
+    in.ignore(std::numeric_limits< std::streamsize >::max());
     return in;
   }
 

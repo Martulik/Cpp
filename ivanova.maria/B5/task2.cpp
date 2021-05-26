@@ -89,7 +89,7 @@ bool ivanova::compare(Shape &elem1, Shape &elem2)
   return false;
 }
 
-int ivanova::countVertices(const ivanova::Shape &shp, unsigned int sum)
+unsigned int ivanova::countVertices(unsigned int sum, const Shape& shp)
 {
   sum += shp.size();
   return sum;

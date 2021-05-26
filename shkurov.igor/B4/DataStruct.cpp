@@ -24,7 +24,7 @@ int lab::readKey(std::istream& in)
   std::string keyStr;
   std::getline(in, keyStr, ',');
 
-  int key;
+  int key = 0;
   try
   {
     key = std::stoi(keyStr);

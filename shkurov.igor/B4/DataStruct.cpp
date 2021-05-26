@@ -9,9 +9,9 @@ std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
 {
   data.key1 = readKey(in);
   data.key2 = readKey(in);
-  getline(in, data.str);
+  getline(in, data.str, '\n');
 
-  if (in.fail() && !in.eof())
+  if ((in.fail() && !in.eof()) || (data.str.empty()))
   {
     throw std::logic_error("Error while reading.");
   }
@@ -27,7 +27,7 @@ int lab::readKey(std::istream& in)
   int key = 0;
   try
   {
-    key = std::stoi(keyStr);
+    key = intConvert(keyStr);
   }
   catch (const std::exception& ex)
   {
@@ -39,7 +39,7 @@ int lab::readKey(std::istream& in)
     in.setstate(std::ios_base::failbit);
   }
 
-  return (in.good() ? key : 0);
+  return key;
 }
 
 bool lab::compare(const lab::DataStruct& lhs, const lab::DataStruct& rhs)
@@ -59,4 +59,24 @@ std::ostream& lab::operator<<(std::ostream& out, const lab::DataStruct& data)
 {
   out << data.key1 << ", " << data.key2 << ", " << data.str << '\n';
   return out;
+}
+
+int lab::intConvert(const std::string& str)
+{
+  std::string::const_iterator it = str.cbegin();
+  if (*it == '-' && str.size() > 1)
+  {
+    it++;
+  }
+
+  while (it != str.cend())
+  {
+    if (!std::isdigit(*it))
+    {
+      return 6;
+    }
+    it++;
+  }
+
+  return std::stoi(str);
 }

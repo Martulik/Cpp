@@ -7,7 +7,7 @@
 #include "shape.hpp"
 
 namespace shilyaev {
-  unsigned int accumulator(unsigned int acc, const Shape &shape)
+  unsigned long accumulator(unsigned long acc, const Shape &shape)
   {
     return acc + shape.size();
   }
@@ -42,10 +42,10 @@ namespace shilyaev {
       err << "Input error";
       return 1;
     }
-    const unsigned int verticesCount = std::accumulate(shapes.cbegin(), shapes.cend(), 0, accumulator);
-    const unsigned int trianglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isTriangle);
-    const unsigned int squaresCount = std::count_if(shapes.cbegin(), shapes.cend(), isSquare);
-    const unsigned int rectanglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isRectangle);
+    const unsigned long verticesCount = std::accumulate(shapes.cbegin(), shapes.cend(), 0ul, accumulator);
+    const long trianglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isTriangle);
+    const long squaresCount = std::count_if(shapes.cbegin(), shapes.cend(), isSquare);
+    const long rectanglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isRectangle);
     shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
     const std::vector< Point > points = createPointsVector(shapes);
     partitionShapes(shapes);

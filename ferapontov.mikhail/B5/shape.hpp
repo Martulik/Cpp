@@ -8,8 +8,8 @@ namespace ferapontov
 {
   using Shape = std::vector< Point >;
 
-  std::istream& operator>>(std::istream& in, Shape vec);
-  std::ostream& operator<<(std::ostream& out, Shape vec);
+  std::istream& operator>>(std::istream& in, Shape& vec);
+  std::ostream& operator<<(std::ostream& out, const Shape& vec);
 }
 
 #endif

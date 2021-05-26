@@ -12,9 +12,10 @@ namespace ferapontov
     int y;
   };
 
-  using Shape = std::vector< Point >;
-  std::istream& operator>>(std::istream& in, Point point);
-  std::ostream& operator<<(std::ostream& out, Point point);
+  std::istream& operator>>(std::istream& in, Point& point);
+  std::ostream& operator<<(std::ostream& out, const Point& point);
+
+  std::istream& checkNextSymbol(std::istream& in, const char& delim);
 }
 
 #endif

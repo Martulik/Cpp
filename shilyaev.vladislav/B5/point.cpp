@@ -25,6 +25,11 @@ namespace shilyaev {
     return Point{a.x + b.x, a.y + b.y};
   }
 
+  Point operator-(const Point &a, const Point &b)
+  {
+    return Point{a.x - b.x, a.y - b.y};
+  }
+
   std::ostream &operator<<(std::ostream &ostream, const Point &point)
   {
     ostream << '(' << point.x << "; " << point.y << ')';

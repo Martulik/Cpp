@@ -10,6 +10,7 @@ namespace shilyaev {
   };
   bool operator==(const Point &a, const Point &b);
   Point operator+(const Point &a, const Point &b);
+  Point operator-(const Point &a, const Point &b);
   std::ostream &operator<<(std::ostream &ostream, const Point &point);
   std::istream &operator>>(std::istream &istream, Point &point);
 }

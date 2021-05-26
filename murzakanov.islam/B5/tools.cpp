@@ -53,19 +53,3 @@ void murzakanov::convertShapes(std::vector< murzakanov::Shape >& shps)
   std::copy(shps.begin(), shps.end(), std::back_inserter(temp));
   shps.swap(temp);
 }
-
-std::istream& murzakanov::myWs(std::istream& in)
-{
-  while (in && std::isblank(in.peek()))
-  {
-    if (in.peek() == '\n')
-    {
-      break;
-    }
-    else
-    {
-      in.get();
-    }
-  }
-  return in;
-}

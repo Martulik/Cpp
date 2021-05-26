@@ -14,32 +14,32 @@ std::istream& murzakanov::operator>>(std::istream& in, Point& point)
 {
   int x = 0;
   int y = 0;
-  in >> murzakanov::myWs;
+  in >> std::ws;
   if (in.get() != '(')
   {
     in.clear();
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  in >> murzakanov::myWs;
+  in >> std::ws;
   if (in.peek() == '\n')
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  in >> x >> murzakanov::myWs;
+  in >> x >> std::ws;
   if (!in || in.get() != ';')
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  in >> murzakanov::myWs;
+  in >> std::ws;
   if (in.peek() == '\n')
   {
     in.setstate(std::ios_base::failbit);
     return in;
   }
-  in >> y >> murzakanov::myWs;
+  in >> y >> std::ws;
   if (!in || in.get() != ')')
   {
     in.setstate(std::ios_base::failbit);

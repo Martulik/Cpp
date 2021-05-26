@@ -13,7 +13,7 @@ std::istream& murzakanov::operator>>(std::istream& in, murzakanov::Shape& shp)
 {
   size_t n = 0;
   in >> n;
-  if (!in || in.peek() != ' ')
+  if (!in || in.get() != ' ')
   {
     in.setstate(std::ios_base::failbit);
     return in;

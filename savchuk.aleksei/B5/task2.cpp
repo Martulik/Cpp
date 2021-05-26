@@ -13,14 +13,6 @@ namespace lab = savchuk;
 
 void lab::doTask2(std::istream& is, std::ostream& os)
 {
-  struct GetPoint
-  {
-    Point operator()(const Shape& shape)
-    {
-      return shape.back();
-    }
-  };
-
   std::istream_iterator< Shape > first(is);
   std::istream_iterator< Shape > last;
   std::vector< Shape > shapes(first, last);
@@ -33,20 +25,20 @@ void lab::doTask2(std::istream& is, std::ostream& os)
 
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
 
+  struct GetPoint
+  {
+    Point operator()(const Shape& shape)
+    {
+      return shape.back();
+    }
+  };
+
   std::vector< Point > points;
   std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), GetPoint());
 
-  std::vector< Shape > sortedShapes;
-  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isTriangle);
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isTriangle), shapes.end());
-
-  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isSquare);
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isSquare), shapes.end());
-
-  std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isRectangle);
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isRectangle), shapes.end());
-
-  sortedShapes.insert(sortedShapes.end(), shapes.cbegin(), shapes.cend());
+  auto it1 = std::partition(shapes.begin(), shapes.end(), isTriangle);
+  auto it2 = std::partition(it1, shapes.end(), isSquare);
+  std::partition(it2, shapes.end(), isRectangle);
 
   os << "Vertices: " << counter.vertices
      << "\nTriangles: " << counter.triangles
@@ -55,5 +47,5 @@ void lab::doTask2(std::istream& is, std::ostream& os)
      << "\nPoints: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(os, " "));
   os << "\nShapes:\n";
-  std::copy(sortedShapes.cbegin(), sortedShapes.cend(), std::ostream_iterator< Shape >(os, "\n"));
+  std::copy(shapes.cbegin(), shapes.cend(), std::ostream_iterator< Shape >(os, "\n"));
 }

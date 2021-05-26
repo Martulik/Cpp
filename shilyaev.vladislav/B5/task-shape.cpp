@@ -36,8 +36,7 @@ namespace shilyaev {
   {
     std::istream_iterator< Shape > istreamIterator(istream);
     std::istream_iterator< Shape > istreamIteratorEnd;
-    std::vector< Shape > shapes;
-    std::copy(istreamIterator, istreamIteratorEnd, std::back_inserter(shapes));
+    std::vector< Shape > shapes(istreamIterator, istreamIteratorEnd);
     if (!istream && !istream.eof()) {
       err << "Input error";
       return 1;

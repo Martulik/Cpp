@@ -16,8 +16,9 @@ bool lab::isSideEqual(const Shape &sh)
 {
   double side = getSideSquared(sh.front(), sh.back());
   std::vector< int > sides;
+  sides.reserve(sh.size());
   std::transform(std::next(sh.begin()), sh.end(), sh.begin(), std::back_inserter(sides), getSideSquared);
-  return std::all_of(sides.begin(), sides.end(), std::bind(std::equal_to< >(), std::placeholders::_1, side));
+  return std::all_of(sides.begin(), sides.end(), std::bind(std::equal_to<>(), std::placeholders::_1, side));
 }
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)

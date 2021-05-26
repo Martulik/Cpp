@@ -7,7 +7,7 @@
 #include "shape.hpp"
 
 namespace shilyaev {
-  unsigned int accumulateVertices(unsigned int acc, const Shape &shape)
+  unsigned int accumulator(unsigned int acc, const Shape &shape)
   {
     return acc + shape.size();
   }
@@ -42,7 +42,7 @@ namespace shilyaev {
       err << "Input error";
       return 1;
     }
-    const unsigned int verticesCount = std::accumulate(shapes.cbegin(), shapes.cend(), 0, accumulateVertices);
+    const unsigned int verticesCount = std::accumulate(shapes.cbegin(), shapes.cend(), 0, accumulator);
     const unsigned int trianglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isTriangle);
     const unsigned int squaresCount = std::count_if(shapes.cbegin(), shapes.cend(), isSquare);
     const unsigned int rectanglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isRectangle);

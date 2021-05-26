@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <functional>
 #include <iterator>
 
 const int TRIANGLE_TOPS = 3;
@@ -47,12 +48,11 @@ diurdeva::ShapeType diurdeva::getType(const Shape& shape)
     std::vector< int > side;
     side.reserve(size);
     std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(side), squareDistance);
-    if (side[0] == side[1] &&  side[2] == side[3] && side[2] == side[0]) {
+    if (std::all_of(side.begin(), side.end(), std::bind(std::equal_to<>(), side.front(), std::placeholders_1)) {
       return SQUARE;
-    } else if ((side[0] == side[2]) && (side[1] == side[3])) {
+    } else {
       return RECTANGLE;
     }
-    return DEFAULT;
   }
   case PENTAGON_TOPS:
     return PENTAGON;

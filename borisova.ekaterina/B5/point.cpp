@@ -31,29 +31,25 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
   {
     return in;
   }
-  char sign;
-  in >> sign;
-  if (sign != '(')
+  if (in.get() != '(')
   {
     throw std::invalid_argument("Invalid first literal\n");
   }
-  in >> std::ws >> point.x;
+  in >> std::ws >> point.x >> std::ws;
   if (in.fail())
   {
     throw std::invalid_argument("Invalid coordinate X\n");
   }
-  in >> std::ws >> sign;
-  if (sign != ';')
+  if (in.get() != ';')
   {
     throw std::invalid_argument("Invalid separate\n");
   }
-  in >> std::ws >> point.y;
+  in >> std::ws >> point.y >> std::ws;
   if (in.fail())
   {
     throw std::invalid_argument("Invalid coordinate Y\n");
   }
-  in >> std::ws >> sign;
-  if (sign != ')')
+  if (in.get() != ')')
   {
     throw std::invalid_argument("Invalid last literal\n");
   }

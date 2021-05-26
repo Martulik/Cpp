@@ -37,7 +37,7 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
   {
     throw std::invalid_argument("Invalid number of peaks");
   }
-  shape = temp;
+  std::swap(shape, temp);
   return in;
 }
 

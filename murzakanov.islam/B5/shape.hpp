@@ -15,6 +15,8 @@ namespace murzakanov
   bool isRectangle(const Shape& shp);
   bool isSquare(const Shape& shp);
   bool isPentagon(const Shape& shp);
+
+  bool operator<(const Shape& shp1, const Shape& shp2);
 }
 
 #endif

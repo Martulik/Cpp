@@ -44,27 +44,27 @@ bool murzakanov::isTriangle(const Shape& shp)
 
 bool murzakanov::isRectangle(const Shape& shp)
 {
-  if (shp.size() != 4)
-  {
-    return false;
-  }
-  std::array< int, 6 > sides = calculateSides(shp);
-  std::sort(sides.begin(), sides.end());
-  return (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] != sides[2]);
+  return shp.size() == 4;
 }
 
 bool murzakanov::isSquare(const Shape& shp)
 {
-  if (shp.size() != 4)
-  {
-    return false;
-  }
-  std::array< int, 6 > sides = calculateSides(shp);
-  std::sort(sides.begin(), sides.end());
-  return (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] == sides[2]);
+  return isRectangle(shp) && checkIsSidesEqual(shp);
 }
 
 bool murzakanov::isPentagon(const Shape& shp)
 {
   return shp.size() == 5;
+}
+
+bool murzakanov::operator<(const Shape& shp1, const Shape& shp2)
+{
+  if (shp1.size() < 5 && shp2.size() < 5)
+  {
+    if (shp1.size() == 4 && shp2.size() == 4)
+    {
+      return isSquare(shp1) && !isSquare(shp2);
+    }
+  }
+  return (shp1.size() < shp2.size());
 }

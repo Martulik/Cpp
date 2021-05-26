@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iterator>
 #include <iostream>
+#include <functional>
 #include "istream-fail.hpp"
 
 namespace dan = doroshin;
@@ -13,13 +14,14 @@ int distSq(const dan::Point& a, const dan::Point& b)
 
 bool dan::isSquare(const Shape& s)
 {
+  using namespace std::placeholders;
   if(s.points_.size() != 4) {
     return false;
   }
 
-  int d1 = distSq(s.points_[0], s.points_[1]);
-  int d2 = distSq(s.points_[1], s.points_[2]);
-  return d1 == d2;
+  std::vector< int > sides;
+  std::transform(++s.points_.begin(), s.points_.end(), s.points_.begin(), std::back_inserter(sides), distSq);
+  return std::all_of(sides.begin(), sides.end(), std::bind(std::equal_to<>(), sides.front(), _1));
 }
 
 bool dan::isTriangle(const Shape& s)

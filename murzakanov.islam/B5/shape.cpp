@@ -19,6 +19,7 @@ std::istream& murzakanov::operator>>(std::istream& in, murzakanov::Shape& shp)
     return in;
   }
   murzakanov::Shape tempShape;
+  tempShape.reserve(n);
   std::copy_n(std::istream_iterator< Point >(in), n, std::back_inserter(tempShape));
   if ((in.fail() && !in.eof()) || tempShape.size() != n)
   {
@@ -50,7 +51,7 @@ bool murzakanov::isRectangle(const Shape& shp)
   std::array< int, 6 > sides = calculateSides(shp);
   std::sort(sides.begin(), sides.end());
   return (sides[0] == sides[1] && sides[2] == sides[3] && sides[4] == sides[5] && sides[0] != sides[2]);
-  }
+}
 
 bool murzakanov::isSquare(const Shape& shp)
 {

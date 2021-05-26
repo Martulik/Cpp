@@ -31,7 +31,7 @@ int murzakanov::task2(std::istream& in, std::ostream& out)
   std::vector< murzakanov::Point > points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), murzakanov::returnFrontPnt);
 
-  murzakanov::sortShapes(shapes);
+  murzakanov::convertShapes(shapes);
 
   out << "Vertices: " << vertices << "\n";
   out << "Triangles: " << triangles << "\n";

@@ -11,7 +11,11 @@ std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
   data.key2 = readKey(in);
   getline(in, data.str, '\n');
 
-  if ((in.fail() && !in.eof()) || (data.str.empty()))
+  if (in.eof())
+  {
+    return in;
+  }
+  else if ((in.fail() && !in.eof()) || (data.str.empty()))
   {
     throw std::logic_error("Error while reading.");
   }
@@ -22,7 +26,7 @@ std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
 int lab::readKey(std::istream& in)
 {
   std::string keyStr;
-  std::getline(in, keyStr, ',');
+  std::getline(in >> std::ws, keyStr, ',');
 
   int key = 0;
   try

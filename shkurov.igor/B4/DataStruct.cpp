@@ -33,14 +33,8 @@ int lab::readKey(std::istream& in)
   std::getline(in, keyStr, ',');
 
   int key = 0;
-  try
-  {
-    key = intConvert(keyStr);
-  }
-  catch (const std::exception& ex)
-  {
-    in.setstate(std::ios_base::failbit);
-  }
+
+  key = intConvert(keyStr);
 
   if (std::abs(key) > 5)
   {

@@ -1,15 +1,11 @@
 #ifndef ISTREAM_FAIL_HPP
 #define ISTREAM_FAIL_HPP
 
-#include <iostream>
+#include <iosfwd>
 
 namespace doroshin
 {
-  inline std::istream& fail(std::istream& in)
-  {
-    in.setstate(in.rdstate() | std::ios::failbit);
-    return in;
-  }
+  std::istream& fail(std::istream& in);
 }
 
 #endif //ISTREAM_FAIL_HPP

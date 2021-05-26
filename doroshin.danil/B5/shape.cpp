@@ -22,6 +22,21 @@ bool dan::isSquare(const Shape& s)
   return d1 == d2;
 }
 
+bool dan::isTriangle(const Shape& s)
+{
+  return s.points_.size() == 3;
+}
+
+bool dan::isRectangle(const Shape& s)
+{
+  return s.points_.size() == 4;
+}
+
+bool dan::isPentagon(const Shape& s)
+{
+  return s.points_.size() == 5;
+}
+
 std::istream& dan::operator>>(std::istream& in, Shape& s)
 {
   s.points_.clear();

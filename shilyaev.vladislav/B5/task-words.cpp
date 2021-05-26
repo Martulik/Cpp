@@ -14,7 +14,7 @@ namespace shilyaev {
       return 2;
     }
     std::ostream_iterator< std::string > ostreamIterator(ostream, "\n");
-    std::copy(words.begin(), words.end(), ostreamIterator);
+    std::copy(words.cbegin(), words.cend(), ostreamIterator);
     return 0;
   }
 }

@@ -51,7 +51,7 @@ namespace shilyaev {
   std::ostream &operator<<(std::ostream &ostream, const Shape &shape)
   {
     ostream << shape.size() << ' ';
-    std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(ostream, " "));
+    std::copy(shape.cbegin(), shape.cend(), std::ostream_iterator< Point >(ostream, " "));
     return ostream;
   }
 

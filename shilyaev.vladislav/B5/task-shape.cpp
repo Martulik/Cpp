@@ -21,7 +21,7 @@ namespace shilyaev {
   {
     std::vector< Point > points;
     points.reserve(shapes.size());
-    std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getFront);
+    std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), getFront);
     return points;
   }
 
@@ -42,10 +42,10 @@ namespace shilyaev {
       err << "Input error";
       return 1;
     }
-    const unsigned int verticesCount = std::accumulate(shapes.begin(), shapes.end(), 0, accumulateVertices);
-    const unsigned int trianglesCount = std::count_if(shapes.begin(), shapes.end(), isTriangle);
-    const unsigned int squaresCount = std::count_if(shapes.begin(), shapes.end(), isSquare);
-    const unsigned int rectanglesCount = std::count_if(shapes.begin(), shapes.end(), isRectangle);
+    const unsigned int verticesCount = std::accumulate(shapes.cbegin(), shapes.cend(), 0, accumulateVertices);
+    const unsigned int trianglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isTriangle);
+    const unsigned int squaresCount = std::count_if(shapes.cbegin(), shapes.cend(), isSquare);
+    const unsigned int rectanglesCount = std::count_if(shapes.cbegin(), shapes.cend(), isRectangle);
     shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
     const std::vector< Point > points = createPointsVector(shapes);
     partitionShapes(shapes);
@@ -55,9 +55,9 @@ namespace shilyaev {
             << "\nRectangles: " << rectanglesCount
             << "\nPoints: ";
     std::ostream_iterator< Point > pointOstreamIterator(ostream, " ");
-    std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(ostream, " "));
+    std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(ostream, " "));
     ostream << "\nShapes: \n";
-    std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(ostream, "\n"));
+    std::copy(shapes.cbegin(), shapes.cend(), std::ostream_iterator< Shape >(ostream, "\n"));
     return 0;
   }
 }

@@ -3,12 +3,6 @@
 #include <algorithm>
 
 namespace shilyaev {
-  bool safeGetline(std::istream &istream, std::string &str, char delimiter)
-  {
-    std::getline(istream, str, delimiter);
-    return std::find(str.cbegin(), str.cend(), '\n') == str.cend();
-  }
-
   bool operator==(const Point &a, const Point &b)
   {
     return a.x == b.x && a.y == b.y;
@@ -30,25 +24,31 @@ namespace shilyaev {
     return ostream;
   }
 
+  std::string safeGetline(std::istream &istream, char delimiter)
+  {
+    std::string str;
+    std::getline(istream, str, delimiter);
+    if (str.find('\n') != std::string::npos || istream.eof()) {
+      istream.clear();
+      istream.setstate(std::ios::failbit);
+      return "";
+    }
+    return str;
+  }
+
   std::istream &operator>>(std::istream &istream, Point &point)
   {
-    Point newPoint{};
     try {
-      std::string str;
-      bool foundDelimiter = safeGetline(istream, str, '(');
-      foundDelimiter &= safeGetline(istream, str, ';');
-      newPoint.x = std::stoi(str);
-      foundDelimiter &= safeGetline(istream, str, ')');
-      newPoint.y = std::stoi(str);
-      if (!foundDelimiter) {
-        istream.setstate(std::ios::failbit);
+      safeGetline(istream, '(');
+      int x = std::stoi(safeGetline(istream, ';'));
+      int y = std::stoi(safeGetline(istream, ')'));
+      if (!istream) {
         return istream;
       }
-    } catch (const std::invalid_argument &) {
+      point = {x, y};
+    } catch (std::invalid_argument &) {
       istream.setstate(std::ios::failbit);
-      return istream;
     }
-    point = newPoint;
     return istream;
   }
 }

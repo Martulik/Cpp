@@ -43,11 +43,14 @@ std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
 
 bool ivanova::compare(const Shape &elem1, const Shape &elem2)
 {
-  if (elem1.size() != elem2.size())
+  if (!(elem1.size() > 4 && elem2.size() > 4))
   {
-    return elem1.size() < elem2.size();
+    if (elem1.size() == 4 && elem2.size() == 4)
+    {
+      return checkSidesForSquare(elem1) && !checkSidesForSquare(elem2);
+    }
   }
-  return isSquare(elem1) && isRect(elem2);
+  return elem1.size() < elem2.size();
 }
 
 unsigned int ivanova::countVertices(unsigned int sum, const Shape& shp)

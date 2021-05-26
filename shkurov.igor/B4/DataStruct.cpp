@@ -72,14 +72,10 @@ std::ostream& lab::operator<<(std::ostream& out, const lab::DataStruct& data)
 int lab::intConvert(const std::string& str)
 {
   std::string::const_iterator it = str.cbegin();
-  if (*it == '-' && str.size() > 1)
-  {
-    it++;
-  }
 
   while (it != str.cend())
   {
-    if (!std::isdigit(*it))
+    if ((!std::isdigit(*it) && (*it != '-') && !std::isspace(*it)) || *it == '\n')
     {
       return 6;
     }

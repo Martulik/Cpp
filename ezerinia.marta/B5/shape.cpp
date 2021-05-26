@@ -3,23 +3,26 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <functional>
 
 namespace lab = ezerinia;
 
-int lab::getSideLengthSquared(const Point &p1, const Point &p2)
+int lab::getSideSquared(const Point &p1, const Point &p2)
 {
   return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
 }
 
-bool lab::isSideEqual(const Shape &shape)
+bool compare(int x, int y)
 {
-  double side = getSideLengthSquared(shape[0], shape[shape.size() - 1]);
-  for (unsigned int i = 0; i < shape.size() - 1; i++) {
-    if (getSideLengthSquared(shape[i], shape[i + 1]) != side) {
-      return false;
-    }
-  }
-  return true;
+  return x == y;
+}
+
+bool lab::isSideEqual(const Shape &sh)
+{
+  double side = getSideSquared(sh[0], sh[sh.size() - 1]);
+  std::vector< int > sides;
+  std::transform(sh.begin(), std::prev(sh.end()), std::next(sh.begin()), std::back_inserter(sides), getSideSquared);
+  return std::all_of(sides.begin(), sides.end(), std::bind(compare, std::placeholders::_1, side));
 }
 
 bool lab::operator<(const Shape &lhs, const Shape &rhs)

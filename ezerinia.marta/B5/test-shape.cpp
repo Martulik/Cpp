@@ -41,9 +41,27 @@ BOOST_AUTO_TEST_SUITE(shape_ostream)
   BOOST_AUTO_TEST_CASE(ostringstream)
   {
     std::ostringstream oss;
-    lab::Shape shape{{723,   3968}, {723,   26}, {-3219, 26}};
+    lab::Shape shape{{723,   3968},
+                     {723,   26},
+                     {-3219, 26}};
     oss << shape;
     BOOST_CHECK_EQUAL(oss.str(), "3 (723; 3968) (723; 26) (-3219; 26) ");
+  }
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(checking_shape_for_equality_sides)
+
+  BOOST_AUTO_TEST_CASE(sides_equal)
+  {
+    lab::Shape square{{0, 0}, {0, 1}, {1, 1}, {1, 0}};
+    BOOST_CHECK(lab::isSideEqual(square));
+  }
+
+  BOOST_AUTO_TEST_CASE(sides_not_equal)
+  {
+    lab::Shape rectangle{{0, 0}, {0, 2}, {1, 2}, {1, 0}};
+    BOOST_CHECK(!lab::isSideEqual(rectangle));
   }
 
 BOOST_AUTO_TEST_SUITE_END()

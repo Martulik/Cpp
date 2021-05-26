@@ -32,7 +32,7 @@ namespace ezerinia {
     return shape.size() > 5;
   }
 
-  Point firstPoint(const Shape &shape)
+  Point getFirstPoint(const Shape &shape)
   {
     return shape.front();
   }
@@ -57,14 +57,14 @@ void lab::task2(std::istream &in, std::ostream &out)
 
   std::vector< Point > points;
   points.reserve(shapes.size());
-  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), firstPoint);
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getFirstPoint);
 
   std::sort(shapes.begin(), shapes.end());
 
-  const std::vector< Shape >::iterator &itMorePentagon = std::find_if(shapes.begin(), shapes.end(), isMorePentagon);
-  const std::vector< Shape >::iterator &itRectangles = std::find_if(shapes.begin(), itMorePentagon, isRectangle);
-  const std::vector< Shape >::iterator &itSquares = std::find_if(shapes.begin(), itRectangles, isSquare);
-  const std::vector< Shape >::iterator &itTriangle = std::find_if(shapes.begin(), itSquares, isTriangle);
+  const std::vector< Shape >::const_iterator itMorePentagon = std::find_if(shapes.cbegin(), shapes.cend(), isMorePentagon);
+  const std::vector< Shape >::const_iterator itRectangles = std::find_if(shapes.cbegin(), itMorePentagon, isRectangle);
+  const std::vector< Shape >::const_iterator itSquares = std::find_if(shapes.cbegin(), itRectangles, isSquare);
+  const std::vector< Shape >::const_iterator itTriangle = std::find_if(shapes.cbegin(), itSquares, isTriangle);
 
   unsigned int triangles = 0;
   if (itTriangle != shapes.end()) {
@@ -91,7 +91,7 @@ void lab::task2(std::istream &in, std::ostream &out)
     rectangles += itMorePentagon - itRectangles;
   }
 
-  unsigned int vertices = std::accumulate(itMorePentagon, shapes.end(), 0, sumVertices);
+  unsigned int vertices = std::accumulate(itMorePentagon, shapes.cend(), 0, sumVertices);
 
   vertices += triangles * 3 + rectangles * 4 + (sizeWithPentagons - shapes.size()) * 5;
 

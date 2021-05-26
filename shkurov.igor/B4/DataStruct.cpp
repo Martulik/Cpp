@@ -46,7 +46,7 @@ bool lab::compare(const lab::DataStruct& lhs, const lab::DataStruct& rhs)
 {
   if (lhs.key1 != rhs.key1)
   {
-    return lhs.key1 < lhs.key1;
+    return lhs.key1 < rhs.key1;
   }
   else if (lhs.key2 != rhs.key2)
   {
@@ -58,4 +58,5 @@ bool lab::compare(const lab::DataStruct& lhs, const lab::DataStruct& rhs)
 std::ostream& lab::operator<<(std::ostream& out, const lab::DataStruct& data)
 {
   out << data.key1 << ", " << data.key2 << ", " << data.str << '\n';
+  return out;
 }

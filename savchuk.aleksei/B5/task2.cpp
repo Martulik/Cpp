@@ -13,11 +13,11 @@ namespace lab = savchuk;
 
 void lab::doTask2(std::istream& is, std::ostream& os)
 {
-  struct getPoint
+  struct GetPoint
   {
-    Point operator()(const Shape& s)
+    Point operator()(const Shape& shape)
     {
-      return s.back();
+      return shape.back();
     }
   };
 
@@ -34,7 +34,7 @@ void lab::doTask2(std::istream& is, std::ostream& os)
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
 
   std::vector< Point > points;
-  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), getPoint());
+  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), GetPoint());
 
   std::vector< Shape > sortedShapes;
   std::copy_if(shapes.cbegin(), shapes.cend(), std::back_inserter(sortedShapes), isTriangle);

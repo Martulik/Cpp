@@ -22,8 +22,8 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   size_t peaks;
   std::string line;
-  in >> peaks;
-  if (!in || in.peek() != ' ')
+ // in >> peaks;
+  if (!(in >> peaks))
   {
     return in;
   }

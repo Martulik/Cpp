@@ -24,7 +24,7 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
     throw std::invalid_argument("Empty input\n");
     return in;
   }
-  in >> std::skipws;
+  in >> std::ws;
   if (in.eof())
   {
     return in;
@@ -35,22 +35,22 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
   {
     throw std::invalid_argument("Invalid first literal\n");
   }
-  in >> point.x;
+  in >> std::ws >> point.x;
   if (in.fail())
   {
     throw std::invalid_argument("Invalid coordinate X\n");
   }
-  in >> sign;
+  in >> std::ws >> sign;
   if (sign != ';')
   {
     throw std::invalid_argument("Invalid separate\n");
   }
-  in >> point.y;
+  in >> std::ws >> point.y;
   if (in.fail())
   {
     throw std::invalid_argument("Invalid coordinate Y\n");
   }
-  in >> sign;
+  in >> std::ws >> sign;
   if (sign != ')')
   {
     throw std::invalid_argument("Invalid last literal\n");

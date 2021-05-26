@@ -167,11 +167,11 @@ void pochernin::checkNoLineFeed(const std::string& str)
   }
 }
 
-void pochernin::readCoordinate(const std::string& str, int& coordinate)
+int pochernin::readCoordinate(const std::string& str)
 {
   if (isNumber(str))
   {
-    coordinate = std::stoi(str);
+    return std::stoi(str);
   }
   else
   {

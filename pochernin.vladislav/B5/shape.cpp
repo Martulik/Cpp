@@ -23,14 +23,12 @@ std::istream& pochernin::operator>>(std::istream& in, Point& point)
   std::getline(in, buffer, ';');
   checkNoLineFeed(buffer);
   deleteExtraSpaces(buffer);
-  int x = 0;
-  readCoordinate(buffer, x);
+  int x = readCoordinate(buffer);
 
   std::getline(in, buffer, ')');
   checkNoLineFeed(buffer);
   deleteExtraSpaces(buffer);
-  int y = 0;
-  readCoordinate(buffer, y);
+  int y = readCoordinate(buffer);
 
   point.x = x;
   point.y = y;

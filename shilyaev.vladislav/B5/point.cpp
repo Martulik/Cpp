@@ -1,18 +1,12 @@
 #include "point.hpp"
 #include <iostream>
+#include <algorithm>
 
 namespace shilyaev {
   bool safeGetline(std::istream &istream, std::string &str, char delimiter)
   {
-    str.erase();
-    char ch;
-    while (istream.peek() != '\n' && istream.get(ch)) {
-      if (ch == delimiter) {
-        return true;
-      }
-      str += ch;
-    }
-    return false;
+    std::getline(istream, str, delimiter);
+    return std::find(str.cbegin(), str.cend(), '\n') == str.cend();
   }
 
   bool operator==(const Point &a, const Point &b)

@@ -13,11 +13,7 @@ void lab::doTask2(std::istream& in, std::ostream& out)
   using iterIn = std::istream_iterator< Shape >;
   std::vector< Shape > vec{ iterIn(in), iterIn() };
 
-  int peaks = std::accumulate(vec.begin(), vec.end(), 0, [](int count, const Shape& shape)
-    {
-      return count + shape.size();
-    });
-
+  int peaks = std::accumulate(vec.begin(), vec.end(), 0, borisova::countPeaks);
   int triangles = std::count_if(vec.begin(), vec.end(), isTriangle);
   int squares = std::count_if(vec.begin(), vec.end(), isSquare);
   int rectangles = std::count_if(vec.begin(), vec.end(), isRectangle);
@@ -25,10 +21,7 @@ void lab::doTask2(std::istream& in, std::ostream& out)
   vec.erase(std::remove_if(vec.begin(), vec.end(), isPentagon), vec.end());
 
   std::vector< Point > points;
-  std::transform(vec.begin(), vec.end(), std::back_inserter(points), [](const Shape& shape)
-    {
-      return shape.back();
-    });
+  std::transform(vec.begin(), vec.end(), std::back_inserter(points), borisova::returnBack);
 
   std::sort(vec.begin(), vec.end());
 

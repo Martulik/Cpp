@@ -1,7 +1,6 @@
 #include "point.hpp"
 #include <iostream>
-#include <sstream>
-#include<cmath>
+#include <cmath>
 
 namespace lab = borisova;
 
@@ -21,35 +20,40 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
 {
   std::istream::sentry sentry(in);
   if (!sentry)
-  {
+  { 
+    throw std::invalid_argument("Empty input\n");
     return in;
   }
-  std::string line;
-  std::getline(in, line, '(');
+  in >> std::skipws;
   if (in.eof())
   {
     return in;
   }
-  if (!std::getline(in, line, ')'))
+  char sign;
+  in >> sign;
+  if (sign != '(')
   {
-    throw std::invalid_argument("Empty input\n");
+    throw std::invalid_argument("Invalid first literal\n");
   }
-  std::istringstream input(line);
-  input >> point.x;
-  if (input.fail())
+  in >> point.x;
+  if (in.fail())
   {
     throw std::invalid_argument("Invalid coordinate X\n");
   }
-  char sign;
-  input >> sign;
+  in >> sign;
   if (sign != ';')
   {
     throw std::invalid_argument("Invalid separate\n");
   }
-  input >> point.y;
-  if (input.fail())
+  in >> point.y;
+  if (in.fail())
   {
     throw std::invalid_argument("Invalid coordinate Y\n");
+  }
+  in >> sign;
+  if (sign != ')')
+  {
+    throw std::invalid_argument("Invalid last literal\n");
   }
   return in;
 }

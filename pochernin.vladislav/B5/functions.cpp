@@ -9,7 +9,7 @@
 
 int pochernin::getTaskNumber(const char* string)
 {
-  if (strlen(string) != 1)
+  if (std::strlen(string) != 1)
   {
     return -1;
   }

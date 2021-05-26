@@ -12,7 +12,7 @@ namespace shilyaev {
     return acc + shape.size();
   }
 
-  const Point &getFront(const Shape &shape)
+  Point getFront(const Shape &shape)
   {
     return shape.front();
   }

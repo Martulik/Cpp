@@ -42,7 +42,7 @@ namespace shilyaev {
     return shape.size() == 4 && shape[0] + shape[2] == shape[1] + shape[3];
   }
 
-  int dotProduct(const Point &a, const Point &b)
+  int dotProduct(Point a, Point b)
   {
     return a.x * b.x + a.y * b.y;
   }

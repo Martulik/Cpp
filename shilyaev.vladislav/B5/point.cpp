@@ -3,22 +3,22 @@
 #include <algorithm>
 
 namespace shilyaev {
-  bool operator==(const Point &a, const Point &b)
+  bool operator==(Point a, Point b)
   {
     return a.x == b.x && a.y == b.y;
   }
 
-  Point operator+(const Point &a, const Point &b)
+  Point operator+(Point a, Point b)
   {
     return Point{a.x + b.x, a.y + b.y};
   }
 
-  Point operator-(const Point &a, const Point &b)
+  Point operator-(Point a, Point b)
   {
     return Point{a.x - b.x, a.y - b.y};
   }
 
-  std::ostream &operator<<(std::ostream &ostream, const Point &point)
+  std::ostream &operator<<(std::ostream &ostream, Point point)
   {
     ostream << '(' << point.x << "; " << point.y << ')';
     return ostream;

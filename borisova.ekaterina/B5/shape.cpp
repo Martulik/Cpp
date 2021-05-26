@@ -21,14 +21,9 @@ bool lab::operator<(const Shape& firstShape, const Shape& secondShape)
 std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   size_t peaks;
-  std::string line;
   if (!(in >> peaks))
   {
     return in;
-  }
-  if (peaks <= 2)
-  {
-    throw std::invalid_argument("Invalid figure\n");
   }
   Shape temp;
   temp.reserve(peaks);

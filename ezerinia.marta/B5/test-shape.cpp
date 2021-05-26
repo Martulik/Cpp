@@ -41,9 +41,7 @@ BOOST_AUTO_TEST_SUITE(shape_ostream)
   BOOST_AUTO_TEST_CASE(ostringstream)
   {
     std::ostringstream oss;
-    lab::Shape shape{{723,   3968},
-                     {723,   26},
-                     {-3219, 26}};
+    lab::Shape shape{{723,   3968}, {723,   26}, {-3219, 26}};
     oss << shape;
     BOOST_CHECK_EQUAL(oss.str(), "3 (723; 3968) (723; 26) (-3219; 26) ");
   }

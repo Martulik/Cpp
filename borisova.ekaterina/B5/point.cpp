@@ -37,7 +37,6 @@ std::istream& lab::operator>>(std::istream& in, Point& point)
   {
     throw std::invalid_argument("Invalid first literal\n");
   }
-  in >> point.x;
   if (!(in >> point.x))
   {
     throw std::invalid_argument("Invalid coordinate X\n");

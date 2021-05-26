@@ -23,15 +23,11 @@ bool dan::isSquare(const Shape& s)
 
 std::istream& dan::operator>>(std::istream& in, Shape& s)
 {
-  const auto fail = [&]() {
-    in.setstate(in.rdstate() | std::ios::failbit);
-  };
-
   s.points_.clear();
   size_t n = 0;
   in >> n;
   if(!in || in.peek() != ' ') {
-    fail();
+    in.setstate(in.rdstate() | std::ios::failbit);
     return in;
   }
 

@@ -32,6 +32,11 @@ struct StatCounter
   }
 };
 
+dan::Point firstPoint(const dan::Shape& shape)
+{
+  return shape.points_.front();
+}
+
 int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
 {
   std::vector< dan::Shape > shapes;
@@ -51,11 +56,7 @@ int dan::task2(std::istream& in, std::ostream& out, std::ostream& err)
   // 5. Get any point
   std::vector< dan::Point > points;
   points.reserve(shapes.size());
-  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points),
-    [](const dan::Shape& shape) {
-      return shape.points_.front();
-    }
-  );
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), firstPoint);
   // 6. Sort by number of vertices
   std::sort(shapes.begin(), shapes.end(), shapeOrder);
   // 7. Output

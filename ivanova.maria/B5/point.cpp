@@ -2,8 +2,73 @@
 #include <iostream>
 #include <sstream>
 #include <iterator>
+#include <algorithm>
 
 namespace iva = ivanova;
+
+std::istream &ivanova::operator >>(std::istream &in, Shape &shp)
+{
+  size_t vertices = 0;
+  std::string line;
+  std::getline(in >> std::ws, line);
+  if (line.empty())
+  {
+    return in;
+  }
+  std::istringstream iu;
+  std::istringstream iss(line);
+  iss >> vertices >> std::skipws;
+  if (vertices < 3)
+  {
+    std::cerr << "invalid input";
+    exit(1);
+  }
+  shp.reserve(vertices);
+  Shape tmp;
+  std::copy(std::istream_iterator< Point >(iss), std::istream_iterator < Point >(), std::back_inserter(tmp));
+  if (tmp.size() != vertices)
+  {
+    std::cerr << "invalid input";
+    exit(1);
+  }
+  shp.swap(tmp);
+  return in;
+}
+
+std::ostream &ivanova::operator <<(std::ostream &out, const Shape &elem)
+{
+  out << elem.size();
+  std::copy(elem.begin(), elem.end(), std::ostream_iterator< Point >(out));
+  return out;
+}
+
+bool ivanova::compare(Shape &elem1, Shape &elem2)
+{
+  if (elem1.size() != elem2.size())
+  {
+    return elem1.size() < elem2.size();
+  }
+  if (isRect(elem1) && isRect(elem2))
+  {
+    if (isSquare(elem1) && (isSquare(elem2)))
+    {
+      return false;
+    }
+    return isSquare(elem1) && isRect(elem2);
+  }
+  return false;
+}
+
+unsigned int ivanova::countVertices(unsigned int sum, const Shape& shp)
+{
+  sum += shp.size();
+  return sum;
+}
+
+ivanova::Point ivanova::getFront(const ivanova::Shape &shp)
+{
+  return shp.front();
+}
 
 bool iva::isRect(const Shape &shp)
 {

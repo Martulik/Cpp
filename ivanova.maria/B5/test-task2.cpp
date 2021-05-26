@@ -1,10 +1,8 @@
 #include <sstream>
 #include <boost/test/unit_test.hpp>
 #include "task2.hpp"
-#include <iterator>
-#include <algorithm>
-#include <numeric>
 #include "point.hpp"
+
 namespace iva = ivanova;
 
 BOOST_AUTO_TEST_SUITE(testShapeIn)
@@ -50,6 +48,7 @@ BOOST_AUTO_TEST_SUITE(testTools)
     BOOST_CHECK(iva::isRect(rectangle));
     BOOST_CHECK(iva::isSquare(square));
     BOOST_CHECK(iva::isTriangle(triangle));
+    BOOST_CHECK(iva::isPentagon(pentagon));
   }
 
   BOOST_AUTO_TEST_CASE(testCompare)
@@ -62,6 +61,31 @@ BOOST_AUTO_TEST_SUITE(testTools)
     BOOST_CHECK(iva::compare(triangle, rectangle));
     BOOST_CHECK(iva::compare(square, rectangle));
     BOOST_CHECK(iva::compare(square, hexagon));
+  }
+
+  BOOST_AUTO_TEST_CASE(testCountVertices)
+  {
+    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
+    iva::Shape rectangle{{12, 36}, {12, 48}, {-2, 48}, {-2, 36}};
+    iva::Shape triangle{{8, 12}, {3, 56}, {-34, 5}};
+    iva::Shape hexagon{{43, 3}, {6, 12}, {8, -3}, {6, 4}, {40, -23}, {3, 15}};
+    unsigned int count = 0;
+    count = iva::countVertices(count, square);
+    BOOST_CHECK_EQUAL(count, 4);
+    count = iva::countVertices(count, rectangle);
+    BOOST_CHECK_EQUAL(count, 8);
+    count = iva::countVertices(count, triangle);
+    BOOST_CHECK_EQUAL(count, 11);
+    count = iva::countVertices(count, hexagon);
+    BOOST_CHECK_EQUAL(count, 17);
+  }
+
+  BOOST_AUTO_TEST_CASE(testGetFront)
+  {
+    iva::Shape square{{12, 36}, {12, 48}, {0, 48}, {0, 36}};
+    iva::Point p = iva::getFront(square);
+    BOOST_CHECK(p.x == square[0].x);
+    BOOST_CHECK(p.y == square[0].y);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

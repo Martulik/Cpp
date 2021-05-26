@@ -30,7 +30,7 @@ std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
 int lab::readKey(std::istream& in)
 {
   std::string keyStr;
-  std::getline(in >> std::ws, keyStr, ',');
+  std::getline(in, keyStr, ',');
 
   int key = 0;
   try

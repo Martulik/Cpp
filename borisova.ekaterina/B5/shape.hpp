@@ -19,7 +19,6 @@ namespace borisova
 
   int countPeaks(int peaks, const Shape& src);
   Point returnBack(const Shape& src);
-
 };
 
 #endif

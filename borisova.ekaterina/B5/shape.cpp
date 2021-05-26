@@ -22,7 +22,6 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
 {
   size_t peaks;
   std::string line;
- // in >> peaks;
   if (!(in >> peaks))
   {
     return in;
@@ -54,21 +53,25 @@ bool lab::isTriangle(const Shape& shape)
   return (shape.size() == 3);
 }
 
-bool lab::isSquare(const Shape& shape)
+bool lab::isSquare(const Shape& src)
 {
-  return (isRectangle(shape) &&
-      getDistance(shape.at(0), shape.at(1)) == getDistance(shape.at(1), shape.at(2)));
+  if (isRectangle(src))
+  {
+    return getDistance(src.at(0), src.at(1)) == getDistance(src.at(1), src.at(2));
+  }
+  return false;
 }
 
 bool lab::isRectangle(const Shape& shape)
 {
   if (shape.size() == 4)
   {
-    if (isPerpendicularity(shape.at(0), shape.at(1), shape.at(2)) &&
-        isPerpendicularity(shape.at(1), shape.at(2), shape.at(3)) &&
-          isPerpendicularity(shape.at(2), shape.at(3), shape.at(0)))
+    if (isPerpendicularity(shape.at(0), shape.at(1), shape.at(2)))
     {
-      return true;
+      if (isPerpendicularity(shape.at(1), shape.at(2), shape.at(3)))
+      {
+        return isPerpendicularity(shape.at(2), shape.at(3), shape.at(0));
+      }
     }
   }
   return false;

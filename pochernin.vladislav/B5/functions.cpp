@@ -169,14 +169,7 @@ void pochernin::checkNoLineFeed(const std::string& str)
 
 int pochernin::readCoordinate(const std::string& str)
 {
-  if (isNumber(str))
-  {
-    return std::stoi(str);
-  }
-  else
-  {
-    throw(std::invalid_argument("Incorrect point reading"));
-  }
+  return std::stoi(str);
 }
 
 int pochernin::getWeight(const Shape& shape)

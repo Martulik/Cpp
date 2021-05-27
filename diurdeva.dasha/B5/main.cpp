@@ -12,8 +12,7 @@ bool isTaskNumber(const char* src)
 
 int main(int argc, char* argv[])
 {
-  try
-  {
+  try {
     if (argc != 2) {
       throw std::invalid_argument("Invalid arguments");
     }

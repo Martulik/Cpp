@@ -36,8 +36,10 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
   const int squaresAmount = std::count_if(shapes.begin(), shapes.end(), isSquare);
   const int rectanglesAmount = squaresAmount + std::count_if(shapes.begin(), shapes.end(), isRectangle);
 
-  out << "Vertices: " << verticesAmount << "\nTriangles: " << trianglesAmount
-    << "\nSquares: " << squaresAmount << "\nRectangles: " << rectanglesAmount;
+  out << "Vertices: " << verticesAmount << "\n";
+  out << "Triangles: " << trianglesAmount << "\n";
+  out << "Squares: " << squaresAmount << "\n";
+  out << "Rectangles: " << rectanglesAmount << "\n";
 
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon),shapes.end());
 

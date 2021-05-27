@@ -3,6 +3,7 @@
 #include <ctime>
 #include <vector>
 #include <chrono>
+#include <iostream>
 
 #include "sort-test-tools.hpp"
 #include "shape.hpp"

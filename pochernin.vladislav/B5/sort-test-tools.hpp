@@ -9,7 +9,7 @@
 
 namespace pochernin
 {
-  const size_t defaultVectorSize = 100000;
+  const size_t defaultVectorSize = 1000;
   const size_t defaultNumberOfTests = 20;
 
   enum shape_type_t

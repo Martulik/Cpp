@@ -39,19 +39,20 @@ std::ostream& diurdeva::operator<<(std::ostream& out, const Shape& shape)
 diurdeva::ShapeType diurdeva::getType(const Shape& shape)
 {
   const int size = shape.size();
-  switch (size)
-  {
+  switch (size) {
   case TRIANGLE_TOPS:
     return TRIANGLE;
-  case QUADRANGLE_TOPS:
+  case QUADRANGLE_TOPS: {
     std::vector< int > side;
     side.reserve(size);
     std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(side), squareDistance);
     if (std::all_of(side.begin(), side.end(), std::bind(std::equal_to<>(), side.front(), std::placeholders::_1))) {
       return SQUARE;
-    } else {
+    }
+    else {
       return RECTANGLE;
     }
+  }
   case PENTAGON_TOPS:
     return PENTAGON;
   default:

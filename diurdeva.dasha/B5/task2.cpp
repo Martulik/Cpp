@@ -46,7 +46,7 @@ void diurdeva::task2(std::istream& in, std::ostream& out)
   Shape points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), frontPoint);
 
-  out << "\nPoints: ";
+  out << "Points: ";
   std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(std::cout, " "));
 
   std::sort(shapes.begin(), shapes.end(), isLess);

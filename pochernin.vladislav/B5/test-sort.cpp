@@ -35,10 +35,10 @@ BOOST_AUTO_TEST_SUITE(testSort)
     }
 
     std::stringstream stream;
-    stream << "Время " << pochernin::defaultNumberOfTests << " сортировок массива размером "
-              << pochernin::defaultVectorSize << " с помощью своей сортировки: " << mySortMilisec << " милисекунд.\n";
-    stream << "Время " << pochernin::defaultNumberOfTests << " сортировок массива размером "
-              << pochernin::defaultVectorSize << " с помощью std::sort: " << stdSortMilisec << " милисекунд.\n";
+    stream << "Number of sorts: " << pochernin::defaultNumberOfTests << ", vector size: "
+           << pochernin::defaultVectorSize << "\n";
+    stream << "My sort time: " << mySortMilisec << " milliseconds\n";
+    stream << "Std sort time: " << stdSortMilisec << " milliseconds\n";
     BOOST_TEST_MESSAGE(stream.str());
 
     BOOST_CHECK(mySortMilisec < stdSortMilisec);

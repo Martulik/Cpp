@@ -24,11 +24,9 @@ int main(int argc, char* argv[])
     int taskNumber = std::atoi(argv[1]);
     if (taskNumber == 1) {
       diurdeva::task1(std::cin, std::cout);
-    }
-    else if (taskNumber == 2) {
+    } else if (taskNumber == 2) {
       diurdeva::task2(std::cin, std::cout);
-    }
-    else {
+    } else {
       throw std::invalid_argument("Invalid task number");
     }
   }

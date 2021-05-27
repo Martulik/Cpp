@@ -11,8 +11,7 @@ namespace diurdeva {
   std::istream& operator>>(std::istream& in, Shape& shape);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
 
-  enum ShapeType
-  {
+  enum ShapeType {
     TRIANGLE,
     SQUARE,
     RECTANGLE,

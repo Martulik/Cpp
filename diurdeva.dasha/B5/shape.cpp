@@ -48,8 +48,7 @@ diurdeva::ShapeType diurdeva::getType(const Shape& shape)
     std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(side), squareDistance);
     if (std::all_of(side.begin(), side.end(), std::bind(std::equal_to<>(), side.front(), std::placeholders::_1))) {
       return SQUARE;
-    }
-    else {
+    } else {
       return RECTANGLE;
     }
   }

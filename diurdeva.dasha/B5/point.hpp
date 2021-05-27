@@ -4,8 +4,7 @@
 #include <iosfwd>
 
 namespace diurdeva {
-  struct Point
-  {
+  struct Point {
     int x, y;
   };
 

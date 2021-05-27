@@ -51,6 +51,7 @@ std::istream& ferapontov::checkNextSymbol(std::istream& in, const char& delim)
   char a = in.get();
   if (a != delim || a == '\n')
   {
+    in.clear();
     in.setstate(std::ios::badbit);
   }
   return in;

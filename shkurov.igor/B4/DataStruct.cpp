@@ -22,7 +22,6 @@ std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
   data.key1 = readKey(str);
   data.key2 = readKey(str);
 
-  str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
   if (str.empty())
   {
     throw std::invalid_argument("Incorrect input format.");

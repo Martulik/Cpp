@@ -24,6 +24,7 @@ namespace pochernin
   void sortShapes(std::vector< Shape >& shapes);
   void checkNoLineFeed(const std::string& str);
   int readCoordinate(const std::string& str);
+  int getWeight(const Shape& shape);
 }
 
 #endif

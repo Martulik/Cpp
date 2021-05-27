@@ -32,7 +32,7 @@ std::istream& diurdeva::operator>>(std::istream& in, Shape& shape)
 std::ostream& diurdeva::operator<<(std::ostream& out, const Shape& shape)
 {
   out << shape.size() << ' ';
-  std::copy(shape.begin(), shape.end(), std::ostream_iterator<Point>(out, " "));
+  std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
   return out;
 }
 
@@ -44,7 +44,6 @@ diurdeva::ShapeType diurdeva::getType(const Shape& shape)
   case TRIANGLE_TOPS:
     return TRIANGLE;
   case QUADRANGLE_TOPS:
-  {
     std::vector< int > side;
     side.reserve(size);
     std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(side), squareDistance);
@@ -53,7 +52,6 @@ diurdeva::ShapeType diurdeva::getType(const Shape& shape)
     } else {
       return RECTANGLE;
     }
-  }
   case PENTAGON_TOPS:
     return PENTAGON;
   default:

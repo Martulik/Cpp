@@ -14,13 +14,11 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if (argc != 2)
-    {
+    if (argc != 2) {
       throw std::invalid_argument("Invalid arguments");
     }
 
-    if (!isTaskNumber(argv[1]))
-    {
+    if (!isTaskNumber(argv[1])) {
       throw std::invalid_argument("Invalid task number");
     }
     int taskNumber = std::atoi(argv[1]);
@@ -34,8 +32,7 @@ int main(int argc, char* argv[])
       throw std::invalid_argument("Invalid task number");
     }
   }
-  catch (const std::exception& e)
-  {
+  catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
     return 1;
   }

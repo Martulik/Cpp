@@ -11,7 +11,7 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     int x = 0;
     if (in)
     {
-      in >> std::ws >> x;
+      in >> x >> std::ws;
     }
     else
     {
@@ -21,7 +21,7 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     int y = 0;
     if (in)
     {
-      in >> std::ws >> y;
+      in >> y >> std::ws;
     }
     else
     {

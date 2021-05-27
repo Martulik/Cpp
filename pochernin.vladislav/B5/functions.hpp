@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <array>
 
 #include "shape.hpp"
 
@@ -12,11 +13,11 @@ namespace pochernin
   bool isNumber(const std::string& str);
   unsigned int sumVertices(unsigned int sum, const Shape& shape);
   bool isTriangle(const Shape& shape);
-  void fillSquaredSideVector(std::vector< unsigned int >& squaredSides, const Shape& shape);
+  void fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSides, const Shape& shape);
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
-  bool compareRectangleSides(const std::vector< unsigned int >& sides);
+  bool compareRectangleSides(const std::array< unsigned int, 6 >& sides);
   bool isRectangle(const Shape& shape);
-  bool compareSquareSides(const std::vector< unsigned int >& sides);
+  bool compareSquareSides(const std::array< unsigned int, 6 >& sides);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
   Point getFirstPoint(const Shape& shape);

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cassert>
 #include <stdexcept>
+#include <array>
 
 int pochernin::getTaskNumber(const char* string)
 {
@@ -60,22 +61,20 @@ unsigned int pochernin::getSquaredSide(const Point& lhs, const Point& rhs)
   return ((rhs.x - lhs.x) * (rhs.x - lhs.x)) + ((rhs.y - lhs.y) * (rhs.y - lhs.y));
 }
 
-void pochernin::fillSquaredSideVector(std::vector< unsigned int >& squaredSides, const Shape& shape)
+void pochernin::fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSides, const Shape& shape)
 {
   assert(shape.size() == 4);
 
-  squaredSides.push_back(getSquaredSide(shape[0], shape[1]));
-  squaredSides.push_back(getSquaredSide(shape[1], shape[2]));
-  squaredSides.push_back(getSquaredSide(shape[2], shape[3]));
-  squaredSides.push_back(getSquaredSide(shape[3], shape[0]));
-  squaredSides.push_back(getSquaredSide(shape[0], shape[2]));
-  squaredSides.push_back(getSquaredSide(shape[1], shape[3]));
+  squaredSides[0] = (getSquaredSide(shape[0], shape[1]));
+  squaredSides[1] = (getSquaredSide(shape[1], shape[2]));
+  squaredSides[2] = (getSquaredSide(shape[2], shape[3]));
+  squaredSides[3] = (getSquaredSide(shape[3], shape[0]));
+  squaredSides[4] = (getSquaredSide(shape[0], shape[2]));
+  squaredSides[5] = (getSquaredSide(shape[1], shape[3]));
 }
 
-bool pochernin::compareRectangleSides(const std::vector< unsigned int >& sides)
+bool pochernin::compareRectangleSides(const std::array< unsigned int, 6 >& sides)
 {
-  assert(sides.size() == 6);
-
   return (sides[0] == sides[1]) && (sides[2] == sides[3]) && (sides[4] == sides[5]);
 }
 
@@ -86,14 +85,14 @@ bool pochernin::isRectangle(const Shape& shape)
     return false;
   }
 
-  std::vector< unsigned int > squaredSides;
+  std::array< unsigned int, 6> squaredSides;
   fillSquaredSideVector(squaredSides, shape);
 
   std::sort(squaredSides.begin(), squaredSides.end());
   return compareRectangleSides(squaredSides);
 }
 
-bool pochernin::compareSquareSides(const std::vector< unsigned int >& sides)
+bool pochernin::compareSquareSides(const std::array< unsigned int, 6 >& sides)
 {
   assert(sides.size() == 6);
 
@@ -107,7 +106,7 @@ bool pochernin::isSquare(const Shape& shape)
     return false;
   }
 
-  std::vector< unsigned int > squaredSides;
+  std::array< unsigned int, 6 > squaredSides;
   fillSquaredSideVector(squaredSides, shape);
 
   std::sort(squaredSides.begin(), squaredSides.end());

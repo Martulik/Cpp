@@ -22,30 +22,6 @@ int pochernin::getTaskNumber(const char* string)
   return argument;
 }
 
-bool pochernin::isNumber(const std::string& str)
-{
-  if (str.size() == 0)
-  {
-    return false;
-  }
-  else if ((str.size() == 1) && !std::isdigit(str[0]))
-  {
-    return false;
-  }
-  else
-  {
-    if ((str[0] != '-') && !std::isdigit(str[0]))
-    {
-      return false;
-    }
-    if (!std::all_of(str.begin() + 1, str.end(), ::isdigit))
-    {
-      return false;
-    }
-  }
-  return true;
-}
-
 unsigned int pochernin::sumVertices(unsigned int sum, const Shape& shape)
 {
   return sum + shape.size();

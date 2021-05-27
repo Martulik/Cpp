@@ -13,7 +13,6 @@ namespace pochernin
   using sortedPairs = std::vector< sidesPair >;
 
   int getTaskNumber(const char* string);
-  bool isNumber(const std::string& str);
   unsigned int sumVertices(unsigned int sum, const Shape& shape);
   bool isTriangle(const Shape& shape);
   void fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSides, const Shape& shape);

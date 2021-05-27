@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <cstring>
 
+#include "tasks.hpp"
+
 int main(int argc, char* argv[])
 {
   try
@@ -12,7 +14,7 @@ int main(int argc, char* argv[])
     }
     if (!strcmp(argv[1], "1"))
     {
-      //razukrantov::wordsTask(std::cin, std::cout);
+      razukrantov::wordsTask(std::cin, std::cout);
     }
     else if (!strcmp(argv[1], "2"))
     {

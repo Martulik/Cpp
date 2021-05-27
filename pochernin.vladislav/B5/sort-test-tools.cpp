@@ -17,7 +17,7 @@ double pochernin::getRandomRatio()
 pochernin::ShapePool pochernin::getShapePool(double ratio)
 {
   assert((ratio >= 0) && (ratio <= 1));
-  ShapePool shapePool(4);
+  ShapePool shapePool;
 
   size_t remaining = defaultVectorSize;
 

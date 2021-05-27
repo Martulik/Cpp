@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <vector>
+#include <array>
 
 #include "shape.hpp"
 
@@ -38,7 +39,7 @@ namespace pochernin
     {{213, 123}, {31, 21}, {22, 2}, {33, 3}, {32, 434}, {123, 1234}}
   };
 
-  using ShapePool = std::vector< size_t >;
+  using ShapePool = std::array< std::size_t, 4>;
 
   int getRandomNumber(int min, int max);
   double getRandomRatio();

@@ -33,10 +33,10 @@ BOOST_AUTO_TEST_SUITE(testSort)
       stdSortMilisec += std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
     }
 
-    std::cout << "Время " << pochernin::defaultNumberOfTests << " сортировок массива размером " << pochernin::defaultVectorSize
-              << " с помощью своей сортировки: " << mySortMilisec << " милисекунд.\n";
-    std::cout << "Время " << pochernin::defaultNumberOfTests << " сортировок массива размером " << pochernin::defaultVectorSize
-              << " с помощью std::sort: " << stdSortMilisec << " милисекунд.\n";
+    std::cout << "Время " << pochernin::defaultNumberOfTests << " сортировок массива размером "
+              << pochernin::defaultVectorSize << " с помощью своей сортировки: " << mySortMilisec << " милисекунд.\n";
+    std::cout << "Время " << pochernin::defaultNumberOfTests << " сортировок массива размером "
+              << pochernin::defaultVectorSize << " с помощью std::sort: " << stdSortMilisec << " милисекунд.\n";
 
     BOOST_CHECK(mySortMilisec < stdSortMilisec);
   }

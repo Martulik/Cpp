@@ -2,27 +2,49 @@
 #define SORT_TEST_TOOLS_HPP
 
 #include <cstddef>
+#include <vector>
+
+#include "shape.hpp"
 
 namespace pochernin
 {
+  const size_t defaultVectorSize = 100000;
+  const size_t defaultNumberOfTests = 20;
+
   enum shape_type_t
   {
-    triangle,
+    triangle = 0,
     square,
     rectangle,
     other
   };
 
-  struct ShapePool
+  const std::vector< Shape > differentShapes
   {
-    size_t triangles = 0;
-    size_t squares = 0;
-    size_t rectangles = 0;
-    size_t other = 0;
+    {{0, 0}, {1, 1}, {2, 2}},
+    {{1, 2}, {33, 4}, {12, 223}},
+    {{50, 40}, {21, 11}, {22, 1232}},
+
+    {{0, 0}, {0, 1}, {1, 0}, {1, 1}},
+    {{0, 0}, {0, 10}, {10, 0}, {10, 10}},
+    {{0, 0}, {0, 100}, {100, 0}, {100, 100}},
+
+    {{0, 0}, {0, 2}, {1, 0}, {1, 2}},
+    {{0, 0}, {0, 20}, {10, 0}, {10, 20}},
+    {{0, 0}, {0, 200}, {100, 0}, {100, 200}},
+
+    {{0, 0}, {1, 1}, {2, 2}, {3, 3}},
+    {{23, 123}, {1, 1}, {2, 2}, {3, 3}, {32, 434}},
+    {{213, 123}, {31, 21}, {22, 2}, {33, 3}, {32, 434}, {123, 1234}}
   };
 
+  using ShapePool = std::vector< size_t >;
+
   int getRandomNumber(int min, int max);
+  double getRandomRatio();
   ShapePool getShapePool(double raio);
+  Shape getRandomShape(ShapePool& shapePool);
+  void fillRandomShapes(std::vector< Shape >& vec, ShapePool shapePool);
 }
 
 #endif

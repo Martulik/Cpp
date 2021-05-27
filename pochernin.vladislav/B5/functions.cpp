@@ -70,11 +70,6 @@ void pochernin::fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSide
   std::transform(shape.begin() + 3, shape.end(), shape.begin(), squaredSides.begin() + 5, getSquaredSide);
 }
 
-bool pochernin::compareRectangleSides(const std::array< unsigned int, 6 >& sides)
-{
-  return (sides[0] == sides[1]) && (sides[2] == sides[3]) && (sides[4] == sides[5]);
-}
-
 bool pochernin::isRectangle(const Shape& shape)
 {
   if (shape.size() != 4)
@@ -82,18 +77,9 @@ bool pochernin::isRectangle(const Shape& shape)
     return false;
   }
 
-  std::array< unsigned int, 6> squaredSides;
-  fillSquaredSideVector(squaredSides, shape);
+  sortedPairs pairs = getSortedPairs(shape);
 
-  std::sort(squaredSides.begin(), squaredSides.end());
-  return compareRectangleSides(squaredSides);
-}
-
-bool pochernin::compareSquareSides(const std::array< unsigned int, 6 >& sides)
-{
-  assert(sides.size() == 6);
-
-  return (sides[0] == sides[1]) && (sides[0] == sides[2]) && (sides[0] == sides[3]) && (sides[4] == sides[5]);
+  return std::all_of(pairs.begin(), pairs.end(), pochernin::isTwins);
 }
 
 bool pochernin::isSquare(const Shape& shape)
@@ -103,11 +89,9 @@ bool pochernin::isSquare(const Shape& shape)
     return false;
   }
 
-  std::array< unsigned int, 6 > squaredSides;
-  fillSquaredSideVector(squaredSides, shape);
+  sortedPairs pairs = getSortedPairs(shape);
 
-  std::sort(squaredSides.begin(), squaredSides.end());
-  return compareSquareSides(squaredSides);
+  return (isRectangle(shape) && (pairs[0] == pairs[1]));
 }
 
 bool pochernin::isPentagon(const Shape& shape)
@@ -182,4 +166,21 @@ int pochernin::getWeight(const Shape& shape)
   {
     return 4;
   }
+}
+
+pochernin::sortedPairs pochernin::getSortedPairs(const Shape& shape)
+{
+  assert(shape.size() == 4);
+
+  std::array< unsigned int, 6 > sides;
+  fillSquaredSideVector(sides, shape);
+  std::sort(sides.begin(), sides.end());
+
+  sortedPairs result = {{{sides[0]}, {sides[1]}}, {{sides[2]}, {sides[3]}}, {{sides[4]}, {sides[5]}}};
+  return result;
+}
+
+bool pochernin::isTwins(const pochernin::sidesPair& pair)
+{
+  return pair.first == pair.second;
 }

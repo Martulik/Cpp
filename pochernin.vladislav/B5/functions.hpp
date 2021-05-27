@@ -9,15 +9,16 @@
 
 namespace pochernin
 {
+  using sidesPair = std::pair< unsigned int, unsigned int >;
+  using sortedPairs = std::vector< sidesPair >;
+
   int getTaskNumber(const char* string);
   bool isNumber(const std::string& str);
   unsigned int sumVertices(unsigned int sum, const Shape& shape);
   bool isTriangle(const Shape& shape);
   void fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSides, const Shape& shape);
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
-  bool compareRectangleSides(const std::array< unsigned int, 6 >& sides);
   bool isRectangle(const Shape& shape);
-  bool compareSquareSides(const std::array< unsigned int, 6 >& sides);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
   Point getFirstPoint(const Shape& shape);
@@ -26,6 +27,8 @@ namespace pochernin
   void checkNoLineFeed(const std::string& str);
   int readCoordinate(const std::string& str);
   int getWeight(const Shape& shape);
+  sortedPairs getSortedPairs(const Shape& shape);
+  bool isTwins(const sidesPair& pair);
 }
 
 #endif

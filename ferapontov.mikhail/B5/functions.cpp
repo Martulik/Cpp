@@ -6,3 +6,8 @@ int ferapontov::calculateVector(const Point& first, const Point& second)
   int y = second.y - first.y;
   return (x * x + y * y);
 }
+
+ferapontov::Point ferapontov::getVertex(const Shape& shp)
+{
+  return shp.front();
+}

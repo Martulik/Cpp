@@ -6,6 +6,7 @@
 namespace ferapontov
 {
   int calculateVector(const Point& first, const Point& second);
+  Point getVertex(const Shape& shp);
 }
 
 #endif

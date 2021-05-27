@@ -34,7 +34,7 @@ namespace pochernin
     {{0, 0}, {0, 20}, {10, 0}, {10, 20}},
     {{0, 0}, {0, 200}, {100, 0}, {100, 200}},
 
-    {{0, 0}, {1, 1}, {2, 2}, {3, 3}},
+    {{2320, 210}, {123, 11}, {42, 2232}, {32, 311}},
     {{23, 123}, {1, 1}, {2, 2}, {3, 3}, {32, 434}},
     {{213, 123}, {31, 21}, {22, 2}, {33, 3}, {32, 434}, {123, 1234}}
   };
@@ -43,7 +43,7 @@ namespace pochernin
 
   int getRandomNumber(int min, int max);
   double getRandomRatio();
-  ShapePool getShapePool(double raio);
+  ShapePool getShapePool(double ratio);
   Shape getRandomShape(ShapePool& shapePool);
   void fillRandomShapes(std::vector< Shape >& vec, ShapePool shapePool);
 }

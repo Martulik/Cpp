@@ -65,12 +65,9 @@ void pochernin::fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSide
 {
   assert(shape.size() == 4);
 
-  squaredSides[0] = (getSquaredSide(shape[0], shape[1]));
-  squaredSides[1] = (getSquaredSide(shape[1], shape[2]));
-  squaredSides[2] = (getSquaredSide(shape[2], shape[3]));
-  squaredSides[3] = (getSquaredSide(shape[3], shape[0]));
-  squaredSides[4] = (getSquaredSide(shape[0], shape[2]));
-  squaredSides[5] = (getSquaredSide(shape[1], shape[3]));
+  std::transform(shape.begin() + 1, shape.end(), shape.begin(), squaredSides.begin(), getSquaredSide);
+  std::transform(shape.begin() + 2, shape.end(), shape.begin(), squaredSides.begin() + 3, getSquaredSide);
+  std::transform(shape.begin() + 3, shape.end(), shape.begin(), squaredSides.begin() + 5, getSquaredSide);
 }
 
 bool pochernin::compareRectangleSides(const std::array< unsigned int, 6 >& sides)

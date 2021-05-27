@@ -15,7 +15,7 @@ namespace pochernin
   int getTaskNumber(const char* string);
   unsigned int sumVertices(unsigned int sum, const Shape& shape);
   bool isTriangle(const Shape& shape);
-  void fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSides, const Shape& shape);
+  void fillSquaredSideArray(std::array< unsigned int, 6 >& squaredSides, const Shape& shape);
   unsigned int getSquaredSide(const Point& lhs, const Point& rhs);
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);

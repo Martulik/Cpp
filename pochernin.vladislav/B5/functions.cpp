@@ -37,7 +37,7 @@ unsigned int pochernin::getSquaredSide(const Point& lhs, const Point& rhs)
   return ((rhs.x - lhs.x) * (rhs.x - lhs.x)) + ((rhs.y - lhs.y) * (rhs.y - lhs.y));
 }
 
-void pochernin::fillSquaredSideVector(std::array< unsigned int, 6 >& squaredSides, const Shape& shape)
+void pochernin::fillSquaredSideArray(std::array< unsigned int, 6 >& squaredSides, const Shape& shape)
 {
   assert(shape.size() == 4);
 
@@ -149,7 +149,7 @@ pochernin::sortedPairs pochernin::getSortedPairs(const Shape& shape)
   assert(shape.size() == 4);
 
   std::array< unsigned int, 6 > sides;
-  fillSquaredSideVector(sides, shape);
+  fillSquaredSideArray(sides, shape);
   std::sort(sides.begin(), sides.end());
 
   sortedPairs result = {{{sides[0]}, {sides[1]}}, {{sides[2]}, {sides[3]}}, {{sides[4]}, {sides[5]}}};

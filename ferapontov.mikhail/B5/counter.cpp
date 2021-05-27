@@ -1,4 +1,5 @@
 #include "counter.hpp"
+#include "ostream"
 
 void ferapontov::Counter::operator()(const Shape& shp)
 {
@@ -15,4 +16,12 @@ void ferapontov::Counter::operator()(const Shape& shp)
       squares += 1;
     }
   }
+}
+
+void ferapontov::Counter::print(std::ostream& out)
+{
+  out << "Vertices: " << this->vertices << '\n';
+  out << "Triangles: " << this->triangels << '\n';
+  out << "Squares: " << this->squares << '\n';
+  out << "Rectangles: " << this->rectangles << '\n';
 }

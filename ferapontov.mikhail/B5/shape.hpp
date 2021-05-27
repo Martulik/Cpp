@@ -1,8 +1,9 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include "point.hpp"
+#include <iosfwd>
 #include <vector>
+#include "point.hpp"
 
 namespace ferapontov
 {
@@ -10,6 +11,11 @@ namespace ferapontov
 
   std::istream& operator>>(std::istream& in, Shape& vec);
   std::ostream& operator<<(std::ostream& out, const Shape& vec);
+
+  bool isTriangle(const Shape& shp);
+  bool isSquare(const Shape& shp);
+  bool isRectangle(const Shape& shp);
+  bool isPentagon(const Shape& shp);
 }
 
 #endif

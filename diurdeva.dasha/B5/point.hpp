@@ -1,7 +1,7 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
-#include <ioswfd>
+#include <iosfwd>
 
 namespace diurdeva {
   struct Point

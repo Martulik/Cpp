@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     }
     else if (!strcmp(argv[1], "2"))
     {
-      //razukrantov::shapeTask(std::cin, std::cout);
+      razukrantov::shapeTask(std::cin, std::cout);
     }
     else
     {

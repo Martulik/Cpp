@@ -8,6 +8,13 @@ namespace lab = shkurov;
 
 std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
 {
+  in >> std::ws;
+  if (in.eof())
+  {
+    in.ignore(std::numeric_limits< std::streamsize >::max());
+    return in;
+  }
+
   std::string str;
   getline(in, str, '\n');
 

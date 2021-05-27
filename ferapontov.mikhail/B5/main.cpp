@@ -34,10 +34,15 @@ int main(int argc, char* argv[])
       ferapontov::task2(std::cin, std::cout);
     }
   }
-  catch(const std::exception& e)
+  catch (const std::invalid_argument& e)
   {
     std::cerr << e.what() << '\n';
     return 1;
+  }
+  catch (const std::runtime_error& e)
+  {
+    std::cerr << e.what() << '\n';
+    return 2;
   }
   return 0;
 }

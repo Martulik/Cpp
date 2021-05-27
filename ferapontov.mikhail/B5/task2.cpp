@@ -1,9 +1,10 @@
 #include "tasks.hpp"
 
 #include <iostream>
-#include <vector>
 #include <iterator>
 #include <algorithm>
+#include "counter.hpp"
+#include "functions.hpp"
 #include "Shape.hpp"
 
 void ferapontov::task2(std::istream& in, std::ostream& out)
@@ -15,5 +16,20 @@ void ferapontov::task2(std::istream& in, std::ostream& out)
   {
     throw std::runtime_error("Inavalid Input");
   }
+
+  Counter count = std::for_each(shapes.begin(), shapes.end(), Counter());
+
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
+
+  std::vector< Point > points;
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getVertex);
+
+  std::sort(shapes.begin(), shapes.end(), compare);
+
+  count.print(out);
+
+  out << "Points: ";
+  std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(out, " "));
+  out << "\nShapes:\n";
   std::copy(shapes.cbegin(), shapes.cend(), std::ostream_iterator< Shape >(out, "\n"));
 }

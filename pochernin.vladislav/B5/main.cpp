@@ -22,10 +22,6 @@ int main(int argc, char* argv[])
     {
       pochernin::task2(std::cin, std::cout);
     }
-    else
-    {
-      throw(std::invalid_argument("Incorrect argument (task number)"));
-    }
   }
   catch (std::exception& error)
   {

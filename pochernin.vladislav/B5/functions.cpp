@@ -11,16 +11,12 @@ int pochernin::getTaskNumber(const char* string)
 {
   if (std::strlen(string) != 1)
   {
-    return -1;
+    throw(std::invalid_argument("Incorrect argument (task number)"));
   }
-  if (!std::isdigit(string[0]))
-  {
-    return -1;
-  }
-  int argument = std::atoi(string);
+  int argument = std::stoi(string);
   if ((argument != 1) && (argument != 2))
   {
-    return -1;
+    throw(std::invalid_argument("Incorrect argument (task number)"));
   }
   return argument;
 }

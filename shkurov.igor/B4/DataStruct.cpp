@@ -8,40 +8,44 @@ namespace lab = shkurov;
 
 std::istream& lab::operator>>(std::istream& in, lab::DataStruct& data)
 {
-  in >> std::ws;
-  if (in.eof())
-  {
-    in.ignore(std::numeric_limits< std::streamsize >::max());
-    return in;
-  }
+  std::string str;
+  getline(in, str, '\n');
 
-  data.key1 = readKey(in);
-  data.key2 = readKey(in);
-  getline(in, data.str, '\n');
+  data.key1 = readKey(str);
+  data.key2 = readKey(str);
 
-  if ((in.fail() && !in.eof()) || (data.str.empty()))
+  str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
+  if (str.empty())
   {
-    throw std::logic_error("Error while reading.");
+    throw std::invalid_argument("Incorrect input format.");
   }
+  data.str = str;
 
   return in;
 }
 
-int lab::readKey(std::istream& in)
+int lab::readKey(std::string& str)
 {
-  std::string keyStr;
-  std::getline(in, keyStr, ',');
+  std::string::const_iterator it = str.cbegin();
 
-  int key = 0;
-
-  key = intConvert(keyStr);
-
-  if (std::abs(key) > 5)
+  while (it != str.cend())
   {
-    in.setstate(std::ios_base::failbit);
+    if (*it == ',')
+    {
+      break;
+    }
+    it++;
   }
 
-  return key;
+  if (it == str.cend())
+  {
+    throw std::invalid_argument("Incorrect input format.");
+  }
+
+  std::string key(str.cbegin(), it);
+  str.erase(str.cbegin(), it + 1);
+
+  return stoi(key);
 }
 
 bool lab::compare(const lab::DataStruct& lhs, const lab::DataStruct& rhs)
@@ -61,20 +65,4 @@ std::ostream& lab::operator<<(std::ostream& out, const lab::DataStruct& data)
 {
   out << data.key1 << ", " << data.key2 << ", " << data.str << '\n';
   return out;
-}
-
-int lab::intConvert(const std::string& str)
-{
-  std::string::const_iterator it = str.cbegin();
-
-  while (it != str.cend())
-  {
-    if ((!std::isdigit(*it) && (*it != '-') && !std::isspace(*it)) || *it == '\n')
-    {
-      return 6;
-    }
-    it++;
-  }
-
-  return std::stoi(str);
 }

@@ -16,8 +16,7 @@ namespace shkurov
   std::istream& operator>>(std::istream& in, DataStruct& data);
   std::ostream& operator<<(std::ostream& out, const DataStruct& data);
 
-  int readKey(std::istream& in);
-  int intConvert(const std::string& str);
+  int readKey(std::string& str);
 
   bool compare(const DataStruct& lhs, const DataStruct& rhs);
 }

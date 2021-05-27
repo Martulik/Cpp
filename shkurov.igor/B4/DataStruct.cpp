@@ -53,7 +53,7 @@ int lab::readKey(std::string& str)
   std::string key(str.cbegin(), it);
   str.erase(str.cbegin(), it + 1);
 
-  return stoi(key);
+  return abs(stoi(key)) <= 5 ? stoi(key) : throw std::out_of_range("Values out of valid range.");
 }
 
 bool lab::compare(const lab::DataStruct& lhs, const lab::DataStruct& rhs)

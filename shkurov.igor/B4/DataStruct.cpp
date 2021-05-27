@@ -71,6 +71,6 @@ bool lab::compare(const lab::DataStruct& lhs, const lab::DataStruct& rhs)
 
 std::ostream& lab::operator<<(std::ostream& out, const lab::DataStruct& data)
 {
-  out << data.key1 << ", " << data.key2 << ", " << data.str << '\n';
+  out << data.key1 << "," << data.key2 << "," << data.str << '\n';
   return out;
 }

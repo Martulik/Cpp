@@ -1,14 +1,13 @@
 #include "point.hpp"
 #include <iostream>
-#include <cmath>
 
 namespace lab = borisova;
 
-double lab::getDistance(const Point& first, const Point& second)
+double lab::getSquareDistance(const Point& first, const Point& second)
 {
-  int sqrDx = (first.x - second.x) * (first.x - second.x);
-  int sqrDy = (first.y - second.y) * (first.y - second.y);
-  return std::sqrt(sqrDx + sqrDy);
+  double sqrDx = (first.x - second.x) * (first.x - second.x);
+  double sqrDy = (first.y - second.y) * (first.y - second.y);
+  return (sqrDx + sqrDy);
 }
 
 bool lab::isPerpendicularity(const Point& one, const Point& two, const Point three)

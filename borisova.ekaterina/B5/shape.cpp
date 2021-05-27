@@ -54,11 +54,7 @@ bool lab::isTriangle(const Shape& shape)
 
 bool lab::isSquare(const Shape& src)
 {
-  if (isRectangle(src))
-  {
-    return getDistance(src.at(0), src.at(1)) == getDistance(src.at(1), src.at(2));
-  }
-  return false;
+  return isRectangle(src) && equalDistance(src);
 }
 
 bool lab::isRectangle(const Shape& shape)
@@ -89,4 +85,11 @@ int lab::countPeaks(int peaks, const Shape& src)
 lab::Point lab::returnBack(const Shape& src)
 {
   return src.back();
+}
+
+bool lab::equalDistance(const Shape& src)
+{
+  double first = getSquareDistance(src.at(0), src.at(1));
+  double second = getSquareDistance(src.at(1), src.at(2));
+  return first == second;
 }

@@ -13,7 +13,7 @@ bool lab::operator<(const Shape& firstShape, const Shape& secondShape)
   }
   if ((firstShape.size() == secondShape.size()) && (firstShape.size() == 4))
   {
-    return isSquare(firstShape);
+    return isSquare(firstShape) && !isSquare(secondShape);
   }
   return firstShape.size() < secondShape.size();
 }

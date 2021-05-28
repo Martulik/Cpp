@@ -79,17 +79,17 @@ lab::Point lab::returnBack(const Shape& src)
 
 bool lab::equalDistance(const Shape& src, int type)
 {
-  int first = getSquareDistance(src[0], src[1]);
-  int second = getSquareDistance(src[2], src[3]);
-  int third = getSquareDistance(src[1], src[2]);
-  int fourth = getSquareDistance(src[3], src[0]);
+  int one = getSquareDistance(src[0], src[1]);
+  int two = getSquareDistance(src[2], src[3]);
+  int three = getSquareDistance(src[1], src[2]);
+  int four = getSquareDistance(src[3], src[0]);
   if (type == 0)
   {
-    return (first == second) && (third == fourth);
+    return (one == two) && (three == four);
   }
   else if (type == 1)
   {
-    return first == second == third == fourth;
+    return (one == two) && (two == three) && (three == four);
   }
   return false;
 }

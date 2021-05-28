@@ -7,6 +7,7 @@ namespace ferapontov
 {
   int calculateVector(const Point& first, const Point& second);
   Point getVertex(const Shape& shp);
+  void sortShapes(std::vector< Shape >& shapes);
 }
 
 #endif

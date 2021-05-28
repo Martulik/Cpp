@@ -1,4 +1,5 @@
 #include "functions.hpp"
+#include <algorithm>
 
 int ferapontov::calculateVector(const Point& first, const Point& second)
 {
@@ -10,4 +11,11 @@ int ferapontov::calculateVector(const Point& first, const Point& second)
 ferapontov::Point ferapontov::getVertex(const Shape& shp)
 {
   return shp.front();
+}
+
+void ferapontov::sortShapes(std::vector< Shape >& shapes)
+{
+  auto it1 = std::partition(shapes.begin(), shapes.end(), isTriangle);
+  auto it2 = std::partition(it1, shapes.end(), isSquare);
+  std::partition(it2, shapes.end(), isRectangle);
 }

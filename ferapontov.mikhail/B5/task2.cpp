@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "counter.hpp"
 #include "functions.hpp"
-#include "Shape.hpp"
+#include "shape.hpp"
 
 void ferapontov::task2(std::istream& in, std::ostream& out)
 {

@@ -57,31 +57,25 @@ namespace
   {
     bool operator()(char ch)
     {
-      return !isspace(ch) || ch == '\n';
+      return isspace(ch) && ch != '\n';
     }
   };
 
   struct CheckNumber
   {
-    bool hasSign_ = false;
+    bool isNumber_ = false;
 
     bool operator()(char ch)
     {
-      if (isdigit(ch))
+      if (!isNumber_)
       {
-        hasSign_ = true;
-        return false;
+        isNumber_ = (isdigit(ch) || ch == '-' || ch == '+');
       }
-      else if (ch == '-' || ch == '+')
+      else
       {
-        if (!hasSign_)
-        {
-          hasSign_ = true;
-          return false;
-        }
-        return true;
+        isNumber_ = isdigit(ch);
       }
-      return true;
+      return isNumber_;
     }
   };
 
@@ -89,7 +83,7 @@ namespace
   {
     if (!err)
     {
-      auto it = std::find_if(str.begin(), str.end(), CheckSpace());
+      auto it = std::find_if_not(str.begin(), str.end(), CheckSpace());
       if (it != str.end())
       {
         err = (*it == '\n');
@@ -122,7 +116,7 @@ namespace
       skipSpaces(str, err);
       if (!err)
       {
-        auto it = std::find_if(str.begin(), str.end(), CheckNumber());
+        auto it = std::find_if_not(str.begin(), str.end(), CheckNumber());
         num.insert(num.begin(), str.begin(), it);
         str.erase(str.begin(), it);
         err = num.empty();

@@ -5,8 +5,8 @@
 
 namespace lysenko
 {
-  int task1(std::istream&, std::ostream&);
-  /*int task2(std::istream&, std::ostream&);*/
+  void task1(std::istream&, std::ostream&);
+  void task2(std::istream&, std::ostream&);
 }
 
 #endif

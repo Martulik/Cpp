@@ -10,12 +10,22 @@ int main(int argc, char* argv[])
     std::string argument(argv[1]);
     if (argument == "1")
     {
-      return lysenko::task1(std::cin, std::cout);
+      lysenko::task1(std::cin, std::cout);
+      return 0;
     }
-   /* else if (argument == "2")
+    else if (argument == "2")
     {
-      return lysenko::task2(std::cin, std::cout);
-    }*/
+      try
+      {
+        lysenko::task2(std::cin, std::cout);
+        return 0;
+      }
+      catch (std::invalid_argument&err)
+      {
+        std::cerr << err.what();
+        return 1;
+      }
+    }
   }
   return 1;
 }

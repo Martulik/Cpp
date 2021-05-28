@@ -37,3 +37,8 @@ std::istream& razukrantov::operator>>(std::istream& in, Shape& shape)
 	shape.swap(temp);
 	return in;
 }
+
+bool razukrantov::isTriangle(const Shape& shape)
+{
+	return shape.size() == 3;
+}

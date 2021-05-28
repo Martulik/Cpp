@@ -16,7 +16,11 @@ std::istream& lab::operator>>(std::istream& is, Shape& shape)
   if (sentry)
   {
     size_t size;
-    is >> size >> skipws;
+    is >> size;
+    if (!is || is.get() != ' ')
+    {
+      is.setstate(std::ios::failbit);
+    }
     Shape temp;
     std::copy_n(std::istream_iterator< Point >(is), size, std::back_inserter(temp));
     if ((is.fail() && is.eof()) && !temp.empty())

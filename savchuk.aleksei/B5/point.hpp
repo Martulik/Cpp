@@ -2,6 +2,7 @@
 #define POINT_HPP
 
 #include <iosfwd>
+#include <string>
 
 namespace savchuk
 {
@@ -13,9 +14,6 @@ namespace savchuk
 
   std::istream& operator>>(std::istream& is, Point& point);
   std::ostream& operator<<(std::ostream& os, const Point& point);
-
-  void readDelimiter(std::istream& is, char delim);
-  std::istream& skipws(std::istream& is);
 }
 
 #endif

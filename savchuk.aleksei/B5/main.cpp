@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     }
     else
     {
-      std::cerr << "Invalid command line arguments";
+      std::cerr << "Invalid command line arguments\n";
       return 1;
     }
   }

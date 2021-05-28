@@ -1,24 +1,41 @@
 #include "point.hpp"
 
 #include <iostream>
+#include <algorithm>
 #include <cctype>
 
 namespace lab = savchuk;
+
+namespace
+{
+  void skipSpaces(std::string& str, int& err);
+  void readDelimiter(std::string& str, char delim, int& err);
+  int readCoordinate(std::string& str, int& err);
+}
 
 std::istream& lab::operator>>(std::istream& is, Point& point)
 {
   std::istream::sentry sentry(is);
   if (sentry)
   {
-    int x, y;
-    readDelimiter(is, '(');
-    is >> skipws >> x;
-    readDelimiter(is, ';');
-    is >> skipws >> y;
-    readDelimiter(is, ')');
-    if (is)
+    std::string str;
+    if (getline(is, str, ')'))
     {
-      point = { x, y };
+      int err = 0;
+      skipSpaces(str, err);
+      readDelimiter(str, '(', err);
+      int x = readCoordinate(str, err);
+      readDelimiter(str, ';', err);
+      int y = readCoordinate(str, err);
+      skipSpaces(str, err);
+      if (!err)
+      {
+        point = { x, y };
+      }
+      else
+      {
+        is.setstate(std::ios::failbit);
+      }
     }
   }
   return is;
@@ -34,34 +51,83 @@ std::ostream& lab::operator<<(std::ostream& os, const Point& point)
   return os;
 }
 
-void lab::readDelimiter(std::istream& is, char delim)
+namespace
 {
-  if (is >> skipws)
+  struct CheckSpace
   {
-    if (is.peek() != delim)
+    bool operator()(char ch)
     {
-      is.setstate(std::ios::failbit);
-      return;
+      return !isspace(ch) || ch == '\n';
     }
-    is.get();
-  }
-}
+  };
 
-std::istream& lab::skipws(std::istream& is)
-{
-  if (is)
+  struct CheckNumber
   {
-    char ch = is.peek();
-    while (isspace(ch))
+    bool hasSign_ = false;
+
+    bool operator()(char ch)
     {
-      if (ch == '\n')
+      if (isdigit(ch))
       {
-        is.setstate(std::ios::failbit);
-        break;
+        hasSign_ = true;
+        return false;
       }
-      is.get();
-      ch = is.peek();
+      else if (ch == '-' || ch == '+')
+      {
+        if (!hasSign_)
+        {
+          hasSign_ = true;
+          return false;
+        }
+        return true;
+      }
+      return true;
+    }
+  };
+
+  void skipSpaces(std::string& str, int& err)
+  {
+    if (!err)
+    {
+      auto it = std::find_if(str.begin(), str.end(), CheckSpace());
+      if (it != str.end())
+      {
+        err = (*it == '\n');
+        str.erase(str.begin(), it);
+      }
     }
   }
-  return is;
+
+  void readDelimiter(std::string& str, char delim, int& err)
+  {
+    if (!err)
+    {
+      skipSpaces(str, err);
+      if (!err)
+      {
+        err = (str.empty() || str.front() != delim);
+        if (!str.empty())
+        {
+          str.erase(str.begin(), ++str.begin());
+        }
+      }
+    }
+  }
+
+  int readCoordinate(std::string& str, int& err)
+  {
+    std::string num;
+    if (!err)
+    {
+      skipSpaces(str, err);
+      if (!err)
+      {
+        auto it = std::find_if(str.begin(), str.end(), CheckNumber());
+        num.insert(num.begin(), str.begin(), it);
+        str.erase(str.begin(), it);
+        err = num.empty();
+      }
+    }
+    return std::atoi(num.c_str());
+  }
 }

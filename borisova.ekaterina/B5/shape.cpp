@@ -80,8 +80,6 @@ lab::Point lab::returnBack(const Shape& src)
 bool lab::equalDistance(const Shape& src)
 {
   int one = getSquareDistance(src[0], src[1]);
-  int two = getSquareDistance(src[2], src[3]);
-  int three = getSquareDistance(src[1], src[2]);
-  int four = getSquareDistance(src[3], src[0]);
-  return (one == two) && (two == three) && (three == four);
+  int two = getSquareDistance(src[1], src[2]);
+  return one == two;
 }

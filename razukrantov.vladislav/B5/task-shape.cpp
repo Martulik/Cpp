@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-void razukrantov::shapeTask(std::istream& in, std::ostream& out)
-{
-
-}
+//void razukrantov::shapeTask(std::istream& in, std::ostream& out)
+//{
+//
+//}
 
 #endif

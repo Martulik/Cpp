@@ -54,12 +54,12 @@ bool lab::isTriangle(const Shape& shape)
 
 bool lab::isSquare(const Shape& src)
 {
-  return (src.size() == 4) && isPerpendicularity(src[0], src[1], src[2]) && equalDistance(src, 1);
+  return (src.size() == 4) && equalDistance(src);
 }
 
 bool lab::isRectangle(const Shape& src)
 {
-  return (src.size() == 4) && isPerpendicularity(src[0], src[1], src[2]) && equalDistance(src, 0);
+  return (src.size() == 4);
 }
 
 bool lab::isPentagon(const Shape& shape)
@@ -77,19 +77,11 @@ lab::Point lab::returnBack(const Shape& src)
   return src.back();
 }
 
-bool lab::equalDistance(const Shape& src, int type)
+bool lab::equalDistance(const Shape& src)
 {
   int one = getSquareDistance(src[0], src[1]);
   int two = getSquareDistance(src[2], src[3]);
   int three = getSquareDistance(src[1], src[2]);
   int four = getSquareDistance(src[3], src[0]);
-  if (type == 0)
-  {
-    return (one == two) && (three == four);
-  }
-  else if (type == 1)
-  {
-    return (one == two) && (two == three) && (three == four);
-  }
-  return false;
+  return (one == two) && (two == three) && (three == four);
 }

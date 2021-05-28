@@ -79,16 +79,16 @@ lab::Point lab::returnBack(const Shape& src)
 
 bool lab::equalAdjacentDistance(const Shape& src)
 {
-  double first = getSquareDistance(src.at(0), src.at(1));
-  double second = getSquareDistance(src.at(1), src.at(2));
+  int first = getSquareDistance(src[0], src[1]);
+  int second = getSquareDistance(src[1], src[2]);
   return first == second;
 }
 
 bool lab::equalOpposite(const Shape& src)
 {
-  double first = getSquareDistance(src.at(0), src.at(1));
-  double second = getSquareDistance(src.at(2), src.at(3));
-  double third = getSquareDistance(src.at(1), src.at(2));
-  double fourth = getSquareDistance(src.at(3), src.at(0));
+  int first = getSquareDistance(src[0], src[1]);
+  int second = getSquareDistance(src[2], src[3]);
+  int third = getSquareDistance(src[1], src[2]);
+  int fourth = getSquareDistance(src[3], src[0]);
   return (first == second) && (third == fourth);
 }

@@ -3,10 +3,10 @@
 
 namespace lab = borisova;
 
-double lab::getSquareDistance(const Point& first, const Point& second)
+int lab::getSquareDistance(const Point& first, const Point& second)
 {
-  double sqrDx = (first.x - second.x) * (first.x - second.x);
-  double sqrDy = (first.y - second.y) * (first.y - second.y);
+  int sqrDx = (first.x - second.x) * (first.x - second.x);
+  int sqrDy = (first.y - second.y) * (first.y - second.y);
   return (sqrDx + sqrDy);
 }
 

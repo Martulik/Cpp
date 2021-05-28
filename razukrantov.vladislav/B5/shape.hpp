@@ -14,6 +14,7 @@ namespace razukrantov
   bool isTriangle(const Shape& shape);
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);
+  bool isPentagon(const Shape& shape);
 }
 
 #endif

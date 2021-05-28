@@ -54,3 +54,8 @@ bool razukrantov::isSquare(const Shape& shape)
 {
   return isRectangle(shape) && isSidesEqual(shape);
 }
+
+bool razukrantov::isPentagon(const Shape& shape)
+{
+  return shape.size() == 5;
+}

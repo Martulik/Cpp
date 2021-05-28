@@ -2,6 +2,7 @@
 #define POINT_HPP
 
 #include <iosfwd>
+#include <string>
 
 namespace ferapontov
 {
@@ -14,7 +15,18 @@ namespace ferapontov
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Point& point);
 
-  std::istream& checkNextSymbol(std::istream& in, const char& delim);
+  void checkDelim(std::string& line, const char& delim, int& err);
+  int readNumber(std::string& line, int& err);
+
+  struct skipWs
+  {
+    bool operator()(const char& a);
+  };
+
+  struct isNumber
+  {
+    bool operator()(const char& a);
+  };
 }
 
 #endif

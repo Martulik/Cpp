@@ -36,7 +36,7 @@ std::istream& lab::operator>>(std::istream& in, Shape& shape)
   {
     throw std::invalid_argument("Invalid number of peaks");
   }
-  std::swap(shape, temp);
+  shape = temp;
   return in;
 }
 
@@ -54,12 +54,12 @@ bool lab::isTriangle(const Shape& shape)
 
 bool lab::isSquare(const Shape& src)
 {
-  return isRectangle(src) && equalAdjacentDistance(src);
+  return (src.size() == 4) && isPerpendicularity(src[0], src[1], src[2]) && equalDistance(src, 1);
 }
 
 bool lab::isRectangle(const Shape& src)
 {
-  return (src.size() == 4) && isPerpendicularity(src[0], src[1], src[2]) && equalOpposite(src);
+  return (src.size() == 4) && isPerpendicularity(src[0], src[1], src[2]) && equalDistance(src, 0);
 }
 
 bool lab::isPentagon(const Shape& shape)
@@ -77,18 +77,19 @@ lab::Point lab::returnBack(const Shape& src)
   return src.back();
 }
 
-bool lab::equalAdjacentDistance(const Shape& src)
-{
-  int first = getSquareDistance(src[0], src[1]);
-  int second = getSquareDistance(src[1], src[2]);
-  return first == second;
-}
-
-bool lab::equalOpposite(const Shape& src)
+bool lab::equalDistance(const Shape& src, int type)
 {
   int first = getSquareDistance(src[0], src[1]);
   int second = getSquareDistance(src[2], src[3]);
   int third = getSquareDistance(src[1], src[2]);
   int fourth = getSquareDistance(src[3], src[0]);
-  return (first == second) && (third == fourth);
+  if (type == 0)
+  {
+    return (first == second) && (third == fourth);
+  }
+  else if (type == 1)
+  {
+    return first == second == third == fourth;
+  }
+  return false;
 }

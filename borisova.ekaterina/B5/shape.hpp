@@ -19,8 +19,7 @@ namespace borisova
 
   int countPeaks(int peaks, const Shape& src);
   Point returnBack(const Shape& src);
-  bool equalAdjacentDistance(const Shape& src);
-  bool equalOpposite(const Shape& src);
+  bool equalDistance(const Shape& src, int type);
 };
 
 #endif

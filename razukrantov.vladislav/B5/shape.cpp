@@ -42,3 +42,8 @@ bool razukrantov::isTriangle(const Shape& shape)
 {
 	return shape.size() == 3;
 }
+
+bool razukrantov::isRectangle(const Shape& shape)
+{
+	return shape.size() == 4;
+}

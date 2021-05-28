@@ -56,15 +56,15 @@ bool ferapontov::isSquare(const Shape& shp)
   int side3 = calculateVector(shp[0], shp[3]);
   if (side1 == side2)
   {
-    return (side3 == calculateVector(shp[1], shp[2])); 
+    return (side3 == calculateVector(shp[1], shp[2]));
   }
   else if (side1 == side3)
   {
-    return (side2 == calculateVector(shp[1], shp[3])); 
+    return (side2 == calculateVector(shp[1], shp[3]));
   }
   else if (side2 == side3)
   {
-    return (side1 == calculateVector(shp[2], shp[3])); 
+    return (side1 == calculateVector(shp[2], shp[3]));
   }
   return false;
 }

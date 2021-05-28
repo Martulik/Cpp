@@ -1,7 +1,7 @@
 #ifndef COUNTER_HPP
 #define COUNTER_HPP
 
-#include "Shape.hpp"
+#include "shape.hpp"
 
 namespace ferapontov
 {

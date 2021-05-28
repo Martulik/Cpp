@@ -13,6 +13,7 @@ namespace razukrantov
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
   bool isTriangle(const Shape& shape);
   bool isRectangle(const Shape& shape);
+  bool isSquare(const Shape& shape);
 }
 
 #endif

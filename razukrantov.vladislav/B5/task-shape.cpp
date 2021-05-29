@@ -25,7 +25,6 @@ void razukrantov::shapeTask(std::istream& in, std::ostream& out)
   std::vector< Point > points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), razukrantov::getFrontPoint);
   razukrantov::shapesPartition(shapes);
-  //std::sort(shapes.begin(), shapes.end());
   out << "Vertices: " << vertices << "\n";
   out << "Triangles: " << triangles << "\n";
   out << "Squares: " << squares << "\n";

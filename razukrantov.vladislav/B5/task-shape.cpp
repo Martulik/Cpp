@@ -24,7 +24,8 @@ void razukrantov::shapeTask(std::istream& in, std::ostream& out)
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), razukrantov::isPentagon), shapes.end());
   std::vector< Point > points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), razukrantov::getFrontPoint);
-  std::sort(shapes.begin(), shapes.end());
+  razukrantov::shapesPartition(shapes);
+  //std::sort(shapes.begin(), shapes.end());
   out << "Vertices: " << vertices << "\n";
   out << "Triangles: " << triangles << "\n";
   out << "Squares: " << squares << "\n";

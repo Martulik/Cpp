@@ -29,3 +29,10 @@ razukrantov::Point razukrantov::getFrontPoint(const Shape& shape)
 {
   return shape.front();
 }
+
+void razukrantov::shapesPartition(std::vector< razukrantov::Shape >& shapes)
+{
+  auto bound = std::partition(shapes.begin(), shapes.end(), razukrantov::isTriangle);
+  bound = std::partition(bound, shapes.end(), razukrantov::isSquare);
+  std::partition(bound, shapes.end(), razukrantov::isRectangle);
+}

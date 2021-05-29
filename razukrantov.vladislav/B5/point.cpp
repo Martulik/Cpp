@@ -33,4 +33,3 @@ std::istream& razukrantov::operator>>(std::istream& in, Point& point)
   point = { x, y };
   return in;
 }
-

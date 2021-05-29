@@ -10,7 +10,7 @@ std::ostream& razukrantov::operator<<(std::ostream& out, const Point& point)
 
 void razukrantov::checkNoLine(const std::string& str)
 {
-  if (str.find('\n') != std::string::npos) 
+  if (str.find('\n') != std::string::npos)
   {
     throw(std::invalid_argument("Incorrect reading"));
   }

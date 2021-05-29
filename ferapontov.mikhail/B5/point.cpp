@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
-bool ferapontov::skipWs::operator()(char a)
+bool ferapontov::noWs::operator()(char a)
 {
   return a == ' ';
 }
@@ -24,13 +24,7 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     int x = readNumber(line, err);;
     checkDelim(line, ';', err);
     int y = readNumber(line, err);
-
-    std::string::iterator it = std::find_if_not(line.begin(), line.end(), skipWs());
-    it = line.erase(line.begin(), it);
-    if (it != line.end())
-    {
-      err = 1;
-    }
+    skipWs(line, err);
     if(!err)
     {
       point = {x, y};
@@ -55,43 +49,52 @@ std::ostream& ferapontov::operator<<(std::ostream& out, const Point& point)
 
 void ferapontov::checkDelim(std::string& line, const char& delim, int& err)
 {
+  skipWs(line, err);
   if (!err)
   {
-    std::string::iterator it = std::find_if_not(line.begin(), line.end(), skipWs());
-    if (it != line.end())
+    std::string::iterator it = line.begin();
+    if (*it != delim)
     {
-      it = line.erase(line.begin(), it);
-      if (*it != delim)
-      {
-        err = 1;
-        return;
-      }
-      line.erase(line.begin(), ++it);
-      err = 0;
+      err = 1;
       return;
     }
-    err = 1;
+    line.erase(line.begin(), ++it);
+    err = 0;
   }
 }
 
 int ferapontov::readNumber(std::string& line, int& err)
 {
+  skipWs(line, err);
   if (!err)
   {
-    std::string::iterator it = std::find_if_not(line.begin(), line.end(), skipWs());
+    std::string number;
+    std::string::iterator it = line.begin();
+    if (*it == '+' || *it == '-' || isdigit(*it))
+    {
+      it = std::find_if_not(line.begin() + 1, line.end(), isNumber());
+      number.insert(number.begin(), line.begin(), it);
+      line.erase(line.begin(), it);
+      return std::stoi(number);
+    }
+  }
+  err = 1;
+  return 0;
+}
+
+void ferapontov::skipWs(std::string& line, int& err)
+{
+  if (!err)
+  {
+    std::string::iterator it = std::find_if_not(line.begin(), line.end(), noWs());
     if (it != line.end())
     {
-      std::string number;
-      it = line.erase(line.begin(), it);
-      if (*it == '+' || *it == '-' || isdigit(*it))
+      if (*it == '\n')
       {
-        it = std::find_if_not(line.begin() + 1, line.end(), isNumber());
-        number.insert(number.begin(), line.begin(), it);
-        line.erase(line.begin(), it);
-        return std::stoi(number);
+        err = 1;
+        return;
       }
+      line.erase(line.begin(), it);
     }
-    err = 1;
   }
-  return 0;
 }

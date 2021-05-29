@@ -17,8 +17,9 @@ namespace ferapontov
 
   void checkDelim(std::string& line, const char& delim, int& err);
   int readNumber(std::string& line, int& err);
+  void skipWs(std::string& line, int& err);
 
-  struct skipWs
+  struct noWs
   {
     bool operator()(char a);
   };

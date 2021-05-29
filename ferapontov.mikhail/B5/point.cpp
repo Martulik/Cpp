@@ -25,6 +25,7 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     checkDelim(line, ';', err);
     int y = readNumber(line, err);
     std::string::iterator it = std::find_if_not(line.begin(), line.end(), skipWs());
+    it = line.erase(line.begin(), it);
     if (it != line.end())
     {
       err = 1;

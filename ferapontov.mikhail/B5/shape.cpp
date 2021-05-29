@@ -14,15 +14,14 @@ std::istream& ferapontov::operator>>(std::istream& in, Shape& vec)
     if (in.fail() || in.get() != ' ')
     {
       in.setstate(std::ios::badbit);
-      return in;
     }
 
     Shape temp;
     std::copy_n(std::istream_iterator< Point >(in), size, std::back_inserter(temp));
-    if ((in.fail() && in.eof()) && temp.size() != size)
+    if ((in.fail() && in.eof()) && !temp.empty())
     {
+      in.clear();
       in.setstate(std::ios::badbit);
-      return in;
     }
 
     if (in)

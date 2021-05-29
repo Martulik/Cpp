@@ -24,7 +24,7 @@ void ferapontov::task2(std::istream& in, std::ostream& out)
   std::vector< Point > points;
   std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), getVertex);
 
-  std::sort(shapes.begin(), shapes.end(), compare);
+  sortShapes(shapes);
 
   count.print(out);
 

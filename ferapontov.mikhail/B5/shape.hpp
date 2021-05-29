@@ -17,7 +17,6 @@ namespace ferapontov
   bool isRectangle(const Shape& shp);
   bool isPentagon(const Shape& shp);
 
-  bool compare(const Shape& lhs, const Shape& rhs);
 }
 
 #endif

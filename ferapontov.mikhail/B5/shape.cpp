@@ -77,12 +77,3 @@ bool ferapontov::isPentagon(const Shape& shp)
 {
   return shp.size() == 5;
 }
-
-bool ferapontov::compare(const Shape& lhs, const Shape& rhs)
-{
-  if (isRectangle(lhs) && isRectangle(rhs))
-  {
-    return isSquare(lhs) && !isSquare(rhs);
-  }
-  return lhs.size() < rhs.size();
-}

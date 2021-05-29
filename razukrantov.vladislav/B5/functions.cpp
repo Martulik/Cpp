@@ -19,3 +19,8 @@ int razukrantov::getDistanceSquared(const Point& point1, const Point& point2)
   int dy = point1.y - point2.y;
   return dx * dx + dy * dy;
 }
+
+unsigned int razukrantov::sumVertices(unsigned int sum, const Shape& shape)
+{
+  return sum + shape.size();
+}

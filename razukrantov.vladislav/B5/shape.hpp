@@ -15,7 +15,6 @@ namespace razukrantov
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
-  bool operator<(const Shape& shape1, const Shape& shape2);
 }
 
 #endif

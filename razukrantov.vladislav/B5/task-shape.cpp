@@ -27,6 +27,6 @@ void razukrantov::shapeTask(std::istream& in, std::ostream& out)
   out << "Rectangles: " << rectangles << "\n";
   out << "Points: ";
   std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
-  out << "\n" << "Shapes: \n";
+  out << "\n" << "Shapes:\n";
   std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

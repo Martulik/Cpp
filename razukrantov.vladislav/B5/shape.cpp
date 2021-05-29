@@ -17,12 +17,12 @@ std::ostream& razukrantov::operator<<(std::ostream& out, const Shape& shape)
 
 std::istream& razukrantov::operator>>(std::istream& in, Shape& shape)
 {
-  size_t count = 0;
-  in >> count;
   if (!in)
   {
     throw(std::invalid_argument("Incorrect reading"));
   }
+  size_t count = 0;
+  in >> count;
   if (count == 0)
   {
     return in;

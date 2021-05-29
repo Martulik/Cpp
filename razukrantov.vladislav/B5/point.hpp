@@ -2,6 +2,7 @@
 #define POINT_HPP
 
 #include <iosfwd>
+#include <string>
 
 namespace razukrantov
 {
@@ -12,6 +13,7 @@ namespace razukrantov
 
   std::ostream& operator<<(std::ostream& out, const Point& point);
   std::istream& operator>>(std::istream& in, Point& point);
+  void checkNoLine(const std::string& str);
 }
 
 #endif

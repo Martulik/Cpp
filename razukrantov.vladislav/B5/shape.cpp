@@ -32,7 +32,7 @@ std::istream& razukrantov::operator>>(std::istream& in, Shape& shape)
   std::copy_n(std::istream_iterator< Point >(in), count, std::back_inserter(temp));
   std::string str;
   std::getline(in, str);
-  if (!in || count != temp.size())
+  if (!in || count != temp.size() || !std::all_of(str.begin(), str.end(), ::isspace))
   {
     throw(std::invalid_argument("Incorrect reading"));
   }

@@ -72,7 +72,7 @@ int ferapontov::readNumber(std::string& line, int& err)
     std::string::iterator it = line.begin();
     if (*it == '+' || *it == '-' || isdigit(*it))
     {
-      it = std::find_if_not(line.begin() + 1, line.end(), isNumber());
+      it = std::find_if_not(line.begin() + 1, line.end(), ::isdigit);
       number.insert(number.begin(), line.begin(), it);
       line.erase(line.begin(), it);
       return std::stoi(number);

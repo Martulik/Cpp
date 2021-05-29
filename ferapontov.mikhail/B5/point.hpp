@@ -23,11 +23,6 @@ namespace ferapontov
   {
     bool operator()(char a);
   };
-
-  struct isNumber
-  {
-    bool operator()(char a);
-  };
 }
 
 #endif

@@ -7,11 +7,6 @@ bool ferapontov::noWs::operator()(char a)
   return a == ' ';
 }
 
-bool ferapontov::isNumber::operator()(char a)
-{
-  return isdigit(a);
-}
-
 std::istream& ferapontov::operator>>(std::istream& in, Point& point)
 {
   std::istream::sentry sentry(in);

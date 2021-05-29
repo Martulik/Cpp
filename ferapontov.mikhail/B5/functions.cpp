@@ -15,7 +15,7 @@ ferapontov::Point ferapontov::getVertex(const Shape& shp)
 
 void ferapontov::sortShapes(std::vector< Shape >& shapes)
 {
-  auto it1 = std::partition(shapes.begin(), shapes.end(), isTriangle);
-  auto it2 = std::partition(it1, shapes.end(), isSquare);
+  std::vector< Shape >::iterator it1 = std::partition(shapes.begin(), shapes.end(), isTriangle);
+  std::vector< Shape >::iterator it2 = std::partition(it1, shapes.end(), isSquare);
   std::partition(it2, shapes.end(), isRectangle);
 }

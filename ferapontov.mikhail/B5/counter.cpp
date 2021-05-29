@@ -1,5 +1,5 @@
 #include "counter.hpp"
-#include "ostream"
+#include <ostream>
 
 void ferapontov::Counter::operator()(const Shape& shp)
 {

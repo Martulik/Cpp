@@ -1,11 +1,11 @@
 #ifndef TASKS_HPP
 #define TASKS_HPP
 
-#include <string>
+#include <iostream>
 
 namespace pozdnyakov
 {
-  void task1(std::string fileName);
+  void task1(std::istream& in, std::ostream& out);
   void task2();
 }
 

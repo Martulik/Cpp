@@ -20,12 +20,12 @@ namespace ferapontov
 
   struct skipWs
   {
-    bool operator()(const char& a);
+    bool operator()(char a);
   };
 
   struct isNumber
   {
-    bool operator()(const char& a);
+    bool operator()(char a);
   };
 }
 

@@ -2,12 +2,12 @@
 #include <iostream>
 #include <algorithm>
 
-bool ferapontov::skipWs::operator()(const char& a)
+bool ferapontov::skipWs::operator()(char a)
 {
   return a == ' ';
 }
 
-bool ferapontov::isNumber::operator()(const char& a)
+bool ferapontov::isNumber::operator()(char a)
 {
   return isdigit(a);
 }
@@ -21,12 +21,13 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     std::getline(in, line, ')');
     int err = 0;
     checkDelim(line, '(', err);
-    int x = readNumber(line, err);
+    int x = readNumber(line, err);;
     checkDelim(line, ';', err);
     int y = readNumber(line, err);
+
     std::string::iterator it = std::find_if_not(line.begin(), line.end(), skipWs());
-    it = line.erase(line.begin(), it);
-    if (it != line.end())
+    line.erase(line.begin(), it);
+    if (it != line.begin())
     {
       err = 1;
     }

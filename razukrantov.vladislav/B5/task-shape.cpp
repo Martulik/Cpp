@@ -1,6 +1,3 @@
-#ifndef TASKS_HPP
-#define TASKS_HPP
-
 #include "tasks.hpp"
 
 #include <iostream>
@@ -21,7 +18,14 @@ void razukrantov::shapeTask(std::istream& in, std::ostream& out)
   unsigned int squares = std::count_if(shapes.begin(), shapes.end(), razukrantov::isSquare);
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), razukrantov::isPentagon), shapes.end());
   std::vector< Point > points;
-  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), )
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(points), razukrantov::getFrontPoint);
+  std::sort(shapes.begin(), shapes.end());
+  out << "Vertices: " << vertices << "\n";
+  out << "Triangles: " << triangles << "\n";
+  out << "Squares: " << squares << "\n";
+  out << "Rectangles: " << rectangles << "\n";
+  out << "Points: ";
+  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
+  out << "\n" << "Shapes: \n";
+  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }
-
-#endif

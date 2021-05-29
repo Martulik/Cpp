@@ -25,7 +25,7 @@ unsigned int razukrantov::sumVertices(unsigned int sum, const Shape& shape)
   return sum + shape.size();
 }
 
-Point razukrantov::getFrontPoint(const Shape& shape)
+razukrantov::Point razukrantov::getFrontPoint(const Shape& shape)
 {
   return shape.front();
 }

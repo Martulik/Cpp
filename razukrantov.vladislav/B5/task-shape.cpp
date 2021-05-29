@@ -4,6 +4,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <iterator>
 
 #include "functions.hpp"
 #include "shape.hpp"

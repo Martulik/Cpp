@@ -26,8 +26,8 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     int y = readNumber(line, err);
 
     std::string::iterator it = std::find_if_not(line.begin(), line.end(), skipWs());
-    line.erase(line.begin(), it);
-    if (it != line.begin())
+    it = line.erase(line.begin(), it);
+    if (it != line.end())
     {
       err = 1;
     }

@@ -1,9 +1,6 @@
 #include "point.hpp"
 
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <functional>
 
 std::ostream& razukrantov::operator<<(std::ostream& out, const Point& point)
 {

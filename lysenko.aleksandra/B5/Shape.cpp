@@ -9,7 +9,7 @@
 
 namespace lysenko
 {
-  void checkCorrectDelimiter(std::istream& in, const char& expected)
+  std::istream& checkCorrectDelimiter(std::istream& in, const char& expected)
   {
     char delimiter;
     in >> delimiter;
@@ -17,6 +17,7 @@ namespace lysenko
     {
       throw std::invalid_argument("Incorrect format point");
     }
+    return in;
   }
 }
 

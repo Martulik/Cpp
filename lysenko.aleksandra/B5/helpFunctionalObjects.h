@@ -21,7 +21,7 @@ namespace lysenko
 
   struct checkIfAppropriateShape
   {
-    void operator()(std::vector< int > numb, const lysenko::Shape& obj)
+    void operator()(std::vector< int >& numb, const lysenko::Shape& obj)
     {
       if (lysenko::isTriangle(obj))
       {
@@ -44,5 +44,14 @@ namespace lysenko
   };
 
   void deletePentagons(std::vector< Shape >& vect, const lysenko::Shape& obj);
+
+  struct addPoint
+  {
+    std::vector< Point > operator()(std::vector< Point >& points, const lysenko::Shape& obj)
+    {
+      points.insert(points.end(),obj[0]);
+      return points;
+    }
+  };
 }
 #endif

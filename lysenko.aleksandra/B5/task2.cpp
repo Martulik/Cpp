@@ -26,4 +26,6 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   std::for_each(firstSh, lastSh, std::bind(lab::checkIfAppropriateShape(), numberOfTrianglesSquaresAndRectangles, _1));
 
   std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons, myShapes, _1));
+
+  std::vector< Point >firstPoitsofFigures = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
 }

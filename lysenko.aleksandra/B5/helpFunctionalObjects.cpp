@@ -76,7 +76,6 @@ bool lysenko::isRectangle(const lysenko::Shape& obj) noexcept
   return 0;
 }
 
-
 bool lysenko::isSquare(const lysenko::Shape& obj) noexcept
 {
   if (isRectangle(obj))

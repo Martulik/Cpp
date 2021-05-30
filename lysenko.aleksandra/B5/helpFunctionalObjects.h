@@ -8,9 +8,9 @@
 
 namespace lysenko
 {
-  bool isTriangle(const Shape& obj) noexcept;
-  bool isRectangle(const Shape& obj) noexcept;
-  bool isSquare(const Shape& obj) noexcept;
+  bool isTriangle(const Shape& obj);
+  bool isRectangle(const Shape& obj);
+  bool isSquare(const Shape& obj);
 
   struct getNumberOfVerticals
   {

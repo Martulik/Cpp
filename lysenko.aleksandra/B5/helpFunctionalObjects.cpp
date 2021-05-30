@@ -38,7 +38,7 @@ namespace lysenko
   }
 }
 
-bool lysenko::isTriangle(const lysenko::Shape& obj) noexcept
+bool lysenko::isTriangle(const lysenko::Shape& obj)
 {
   if (obj.size() == 3)
   {
@@ -61,7 +61,7 @@ bool lysenko::isTriangle(const lysenko::Shape& obj) noexcept
   return 0;
 }
 
-bool lysenko::isRectangle(const lysenko::Shape& obj) noexcept
+bool lysenko::isRectangle(const lysenko::Shape& obj)
 {
   if (obj.size() == 4)
   {
@@ -77,7 +77,7 @@ bool lysenko::isRectangle(const lysenko::Shape& obj) noexcept
   return 0;
 }
 
-bool lysenko::isSquare(const lysenko::Shape& obj) noexcept
+bool lysenko::isSquare(const lysenko::Shape& obj)
 {
   if (isRectangle(obj))
   {

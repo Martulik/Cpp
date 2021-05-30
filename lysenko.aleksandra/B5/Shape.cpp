@@ -48,7 +48,7 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
 
 std::ostream& lysenko::operator<<(std::ostream& out, const lysenko::Point& point)
 {
-  out << '(' << point.x << '; ' << point.y << ')';
+  out << '(' << point.x << "; " << point.y << ')';
   return out;
 }
 std::ostream& lysenko::operator<<(std::ostream& out, const Shape& Shape)

@@ -24,7 +24,7 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   out << "Verticles: " << numberOfVerticles << "\n";
 
   std::vector< int > numberOfTrianglesSquaresAndRectangles(3);
-  std::for_each(firstSh, lastSh, std::bind(lab::checkIfAppropriateShape(), numberOfTrianglesSquaresAndRectangles, _1));
+  std::for_each(firstSh, lastSh, std::bind(lab::checkIfAppropriateShape, numberOfTrianglesSquaresAndRectangles, _1));
   out << "Triangles: " << numberOfTrianglesSquaresAndRectangles[0] << "\n";
   out << "Squares: " << numberOfTrianglesSquaresAndRectangles[1] << "\n";
   out << "Rectangles: " << numberOfTrianglesSquaresAndRectangles[2] << "\n";

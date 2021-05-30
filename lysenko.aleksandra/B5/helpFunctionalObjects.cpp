@@ -88,6 +88,27 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
   return 0;
 }
 
+void lysenko::checkIfAppropriateShape(std::vector< int >& numb, const lysenko::Shape& obj)
+{
+  if (lysenko::isTriangle(obj))
+  {
+    numb[0]++;
+    return;
+  }
+
+  if (lysenko::isSquare(obj))
+  {
+    numb[1]++;
+    numb[2]++;
+    return;
+  }
+
+  if (lysenko::isRectangle(obj))
+  {
+    numb[2]++;
+  }
+}
+
 void lysenko::deletePentagons(std::vector< Shape >& vect, const Shape& obj)
 {
   if (obj.size() == 5)

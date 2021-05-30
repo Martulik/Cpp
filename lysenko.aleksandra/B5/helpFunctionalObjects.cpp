@@ -92,20 +92,20 @@ void lysenko::checkIfAppropriateShape(std::vector< int >& numb, const lysenko::S
 {
   if (lysenko::isTriangle(obj))
   {
-    numb[0]++;
+    numb[0]+=1;
     return;
   }
 
   if (lysenko::isSquare(obj))
   {
-    numb[1]++;
-    numb[2]++;
+    numb[1]+=1;
+    numb[2]+=1;
     return;
   }
 
   if (lysenko::isRectangle(obj))
   {
-    numb[2]++;
+    numb[2]+=1;
   }
 }
 

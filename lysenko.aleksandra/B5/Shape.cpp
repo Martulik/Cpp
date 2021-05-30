@@ -46,6 +46,12 @@ std::ostream& lysenko::operator<<(std::ostream& out, const lysenko::Point& point
   out << '(' << point.x << ';' << point.y << ')';
   return out;
 }
+std::ostream& lysenko::operator<<(std::ostream& out, const Shape& Shape)
+{
+  out << Shape.size() << " ";
+  std::copy(Shape.begin(), Shape.end(), std::ostream_iterator< lysenko::Point >(out, " "));
+  return out;
+}
 
 std::istream& lysenko::operator>>(std::istream& in, lysenko::Point& point)
 {

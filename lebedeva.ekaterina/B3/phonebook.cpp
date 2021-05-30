@@ -15,6 +15,11 @@ bool lebedeva::PhoneBook::empty() const
   return data_.empty();
 }
 
+size_t lebedeva::PhoneBook::size() const
+{
+  return data_.size();
+}
+
 void lebedeva::PhoneBook::insertBefore(constIter iter, const record_t& rec)
 {
   data_.insert(iter, rec);

@@ -13,6 +13,7 @@ namespace lebedeva
     constIter begin() const;
     constIter end() const;
     bool empty() const;
+    size_t size() const;
 
     void insertBefore(constIter iter, const record_t& rec);
     void insertAfter(constIter iter, const record_t& rec);

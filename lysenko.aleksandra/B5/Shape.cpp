@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <functional>
 #include <iterator>
+#include <string>
 
 namespace lysenko
 {
@@ -21,23 +22,24 @@ namespace lysenko
 
 std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
 {
-  size_t numberOfVerticles;
+  std::string numberOfVerticles;
 
   in >> std::ws;
-  in >> numberOfVerticles;
+  getline(in,numberOfVerticles);
 
-  if (in.fail())
+  if (numberOfVerticles.empty())
   {
-    throw std::invalid_argument("Incorrect format of number of verticles");
+    return in;
   }
 
-  if (numberOfVerticles == 0)
+  int realNumber = std::stoi(numberOfVerticles);
+  if (realNumber == 0)
   {
     throw std::invalid_argument("Incorrect number of verticles");
   }
 
   std::vector< lysenko::Point > verticles;
-  std::copy_n(std::istream_iterator< Point >(in), numberOfVerticles, std::back_inserter(verticles));
+  std::copy_n(std::istream_iterator< Point >(in), realNumber, std::back_inserter(verticles));
 
   std::swap(Shape, verticles);
   return in;

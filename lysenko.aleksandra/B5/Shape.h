@@ -14,6 +14,8 @@ namespace lysenko
 
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Point& point);
+  bool operator<(const Point& point1, const Point& point2);
+  bool operator==(const Point& point1, const Point& point2);
 
   using Shape = std::vector< Point >;
   std::istream& operator>>(std::istream& in, Shape& Shape);

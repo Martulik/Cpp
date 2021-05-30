@@ -2,7 +2,7 @@
 #define HELP_FUNCTIONAL_OBJECTS_H
 
 #include <vector>
-#include <functional> 
+#include <functional>
 
 #include "Shape.h"
 

@@ -8,7 +8,7 @@ namespace lysenko
 {
   static int getDeltaFromFirstPoint(bool abscissa, const lysenko::Shape& obj, size_t pointNumber)
   {
-    if ( pointNumber < obj.size())
+    if (pointNumber < obj.size())
     {
       if (abscissa)
       {
@@ -51,7 +51,7 @@ bool lysenko::isTriangle(const lysenko::Shape& obj) noexcept
     int deltaX2 = getDeltaFromFirstPoint(1, obj, 2);
     int deltaX1 = getDeltaFromFirstPoint(1, obj, 1);
 
-    if ((deltaY1 == 0)||(deltaX1 == 0))
+    if ((deltaY1 == 0) || (deltaX1 == 0))
     {
       return ((deltaY2 != 0) && (deltaX2 != 0));
     }
@@ -68,10 +68,10 @@ bool lysenko::isRectangle(const lysenko::Shape& obj) noexcept
     {
       return 1;
     }
-  
+
     std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
- 
-    return (distances[3] == std::sqrt(std::pow(distances[0], 2)+ std::pow(distances[1], 2)));
+
+    return (distances[3] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
   }
   return 0;
 }
@@ -86,4 +86,12 @@ bool lysenko::isSquare(const lysenko::Shape& obj) noexcept
     return (distances[0] == distances[1]);
   }
   return 0;
+}
+
+void lysenko::deletePentagons(std::vector< Shape >& vect, const lysenko::Shape& obj)
+{
+  if (obj.size() == 5)
+  {
+    vect.erase(std::find(vect.begin(), vect.end(), obj));
+  }
 }

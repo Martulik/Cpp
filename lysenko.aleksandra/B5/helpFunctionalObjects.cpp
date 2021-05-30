@@ -3,6 +3,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <functional>
 
 namespace lysenko
 {
@@ -87,10 +88,18 @@ bool lysenko::isSquare(const lysenko::Shape& obj) noexcept
   return 0;
 }
 
-void lysenko::deletePentagons(std::vector< Shape >& vect, const lysenko::Shape& obj)
+void lysenko::deletePentagons(std::vector< Shape >& vect, const Shape& obj)
 {
   if (obj.size() == 5)
   {
     vect.erase(std::find(vect.begin(), vect.end(), obj));
+  }
+}
+
+void lysenko::doSort(std::vector< Shape >& myShp, const Shape& obj, bool (*sortType)(const Shape&))
+{
+  if (sortType(obj))
+  {
+    myShp.insert(myShp.end(), obj);
   }
 }

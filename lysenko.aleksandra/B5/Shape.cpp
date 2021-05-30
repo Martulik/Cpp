@@ -22,6 +22,8 @@ namespace lysenko
 std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
 {
   size_t numberOfVerticles;
+
+  in >> std::ws;
   in >> numberOfVerticles;
 
   if (in.fail())
@@ -67,8 +69,10 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Point& point)
   }
   point.x = number;
 
+  in >> std::ws;
   checkCorrectDelimiter(in, ';');
 
+  in >> std::ws;
   in >> number;
   if (in.fail())
   {
@@ -76,6 +80,7 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Point& point)
   }
   point.y = number;
 
+  in >> std::ws;
   checkCorrectDelimiter(in, ')');
 
   return in;

@@ -26,7 +26,7 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
   std::string numberOfVerticles;
 
   in >> std::ws;
-  getline(in,numberOfVerticles);
+  getline(in,numberOfVerticles,' ');
 
   if (numberOfVerticles.empty())
   {
@@ -60,7 +60,6 @@ std::ostream& lysenko::operator<<(std::ostream& out, const Shape& Shape)
 
 std::istream& lysenko::operator>>(std::istream& in, lysenko::Point& point)
 {
-  in >> std::ws;
   int number;
 
   checkCorrectDelimiter(in, '(');

@@ -70,13 +70,20 @@ void lebedeva::Interface::deleteRec(const std::string& markName)
           }
         }
       );
-      book_.deleteRec(del);
     }
     else
     {
-      book_.deleteRec(del);
-      bookmarks_["current"] = book_.begin();
+      std::for_each(bookmarks_.begin(), bookmarks_.end(),
+        [del, this](BookmarkMap::value_type& bookmark)
+        {
+          if (bookmark.second == del)
+          {
+            bookmark.second = book_.end();
+          }
+        }
+      );
     }
+    book_.deleteRec(del);
   }
 }
 

@@ -4,33 +4,20 @@
 
 bool lebedeva::isNumber(const std::string& str)
 {
-  bool bResult = false;
-  if (str.length() >= 1)
+  std::string::const_iterator it = str.begin();
+  if (str.length() > 1)
   {
-    std::string::const_iterator it = str.begin();
-    if (str.length() > 1)
+    if ((*it == '+') || (*it == '-'))
     {
-      if ((*it == '+') || (*it == '-'))
-      {
-        it++;
-      }
-    }
-    if (std::all_of(it, str.end(), ::isdigit))
-    {
-      bResult = true;
+      it++;
     }
   }
-  return bResult;
+  return (std::all_of(it, str.end(), ::isdigit));
 }
 
 bool lebedeva::isAcceplable(int key)
 {
-  bool bResult = false;
-  if ((key > -6) && (key < 6))
-  {
-    bResult = true;
-  }
-  return bResult;
+  return ((key > -6) && (key < 6));
 }
 
 void lebedeva::print(std::vector< DataStruct > data, std::ostream& out)

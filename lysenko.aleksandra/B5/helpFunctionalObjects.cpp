@@ -40,9 +40,9 @@ namespace lysenko
 
 bool lysenko::isTriangle(const lysenko::Shape& obj)
 {
-  if (obj.size() == 3)
-  {
-    if ((obj[0] == obj[1]) && (obj[0] == obj[2]))
+  return  (obj.size() == 3);
+  
+    /*if ((obj[0] == obj[1]) && (obj[0] == obj[2]))
     {
       return 1;
     }
@@ -62,9 +62,7 @@ bool lysenko::isTriangle(const lysenko::Shape& obj)
       return !(deltaX2 == 0);
     }
 
-    return (!((deltaY2 / deltaY1) == (deltaX2 / deltaX1)));
-  }
-  return 0;
+    return (!((deltaY2 / deltaY1) == (deltaX2 / deltaX1)));*/
 }
 
 bool lysenko::isRectangle(const lysenko::Shape& obj)

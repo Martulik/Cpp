@@ -20,30 +20,6 @@ namespace lysenko
     }
   };
 
-  //struct checkIfIsTriangle
-  //{
-  //  bool operator()(const Shape& obj)
-  //  {
-  //    return isTriangle(obj);
-  //  }
-  //};
-
-  //struct checkIfIsSquare
-  //{
-  //  bool operator()(const Shape& obj)
-  //  {
-  //    return isSquare(obj);
-  //  }
-  //};
-
-  //struct checkIfIsRectangle
-  //{
-  //  bool operator()(const Shape& obj)
-  //  {
-  //    return isRectangle(obj);
-  //  }
-  //};
-
   struct deletePentagons
   {
     void operator()(std::vector< Shape >& vect, const Shape& obj)

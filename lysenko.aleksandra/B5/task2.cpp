@@ -34,7 +34,7 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons(), myShapesWithoutPolentagon, _1));
   std::swap(myShapesWithoutPolentagon, myShapes);
 
-  std::vector< Point >firstPoitsofShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
+  std::vector< Point > firstPoitsofShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
   out << "Points: ";
   std::copy(firstPoitsofShapes.begin(), firstPoitsofShapes.end(), std::ostream_iterator< lysenko::Point >(out, " "));
   out << "\n";

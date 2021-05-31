@@ -26,8 +26,13 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
   std::string numberOfVertices;
 
   in >> std::ws;
-  getline(in,numberOfVertices,' ');
 
+  getline(in, numberOfVertices, ' ');
+
+  if (numberOfVertices[numberOfVertices.size()-1] =='\n')
+  {
+    throw std::invalid_argument("Incorrect format of input");
+  }
   if (numberOfVertices.empty())
   {
     return in;
@@ -92,7 +97,7 @@ bool lysenko::operator<(const Point& point1, const Point& point2)
 {
   if (point1.y <= point2.y)
   {
-    return (point1.x < point2.y);
+    return (point1.x < point2.x);
   }
   return 0;
 }

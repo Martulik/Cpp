@@ -20,9 +20,40 @@ namespace lysenko
     }
   };
 
-  void checkIfAppropriateShape(std::vector< int >& numb, const lysenko::Shape& obj);
+  struct checkIfAppropriateShape
+  {
+    void operator()(std::vector< int >& numb, const lysenko::Shape& obj)
+    {
+      if (isTriangle(obj))
+      {
+        numb[0] += 1;
+        return;
+      }
 
-  void deletePentagons(std::vector< Shape >& vect, const Shape& obj);
+      if (isSquare(obj))
+      {
+        numb[1] += 1;
+        numb[2] += 1;
+        return;
+      }
+
+      if (isRectangle(obj))
+      {
+        numb[2] += 1;
+      }
+    }
+  };
+
+  struct deletePentagons
+  {
+    void operator()(std::vector< Shape >& vect, const Shape& obj)
+    {
+      if (obj.size() == 5)
+      {
+        vect.erase(std::find(vect.begin(), vect.end(), obj));
+      }
+    }
+  };
 
   struct addPoint
   {
@@ -33,6 +64,16 @@ namespace lysenko
     }
   };
 
-  void doSort(std::vector< Shape >& myShp, const Shape& obj, bool (*sortType)(const Shape&));
+  struct doSort
+  {
+    void operator()(std::vector< Shape >& myShp, const Shape& obj, bool (*sortType)(const Shape&))
+    {
+      if (sortType(obj))
+      {
+        myShp.insert(myShp.end(), obj);
+      }
+    }
+  };
 }
+
 #endif

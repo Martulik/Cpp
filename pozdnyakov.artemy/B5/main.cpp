@@ -18,6 +18,10 @@ int main(int argc, char* argv[])
     {
       poz::task1(std::cin, std::cout);
     }
+    else if (argc == 2 && taskNumber == 2)
+    {
+      poz::task2(std::cin, std::cout);
+    }
     else
     {
       throw std::invalid_argument("Invalid parameter");

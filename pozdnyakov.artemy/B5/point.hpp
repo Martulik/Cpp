@@ -9,7 +9,6 @@ namespace pozdnyakov
   {
     int x, y;
   };
-
   using Shape = std::vector< Point >;
 }
 

@@ -6,21 +6,20 @@
 
 namespace pozdnyakov
 {
-  extern const int PRECISON = 10000;
-  using Vectors = std::vector< GeoVector >;
-  using VectorPairs = std::vector< std::pair< GeoVector, GeoVector > >;
+  const int PRECISION = 10000;
   struct GeoVector
   {
     int i, j;
   };
-  GeoVector makeGeoVector(Point& p1, Point& p2);
-  void makeVectorCombinations(Shape& shape, Shape::const_iterator& it, Vectors& out);
-  VectorPairs getCollinear(Shape& shape);
-  void vectorInserter(Point& p1, Point& p2, Vectors& vectors);
-  void collPred(GeoVector& vector1, GeoVector& vector2, VectorPairs& vectors);
-  int getModule(GeoVector& vector);
-  bool isPerp(GeoVector& vector1, GeoVector& vector2);
-  bool isCollinear(GeoVector& vector1, GeoVector& vector2);
+  using Vectors = std::vector< GeoVector >;
+  using VectorPairs = std::vector< std::pair< GeoVector, GeoVector > >;
+  GeoVector makeGeoVector(const Point& p1, const Point& p2);
+  VectorPairs getCollinear(const Shape& shape);
+  void vectorInserter(const Point& p1, const Point& p2, Vectors& vectors);
+  void collPred(const GeoVector& vector1, const GeoVector& vector2, VectorPairs& vectors);
+  int getModule(const GeoVector& vector);
+  bool isPerp(const GeoVector& vector1, const GeoVector& vector2);
+  bool isCollinear(const GeoVector& vector1, const GeoVector& vector2);
 }
 
 #endif

@@ -52,9 +52,13 @@ bool lysenko::isTriangle(const lysenko::Shape& obj)
     int deltaX2 = getDeltaFromFirstPoint(1, obj, 2);
     int deltaX1 = getDeltaFromFirstPoint(1, obj, 1);
 
-    if ((deltaY1 == 0) || (deltaX1 == 0))
+    if (deltaY1 == 0)
     {
-      return ((deltaY2 != 0) && (deltaX2 != 0));
+      return (deltaY2 == 0);
+    }
+    if (deltaX1 == 0)
+    {
+      return (deltaX2 == 0);
     }
     return (!((deltaY2 / deltaY1) == (deltaX2 / deltaX1)));
   }
@@ -72,7 +76,7 @@ bool lysenko::isRectangle(const lysenko::Shape& obj)
 
     std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
 
-    return (distances[3] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
+    return (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
   }
   return 0;
 }

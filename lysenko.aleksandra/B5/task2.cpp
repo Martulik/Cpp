@@ -23,7 +23,7 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   size_t numberOfVertices = std::accumulate(firstSh, lastSh, 0, numberOfVerticesForOneShape);
   out << "Vertices: " << numberOfVertices << "\n";
 
-  int numberOfTriangles =  std::count_if(firstSh,lastSh,checkIfIsTriangle());
+  int numberOfTriangles =  std::count_if(firstSh, lastSh, checkIfIsTriangle());
   out << "Triangles: " << numberOfTriangles << "\n";
   int numberOfSquares = std::count_if(firstSh, lastSh, checkIfIsSquare());
   out << "Squares: " << numberOfSquares << "\n";

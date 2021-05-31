@@ -41,28 +41,6 @@ namespace lysenko
 bool lysenko::isTriangle(const lysenko::Shape& obj)
 {
   return  (obj.size() == 3);
-  
-    /*if ((obj[0] == obj[1]) && (obj[0] == obj[2]))
-    {
-      return 1;
-    }
-
-    int deltaY2 = getDeltaFromFirstPoint(0, obj, 2);
-    int deltaY1 = getDeltaFromFirstPoint(0, obj, 1);
-    int deltaX2 = getDeltaFromFirstPoint(1, obj, 2);
-    int deltaX1 = getDeltaFromFirstPoint(1, obj, 1);
-
-    if (deltaY1 == 0)
-    {
-      return !(deltaY2 == 0);
-    }
-
-    if (deltaX1 == 0)
-    {
-      return !(deltaX2 == 0);
-    }
-
-    return (!((deltaY2 / deltaY1) == (deltaX2 / deltaX1)));*/
 }
 
 bool lysenko::isRectangle(const lysenko::Shape& obj)

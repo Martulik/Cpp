@@ -23,26 +23,26 @@ namespace lysenko
 
 std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
 {
-  std::string numberOfVerticles;
+  std::string numberOfVertices;
 
   in >> std::ws;
-  getline(in,numberOfVerticles,' ');
+  getline(in,numberOfVertices,' ');
 
-  if (numberOfVerticles.empty())
+  if (numberOfVertices.empty())
   {
     return in;
   }
 
-  int realNumber = std::stoi(numberOfVerticles);
+  int realNumber = std::stoi(numberOfVertices);
   if (realNumber == 0)
   {
     throw std::invalid_argument("Incorrect number of verticles");
   }
 
-  std::vector< lysenko::Point > verticles;
-  std::copy_n(std::istream_iterator< Point >(in), realNumber, std::back_inserter(verticles));
+  std::vector< lysenko::Point > vertices;
+  std::copy_n(std::istream_iterator< Point >(in), realNumber, std::back_inserter(vertices));
 
-  std::swap(Shape, verticles);
+  std::swap(Shape, vertices);
   return in;
 }
 

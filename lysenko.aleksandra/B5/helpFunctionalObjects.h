@@ -22,7 +22,7 @@ namespace lysenko
 
   struct checkIfAppropriateShape
   {
-    void operator()(std::vector< int >& numb, const lysenko::Shape& obj)
+    void operator()(std::vector< int >& numb, lysenko::Shape obj)
     {
       if (isTriangle(obj))
       {

@@ -20,16 +20,7 @@ namespace lysenko
     }
   };
 
-  struct deletePentagons
-  {
-    void operator()(std::vector< Shape >& vect, const Shape& obj)
-    {
-      if (obj.size() != 5)
-      {
-        vect.push_back(obj);
-      }
-    }
-  };
+  void deletePentagons(std::vector< Shape >& vect, const lysenko::Shape& obj);
 
   struct addPoint
   {
@@ -40,7 +31,7 @@ namespace lysenko
     }
   };
 
-  struct doSort
+ /* struct doSort
   {
     void operator()(std::vector< Shape >& myShp, const Shape& obj, bool (*sortType)(const Shape&))
     {
@@ -49,7 +40,7 @@ namespace lysenko
         myShp.push_back(obj);
       }
     }
-  };
+  };*/
 }
 
 #endif

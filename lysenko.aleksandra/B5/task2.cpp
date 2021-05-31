@@ -31,7 +31,7 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   out << "Rectangles: " << numberOfRectangles<< "\n";
 
   std::vector< Shape > myShapesWithoutPolentagon;
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons(), myShapesWithoutPolentagon, _1));
+  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons, myShapesWithoutPolentagon, _1));
   std::swap(myShapesWithoutPolentagon, myShapes);
 
   std::vector< Point > firstPoitsofShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
@@ -41,9 +41,9 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
 
   std::vector< Shape > sortedOne;
   out << "Shapes:" << "\n";
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isTriangle));
+  /*std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isTriangle));
   std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isSquare));
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isRectangle));
+  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isRectangle));*/
   //вставка в вектор фигур, которых там нет
   std::swap(sortedOne, myShapes);
   std::copy(myShapes.begin(), myShapes.end(), std::ostream_iterator< Shape >(out, "\n"));

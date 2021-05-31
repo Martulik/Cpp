@@ -37,7 +37,6 @@ BOOST_AUTO_TEST_CASE(emptyInterface)
 BOOST_AUTO_TEST_CASE(oneElementInterface)
 {
   std::unique_ptr< lebedeva::Interface > obj = lebedeva::makeEmptyInterface();
-  BOOST_CHECK_EQUAL(obj->empty(), true);
   lebedeva::addRec(obj);
   BOOST_CHECK(obj->begin() != obj->end());
   BOOST_CHECK_EQUAL(obj->empty(), false);
@@ -53,9 +52,7 @@ BOOST_AUTO_TEST_CASE(oneElementInterface)
 BOOST_AUTO_TEST_CASE(twoElementsInterface)
 {
   std::unique_ptr< lebedeva::Interface > obj = lebedeva::makeEmptyInterface();
-  BOOST_CHECK_EQUAL(obj->empty(), true);
   lebedeva::addRec(obj);
-  BOOST_CHECK(obj->begin() != obj->end());
   lebedeva::addRec(obj);
   BOOST_CHECK_EQUAL(lebedeva::storeRec(obj), true);
   BOOST_CHECK_EQUAL(lebedeva::storeRec(obj), true);
@@ -74,9 +71,7 @@ BOOST_AUTO_TEST_CASE(twoElementsInterface)
 BOOST_AUTO_TEST_CASE(threeElementsInterface)
 {
   std::unique_ptr< lebedeva::Interface > obj = lebedeva::makeEmptyInterface();
-  BOOST_CHECK_EQUAL(obj->empty(), true);
   lebedeva::addRec(obj);
-  BOOST_CHECK(obj->begin() != obj->end());
   BOOST_CHECK_EQUAL(lebedeva::storeRec(obj), true);
   BOOST_CHECK_EQUAL(lebedeva::insertRec(obj), true);
   BOOST_CHECK_EQUAL(lebedeva::storeRec(obj), true);

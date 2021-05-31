@@ -146,7 +146,7 @@ Accepted Labs
 |-----------------------|----|----|----|----|----|----|
 | Almuhidat Ahmad       | ✓  |    |    |    |    |    |
 | Arteev Danil          | ✓  |    |    |    |    |    |
-| Borisova Ekaterina    | ✓  | ✓  | ✓  | ✓  | ✓  |    |
+| Borisova Ekaterina    | ✓  | ✓  | ✓  | ✓  | ✓  | ✓  |
 | Diurdeva Dasha        | ✓  | ✓  | ✓  | ✓  | ✓  | ✓  |
 | Doroshin Danil        | ✓  | ✓  | ✓  | ✓  | ✓  | ✓  |
 | Dushechkina Viktoria  | ✓  | ✓  | ✓  | ✓  | ✓  |    |
@@ -165,4 +165,4 @@ Accepted Labs
 | Shilyaev Vladislav    | ✓  | ✓  | ✓  | ✓  | ✓  | ✓  |
 | Shkurov Igor          | ✓  | ✓  | ✓  | ✓  | ✓  |    |
 | Yarovoy Vadim         | ✓  |    |    |    |    |    |
-| __Total__             |  21|  17|  17|  15|  15|   7|
+| __Total__             |  21|  17|  17|  15|  15|   8|

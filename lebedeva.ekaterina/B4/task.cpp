@@ -19,6 +19,5 @@ void lebedeva::doTask1(std::istream& in, std::ostream& out)
   {
     std::sort(data.begin(), data.end());
   }
-  std::ostream_iterator< DataStruct > output(out, "\n");
-  std::copy(data.begin(), data.end(), output);
+  print(data, out);
 }

@@ -19,16 +19,12 @@ namespace lysenko
       return obj.size();
     }
   };
-
-  struct deletePentagons
+  struct isPentagon
   {
-    void operator()(std::vector< Shape >& vect, const Shape& obj)
+    bool operator()(const lysenko::Shape& obj) const
     {
       size_t sizeOfPentagon = 5;
-      if (obj.size() == sizeOfPentagon)
-      {
-        vect.erase(std::find(vect.begin(), vect.end(), obj));
-      }
+      return (obj.size()==sizeOfPentagon);
     }
   };
 

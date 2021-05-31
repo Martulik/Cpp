@@ -6,7 +6,7 @@
 
 namespace lebedeva
 {
-  bool isNumber(std::string& str);
+  bool isNumber(const std::string& str);
   bool isAcceplable(int key);
   void print(std::vector< DataStruct > data, std::ostream& out);
 }

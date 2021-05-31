@@ -1,20 +1,23 @@
 #include "functions.hpp"
 #include <iostream>
+#include <algorithm>
 
-bool lebedeva::isNumber(std::string& str)
+bool lebedeva::isNumber(const std::string& str)
 {
-  bool bResult = true;
-  size_t iter = 0;
-  if (str[0] == '+' || str[0] == '-')
+  bool bResult = false;
+  if (str.length() >= 1)
   {
-    iter++;
-  }
-  for (size_t i = iter; i < str.length(); i++)
-  {
-    if (!std::isdigit(str[i]))
+    std::string::const_iterator it = str.begin();
+    if (str.length() > 1)
     {
-      bResult = false;
-      break;
+      if ((*it == '+') || (*it == '-'))
+      {
+        it++;
+      }
+    }
+    if (std::all_of(it, str.end(), ::isdigit))
+    {
+      bResult = true;
     }
   }
   return bResult;
@@ -32,8 +35,10 @@ bool lebedeva::isAcceplable(int key)
 
 void lebedeva::print(std::vector< DataStruct > data, std::ostream& out)
 {
-  for (size_t i = 0; i < data.size(); i++)
-  {
-    out << data[i];
-  }
+  std::for_each(data.begin(), data.end(),
+    [&](DataStruct& src)
+    {
+      out << src;
+    }
+  );
 }

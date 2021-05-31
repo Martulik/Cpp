@@ -27,7 +27,7 @@ std::istream& lebedeva::operator>>(std::istream& in, DataStruct& data)
       if (!input.fail() && !key2.empty() && isNumber(key2))
       {
         data.key2 = std::stoi(key2);
-        std::getline(input, data.str);
+        std::getline(input >> std::ws, data.str);
         if (input.fail() || !isAcceplable(data.key1) || !isAcceplable(data.key2))
         {
           in.setstate(std::ios::failbit);

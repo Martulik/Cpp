@@ -23,11 +23,12 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   size_t numberOfVertices = std::accumulate(firstSh, lastSh, 0, numberOfVerticesForOneShape);
   out << "Vertices: " << numberOfVertices << "\n";
 
-  std::vector< int > numberOfTrianglesSquaresAndRectangles(3);
-  std::for_each(firstSh, lastSh, std::bind(lab::checkIfAppropriateShape(), numberOfTrianglesSquaresAndRectangles, _1));
-  out << "Triangles: " << numberOfTrianglesSquaresAndRectangles[0] << "\n";
-  out << "Squares: " << numberOfTrianglesSquaresAndRectangles[1] << "\n";
-  out << "Rectangles: " << numberOfTrianglesSquaresAndRectangles[2] << "\n";
+  int numberOfTriangles =  std::count_if(firstSh,lastSh,checkIfIsTriangle());
+  out << "Triangles: " << numberOfTriangles << "\n";
+  int numberOfSquares = std::count_if(firstSh, lastSh, checkIfIsSquare());
+  out << "Squares: " << numberOfSquares << "\n";
+  int numberOfRectangles = std::count_if(firstSh, lastSh, checkIfIsRectangle());
+  out << "Rectangles: " << numberOfRectangles<< "\n";
 
   std::vector< Shape > myShapesWithoutPolentagon;
   std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons(), myShapesWithoutPolentagon, _1));

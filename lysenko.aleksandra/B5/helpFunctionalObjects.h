@@ -20,27 +20,27 @@ namespace lysenko
     }
   };
 
-  struct checkIfAppropriateShape
+  struct checkIfIsTriangle
   {
-    void operator()(std::vector< int >& numb, lysenko::Shape obj)
+    bool operator()(const Shape& obj)
     {
-      if (isTriangle(obj))
-      {
-        numb[0] += 1;
-        return;
-      }
+      return isTriangle(obj);
+    }
+  };
 
-      if (isSquare(obj))
-      {
-        numb[1] += 1;
-        numb[2] += 1;
-        return;
-      }
+  struct checkIfIsSquare
+  {
+    bool operator()(const Shape& obj)
+    {
+      return isSquare(obj);
+    }
+  };
 
-      if (isRectangle(obj))
-      {
-        numb[2] += 1;
-      }
+  struct checkIfIsRectangle
+  {
+    bool operator()(const Shape& obj)
+    {
+      return isRectangle(obj);
     }
   };
 

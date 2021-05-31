@@ -69,13 +69,3 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
   }
   return 0;
 }
-
-void lysenko::deletePentagons(std::vector< Shape >& vect, const lysenko::Shape& obj)
-{
-  size_t sizeOfPentagon = 5;
-  if (obj.size() == sizeOfPentagon)
-  {
-    vect.erase(std::find(vect.begin(), vect.end(), obj));
-  }
-}
-

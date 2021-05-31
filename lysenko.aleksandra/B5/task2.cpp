@@ -30,9 +30,7 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   int numberOfRectangles = std::count_if(firstSh, lastSh, isRectangle);
   out << "Rectangles: " << numberOfRectangles<< "\n";
 
-  std::vector< Shape > myShapesWithoutPolentagon;
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons, myShapesWithoutPolentagon, _1));
-  std::swap(myShapesWithoutPolentagon, myShapes);
+  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons(), myShapes, _1));
 
   std::vector< Point > firstPoitsofShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
   out << "Points: ";

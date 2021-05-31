@@ -12,7 +12,7 @@ namespace lysenko
   bool isRectangle(const Shape& obj);
   bool isSquare(const Shape& obj);
 
-  struct getNumberOfVerticals
+  struct getNumberOfVertices
   {
     size_t operator()(const lysenko::Shape& obj) const
     {
@@ -48,19 +48,19 @@ namespace lysenko
   {
     void operator()(std::vector< Shape >& vect, const Shape& obj)
     {
-      if (obj.size() == 5)
+      if (obj.size() != 5)
       {
-        vect.erase(std::find(vect.begin(), vect.end(), obj));
+        vect.insert(vect.end(), obj);
       }
     }
   };
 
   struct addPoint
   {
-    std::vector< Point > operator()(std::vector< Point >& points, const Shape& obj)
+    std::vector< Point > operator()(std::vector< Point >& firstPoitsofShapes, const Shape& obj)
     {
-      points.insert(points.end(), obj[0]);
-      return points;
+      firstPoitsofShapes.insert(firstPoitsofShapes.end(), obj[0]);
+      return firstPoitsofShapes;
     }
   };
 

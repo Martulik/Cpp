@@ -19,9 +19,9 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
 
   std::vector< Shape >::iterator firstSh = myShapes.begin();
   std::vector< Shape >::iterator lastSh = myShapes.end();
-  auto numberOfVerticalsForOneShape = std::bind(std::plus< size_t >(), _1, std::bind(lab::getNumberOfVerticals(), _2));
-  size_t numberOfVerticles = std::accumulate(firstSh, lastSh, 0, numberOfVerticalsForOneShape);
-  out << "Vertices: " << numberOfVerticles << "\n";
+  auto numberOfVerticesForOneShape = std::bind(std::plus< size_t >(), _1, std::bind(lab::getNumberOfVertices(), _2));
+  size_t numberOfVertices = std::accumulate(firstSh, lastSh, 0, numberOfVerticesForOneShape);
+  out << "Vertices: " << numberOfVertices << "\n";
 
   std::vector< int > numberOfTrianglesSquaresAndRectangles(3);
   std::for_each(firstSh, lastSh, std::bind(lab::checkIfAppropriateShape(), numberOfTrianglesSquaresAndRectangles, _1));
@@ -29,11 +29,13 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   out << "Squares: " << numberOfTrianglesSquaresAndRectangles[1] << "\n";
   out << "Rectangles: " << numberOfTrianglesSquaresAndRectangles[2] << "\n";
 
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons(), myShapes, _1));
+  std::vector< Shape > myShapesWithoutPolentagon;
+  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::deletePentagons(), myShapesWithoutPolentagon, _1));
+  std::swap(myShapesWithoutPolentagon, myShapes);
 
-  std::vector< Point >firstPoitsofFigures = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
+  std::vector< Point >firstPoitsofShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
   out << "Points: ";
-  std::copy(firstPoitsofFigures.begin(), firstPoitsofFigures.end(), std::ostream_iterator< lysenko::Point >(out, " "));
+  std::copy(firstPoitsofShapes.begin(), firstPoitsofShapes.end(), std::ostream_iterator< lysenko::Point >(out, " "));
   out << "\n";
 
   std::vector< Shape > sortedOne;

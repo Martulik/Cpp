@@ -19,13 +19,3 @@ bool lebedeva::isAcceplable(int key)
 {
   return ((key > -6) && (key < 6));
 }
-
-void lebedeva::print(std::vector< DataStruct > data, std::ostream& out)
-{
-  std::for_each(data.begin(), data.end(),
-    [&](DataStruct& src)
-    {
-      out << src;
-    }
-  );
-}

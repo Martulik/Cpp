@@ -54,11 +54,11 @@ bool lysenko::isTriangle(const lysenko::Shape& obj)
 
     if (deltaY1 == 0)
     {
-      return (deltaY2 == 0);
+      return !(deltaY2 == 0);
     }
     if (deltaX1 == 0)
     {
-      return (deltaX2 == 0);
+      return !(deltaX2 == 0);
     }
     return (!((deltaY2 / deltaY1) == (deltaX2 / deltaX1)));
   }

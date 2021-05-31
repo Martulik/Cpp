@@ -20,29 +20,29 @@ namespace lysenko
     }
   };
 
-  struct checkIfIsTriangle
-  {
-    bool operator()(const Shape& obj)
-    {
-      return isTriangle(obj);
-    }
-  };
+  //struct checkIfIsTriangle
+  //{
+  //  bool operator()(const Shape& obj)
+  //  {
+  //    return isTriangle(obj);
+  //  }
+  //};
 
-  struct checkIfIsSquare
-  {
-    bool operator()(const Shape& obj)
-    {
-      return isSquare(obj);
-    }
-  };
+  //struct checkIfIsSquare
+  //{
+  //  bool operator()(const Shape& obj)
+  //  {
+  //    return isSquare(obj);
+  //  }
+  //};
 
-  struct checkIfIsRectangle
-  {
-    bool operator()(const Shape& obj)
-    {
-      return isRectangle(obj);
-    }
-  };
+  //struct checkIfIsRectangle
+  //{
+  //  bool operator()(const Shape& obj)
+  //  {
+  //    return isRectangle(obj);
+  //  }
+  //};
 
   struct deletePentagons
   {
@@ -50,7 +50,7 @@ namespace lysenko
     {
       if (obj.size() != 5)
       {
-        vect.insert(vect.end(), obj);
+        vect.push_back(obj);
       }
     }
   };
@@ -59,7 +59,7 @@ namespace lysenko
   {
     std::vector< Point > operator()(std::vector< Point >& firstPoitsofShapes, const Shape& obj)
     {
-      firstPoitsofShapes.insert(firstPoitsofShapes.end(), obj[0]);
+      firstPoitsofShapes.push_back(obj[0]);
       return firstPoitsofShapes;
     }
   };
@@ -70,7 +70,7 @@ namespace lysenko
     {
       if (sortType(obj))
       {
-        myShp.insert(myShp.end(), obj);
+        myShp.push_back(obj);
       }
     }
   };

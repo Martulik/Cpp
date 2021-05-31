@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(Triangle)
 
 BOOST_AUTO_TEST_CASE(Square)
 {
-  std::istringstream line("4 (0;0) (1; 1) (0;1) (1 ;0)");
+  std::istringstream line("4 (0;0) (0;1) (1; 1) (1 ;0)");
   ferapontov::Shape square;
   line >> square;
   BOOST_CHECK(ferapontov::isSquare(square));

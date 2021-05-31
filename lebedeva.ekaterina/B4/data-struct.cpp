@@ -6,7 +6,7 @@
 
 std::ostream& lebedeva::operator<<(std::ostream& out, const DataStruct& data)
 {
-  out << data.key1 << ',' << data.key2 << ',' << data.str << '\n';
+  out << data.key1 << ',' << data.key2 << ',' << data.str;
   return out;
 }
 

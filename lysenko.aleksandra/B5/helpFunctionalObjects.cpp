@@ -70,39 +70,35 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
   return 0;
 }
 
-bool lysenko::isTriangleOrSquareOrRectangle(const Shape& obj)
+bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
 {
-  return (isTriangle(obj) || isRectangle(obj));
+  return !(isTriangle(obj) || isRectangle(obj));
 }
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape > sortedOne(vect.size());
-  std::for_each(vect.begin(), vect.end(), std::bind(addTrianglesSquaresAndRectangles, sortedOne.begin(), std::placeholders::_1));
-  int numbOfTriSqAndRect = std::count_if(vect.begin(), vect.end(), isTriangleOrSquareOrRectangle);
 
-  std::sort(sortedOne.begin(), sortedOne.begin() + numbOfTriSqAndRect);
+  std::function<bool(const Shape&)> triSpec = isTriangle;
+  std::for_each(vect.begin(), vect.end(), std::bind(addSpecificShape, sortedOne.begin(), triSpec, std::placeholders::_1));
 
-  auto addIfTypical = std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), numbOfTriSqAndRect, std::placeholders::_1);
-  std::for_each(vect.begin(), vect.end(), addIfTypical);
+  std::function<bool(const Shape&)> squSpec = isSquare;
+  std::for_each(vect.begin(), vect.end(), std::bind(addSpecificShape, sortedOne.begin(), squSpec, std::placeholders::_1));
+
+  std::function<bool(const Shape&)> rectSpec = isRectangle;
+  std::for_each(vect.begin(), vect.end(), std::bind(addSpecificShape, sortedOne.begin(), rectSpec, std::placeholders::_1));
+
+  std::function<bool(const Shape&)> noSpec = isNotTriangleOrSquareOrRectangle;
+  auto addNoSpecific= std::bind(addSpecificShape, sortedOne.begin(), noSpec, std::placeholders::_1);
+
+  std::for_each(vect.begin(), vect.end(), addNoSpecific);
   std::swap(sortedOne, vect);
 }
 
-void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >::iterator& begin, const Shape& obj)
+void lysenko::addSpecificShape(std::vector< Shape >::iterator& begin, std::function< bool(const Shape&) > isSpecShape, const Shape& obj)
 {
   static int number = 0;
-  if (isTriangleOrSquareOrRectangle(obj))
-  {
-    *(begin + number) = obj;
-    number += 1;
-  }
-}
-
-void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, int numb, const Shape& obj)
-{
-  static int number = numb;
-  std::vector< Shape >::iterator flag = std::find(begin, end, obj);
-  if (flag == end)
+  if (isSpecShape(obj))
   {
     *(begin + number) = obj;
     number += 1;

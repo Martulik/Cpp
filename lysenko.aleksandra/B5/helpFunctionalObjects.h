@@ -2,6 +2,7 @@
 #define HELP_FUNCTIONAL_OBJECTS_H
 
 #include <vector>
+#include <functional>
 
 #include "Shape.h"
 
@@ -37,11 +38,9 @@ namespace lysenko
     }
   };
 
-  bool isTriangleOrSquareOrRectangle(const Shape& obj);
+  bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
 
-  void addTrianglesSquaresAndRectangles(std::vector< Shape >::iterator& begin, const Shape& obj);
-
-  void addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, int numb, const Shape& obj);
+  void addSpecificShape(std::vector< Shape >::iterator& begin, std::function< bool(const Shape&) > isSpecShape, const Shape& obj);
 
   void shapeSort(std::vector< Shape >& vect);
 }

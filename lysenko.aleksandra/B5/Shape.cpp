@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <iterator>
+#include <algorithm>
 
 #include "helpFunctionalObjects.h"
 

@@ -90,7 +90,7 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   std::swap(sortedOne, vect);
 }
 
-void lysenko::addTypicalShapes(const std::vector< Shape >::iterator& begin, int numb, const Shape& obj)
+void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, int numb, const Shape& obj)
 {
   static int number = numb;
   if (isNotTriangleOrSquareOrRectangle(obj))

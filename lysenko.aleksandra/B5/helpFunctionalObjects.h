@@ -40,7 +40,7 @@ namespace lysenko
 
   bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
 
-  void addSpecificShape(std::vector< Shape >::iterator& begin, std::function< bool(const Shape&) > isSpecShape, const Shape& obj);
+  void addSpecificShape(std::vector< Shape >::iterator& begin, bool(*isSpecShape)(const Shape&), const Shape& obj);
 
   void shapeSort(std::vector< Shape >& vect);
 }

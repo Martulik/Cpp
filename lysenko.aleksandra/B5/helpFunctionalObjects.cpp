@@ -77,24 +77,23 @@ bool lysenko::isTriangleOrSquareOrRectangle(const Shape& obj)
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
+  std::vector< Shape > sortedOne(vect.size());
+  std::for_each(vect.begin(), vect.end(), std::bind(addTrianglesSquaresAndRectangles, sortedOne.begin(), std::placeholders::_1));
   int numbOfTriSqAndRect = std::count_if(vect.begin(), vect.end(), isTriangleOrSquareOrRectangle);
-  std::vector< Shape > sortedOne(numbOfTriSqAndRect);
-  std::for_each(vect.begin(), vect.end(), std::bind(addTrianglesSquaresAndRectangles, sortedOne, std::placeholders::_1));
 
-  std::sort(sortedOne.begin(), sortedOne.end());
-  sortedOne.resize(vect.size());
+  std::sort(sortedOne.begin(), sortedOne.begin() + numbOfTriSqAndRect);
 
   auto addIfTypical = std::bind(addTypicalShapes, sortedOne.begin(), numbOfTriSqAndRect, std::placeholders::_1);
   std::for_each(vect.begin(), vect.end(), addIfTypical);
   std::swap(sortedOne, vect);
 }
 
-void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >& vect, const Shape& obj)
+void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >::iterator& begin, const Shape& obj)
 {
   static int number = 0;
   if (isTriangleOrSquareOrRectangle(obj))
   {
-    vect[number] = obj;
+    *(begin + number) = obj;
     number += 1;
   }
 }

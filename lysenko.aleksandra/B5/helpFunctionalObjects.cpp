@@ -75,17 +75,6 @@ bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
   return !(isTriangle(obj) || isRectangle(obj));
 }
 
-bool lysenko::isRectangleButNotSquare(const Shape& obj)
-{
-  if (isRectangle(obj))
-  {
-    std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-
-    return (distances[0] != distances[1]);
-  }
-  return 0;
-}
-
 bool lysenko::isPentagon(const Shape& obj)
 {
   return (obj.size() == 5);
@@ -94,12 +83,21 @@ bool lysenko::isPentagon(const Shape& obj)
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape > sortedOne;
+  std::vector< Shape > copy(vect);
 
   std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isTriangle);
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangleButNotSquare);
+  std::vector< Shape >::iterator iterT = std::remove_if(copy.begin(), copy.end(), isTriangle);
+  copy.erase(iterT, copy.end());
 
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isNotTriangleOrSquareOrRectangle);
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
+  std::vector< Shape >::iterator iter = std::remove_if(copy.begin(), copy.end(), isSquare);
+  copy.erase(iter, copy.end());
+
+  std::copy_if(copy.begin(), copy.end(), std::back_inserter(sortedOne), isRectangle);
+  std::vector< Shape >::iterator iterR = std::remove_if(copy.begin(), copy.end(), isRectangle);
+  copy.erase(iterR, copy.end());
+
+  std::copy(vect.begin(), vect.end(), std::back_inserter(sortedOne));
 
   std::swap(sortedOne, vect);
 }

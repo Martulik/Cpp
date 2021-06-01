@@ -80,13 +80,6 @@ BOOST_AUTO_TEST_CASE(testSquare)
   BOOST_CHECK_EQUAL(lysenko::isSquare(shp), true);
 }
 
-BOOST_AUTO_TEST_CASE(testRectangleButNotSquare)
-{
-  std::string testData = "4 (1;2) (3;2) (3;3) (1;3)";
-  lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isRectangleButNotSquare(shp), true);
-}
-
 BOOST_AUTO_TEST_CASE(testPentagon)
 {
   std::string testData = "5 (1;2) (3;2) (3;3) (1;3) (2;3)";

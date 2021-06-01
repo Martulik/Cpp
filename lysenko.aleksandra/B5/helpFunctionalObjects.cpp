@@ -32,7 +32,7 @@ namespace lysenko
     double distance03 = getDistanceFromFirstPoint(obj, 3);
 
     std::vector< double > distances{ distance01, distance02, distance03 };
-    std::sort(distances.begin(), distances.end());
+    std::stable_sort(distances.begin(), distances.end());
 
     return distances;
   }
@@ -70,14 +70,11 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
 
     std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
 
-    return ((distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))) && (distances[0] == distances[1]));
+    bool isRectangle = (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
+
+    return (isRectangle && (distances[0] == distances[1]));
   }
   return 0;
-}
-
-bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
-{
-  return !(isTriangle(obj) || isRectangle(obj));
 }
 
 bool lysenko::isPentagon(const Shape& obj)

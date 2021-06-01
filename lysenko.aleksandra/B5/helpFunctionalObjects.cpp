@@ -40,7 +40,7 @@ namespace lysenko
 
 bool lysenko::isTriangle(const lysenko::Shape& obj)
 {
-  return  (obj.size() == 3);
+  return (obj.size() == 3);
 }
 
 bool lysenko::isRectangle(const lysenko::Shape& obj)
@@ -92,8 +92,8 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   copy.erase(iterT, copy.end());
 
   std::copy_if(copy.begin(), copy.end(), std::back_inserter(sortedOne), isSquare);
-  std::vector< Shape >::iterator iter = std::remove_if(copy.begin(), copy.end(), isSquare);
-  copy.erase(iter, copy.end());
+  std::vector< Shape >::iterator iterS = std::remove_if(copy.begin(), copy.end(), isSquare);
+  copy.erase(iterS, copy.end());
 
   std::copy_if(copy.begin(), copy.end(), std::back_inserter(sortedOne), isRectangle);
   std::vector< Shape >::iterator iterR = std::remove_if(copy.begin(), copy.end(), isRectangle);

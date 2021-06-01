@@ -3,6 +3,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <functional>
 
 namespace lysenko
 {
@@ -73,10 +74,30 @@ bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
 {
   return (!((isTriangle(obj)) || (isRectangle(obj)) || (isSquare(obj))));
 }
+
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
-  std::vector< Shape >::iterator typicalShape = std::remove_if(vect.begin(), vect.end(), isNotTriangleOrSquareOrRectangle);
+  std::vector< Shape > sortedOne(vect);
+  std::vector< Shape >::iterator typicalShape = std::remove_if(sortedOne.begin(), sortedOne.end(), isNotTriangleOrSquareOrRectangle);
+  sortedOne.erase(typicalShape, sortedOne.end());
 
-  std::sort(vect.begin(), typicalShape);
+  std::sort(sortedOne.begin(), sortedOne.end());
+  sortedOne.resize(vect.size());
 
+  std::for_each(vect.begin(), vect.end(), std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), std::placeholders::_1));
+  std::swap(sortedOne, vect);
+}
+
+void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, const Shape& obj)
+{
+  static int number = 0;
+  if (isNotTriangleOrSquareOrRectangle(obj))
+  {
+    std::vector< Shape >::iterator iterFind = std::find(begin, end, obj);
+    if (iterFind == end)
+    {
+      *(begin + number) = obj;
+    }
+  }
+  number++;
 }

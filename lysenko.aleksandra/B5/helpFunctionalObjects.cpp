@@ -101,7 +101,7 @@ void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >::iterator& b
 void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, int numb, const Shape& obj)
 {
   static int number = numb;
-  if (((obj.size() < 3) && (obj.size() > 4)) || (!(isRectangle(obj))))
+  if (((obj.size() < 3) && (obj.size() > 4)) || ((obj.size() == 4) && (!(isRectangle(obj)))))
   {
     *(begin + number) = obj;
     number += 1;

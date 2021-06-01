@@ -36,7 +36,7 @@ namespace lysenko
       return firstPoitsofShapes;
     }
   };
- 
+
   bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
 
   void addTrianglesSquaresAndRectangles(std::vector< Shape >& vect, const Shape& obj);

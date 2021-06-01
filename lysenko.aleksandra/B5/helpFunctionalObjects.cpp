@@ -75,13 +75,18 @@ bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
   return !(isTriangle(obj) || isRectangle(obj));
 }
 
+bool lysenko::isRectangleButNotSquare(const Shape& obj)
+{
+  return ((isRectangle(obj)) && (!(isSquare(obj))));
+}
+
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape > sortedOne;
 
   std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isTriangle);
   std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangle);
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangleButNotSquare);
 
   std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isNotTriangleOrSquareOrRectangle);
 

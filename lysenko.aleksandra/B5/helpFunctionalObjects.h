@@ -11,6 +11,7 @@ namespace lysenko
   bool isTriangle(const Shape& obj);
   bool isRectangle(const Shape& obj);
   bool isSquare(const Shape& obj);
+  bool isRectangleButNotSquare(const Shape& obj);
 
   struct getNumberOfVertices
   {

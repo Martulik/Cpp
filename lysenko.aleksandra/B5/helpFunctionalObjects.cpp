@@ -97,7 +97,7 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   std::vector< Shape >::iterator iterR = std::remove_if(copy.begin(), copy.end(), isRectangle);
   copy.erase(iterR, copy.end());
 
-  std::copy(vect.begin(), vect.end(), std::back_inserter(sortedOne));
+  std::copy(copy.begin(), copy.end(), std::back_inserter(sortedOne));
 
   std::swap(sortedOne, vect);
 }

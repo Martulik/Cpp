@@ -95,11 +95,7 @@ void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, std::vecto
   static int number = numb;
   if (isNotTriangleOrSquareOrRectangle(obj))
   {
-    std::vector< Shape >::iterator iterFind = std::find(begin, end, obj);
-    if (iterFind == end)
-    {
-      *(begin + number) = obj;
-      number++;
-    }
+    *(begin + number) = obj;
+    number += 1;
   }
 }

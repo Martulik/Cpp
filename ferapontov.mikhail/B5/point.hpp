@@ -15,9 +15,9 @@ namespace ferapontov
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Point& point);
 
-  void checkDelim(std::string& line, const char& delim, int& err);
-  int readNumber(std::string& line, int& err);
-  void skipWs(std::string& line, int& err);
+  void checkDelim(std::string& line, const char& delim, std::istream& err);
+  int readNumber(std::string& line, std::istream& err);
+  void skipWs(std::string& line, std::istream& err);
 
   struct noWs
   {

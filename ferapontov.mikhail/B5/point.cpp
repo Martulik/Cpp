@@ -14,19 +14,14 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
   {
     std::string line;
     std::getline(in, line, ')');
-    int err = 0;
-    checkDelim(line, '(', err);
-    int x = readNumber(line, err);;
-    checkDelim(line, ';', err);
-    int y = readNumber(line, err);
-    skipWs(line, err);
-    if(!err)
+    checkDelim(line, '(', in);
+    int x = readNumber(line, in);;
+    checkDelim(line, ';', in);
+    int y = readNumber(line, in);
+    skipWs(line, in);
+    if(!in.fail())
     {
       point = {x, y};
-    }
-    else
-    {
-      in.setstate(std::ios::badbit);
     }
   }
   return in;
@@ -42,26 +37,25 @@ std::ostream& ferapontov::operator<<(std::ostream& out, const Point& point)
   return out;
 }
 
-void ferapontov::checkDelim(std::string& line, const char& delim, int& err)
+void ferapontov::checkDelim(std::string& line, const char& delim, std::istream& err)
 {
   skipWs(line, err);
-  if (!err)
+  if (!err.fail())
   {
     std::string::iterator it = line.begin();
     if (*it != delim)
     {
-      err = 1;
+      err.setstate(std::ios::badbit);
       return;
     }
     line.erase(line.begin(), ++it);
-    err = 0;
   }
 }
 
-int ferapontov::readNumber(std::string& line, int& err)
+int ferapontov::readNumber(std::string& line, std::istream& err)
 {
   skipWs(line, err);
-  if (!err)
+  if (!err.fail())
   {
     std::string number;
     std::string::iterator it = line.begin();
@@ -73,20 +67,20 @@ int ferapontov::readNumber(std::string& line, int& err)
       return std::stoi(number);
     }
   }
-  err = 1;
+  err.setstate(std::ios::badbit);
   return 0;
 }
 
-void ferapontov::skipWs(std::string& line, int& err)
+void ferapontov::skipWs(std::string& line, std::istream& err)
 {
-  if (!err)
+  if (!err.fail())
   {
     std::string::iterator it = std::find_if_not(line.begin(), line.end(), noWs());
     if (it != line.end())
     {
       if (*it == '\n')
       {
-        err = 1;
+        err.setstate(std::ios::badbit);
         return;
       }
       line.erase(line.begin(), it);

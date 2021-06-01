@@ -52,7 +52,9 @@ bool ferapontov::isSquare(const Shape& shp)
 {
   int side1 = calculateVector(shp[0], shp[1]);
   int side2 = calculateVector(shp[1], shp[2]);
-  return side1 == side2;
+  int side3 = calculateVector(shp[2], shp[3]);
+  int side4 = calculateVector(shp[3], shp[0]);
+  return (side1 == side2) && (side1 == side3) && (side1 == side4);
 }
 
 bool ferapontov::isRectangle(const Shape& shp)

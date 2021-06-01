@@ -80,24 +80,25 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   std::vector< Shape > sortedOne(vect);
   std::vector< Shape >::iterator typicalShape = std::remove_if(sortedOne.begin(), sortedOne.end(), isNotTriangleOrSquareOrRectangle);
   sortedOne.erase(typicalShape, sortedOne.end());
+  int numberOfTrianglesSquaresAndRectangles = sortedOne.size();
 
   std::sort(sortedOne.begin(), sortedOne.end());
   sortedOne.resize(vect.size());
 
-  std::for_each(vect.begin(), vect.end(), std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), std::placeholders::_1));
+  std::for_each(vect.begin(), vect.end(), std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), numberOfTrianglesSquaresAndRectangles, std::placeholders::_1));
   std::swap(sortedOne, vect);
 }
 
-void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, const Shape& obj)
+void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, int numb, const Shape& obj)
 {
-  static int number = 0;
+  static int number = numb;
   if (isNotTriangleOrSquareOrRectangle(obj))
   {
     std::vector< Shape >::iterator iterFind = std::find(begin, end, obj);
     if (iterFind == end)
     {
       *(begin + number) = obj;
+      number++;
     }
   }
-  number++;
 }

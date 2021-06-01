@@ -109,9 +109,9 @@ bool lysenko::operator==(const Point& point1, const Point& point2)
 
 bool lysenko::operator<(const Shape& shape1, const Shape& shape2)
 {
-  if (isTriangle(shape1))
+  if ((shape1.size() < shape2.size()) && (shape1.size() == 4))
   {
-    return 1;
+    return ((isSquare(shape1)) && (isRectangle(shape2)));
   }
-  return ((isSquare(shape1)) && (isRectangle(shape2)));
+  return (shape1.size() < shape2.size());
 }

@@ -77,16 +77,13 @@ bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
-  std::vector< Shape > sortedOne(vect.size());
+  std::vector< Shape > sortedOne;
 
-  std::for_each(vect.begin(), vect.end(), std::bind(addSpecificShape(), sortedOne.begin(), &isTriangle, std::placeholders::_1));
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isTriangle);
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangle);
 
-  std::for_each(vect.begin(), vect.end(), std::bind(addSpecificShape(), sortedOne.begin(), &isSquare, std::placeholders::_1));
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isNotTriangleOrSquareOrRectangle);
 
-  std::for_each(vect.begin(), vect.end(), std::bind(addSpecificShape(), sortedOne.begin(), &isRectangle, std::placeholders::_1));
-
-  auto addNoSpecific= std::bind(addSpecificShape(), sortedOne.begin(), &isNotTriangleOrSquareOrRectangle, std::placeholders::_1);
-
-  std::for_each(vect.begin(), vect.end(), addNoSpecific);
   std::swap(sortedOne, vect);
 }

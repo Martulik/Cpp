@@ -61,21 +61,11 @@ bool lysenko::isRectangle(const lysenko::Shape& obj)
 
 bool lysenko::isSquare(const lysenko::Shape& obj)
 {
-  if (obj.size() == 4)
+  if (isRectangle(obj))
   {
-    if ((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3]))
-    {
-      return 1;
-    }
-
     std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
 
-    bool isRectangle = (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
-
-    if (isRectangle)
-    {
-      return (distances[0] == distances[1]);
-    }
+    return (distances[0] == distances[1]);
   }
   return 0;
 }

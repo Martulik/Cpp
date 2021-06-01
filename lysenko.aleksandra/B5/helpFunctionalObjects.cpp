@@ -89,7 +89,7 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   std::swap(sortedOne, vect);
 }
 
-void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >& vect, const Shape& obj)
+void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >& vect, Shape obj)
 {
   if ((isTriangle(obj) || (isRectangle(obj))))
   {

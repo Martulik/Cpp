@@ -80,12 +80,13 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   std::vector< Shape > sortedOne(vect);
   std::vector< Shape >::iterator typicalShape = std::remove_if(sortedOne.begin(), sortedOne.end(), isNotTriangleOrSquareOrRectangle);
   sortedOne.erase(typicalShape, sortedOne.end());
-  int numberOfTrianglesSquaresAndRectangles = sortedOne.size();
+  int numbOfTriSqAndRect = sortedOne.size();
 
   std::sort(sortedOne.begin(), sortedOne.end());
   sortedOne.resize(vect.size());
 
-  std::for_each(vect.begin(), vect.end(), std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), numberOfTrianglesSquaresAndRectangles, std::placeholders::_1));
+  auto addIfTypical = std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), numbOfTriSqAndRect, std::placeholders::_1);
+  std::for_each(vect.begin(), vect.end(), addIfTypical);
   std::swap(sortedOne, vect);
 }
 

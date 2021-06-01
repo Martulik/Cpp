@@ -29,7 +29,7 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Shape& Shape)
 
   getline(in, numberOfVertices, ' ');
 
-  if (numberOfVertices[numberOfVertices.size()-1] =='\n')
+  if (numberOfVertices[numberOfVertices.size() - 1] == '\n')
   {
     throw std::invalid_argument("Incorrect format of input");
   }

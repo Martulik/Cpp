@@ -39,7 +39,7 @@ namespace lysenko
 
   bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
 
-  void shapeSort(std::vector< Shape > vect);
+  void shapeSort(std::vector< Shape >& vect);
 }
 
 #endif

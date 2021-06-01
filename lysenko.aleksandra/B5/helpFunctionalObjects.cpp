@@ -73,7 +73,7 @@ bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
 {
   return (!((isTriangle(obj)) || (isRectangle(obj)) || (isSquare(obj))));
 }
-void lysenko::shapeSort(std::vector< Shape > vect)
+void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape >::iterator typicalShape = std::remove_if(vect.begin(), vect.end(), isNotTriangleOrSquareOrRectangle);
 

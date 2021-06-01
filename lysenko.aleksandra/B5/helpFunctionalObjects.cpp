@@ -83,7 +83,7 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
 
   std::sort(sortedOne.begin(), sortedOne.begin() + numbOfTriSqAndRect);
 
-  auto addIfTypical = std::bind(addTypicalShapes, sortedOne.begin(), numbOfTriSqAndRect, std::placeholders::_1);
+  auto addIfTypical = std::bind(addTypicalShapes, sortedOne.begin(), sortedOne.end(), numbOfTriSqAndRect, std::placeholders::_1);
   std::for_each(vect.begin(), vect.end(), addIfTypical);
   std::swap(sortedOne, vect);
 }
@@ -98,10 +98,11 @@ void lysenko::addTrianglesSquaresAndRectangles(std::vector< Shape >::iterator& b
   }
 }
 
-void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, int numb, const Shape& obj)
+void lysenko::addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, int numb, const Shape& obj)
 {
   static int number = numb;
-  if (((obj.size() < 3) && (obj.size() > 4)) || ((obj.size() == 4) && (!(isRectangle(obj)))))
+  std::vector< Shape >::iterator flag = std::find(begin, end, obj);
+  if (flag == end)
   {
     *(begin + number) = obj;
     number += 1;

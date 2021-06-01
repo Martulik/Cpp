@@ -41,7 +41,7 @@ namespace lysenko
 
   void addTrianglesSquaresAndRectangles(std::vector< Shape >::iterator& begin, const Shape& obj);
 
-  void addTypicalShapes(std::vector< Shape >::iterator& begin, int numb, const Shape& obj);
+  void addTypicalShapes(std::vector< Shape >::iterator& begin, std::vector< Shape >::iterator& end, int numb, const Shape& obj);
 
   void shapeSort(std::vector< Shape >& vect);
 }

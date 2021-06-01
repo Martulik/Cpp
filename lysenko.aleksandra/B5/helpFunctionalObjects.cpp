@@ -72,7 +72,10 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
 
     bool isRectangle = (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
 
-    return (isRectangle && (distances[0] == distances[1]));
+    if (isRectangle)
+    {
+      return (distances[0] == distances[1]);
+    }
   }
   return 0;
 }

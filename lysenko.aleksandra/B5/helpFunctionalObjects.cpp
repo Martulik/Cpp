@@ -72,7 +72,13 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
 
 bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
 {
-  return !(isTriangle(obj) || isRectangle(obj));
+  if (isRectangle(obj))
+  {
+    std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
+
+    return (distances[0] != distances[1]);
+  }
+  return 0;
 }
 
 bool lysenko::isRectangleButNotSquare(const Shape& obj)

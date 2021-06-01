@@ -86,6 +86,11 @@ bool lysenko::isRectangleButNotSquare(const Shape& obj)
   return 0;
 }
 
+bool lysenko::isPentagon(const Shape& obj)
+{
+  return (obj.size() == 5);
+}
+
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape > sortedOne;

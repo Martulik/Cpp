@@ -21,15 +21,6 @@ namespace lysenko
     }
   };
 
-  struct isPentagon
-  {
-    bool operator()(const lysenko::Shape& obj) const
-    {
-      size_t sizeOfPentagon = 5;
-      return (obj.size() == sizeOfPentagon);
-    }
-  };
-
   struct addPoint
   {
     std::vector< Point > operator()(std::vector< Point >& firstPoitsofShapes, const Shape& obj)
@@ -38,6 +29,8 @@ namespace lysenko
       return firstPoitsofShapes;
     }
   };
+
+  bool isPentagon(const Shape& obj);
 
   bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
 

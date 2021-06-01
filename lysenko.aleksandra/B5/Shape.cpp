@@ -1,11 +1,9 @@
 #include "Shape.h"
 
-#include <stdexcept>
 #include <vector>
-#include <algorithm>
-#include <functional>
-#include <iterator>
 #include <string>
+
+#include "helpFunctionalObjects.h"
 
 namespace lysenko
 {
@@ -105,4 +103,13 @@ bool lysenko::operator<(const Point& point1, const Point& point2)
 bool lysenko::operator==(const Point& point1, const Point& point2)
 {
   return (!((point1 < point2) || (point2 < point1)));
+}
+
+bool lysenko::operator<(const Shape& shape1, const Shape& shape2)
+{
+  if (isTriangle(shape1))
+  {
+    return 1;
+  }
+  return ((isSquare(shape1)) && (isRectangle(shape2)));
 }

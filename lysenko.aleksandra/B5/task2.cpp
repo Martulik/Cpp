@@ -9,10 +9,11 @@
 #include "Shape.h"
 #include "helpFunctionalObjects.h"
 
-void lysenko::task2(std::istream&  in, std::ostream& out)
+void lysenko::task2(std::istream& in, std::ostream& out)
 {
   namespace lab = lysenko;
   using namespace std::placeholders;
+
   std::istream_iterator< Shape > first(in);
   std::istream_iterator< Shape > last;
   std::vector< Shape > myShapes(first, last);
@@ -30,20 +31,15 @@ void lysenko::task2(std::istream&  in, std::ostream& out)
   int numberOfRectangles = std::count_if(firstSh, lastSh, isRectangle);
   out << "Rectangles: " << numberOfRectangles<< "\n";
 
-  std::vector< Shape >::iterator deleteOnes= std::remove_if(myShapes.begin(), myShapes.end(), isPentagon());
+  std::vector< Shape >::iterator deleteOnes = std::remove_if(myShapes.begin(), myShapes.end(), isPentagon());
   myShapes.erase(deleteOnes, myShapes.end());
 
-  std::vector< Point > firstPoitsofShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
+  std::vector< Point > firstPointsOfShapes = std::accumulate(myShapes.begin(), myShapes.end(), std::vector< Point >(), lab::addPoint());
   out << "Points: ";
-  std::copy(firstPoitsofShapes.begin(), firstPoitsofShapes.end(), std::ostream_iterator< lysenko::Point >(out, " "));
+  std::copy(firstPointsOfShapes.begin(), firstPointsOfShapes.end(), std::ostream_iterator< lysenko::Point >(out, " "));
   out << "\n";
 
-  std::vector< Shape > sortedOne;
   out << "Shapes:" << "\n";
-  /*std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isTriangle));
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isSquare));
-  std::for_each(myShapes.begin(), myShapes.end(), std::bind(lab::doSort(), sortedOne, _1, isRectangle));*/
-  //вставка в вектор фигур, которых там нет
-  std::swap(sortedOne, myShapes);
+  shapeSort(myShapes);
   std::copy(myShapes.begin(), myShapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

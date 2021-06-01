@@ -3,7 +3,6 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
-#include <functional>
 
 namespace lysenko
 {
@@ -68,4 +67,16 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
     return (distances[0] == distances[1]);
   }
   return 0;
+}
+
+bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
+{
+  return (!((isTriangle(obj)) || (isRectangle(obj)) || (isSquare(obj))));
+}
+void lysenko::shapeSort(std::vector< Shape > vect)
+{
+  std::vector< Shape >::iterator typicalShape = std::remove_if(vect.begin(), vect.end(), isNotTriangleOrSquareOrRectangle);
+
+  std::sort(vect.begin(), typicalShape);
+
 }

@@ -2,7 +2,6 @@
 #define HELP_FUNCTIONAL_OBJECTS_H
 
 #include <vector>
-#include <functional>
 
 #include "Shape.h"
 
@@ -19,12 +18,13 @@ namespace lysenko
       return obj.size();
     }
   };
+
   struct isPentagon
   {
     bool operator()(const lysenko::Shape& obj) const
     {
       size_t sizeOfPentagon = 5;
-      return (obj.size()==sizeOfPentagon);
+      return (obj.size() == sizeOfPentagon);
     }
   };
 
@@ -37,6 +37,9 @@ namespace lysenko
     }
   };
 
+  bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
+
+  void shapeSort(std::vector< Shape > vect);
 }
 
 #endif

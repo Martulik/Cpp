@@ -63,35 +63,35 @@ BOOST_AUTO_TEST_CASE(testTriangle)
 {
   std::string testData = "3 (1;1) (2;2) (3;1)";
   lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isTriangle(shp), 1);
+  BOOST_CHECK_EQUAL(lysenko::isTriangle(shp), true);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangle)
 {
   std::string testData = "4 (1;1) (2;1) (2;2) (1;2)";
   lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isRectangle(shp), 1);
+  BOOST_CHECK_EQUAL(lysenko::isRectangle(shp), true);
 }
 
 BOOST_AUTO_TEST_CASE(testSquare)
 {
   std::string testData = "4 (1;1) (2;1) (2;2) (1;2)";
   lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isSquare(shp), 1);
+  BOOST_CHECK_EQUAL(lysenko::isSquare(shp), true);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleButNotSquare)
 {
   std::string testData = "4 (1;2) (3;2) (3;3) (1;3)";
   lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isRectangleButNotSquare(shp), 1);
+  BOOST_CHECK_EQUAL(lysenko::isRectangleButNotSquare(shp), true);
 }
 
 BOOST_AUTO_TEST_CASE(testPentagon)
 {
   std::string testData = "5 (1;2) (3;2) (3;3) (1;3) (2;3)";
   lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isPentagon(shp), 1);
+  BOOST_CHECK_EQUAL(lysenko::isPentagon(shp), true);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

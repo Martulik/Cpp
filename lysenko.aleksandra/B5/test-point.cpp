@@ -22,7 +22,6 @@ BOOST_AUTO_TEST_CASE(testCorrectionOfRead)
   in >> pnt;
   BOOST_CHECK_EQUAL(pnt.x, 1);
   BOOST_CHECK_EQUAL(pnt.y, 1);
-  
 }
 
 BOOST_AUTO_TEST_CASE(testWrongDelimiter)

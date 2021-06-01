@@ -70,7 +70,7 @@ bool lysenko::isSquare(const lysenko::Shape& obj)
 
     std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
 
-    return ((distances[2] == std::sqrt(2) * distances[0]) && (distances[0] == distances[1]));
+    return ((distances[2] == std::sqrt(2) * std::abs(distances[0])) && (std::abs(distances[0]) == std::abs(distances[1])));
   }
   return 0;
 }

@@ -26,12 +26,11 @@ namespace lysenko
 
   struct fillTheVector
   {
-    int numb = 0;
-    void operator()(const Shape& obj, const Point& pnt, std::vector< double >& dist)
+    void operator()(const Shape& obj, const Point& pnt, std::vector< double >& dist, int& numb)
     {
       double distance = getDistanceFromFirstPoint(obj, pnt);
       dist[numb] = distance;
-      numb += 1;
+      ++numb;
     }
   };
 
@@ -40,7 +39,8 @@ namespace lysenko
     std::vector< double > distances(3);
     if (obj.size() == 4)
     {
-      std::for_each(obj.begin() + 1, obj.end(), std::bind(fillTheVector(), obj, std::placeholders::_1, distances));
+      int numb = 0;
+      std::for_each(obj.begin() + 1, obj.end(), std::bind(fillTheVector(), obj, std::placeholders::_1, distances, 0));
       std::stable_sort(distances.begin(), distances.end());
     }
     return distances;

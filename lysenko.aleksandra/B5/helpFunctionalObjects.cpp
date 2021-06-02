@@ -59,23 +59,13 @@ bool lysenko::isTriangle(const lysenko::Shape& obj)
 bool lysenko::isRectangle(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-  bool isEmpty = distances.empty();
-  if ((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3]))
-  {
-    isEmpty = 0;
-  }
-  return ((!(isEmpty)) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
+  return ((!(distances.empty())) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
 }
 
 bool lysenko::isSquare(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-  bool isEmpty = distances.empty();
-  if ((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3]))
-  {
-    isEmpty = 0;
-  }
-  bool isRectangle = ((!(isEmpty)) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
+  bool isRectangle = ((!distances.empty()) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
   return ((isRectangle) && (distances[0] == distances[1]));
 
 }

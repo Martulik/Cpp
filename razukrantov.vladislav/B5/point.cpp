@@ -12,7 +12,7 @@ void razukrantov::checkNoLine(const std::string& str)
 {
   if (str.find('\n') != std::string::npos)
   {
-    throw(std::invalid_argument("Incorrect reading"));
+    throw std::invalid_argument("Incorrect reading");
   }
 }
 

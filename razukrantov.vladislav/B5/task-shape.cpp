@@ -14,7 +14,7 @@ void razukrantov::shapeTask(std::istream& in, std::ostream& out)
   std::copy(std::istream_iterator< Shape >(in), std::istream_iterator< Shape >(), std::back_inserter(shapes));
   if (in.fail() && !in.eof())
   {
-    throw(std::runtime_error("Incorrect input"));
+    throw std::runtime_error("Incorrect input");
   }
   unsigned int vertices = std::accumulate(shapes.begin(), shapes.end(), 0, razukrantov::sumVertices);
   unsigned int triangles = std::count_if(shapes.begin(), shapes.end(), razukrantov::isTriangle);

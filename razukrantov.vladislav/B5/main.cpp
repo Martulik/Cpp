@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
   {
     if (argc != 2)
     {
-      throw(std::invalid_argument("Incorrect atguments count"));
+      throw std::invalid_argument("Incorrect atguments count");
     }
     if (!strcmp(argv[1], "1"))
     {
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      throw(std::invalid_argument("Incorrect arguments"));
+      throw std::invalid_argument("Incorrect arguments");
     }
   }
   catch (std::exception& error)

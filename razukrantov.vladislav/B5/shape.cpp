@@ -18,7 +18,7 @@ std::istream& razukrantov::operator>>(std::istream& in, Shape& shape)
 {
   if (!in)
   {
-    throw(std::invalid_argument("Incorrect reading"));
+    throw std::invalid_argument("Incorrect reading");
   }
   size_t count = 0;
   in >> count;
@@ -33,7 +33,7 @@ std::istream& razukrantov::operator>>(std::istream& in, Shape& shape)
   std::getline(in, str);
   if (!in || count != temp.size() || !std::all_of(str.begin(), str.end(), ::isspace))
   {
-    throw(std::invalid_argument("Incorrect reading"));
+    throw std::invalid_argument("Incorrect reading");
   }
   shape.swap(temp);
   return in;

@@ -6,6 +6,12 @@
 
 namespace lab = savchuk;
 
+void lab::move(Point& point, int dx, int dy)
+{
+  point.x += dx;
+  point.y += dy;
+}
+
 namespace
 {
   void skipSpaces(std::string& str, int& err);

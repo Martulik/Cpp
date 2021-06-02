@@ -15,6 +15,6 @@ namespace dushechkina
 	std::istream& operator>>(std::istream& in, Point& point);
 	std::ostream& operator<<(std::ostream& out, const Point& point);
 
-	//using Shape = std::vector< Point >;
+	using Shape = std::vector< Point >;
 }
 #endif

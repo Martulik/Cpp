@@ -7,43 +7,40 @@
 
 namespace lysenko
 {
-  static int getDeltaFromFirstPoint(bool abscissa, const lysenko::Shape& obj, size_t pointNumber)
+  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const Point& pnt)
   {
-    if (pointNumber < obj.size())
+    if (abscissa)
     {
-      if (abscissa)
-      {
-        return obj[pointNumber].x - obj[0].x;
-      }
-      return obj[pointNumber].y - obj[0].y;
+      return pnt.x - obj[0].x;
     }
-    throw std::out_of_range("Invalid parameters");
+    return pnt.y - obj[0].y;
   }
 
-  double getDistanceFromFirstPoint(const lysenko::Shape& obj, int pointNumber)
+  double getDistanceFromFirstPoint(const Shape& obj, const Point& pnt)
   {
-    double deltaX = getDeltaFromFirstPoint(0, obj, pointNumber);
-    double deltaY = getDeltaFromFirstPoint(1, obj, pointNumber);
+    double deltaX = getDeltaFromFirstPoint(0, obj, pnt);
+    double deltaY = getDeltaFromFirstPoint(1, obj, pnt);
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
 
   struct fillTheVector
   {
-    void operator()(const lysenko::Shape& obj, std::vector< double >& dist, int pointNumber)
+    int numb = 0;
+    void operator()(const Shape& obj, const Point& pnt, std::vector< double >& dist)
     {
-      double distance = getDistanceFromFirstPoint(obj, pointNumber);
-      dist[ pointNumber-1 ]=distance;
+      double distance = getDistanceFromFirstPoint(obj, pnt);
+      dist[numb] = distance;
+      numb += 1;
     }
   };
 
-  static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const lysenko::Shape& obj)
+  static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const Shape& obj)
   {
     std::vector< double > distances(3);
     if (obj.size() == 4)
     {
-      std::vector<int>indexesOfPoint = { 1, 2, 3 };
-      std::for_each(indexesOfPoint.begin(), indexesOfPoint.end(), std::bind(fillTheVector(), obj, distances, std::placeholders::_1));
+      std::for_each(obj.begin() + 1, obj.end(), std::bind(fillTheVector(), obj, std::placeholders::_1, distances));
       std::stable_sort(distances.begin(), distances.end());
     }
     return distances;

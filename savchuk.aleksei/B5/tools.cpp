@@ -9,7 +9,7 @@ void lab::ShapeCounter::operator()(const Shape& shape)
   {
     ++triangles;
   }
-  if (isRectangle(shape))
+  if (isRectangle(shape) && !isSquare(shape))
   {
     ++rectangles;
   }

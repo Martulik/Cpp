@@ -1,5 +1,5 @@
-#ifndef SHAPE_HPP
-#define SHAPE_HPP
+#ifndef POINT_HPP
+#define POINT_HPP
 
 #include <vector>
 namespace dushechkina
@@ -10,6 +10,6 @@ namespace dushechkina
 		int y;
 	};
 
-	using Shape = std::vector< Point >;
+	//using Shape = std::vector< Point >;
 }
 #endif

@@ -19,7 +19,7 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
     checkDelim(line, ';', in);
     int y = readNumber(line, in);
     skipWs(line, in);
-    if(!in.fail())
+    if (!in.fail())
     {
       point = {x, y};
     }
@@ -30,7 +30,7 @@ std::istream& ferapontov::operator>>(std::istream& in, Point& point)
 std::ostream& ferapontov::operator<<(std::ostream& out, const Point& point)
 {
   std::ostream::sentry sentry(out);
-  if(sentry)
+  if (sentry)
   {
     return out << '(' << point.x << "; " << point.y << ')';
   }

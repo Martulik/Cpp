@@ -20,28 +20,28 @@ namespace lysenko
     throw std::out_of_range("Invalid parameters");
   }
 
-  static double getDistanceFromFirstPoint(const lysenko::Shape& obj, int pointNumber)
+  struct getDistanceFromFirstPoint
   {
-    double deltaX = getDeltaFromFirstPoint(0, obj, pointNumber);
-    double deltaY = getDeltaFromFirstPoint(1, obj, pointNumber);
-    return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
-  }
+    double operator()(const lysenko::Shape& obj, int pointNumber)
+    {
+      double deltaX = getDeltaFromFirstPoint(0, obj, pointNumber);
+      double deltaY = getDeltaFromFirstPoint(1, obj, pointNumber);
+      return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
+    }
+  };
 
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const lysenko::Shape& obj)
   {
+    std::vector< double > distances;
     if (obj.size() == 4)
     {
-      double distance01 = getDistanceFromFirstPoint(obj, 1);
-      double distance02 = getDistanceFromFirstPoint(obj, 2);
-      double distance03 = getDistanceFromFirstPoint(obj, 3);
+      std::vector< int > indexesOfPoints = { 1, 2, 3 };
 
-      std::vector< double > distances{ distance01, distance02, distance03 };
+      auto getDistance = std::bind(getDistanceFromFirstPoint(), obj, std::placeholders::_1);
+      std::for_each(indexesOfPoints.begin(), indexesOfPoints.end(), getDistance);
       std::stable_sort(distances.begin(), distances.end());
-
-      return distances;
     }
-    std::vector< double > emptyOne;
-    return emptyOne;
+    return distances;
   }
 }
 
@@ -59,7 +59,6 @@ bool lysenko::isRectangle(const lysenko::Shape& obj)
 bool lysenko::isSquare(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-
   return ((isRectangle(obj)) && (distances[0] == distances[1]));
 
 }

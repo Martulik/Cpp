@@ -7,30 +7,29 @@
 
 namespace lysenko
 {
-  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const Point& pnt)
+  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const int& numberOfPoint)
   {
     if (abscissa)
     {
-      return pnt.x - obj[0].x;
+      return obj[numberOfPoint].x - obj[0].x;
     }
-    return pnt.y - obj[0].y;
+    return obj[numberOfPoint].y - obj[0].y;
   }
 
-  double getDistanceFromFirstPoint(const Shape& obj, const Point& pnt)
+  double getDistanceFromFirstPoint(const Shape& obj, const int& numberOfPoint)
   {
-    double deltaX = getDeltaFromFirstPoint(0, obj, pnt);
-    double deltaY = getDeltaFromFirstPoint(1, obj, pnt);
+    double deltaX = getDeltaFromFirstPoint(0, obj, numberOfPoint);
+    double deltaY = getDeltaFromFirstPoint(1, obj, numberOfPoint);
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
 
   struct fillTheVector
   {
-    void operator()(const Shape& obj, const Point& pnt, std::vector< double >& dist, int& numb)
+    void operator()(const Shape& obj, std::vector< double >& dist, int& numb)
     {
-      double distance = getDistanceFromFirstPoint(obj, pnt);
-      dist[numb] = distance;
-      ++numb;
+      double distance = getDistanceFromFirstPoint(obj, numb);
+      dist[ numb - 1 ] = distance;
     }
   };
 
@@ -39,8 +38,8 @@ namespace lysenko
     std::vector< double > distances(3);
     if (obj.size() == 4)
     {
-      int numb = 0;
-      std::for_each(obj.begin() + 1, obj.end(), std::bind(fillTheVector(), obj, std::placeholders::_1, distances, numb));
+      std::vector< int >indexesOfPoints{ 1, 2, 3 };
+      std::for_each(indexesOfPoints.begin(), indexesOfPoints.end(), std::bind(fillTheVector(), obj, distances, std::placeholders::_1));
       std::stable_sort(distances.begin(), distances.end());
     }
     return distances;
@@ -55,13 +54,14 @@ bool lysenko::isTriangle(const lysenko::Shape& obj)
 bool lysenko::isRectangle(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-  return (!(distances.empty()) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
+  return ((!(distances.empty())) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
 }
 
 bool lysenko::isSquare(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-  return ((isRectangle(obj)) && (distances[0] == distances[1]));
+  bool isRectanle = ((!(distances.empty())) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
+  return ((isRectangle) && (distances[0] == distances[1]));
 
 }
 

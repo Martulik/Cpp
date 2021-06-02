@@ -2,6 +2,7 @@
 #define COUNTER_HPP
 
 #include "shape.hpp"
+#include <iosfwd>
 
 namespace ferapontov
 {
@@ -13,9 +14,9 @@ namespace ferapontov
     unsigned long long rectangles;
 
     void operator()(const Shape& shp);
-
-    void print(std::ostream& out);
   };
+
+  std::ostream& operator<<(std::ostream& out, Counter& counter);
 }
 
 #endif

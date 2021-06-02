@@ -18,10 +18,15 @@ void ferapontov::Counter::operator()(const Shape& shp)
   }
 }
 
-void ferapontov::Counter::print(std::ostream& out)
+std::ostream& ferapontov::operator<<(std::ostream& out, Counter& counter)
 {
-  out << "Vertices: " << this->vertices << '\n';
-  out << "Triangles: " << this->triangels << '\n';
-  out << "Squares: " << this->squares << '\n';
-  out << "Rectangles: " << this->rectangles << '\n';
+  std::ostream::sentry sentry(out);
+  if (sentry)
+  {
+    out << "Vertices: " << counter.vertices << '\n';
+    out << "Triangles: " << counter.triangels << '\n';
+    out << "Squares: " << counter.squares << '\n';
+    out << "Rectangles: " << counter.rectangles << '\n';
+  }
+  return out;
 }

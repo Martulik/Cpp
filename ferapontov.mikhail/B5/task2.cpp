@@ -26,7 +26,7 @@ void ferapontov::task2(std::istream& in, std::ostream& out)
 
   sortShapes(shapes);
 
-  count.print(out);
+  out << count;
 
   out << "Points: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(out, " "));

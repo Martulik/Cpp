@@ -63,19 +63,9 @@ namespace
 
   struct CheckNumber
   {
-    bool isNumber_ = false;
-
     bool operator()(char ch)
     {
-      if (!isNumber_)
-      {
-        isNumber_ = (std::isdigit(ch) || ch == '-' || ch == '+');
-      }
-      else
-      {
-        isNumber_ = std::isdigit(ch);
-      }
-      return isNumber_;
+      return std::isdigit(ch);
     }
   };
 
@@ -116,7 +106,12 @@ namespace
       skipSpaces(str, err);
       if (!err)
       {
-        auto it = std::find_if_not(str.begin(), str.end(), CheckNumber());
+        auto it = str.begin();
+        if (!str.empty() && (str.front() == '-' || str.front() == '+'))
+        {
+          ++it;
+        }
+        it = std::find_if_not(it, str.end(), CheckNumber());
         num.insert(num.begin(), str.begin(), it);
         str.erase(str.begin(), it);
         err = num.empty();

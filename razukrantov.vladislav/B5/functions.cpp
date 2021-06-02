@@ -15,8 +15,8 @@ bool razukrantov::isSidesEqual(const Shape& shape)
 
 int razukrantov::getDistanceSquared(const Point& point1, const Point& point2)
 {
-  int dx = point1.x - point2.x;
-  int dy = point1.y - point2.y;
+  const int dx = point1.x - point2.x;
+  const int dy = point1.y - point2.y;
   return dx * dx + dy * dy;
 }
 

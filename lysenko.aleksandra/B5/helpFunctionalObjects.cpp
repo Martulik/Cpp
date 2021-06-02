@@ -40,7 +40,7 @@ namespace lysenko
     if (obj.size() == 4)
     {
       int numb = 0;
-      std::for_each(obj.begin() + 1, obj.end(), std::bind(fillTheVector(), obj, std::placeholders::_1, distances, 0));
+      std::for_each(obj.begin() + 1, obj.end(), std::bind(fillTheVector(), obj, std::placeholders::_1, distances, numb));
       std::stable_sort(distances.begin(), distances.end());
     }
     return distances;

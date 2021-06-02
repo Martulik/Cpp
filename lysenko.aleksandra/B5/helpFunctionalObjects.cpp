@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <numeric>
 
 namespace lysenko
 {
@@ -24,28 +25,21 @@ namespace lysenko
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
 
-  struct fillTheVector
-  {
-    void operator()(const Shape& obj, std::vector< double >& dist, int& numb)
-    {
-      double distance = getDistanceFromFirstPoint(obj, numb);
-      dist[numb - 1] = distance;
-    }
-  };
-
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const Shape& obj)
   {
     std::vector< double > distances;
+    std::vector< double > trueDist(3);
     if (obj.size() == 4)
     {
-      std::vector< double > trueDist(3);
       if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
       {
-        std::vector< int >indexesOfPoints{ 1, 2, 3 };
-        std::for_each(indexesOfPoints.begin(), indexesOfPoints.end(), std::bind(fillTheVector(), obj, trueDist, std::placeholders::_1));
+        trueDist[0] = getDistanceFromFirstPoint(obj, 1);
+        trueDist[1] = getDistanceFromFirstPoint(obj, 2);
+        trueDist[2] = getDistanceFromFirstPoint(obj, 3);
+
         std::stable_sort(trueDist.begin(), trueDist.end());
+        std::swap(trueDist, distances);
       }
-      std::swap(distances, trueDist);
     }
     return distances;
   }

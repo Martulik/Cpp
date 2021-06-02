@@ -29,18 +29,23 @@ namespace lysenko
     void operator()(const Shape& obj, std::vector< double >& dist, int& numb)
     {
       double distance = getDistanceFromFirstPoint(obj, numb);
-      dist[ numb - 1 ] = distance;
+      dist[numb - 1] = distance;
     }
   };
 
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const Shape& obj)
   {
-    std::vector< double > distances(3);
+    std::vector< double > distances;
     if (obj.size() == 4)
     {
-      std::vector< int >indexesOfPoints{ 1, 2, 3 };
-      std::for_each(indexesOfPoints.begin(), indexesOfPoints.end(), std::bind(fillTheVector(), obj, distances, std::placeholders::_1));
-      std::stable_sort(distances.begin(), distances.end());
+      std::vector< double > trueDist(3);
+      if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
+      {
+        std::vector< int >indexesOfPoints{ 1, 2, 3 };
+        std::for_each(indexesOfPoints.begin(), indexesOfPoints.end(), std::bind(fillTheVector(), obj, trueDist, std::placeholders::_1));
+        std::stable_sort(trueDist.begin(), trueDist.end());
+      }
+      std::swap(distances, trueDist);
     }
     return distances;
   }
@@ -54,13 +59,23 @@ bool lysenko::isTriangle(const lysenko::Shape& obj)
 bool lysenko::isRectangle(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-  return ((!(distances.empty())) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
+  bool isEmpty = distances.empty();
+  if ((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3]))
+  {
+    isEmpty = 0;
+  }
+  return ((!(isEmpty)) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
 }
 
 bool lysenko::isSquare(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
-  bool isRectanle = ((!(distances.empty())) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
+  bool isEmpty = distances.empty();
+  if ((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3]))
+  {
+    isEmpty = 0;
+  }
+  bool isRectangle = ((!(isEmpty)) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
   return ((isRectangle) && (distances[0] == distances[1]));
 
 }

@@ -92,3 +92,13 @@ std::istream& lysenko::operator>>(std::istream& in, lysenko::Point& point)
 
   return in;
 }
+
+bool lysenko::operator<(const Point& point1, const Point& point2)
+{
+  return ((point1.y < point2.y) && (point1.x < point2.x));
+}
+
+bool lysenko::operator==(const Point& point1, const Point& point2)
+{
+  return (!((point1 < point2) || (point2 < point1)));
+}

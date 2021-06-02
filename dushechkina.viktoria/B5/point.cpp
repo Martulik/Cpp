@@ -34,3 +34,18 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const Point& point)
   out << OPEN << point.x << SEMICOLON << point.y << CLOSE;
   return out;
 }
+
+bool dushechkina::isTriangle(const Shape& shape)
+{
+  return shape.size() == 3;
+}
+
+bool dushechkina::isRectangle(const Shape& shape)
+{
+  return shape.size() == 4;
+}
+
+bool dushechkina::isPentagon(const Shape& shape)
+{
+  return shape.size() == 5;
+}

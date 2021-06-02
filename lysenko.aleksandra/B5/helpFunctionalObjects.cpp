@@ -25,12 +25,13 @@ namespace lysenko
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
 
+
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const Shape& obj)
   {
     std::vector< double > distances;
-    std::vector< double > trueDist(3);
     if (obj.size() == 4)
     {
+      std::vector< double > trueDist(3);
       if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
       {
         trueDist[0] = getDistanceFromFirstPoint(obj, 1);
@@ -38,8 +39,8 @@ namespace lysenko
         trueDist[2] = getDistanceFromFirstPoint(obj, 3);
 
         std::stable_sort(trueDist.begin(), trueDist.end());
-        std::swap(trueDist, distances);
       }
+      std::swap(distances, trueDist);
     }
     return distances;
   }

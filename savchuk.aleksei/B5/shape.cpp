@@ -6,7 +6,7 @@
 #include <cstddef>
 #include <string>
 
-#include "vector.hpp"
+#include "math-objects.hpp"
 
 namespace lab = savchuk;
 
@@ -61,9 +61,9 @@ bool lab::isSquare(const Shape& shape)
 {
   if (isRectangle(shape))
   {
-    Vector v1 = { shape[0], shape[1] };
-    Vector v2 = { shape[0], shape[2] };
-    Vector v3 = { shape[0], shape[3] };
+    math::Vector v1 = { shape[0], shape[1] };
+    math::Vector v2 = { shape[0], shape[2] };
+    math::Vector v3 = { shape[0], shape[3] };
     if (v1 + v2 == v3)
     {
       return v1 * v1 == v2 * v2;

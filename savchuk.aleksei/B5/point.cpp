@@ -57,7 +57,7 @@ namespace
   {
     bool operator()(char ch)
     {
-      return isspace(ch) && ch != '\n';
+      return std::isspace(ch) && ch != '\n';
     }
   };
 
@@ -69,11 +69,11 @@ namespace
     {
       if (!isNumber_)
       {
-        isNumber_ = (isdigit(ch) || ch == '-' || ch == '+');
+        isNumber_ = (std::isdigit(ch) || ch == '-' || ch == '+');
       }
       else
       {
-        isNumber_ = isdigit(ch);
+        isNumber_ = std::isdigit(ch);
       }
       return isNumber_;
     }

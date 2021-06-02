@@ -1,5 +1,4 @@
 #include <stdexcept>
-#include <string>
 #include <iostream>
 #include "tasks.hpp"
 
@@ -9,16 +8,15 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if (argc < 2)
+    if (argc != 2 || std::string(argv[1]).length() != 1)
     {
       return -2;
     }
-    int taskNumber = std::stoi(argv[1]);
-    if (argc == 2 && taskNumber == 1)
+    if (argv[1][0] == '1')
     {
       poz::task1(std::cin, std::cout);
     }
-    else if (argc == 2 && taskNumber == 2)
+    else if (argv[1][0] == '2')
     {
       poz::task2(std::cin, std::cout);
     }

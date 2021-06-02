@@ -12,7 +12,6 @@ poz::GeoVector poz::makeGeoVector(const poz::Point& p1, const poz::Point& p2)
 poz::VectorPairs poz::getCollinear(const Shape& shape)
 {
   using namespace std::placeholders;
-  //using ShapeCIterator = poz::Shape::const_iterator;
   poz::Vectors vectors;
   auto boundInserter = std::bind(poz::vectorInserter, _1, _2, vectors);
   poz::for_comb< poz::Point, poz::Shape::const_iterator >(shape.cbegin(), shape.cend(), boundInserter);

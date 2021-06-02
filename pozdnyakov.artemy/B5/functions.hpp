@@ -4,6 +4,7 @@
 #include <functional>
 #include <algorithm>
 #include <cassert>
+#include <string>
 
 namespace pozdnyakov
 {
@@ -19,13 +20,17 @@ namespace pozdnyakov
   {
     std::function< void(InputIterator) > boundForEach = std::bind(for_each_and_first< T, InputIterator >, std::placeholders::_1, it2, op);
   notFor:
-    boundForEach(it1);
-    it1++;
     if (it1 != it2)
     {
-        goto notFor;
+      boundForEach(it1);
+      it1++;
+      goto notFor;
     }
   }
+  void checkLineEnding(const std::string& str);
+  bool compChar(char a, char b);
+  bool compCharNeg(char a, char b);
+  void removeWS(std::string& str);
 }
 
 #endif

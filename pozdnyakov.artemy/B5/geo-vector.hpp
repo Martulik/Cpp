@@ -6,7 +6,7 @@
 
 namespace pozdnyakov
 {
-  const int PRECISION = 10000;
+  const int PRECISION = 1000000;
   struct GeoVector
   {
     int i, j;

@@ -1,5 +1,7 @@
 #include "tasks.hpp"
 #include <numeric>
+#include <tuple>
+#include <algorithm>
 #include "shape-opers.hpp"
 #include "geo-vector.hpp"
 
@@ -12,6 +14,23 @@ void poz::task2(std::istream& in, std::ostream& out)
   std::istream_iterator< poz::Shape > eos;
   std::copy(begin, eos, std::back_inserter(shapes));
   unsigned int verticesCount = std::accumulate(shapes.cbegin(), shapes.cend(), 0, poz::sizeAccum);
-  out << "Vertices: " << verticesCount << '\n';
-  std::copy(shapes.begin(), shapes.end(), std::ostream_iterator< poz::Shape >(out, "\n"));
+  std::tuple< unsigned int, unsigned int, unsigned int > shapesCount
+  {
+    std::count_if(shapes.cbegin(), shapes.cend(), poz::isTriangle),
+    std::count_if(shapes.cbegin(), shapes.cend(), poz::isSquare),
+    std::count_if(shapes.cbegin(), shapes.cend(), poz::isRect)
+  };
+  std::remove_if(shapes.begin(), shapes.end(), poz::compSize< 5, poz::Shape >);
+  poz::removeZero(shapes);
+  std::vector< poz::Point > points;
+  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), poz::getFirst);
+  std::sort(shapes.begin(), shapes.end(), poz::comparator);
+  out << "Vertices: " << verticesCount << '\n'
+      << "Triangles: " << std::get< 0 >(shapesCount) << '\n'
+      << "Squares: " << std::get< 1 >(shapesCount) << '\n'
+      << "Rectangles: " << std::get< 2 >(shapesCount) << '\n'
+      << "Points: ";
+  std::copy(points.cbegin(), points.cend(), std::ostream_iterator< poz::Point >(out, " "));
+  out << '\n' << "Shapes:" << '\n';
+  std::copy(shapes.cbegin(), shapes.cend(), std::ostream_iterator< poz::Shape >(out, "\n"));
 }

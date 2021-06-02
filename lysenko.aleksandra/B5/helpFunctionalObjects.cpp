@@ -20,25 +20,30 @@ namespace lysenko
     throw std::out_of_range("Invalid parameters");
   }
 
-  struct getDistanceFromFirstPoint
+  double getDistanceFromFirstPoint(const lysenko::Shape& obj, int pointNumber)
   {
-    double operator()(const lysenko::Shape& obj, int pointNumber)
+    double deltaX = getDeltaFromFirstPoint(0, obj, pointNumber);
+    double deltaY = getDeltaFromFirstPoint(1, obj, pointNumber);
+
+    return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
+  }
+
+  struct fillTheVector
+  {
+    void operator()(const lysenko::Shape& obj, std::vector< double >& dist, int pointNumber)
     {
-      double deltaX = getDeltaFromFirstPoint(0, obj, pointNumber);
-      double deltaY = getDeltaFromFirstPoint(1, obj, pointNumber);
-      return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
+      double distance = getDistanceFromFirstPoint(obj, pointNumber);
+      dist[ pointNumber-1 ]=distance;
     }
   };
 
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const lysenko::Shape& obj)
   {
-    std::vector< double > distances;
+    std::vector< double > distances(3);
     if (obj.size() == 4)
     {
-      std::vector< int > indexesOfPoints = { 1, 2, 3 };
-
-      auto getDistance = std::bind(getDistanceFromFirstPoint(), obj, std::placeholders::_1);
-      std::for_each(indexesOfPoints.begin(), indexesOfPoints.end(), getDistance);
+      std::vector<int>indexesOfPoint = { 1, 2, 3 };
+      std::for_each(indexesOfPoint.begin(), indexesOfPoint.end(), std::bind(fillTheVector(), obj, distances, std::placeholders::_1));
       std::stable_sort(distances.begin(), distances.end());
     }
     return distances;

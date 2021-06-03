@@ -8,7 +8,7 @@
 
 namespace lysenko
 {
-  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const int& numbOfPoint)
+  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, int numbOfPoint)
   {
     if (abscissa)
     {
@@ -17,22 +17,13 @@ namespace lysenko
     return obj[numbOfPoint].y - obj[0].y;
   }
 
-  double getDistanceFromFirstPoint(const Shape& obj, const int& numbOfPoint)
+  double getDistanceFromFirstPoint(const Shape& obj, int numbOfPoint)
   {
     double deltaX = getDeltaFromFirstPoint(0, obj, numbOfPoint);
     double deltaY = getDeltaFromFirstPoint(1, obj, numbOfPoint);
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
-
-  struct fillTheVect
-  {
-    std::vector< double > operator()(std::vector< double >& distances, const double& dist)
-    {
-      distances.push_back(dist);
-      return distances;
-    }
-  };
 
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const Shape& obj)
   {

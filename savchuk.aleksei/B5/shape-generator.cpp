@@ -3,20 +3,25 @@
 #include <cmath>
 
 #include "point.hpp"
+#include "tools.hpp"
+
+namespace savchuk
+{
+  constexpr const int MIN_COORDINATE = -10'000;
+  constexpr const int MAX_COORDINATE = 10'000;
+}
 
 namespace lab = savchuk;
 
-// TO-DO: need to modify random int engine!
-
-static std::uniform_int_distribution<> dist(0, 1);
-static std::default_random_engine eng;
+std::function< int() > lab::ShapeGenerator::boolean_gen_ = lab::getGenerator(0, 1);
+std::function< int() > lab::ShapeGenerator::int_gen_ = lab::getGenerator(MIN_COORDINATE, MAX_COORDINATE);
 
 lab::Shape lab::ShapeGenerator::operator()() const
 {
-  Point p1 = { 2, 1 };
-  Point p2 = { 1, 2 };
+  Point p1 = { int_gen_(), int_gen_() };
+  Point p2 = { int_gen_(), int_gen_() };
 
-  if (dist(eng))
+  if (boolean_gen_())
   {
     return getSquare(p1, p2);
   }
@@ -41,12 +46,10 @@ lab::Shape lab::ShapeGenerator::getSquare(const Point& p1, const Point& p2) cons
 
 lab::Shape lab::ShapeGenerator::getOctagon(const Point& p1, const Point& p2) const
 {
-  const double SQRT_2 = std::sqrt(2);
-
   double dx1 = p2.x - p1.x;
   double dy1 = p2.y - p1.y;
 
-  const double SIN_45 = SQRT_2 / 2;
+  const double SIN_45 = std::sqrt(2) / 2;
   const double COS_45 = SIN_45;
 
   double dx2 = dx1 * COS_45 + dy1 * SIN_45;

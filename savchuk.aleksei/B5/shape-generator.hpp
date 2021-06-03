@@ -14,8 +14,8 @@ namespace savchuk
       Shape operator()() const;
 
     private:
-      static const int MAX_COORDINATE = 10'000;
-      static const int MIN_COORDINATE = -10'000;
+      static std::function< int() > boolean_gen_;
+      static std::function< int() > int_gen_;
 
       Shape getSquare(const Point& p1, const Point& p2) const;
       Shape getOctagon(const Point& p1, const Point& p2) const;

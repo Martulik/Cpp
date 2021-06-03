@@ -73,28 +73,28 @@ bool lysenko::isPentagon(const Shape& obj)
   return (obj.size() == 5);
 }
 
-bool lysenko::isTriangleOrSquareOrRectangle(const Shape& obj)
-{
-  return ((isTriangle(obj)) || (isRectangle(obj)));
-}
-
-
 bool lysenko::isNotTriangleOrSquareOrRectangle(const Shape& obj)
 {
-  return !(isTriangleOrSquareOrRectangle(obj));
+  return (!(isTriangle(obj)) || (isRectangle(obj)));
 }
+
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape > sortedOne(vect);
 
-  std::vector< Shape >::iterator def = std::remove_if(sortedOne.begin(), sortedOne.end(), (isNotTriangleOrSquareOrRectangle));
-  sortedOne.erase(def, sortedOne.end());
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isTriangle);
+  std::vector< Shape >::iterator iter = std::remove_if(vect.begin(), vect.end(), isTriangle);
+  vect.erase(iter, vect.end());
 
-  std::vector< Shape >::iterator spec = std::remove_if(vect.begin(), vect.end(), (isTriangleOrSquareOrRectangle));
-  vect.erase(spec, vect.end());
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
+  iter = std::remove_if(vect.begin(), vect.end(), isSquare);
+  vect.erase(iter, vect.end());
 
-  std::stable_sort(sortedOne.begin(),sortedOne.end());
+  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangle);
+  iter = std::remove_if(vect.begin(), vect.end(), isRectangle);
+  vect.erase(iter, vect.end());
+
   std::copy(vect.begin(), vect.end(), std::back_inserter(sortedOne));
 
   std::swap(sortedOne, vect);

@@ -40,19 +40,16 @@ namespace lysenko
     std::vector< double > distances;
     if (obj.size() == 4)
     {
+      std::vector< double > trueDist(3);
       if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
       {
-        auto fill = std::bind(fillTheVect(), plc::_1, std::bind(getDistanceFromFirstPoint, obj, plc::_2));
-        std::vector< double > trueDist = std::accumulate(obj.begin() + 1, obj.end(), std::vector< double >(), fill);
+        trueDist[0] = getDistanceFromFirstPoint(obj, obj[1]);
+        trueDist[1] = getDistanceFromFirstPoint(obj, obj[2]);
+        trueDist[2] = getDistanceFromFirstPoint(obj, obj[3]);
 
         std::stable_sort(trueDist.begin(), trueDist.end());
-        std::swap(distances, trueDist);
       }
-      else
-      {
-        std::vector< double > trueDist(3);
-        std::swap(distances, trueDist);
-      }
+      std::swap(distances, trueDist);
     }
     return distances;
   }

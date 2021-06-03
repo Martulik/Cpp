@@ -83,23 +83,7 @@ bool lysenko::isPentagon(const Shape& obj)
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
-  
   std::vector< Shape >::iterator it = std::partition(vect.begin(), vect.end(), isTriangle);
   std::vector< Shape >::iterator itS = std::partition(it, vect.end(), isSquare);
   std::partition(itS, vect.end(), isRectangle);
-  
- /* std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isTriangle);
-  std::vector< Shape >::iterator iter = std::remove_if(vect.begin(), vect.end(), isTriangle);
-  vect.erase(iter, vect.end());
-
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
-  iter = std::remove_if(vect.begin(), vect.end(), isSquare);
-  vect.erase(iter, vect.end());
-
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangle);
-  iter = std::remove_if(vect.begin(), vect.end(), isRectangle);
-  vect.erase(iter, vect.end());
-
-  std::copy(vect.begin(), vect.end(), std::back_inserter(sortedOne));*/
-
 }

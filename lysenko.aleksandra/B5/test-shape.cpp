@@ -36,6 +36,7 @@ namespace lysenko
   {
     namespace plc = std::placeholders;
     namespace lab = lysenko;
+    using boolVect = std::vector< bool >;
 
     std::string corr = "4 (1;1) (2;1) (2;2) (1;2)";
     std::string rectButNotSquare = "4 (8;1) (8;2) (1;1) (1;2)";
@@ -49,7 +50,7 @@ namespace lysenko
     auto test = std::bind(typeOfShape, std::bind(lab::executeShapeFromData, plc::_2));
     auto fill = std::bind(lab::fillResVect(), plc::_1, test);
 
-    std::vector< bool > resOfTest = std::accumulate(testData.begin(), testData.end(), std::vector< bool >(), fill);
+    boolVect resOfTest = std::accumulate(testData.begin(), testData.end(), boolVect(), fill);
 
     BOOST_CHECK_EQUAL_COLLECTIONS(resOfTest.begin(), resOfTest.end(), expResOfTest.begin(), expResOfTest.end());
   }

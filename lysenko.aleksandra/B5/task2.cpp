@@ -37,9 +37,9 @@ void lysenko::task2(std::istream& in, std::ostream& out)
   std::vector< Shape >::iterator deleteOnes = std::remove_if(myShapes.begin(), myShapes.end(), isPentagon);
   myShapes.erase(deleteOnes, myShapes.end());
 
-  vectOfPnt firstPointsOfShapes = std::accumulate(myShapes.begin(), myShapes.end(), vectOfPnt(), lab::addPoint());
+  vectOfPnt pointsOfShapes = std::accumulate(myShapes.begin(), myShapes.end(), vectOfPnt(), lab::addPoint());
   out << "Points: ";
-  std::copy(firstPointsOfShapes.begin(), firstPointsOfShapes.end(), std::ostream_iterator< lysenko::Point >(out, " "));
+  std::copy(pointsOfShapes.begin(), pointsOfShapes.end(), std::ostream_iterator< lysenko::Point >(out, " "));
   out << "\n";
 
   out << "Shapes:" << "\n";

@@ -53,34 +53,6 @@ bool poz::comparator(const poz::Shape& shape1, const poz::Shape& shape2)
   return poz::isSquare(shape1) && !poz::isSquare(shape2);
 }
 
-poz::sides_accum::sides_accum():
-  len1({-1, -1}),
-  len2({-1, -1})
-{}
-
-void poz::sides_accum::operator()(const poz::Point& point1, const poz::Point& point2)
-{
-  int dist = poz::getSquareDistance(point1, point2);
-  if (std::get< 1 >(len1) == -1)
-  {
-    std::get< 0 >(len1) = dist;
-    std::get< 1 >(len1) = 1;
-  }
-  else if (std::get< 0 >(len1) == dist)
-  {
-    std::get< 1 >(len1)++;
-  }
-  else if (std::get< 1 >(len2) == -1)
-  {
-    std::get< 0 >(len2) = dist;
-    std::get< 1 >(len2) = 1;
-  }
-  else if (std::get< 0 >(len2) == dist)
-  {
-    std::get< 1 >(len2)++;
-  }
-}
-
 std::istream& poz::operator>>(std::istream& in, poz::Point& point)
 {
   std::string buf;
@@ -143,4 +115,9 @@ std::ostream& poz::operator<<(std::ostream& out, const poz::Shape& shape)
   out << shape.size() << "  ";
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< poz::Point >(out, " "));
   return out;
+}
+
+bool poz::operator==(const poz::Point& point1, const poz::Point& point2)
+{
+  return (point1.x == point2.x) && (point1.y == point2.y);
 }

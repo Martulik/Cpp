@@ -25,17 +25,11 @@ namespace pozdnyakov
   {
     return cont1.size() < cont2.size();
   }
-  struct sides_accum
-  {
-    sides_accum();
-    void operator()(const Point& point1, const Point& point2);
-    std::pair< int, int > len1;
-    std::pair< int, int > len2;
-  };
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Point& point);
   std::istream& operator>>(std::istream& in, Shape& shape);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
+  bool operator==(const Point& point1, const Point& point2);
 }
 
 #endif

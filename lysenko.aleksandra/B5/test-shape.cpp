@@ -4,7 +4,7 @@
 #include <numeric>
 
 #include "Shape.h"
-#include "helpFunctionalObjects.h"
+#include "typeOfShape.h"
 
 namespace lysenko
 {

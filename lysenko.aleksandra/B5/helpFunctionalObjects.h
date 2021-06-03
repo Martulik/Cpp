@@ -8,10 +8,6 @@
 
 namespace lysenko
 {
-  bool isTriangle(const Shape& obj);
-  bool isRectangle(const Shape& obj);
-  bool isSquare(const Shape& obj);
-
   struct getNumberOfVertices
   {
     size_t operator()(const lysenko::Shape& obj) const
@@ -29,11 +25,17 @@ namespace lysenko
     }
   };
 
-  bool isPentagon(const Shape& obj);
+  struct addShape
+  {
+    std::vector< Shape > operator()(std::vector< Shape >& shapes, const Shape& obj)
+    {
+      shapes.push_back(obj);
+      return shapes;
+    }
+  };
 
   void shapeSort(std::vector< Shape >& vect);
 
-  void doSort(std::vector< Shape >& tri, std::vector< Shape >& sq, std::vector< Shape >& rect, std::vector< Shape >& oth, Shape& shp);
 }
 
 #endif

@@ -7,7 +7,6 @@
 #include <set>
 #include <stdexcept>
 
-
 void dushechkina::task1(std::istream& in, std::ostream& out)
 {
   std::istream_iterator< std::string > iter(in);

@@ -1,11 +1,9 @@
 #include "helpFunctionalObjects.h"
 #include "typeOfShape.h"
 
-#include <cmath>
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include <numeric>
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {

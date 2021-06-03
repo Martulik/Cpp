@@ -4,6 +4,7 @@
 #include <iterator>
 #include <iostream>
 #include <algorithm>
+#include <functional>
 #include "shape-opers.hpp"
 
 namespace poz = pozdnyakov;

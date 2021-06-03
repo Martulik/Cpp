@@ -11,19 +11,10 @@ void poz::checkLineEnding(const std::string& str)
   }
 }
 
-bool poz::compChar(char a, char b)
-{
-  return a == b;
-}
-
-bool poz::compCharNeg(char a, char b)
-{
-  return a != b;
-}
-
 void poz::removeWS(std::string& str)
 {
-  auto isNotSpace = std::bind(poz::compCharNeg, std::placeholders::_1, ' ');
+  using namespace std::placeholders;
+  auto isNotSpace = std::bind(std::not_equal_to< char >(), _1, ' ');
   std::string newStr;
   std::copy_if(str.cbegin(), str.cend(), std::back_inserter(newStr), isNotSpace);
   str = newStr;

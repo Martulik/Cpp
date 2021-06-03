@@ -34,6 +34,15 @@ namespace lysenko
     }
   };
 
+  struct fillTheVect
+  {
+    std::vector< double > operator()(std::vector< double >& distances, const double& dist)
+    {
+      distances.push_back(dist);
+      return distances;
+    }
+  };
+
   bool isTriangle(const Shape& obj);
   bool isRectangle(const Shape& obj);
   bool isSquare(const Shape& obj);

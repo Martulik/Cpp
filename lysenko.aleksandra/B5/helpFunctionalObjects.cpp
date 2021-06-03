@@ -8,19 +8,19 @@
 
 namespace lysenko
 {
-  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const int& numbOfPoint)
+  static int getDeltaBetweenPoints(bool abscissa, const Point& firstPoint, const Point& secondPoint)
   {
     if (abscissa)
     {
-      return obj[numbOfPoint].x - obj[0].x;
+      return firstPoint.x - secondPoint.x;
     }
-    return obj[numbOfPoint].y - obj[0].y;
+    return firstPoint.y - secondPoint.y;
   }
 
-  double getDistanceFromFirstPoint(const Shape& obj, const int& numbOfPoint)
+  double getDistanceBetweenPoints(const Point& firstPoint, const Point& secondPoint)
   {
-    double deltaX = getDeltaFromFirstPoint(0, obj, numbOfPoint);
-    double deltaY = getDeltaFromFirstPoint(1, obj, numbOfPoint);
+    int deltaX = getDeltaBetweenPoints(0, firstPoint, secondPoint);
+    int deltaY = getDeltaBetweenPoints(1, firstPoint, secondPoint);
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
@@ -34,13 +34,17 @@ namespace lysenko
       std::vector< double > trueDist(3);
       if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
       {
-        trueDist[0] = getDistanceFromFirstPoint(obj, 1);
-        trueDist[1] = getDistanceFromFirstPoint(obj, 2);
-        trueDist[2] = getDistanceFromFirstPoint(obj, 3);
+        auto fill = std::bind(fillTheVect(), plc::_1, std::bind(getDistanceBetweenPoints, obj[0], plc::_2));
+        std::vector< double > trueDist = std::accumulate(obj.begin() + 1, obj.end(), std::vector< double >(), fill);
 
         std::stable_sort(trueDist.begin(), trueDist.end());
+        std::swap(distances, trueDist);
       }
-      std::swap(distances, trueDist);
+      else
+      {
+        std::vector< double > trueDist(3);
+        std::swap(distances, trueDist);
+      }
     }
     return distances;
   }
@@ -56,7 +60,7 @@ bool lysenko::isRectangle(const lysenko::Shape& obj)
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
   if (!(distances.empty()))
   {
-    return (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2)));
+    return (distances[2] == std::sqrt((std::pow(distances[0], 2)) + (std::pow(distances[1], 2))));
   }
   return 0;
 }

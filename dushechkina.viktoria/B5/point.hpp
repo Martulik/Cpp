@@ -16,7 +16,6 @@ namespace dushechkina
 	std::ostream& operator<<(std::ostream& out, const Point& point);
 
 	using Shape = std::vector< Point >;
-
 	bool isTriangle(const Shape& shape);
 	bool isRectangle(const Shape& shape);
 	bool isPentagon(const Shape& shape);

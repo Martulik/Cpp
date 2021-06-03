@@ -101,7 +101,7 @@ void lysenko::shapeSort(std::vector< Shape >& vect)
   sortedOne.insert(sortedOne.end(), squares.begin(), squares.end());
   sortedOne.insert(sortedOne.end(), rectangles.begin(),rectangles.end());
   sortedOne.insert(sortedOne.end(), others.begin(), others.end());
-  
+
   std::swap(sortedOne, vect);
 }
 

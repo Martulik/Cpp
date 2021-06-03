@@ -32,7 +32,7 @@ namespace lysenko
     }
   };
 
-  void testRectAndSquare(std::vector<bool>& expResOfTest)
+  void testRectAndSquare(std::vector<bool>& expRes)
   {
     namespace plc = std::placeholders;
     namespace lab = lysenko;
@@ -45,14 +45,14 @@ namespace lysenko
 
     std::vector< std::string > testData = { corr, rectButNotSquare, polygon, sizeFourButNotRect };
 
-    auto typeOfShape = expResOfTest[1] == false ? lab::isSquare: lab::isRectangle;
+    auto typeOfShape = expRes[1] == false ? lab::isSquare: lab::isRectangle;
 
     auto test = std::bind(typeOfShape, std::bind(lab::executeShapeFromData, plc::_2));
     auto fill = std::bind(lab::fillResVect(), plc::_1, test);
 
     boolVect resOfTest = std::accumulate(testData.begin(), testData.end(), boolVect(), fill);
 
-    BOOST_CHECK_EQUAL_COLLECTIONS(resOfTest.begin(), resOfTest.end(), expResOfTest.begin(), expResOfTest.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(resOfTest.begin(), resOfTest.end(), expRes.begin(), expRes.end());
   }
 }
 

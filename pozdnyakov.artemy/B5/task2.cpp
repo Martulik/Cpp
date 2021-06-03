@@ -1,8 +1,9 @@
 #include "tasks.hpp"
 #include <numeric>
 #include <tuple>
-#include <algorithm>
 #include <iterator>
+#include <iostream>
+#include <algorithm>
 #include "shape-opers.hpp"
 
 namespace poz = pozdnyakov;
@@ -24,11 +25,10 @@ void poz::task2(std::istream& in, std::ostream& out)
   std::vector< poz::Point > points;
   std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), poz::getFirst);
   std::sort(shapes.begin(), shapes.end(), poz::comparator);
-  out << "Vertices: " << verticesCount << '\n'
-      << "Triangles: " << std::get< 0 >(shapesCount) << '\n'
-      << "Squares: " << std::get< 1 >(shapesCount) << '\n'
-      << "Rectangles: " << std::get< 2 >(shapesCount) << '\n'
-      << "Points: ";
+  out << "Vertices: " << verticesCount << '\n';
+  out << "Triangles: " << std::get< 0 >(shapesCount) << '\n';
+  out << "Squares: " << std::get< 1 >(shapesCount) << '\n';
+  out << "Rectangles: " << std::get< 2 >(shapesCount) << '\n' << "Points: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< poz::Point >(out, " "));
   out << '\n' << "Shapes:" << '\n';
   std::copy(shapes.cbegin(), shapes.cend(), std::ostream_iterator< poz::Shape >(out, "\n"));

@@ -1,9 +1,7 @@
 #include "shape-opers.hpp"
-#include <string>
 #include <stdexcept>
 #include <iterator>
 #include <iostream>
-#include <functional>
 #include <cmath>
 #include "shape-opers.hpp"
 #include "functions.hpp"

@@ -2,7 +2,6 @@
 #define SHAPE_OPERS_HPP
 
 #include <iosfwd>
-#include <algorithm>
 #include "point.hpp"
 
 namespace pozdnyakov

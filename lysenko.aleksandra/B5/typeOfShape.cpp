@@ -8,19 +8,19 @@
 
 namespace lysenko
 {
-  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const Point& pnt)
+  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const int& numbOfPoint)
   {
     if (abscissa)
     {
-      return pnt.x - obj[0].x;
+      return obj[numbOfPoint].x - obj[0].x;
     }
-    return pnt.y - obj[0].y;
+    return obj[numbOfPoint].y - obj[0].y;
   }
 
-  double getDistanceFromFirstPoint(const Shape& obj, const Point& pnt)
+  double getDistanceFromFirstPoint(const Shape& obj, const int& numbOfPoint)
   {
-    double deltaX = getDeltaFromFirstPoint(0, obj, pnt);
-    double deltaY = getDeltaFromFirstPoint(1, obj, pnt);
+    double deltaX = getDeltaFromFirstPoint(0, obj, numbOfPoint);
+    double deltaY = getDeltaFromFirstPoint(1, obj, numbOfPoint);
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
@@ -43,9 +43,9 @@ namespace lysenko
       std::vector< double > trueDist(3);
       if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
       {
-        trueDist[0] = getDistanceFromFirstPoint(obj, obj[1]);
-        trueDist[1] = getDistanceFromFirstPoint(obj, obj[2]);
-        trueDist[2] = getDistanceFromFirstPoint(obj, obj[3]);
+        trueDist[0] = getDistanceFromFirstPoint(obj, 1);
+        trueDist[1] = getDistanceFromFirstPoint(obj, 2);
+        trueDist[2] = getDistanceFromFirstPoint(obj, 3);
 
         std::stable_sort(trueDist.begin(), trueDist.end());
       }

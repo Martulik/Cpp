@@ -87,21 +87,40 @@ bool lysenko::isPentagon(const Shape& obj)
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
+  namespace plc = std::placeholders;
+
   std::vector< Shape > sortedOne;
+  std::vector< Shape > triangles;
+  std::vector< Shape > squares;
+  std::vector< Shape > rectangles;
+  std::vector< Shape > others;
 
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isTriangle);
-  std::vector< Shape >::iterator iter = std::remove_if(vect.begin(), vect.end(), isTriangle);
-  vect.erase(iter, vect.end());
+  std::for_each(vect.begin(), vect.end(), std::bind(doSort, triangles, squares, rectangles, others, plc::_1));
 
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isSquare);
-  iter = std::remove_if(vect.begin(), vect.end(), isSquare);
-  vect.erase(iter, vect.end());
-
-  std::copy_if(vect.begin(), vect.end(), std::back_inserter(sortedOne), isRectangle);
-  iter = std::remove_if(vect.begin(), vect.end(), isRectangle);
-  vect.erase(iter, vect.end());
-
-  std::copy(vect.begin(), vect.end(), std::back_inserter(sortedOne));
-
+  sortedOne.insert(sortedOne.end(), triangles.begin(), triangles.end());
+  sortedOne.insert(sortedOne.end(), squares.begin(), squares.end());
+  sortedOne.insert(sortedOne.end(), rectangles.begin(),rectangles.end());
+  sortedOne.insert(sortedOne.end(), others.begin(), others.end());
+  
   std::swap(sortedOne, vect);
+}
+
+void lysenko::doSort(std::vector< Shape >& tri, std::vector< Shape >& sq, std::vector< Shape >& rect, std::vector< Shape >& oth, Shape& shp)
+{
+  if (isRectangle(shp))
+  {
+    tri.push_back(shp);
+    return;
+  }
+  if (isSquare(shp))
+  {
+    sq.push_back(shp);
+    return;
+  }
+  if (isRectangle(shp))
+  {
+    rect.push_back(shp);
+    return;
+  }
+  oth.push_back(shp);
 }

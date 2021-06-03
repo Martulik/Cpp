@@ -3,7 +3,6 @@
 #include <sstream>
 #include <numeric>
 
-
 #include "Shape.h"
 #include "helpFunctionalObjects.h"
 

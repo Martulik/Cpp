@@ -32,6 +32,8 @@ namespace lysenko
   bool isPentagon(const Shape& obj);
 
   void shapeSort(std::vector< Shape >& vect);
+
+  void doSort(std::vector< Shape >& tri, std::vector< Shape >& sq, std::vector< Shape >& rect, std::vector< Shape >& oth, Shape& shp);
 }
 
 #endif

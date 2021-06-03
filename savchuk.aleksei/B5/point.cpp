@@ -3,14 +3,9 @@
 #include <iostream>
 #include <algorithm>
 #include <cctype>
+#include <cmath>
 
 namespace lab = savchuk;
-
-void lab::move(Point& point, int dx, int dy)
-{
-  point.x += dx;
-  point.y += dy;
-}
 
 namespace
 {
@@ -125,4 +120,15 @@ namespace
     }
     return std::atoi(num.c_str());
   }
+}
+
+double lab::getDistance(const Point& p1, const Point& p2)
+{
+  return std::hypot(p2.x - p1.x, p2.y - p1.y);
+}
+
+void lab::move(Point& point, int dx, int dy)
+{
+  point.x += dx;
+  point.y += dy;
 }

@@ -16,6 +16,7 @@ namespace savchuk
   std::ostream& operator<<(std::ostream& os, const Point& point);
 
   void move(Point& point, int dx, int dy);
+  double getDistance(const Point& p1, const Point& p2);
 }
 
 #endif

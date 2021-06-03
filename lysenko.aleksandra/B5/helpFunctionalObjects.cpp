@@ -8,39 +8,51 @@
 
 namespace lysenko
 {
-  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const int& numberOfPoint)
+  static int getDeltaFromFirstPoint(bool abscissa, const Shape& obj, const Point& pnt)
   {
     if (abscissa)
     {
-      return obj[numberOfPoint].x - obj[0].x;
+      return pnt.x - obj[0].x;
     }
-    return obj[numberOfPoint].y - obj[0].y;
+    return pnt.y - obj[0].y;
   }
 
-  double getDistanceFromFirstPoint(const Shape& obj, const int& numberOfPoint)
+  double getDistanceFromFirstPoint(const Shape& obj, const Point& pnt)
   {
-    double deltaX = getDeltaFromFirstPoint(0, obj, numberOfPoint);
-    double deltaY = getDeltaFromFirstPoint(1, obj, numberOfPoint);
+    double deltaX = getDeltaFromFirstPoint(0, obj, pnt);
+    double deltaY = getDeltaFromFirstPoint(1, obj, pnt);
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
 
+  struct fillTheVect
+  {
+    std::vector< double > operator()(std::vector< double >& distances, const double& dist)
+    {
+      distances.push_back(dist);
+      return distances;
+    }
+  };
 
   static std::vector< double > getSortedVectOfDistancesFromFirstPoint(const Shape& obj)
   {
+    namespace plc = std::placeholders;
     std::vector< double > distances;
     if (obj.size() == 4)
     {
-      std::vector< double > trueDist(3);
       if (!((obj[0] == obj[1]) && (obj[0] == obj[2]) && (obj[0] == obj[3])))
       {
-        trueDist[0] = getDistanceFromFirstPoint(obj, 1);
-        trueDist[1] = getDistanceFromFirstPoint(obj, 2);
-        trueDist[2] = getDistanceFromFirstPoint(obj, 3);
+        auto fill = std::bind(fillTheVect(), plc::_1, std::bind(getDistanceFromFirstPoint, obj, plc::_2));
+        std::vector< double > trueDist = std::accumulate(obj.begin() + 1, obj.end(), std::vector< double >(), fill);
 
         std::stable_sort(trueDist.begin(), trueDist.end());
+        std::swap(distances, trueDist);
       }
-      std::swap(distances, trueDist);
+      else
+      {
+        std::vector< double > trueDist(3);
+        std::swap(distances, trueDist);
+      }
     }
     return distances;
   }

@@ -12,7 +12,7 @@
 void lysenko::task2(std::istream& in, std::ostream& out)
 {
   namespace lab = lysenko;
-  using namespace std::placeholders;
+  namespace plc = std::placeholders;
   using vectOfPnt = std::vector< Point >;
 
   std::istream_iterator< Shape > first(in);
@@ -21,7 +21,7 @@ void lysenko::task2(std::istream& in, std::ostream& out)
 
   std::vector< Shape >::iterator firstSh = myShapes.begin();
   std::vector< Shape >::iterator lastSh = myShapes.end();
-  auto numberOfVerticesForOneShape = std::bind(std::plus< size_t >(), _1, std::bind(lab::getNumberOfVertices(), _2));
+  auto numberOfVerticesForOneShape = std::bind(std::plus< size_t >(), plc::_1, std::bind(lab::getNumberOfVertices(), plc::_2));
   size_t numberOfVertices = std::accumulate(firstSh, lastSh, 0, numberOfVerticesForOneShape);
   out << "Vertices: " << numberOfVertices << "\n";
 

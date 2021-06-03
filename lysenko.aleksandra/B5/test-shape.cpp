@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <sstream>
+#include <numeric>
 
 #include "Shape.h"
 #include "helpFunctionalObjects.h"
@@ -21,6 +22,15 @@ namespace lysenko
     in >> shp;
     return shp;
   }
+
+  struct fillResVect
+  {
+    std::vector< bool > operator()(std::vector< bool >& results, bool res)
+    {
+      results.push_back(res);
+      return results;
+    }
+  };
 }
 
 BOOST_AUTO_TEST_SUITE(testShapeInput)
@@ -68,16 +78,34 @@ BOOST_AUTO_TEST_CASE(testTriangle)
 
 BOOST_AUTO_TEST_CASE(testRectangle)
 {
-  std::string testData = "4 (1;1) (2;1) (2;2) (1;2)";
-  lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isRectangle(shp), true);
+  std::string corr = "4 (1;1) (2;1) (2;2) (1;2)";
+  std::string rectButNotSquare = "4 (8;1) (8;2) (1;1) (1;2)";
+  std::string polygon = "5 (1;1) (2;1) (2;2) (1;2) (0;1)";
+  std::string sizeFourButNotRect = "4 (1;1) (2;2) (2;3) (1;2)";
+
+  std::vector< std::string > testData = { corr, rectButNotSquare, polygon, sizeFourButNotRect };
+  std::vector< bool > expResOfTest = { true, true, false, false };
+
+  auto fill = std::bind(lysenko::fillResVect(), std::placeholders::_1, std::bind(lysenko::isRectangle, std::bind(lysenko::executeShapeFromData, std::placeholders::_2)));
+  std::vector< bool > resOfTest = std::accumulate(testData.begin(), testData.end(), std::vector< bool >(), fill);
+
+  BOOST_CHECK_EQUAL_COLLECTIONS(resOfTest.begin(), resOfTest.end(), expResOfTest.begin(), expResOfTest.end());
 }
 
 BOOST_AUTO_TEST_CASE(testSquare)
 {
-  std::string testData = "4 (1;1) (2;1) (2;2) (1;2)";
-  lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isSquare(shp), true);
+  std::string corr = "4 (1;1) (2;1) (2;2) (1;2)";
+  std::string rectButNotSquare = "4 (8;1) (8;2) (1;1) (1;2)";
+  std::string polygon = "5 (1;1) (2;1) (2;2) (1;2) (0;1)";
+  std::string sizeFourButNotRect = "4 (1;1) (2;2) (2;3) (1;2)";
+
+  std::vector< std::string > testData = { corr, rectButNotSquare, polygon, sizeFourButNotRect };
+  std::vector< bool > expResOfTest = { true, false, false, false };
+
+  auto fill = std::bind(lysenko::fillResVect(), std::placeholders::_1, std::bind(lysenko::isSquare, std::bind(lysenko::executeShapeFromData, std::placeholders::_2)));
+  std::vector< bool > resOfTest = std::accumulate(testData.begin(), testData.end(), std::vector< bool >(), fill);
+
+  BOOST_CHECK_EQUAL_COLLECTIONS(resOfTest.begin(), resOfTest.end(), expResOfTest.begin(), expResOfTest.end());
 }
 
 BOOST_AUTO_TEST_CASE(testPentagon)

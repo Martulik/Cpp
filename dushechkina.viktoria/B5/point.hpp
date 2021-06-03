@@ -8,8 +8,8 @@ namespace dushechkina
 {
 	struct Point
 	{
-		int x;
-		int y;
+	 int x;
+	 int y;
 	};
 
 	std::istream& operator>>(std::istream& in, Point& point);

@@ -34,7 +34,7 @@ namespace lysenko
     }
   };
 
-  struct fillTheVect
+   struct fillTheVect
   {
     std::vector< double > operator()(std::vector< double >& distances, const double& dist)
     {

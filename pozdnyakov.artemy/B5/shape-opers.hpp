@@ -3,11 +3,11 @@
 
 #include <iosfwd>
 #include <algorithm>
-#include <initializer_list>
 #include "point.hpp"
 
 namespace pozdnyakov
 {
+  const int PRECISION = 1000;
   bool isSquare(const Shape& shape);
   bool isRect(const Shape& shape);
   bool isTriangle(const Shape& shape);
@@ -20,11 +20,19 @@ namespace pozdnyakov
   const Point& getFirst(const Shape& shape);
   bool comparator(const Shape& shape1, const Shape& shape2);
   template < int x, class Container >
-  bool valComparator(Container cont1, Container)
+  bool valComparator(Container cont1, Container cont2)
   {
-    return cont1.size() == x;
+    return cont1.size() < cont2.size();
   }
-  void removeZero(std::vector< Shape >& shapes);
+  struct sides_accum
+  {
+    sides_accum();
+    void operator()(const Point& point1, const Point& point2);
+    std::pair< int, int > lenX1;
+    std::pair< int, int > lenX2;
+    std::pair< int, int > lenY1;
+    std::pair< int, int > lenY2;
+  };
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Point& point);
   std::istream& operator>>(std::istream& in, Shape& shape);

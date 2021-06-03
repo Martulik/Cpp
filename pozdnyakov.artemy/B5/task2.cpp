@@ -2,8 +2,8 @@
 #include <numeric>
 #include <tuple>
 #include <algorithm>
+#include <iterator>
 #include "shape-opers.hpp"
-#include "geo-vector.hpp"
 
 namespace poz = pozdnyakov;
 
@@ -20,8 +20,7 @@ void poz::task2(std::istream& in, std::ostream& out)
     std::count_if(shapes.cbegin(), shapes.cend(), poz::isSquare),
     std::count_if(shapes.cbegin(), shapes.cend(), poz::isRect)
   };
-  std::remove_if(shapes.begin(), shapes.end(), poz::compSize< 5, poz::Shape >);
-  poz::removeZero(shapes);
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), poz::compSize< 5, poz::Shape >), shapes.end());
   std::vector< poz::Point > points;
   std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(points), poz::getFirst);
   std::sort(shapes.begin(), shapes.end(), poz::comparator);

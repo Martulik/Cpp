@@ -4,4 +4,13 @@
 #include <vector>
 #include <iosfwd>
 
+namespace dushechkina
+{
+	struct Point
+	{
+		int x;
+		int y;
+	};
+
+}
 #endif

@@ -1,6 +1,8 @@
 #ifndef TOOLS_HPP
 #define TOOLS_HPP
 
+#include <functional>
+
 #include "shape.hpp"
 
 namespace savchuk
@@ -14,6 +16,8 @@ namespace savchuk
 
     void operator()(const Shape& shape);
   };
+
+  std::function< int() > getGenerator(int leftBound, int rightBound);
 }
 
 #endif

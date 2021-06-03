@@ -43,8 +43,6 @@ void lysenko::task2(std::istream& in, std::ostream& out)
   out << "\n";
 
   out << "Shapes:" << "\n";
-  
   shapeSort(myShapes);
-
   std::copy(myShapes.begin(), myShapes.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

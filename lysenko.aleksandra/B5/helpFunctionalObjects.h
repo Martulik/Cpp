@@ -29,10 +29,6 @@ namespace lysenko
     }
   };
 
-  bool isTriangleOrSquareOrRectangle(const Shape& obj);
-
-  bool isNotTriangleOrSquareOrRectangle(const Shape& obj);
-
   bool isPentagon(const Shape& obj);
 
   void shapeSort(std::vector< Shape >& vect);

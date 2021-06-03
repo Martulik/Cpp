@@ -19,6 +19,7 @@ namespace lysenko
   using Shape = std::vector< Point >;
   std::istream& operator>>(std::istream& in, Shape& Shape);
   std::ostream& operator<<(std::ostream& out, const Shape& Shape);
+  bool operator<(const Shape& shape1, const Shape& shape2);
 }
 
 #endif

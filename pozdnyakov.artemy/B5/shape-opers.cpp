@@ -21,7 +21,7 @@ bool poz::isSquare(const poz::Shape& shape)
   poz::sides_accum acc;
   FuncType boundMem = std::bind(&sides_accum::operator(), &acc, shape[0], _1);
   std::for_each(shape.begin() + 1, shape.end(), boundMem);
-  return std::get< 1 >(acc.len1) == 2 || std::get< 1 >(acc.len2) == 2;
+  return std::get< 1 >(acc.len1) >= 2 || std::get< 1 >(acc.len2) >= 2;
 }
 
 bool poz::isRect(const poz::Shape& shape)

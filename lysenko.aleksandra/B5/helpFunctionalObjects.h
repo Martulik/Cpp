@@ -34,6 +34,11 @@ namespace lysenko
     }
   };
 
+  bool isTriangle(const Shape& obj);
+  bool isRectangle(const Shape& obj);
+  bool isSquare(const Shape& obj);
+  bool isPentagon(const Shape& obj);
+
   void shapeSort(std::vector< Shape >& vect);
 
 }

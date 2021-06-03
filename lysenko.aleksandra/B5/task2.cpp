@@ -8,7 +8,6 @@
 
 #include "Shape.h"
 #include "helpFunctionalObjects.h"
-#include "typeOfShape.h"
 
 void lysenko::task2(std::istream& in, std::ostream& out)
 {

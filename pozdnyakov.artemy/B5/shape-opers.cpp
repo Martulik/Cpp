@@ -4,6 +4,7 @@
 #include <iterator>
 #include <iostream>
 #include <functional>
+#include <cmath>
 #include "shape-opers.hpp"
 #include "functions.hpp"
 
@@ -12,28 +13,15 @@ namespace poz = pozdnyakov;
 bool poz::isSquare(const poz::Shape& shape)
 {
   using namespace std::placeholders;
-  using ArgFunc = std::function< void(const poz::Point&, const poz::Point&) >;
+  using FuncType = std::function< void(const poz::Point&) >;
   if (shape.size() != 4)
   {
     return false;
   }
   poz::sides_accum acc;
-  ArgFunc boundMem = std::bind(&sides_accum::operator(), &acc, _1, _2);
-  poz::for_comb< const poz::Point&, poz::Shape::const_iterator >(shape.cbegin(), shape.cend(), boundMem);
-  std::vector< int > lens
-  {
-    std::get< 0 >(acc.lenX1),
-    std::get< 0 >(acc.lenX2),
-    std::get< 0 >(acc.lenY1),
-    std::get< 0 >(acc.lenY2)
-  };
-  auto boundEqualTo = std::bind(std::equal_to< int >(), std::placeholders::_1, 0);
-  lens.erase(std::remove_if(lens.begin(), lens.end(), boundEqualTo), lens.end());
-  if (lens.size() == 2)
-  {
-    return lens[0] == lens[1];
-  }
-  return false;
+  FuncType boundMem = std::bind(&sides_accum::operator(), &acc, shape[0], _1);
+  std::for_each(shape.begin() + 1, shape.end(), boundMem);
+  return std::get< 1 >(acc.len1) == 2 || std::get< 1 >(acc.len2) == 2;
 }
 
 bool poz::isRect(const poz::Shape& shape)
@@ -56,6 +44,11 @@ const poz::Point& poz::getFirst(const poz::Shape& shape)
   return shape[0];
 }
 
+int poz::getSquareDistance(const poz::Point& point1, const poz::Point& point2)
+{
+  return pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2);
+}
+
 bool poz::comparator(const poz::Shape& shape1, const poz::Shape& shape2)
 {
   if (shape1.size() != 4 || shape2.size() != 4)
@@ -66,49 +59,30 @@ bool poz::comparator(const poz::Shape& shape1, const poz::Shape& shape2)
 }
 
 poz::sides_accum::sides_accum():
-  lenX1({-1, -1}),
-  lenX2({-1, -1}),
-  lenY1({-1, -1}),
-  lenY2({-1, -1})
+  len1({-1, -1}),
+  len2({-1, -1})
 {}
 
 void poz::sides_accum::operator()(const poz::Point& point1, const poz::Point& point2)
 {
-  if (std::get< 1 >(lenX1) == -1)
+  int dist = poz::getSquareDistance(point1, point2);
+  if (std::get< 1 >(len1) == -1)
   {
-    std::get< 0 >(lenX1) = std::abs(point1.x - point2.x);
-    std::get< 1 >(lenX1) = 1;
+    std::get< 0 >(len1) = dist;
+    std::get< 1 >(len1) = 1;
   }
-  else if (std::get< 0 >(lenX1) == std::abs(point1.x - point2.x))
+  else if (std::get< 0 >(len1) == dist)
   {
-    std::get< 1 >(lenX1)++;
+    std::get< 1 >(len1)++;
   }
-  else if (std::get< 1 >(lenX2) == -1)
+  else if (std::get< 1 >(len2) == -1)
   {
-    std::get< 0 >(lenX2) = std::abs(point1.x - point2.x);
-    std::get< 1 >(lenX2) = 1;
+    std::get< 0 >(len2) = dist;
+    std::get< 1 >(len2) = 1;
   }
-  else if (std::get< 0 >(lenX2) == std::abs(point1.x - point2.x))
+  else if (std::get< 0 >(len2) == dist)
   {
-    std::get< 1 >(lenX2)++;
-  }
-  if (std::get< 1 >(lenY1) == -1)
-  {
-    std::get< 0 >(lenY1) = std::abs(point1.y - point2.y);
-    std::get< 1 >(lenY1) = 1;
-  }
-  else if (std::get< 0 >(lenY1) == std::abs(point1.y - point2.y))
-  {
-    std::get< 1 >(lenY1)++;
-  }
-  else if (std::get< 1 >(lenY2) == -1)
-  {
-    std::get< 0 >(lenY2) = std::abs(point1.y - point2.y);
-    std::get< 1 >(lenY2) = 1;
-  }
-  else if (std::get< 0 >(lenY2) == std::abs(point1.y - point2.y))
-  {
-    std::get< 1 >(lenY2)++;
+    std::get< 1 >(len2)++;
   }
 }
 

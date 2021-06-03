@@ -18,6 +18,7 @@ namespace pozdnyakov
     return x == cont.size();
   }
   const Point& getFirst(const Shape& shape);
+  int getSquareDistance(const Point& point1, const Point& point2);
   bool comparator(const Shape& shape1, const Shape& shape2);
   template < int x, class Container >
   bool valComparator(Container cont1, Container cont2)
@@ -28,10 +29,8 @@ namespace pozdnyakov
   {
     sides_accum();
     void operator()(const Point& point1, const Point& point2);
-    std::pair< int, int > lenX1;
-    std::pair< int, int > lenX2;
-    std::pair< int, int > lenY1;
-    std::pair< int, int > lenY2;
+    std::pair< int, int > len1;
+    std::pair< int, int > len2;
   };
   std::istream& operator>>(std::istream& in, Point& point);
   std::ostream& operator<<(std::ostream& out, const Point& point);

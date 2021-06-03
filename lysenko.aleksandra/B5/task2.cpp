@@ -21,8 +21,10 @@ void lysenko::task2(std::istream& in, std::ostream& out)
 
   std::vector< Shape >::iterator firstSh = myShapes.begin();
   std::vector< Shape >::iterator lastSh = myShapes.end();
-  auto numberOfVerticesForOneShape = std::bind(std::plus< size_t >(), plc::_1, std::bind(lab::getNumberOfVertices(), plc::_2));
-  size_t numberOfVertices = std::accumulate(firstSh, lastSh, 0, numberOfVerticesForOneShape);
+
+  auto numberOfVerticesForOneShape = std::bind(lab::getNumberOfVertices(), plc::_2);
+  auto calculate = std::bind(std::plus< size_t >(), plc::_1, numberOfVerticesForOneShape);
+  size_t numberOfVertices = std::accumulate(firstSh, lastSh, 0, calculate);
   out << "Vertices: " << numberOfVertices << "\n";
 
   int numberOfTriangles =  std::count_if(firstSh, lastSh, isTriangle);

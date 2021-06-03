@@ -1,6 +1,7 @@
 #include "helpFunctionalObjects.h"
 
 #include <vector>
+#include <cmath>
 #include <algorithm>
 #include <functional>
 #include <numeric>

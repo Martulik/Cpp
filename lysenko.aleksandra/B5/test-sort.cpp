@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
-#include<numeric>
+#include <numeric>
 
 #include "Shape.h"
 #include "helpFunctionalObjects.h"

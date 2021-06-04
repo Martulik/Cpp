@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(testingCorrectWorkDeterminantTriangle)
 
 BOOST_AUTO_TEST_CASE(testingCorrectWorkDeterminantSquare)
 {
-  std::istringstream in("4 (1;1) (1;6) (6;1) (6;6)");
+  std::istringstream in("4 (0;0) (0;1) (1;1) (1;0)");
   dushechkina::Shape shape;
   in >> shape;
   BOOST_CHECK(dushechkina::isSquare(shape));

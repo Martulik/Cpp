@@ -3,11 +3,8 @@
 
 #include <vector>
 #include <functional>
-#include <algorithm>
-#include <iterator>
 
 #include "Shape.h"
-#include "helpFunctionalObjects.h"
 
 namespace lysenko
 {
@@ -15,6 +12,8 @@ namespace lysenko
   bool isRectangle(const Shape& obj);
   bool isSquare(const Shape& obj);
   bool isPentagon(const Shape& obj);
+
+  void shapeSort(std::vector< Shape >& vect);
 
   struct getNumberOfVertices
   {
@@ -50,8 +49,6 @@ namespace lysenko
       return distances;
     }
   };
-
-  void shapeSort(std::vector< Shape >& vect);
 }
 
 #endif

@@ -66,7 +66,6 @@ bool lysenko::isPentagon(const Shape& obj)
   return (obj.size() == 5);
 }
 
-
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {
   std::vector< Shape >::iterator it = std::partition(vect.begin(), vect.end(), isTriangle);

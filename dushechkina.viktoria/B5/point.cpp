@@ -56,11 +56,18 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const Point& point)
   out << OPEN << point.x << SEMICOLON << point.y << CLOSE;
   return out;
 }
-int dushechkina::getDistance(const Point& begin, const Point& end)
+int dushechkina::getDistance(const Shape& shape)
 {
-  int x = end.x - begin.x;
-  int y = end.y - begin.y;
-  return (x * x + y * y);
+  int one = getSquareDistance(shape[0], shape[1]);
+  int two = getSquareDistance(shape[1], shape[2]);
+  return one == two;
+}
+
+int dushechkina::getSquareDistance(const Point& first, const Point& second)
+{
+  int sqrDx = (first.x - second.x) * (first.x - second.x);
+  int sqrDy = (first.y - second.y) * (first.y - second.y);
+  return (sqrDx + sqrDy);
 }
 
 bool dushechkina::isTriangle(const Shape& shape)
@@ -80,11 +87,7 @@ bool dushechkina::isPentagon(const Shape& shape)
 
 bool dushechkina::isSquare(const Shape& shape)
 {
-  int side1 = getDistance(shape[0], shape[1]);
-  int side2 = getDistance(shape[1], shape[2]);
-  int side3 = getDistance(shape[2], shape[3]);
-  int side4 = getDistance(shape[3], shape[0]);
-  return (side1 == side2) && (side1 == side3) && (side1 == side4);
+  return (shape.size() == 4) && getDistance(shape);
 }
 
 int dushechkina::summarizeVertices(int vertices, const Shape& shape)

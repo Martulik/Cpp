@@ -39,8 +39,7 @@ BOOST_AUTO_TEST_CASE(Pentagon)
 
 BOOST_AUTO_TEST_CASE(testingCorrectWorkInput)
 {
-  std::string line = "4 (0;1) (2;3) (4;5) (6;7)";
-  std::istringstream in(line);
+  std::istringstream in("4 (0;1) (2;3) (4;5) (6;7)");
   dushechkina::Shape shape;
   in >> shape;
   BOOST_CHECK_EQUAL(shape[0].x, 0);

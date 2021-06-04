@@ -7,9 +7,9 @@
 #include <iostream>
 #include <cmath>
 
-constexpr char OPEN = '(';
-constexpr char SEMICOLON = ';';
-constexpr char CLOSE = ')';
+const char OPEN = '(';
+const char SEMICOLON = ';';
+const char CLOSE = ')';
 
 std::istream& dushechkina::operator>>(std::istream& in, Point& point)
 {

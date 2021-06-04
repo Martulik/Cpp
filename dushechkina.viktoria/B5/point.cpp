@@ -1,6 +1,9 @@
 #include "point.hpp"
 
 #include <sstream>
+#include <stdexcept>
+#include <iterator>
+#include <iostream>
 #include <cmath>
 
 constexpr char OPEN = '(';

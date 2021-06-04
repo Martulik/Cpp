@@ -1,7 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include <sstream>
-#include <numeric>
 
 #include "Shape.h"
 #include "helpFunctionalObjects.h"
@@ -21,38 +20,6 @@ namespace lysenko
     lysenko::Shape shp;
     in >> shp;
     return shp;
-  }
-
-  struct fillResVect
-  {
-    std::vector< bool > operator()(std::vector< bool >& results, bool res)
-    {
-      results.push_back(res);
-      return results;
-    }
-  };
-
-  void testRectAndSquare(std::vector<bool>& expRes)
-  {
-    namespace plc = std::placeholders;
-    namespace lab = lysenko;
-    using boolVect = std::vector< bool >;
-
-    std::string corr = "4 (1;1) (2;1) (2;2) (1;2)";
-    std::string rectButNotSquare = "4 (8;1) (8;2) (1;1) (1;2)";
-    std::string polygon = "5 (1;1) (2;1) (2;2) (1;2) (0;1)";
-    std::string sizeFourButNotRect = "4 (1;1) (2;2) (2;3) (1;2)";
-
-    std::vector< std::string > testData = { corr, rectButNotSquare, polygon, sizeFourButNotRect };
-
-    auto typeOfShape = (expRes[1] == false) ? lab::isSquare : lab::isRectangle;
-
-    auto test = std::bind(typeOfShape, std::bind(lab::executeShapeFromData, plc::_2));
-    auto fill = std::bind(lab::fillResVect(), plc::_1, test);
-
-    boolVect resOfTest = std::accumulate(testData.begin(), testData.end(), boolVect(), fill);
-
-    BOOST_CHECK_EQUAL_COLLECTIONS(resOfTest.begin(), resOfTest.end(), expRes.begin(), expRes.end());
   }
 }
 
@@ -94,30 +61,35 @@ BOOST_AUTO_TEST_SUITE(testShapeType)
 
 BOOST_AUTO_TEST_CASE(testTriangle)
 {
-  std::string testData = "3 (1;1) (2;2) (3;1)";
-  lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isTriangle(shp), true);
+  lysenko::Shape shp { { 1, 1 }, { 2, 2 }, { 3, 1 } };
+  BOOST_REQUIRE(isTriangle(shp));
 }
 
 BOOST_AUTO_TEST_CASE(testRectangle)
 {
-  std::vector< bool > expResOfTest = { true, true, false, false };
+  lysenko::Shape rect { { 1, 1 }, { 2, 1 }, { 2, 2 }, { 1, 2 } };
+  BOOST_REQUIRE(isRectangle(rect));
 
-  lysenko::testRectAndSquare(expResOfTest);
+  lysenko::Shape polygon{ { 1, 1 }, { 2, 1 }, { 2, 2 }, { 1, 2 }, { 0, 1 } };
+  BOOST_CHECK_EQUAL(isRectangle(polygon), false);
+
+  lysenko::Shape sizeFourButNotRect{ { 3, 1 }, { 2, 1 }, { 2, 2 }, { 1, 2 } };
+  BOOST_CHECK_EQUAL(isRectangle(sizeFourButNotRect), false);
 }
 
 BOOST_AUTO_TEST_CASE(testSquare)
 {
-  std::vector< bool > expResOfTest = { true, false, false, false };
+  lysenko::Shape shp { { 1, 1 }, { 2, 1 }, { 2, 2 }, { 1, 2 } };
+  BOOST_REQUIRE(lysenko::isSquare(shp));
 
-  lysenko::testRectAndSquare(expResOfTest);
+  lysenko::Shape rectButNotSquare{ { 8, 1 }, { 8, 2 }, { 1, 1 }, { 1, 2 } };
+  BOOST_CHECK_EQUAL(isSquare(rectButNotSquare), false);
 }
 
 BOOST_AUTO_TEST_CASE(testPentagon)
 {
-  std::string testData = "5 (1;2) (3;2) (3;3) (1;3) (2;3)";
-  lysenko::Shape shp = lysenko::executeShapeFromData(testData);
-  BOOST_CHECK_EQUAL(lysenko::isPentagon(shp), true);
+  lysenko::Shape shp { { 1, 2 }, { 3, 2 }, { 3, 3 }, { 1, 3 }, { 2, 3 } };
+  BOOST_REQUIRE(isPentagon(shp));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

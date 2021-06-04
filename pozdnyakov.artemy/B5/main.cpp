@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
   {
     if (argc != 2 || std::string(argv[1]).length() != 1)
     {
-      return -2;
+      throw std::invalid_argument("Invalid parameter");
     }
     if (argv[1][0] == '1')
     {
@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
   }
   catch(std::exception& exc)
   {
-    std::cout << exc.what() << '\n';
+    std::cerr << exc.what() << '\n';
     return -2;
   }
   return 0;

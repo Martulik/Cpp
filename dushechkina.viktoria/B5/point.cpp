@@ -13,49 +13,53 @@ const char CLOSE = ')';
 
 std::istream& dushechkina::operator>>(std::istream& in, Point& point)
 {
-  std::istream::sentry sentry(in);
-  if (!sentry)
+  std::istream::sentry inp(in);
+  if (!inp)
   {
-    throw std::invalid_argument("Empty input\n");
+    throw std::invalid_argument("Empty input");
     return in;
+  }
+  if (in.fail() && !in.eof())
+  {
+    throw std::runtime_error("Incorrect input");
   }
   in >> std::ws;
   if (in.eof())
   {
     return in;
   }
-  char sign;
-  in >> sign;
-  if (sign != OPEN)
+  char character;
+  in >> character;
+  if (character != OPEN)
   {
-    throw std::invalid_argument("Invalid first literal\n");
+    throw std::invalid_argument("Invalid first character. It must be open bracket");
   }
   if (!(in >> point.x))
   {
-    throw std::invalid_argument("Invalid coordinate X\n");
+    throw std::invalid_argument("Invalid point");
   }
-  in >> sign;
-  if (sign != SEMICOLON)
+  in >> character;
+  if (character != SEMICOLON)
   {
-    throw std::invalid_argument("Invalid separate\n");
+    throw std::invalid_argument("Invalid separate character. It must be semicolon");
   }
   if (!(in >> point.y))
   {
-    throw std::invalid_argument("Invalid coordinate Y\n");
+    throw std::invalid_argument("Invalid point");
   }
-  in >> sign;
-  if (sign != CLOSE)
+  in >> character;
+  if (character != CLOSE)
   {
-    throw std::invalid_argument("Invalid last literal\n");
+    throw std::invalid_argument("Invalid last character. It must be close bracket");
   }
   return in;
 }
 
 std::ostream& dushechkina::operator<<(std::ostream& out, const Point& point)
 {
-  out << OPEN << point.x << SEMICOLON << point.y << CLOSE;
-  return out;
+  return out << OPEN << point.x << SEMICOLON << point.y << CLOSE;
 }
+
 int dushechkina::getDistance(const Shape& shape)
 {
   int one = getSquareDistance(shape[0], shape[1]);
@@ -65,9 +69,7 @@ int dushechkina::getDistance(const Shape& shape)
 
 int dushechkina::getSquareDistance(const Point& first, const Point& second)
 {
-  int sqrDx = (first.x - second.x) * (first.x - second.x);
-  int sqrDy = (first.y - second.y) * (first.y - second.y);
-  return (sqrDx + sqrDy);
+  return pow(first.x - second.x, 2) + pow(first.y - second.y, 2);
 }
 
 bool dushechkina::isTriangle(const Shape& shape)
@@ -102,19 +104,20 @@ dushechkina::Point dushechkina::getFront(const Shape& shape)
 
 std::istream& dushechkina::operator>>(std::istream& in, Shape& shape)
 {
-  size_t peaks;
-  if (!(in >> peaks))
+  size_t vertices;
+  if (!(in >> vertices))
   {
     return in;
   }
-  if (peaks <= 2)
+  if (vertices <= 2)
   {
-    throw std::invalid_argument("Invalid figure\n");
+    throw std::invalid_argument("Invalid figure");
   }
+
   Shape temp;
-  temp.reserve(peaks);
-  std::copy_n(std::istream_iterator< Point >(in), peaks, std::back_inserter(temp));
-  if ((in.fail() && !in.eof()) || temp.size() != peaks)
+  temp.reserve(vertices);
+  std::copy_n(std::istream_iterator< Point >(in), vertices, std::back_inserter(temp));
+  if ((in.fail() && !in.eof()) || temp.size() != vertices)
   {
     throw std::invalid_argument("Invalid number of peaks");
   }
@@ -129,16 +132,16 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const Shape& shape)
   return out;
 }
 
-bool dushechkina::operator<(const Shape& first, const Shape& second)
+bool dushechkina::operator<(const Shape& begin, const Shape& end)
 {
-  if (first.size() > 4 && second.size() > 4)
+  if ((begin.size() == 4) && (begin.size() == end.size()))
+  {
+    return isSquare(begin) && !isSquare(end);
+  }
+  if (begin.size() > 4 && end.size() > 4)
   {
     return false;
   }
-  if ((first.size() == second.size()) && (first.size() == 4))
-  {
-    return isSquare(first) && !isSquare(second);
-  }
-  return first.size() < second.size();
+  return begin.size() < end.size();
 }
 

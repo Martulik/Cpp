@@ -52,13 +52,5 @@ BOOST_AUTO_TEST_CASE(testingCorrectWorkInput)
   BOOST_CHECK_EQUAL(shape[3].x, 6);
   BOOST_CHECK_EQUAL(shape[3].y, 7);
 }
-BOOST_AUTO_TEST_CASE(testingUncorrectWorkInput)
-{
-  std::string data = "1 (0;1) (2;3) (4;5)";
-  std::stringstream in(data);
-  dushechkina::Shape shape;
-  BOOST_CHECK_THROW(in >> shape, std::invalid_argument);
-}
 
 BOOST_AUTO_TEST_SUITE_END()
-

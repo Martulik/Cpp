@@ -26,6 +26,6 @@ int main(int argc, char* argv[])
   catch (std::exception& exc)
   {
     std::cerr << exc.what() << '\n';
-    return -2;
+    return 1;
   }
 }

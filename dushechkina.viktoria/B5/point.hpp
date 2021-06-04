@@ -20,7 +20,9 @@ namespace dushechkina
   bool isRectangle(const Shape& shape);
   bool isPentagon(const Shape& shape);
   bool isSquare(const Shape& shape);
+  int summarizeVertices(int vertices, const Shape& shape);
   int getDistance(const Point& begin, const Point& end);
+  Point getFront(const Shape& shp);
   std::istream& operator>>(std::istream& in, Shape& shape);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
 }

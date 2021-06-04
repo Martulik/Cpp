@@ -70,6 +70,16 @@ bool dushechkina::isSquare(const Shape& shape)
   return (AB == BC) && (BC == CD) && (CD == AD) && (AB == AD);
 }
 
+int dushechkina::summarizeVertices(int vertices, const Shape& shape)
+{
+  return vertices + shape.size();
+}
+
+dushechkina::Point dushechkina::getFront(const Shape& shape)
+{
+  return shape.front();
+}
+
 std::istream& dushechkina::operator>>(std::istream& in, Shape& shape)
 {
   size_t n = 0;

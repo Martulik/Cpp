@@ -57,11 +57,7 @@ bool lab::isRectangle(const Shape& shape)
 
 bool lab::isSquare(const Shape& shape)
 {
-  if (isRectangle(shape))
-  {
-    return getDistance(shape[0], shape[1]) == getDistance(shape[1], shape[2]);
-  }
-  return false;
+  return isRectangle(shape) && (getDistance(shape[0], shape[1]) == getDistance(shape[1], shape[2]));
 }
 
 bool lab::isPentagon(const Shape& shape)

@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(testingCorrectWorkInput)
 }
 BOOST_AUTO_TEST_CASE(testingUncorrectWorkInput)
 {
-  std::string testData = "1 (0;1) (2;3) (4;5)";
+  std::string data = "1 (0;1) (2;3) (4;5)";
   std::stringstream in(data);
   dushechkina::Shape shape;
   BOOST_CHECK_THROW(in >> shape, std::invalid_argument);

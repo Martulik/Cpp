@@ -60,14 +60,12 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const Point& point)
   return out << OPEN << point.x << SEMICOLON << point.y << CLOSE;
 }
 
-int dushechkina::getDistance(const Shape& shape)
+int dushechkina::compareSide(const Shape& shape)
 {
-  int one = getSquareDistance(shape[0], shape[1]);
-  int two = getSquareDistance(shape[1], shape[2]);
-  return one == two;
+  return getDistanceSquare(shape[0], shape[1]) == getDistanceSquare(shape[1], shape[2]);
 }
 
-int dushechkina::getSquareDistance(const Point& first, const Point& second)
+int dushechkina::getDistanceSquare(const Point& first, const Point& second)
 {
   return pow(first.x - second.x, 2) + pow(first.y - second.y, 2);
 }
@@ -89,7 +87,7 @@ bool dushechkina::isPentagon(const Shape& shape)
 
 bool dushechkina::isSquare(const Shape& shape)
 {
-  return (shape.size() == 4) && getDistance(shape);
+  return isRectangle(shape) && compareSide(shape);
 }
 
 int dushechkina::summarizeVertices(int vertices, const Shape& shape)
@@ -109,19 +107,21 @@ std::istream& dushechkina::operator>>(std::istream& in, Shape& shape)
   {
     return in;
   }
+
   if (vertices <= 2)
   {
-    throw std::invalid_argument("Invalid figure");
+    throw std::invalid_argument("Figure does not exist");
   }
 
-  Shape temp;
-  temp.reserve(vertices);
-  std::copy_n(std::istream_iterator< Point >(in), vertices, std::back_inserter(temp));
-  if ((in.fail() && !in.eof()) || temp.size() != vertices)
+  Shape shape1;
+  shape1.reserve(vertices);
+  std::copy_n(std::istream_iterator< Point >(in), vertices, std::back_inserter(shape1));
+  if (shape1.size() != vertices || (in.fail() && !in.eof()))
   {
-    throw std::invalid_argument("Invalid number of peaks");
+    throw std::invalid_argument("Wrong number of shape vertices");
   }
-  shape = temp;
+  shape = shape1;
+
   return in;
 }
 
@@ -138,10 +138,10 @@ bool dushechkina::operator<(const Shape& begin, const Shape& end)
   {
     return isSquare(begin) && !isSquare(end);
   }
-  if (begin.size() > 4 && end.size() > 4)
+  else if (begin.size() > 4 && end.size() > 4)
   {
     return false;
   }
+
   return begin.size() < end.size();
 }
-

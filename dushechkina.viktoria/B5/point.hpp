@@ -21,8 +21,8 @@ namespace dushechkina
   bool isPentagon(const Shape& shape);
   bool isSquare(const Shape& shape);
   int summarizeVertices(int vertices, const Shape& shape);
-  int getDistance(const Shape& shape);
-  int getSquareDistance(const Point& first, const Point& second);
+  int compareSide(const Shape& shape);
+  int getDistanceSquare(const Point& first, const Point& second);
   Point getFront(const Shape& shp);
   std::istream& operator>>(std::istream& in, Shape& shape);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);

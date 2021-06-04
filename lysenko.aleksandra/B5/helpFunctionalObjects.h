@@ -3,11 +3,19 @@
 
 #include <vector>
 #include <functional>
+#include <algorithm>
+#include <iterator>
 
 #include "Shape.h"
+#include "helpFunctionalObjects.h"
 
 namespace lysenko
 {
+  bool isTriangle(const Shape& obj);
+  bool isRectangle(const Shape& obj);
+  bool isSquare(const Shape& obj);
+  bool isPentagon(const Shape& obj);
+
   struct getNumberOfVertices
   {
     size_t operator()(const lysenko::Shape& obj) const
@@ -34,7 +42,7 @@ namespace lysenko
     }
   };
 
-   struct fillTheVect
+  struct fillTheVect
   {
     std::vector< double > operator()(std::vector< double >& distances, const double& dist)
     {
@@ -42,11 +50,6 @@ namespace lysenko
       return distances;
     }
   };
-
-  bool isTriangle(const Shape& obj);
-  bool isRectangle(const Shape& obj);
-  bool isSquare(const Shape& obj);
-  bool isPentagon(const Shape& obj);
 
   void shapeSort(std::vector< Shape >& vect);
 }

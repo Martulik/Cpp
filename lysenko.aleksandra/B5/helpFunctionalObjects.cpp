@@ -8,19 +8,10 @@
 
 namespace lysenko
 {
-  static int getDeltaBetweenPoints(bool abscissa, const Point& firstPoint, const Point& secondPoint)
-  {
-    if (abscissa)
-    {
-      return firstPoint.x - secondPoint.x;
-    }
-    return firstPoint.y - secondPoint.y;
-  }
-
   double getDistanceBetweenPoints(const Point& firstPoint, const Point& secondPoint)
   {
-    int deltaX = getDeltaBetweenPoints(0, firstPoint, secondPoint);
-    int deltaY = getDeltaBetweenPoints(1, firstPoint, secondPoint);
+    int deltaX = firstPoint.x - secondPoint.x;
+    int deltaY = firstPoint.y - secondPoint.y;
 
     return std::sqrt(std::pow(deltaX, 2) + std::pow(deltaY, 2));
   }
@@ -74,6 +65,7 @@ bool lysenko::isPentagon(const Shape& obj)
 {
   return (obj.size() == 5);
 }
+
 
 void lysenko::shapeSort(std::vector< Shape >& vect)
 {

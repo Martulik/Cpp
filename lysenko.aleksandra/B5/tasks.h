@@ -1,7 +1,7 @@
 #ifndef TASKS_H
 #define TASKS_H
 
-#include <iostream>
+#include <iosfwd>
 
 namespace lysenko
 {

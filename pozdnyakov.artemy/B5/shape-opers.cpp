@@ -10,7 +10,7 @@ namespace poz = pozdnyakov;
 
 bool poz::isSquare(const poz::Shape& shape)
 {
-  int(*dist)(const poz::Point&, const poz::Point&) = poz::getSquareDistance;
+  std::function< int(const poz::Point&, const poz::Point&) > dist = poz::getSquareDistance;
   return poz::isRect(shape) && (dist(shape[0], shape[1]) == dist(shape[1], shape[2]));
 }
 

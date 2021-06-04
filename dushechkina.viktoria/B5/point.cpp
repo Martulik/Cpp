@@ -26,7 +26,7 @@ std::istream& dushechkina::operator>>(std::istream& in, Point& point)
   }
   char sign;
   in >> sign;
-  if (sign != '(')
+  if (sign != OPEN)
   {
     throw std::invalid_argument("Invalid first literal\n");
   }
@@ -35,7 +35,7 @@ std::istream& dushechkina::operator>>(std::istream& in, Point& point)
     throw std::invalid_argument("Invalid coordinate X\n");
   }
   in >> sign;
-  if (sign != ';')
+  if (sign != SEMICOLON)
   {
     throw std::invalid_argument("Invalid separate\n");
   }
@@ -44,7 +44,7 @@ std::istream& dushechkina::operator>>(std::istream& in, Point& point)
     throw std::invalid_argument("Invalid coordinate Y\n");
   }
   in >> sign;
-  if (sign != ')')
+  if (sign != CLOSE)
   {
     throw std::invalid_argument("Invalid last literal\n");
   }
@@ -58,7 +58,9 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const Point& point)
 }
 int dushechkina::getDistance(const Point& begin, const Point& end)
 {
-  return (pow((end.x - begin.x), 2) + pow(end.y - begin.y, 2));
+  int x = end.x - begin.x;
+  int y = end.y - begin.y;
+  return (x * x + y * y);
 }
 
 bool dushechkina::isTriangle(const Shape& shape)
@@ -78,12 +80,11 @@ bool dushechkina::isPentagon(const Shape& shape)
 
 bool dushechkina::isSquare(const Shape& shape)
 {
-  int AB = getDistance(shape[0], shape[1]);
-  int BC = getDistance(shape[1], shape[2]);
-  int CD = getDistance(shape[2], shape[3]);
-  int AD = getDistance(shape[3], shape[0]);
-
-  return (AB == BC) && (BC == CD) && (CD == AD) && (AB == AD);
+  int side1 = getDistance(shape[0], shape[1]);
+  int side2 = getDistance(shape[1], shape[2]);
+  int side3 = getDistance(shape[2], shape[3]);
+  int side4 = getDistance(shape[3], shape[0]);
+  return (side1 == side2) && (side1 == side3) && (side1 == side4);
 }
 
 int dushechkina::summarizeVertices(int vertices, const Shape& shape)

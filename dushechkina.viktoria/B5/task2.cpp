@@ -9,25 +9,26 @@
 
 void dushechkina::task2(std::istream& in, std::ostream& out)
 {
-  using iterIn = std::istream_iterator< Shape >;
-  std::vector< Shape > vec{ iterIn(in), iterIn() };
+  using iterator = std::istream_iterator< Shape >;
+  std::vector< Shape > shape{ iterator(in), iterator() };
 
-  int peaks = std::accumulate(vec.begin(), vec.end(), 0, dushechkina::summarizeVertices);
-  int triangles = std::count_if(vec.begin(), vec.end(), isTriangle);
-  int squares = std::count_if(vec.begin(), vec.end(), isSquare);
-  int rectangles = std::count_if(vec.begin(), vec.end(), isRectangle);
+  int vertices = std::accumulate(shape.begin(), shape.end(), 0, dushechkina::summarizeVertices);
+  int tri = std::count_if(shape.begin(), shape.end(), isTriangle);
+  int squ = std::count_if(shape.begin(), shape.end(), isSquare);
+  int rec = std::count_if(shape.begin(), shape.end(), isRectangle);
 
-  vec.erase(std::remove_if(vec.begin(), vec.end(), isPentagon), vec.end());
+  shape.erase(std::remove_if(shape.begin(), shape.end(), isPentagon), shape.end());
+  std::vector< Point > point;
+  std::transform(shape.begin(), shape.end(), std::back_inserter(point), dushechkina::getFront);
+  std::sort(shape.begin(), shape.end());
 
-  std::vector< Point > points;
-  std::transform(vec.begin(), vec.end(), std::back_inserter(points), dushechkina::getFront);
-
-  std::sort(vec.begin(), vec.end());
-
-  out << "Vertices: " << peaks << "\nTriangles: " << triangles;
-  out << "\nSquares: " << squares << "\nRectangles: " << rectangles;
-  out << "\nPoints: ";
-  std::copy(points.begin(), points.end(), std::ostream_iterator< Point >(out, " "));
-  out << "\nShapes:\n";
-  std::copy(vec.begin(), vec.end(), std::ostream_iterator< Shape >(out, "\n"));
+  out << "Vertices: " << vertices << "\n";
+  out << "Triangles: " << tri << "\n";
+  out << "Squares: " << squ << "\n";
+  out << "Rectangles: " << rec << "\n";
+  out << "Points: ";
+  std::copy(point.begin(), point.end(), std::ostream_iterator< Point >(out, " "));
+  out << "\n";
+  out << "Shapes:" << "\n";
+  std::copy(shape.begin(), shape.end(), std::ostream_iterator< Shape >(out, "\n"));
 }

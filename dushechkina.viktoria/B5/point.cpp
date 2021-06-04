@@ -1,6 +1,7 @@
 #include "point.hpp"
 
 #include <sstream>
+#include <algorithm>
 #include <stdexcept>
 #include <iterator>
 #include <iostream>

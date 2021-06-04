@@ -45,7 +45,7 @@ namespace lysenko
 
     std::vector< std::string > testData = { corr, rectButNotSquare, polygon, sizeFourButNotRect };
 
-    auto typeOfShape = expRes[1] == false ? lab::isSquare: lab::isRectangle;
+    auto typeOfShape = (expRes[1] == false) ? lab::isSquare : lab::isRectangle;
 
     auto test = std::bind(typeOfShape, std::bind(lab::executeShapeFromData, plc::_2));
     auto fill = std::bind(lab::fillResVect(), plc::_1, test);

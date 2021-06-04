@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(testSort)
   namespace plc = std::placeholders;
   namespace lab = lysenko;
   using shpVect = std::vector< lab::Shape >;
-  shpVect inp 
+  shpVect inp
   {
     { { 1, 1 }, { 1, 2 }, { 2, 1 }, { 2, 2 } },
     { { 4, 5 }, { 5, 4 }, { 6, 6 }, { 7, 8 }, { 9, 10 }, { 2, 7 } },
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(testSort)
 
   lab::shapeSort(inp);
 
-  shpVect sorted 
+  shpVect sorted
   {
     { { 3, 6 }, { 5, 3 }, { 1, 0 } },
     { { 1, 1 }, { 1, 2 }, { 2, 1 }, { 2, 2 } },

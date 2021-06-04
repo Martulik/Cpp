@@ -50,7 +50,7 @@ bool lysenko::isRectangle(const lysenko::Shape& obj)
 {
   std::vector< double > distances = getSortedVectOfDistancesFromFirstPoint(obj);
 
-  return ((!(distances.empty())) && (distances[2] == std::sqrt((std::pow(distances[0], 2)) + (std::pow(distances[1], 2)))));
+  return ((!(distances.empty())) && (distances[2] == std::sqrt(std::pow(distances[0], 2) + std::pow(distances[1], 2))));
 }
 
 bool lysenko::isSquare(const lysenko::Shape& obj)

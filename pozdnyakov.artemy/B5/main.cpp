@@ -8,27 +8,24 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if (argc != 2 || std::string(argv[1]).length() != 1)
+    if (argc == 2)
     {
-      throw std::invalid_argument("Invalid parameter");
+      if (!std::string(argv[1]).compare("1"))
+      {
+        poz::task1(std::cin, std::cout);
+        return 0;
+      }
+      else if (!std::string(argv[1]).compare("2"))
+      {
+        poz::task2(std::cin, std::cout);
+        return 0;
+      }
     }
-    if (argv[1][0] == '1')
-    {
-      poz::task1(std::cin, std::cout);
-    }
-    else if (argv[1][0] == '2')
-    {
-      poz::task2(std::cin, std::cout);
-    }
-    else
-    {
-      throw std::invalid_argument("Invalid parameter");
-    }
+    throw std::invalid_argument("Invalid parameter");
   }
   catch (std::exception& exc)
   {
     std::cerr << exc.what() << '\n';
     return -2;
   }
-  return 0;
 }

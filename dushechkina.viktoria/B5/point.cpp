@@ -134,7 +134,7 @@ bool dushechkina::operator<(const Shape& first, const Shape& second)
   }
   if ((first.size() == second.size()) && (first.size() == 4))
   {
-    return isSquare(first);
+    return isSquare(first) && !isSquare(second);
   }
   return first.size() < second.size();
 }

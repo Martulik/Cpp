@@ -25,5 +25,6 @@ namespace dushechkina
   Point getFront(const Shape& shp);
   std::istream& operator>>(std::istream& in, Shape& shape);
   std::ostream& operator<<(std::ostream& out, const Shape& shape);
+  bool operator<(const Shape& first, const Shape& second);
 }
 #endif

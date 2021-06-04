@@ -13,25 +13,41 @@ const char CLOSE = ')';
 
 std::istream& dushechkina::operator>>(std::istream& in, Point& point)
 {
-  std::string str;
-  std::getline(in, str, OPEN);
-  if (str.find('\n') != std::string::npos)
+  std::istream::sentry sentry(in);
+  if (!sentry)
   {
-    throw std::invalid_argument("Invalid data reading");
+    throw std::invalid_argument("Empty input\n");
+    return in;
   }
-  std::getline(in, str, SEMICOLON);
-  if (str.find('\n') != std::string::npos)
+  in >> std::ws;
+  if (in.eof())
   {
-    throw std::invalid_argument("Invalid data reading");
+    return in;
   }
-  int x = std::stoi(str);
-  std::getline(in, str, CLOSE);
-  if (str.find('\n') != std::string::npos)
+  char sign;
+  in >> sign;
+  if (sign != '(')
   {
-    throw std::invalid_argument("Invalid data reading");
+    throw std::invalid_argument("Invalid first literal\n");
   }
-  int y = std::stoi(str);
-  point = { x, y };
+  if (!(in >> point.x))
+  {
+    throw std::invalid_argument("Invalid coordinate X\n");
+  }
+  in >> sign;
+  if (sign != ';')
+  {
+    throw std::invalid_argument("Invalid separate\n");
+  }
+  if (!(in >> point.y))
+  {
+    throw std::invalid_argument("Invalid coordinate Y\n");
+  }
+  in >> sign;
+  if (sign != ')')
+  {
+    throw std::invalid_argument("Invalid last literal\n");
+  }
   return in;
 }
 
@@ -82,27 +98,23 @@ dushechkina::Point dushechkina::getFront(const Shape& shape)
 
 std::istream& dushechkina::operator>>(std::istream& in, Shape& shape)
 {
-  size_t n = 0;
-  if (!(in >> n))
+  size_t peaks;
+  if (!(in >> peaks))
   {
     return in;
   }
-
-  if (n <= 2)
+  if (peaks <= 2)
   {
-    throw std::invalid_argument("Invalid figure input");
+    throw std::invalid_argument("Invalid figure\n");
   }
-
-  Shape tempShape;
-  tempShape.reserve(n);
-  std::copy_n(std::istream_iterator< Point >(in), n, std::back_inserter(tempShape));
-
-  if (tempShape.size() != n || (in.fail() && !in.eof()))
+  Shape temp;
+  temp.reserve(peaks);
+  std::copy_n(std::istream_iterator< Point >(in), peaks, std::back_inserter(temp));
+  if ((in.fail() && !in.eof()) || temp.size() != peaks)
   {
-    throw std::invalid_argument("Invalid number of shape vertices");
+    throw std::invalid_argument("Invalid number of peaks");
   }
-
-  shape = tempShape;
+  shape = temp;
   return in;
 }
 
@@ -112,3 +124,17 @@ std::ostream& dushechkina::operator<<(std::ostream& out, const Shape& shape)
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< Point >(out, " "));
   return out;
 }
+
+bool dushechkina::operator<(const Shape& first, const Shape& second)
+{
+  if (first.size() > 4 && second.size() > 4)
+  {
+    return false;
+  }
+  if ((first.size() == second.size()) && (first.size() == 4))
+  {
+    return isSquare(first);
+  }
+  return first.size() < second.size();
+}
+

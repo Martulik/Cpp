@@ -1,7 +1,6 @@
 #include "tasks.hpp"
 
 #include <unordered_set>
-#include <algorithm>
 #include <string>
 
 namespace lab = shkurov;

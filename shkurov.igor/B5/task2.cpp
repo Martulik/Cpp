@@ -24,7 +24,7 @@ void lab::task2(std::istream& in, std::ostream& out)
   unsigned int counts[3];
   for (size_t i = 0; i < 3; i++)
   {
-    counts[i] = std::count_if(shapes.cbegin(), shapes.cend(), isTriangle);
+    counts[i] = std::count_if(shapes.cbegin(), shapes.cend(), isFuncs[i]);
   }
 
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());

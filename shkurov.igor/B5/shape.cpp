@@ -82,14 +82,14 @@ std::istream& lab::operator>>(std::istream& in, lab::Shape& shape)
 
 std::ostream& lab::operator<<(std::ostream& out, const lab::Point& point)
 {
-  out << '(' << point.x << ';' << point.y << ')';
+  out << " (" << point.x << ';' << point.y << ") ";
 
   return out;
 }
 
 std::ostream& lab::operator<<(std::ostream& out, const lab::Shape& shape)
 {
-  out << shape.size() << ' ';
+  out << shape.size() << "  ";
   std::copy(shape.begin(), shape.end(), std::ostream_iterator< lab::Point >(out, " "));
 
   return out;

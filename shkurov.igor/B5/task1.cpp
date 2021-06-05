@@ -3,7 +3,6 @@
 #include <unordered_set>
 #include <algorithm>
 #include <string>
-#include <iterator>
 
 namespace lab = shkurov;
 using istreamIt = std::istream_iterator< std::string >;

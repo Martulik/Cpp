@@ -2,6 +2,7 @@
 #define TASKS_HPP
 
 #include <iostream>
+#include <iterator>
 
 namespace shkurov
 {

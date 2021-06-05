@@ -21,7 +21,7 @@ bool lab::isRectangle(const lab::Shape& shape)
 
 bool lab::isSquare(const lab::Shape& shape)
 {
-  return (isRectangle(shape) && getSide(shape[0], shape[1]) == getSide(shape[3], shape[4]));
+  return (isRectangle(shape) && getSide(shape[0], shape[1]) == getSide(shape[2], shape[3]));
 }
 
 bool lab::isPentagon(const lab::Shape& shape)

@@ -75,6 +75,11 @@ std::istream& lab::operator>>(std::istream& in, lab::Shape& shape)
   }
   Shape temp(vertices);
   std::copy_n(std::istream_iterator< Point >(in), vertices, temp.begin());
+  if (temp.size() != vertices)
+  {
+    in.setstate(std::ios::failbit);
+    return in;
+  }
   std::swap(temp, shape);
 
   return in;

@@ -104,7 +104,7 @@ bool lab::operator<(const lab::Shape& lhs, const lab::Shape& rhs)
 {
   if (lhs.size() == 4 && rhs.size() == 4)
   {
-    return isRectangle(lhs) && isSquare(rhs);
+    return isSquare(lhs) && !isSquare(rhs);
   }
   else
   {

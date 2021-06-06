@@ -1,6 +1,7 @@
 #include "tools.hpp"
 
 #include <cmath>
+#include <algorithm>
 
 namespace lab = shkurov;
 
@@ -23,12 +24,13 @@ bool lab::isSquare(const lab::Shape& shape)
 {
   std::vector< int > dist;
 
-  dist.push_back(getSquaredDistance(shape[0], shape[1]));
-  dist.push_back(getSquaredDistance(shape[0], shape[2]));
-  dist.push_back(getSquaredDistance(shape[0], shape[3]));
-  dist.push_back(getSquaredDistance(shape[1], shape[2]));
-  dist.push_back(getSquaredDistance(shape[1], shape[3]));
-  dist.push_back(getSquaredDistance(shape[2], shape[3]));
+  for (size_t i = 0; i < 4; i++)
+  {
+    for (size_t j = i + 1; j < 4; j++)
+    {
+      dist.push_back(getSquaredDistance(shape[i], shape[j]));
+    }
+  }
 
   int diag1 = *std::max_element(dist.begin(), dist.end());
   std::remove(dist.begin(), dist.end(), diag1);

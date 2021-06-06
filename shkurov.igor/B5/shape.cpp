@@ -98,12 +98,12 @@ std::ostream& lab::operator<<(std::ostream& out, const lab::Shape& shape)
 
 bool lab::operator<(const lab::Shape& lhs, const lab::Shape& rhs)
 {
-  if (lhs.size() == 4 && rhs.size() == 4)
+  if (lhs.size() != 4 || rhs.size() != 4)
   {
-    return isSquare(lhs) && !isSquare(rhs);
+    return lhs.size() < rhs.size();
   }
   else
   {
-    return lhs.size() < rhs.size();
+    return isSquare(lhs) && !isSquare(rhs);
   }
 }

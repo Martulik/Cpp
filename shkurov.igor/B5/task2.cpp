@@ -33,8 +33,8 @@ void lab::task2(std::istream& in, std::ostream& out)
   std::transform(shapes.cbegin(), shapes.cend(), points.begin(), getPoint);
 
   auto border = std::partition(shapes.begin(), shapes.end(), isTriangle);
-  border = std::partition(shapes.begin(), shapes.end(), isSquare);
-  std::partition(shapes.begin(), shapes.end(), isRectangle);
+  border = std::partition(border, shapes.end(), isSquare);
+  std::partition(border, shapes.end(), isRectangle);
 
   out << "Vertices: " << vertices << '\n';
   out << "Triangles: " << counts[0] << '\n';

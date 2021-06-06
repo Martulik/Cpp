@@ -26,13 +26,12 @@ bool lab::isSquare(const lab::Shape& shape)
   {
     std::vector< int > dist;
 
-    for (size_t i = 0; i < 4; i++)
-    {
-      for (size_t j = i + 1; j < 4; j++)
-      {
-        dist.push_back(getSquaredDistance(shape[i], shape[j]));
-      }
-    }
+    dist[0] = getSquaredDistance(shape[0], shape[1]);
+    dist[1] = getSquaredDistance(shape[0], shape[2]);
+    dist[2] = getSquaredDistance(shape[0], shape[3]);
+    dist[3] = getSquaredDistance(shape[1], shape[2]);
+    dist[4] = getSquaredDistance(shape[1], shape[3]);
+    dist[5] = getSquaredDistance(shape[2], shape[3]);
 
     int diag1 = *std::max_element(dist.begin(), dist.end());
     std::remove(dist.begin(), dist.end(), diag1);

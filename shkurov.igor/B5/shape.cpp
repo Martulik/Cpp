@@ -14,6 +14,7 @@ std::istream& lab::operator>>(std::istream& in, lab::Point& point)
 
   if (in.get() != '(')
   {
+    in.clear();
     in.setstate(std::ios::failbit);
     return in;
   }
@@ -73,13 +74,8 @@ std::istream& lab::operator>>(std::istream& in, lab::Shape& shape)
     in.setstate(std::ios::failbit);
     return in;
   }
-  Shape temp(vertices);
-  std::copy_n(std::istream_iterator< Point >(in), vertices, temp.begin());
-  if (temp.size() != vertices)
-  {
-    in.setstate(std::ios::failbit);
-    return in;
-  }
+  Shape temp;
+  std::copy_n(std::istream_iterator< Point >(in), vertices, std::back_inserter(temp));
   std::swap(temp, shape);
 
   return in;

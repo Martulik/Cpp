@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
       }
       else
       {
-        std::cerr << "Argument has to be either 1 or 2";
+        std::cerr << "\nArgument has to be either 1 or 2";
         return 1;
       }
     }
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    std::cerr << "Wrong argument number";
+    std::cerr << "\nWrong argument number";
     return 1;
   }
 

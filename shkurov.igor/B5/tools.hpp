@@ -12,7 +12,7 @@ namespace shkurov
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
-  int getSide(const Point& a, const Point& b);
+  int getSquaredDistance(const Point& a, const Point& b);
   Point getPoint(const Shape& shape);
 }
 

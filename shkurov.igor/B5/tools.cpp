@@ -21,7 +21,21 @@ bool lab::isRectangle(const lab::Shape& shape)
 
 bool lab::isSquare(const lab::Shape& shape)
 {
-  return (isRectangle(shape) && getSide(shape[0], shape[1]) == getSide(shape[2], shape[3]));
+  std::vector< int > dist;
+
+  dist.push_back(getSquaredDistance(shape[0], shape[1]));
+  dist.push_back(getSquaredDistance(shape[0], shape[2]));
+  dist.push_back(getSquaredDistance(shape[0], shape[3]));
+  dist.push_back(getSquaredDistance(shape[1], shape[2]));
+  dist.push_back(getSquaredDistance(shape[1], shape[3]));
+  dist.push_back(getSquaredDistance(shape[2], shape[3]));
+
+  int diag1 = *std::max_element(dist.begin(), dist.end());
+  std::remove(dist.begin(), dist.end(), diag1);
+  int diag2 = *std::max_element(dist.begin(), std::prev(dist.end()));
+  std::remove(dist.begin(), dist.end(), diag2);
+
+  return (dist[0] == dist[1] && dist[1] == dist[2] && dist[2] == dist[3]) && (dist[4] == dist[5]) && isRectangle(shape);
 }
 
 bool lab::isPentagon(const lab::Shape& shape)
@@ -29,7 +43,7 @@ bool lab::isPentagon(const lab::Shape& shape)
   return (shape.size() == 5);
 }
 
-int lab::getSide(const lab::Point& a, const lab::Point& b)
+int lab::getSquaredDistance(const lab::Point& a, const lab::Point& b)
 {
   return (std::pow(a.x - b.x, 2) + std::pow(a.y - b.y, 2));
 }

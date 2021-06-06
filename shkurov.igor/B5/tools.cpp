@@ -22,27 +22,27 @@ bool lab::isRectangle(const lab::Shape& shape)
 
 bool lab::isSquare(const lab::Shape& shape)
 {
-  if (!isRectangle(shape))
+  if (isRectangle(shape))
   {
-    return false;
-  }
+    std::vector< int > dist;
 
-  std::vector< int > dist;
-
-  for (size_t i = 0; i < 4; i++)
-  {
-    for (size_t j = i + 1; j < 4; j++)
+    for (size_t i = 0; i < 4; i++)
     {
-      dist.push_back(getSquaredDistance(shape[i], shape[j]));
+      for (size_t j = i + 1; j < 4; j++)
+      {
+        dist.push_back(getSquaredDistance(shape[i], shape[j]));
+      }
     }
+
+    int diag1 = *std::max_element(dist.begin(), dist.end());
+    std::remove(dist.begin(), dist.end(), diag1);
+    int diag2 = *std::max_element(dist.begin(), std::prev(dist.end()));
+    std::remove(dist.begin(), dist.end(), diag2);
+
+    return ((dist[0] == dist[1] && dist[1] == dist[2] && dist[2] == dist[3]) && (dist[4] == dist[5]));
   }
 
-  int diag1 = *std::max_element(dist.begin(), dist.end());
-  std::remove(dist.begin(), dist.end(), diag1);
-  int diag2 = *std::max_element(dist.begin(), std::prev(dist.end()));
-  std::remove(dist.begin(), dist.end(), diag2);
-
-  return ((dist[0] == dist[1] && dist[1] == dist[2] && dist[2] == dist[3]) && (dist[4] == dist[5]));
+  return false;
 }
 
 bool lab::isPentagon(const lab::Shape& shape)

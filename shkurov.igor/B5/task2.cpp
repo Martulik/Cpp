@@ -32,7 +32,9 @@ void lab::task2(std::istream& in, std::ostream& out)
   std::vector < Point > points(shapes.size());
   std::transform(shapes.cbegin(), shapes.cend(), points.begin(), getPoint);
 
-  std::sort(shapes.begin(), shapes.end());
+  std::partition(shapes.begin(), shapes.end(), isRectangle);
+  std::partition(shapes.begin(), shapes.end(), isSquare);
+  std::partition(shapes.begin(), shapes.end(), isTriangle);
 
   out << "Vertices: " << vertices << '\n';
   out << "Triangles: " << counts[0] << '\n';

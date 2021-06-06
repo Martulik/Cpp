@@ -22,6 +22,11 @@ bool lab::isRectangle(const lab::Shape& shape)
 
 bool lab::isSquare(const lab::Shape& shape)
 {
+  if (!isRectangle(shape))
+  {
+    return false;
+  }
+
   std::vector< int > dist;
 
   for (size_t i = 0; i < 4; i++)
@@ -37,7 +42,7 @@ bool lab::isSquare(const lab::Shape& shape)
   int diag2 = *std::max_element(dist.begin(), std::prev(dist.end()));
   std::remove(dist.begin(), dist.end(), diag2);
 
-  return (dist[0] == dist[1] && dist[1] == dist[2] && dist[2] == dist[3]) && (dist[4] == dist[5]) && isRectangle(shape);
+  return ((dist[0] == dist[1] && dist[1] == dist[2] && dist[2] == dist[3]) && (dist[4] == dist[5]));
 }
 
 bool lab::isPentagon(const lab::Shape& shape)

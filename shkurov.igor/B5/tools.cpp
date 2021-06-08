@@ -9,6 +9,8 @@
 
 namespace lab = shkurov;
 
+using namespace std::placeholders;
+
 std::mt19937 rnd(std::time(NULL));
 
 unsigned int lab::countVertices(unsigned int sum, const lab::Shape& cur)
@@ -46,39 +48,7 @@ bool lab::isRectangle(const lab::Shape& shape)
 
 bool lab::isSquare(const lab::Shape& shape)
 {
-  if (isRectangle(shape))
-  {
-    std::vector< int > dist;
-
-    dist.push_back(getSquaredDistance(shape[0], shape[1]));
-    dist.push_back(getSquaredDistance(shape[0], shape[2]));
-    dist.push_back(getSquaredDistance(shape[0], shape[3]));
-
-    auto diagIt = std::max_element(dist.begin(), dist.end());
-    int diag1 = *diagIt;
-
-    size_t pointIdx = diagIt - dist.begin() + 1;
-    int diag2;
-
-    dist.erase(diagIt);
-
-    if (pointIdx == 1)
-    {
-      diag2 = getSquaredDistance(shape[2], shape[3]);
-    }
-    else if (pointIdx == 2)
-    {
-      diag2 = getSquaredDistance(shape[1], shape[3]);
-    }
-    else if (pointIdx == 3)
-    {
-      diag2 = getSquaredDistance(shape[1], shape[2]);
-    }
-
-    return (dist[0] == dist[1] && diag1 == diag2);
-  }
-
-  return false;
+  return (allSidesEqual(shape) && isRectangle(shape));
 }
 
 bool lab::isPentagon(const lab::Shape& shape)
@@ -86,7 +56,17 @@ bool lab::isPentagon(const lab::Shape& shape)
   return (shape.size() == 5);
 }
 
-int lab::getSquaredDistance(const lab::Point& a, const lab::Point& b)
+bool lab::allSidesEqual(const lab::Shape& shape)
+{
+  std::vector< unsigned int > dist;
+  std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(dist), getSquaredDistance);
+
+  unsigned int lastSide = getSquaredDistance(shape.front(), shape.back());
+
+  return std::all_of(dist.begin(), dist.end(), std::bind(std::equal_to< unsigned int >(), _1, lastSide));
+}
+
+unsigned int lab::getSquaredDistance(const lab::Point& a, const lab::Point& b)
 {
   return (std::pow(a.x - b.x, 2) + std::pow(a.y - b.y, 2));
 }

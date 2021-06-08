@@ -16,7 +16,8 @@ namespace shkurov
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);
   bool isPentagon(const Shape& shape);
-  int getSquaredDistance(const Point& a, const Point& b);
+  bool allSidesEqual(const Shape& shape);
+  unsigned int getSquaredDistance(const Point& a, const Point& b);
   Point getPoint(const Shape& shape);
   Shape rectGen(bool isSquare);
   Shape rsGen(unsigned int r, unsigned int s);

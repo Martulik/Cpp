@@ -6,10 +6,11 @@
 #include <random>
 #include <ctime>
 #include <cassert>
+#include <functional>
 
 namespace lab = shkurov;
 
-using namespace std::placeholders;
+using std::placeholders::_1;
 
 std::mt19937 rnd(std::time(NULL));
 

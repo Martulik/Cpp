@@ -122,16 +122,6 @@ lab::Shape lab::rsGen(unsigned int r, unsigned int s)
   std::uniform_int_distribution< unsigned int > probabilityOfShape(1, r  + s);
 
   unsigned int number = probabilityOfShape(rnd);
-  bool square = false;
 
-  if (number <= r)
-  {
-    square = false;
-  }
-  else
-  {
-    square = true;
-  }
-
-  return rectGen(square);
+  return rectGen(r < number);
 }

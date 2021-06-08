@@ -2,12 +2,16 @@
 #define TOOLS_HPP
 
 #include <iosfwd>
+#include <tuple>
 
 #include "shape.hpp"
 
 namespace shkurov
 {
+  using tupleCount = std::tuple< unsigned int, unsigned int, unsigned int >;
+
   unsigned int countVertices(unsigned int sum, const Shape& cur);
+  tupleCount accumFigures(tupleCount& prev, const Shape& cur);
   bool isTriangle(const Shape& shape);
   bool isRectangle(const Shape& shape);
   bool isSquare(const Shape& shape);

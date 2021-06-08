@@ -11,6 +11,24 @@ unsigned int lab::countVertices(unsigned int sum, const lab::Shape& cur)
   return (sum + cur.size());
 }
 
+lab::tupleCount lab::accumFigures(lab::tupleCount& prev, const lab::Shape& cur)
+{
+  if (isTriangle(cur))
+  {
+    std::get< 0 >(prev)++;
+  }
+  if (isSquare(cur))
+  {
+    std::get< 1 >(prev)++;
+  }
+  if (isRectangle(cur))
+  {
+    std::get< 2 >(prev)++;
+  }
+
+  return prev;
+}
+
 bool lab::isTriangle(const lab::Shape& shape)
 {
   return (shape.size() == 3);

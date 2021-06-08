@@ -20,12 +20,7 @@ void lab::task2(std::istream& in, std::ostream& out)
   }
   unsigned int vertices = std::accumulate(shapes.cbegin(), shapes.cend(), 0, countVertices);
 
-  std::vector< std::function< bool(const Shape&) > > isFuncs = {isTriangle, isSquare, isRectangle};
-  unsigned int counts[3];
-  for (size_t i = 0; i < 3; i++)
-  {
-    counts[i] = std::count_if(shapes.cbegin(), shapes.cend(), isFuncs[i]);
-  }
+  tupleCount counts = std::accumulate(shapes.cbegin(), shapes.cend(), tupleCount(0, 0, 0), accumFigures);
 
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
 
@@ -37,9 +32,9 @@ void lab::task2(std::istream& in, std::ostream& out)
   std::partition(border, shapes.end(), isRectangle);
 
   out << "Vertices: " << vertices << '\n';
-  out << "Triangles: " << counts[0] << '\n';
-  out << "Squares: " << counts[1] << '\n';
-  out << "Rectangles: " << counts[2] << '\n';
+  out << "Triangles: " << std::get< 0 >(counts) << '\n';
+  out << "Squares: " << std::get< 1 >(counts) << '\n';
+  out << "Rectangles: " << std::get< 2 >(counts) << '\n';
   out << "Points: ";
   std::copy(points.cbegin(), points.cend(), std::ostream_iterator< Point >(out, " "));
   out << '\n' << "Shapes:" << '\n';

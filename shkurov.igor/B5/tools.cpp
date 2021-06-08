@@ -3,8 +3,13 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
+#include <random>
+#include <ctime>
+#include <cassert>
 
 namespace lab = shkurov;
+
+std::mt19937 rnd(std::time(NULL));
 
 unsigned int lab::countVertices(unsigned int sum, const lab::Shape& cur)
 {
@@ -89,4 +94,44 @@ int lab::getSquaredDistance(const lab::Point& a, const lab::Point& b)
 lab::Point lab::getPoint(const lab::Shape& shape)
 {
   return shape[0];
+}
+
+lab::Shape lab::rectGen(bool square)
+{
+  std::uniform_int_distribution< int > coordGen(-10000, 10000);
+
+  Point startPoint{coordGen(rnd), coordGen(rnd)};
+
+  int shiftX = coordGen(rnd);
+  int shiftY = coordGen(rnd);
+
+  if (square)
+  {
+    shiftY = shiftX;
+  }
+
+  Point secondPoint{startPoint.x + shiftX, startPoint.y + shiftY};
+
+  return {startPoint, secondPoint, {startPoint.x + shiftX, startPoint.y}, {startPoint.x, startPoint.y + shiftY}};
+}
+
+lab::Shape lab::rsGen(unsigned int r, unsigned int s)
+{
+  assert(r != 0 && s != 0);
+
+  std::uniform_int_distribution< unsigned int > probabilityOfShape(1, r  + s);
+
+  unsigned int number = probabilityOfShape(rnd);
+  bool square = false;
+
+  if (number <= r)
+  {
+    square = false;
+  }
+  else
+  {
+    square = true;
+  }
+
+  return rectGen(square);
 }

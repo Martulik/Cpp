@@ -18,6 +18,8 @@ namespace shkurov
   bool isPentagon(const Shape& shape);
   int getSquaredDistance(const Point& a, const Point& b);
   Point getPoint(const Shape& shape);
+  Shape rectGen(bool isSquare);
+  Shape rsGen(unsigned int r, unsigned int s);
 }
 
 #endif

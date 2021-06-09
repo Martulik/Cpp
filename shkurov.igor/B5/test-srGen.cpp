@@ -1,5 +1,7 @@
 #include <boost/test/unit_test.hpp>
 
+#include <chrono>
+#include <random>
 #include <functional>
 
 #include "shape.hpp"
@@ -11,10 +13,13 @@ BOOST_AUTO_TEST_SUITE(srGen)
 
 BOOST_AUTO_TEST_CASE(correctGen)
 {
+  std::mt19937 rnd(std::chrono::high_resolution_clock::now);
+
   const unsigned int rectangles_req = 30;
   const unsigned int squares_req = 70;
+  constexpr double relation_req = rectangles_req / squares_req;
 
-  std::function< lab::Shape() > fGen = std::bind(lab::rsGen, rectangles_req, squares_req);
+  std::function< lab::Shape() > fGen = std::bind(lab::rsGen, rectangles_req, squares_req, rnd);
   std::vector< lab::Shape > vector(100);
   std::generate(vector.begin(), vector.end(), fGen);
 

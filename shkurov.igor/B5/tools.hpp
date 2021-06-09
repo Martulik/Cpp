@@ -3,6 +3,7 @@
 
 #include <iosfwd>
 #include <tuple>
+#include <random>
 
 #include "shape.hpp"
 
@@ -19,8 +20,8 @@ namespace shkurov
   bool allSidesEqual(const Shape& shape);
   unsigned int getSquaredDistance(const Point& a, const Point& b);
   Point getPoint(const Shape& shape);
-  Shape rectGen(bool isSquare);
-  Shape rsGen(unsigned int r, unsigned int s);
+  Shape rectGen(bool isSquare, std::mt19937 rnd);
+  Shape rsGen(unsigned int r, unsigned int s, std::mt19937 rnd);
 }
 
 #endif

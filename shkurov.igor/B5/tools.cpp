@@ -4,15 +4,10 @@
 #include <algorithm>
 #include <iostream>
 #include <random>
-#include <ctime>
 #include <cassert>
 #include <functional>
 
 namespace lab = shkurov;
-
-using std::placeholders::_1;
-
-std::mt19937 rnd(std::time(NULL));
 
 unsigned int lab::countVertices(unsigned int sum, const lab::Shape& cur)
 {
@@ -64,6 +59,7 @@ bool lab::allSidesEqual(const lab::Shape& shape)
 
   unsigned int lastSide = getSquaredDistance(shape.front(), shape.back());
 
+  using std::placeholders::_1;
   return std::all_of(dist.begin(), dist.end(), std::bind(std::equal_to< unsigned int >(), _1, lastSide));
 }
 
@@ -77,7 +73,7 @@ lab::Point lab::getPoint(const lab::Shape& shape)
   return shape[0];
 }
 
-lab::Shape lab::rectGen(bool square)
+lab::Shape lab::rectGen(bool square, std::mt19937 rnd)
 {
   std::uniform_int_distribution< int > coordGen(-10000, 10000);
 
@@ -96,7 +92,7 @@ lab::Shape lab::rectGen(bool square)
   return {startPoint, secondPoint, {startPoint.x + shiftX, startPoint.y}, {startPoint.x, startPoint.y + shiftY}};
 }
 
-lab::Shape lab::rsGen(unsigned int r, unsigned int s)
+lab::Shape lab::rsGen(unsigned int r, unsigned int s, std::mt19937 rnd)
 {
   assert(r != 0 && s != 0);
 
@@ -104,5 +100,5 @@ lab::Shape lab::rsGen(unsigned int r, unsigned int s)
 
   unsigned int number = probabilityOfShape(rnd);
 
-  return rectGen(r < number);
+  return rectGen(r < number, rnd);
 }

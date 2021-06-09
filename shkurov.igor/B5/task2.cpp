@@ -7,13 +7,13 @@
 #include "shape.hpp"
 #include "tools.hpp"
 
-using namespace std::placeholders;
 namespace lab = shkurov;
-using istreamIt = std::istream_iterator< lab::Shape >;
 
 void lab::task2(std::istream& in, std::ostream& out)
 {
   std::vector< lab::Shape > shapes;
+
+  using istreamIt = std::istream_iterator< lab::Shape >;
   std::copy(istreamIt(in), istreamIt(), std::back_inserter(shapes));
   if (in.fail() && !in.eof())
   {

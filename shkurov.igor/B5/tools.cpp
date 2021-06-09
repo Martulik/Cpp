@@ -60,7 +60,7 @@ bool lab::allSidesEqual(const lab::Shape& shape)
   unsigned int lastSide = getSquaredDistance(shape.front(), shape.back());
 
   using std::placeholders::_1;
-  return std::all_of(dist.begin(), dist.end(), std::bind(std::equal_to< unsigned int >(), _1, lastSide));
+  return std::all_of(dist.begin(), dist.end(), std::bind(std::equal_to<>(), _1, lastSide));
 }
 
 unsigned int lab::getSquaredDistance(const lab::Point& a, const lab::Point& b)
@@ -73,7 +73,7 @@ lab::Point lab::getPoint(const lab::Shape& shape)
   return shape[0];
 }
 
-lab::Shape lab::rectGen(bool square, std::mt19937 rnd)
+lab::Shape lab::rectGen(bool square, std::mt19937& rnd)
 {
   std::uniform_int_distribution< int > coordGen(-10000, 10000);
 
@@ -89,10 +89,10 @@ lab::Shape lab::rectGen(bool square, std::mt19937 rnd)
 
   Point secondPoint{startPoint.x + shiftX, startPoint.y + shiftY};
 
-  return {startPoint, secondPoint, {startPoint.x + shiftX, startPoint.y}, {startPoint.x, startPoint.y + shiftY}};
+  return {startPoint, {startPoint.x + shiftX, startPoint.y}, secondPoint, {startPoint.x, startPoint.y + shiftY}};
 }
 
-lab::Shape lab::rsGen(unsigned int r, unsigned int s, std::mt19937 rnd)
+lab::Shape lab::rsGen(unsigned int r, unsigned int s, std::mt19937& rnd)
 {
   assert(r != 0 && s != 0);
 

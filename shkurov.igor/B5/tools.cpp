@@ -55,7 +55,8 @@ bool lab::isPentagon(const lab::Shape& shape)
 bool lab::allSidesEqual(const lab::Shape& shape)
 {
   std::vector< unsigned int > dist;
-  std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(dist), getSquaredDistance);
+  auto function = getSquaredDistance;
+  std::transform(std::next(shape.begin()), shape.end(), shape.begin(), std::back_inserter(dist), function);
 
   unsigned int lastSide = getSquaredDistance(shape.front(), shape.back());
 

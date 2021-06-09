@@ -100,7 +100,7 @@ lab::Shape lab::rsGen(unsigned int r, unsigned int s)
 {
   assert(r != 0 && s != 0);
 
-  std::uniform_int_distribution< unsigned int > probabilityOfShape(1, r  + s);
+  std::uniform_int_distribution< unsigned int > probabilityOfShape(1, r + s);
 
   unsigned int number = probabilityOfShape(rnd);
 

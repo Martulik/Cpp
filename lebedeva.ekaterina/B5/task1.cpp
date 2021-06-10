@@ -1,6 +1,4 @@
 #include "tasks.hpp"
-#include <iostream>
-#include <iterator>
 #include <string>
 #include <set>
 #include "functions.hpp"

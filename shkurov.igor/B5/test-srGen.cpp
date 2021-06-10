@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_SUITE(srGen)
 
 BOOST_AUTO_TEST_CASE(correctGen)
 {
-  auto previous_ll = boost::unit_test::unit_test_log.set_threshold_level(boost::unit_test::log_messages);
+  boost::unit_test::log_level previous_ll = boost::unit_test::unit_test_log.set_threshold_level(boost::unit_test::log_messages);
 
   std::mt19937 rnd(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 

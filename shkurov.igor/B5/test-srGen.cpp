@@ -13,8 +13,6 @@ BOOST_AUTO_TEST_SUITE(srGen)
 
 BOOST_AUTO_TEST_CASE(correctGen)
 {
-  boost::unit_test::unit_test_log.set_threshold_level(boost::unit_test::log_messages);
-
   std::mt19937 rnd(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
   const unsigned int rectangles_req = 30;
@@ -32,8 +30,6 @@ BOOST_AUTO_TEST_CASE(correctGen)
   BOOST_TEST_MESSAGE('(' << relation_req << ") required.\n");
   BOOST_TEST_MESSAGE(rectangles << ':' << squares);
   BOOST_TEST_MESSAGE('(' << static_cast< double >(rectangles) / squares << ") presented.\n");
-
-  boost::unit_test::unit_test_log.set_threshold_level(boost::unit_test::log_all_errors);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

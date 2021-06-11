@@ -14,11 +14,6 @@ const char CLOSE = ')';
 std::istream& dushechkina::operator>>(std::istream& in, Point& point)
 {
   std::istream::sentry inp(in);
-  if (!inp)
-  {
-    throw std::invalid_argument("Empty input");
-    return in;
-  }
   if (in.fail() && !in.eof())
   {
     throw std::runtime_error("Incorrect input");

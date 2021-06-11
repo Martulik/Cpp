@@ -51,9 +51,7 @@ bool lebedeva::isTriangle(const Shape& shape)
 
 bool lebedeva::isSquare(const Shape& shape)
 {
-  int temp1 = getDistance(shape[0], shape[1]);
-  int temp2 = getDistance(shape[0], shape[3]);
-  return ((isRectangle(shape)) && (temp2 == temp1));
+  return (isRectangle(shape) && compareDistances(shape));
 }
 
 bool lebedeva::isRectangle(const Shape& shape)
@@ -71,4 +69,11 @@ int lebedeva::getDistance(const Point& p1, const Point& p2)
   int temp1 = p2.x - p1.x;
   int temp2 = p2.y - p1.y;
   return (temp1 * temp1 + temp2 * temp2);
+}
+
+bool lebedeva::compareDistances(const Shape& shape)
+{
+  int temp1 = getDistance(shape[0], shape[1]);
+  int temp2 = getDistance(shape[0], shape[3]);
+  return (temp2 == temp1);
 }

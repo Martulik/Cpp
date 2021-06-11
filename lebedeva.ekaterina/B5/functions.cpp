@@ -46,9 +46,16 @@ lebedeva::Shape lebedeva::getFrontPoints(std::vector< Shape >& shapes)
   return temp;
 }
 
-bool lebedeva::hasMoreVertices(const Shape& shape1, const Shape& shape2)
+bool lebedeva::hasLessVertices(const Shape& shape1, const Shape& shape2)
 {
-  return (shape1.size() < shape2.size());
+  if (shape1.size() == shape2.size())
+  {
+    return (isSquare(shape1) && !isSquare(shape2));
+  }
+  else
+  {
+    return (shape1.size() < shape2.size());
+  }
 }
 
 void lebedeva::printInfo(std::ostream& out, const ShapesSpecifics& info)

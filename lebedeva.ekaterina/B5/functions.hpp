@@ -15,7 +15,7 @@ namespace lebedeva
   size_t countVertices(size_t sum, const Shape& shapes);
   Point getFrontPoint(const Shape& shape);
   Shape getFrontPoints(std::vector< Shape >& shapes);
-  bool hasMoreVertices(const Shape& shape1, const Shape& shape2);
+  bool hasLessVertices(const Shape& shape1, const Shape& shape2);
   void printInfo(std::ostream& out, const ShapesSpecifics& info);
   void printPoints(std::ostream& out, const Shape& points);
   void printShapes(std::ostream& out, const std::vector< Shape >& shapes);

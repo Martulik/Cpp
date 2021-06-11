@@ -9,10 +9,10 @@ namespace lebedeva
 
   struct ShapesSpecifics
   {
-    size_t vertices = 0;
-    size_t triangles = 0;
-    size_t squares = 0;
-    size_t rectangles = 0;
+    int vertices = 0;
+    int triangles = 0;
+    int squares = 0;
+    int rectangles = 0;
   };
 
   std::istream& operator>>(std::istream& in, Shape& shape);
@@ -23,5 +23,6 @@ namespace lebedeva
   bool isRectangle(const Shape& shape);
   bool isPentagon(const Shape& shape);
   int getDistance(const Point& p1, const Point& p2);
+  bool compareDistances(const Shape& shape);
 }
 #endif

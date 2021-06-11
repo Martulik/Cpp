@@ -2,6 +2,7 @@
 #include <iterator>
 #include <iostream>
 #include <algorithm>
+#include <numeric>
 #include "functions.hpp"
 #include "shape.hpp"
 
@@ -21,7 +22,7 @@ void lebedeva::doTask2(std::istream& in, std::ostream& out)
 
   Shape frontPoints = getFrontPoints(shapes);
 
-  std::sort(shapes.begin(), shapes.end(), hasMoreVertices);
+  std::sort(shapes.begin(), shapes.end(), hasLessVertices);
 
   printInfo(out, info);
   out << '\n';

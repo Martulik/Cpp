@@ -17,12 +17,10 @@ void lebedeva::doTask2(std::istream& in, std::ostream& out)
 
   ShapesSpecifics info = countShapes(shapes);
 
-  //removePentagons(shapes);
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
 
   Shape frontPoints = getFrontPoints(shapes);
 
-  //sortShapes(shapes);
   std::sort(shapes.begin(), shapes.end(), hasMoreVertices);
 
   printInfo(out, info);

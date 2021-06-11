@@ -10,6 +10,7 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
     x = coor(rand);
 	  y = coor(rand);
   }
+
 	Point first{ coor(rand), coor(rand) };
   Point second{ first.x + x, first.y };
   Point third{ first.x + x, first.y + y };

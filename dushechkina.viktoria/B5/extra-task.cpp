@@ -51,7 +51,7 @@ bool dushechkina::isRectNotSelfInter(const Shape& shape)
   return (isRectangle(shape) && (shape[0].x != shape[2].x && shape[0].y != shape[2].y));
 }
 
-dushechkina::Shape dushechkina::changeSquareSelfInter(Shape shape)
+dushechkina::Shape dushechkina::changeSquareSelfInter(Shape& shape)
 {
   if (!isSquareNotSelfInter(shape))
   {

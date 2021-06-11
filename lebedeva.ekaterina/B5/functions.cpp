@@ -33,11 +33,6 @@ size_t lebedeva::countVertices(size_t sum, const Shape& shape)
   return (sum + shape.size());
 }
 
-void lebedeva::removePentagons(std::vector< Shape >& shapes)
-{
-  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
-}
-
 lebedeva::Point lebedeva::getFrontPoint(const Shape& shape)
 {
   return (shape.front());
@@ -47,13 +42,8 @@ lebedeva::Shape lebedeva::getFrontPoints(std::vector< Shape >& shapes)
 {
   Shape temp;
   temp.reserve(shapes.size());
-  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(temp), getFrontPoint);
+  std::transform(shapes.begin(), shapes.end(), std::back_inserter(temp), getFrontPoint);
   return temp;
-}
-
-void lebedeva::sortShapes(std::vector< Shape >& shapes)
-{
-  std::sort(shapes.begin(), shapes.end(), hasMoreVertices);
 }
 
 bool lebedeva::hasMoreVertices(const Shape& shape1, const Shape& shape2)

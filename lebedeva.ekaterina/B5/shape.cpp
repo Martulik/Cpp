@@ -51,15 +51,14 @@ bool lebedeva::isTriangle(const Shape& shape)
 
 bool lebedeva::isSquare(const Shape& shape)
 {
-  std::vector< double > distances = getPointsDistances(shape);
-  return ((shape.size() == 4) && (!distances.empty()) && (distances[0] == distances[2]));
+  int temp1 = getDistance(shape[0], shape[1]);
+  int temp2 = getDistance(shape[0], shape[3]);
+  return ((isRectangle(shape)) && (temp2 == temp1));
 }
 
 bool lebedeva::isRectangle(const Shape& shape)
 {
-  std::vector< double > distances = getPointsDistances(shape);
-  //std::vector< double > distances = getPointsDistances(shape);
-  return ((shape.size() == 4) && (!distances.empty()) && (distances[4] == getHypotenuse(distances[0], distances[2])));
+  return (shape.size() == 4);
 }
 
 bool lebedeva::isPentagon(const Shape& shape)
@@ -67,29 +66,9 @@ bool lebedeva::isPentagon(const Shape& shape)
   return (shape.size() == 5);
 }
 
-std::vector< double > lebedeva::getPointsDistances(const Shape& shape)
-{
-  std::vector< double > res;
-  res.push_back(getDistance(shape[0], shape[1]));
-  res.push_back(getDistance(shape[0], shape[2]));
-  res.push_back(getDistance(shape[0], shape[3]));
-  res.push_back(getDistance(shape[1], shape[2]));
-  res.push_back(getDistance(shape[1], shape[3]));
-  res.push_back(getDistance(shape[2], shape[3]));
-  std::sort(res.begin(), res.end());
-  return res;
-}
-
-double lebedeva::getDistance(const Point& p1, const Point& p2)
+int lebedeva::getDistance(const Point& p1, const Point& p2)
 {
   int temp1 = p2.x - p1.x;
   int temp2 = p2.y - p1.y;
-  return std::sqrt(std::pow(temp1, 2) + std::pow(temp2, 2));
-}
-
-double lebedeva::getHypotenuse(const double a, const double b)
-{
-  double temp1 = std::pow(a, 2);
-  double temp2 = std::pow(b, 2);
-  return std::sqrt(temp1 + temp2);
+  return (temp1 * temp1 + temp2 * temp2);
 }

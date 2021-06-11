@@ -22,8 +22,6 @@ namespace lebedeva
   bool isSquare(const Shape& shape);
   bool isRectangle(const Shape& shape);
   bool isPentagon(const Shape& shape);
-  std::vector< double > getPointsDistances(const Shape& shape);
-  double getDistance(const Point& p1, const Point& p2);
-  double getHypotenuse(const double a, const double b);
+  int getDistance(const Point& p1, const Point& p2);
 }
 #endif

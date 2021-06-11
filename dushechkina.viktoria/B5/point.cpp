@@ -136,7 +136,7 @@ bool dushechkina::operator<(const Shape& begin, const Shape& end)
   }
   else if (begin.size() > 4 && end.size() > 4)
   {
-    return false;
+    return isSquare(begin) && isSquare(end);
   }
 
   return begin.size() < end.size();

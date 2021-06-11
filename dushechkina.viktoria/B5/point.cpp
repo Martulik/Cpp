@@ -63,7 +63,7 @@ int dushechkina::compareSide(const Shape& shape)
 
 int dushechkina::getDistanceSquare(const Point& first, const Point& second)
 {
-  return pow(first.x - second.x, 2) + pow(first.y - second.y, 2);
+  return std::pow(first.x - second.x, 2) + std::pow(first.y - second.y, 2);
 }
 
 bool dushechkina::isTriangle(const Shape& shape)

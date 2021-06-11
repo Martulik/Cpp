@@ -2,7 +2,6 @@
 #include <iterator>
 #include <iostream>
 #include <algorithm>
-#include <numeric>
 #include "functions.hpp"
 #include "shape.hpp"
 

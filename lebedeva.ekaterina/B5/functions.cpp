@@ -18,7 +18,7 @@ void lebedeva::doOutputWords(std::ostream& out, std::set< std::string >& words)
   std::copy(words.begin(), words.end(), outIter);
 }
 
-lebedeva::ShapesSpecifics lebedeva::countShapes(std::vector< Shape >& shapes)
+lebedeva::ShapesSpecifics lebedeva::countShapes(const std::vector< Shape >& shapes)
 {
   ShapesSpecifics temp;
   temp.vertices = std::accumulate(shapes.begin(), shapes.end(), 0, countVertices);
@@ -38,7 +38,7 @@ lebedeva::Point lebedeva::getFrontPoint(const Shape& shape)
   return (shape.front());
 }
 
-lebedeva::Shape lebedeva::getFrontPoints(std::vector< Shape >& shapes)
+lebedeva::Shape lebedeva::getFrontPoints(const std::vector< Shape >& shapes)
 {
   Shape temp;
   temp.reserve(shapes.size());

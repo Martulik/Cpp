@@ -1,6 +1,8 @@
 #include "functions.hpp"
 #include <iterator>
 #include <iostream>
+#include <numeric>
+#include <algorithm>
 
 std::set< std::string > lebedeva::doInputWords(std::istream& in)
 {
@@ -16,20 +18,67 @@ void lebedeva::doOutputWords(std::ostream& out, std::set< std::string >& words)
   std::copy(words.begin(), words.end(), outIter);
 }
 
-std::vector< lebedeva::Shape > lebedeva::doInputShapes(std::istream& in)
+lebedeva::ShapesSpecifics lebedeva::countShapes(std::vector< Shape >& shapes)
 {
-  std::istream_iterator< Shape > inIterFirst(in);
-  std::istream_iterator< Shape > inIterLast;
-  /*if (!in && !in.eof())
-  {
-    throw std::runtime_error("Stream reading error");
-  }*/
-  std::vector< Shape > inVec(inIterFirst, inIterLast);
-  return inVec;
+  ShapesSpecifics temp;
+  temp.vertices = std::accumulate(shapes.begin(), shapes.end(), 0, countVertices);
+  temp.triangles = std::count_if(shapes.begin(), shapes.end(), isTriangle);
+  temp.squares = std::count_if(shapes.begin(), shapes.end(), isSquare);
+  temp.rectangles = std::count_if(shapes.begin(), shapes.end(), isRectangle);
+  return temp;
 }
 
-void lebedeva::doSomeOutput(std::ostream& out, std::vector< Shape > shapes)
+size_t lebedeva::countVertices(size_t sum, const Shape& shape)
 {
-  std::ostream_iterator< Shape > outIter(out, "\n");
+  return (sum + shape.size());
+}
+
+void lebedeva::removePentagons(std::vector< Shape >& shapes)
+{
+  shapes.erase(std::remove_if(shapes.begin(), shapes.end(), isPentagon), shapes.end());
+}
+
+lebedeva::Point lebedeva::getFrontPoint(const Shape& shape)
+{
+  return (shape.front());
+}
+
+lebedeva::Shape lebedeva::getFrontPoints(std::vector< Shape >& shapes)
+{
+  Shape temp;
+  temp.reserve(shapes.size());
+  std::transform(shapes.cbegin(), shapes.cend(), std::back_inserter(temp), getFrontPoint);
+  return temp;
+}
+
+void lebedeva::sortShapes(std::vector< Shape >& shapes)
+{
+  std::sort(shapes.begin(), shapes.end(), hasMoreVertices);
+}
+
+bool lebedeva::hasMoreVertices(const Shape& shape1, const Shape& shape2)
+{
+  return (shape1.size() < shape2.size());
+}
+
+void lebedeva::printInfo(std::ostream& out, const ShapesSpecifics& info)
+{
+  out << "Vertices: " << info.vertices << "\n";
+  out << "Triangles: " << info.triangles << "\n";
+  out << "Squares: " << info.squares << "\n";
+  out << "Rectangles: " << info.rectangles;
+}
+
+void lebedeva::printPoints(std::ostream& out, const Shape& points)
+{
+  out << "Points: ";
+  std::ostream_iterator< Point > outIter(std::cout, " ");
+  std::copy(points.begin(), points.end(), outIter);
+}
+
+void lebedeva::printShapes(std::ostream& out, const std::vector< Shape >& shapes)
+{
+  out << "Shapes:\n";
+  std::ostream_iterator< Shape > outIter(std::cout, "\n");
   std::copy(shapes.begin(), shapes.end(), outIter);
 }

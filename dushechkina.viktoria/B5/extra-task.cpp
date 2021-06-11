@@ -8,10 +8,9 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
   while (x == 0 || y == 0)
   {
     x = coor(rand);
-	  y = coor(rand);
+    y = coor(rand);
   }
-
-	Point first{ coor(rand), coor(rand) };
+  Point first{ coor(rand), coor(rand) };
   Point second{ first.x + x, first.y };
   Point third{ first.x + x, first.y + y };
   Point fourth{ first.x, first.y + y };
@@ -25,7 +24,7 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
   pos2 = randPos(rand);
   while (pos1 == pos2)
   {
-	  pos2 = randPos(rand);
+    pos2 = randPos(rand);
   }
   pos3 = randPos(rand);
   while (pos1 == pos3 || pos2 == pos3)
@@ -56,16 +55,16 @@ dushechkina::Shape dushechkina::changeSquareSelfInter(Shape shape)
 {
   if (!isSquareNotSelfInter(shape))
   {
-	  if (shape[0].x == shape[2].x || shape[0].y == shape[2].y)
-	  {
-		  std::swap(shape[2].x, shape[3].x);
-		  std::swap(shape[2].y, shape[3].y);
-	  }
-	  if (shape[1].x == shape[3].x || shape[1].y == shape[3].y)
-	  {
-		  std::swap(shape[3].x, shape[0].x);
-		  std::swap(shape[3].y, shape[0].y);
-	  }
+    if (shape[0].x == shape[2].x || shape[0].y == shape[2].y)
+    {
+      std::swap(shape[2].x, shape[3].x);
+      std::swap(shape[2].y, shape[3].y);
+    }
+    if (shape[1].x == shape[3].x || shape[1].y == shape[3].y)
+    {
+      std::swap(shape[3].x, shape[0].x);
+      std::swap(shape[3].y, shape[0].y);
+    }
   }
   return shape;
 }
@@ -74,16 +73,16 @@ dushechkina::Shape dushechkina::changeRectSelfInter(Shape& shape)
 {
   if (!isRectNotSelfInter(shape))
   {
-	  if (shape[0].x == shape[2].x || shape[0].y == shape[2].y)
-	  {
-		  std::swap(shape[2].x, shape[3].x);
-		  std::swap(shape[2].y, shape[3].y);
-	  }
-	  if (shape[1].x == shape[3].x || shape[1].y == shape[3].y)
-	  {
-		  std::swap(shape[3].x, shape[0].x);
-		  std::swap(shape[3].y, shape[0].y);
-	  }
+    if (shape[0].x == shape[2].x || shape[0].y == shape[2].y)
+    {
+      std::swap(shape[2].x, shape[3].x);
+      std::swap(shape[2].y, shape[3].y);
+    }
+    if (shape[1].x == shape[3].x || shape[1].y == shape[3].y)
+    {
+      std::swap(shape[3].x, shape[0].x);
+      std::swap(shape[3].y, shape[0].y);
+    }
   }
   return shape;
 }

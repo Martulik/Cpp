@@ -8,10 +8,8 @@
 namespace dushechkina
 {
   Shape generateFigure(std::mt19937& rand);
-  bool isSquareNotSelfInter(const Shape& shape);
-  bool isRectNotSelfInter(const Shape& shape);
-  Shape changeSquareSelfInter(Shape& shape);
-  Shape changeRectSelfInter(Shape& shape);
+  bool isShapeNotSelfInter(const Shape& shape);
+  Shape changeShapeSelfInter(Shape& shape);
 }
 
 #endif

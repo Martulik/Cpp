@@ -62,20 +62,20 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
 
 bool dushechkina::isShapeNotSelfInter(const Shape& shape)
 {
-  int dx1, dy1, dx2, dy2, dx3, dy3, dx4, dy4;
-  dx1 = shape[2].x - shape[1].x;
-  dy1 = shape[2].y - shape[1].y;
-  dx2 = shape[3].x - shape[0].x;
-  dy2 = shape[3].y - shape[0].y;
-  dx3 = shape[2].x - shape[3].x;
-  dy3 = shape[2].y - shape[3].y;
-  dx4 = shape[1].x - shape[0].x;
-  dy4 = shape[1].y - shape[0].y;
+  int dx1 = shape[2].x - shape[1].x;
+  int dy1 = shape[2].y - shape[1].y;
+  int dx2 = shape[3].x - shape[0].x;
+  int dy2 = shape[3].y - shape[0].y;
+  int dx3 = shape[2].x - shape[3].x;
+  int dy3 = shape[2].y - shape[3].y;
+  int dx4 = shape[1].x - shape[0].x;
+  int dy4 = shape[1].y - shape[0].y;
+
   if (dx1 == dx2 && dy1 == dy2 && dx3 == dx4 && dy3 == dy4)
   {
     return isRectangle(shape);
   }
-  else 
+  else
     return !isRectangle(shape);
 }
 
@@ -83,11 +83,10 @@ dushechkina::Shape dushechkina::changeShapeSelfInter(Shape& shape)
 {
   if (!isShapeNotSelfInter(shape))
   {
-    int dx1, dy1, dx2, dy2, dx3, dy3, dx4, dy4;
-    dx1 = shape[2].x - shape[1].x;
-    dy1 = shape[2].y - shape[1].y;
-    dx2 = shape[3].x - shape[0].x;
-    dy2 = shape[3].y - shape[0].y;
+    int dx1 = shape[2].x - shape[1].x;
+    int dy1 = shape[2].y - shape[1].y;
+    int dx2 = shape[3].x - shape[0].x;
+    int dy2 = shape[3].y - shape[0].y;
 
     if (dx1 != dx2 || dy1 != dy2)
     {
@@ -95,10 +94,10 @@ dushechkina::Shape dushechkina::changeShapeSelfInter(Shape& shape)
       std::swap(shape[2].y, shape[3].y);
     }
 
-    dx3 = shape[2].x - shape[3].x;
-    dy3 = shape[2].y - shape[3].y;
-    dx4 = shape[1].x - shape[0].x;
-    dy4 = shape[1].y - shape[0].y;
+    int dx3 = shape[2].x - shape[3].x;
+    int dy3 = shape[2].y - shape[3].y;
+    int dx4 = shape[1].x - shape[0].x;
+    int dy4 = shape[1].y - shape[0].y;
 
     if (dx3 != dx4 || dy3 != dy4)
     {

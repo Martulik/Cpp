@@ -31,4 +31,21 @@ BOOST_AUTO_TEST_CASE(correctWorkFunctionDeleteSelfInter)
   BOOST_CHECK(dushechkina::isShapeNotSelfInter(shape));
 }
 
+BOOST_AUTO_TEST_CASE(correctWorkFunctionNotSelfInter)
+{
+  std::istringstream in("4 (-30; 29) (0; 2) (9; 12) (-21; 39)");
+  dushechkina::Shape shape;
+  in >> shape;
+  BOOST_CHECK(dushechkina::isShapeNotSelfInter(shape));
+}
+
+BOOST_AUTO_TEST_CASE(correctWorkFunctionDeleteSelfInter)
+{
+  std::istringstream in("4 (-30; 29) (-21; 39) (9; 12) (0; 2)");
+  dushechkina::Shape shape;
+  in >> shape;
+  dushechkina::changeShapeSelfInter(shape);
+  BOOST_CHECK(dushechkina::isShapeNotSelfInter(shape));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

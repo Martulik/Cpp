@@ -17,7 +17,6 @@ std::istream& dushechkina::operator>>(std::istream& in, Point& point)
   if (!inp)
   {
     throw std::invalid_argument("Empty input");
-    return in;
   }
   in >> std::ws;
   if (in.eof())

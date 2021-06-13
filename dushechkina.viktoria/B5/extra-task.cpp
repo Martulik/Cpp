@@ -4,9 +4,9 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
 {
   std::uniform_int_distribution< int > coor(-10, 10);
   Point first{ coor(rand), coor(rand) };
-
-  std::uniform_int_distribution< int > coorx(1, 10);
-  std::uniform_int_distribution< int > coory(0, 10);
+  const int maxAbsCorr = 10;
+  std::uniform_int_distribution< int > coorx(1, maxAbsCorr);
+  std::uniform_int_distribution< int > coory(0, maxAbsCorr);
   std::uniform_int_distribution< int > coef(1, 3);
   int ax = coorx(rand);
   int ay = coory(rand);
@@ -33,23 +33,22 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
   Point second{ first.x - k * xmin, first.y + k * ymin };
   Point third{ second.x + ax, second.y + ay };
 
-  Shape shape1;
-  shape1 = {first, second, third, fourth};
+  Shape shape1 = {first, second, third, fourth};
 
   std::uniform_int_distribution< int > randPos(0, 3);
-  int pos1, pos2, pos3, pos4;
-  pos1 = randPos(rand);
-  pos2 = randPos(rand);
+  int pos1 = randPos(rand);
+  int pos2 = randPos(rand);
   while (pos1 == pos2)
   {
     pos2 = randPos(rand);
   }
-  pos3 = randPos(rand);
+  int pos3 = randPos(rand);
   while (pos1 == pos3 || pos2 == pos3)
   {
     pos3 = randPos(rand);
   }
-  pos4 = 6 - pos1 - pos2 - pos3;
+  const int sumRandPos = 6;
+  int pos4 = sumRandPos - pos1 - pos2 - pos3;
 
   std::swap(shape1[0], shape1[pos1]);
   std::swap(shape1[1], shape1[pos2]);

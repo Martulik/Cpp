@@ -4,6 +4,8 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <memory>
+#include <random>
 #include "shape.hpp"
 
 namespace lebedeva
@@ -19,5 +21,9 @@ namespace lebedeva
   void printInfo(std::ostream& out, const ShapesSpecifics& info);
   void printPoints(std::ostream& out, const Shape& points);
   void printShapes(std::ostream& out, const std::vector< Shape >& shapes);
+
+  Shape makeQuadrangle(std::random_device& gen);
+  Point makePoint(std::random_device& gen, const bool isShift);
+  void rotateShape(Shape& shape, std::random_device& gen);
 }
 #endif

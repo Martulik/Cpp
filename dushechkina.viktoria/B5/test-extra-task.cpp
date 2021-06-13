@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(correctWorkFunctionDeleteSelfInter)
   std::istringstream in("4 (0;1) (0;0) (1;1) (1;0)");
   dushechkina::Shape shape;
   in >> shape;
-  dushechkina::changeShapeSelfInter(f);
+  dushechkina::changeShapeSelfInter(shape);
   BOOST_CHECK(dushechkina::isShapeNotSelfInter(shape));
 }
 

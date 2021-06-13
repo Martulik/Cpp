@@ -48,3 +48,8 @@ std::ostream& lebedeva::operator<<(std::ostream& out, const Point& point)
   out << '(' << point.x << "; " << point.y << ')';
   return out;
 }
+
+lebedeva::Point lebedeva::operator+(const Point lhs, const Point rhs)
+{
+  return { lhs.x + rhs.x, lhs.y + rhs.y };
+}

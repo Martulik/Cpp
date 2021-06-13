@@ -2,9 +2,9 @@
 
 dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
 {
-  std::uniform_int_distribution< int > coor(-10, 10);
-  Point first{ coor(rand), coor(rand) };
   const int maxAbsCorr = 10;
+  std::uniform_int_distribution< int > coor(-maxAbsCorr, maxAbsCorr);
+  Point first{ coor(rand), coor(rand) };
   std::uniform_int_distribution< int > coorx(1, maxAbsCorr);
   std::uniform_int_distribution< int > coory(0, maxAbsCorr);
   std::uniform_int_distribution< int > coef(1, 3);

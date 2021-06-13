@@ -24,5 +24,15 @@ namespace lebedeva
   bool isPentagon(const Shape& shape);
   int getDistance(const Point& p1, const Point& p2);
   bool compareDistances(const Shape& shape);
+
+  bool compareDistancesFromOnePoint(const Point p1, const Point p2, const Point p3);
+  bool isCrossedSquare(const Shape& shape);
+  bool isCrossedRectangle(const Shape& shape);
+  bool isSquareAdvanced(const Shape& shape);
+  bool isRectangleAdvanced(const Shape& shape);
+  std::vector< int > getAllDistances(const Shape& shape);
+  bool checkSquareDistances(const Shape& shape);
+  bool checkRectangleDistances(const Shape& shape);
+  bool checkHypotenuse(const Shape& shape);
 }
 #endif

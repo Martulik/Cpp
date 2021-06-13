@@ -81,35 +81,35 @@ void lebedeva::printShapes(std::ostream& out, const std::vector< Shape >& shapes
   std::copy(shapes.begin(), shapes.end(), outIter);
 }
 
-lebedeva::Shape lebedeva::makeQuadrangle(std::random_device& gen)
+lebedeva::Shape lebedeva::makeQuadrilateral(std::random_device& gen)
 {
   Point p0 = makePoint(gen, 0);
   Point shift = makePoint(gen, 1);
   Point p1 = { p0.x, p0.y + shift.y };
   Point p2 = { p0.x + shift.x, p0.y + shift.y };
   Point p3 = { p0.x + shift.x, p0.y };
-  Shape quadrangle = { p0, p1, p2, p3 };
+  Shape quadrilateral = { p0, p1, p2, p3 };
 
   std::uniform_int_distribution< int > probability(0, 1);
 
   if (probability(gen))
   {
-    rotateShape(quadrangle, gen);
+    rotateShape(quadrilateral, gen);
   }
 
   if (probability(gen))
   {
     if (probability(gen))
     {
-      std::swap(quadrangle[1], quadrangle[2]);
+      std::swap(quadrilateral[1], quadrilateral[2]);
     }
     else
     {
-      std::swap(quadrangle[2], quadrangle[3]);
+      std::swap(quadrilateral[2], quadrilateral[3]);
     }
   }
 
-  return quadrangle;
+  return quadrilateral;
 }
 
 lebedeva::Point lebedeva::makePoint(std::random_device& gen, const bool isShift)

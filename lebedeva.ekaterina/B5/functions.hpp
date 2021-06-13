@@ -22,7 +22,7 @@ namespace lebedeva
   void printPoints(std::ostream& out, const Shape& points);
   void printShapes(std::ostream& out, const std::vector< Shape >& shapes);
 
-  Shape makeQuadrangle(std::random_device& gen);
+  Shape makeQuadrilateral(std::random_device& gen);
   Point makePoint(std::random_device& gen, const bool isShift);
   void rotateShape(Shape& shape, std::random_device& gen);
 }

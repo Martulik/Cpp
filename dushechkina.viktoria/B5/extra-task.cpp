@@ -13,9 +13,8 @@ dushechkina::Shape dushechkina::generateFigure(std::mt19937& rand)
   int k = coef(rand);
   Point fourth{ first.x + ax, first.y + ay};
 
-  int xmin, ymin;
-  xmin = ay;
-  ymin = ax;
+  int xmin = ay;
+  int ymin = ax;
   int xnod = xmin;
   int ynod = ymin;
   while (xnod != ynod)
@@ -76,7 +75,9 @@ bool dushechkina::isShapeNotSelfInter(const Shape& shape)
     return isRectangle(shape);
   }
   else
+  {
     return !isRectangle(shape);
+  }
 }
 
 dushechkina::Shape dushechkina::changeShapeSelfInter(Shape& shape)

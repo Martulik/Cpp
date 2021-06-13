@@ -24,6 +24,9 @@ namespace lebedeva
 
   Shape makeQuadrilateral(std::random_device& gen);
   Point makePoint(std::random_device& gen, const bool isShift);
-  void rotateShape(Shape& shape, std::random_device& gen);
+  void makeDefault(Shape& shape, std::random_device& gen);
+  void makeRotated(Shape& shape, std::random_device& gen);
+  Point rotate(double x, double y, int degree);
+  void makeCrossed(Shape& shape, std::random_device& gen);
 }
 #endif

@@ -83,30 +83,21 @@ void lebedeva::printShapes(std::ostream& out, const std::vector< Shape >& shapes
 
 lebedeva::Shape lebedeva::makeQuadrilateral(std::random_device& gen)
 {
-  Point p0 = makePoint(gen, 0);
-  Point shift = makePoint(gen, 1);
-  Point p1 = { p0.x, p0.y + shift.y };
-  Point p2 = { p0.x + shift.x, p0.y + shift.y };
-  Point p3 = { p0.x + shift.x, p0.y };
-  Shape quadrilateral = { p0, p1, p2, p3 };
-
+  Shape quadrilateral;
   std::uniform_int_distribution< int > probability(0, 1);
 
   if (probability(gen))
   {
-    rotateShape(quadrilateral, gen);
+    makeRotated(quadrilateral, gen);
+  }
+  else
+  {
+    makeDefault(quadrilateral, gen);
   }
 
   if (probability(gen))
   {
-    if (probability(gen))
-    {
-      std::swap(quadrilateral[1], quadrilateral[2]);
-    }
-    else
-    {
-      std::swap(quadrilateral[2], quadrilateral[3]);
-    }
+    makeCrossed(quadrilateral, gen);
   }
 
   return quadrilateral;
@@ -114,37 +105,75 @@ lebedeva::Shape lebedeva::makeQuadrilateral(std::random_device& gen)
 
 lebedeva::Point lebedeva::makePoint(std::random_device& gen, const bool isShift)
 {
-  std::uniform_int_distribution< int > coordinate(-10000, 10000);
+  std::uniform_int_distribution< int > coordinate(-10, 10);
   int x = coordinate(gen);
   int y = coordinate(gen);
   if (isShift)
   {
+    std::uniform_int_distribution< int > coordSh(1, 20);
     std::uniform_int_distribution< int > isSquare(0, 1);
     if (isSquare(gen))
     {
+      x = coordSh(gen);
       y = x;
     }
     else
     {
-      for (y; (y == x); y = coordinate(gen));
+      x = coordSh(gen);
+      y = coordSh(gen);
+      for (y; (y == x); y = coordSh(gen));
     }
   }
   return { x, y };
 }
 
-void lebedeva::rotateShape(Shape& shape, std::random_device& gen)
+void lebedeva::makeDefault(Shape& shape, std::random_device& gen)
 {
-  std::uniform_real_distribution< double > degree(0.0, 180.0);
-  const double MY_PI = 3.1415;
-  double rotDegree = degree(gen);
-  double rad = (rotDegree * MY_PI) / 180;
-  double Sin = std::sin(rad);
-  double Cos = std::cos(rad);
-  Point p0 = shape[0];
-  for (size_t i = 1; i < shape.size(); i++)
+  Point p0 = makePoint(gen, 0);
+  Point shift = makePoint(gen, 1);
+  Point p1 = { p0.x, (p0.y + shift.y) };
+  Point p2 = { (p0.x + shift.x), (p0.y + shift.y) };
+  Point p3 = { (p0.x + shift.x), p0.y };
+  shape = { p0, p1, p2, p3 };
+}
+
+void lebedeva::makeRotated(Shape& shape, std::random_device& gen)
+{
+  std::uniform_real_distribution< double > coord(1.0, 20.0);
+  std::uniform_int_distribution< int > degree(0, 360);
+  Point wh = makePoint(gen, 1);
+  Point shift = makePoint(gen, 0);
+  double x1 = -1 * (wh.x / 2);
+  double y1 = wh.y / 2;
+  double x2 = wh.x / 2;
+  double y2 = -1 * (wh.y / 2);
+  int deg = degree(gen);
+  shape.push_back(rotate(x1, y2, deg) + shift);
+  shape.push_back(rotate(x1, y1, deg) + shift);
+  shape.push_back(rotate(x2, y1, deg) + shift);
+  shape.push_back(rotate(x2, y2, deg) + shift);
+}
+
+lebedeva::Point lebedeva::rotate(double x, double y, int degree)
+{
+  const double MY_PI = 3.14;
+  double rad = degree * MY_PI / 180;
+  double tempX = x;
+  double tempY = y;
+  x = tempX * std::cos(rad) - tempY * std::sin(rad);
+  y = tempX * std::sin(rad) + tempY * std::cos(rad);
+  return { static_cast< int >(x), static_cast< int >(y) };
+}
+
+void lebedeva::makeCrossed(Shape& shape, std::random_device& gen)
+{
+  std::uniform_int_distribution< int > probability(0, 1);
+  if (probability(gen))
   {
-    Point temp = shape[i];
-    shape[i].x = p0.x + (temp.x - p0.x) * Cos - (temp.y - p0.y) * Sin;
-    shape[i].y = p0.y + (temp.x - p0.x) * Sin + (temp.y - p0.y) * Cos;
+    std::swap(shape[1], shape[2]);
+  }
+  else
+  {
+    std::swap(shape[2], shape[3]);
   }
 }

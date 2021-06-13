@@ -78,58 +78,56 @@ bool lebedeva::compareDistances(const Shape& shape)
   return (temp2 == temp1);
 }
 
-bool lebedeva::compareDistancesFromOnePoint(const Point centralPoint, const Point p1, const Point p2)
-{
-  int temp1 = getDistance(centralPoint, p1);
-  int temp2 = getDistance(centralPoint, p2);
-  return (temp2 == temp1);
-}
-
 bool lebedeva::isCrossedSquare(const Shape& shape)
 {
-  return (isRectangle(shape) && (compareDistancesFromOnePoint(shape[0], shape[1], shape[2]) || compareDistancesFromOnePoint(shape[0], shape[2], shape[3])));
+  return (isRectangle(shape) && checkEquivalence(shape));
 }
 
 bool lebedeva::isCrossedRectangle(const Shape& shape)
 {
-  return (isRectangle(shape) && checkHypotenuse(shape) && !checkRectangleDistances(shape));
+  return (isRectangle(shape) && !checkRectangleDistances(shape) && checkDistances(shape));
 }
 
 bool lebedeva::isSquareAdvanced(const Shape& shape)
 {
-  return (isRectangle(shape) && (checkSquareDistances(shape) || isCrossedSquare(shape)));
+  return (isRectangle(shape) && (checkSimpleEquivalence(shape) || checkEquivalence(shape)));
 }
 
 bool lebedeva::isRectangleAdvanced(const Shape& shape)
 {
-  return (isRectangle(shape) && checkHypotenuse(shape));
+  return (isRectangle(shape) && checkDistances(shape));
 }
 
-std::vector< int > lebedeva::getAllDistances(const Shape& shape)
+bool lebedeva::checkDistances(const Shape& shape)
 {
-  int d1 = getDistance(shape[0], shape[1]);
-  int d2 = getDistance(shape[1], shape[2]);
-  int d3 = getDistance(shape[2], shape[3]);
-  int d4 = getDistance(shape[3], shape[0]);
-  return { d1, d2, d3, d4 };
+  constexpr auto eps = std::numeric_limits< double >::epsilon() * 2e+2;
+  double a = getDistance(shape[0], shape[1]);
+  double b = getDistance(shape[0], shape[2]);
+  double c = getDistance(shape[1], shape[2]);
+  return (std::abs(a + b - c) < eps || std::abs(a + c - b) < eps || std::abs(b + c - a) < eps);
 }
 
-bool lebedeva::checkSquareDistances(const Shape& shape)
+bool lebedeva::checkEquivalence(const Shape& shape)
 {
-  std::vector< int > distances = getAllDistances(shape);
-  return (std::adjacent_find(distances.begin(), distances.end(), std::not_equal_to<>()) == distances.end());
+  constexpr auto eps = std::numeric_limits< double >::epsilon() * 1e+1;
+  double a = std::sqrt(getDistance(shape[0], shape[1]));
+  double b = std::sqrt(getDistance(shape[0], shape[2]));
+  double c = std::sqrt(getDistance(shape[1], shape[2]));
+  return (std::abs(a - b) < eps || std::abs(b - c) < eps);
+}
+
+bool lebedeva::checkSimpleEquivalence(const Shape& shape)
+{
+  constexpr auto eps = std::numeric_limits< double >::epsilon() * 1e+1;
+  double a = std::sqrt(getDistance(shape[0], shape[1]));
+  double c = std::sqrt(getDistance(shape[1], shape[2]));
+  return (std::abs(a - c) < eps);
 }
 
 bool lebedeva::checkRectangleDistances(const Shape& shape)
 {
-  std::vector< int > distances = getAllDistances(shape);
-  return (distances[0] + distances[3] == getDistance(shape[1], shape[3]));
-}
-
-bool lebedeva::checkHypotenuse(const Shape& shape)
-{
-  int a = getDistance(shape[0], shape[1]);
-  int b = getDistance(shape[1], shape[2]);
-  int c = getDistance(shape[0], shape[2]);
-  return ((a + b == c) || (a + c == b) || (b + c == a));
+  constexpr auto eps = std::numeric_limits< double >::epsilon() * 1e+2;
+  double sum = getDistance(shape[0], shape[1]) + getDistance(shape[0], shape[3]);
+  double hyp = getDistance(shape[1], shape[3]);
+  return (std::abs(sum - hyp) < eps);
 }

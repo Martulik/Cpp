@@ -121,7 +121,10 @@ lebedeva::Point lebedeva::makePoint(std::random_device& gen, const bool isShift)
     {
       x = coordSh(gen);
       y = coordSh(gen);
-      for (y; (y == x); y = coordSh(gen));
+      if (y == x)
+      {
+        y = coordSh(gen);
+      }
     }
   }
   return { x, y };

@@ -3,7 +3,6 @@
 #include <iostream>
 #include <numeric>
 #include <algorithm>
-//#include <cmath>
 
 std::set< std::string > lebedeva::doInputWords(std::istream& in)
 {
